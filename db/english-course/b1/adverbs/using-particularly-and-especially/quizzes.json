@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343bdb"
-  },
-  "id" : "67fab6d59930102295343bdb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "Disfrutó especialmente la escena principal de la película.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bdb"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He enjoyed the main scene of the movie. (especially / mid)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He especially enjoyed the main scene of the movie." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343bdc"
-  },
-  "id" : "67fab6d59930102295343bdc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "Particularmente podríamos necesitar una alfombra más grande.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343bdb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We might need a larger rug. (particularly / mid)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We might particularly need a larger rug." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343bdd"
-  },
-  "id" : "67fab6d59930102295343bdd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "Odiamos particularmente la música durante la cena.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "Disfrutó especialmente la escena principal de la película.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We hated the music during dinner. (particularly / mid)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We particularly hated the music during dinner." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343bde"
-  },
-  "id" : "67fab6d59930102295343bde",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "A ella le gusta el té, especialmente el té verde.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She enjoys tea, green tea. (especially / before the thing it emphasises)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She enjoys tea, especially green tea." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343bdf"
-  },
-  "id" : "67fab6d59930102295343bdf",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "Amo a los gatos, ¡especialmente a mi gato!",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I love cats, my cat! (especially / before the thing it emphasises)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I love cats, especially my cat!" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343be0"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He enjoyed the main scene of the movie. (especially / mid)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He especially enjoyed the main scene of the movie."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He especially enjoyed the main scene of the movie."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343be0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "No estaba impresionado con nada, especialmente con el servicio.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bdc"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He wasn't impressed with anything, the service. (especially / before the thing it emphasises)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He wasn't impressed with anything, especially the service." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343be1"
-  },
-  "id" : "67fab6d59930102295343be1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "Me gustó particularmente el viaje al zoológico.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343bdc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I liked the trip to the zoo. (particularly / mid)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I particularly liked the trip to the zoo." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343be2"
-  },
-  "id" : "67fab6d59930102295343be2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "Ignoraron todas las reglas, especialmente la última.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "Particularmente podríamos necesitar una alfombra más grande.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They ignored all the rules, the last one. (especially / before the thing it emphasises)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They ignored all the rules, especially the last one." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343be3"
-  },
-  "id" : "67fab6d59930102295343be3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "Ella se niega a cantar, particularmente cuando hay tanta gente.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She refuses to sing, when it's so crowded. (particularly / before the thing it emphasises)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She refuses to sing, particularly when it's so crowded." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343be4"
-  },
-  "id" : "67fab6d59930102295343be4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "Estoy especialmente preocupado por romper mis nuevas gafas.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I am worried about breaking my new glasses. (especially / mid)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I am especially worried about breaking my new glasses." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343be5"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We might need a larger rug. (particularly / mid)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We might particularly need a larger rug."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We might particularly need a larger rug."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343be5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "A ella le gustaba hablar con los animales, particularmente con los delfines.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bdd"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She liked talking to animals, dolphins. (particularly / before the thing it emphasises)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She liked talking to animals, particularly dolphins." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343be6"
-  },
-  "id" : "67fab6d59930102295343be6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "Me interesan los deportes, especialmente los deportes acuáticos.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343bdd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm interested in sports, water sports. (especially / before the thing it emphasises)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I'm interested in sports, especially water sports." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343be7"
-  },
-  "id" : "67fab6d59930102295343be7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "Estaba especialmente ansiosa por el examen.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "Odiamos particularmente la música durante la cena.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She was anxious about the exam. (especially / mid)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She was especially anxious about the exam." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343be8"
-  },
-  "id" : "67fab6d59930102295343be8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "Él está particularmente interesado en el té negro.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He is keen on black tea. (particularly / mid)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He is particularly keen on black tea." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343be9"
-  },
-  "id" : "67fab6d59930102295343be9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "Ella particularmente necesita una mesa.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She requires a table. (particularly / mid)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She particularly needs a table." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343bea"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We hated the music during dinner. (particularly / mid)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We particularly hated the music during dinner."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We particularly hated the music during dinner."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343bea",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "Extraño ver a la familia, particularmente durante las vacaciones.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bde"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I miss seeing family, during the holidays. (particularly / before the thing it emphasises)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I miss seeing family, particularly during the holidays." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343beb"
-  },
-  "id" : "67fab6d59930102295343beb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "A ellos les disgustó especialmente viajar tanto tiempo en tren.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343bde",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They disliked travelling for so long by train. (especially / mid)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They especially disliked travelling for so long by train." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343bec"
-  },
-  "id" : "67fab6d59930102295343bec",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "Me encanta ver películas, particularmente contigo.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "A ella le gusta el té, especialmente el té verde.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I love watching movies, with you. (particularly / before the thing it emphasises)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I love watching movies, particularly with you." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343bed"
-  },
-  "id" : "67fab6d59930102295343bed",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "Ella aprecia especialmente el clima en España.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She appreciates the weather in Spain. (especially / mid)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She especially appreciates the weather in Spain." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343bee"
-  },
-  "id" : "67fab6d59930102295343bee",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d369"
-  },
-  "title" : "Using 'Particularly' and 'Especially'",
-  "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "Ella come mucha fruta, particularmente manzanas y plátanos.",
-  "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.05.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She eats a lot of fruit, apples and bananas. (particularly / before the thing it emphasises)",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She eats a lot of fruit, particularly apples and bananas." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She enjoys tea, green tea. (especially / before the thing it emphasises)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She enjoys tea, especially green tea."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She enjoys tea, especially green tea."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bdf"
+    },
+    "id": "67fab6d59930102295343bdf",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
+    },
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "Amo a los gatos, ¡especialmente a mi gato!",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I love cats, my cat! (especially / before the thing it emphasises)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I love cats, especially my cat!"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I love cats, especially my cat!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343be0"
+    },
+    "id": "67fab6d59930102295343be0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
+    },
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "No estaba impresionado con nada, especialmente con el servicio.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He wasn't impressed with anything, the service. (especially / before the thing it emphasises)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He wasn't impressed with anything, especially the service."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He wasn't impressed with anything, especially the service."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343be1"
+    },
+    "id": "67fab6d59930102295343be1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
+    },
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "Me gustó particularmente el viaje al zoológico.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I liked the trip to the zoo. (particularly / mid)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I particularly liked the trip to the zoo."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I particularly liked the trip to the zoo."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343be2"
+    },
+    "id": "67fab6d59930102295343be2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
+    },
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "Ignoraron todas las reglas, especialmente la última.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They ignored all the rules, the last one. (especially / before the thing it emphasises)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They ignored all the rules, especially the last one."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They ignored all the rules, especially the last one."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343be3"
+    },
+    "id": "67fab6d59930102295343be3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
+    },
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "Ella se niega a cantar, particularmente cuando hay tanta gente.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She refuses to sing, when it's so crowded. (particularly / before the thing it emphasises)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She refuses to sing, particularly when it's so crowded."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She refuses to sing, particularly when it's so crowded."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343be4"
+    },
+    "id": "67fab6d59930102295343be4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
+    },
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "Estoy especialmente preocupado por romper mis nuevas gafas.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I am worried about breaking my new glasses. (especially / mid)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I am especially worried about breaking my new glasses."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I am especially worried about breaking my new glasses."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343be5"
+    },
+    "id": "67fab6d59930102295343be5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
+    },
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "A ella le gustaba hablar con los animales, particularmente con los delfines.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She liked talking to animals, dolphins. (particularly / before the thing it emphasises)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She liked talking to animals, particularly dolphins."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She liked talking to animals, particularly dolphins."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343be6"
+    },
+    "id": "67fab6d59930102295343be6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
+    },
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "Me interesan los deportes, especialmente los deportes acuáticos.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm interested in sports, water sports. (especially / before the thing it emphasises)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I'm interested in sports, especially water sports."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I'm interested in sports, especially water sports."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343be7"
+    },
+    "id": "67fab6d59930102295343be7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
+    },
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "Estaba especialmente ansiosa por el examen.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She was anxious about the exam. (especially / mid)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She was especially anxious about the exam."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She was especially anxious about the exam."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343be8"
+    },
+    "id": "67fab6d59930102295343be8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
+    },
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "Él está particularmente interesado en el té negro.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is keen on black tea. (particularly / mid)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He is particularly keen on black tea."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He is particularly keen on black tea."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343be9"
+    },
+    "id": "67fab6d59930102295343be9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
+    },
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "Ella particularmente necesita una mesa.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She requires a table. (particularly / mid)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She particularly needs a table."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She particularly needs a table."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bea"
+    },
+    "id": "67fab6d59930102295343bea",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
+    },
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "Extraño ver a la familia, particularmente durante las vacaciones.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I miss seeing family, during the holidays. (particularly / before the thing it emphasises)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I miss seeing family, particularly during the holidays."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I miss seeing family, particularly during the holidays."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343beb"
+    },
+    "id": "67fab6d59930102295343beb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
+    },
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "A ellos les disgustó especialmente viajar tanto tiempo en tren.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They disliked travelling for so long by train. (especially / mid)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They especially disliked travelling for so long by train."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They especially disliked travelling for so long by train."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bec"
+    },
+    "id": "67fab6d59930102295343bec",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
+    },
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "Me encanta ver películas, particularmente contigo.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I love watching movies, with you. (particularly / before the thing it emphasises)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I love watching movies, particularly with you."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I love watching movies, particularly with you."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bed"
+    },
+    "id": "67fab6d59930102295343bed",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
+    },
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "Ella aprecia especialmente el clima en España.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She appreciates the weather in Spain. (especially / mid)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She especially appreciates the weather in Spain."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She especially appreciates the weather in Spain."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343bee"
+    },
+    "id": "67fab6d59930102295343bee",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d369"
+    },
+    "title": "Using 'Particularly' and 'Especially'",
+    "instructions": "Reescribe la oración para que incluya 'particularly' o 'especially'.",
+    "translation": "Ella come mucha fruta, particularmente manzanas y plátanos.",
+    "theoryId": "b1.16.Adverbs_of_Focus_Particularly_Especially",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.05.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She eats a lot of fruit, apples and bananas. (particularly / before the thing it emphasises)",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She eats a lot of fruit, particularly apples and bananas."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She eats a lot of fruit, particularly apples and bananas."
+      ]
+    }
   }
-} ]
+]

@@ -1,1225 +1,1466 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342287"
-  },
-  "id" : "67fab6d59930102295342287",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Ellos cantaron una canción.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342287"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sang" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(sing) a song.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342288"
-  },
-  "id" : "67fab6d59930102295342288",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "John corrió a la escuela.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342287",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "John",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "ran" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(run) to school.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342289"
-  },
-  "id" : "67fab6d59930102295342289",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Ella se sintió feliz ayer.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Ellos cantaron una canción.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "felt" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(feel) happy yesterday.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534228a"
-  },
-  "id" : "67fab6d5993010229534228a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Conduje al trabajo.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "drove" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(drive) to work.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534228b"
-  },
-  "id" : "67fab6d5993010229534228b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "El perro mordió al niño.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The dog",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "bit" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(bite) the boy.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534228c"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "sang"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(sing) a song.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They sang a song."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534228c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Ella dibujó un cuadro.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342288"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "drew" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(draw) a picture.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534228d"
-  },
-  "id" : "67fab6d5993010229534228d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Él gastó todo su dinero.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342288",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "spent" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(spend) all his money.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534228e"
-  },
-  "id" : "67fab6d5993010229534228e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Sentí que te importaba.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "John corrió a la escuela.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "felt" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(feel) that you cared.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534228f"
-  },
-  "id" : "67fab6d5993010229534228f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Escuché un ruido extraño.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "heard" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(hear) a strange noise",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342290"
-  },
-  "id" : "67fab6d59930102295342290",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Guardamos el secreto.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "kept" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(keep) the secret.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342291"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "John",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "ran"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(run) to school.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John ran to school."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342291",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Les mostramos la casa nueva.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342289"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "showed" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(show) them the new house.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342292"
-  },
-  "id" : "67fab6d59930102295342292",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Dejé mis llaves en casa.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342289",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "left" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(leave) my keys at home.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342293"
-  },
-  "id" : "67fab6d59930102295342293",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Ella construyó un castillo de arena.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Ella se sintió feliz ayer.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "built" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(build) a sandcastle.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342294"
-  },
-  "id" : "67fab6d59930102295342294",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Nos cortamos el pelo corto.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "cut" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(cut) our hair short.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342295"
-  },
-  "id" : "67fab6d59930102295342295",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Él mantuvo la puerta abierta.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "held" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(hold) the door open.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342296"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "felt"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(feel) happy yesterday.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She felt happy yesterday."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342296",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Ella se convirtió en una bailarina famosa.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534228a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "became" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(become) a famous dancer.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342297"
-  },
-  "id" : "67fab6d59930102295342297",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Mi hermana se comió todas las galletas.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534228a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "My sister",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "ate" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) all the cookies.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342298"
-  },
-  "id" : "67fab6d59930102295342298",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Él perdió su billetera.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Conduje al trabajo.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "lost" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(lose) his wallet.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342299"
-  },
-  "id" : "67fab6d59930102295342299",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Él tomó el tren a tiempo.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "caught" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(catch) the train on time.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534229a"
-  },
-  "id" : "67fab6d5993010229534229a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Ellos vieron un pájaro.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "saw" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(see) a bird.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534229b"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "drove"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drive) to work.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I drove to work."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534229b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Pagaron la cuenta después de la cena.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.21",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534228b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "paid" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(pay) the bill after the dinner.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534229c"
-  },
-  "id" : "67fab6d5993010229534229c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Elegimos el pastel de chocolate.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.22",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534228b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "chose" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(choose) the chocolate cake.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534229d"
-  },
-  "id" : "67fab6d5993010229534229d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Lanzamos la pelota para el perro.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.23",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "El perro mordió al niño.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "threw" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(throw) the ball for the dog.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534229e"
-  },
-  "id" : "67fab6d5993010229534229e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3bd"
-  },
-  "title" : "Past Simple: Irregular Verbs 2",
-  "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Los gatos durmieron en la cama.",
-  "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.13.24",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The cats",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "slept" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(sleep) on the bed.",
-      "options" : null
-    } ]
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dog",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "bit"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(bite) the boy.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The dog bit the boy."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534228c"
+    },
+    "id": "67fab6d5993010229534228c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Ella dibujó un cuadro.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "drew"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(draw) a picture.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She drew a picture."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534228d"
+    },
+    "id": "67fab6d5993010229534228d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Él gastó todo su dinero.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "spent"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(spend) all his money.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He spent all his money."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534228e"
+    },
+    "id": "67fab6d5993010229534228e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Sentí que te importaba.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "felt"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(feel) that you cared.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I felt that you cared."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534228f"
+    },
+    "id": "67fab6d5993010229534228f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Escuché un ruido extraño.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "heard"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(hear) a strange noise",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I heard a strange noise"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342290"
+    },
+    "id": "67fab6d59930102295342290",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Guardamos el secreto.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "kept"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(keep) the secret.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We kept the secret."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342291"
+    },
+    "id": "67fab6d59930102295342291",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Les mostramos la casa nueva.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "showed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(show) them the new house.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We showed them the new house."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342292"
+    },
+    "id": "67fab6d59930102295342292",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Dejé mis llaves en casa.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "left"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(leave) my keys at home.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I left my keys at home."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342293"
+    },
+    "id": "67fab6d59930102295342293",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Ella construyó un castillo de arena.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "built"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(build) a sandcastle.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She built a sandcastle."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342294"
+    },
+    "id": "67fab6d59930102295342294",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Nos cortamos el pelo corto.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "cut"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(cut) our hair short.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We cut our hair short."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342295"
+    },
+    "id": "67fab6d59930102295342295",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Él mantuvo la puerta abierta.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "held"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(hold) the door open.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He held the door open."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342296"
+    },
+    "id": "67fab6d59930102295342296",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Ella se convirtió en una bailarina famosa.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "became"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(become) a famous dancer.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She became a famous dancer."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342297"
+    },
+    "id": "67fab6d59930102295342297",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Mi hermana se comió todas las galletas.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My sister",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "ate"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) all the cookies.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "My sister ate all the cookies."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342298"
+    },
+    "id": "67fab6d59930102295342298",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Él perdió su billetera.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "lost"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(lose) his wallet.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He lost his wallet."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342299"
+    },
+    "id": "67fab6d59930102295342299",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Él tomó el tren a tiempo.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "caught"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(catch) the train on time.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He caught the train on time."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534229a"
+    },
+    "id": "67fab6d5993010229534229a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Ellos vieron un pájaro.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "saw"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(see) a bird.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They saw a bird."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534229b"
+    },
+    "id": "67fab6d5993010229534229b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Pagaron la cuenta después de la cena.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.21",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "paid"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(pay) the bill after the dinner.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They paid the bill after the dinner."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534229c"
+    },
+    "id": "67fab6d5993010229534229c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Elegimos el pastel de chocolate.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.22",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "chose"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(choose) the chocolate cake.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We chose the chocolate cake."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534229d"
+    },
+    "id": "67fab6d5993010229534229d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Lanzamos la pelota para el perro.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.23",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "threw"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(throw) the ball for the dog.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We threw the ball for the dog."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534229e"
+    },
+    "id": "67fab6d5993010229534229e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3bd"
+    },
+    "title": "Past Simple: Irregular Verbs 2",
+    "instructions": "Escribe oraciones en 'past simple'.",
+    "translation": "Los gatos durmieron en la cama.",
+    "theoryId": "a1.04.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.13.24",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cats",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "slept"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(sleep) on the bed.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The cats slept on the bed."
+      ]
+    }
   }
-} ]
+]

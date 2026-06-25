@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423a3"
-  },
-  "id" : "67fab6d599301022953423a3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "Ella compró unas cajas de jugo en la tienda.",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423a3"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She bought",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "cartons of juice from the store.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423a4"
-  },
-  "id" : "67fab6d599301022953423a4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "Gastamos un poco de energía en el proyecto.",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953423a3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We spent",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "energy on the project.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423a5"
-  },
-  "id" : "67fab6d599301022953423a5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "Hubo un poco de nieve la semana pasada.",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "Ella compró unas cajas de jugo en la tienda.",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "There was",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "snow last week.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423a6"
-  },
-  "id" : "67fab6d599301022953423a6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "Hizo algunos gestos para darles la bienvenida.",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He made",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "gestures to welcome them.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423a7"
-  },
-  "id" : "67fab6d599301022953423a7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "Requieren unas cucharadas de sal.",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They require",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "spoons of salt.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423a8"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She bought",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "cartons of juice from the store.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She bought a few cartons of juice from the store."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953423a8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "Por favor, añade un poco de miel a mi té.",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423a4"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Please add",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "honey in my tea.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423a9"
-  },
-  "id" : "67fab6d599301022953423a9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "Mezcla un poco de agua con el cemento.",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953423a4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Mix",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "water with the cement.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423aa"
-  },
-  "id" : "67fab6d599301022953423aa",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "Necesito un poco de espacio para considerarlo.",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "Gastamos un poco de energía en el proyecto.",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I require",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "space to consider it.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423ab"
-  },
-  "id" : "67fab6d599301022953423ab",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "Necesitamos un poco de sol. Salgamos.",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We need",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "sunshine. Let's go outside.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423ac"
-  },
-  "id" : "67fab6d599301022953423ac",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "Tengo algunos lápices en mi escritorio; puedes tomar uno.",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I've got",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "pencils at my desk - you can take one.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423ad"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We spent",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "energy on the project.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We spent a little energy on the project."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953423ad",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "¿Podríamos escuchar un poco de conversación?",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423a5"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Could we hear",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "conversation?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423ae"
-  },
-  "id" : "67fab6d599301022953423ae",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "¿Podrías venderme unos plátanos?",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953423a5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Could you sell me",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "bananas?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423af"
-  },
-  "id" : "67fab6d599301022953423af",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "¿Podrías servirme un poco de sopa?",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "Hubo un poco de nieve la semana pasada.",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Could you serve me",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "soup?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423b0"
-  },
-  "id" : "67fab6d599301022953423b0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "Tengo algunas notas en mi cuaderno.",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I've got",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "notes in my notebook.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423b1"
-  },
-  "id" : "67fab6d599301022953423b1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "Conoce a algunas personas honestas.",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He knows",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "honest people.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423b2"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "snow last week.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "There was a little snow last week."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953423b2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "Untó un poco de mermelada en la tostada.",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423a6"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He spread",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "jam on the toast.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423b3"
-  },
-  "id" : "67fab6d599301022953423b3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "Hay algunas panaderías en este pueblo.",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953423a6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "There are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "bakeries in this town.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423b4"
-  },
-  "id" : "67fab6d599301022953423b4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "Ella añadió un poco de sal al guiso.",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "Hizo algunos gestos para darles la bienvenida.",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She added",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "salt to the stew.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423b5"
-  },
-  "id" : "67fab6d599301022953423b5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "¿Podrías recoger algunos tomates?",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Could you pick",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "tomatoes?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953423b6"
-  },
-  "id" : "67fab6d599301022953423b6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ce"
-  },
-  "title" : "Understanding A Little vs. A Few",
-  "instructions" : "Completa los espacios en blanco con 'a little' o 'a few'.",
-  "translation" : "Adelante, come algunas galletas.",
-  "theoryId" : "a1.07.A_Little_A_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.03.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Go ahead - have",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "cookies.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He made",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "gestures to welcome them.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He made a few gestures to welcome them."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423a7"
+    },
+    "id": "67fab6d599301022953423a7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
+    },
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "Requieren unas cucharadas de sal.",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They require",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "spoons of salt.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They require a few spoons of salt."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423a8"
+    },
+    "id": "67fab6d599301022953423a8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
+    },
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "Por favor, añade un poco de miel a mi té.",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please add",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "honey in my tea.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Please add a little honey in my tea."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423a9"
+    },
+    "id": "67fab6d599301022953423a9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
+    },
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "Mezcla un poco de agua con el cemento.",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mix",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "water with the cement.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Mix a little water with the cement."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423aa"
+    },
+    "id": "67fab6d599301022953423aa",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
+    },
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "Necesito un poco de espacio para considerarlo.",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I require",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "space to consider it.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I require a little space to consider it."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423ab"
+    },
+    "id": "67fab6d599301022953423ab",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
+    },
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "Necesitamos un poco de sol. Salgamos.",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We need",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "sunshine. Let's go outside.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We need a little sunshine. Let's go outside."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423ac"
+    },
+    "id": "67fab6d599301022953423ac",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
+    },
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "Tengo algunos lápices en mi escritorio; puedes tomar uno.",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I've got",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "pencils at my desk - you can take one.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I've got a few pencils at my desk - you can take one."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423ad"
+    },
+    "id": "67fab6d599301022953423ad",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
+    },
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "¿Podríamos escuchar un poco de conversación?",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could we hear",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "conversation?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Could we hear a little conversation?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423ae"
+    },
+    "id": "67fab6d599301022953423ae",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
+    },
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "¿Podrías venderme unos plátanos?",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you sell me",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bananas?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Could you sell me a few bananas?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423af"
+    },
+    "id": "67fab6d599301022953423af",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
+    },
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "¿Podrías servirme un poco de sopa?",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you serve me",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "soup?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Could you serve me a little soup?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423b0"
+    },
+    "id": "67fab6d599301022953423b0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
+    },
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "Tengo algunas notas en mi cuaderno.",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I've got",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "notes in my notebook.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I've got a few notes in my notebook."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423b1"
+    },
+    "id": "67fab6d599301022953423b1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
+    },
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "Conoce a algunas personas honestas.",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He knows",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "honest people.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He knows a few honest people."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423b2"
+    },
+    "id": "67fab6d599301022953423b2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
+    },
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "Untó un poco de mermelada en la tostada.",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He spread",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "jam on the toast.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He spread a little jam on the toast."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423b3"
+    },
+    "id": "67fab6d599301022953423b3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
+    },
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "Hay algunas panaderías en este pueblo.",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bakeries in this town.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "There are a few bakeries in this town."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423b4"
+    },
+    "id": "67fab6d599301022953423b4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
+    },
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "Ella añadió un poco de sal al guiso.",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She added",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "salt to the stew.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She added a little salt to the stew."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423b5"
+    },
+    "id": "67fab6d599301022953423b5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
+    },
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "¿Podrías recoger algunos tomates?",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you pick",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "tomatoes?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Could you pick a few tomatoes?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953423b6"
+    },
+    "id": "67fab6d599301022953423b6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ce"
+    },
+    "title": "Understanding A Little vs. A Few",
+    "instructions": "Completa los espacios en blanco con 'a little' o 'a few'.",
+    "translation": "Adelante, come algunas galletas.",
+    "theoryId": "a1.07.A_Little_A_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.03.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Go ahead - have",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "cookies.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Go ahead - have a few cookies."
+      ]
+    }
   }
-} ]
+]

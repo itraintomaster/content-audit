@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343721"
-  },
-  "id" : "67fab6d59930102295343721",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que iba a ir a la fiesta.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343721"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm going to go to the party.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that he was going to go to the party." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343722"
-  },
-  "id" : "67fab6d59930102295343722",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que iban a visitar París.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343721",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They're going to visit Paris.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that they were going to visit Paris." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343723"
-  },
-  "id" : "67fab6d59930102295343723",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que iba a pedir pizza.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que iba a ir a la fiesta.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He's going to order pizza.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that he was going to order pizza." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343724"
-  },
-  "id" : "67fab6d59930102295343724",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que David iba a lavar el coche.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "David is going to wash the car.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that David was going to wash the car." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343725"
-  },
-  "id" : "67fab6d59930102295343725",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que iba a tomar un baño.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm going to take a bath.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that he was going to take a bath." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343726"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm going to go to the party.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that he was going to go to the party."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that he was going to go to the party."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343726",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que los gatos iban a comer pescado.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343722"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The cats are going to eat fish.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that the cats were going to eat fish." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343727"
-  },
-  "id" : "67fab6d59930102295343727",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que los maestros iban a hablar con el director.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343722",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The teachers are going to speak to the principal.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that the teachers were going to speak to the principal." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343728"
-  },
-  "id" : "67fab6d59930102295343728",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que iba a comprar flores.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que iban a visitar París.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm going to buy flowers.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that he was going to buy flowers." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343729"
-  },
-  "id" : "67fab6d59930102295343729",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que iba a pedir té.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He's going to order tea.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that he was going to order tea." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534372a"
-  },
-  "id" : "67fab6d5993010229534372a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que Sarah iba a conducir a la oficina.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Sarah is going to drive to the office.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that Sarah was going to drive to the office." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534372b"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They're going to visit Paris.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that they were going to visit Paris."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that they were going to visit Paris."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534372b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que Peter iba a jugar juegos.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343723"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Peter is going to play games.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that Peter was going to play games." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534372c"
-  },
-  "id" : "67fab6d5993010229534372c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que el examen iba a ser difícil.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343723",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The examination is going to be difficult.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that the examination was going to be difficult." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534372d"
-  },
-  "id" : "67fab6d5993010229534372d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que el jarrón se iba a romper.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que iba a pedir pizza.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The vase is going to break.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that the vase was going to break." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534372e"
-  },
-  "id" : "67fab6d5993010229534372e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que el perro iba a ladrar.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The dog is going to bark.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that the dog was going to bark." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534372f"
-  },
-  "id" : "67fab6d5993010229534372f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que iba a analizar los resultados.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm going to analyze the results.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that he was going to analyze the results." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343730"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's going to order pizza.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that he was going to order pizza."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that he was going to order pizza."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343730",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que iba a ver al médico.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343724"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He's going to meet the doctor.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that he was going to meet the doctor." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343731"
-  },
-  "id" : "67fab6d59930102295343731",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que iba a escuchar música.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343724",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm going to listen to music.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that he was going to listen to music." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343732"
-  },
-  "id" : "67fab6d59930102295343732",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que iban a ver un concierto.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que David iba a lavar el coche.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They're going to watch a concert.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that they were going to watch a concert." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343733"
-  },
-  "id" : "67fab6d59930102295343733",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que Alice iba a leer su libro.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Alice is going to read her book.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that Alice was going to read her book." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343734"
-  },
-  "id" : "67fab6d59930102295343734",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d323"
-  },
-  "title" : "Practice with 'be going to' in Reported Speech",
-  "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
-  "translation" : "John dijo que los pájaros iban a cantar.",
-  "theoryId" : "b1.10.How_to_Make_Reported_Speech",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.10.07.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The birds are going to sing.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that the birds were going to sing." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "David is going to wash the car.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that David was going to wash the car."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that David was going to wash the car."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343725"
+    },
+    "id": "67fab6d59930102295343725",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
+    },
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que iba a tomar un baño.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm going to take a bath.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that he was going to take a bath."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that he was going to take a bath."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343726"
+    },
+    "id": "67fab6d59930102295343726",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
+    },
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que los gatos iban a comer pescado.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cats are going to eat fish.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that the cats were going to eat fish."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that the cats were going to eat fish."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343727"
+    },
+    "id": "67fab6d59930102295343727",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
+    },
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que los maestros iban a hablar con el director.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teachers are going to speak to the principal.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that the teachers were going to speak to the principal."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that the teachers were going to speak to the principal."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343728"
+    },
+    "id": "67fab6d59930102295343728",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
+    },
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que iba a comprar flores.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm going to buy flowers.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that he was going to buy flowers."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that he was going to buy flowers."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343729"
+    },
+    "id": "67fab6d59930102295343729",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
+    },
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que iba a pedir té.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's going to order tea.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that he was going to order tea."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that he was going to order tea."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534372a"
+    },
+    "id": "67fab6d5993010229534372a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
+    },
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que Sarah iba a conducir a la oficina.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Sarah is going to drive to the office.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that Sarah was going to drive to the office."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that Sarah was going to drive to the office."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534372b"
+    },
+    "id": "67fab6d5993010229534372b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
+    },
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que Peter iba a jugar juegos.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Peter is going to play games.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that Peter was going to play games."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that Peter was going to play games."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534372c"
+    },
+    "id": "67fab6d5993010229534372c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
+    },
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que el examen iba a ser difícil.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The examination is going to be difficult.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that the examination was going to be difficult."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that the examination was going to be difficult."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534372d"
+    },
+    "id": "67fab6d5993010229534372d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
+    },
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que el jarrón se iba a romper.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The vase is going to break.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that the vase was going to break."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that the vase was going to break."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534372e"
+    },
+    "id": "67fab6d5993010229534372e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
+    },
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que el perro iba a ladrar.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dog is going to bark.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that the dog was going to bark."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that the dog was going to bark."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534372f"
+    },
+    "id": "67fab6d5993010229534372f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
+    },
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que iba a analizar los resultados.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm going to analyze the results.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that he was going to analyze the results."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that he was going to analyze the results."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343730"
+    },
+    "id": "67fab6d59930102295343730",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
+    },
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que iba a ver al médico.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's going to meet the doctor.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that he was going to meet the doctor."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that he was going to meet the doctor."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343731"
+    },
+    "id": "67fab6d59930102295343731",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
+    },
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que iba a escuchar música.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm going to listen to music.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that he was going to listen to music."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that he was going to listen to music."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343732"
+    },
+    "id": "67fab6d59930102295343732",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
+    },
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que iban a ver un concierto.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They're going to watch a concert.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that they were going to watch a concert."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that they were going to watch a concert."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343733"
+    },
+    "id": "67fab6d59930102295343733",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
+    },
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que Alice iba a leer su libro.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Alice is going to read her book.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that Alice was going to read her book."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that Alice was going to read her book."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343734"
+    },
+    "id": "67fab6d59930102295343734",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d323"
+    },
+    "title": "Practice with 'be going to' in Reported Speech",
+    "instructions": "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'John said that'.",
+    "translation": "John dijo que los pájaros iban a cantar.",
+    "theoryId": "b1.10.How_to_Make_Reported_Speech",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.10.07.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The birds are going to sing.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John said that the birds were going to sing."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John said that the birds were going to sing."
+      ]
+    }
   }
-} ]
+]

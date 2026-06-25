@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344513"
-  },
-  "id" : "67fab6d59930102295344513",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "Yo comía mucha pizza.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344513"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I ate pizza a lot.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I used to eat pizza a lot." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344514"
-  },
-  "id" : "67fab6d59930102295344514",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "Ellos estudiaban en Francia.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344513",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They studied in France.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They used to study in France." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344515"
-  },
-  "id" : "67fab6d59930102295344515",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "Ella usaba gafas.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "Yo comía mucha pizza.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She wore glasses.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She used to wear glasses." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344516"
-  },
-  "id" : "67fab6d59930102295344516",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "Él enseñaba en una escuela.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He taught in a school.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He used to teach in a school." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344517"
-  },
-  "id" : "67fab6d59930102295344517",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "Nosotros jugábamos muchos juegos.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We played a lot of games.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We used to play a lot of games." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344518"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I ate pizza a lot.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I used to eat pizza a lot."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I used to eat pizza a lot."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344518",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "Ella leía muchos libros.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344514"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She read a lot of books.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She used to read a lot of books." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344519"
-  },
-  "id" : "67fab6d59930102295344519",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "Ella conducía un Volvo.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344514",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She drove a Volvo.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She used to drive a Volvo." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534451a"
-  },
-  "id" : "67fab6d5993010229534451a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "Yo conducía mi coche a todas partes.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "Ellos estudiaban en Francia.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I drove my car everywhere.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I used to drive my car everywhere." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534451b"
-  },
-  "id" : "67fab6d5993010229534451b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "Él horneaba mucho.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He baked a lot.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He used to bake a lot." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534451c"
-  },
-  "id" : "67fab6d5993010229534451c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "Él bebía café.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He drank coffee.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He used to drink coffee." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534451d"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They studied in France.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They used to study in France."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They used to study in France."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534451d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "A los animales les encantaban las zanahorias.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344515"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The animals loved carrots.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The animals used to love carrots." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534451e"
-  },
-  "id" : "67fab6d5993010229534451e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "Mary bailaba ballet.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344515",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Mary danced ballet.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Mary used to dance ballet." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534451f"
-  },
-  "id" : "67fab6d5993010229534451f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "Él enseñaba historia.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "Ella usaba gafas.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He taught history.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He used to teach history." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344520"
-  },
-  "id" : "67fab6d59930102295344520",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "Alan caminaba mucho.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Alan hiked a lot.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Alan used to hike a lot." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344521"
-  },
-  "id" : "67fab6d59930102295344521",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "A las chicas les encantaban los ponis.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The girls loved ponies.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The girls used to love ponies." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344522"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She wore glasses.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She used to wear glasses."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She used to wear glasses."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344522",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "Yo cantaba mucho en el coro.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344516"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I sang in the choir a lot.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I used to sing in the choir a lot." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344523"
-  },
-  "id" : "67fab6d59930102295344523",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "Esta ciudad solía ser más grande.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344516",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "This city was bigger.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "This city used to be bigger." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344524"
-  },
-  "id" : "67fab6d59930102295344524",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "El servicio en este hotel solía ser más rápido.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "Él enseñaba en una escuela.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The service in this hotel was faster.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The service in this hotel used to be faster." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344525"
-  },
-  "id" : "67fab6d59930102295344525",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "Tú eras muy delgado.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You were really thin.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You used to be really thin." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344526"
-  },
-  "id" : "67fab6d59930102295344526",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d45a"
-  },
-  "title" : "Past Habits: Practicing with 'Used to'",
-  "instructions" : "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "Ella corría a la escuela.",
-  "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.06.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She ran to school.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She used to run to school." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He taught in a school.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He used to teach in a school."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He used to teach in a school."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344517"
+    },
+    "id": "67fab6d59930102295344517",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
+    },
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "Nosotros jugábamos muchos juegos.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We played a lot of games.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We used to play a lot of games."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We used to play a lot of games."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344518"
+    },
+    "id": "67fab6d59930102295344518",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
+    },
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "Ella leía muchos libros.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She read a lot of books.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She used to read a lot of books."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She used to read a lot of books."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344519"
+    },
+    "id": "67fab6d59930102295344519",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
+    },
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "Ella conducía un Volvo.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She drove a Volvo.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She used to drive a Volvo."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She used to drive a Volvo."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534451a"
+    },
+    "id": "67fab6d5993010229534451a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
+    },
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "Yo conducía mi coche a todas partes.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I drove my car everywhere.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I used to drive my car everywhere."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I used to drive my car everywhere."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534451b"
+    },
+    "id": "67fab6d5993010229534451b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
+    },
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "Él horneaba mucho.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He baked a lot.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He used to bake a lot."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He used to bake a lot."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534451c"
+    },
+    "id": "67fab6d5993010229534451c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
+    },
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "Él bebía café.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He drank coffee.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He used to drink coffee."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He used to drink coffee."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534451d"
+    },
+    "id": "67fab6d5993010229534451d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
+    },
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "A los animales les encantaban las zanahorias.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The animals loved carrots.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The animals used to love carrots."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The animals used to love carrots."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534451e"
+    },
+    "id": "67fab6d5993010229534451e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
+    },
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "Mary bailaba ballet.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary danced ballet.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary used to dance ballet."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Mary used to dance ballet."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534451f"
+    },
+    "id": "67fab6d5993010229534451f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
+    },
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "Él enseñaba historia.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He taught history.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He used to teach history."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He used to teach history."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344520"
+    },
+    "id": "67fab6d59930102295344520",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
+    },
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "Alan caminaba mucho.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Alan hiked a lot.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Alan used to hike a lot."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Alan used to hike a lot."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344521"
+    },
+    "id": "67fab6d59930102295344521",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
+    },
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "A las chicas les encantaban los ponis.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The girls loved ponies.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The girls used to love ponies."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The girls used to love ponies."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344522"
+    },
+    "id": "67fab6d59930102295344522",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
+    },
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "Yo cantaba mucho en el coro.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I sang in the choir a lot.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I used to sing in the choir a lot."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I used to sing in the choir a lot."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344523"
+    },
+    "id": "67fab6d59930102295344523",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
+    },
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "Esta ciudad solía ser más grande.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This city was bigger.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "This city used to be bigger."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This city used to be bigger."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344524"
+    },
+    "id": "67fab6d59930102295344524",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
+    },
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "El servicio en este hotel solía ser más rápido.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The service in this hotel was faster.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The service in this hotel used to be faster."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The service in this hotel used to be faster."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344525"
+    },
+    "id": "67fab6d59930102295344525",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
+    },
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "Tú eras muy delgado.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You were really thin.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You used to be really thin."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You used to be really thin."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344526"
+    },
+    "id": "67fab6d59930102295344526",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d45a"
+    },
+    "title": "Past Habits: Practicing with 'Used to'",
+    "instructions": "Transforma estas oraciones para que usen 'used to'. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
+    "translation": "Ella corría a la escuela.",
+    "theoryId": "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.06.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She ran to school.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She used to run to school."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She used to run to school."
+      ]
+    }
   }
-} ]
+]

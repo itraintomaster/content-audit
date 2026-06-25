@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534417b"
-  },
-  "id" : "67fab6d5993010229534417b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "El guardia dejó entrar a los visitantes al edificio.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534417b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The guard permitted the visitors to enter the building.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The guard let the visitors enter the building." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534417c"
-  },
-  "id" : "67fab6d5993010229534417c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "El comediante hizo reír al público.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534417b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The comedian encouraged the audience to laugh.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The comedian made the audience laugh." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534417d"
-  },
-  "id" : "67fab6d5993010229534417d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "El ejercicio me hizo sentir cansado.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "El guardia dejó entrar a los visitantes al edificio.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I felt tired after the exercise.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The exercise made me feel tired." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534417e"
-  },
-  "id" : "67fab6d5993010229534417e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "El gerente dejó que los empleados se fueran a tiempo.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The manager permitted the employees to leave on time.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The manager let the employees leave on time." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534417f"
-  },
-  "id" : "67fab6d5993010229534417f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "Dejamos que los pájaros corrieran libremente por el jardín.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We permitted the birds to fly freely in the garden.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We let the birds run freely in the garden." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344180"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The guard permitted the visitors to enter the building.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The guard let the visitors enter the building."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The guard let the visitors enter the building."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344180",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "Dejamos que los adolescentes asistieran a la fiesta.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534417c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We permitted the teenagers to attend the party.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We let the teenagers attend the party." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344181"
-  },
-  "id" : "67fab6d59930102295344181",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "El director de cine les hizo repetir la escena.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534417c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The movie director encouraged them to perform the scene again.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The movie director made them perform the scene again." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344182"
-  },
-  "id" : "67fab6d59930102295344182",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "El jardinero me dejó recoger algunas flores.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "El comediante hizo reír al público.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The gardener permitted me to pick some flowers.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The gardener let me pick some flowers." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344183"
-  },
-  "id" : "67fab6d59930102295344183",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "Dejó que su perro durmiera adentro.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He permitted his dog to sleep inside.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He let his dog sleep inside." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344184"
-  },
-  "id" : "67fab6d59930102295344184",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "La sequía hizo que las plantas murieran.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The plants died because of the drought.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The drought made the plants die." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344185"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The comedian encouraged the audience to laugh.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The comedian made the audience laugh."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The comedian made the audience laugh."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344185",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "Hice que mi hermana estudiara más.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534417d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I encouraged my sister to study harder.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I made my sister study harder." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344186"
-  },
-  "id" : "67fab6d59930102295344186",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "El entrenador hizo que los jugadores practicaran el ejercicio.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534417d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The coach encouraged the players to repeat the drill.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The coach made the players practise the drill." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344187"
-  },
-  "id" : "67fab6d59930102295344187",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "¡El panadero nos hizo probar el pan a todos!",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "El ejercicio me hizo sentir cansado.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The baker encouraged all of us to sample the bread.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The baker made us all sample the bread!" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344188"
-  },
-  "id" : "67fab6d59930102295344188",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "El museo permitió a los visitantes tomar fotografías.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The museum permitted visitors to take pictures.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The museum let visitors take pictures." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344189"
-  },
-  "id" : "67fab6d59930102295344189",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "John me hizo llegar tarde al trabajo.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I was late for work because of John.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John made me late for work." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534418a"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I felt tired after the exercise.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The exercise made me feel tired."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The exercise made me feel tired."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534418a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "Ella hizo que sus colegas la ayudaran.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534417e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She encouraged her colleagues to help her.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She made her colleagues help her." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534418b"
-  },
-  "id" : "67fab6d5993010229534418b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "David dejó que su hijo se quedara despierto hasta tarde.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534417e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "David permitted his son to stay up late.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "David let his son stay up late." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534418c"
-  },
-  "id" : "67fab6d5993010229534418c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "El polen nos hizo estornudar.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "El gerente dejó que los empleados se fueran a tiempo.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We sneezed because of the pollen.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The pollen made us sneeze." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534418d"
-  },
-  "id" : "67fab6d5993010229534418d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "Dejé que los chicos usaran mi computadora.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I permitted the students to use my computer.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I let the boys use my computer." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534418e"
-  },
-  "id" : "67fab6d5993010229534418e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d428"
-  },
-  "title" : "Let's and Makes: A Review",
-  "instructions" : "Crea oraciones utilizando 'let' o 'make'.",
-  "translation" : "Dejó que su hija comiera una galleta.",
-  "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.01.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He permitted his daughter to eat a cookie.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He let his daughter have a cookie." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The manager permitted the employees to leave on time.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The manager let the employees leave on time."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The manager let the employees leave on time."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534417f"
+    },
+    "id": "67fab6d5993010229534417f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
+    },
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "Dejamos que los pájaros corrieran libremente por el jardín.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We permitted the birds to fly freely in the garden.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We let the birds run freely in the garden."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We let the birds run freely in the garden."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344180"
+    },
+    "id": "67fab6d59930102295344180",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
+    },
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "Dejamos que los adolescentes asistieran a la fiesta.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We permitted the teenagers to attend the party.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We let the teenagers attend the party."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We let the teenagers attend the party."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344181"
+    },
+    "id": "67fab6d59930102295344181",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
+    },
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "El director de cine les hizo repetir la escena.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The movie director encouraged them to perform the scene again.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The movie director made them perform the scene again."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The movie director made them perform the scene again."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344182"
+    },
+    "id": "67fab6d59930102295344182",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
+    },
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "El jardinero me dejó recoger algunas flores.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The gardener permitted me to pick some flowers.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The gardener let me pick some flowers."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The gardener let me pick some flowers."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344183"
+    },
+    "id": "67fab6d59930102295344183",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
+    },
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "Dejó que su perro durmiera adentro.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He permitted his dog to sleep inside.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He let his dog sleep inside."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He let his dog sleep inside."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344184"
+    },
+    "id": "67fab6d59930102295344184",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
+    },
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "La sequía hizo que las plantas murieran.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The plants died because of the drought.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The drought made the plants die."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The drought made the plants die."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344185"
+    },
+    "id": "67fab6d59930102295344185",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
+    },
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "Hice que mi hermana estudiara más.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I encouraged my sister to study harder.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I made my sister study harder."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I made my sister study harder."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344186"
+    },
+    "id": "67fab6d59930102295344186",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
+    },
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "El entrenador hizo que los jugadores practicaran el ejercicio.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The coach encouraged the players to repeat the drill.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The coach made the players practise the drill."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The coach made the players practise the drill."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344187"
+    },
+    "id": "67fab6d59930102295344187",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
+    },
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "¡El panadero nos hizo probar el pan a todos!",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The baker encouraged all of us to sample the bread.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The baker made us all sample the bread!"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The baker made us all sample the bread!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344188"
+    },
+    "id": "67fab6d59930102295344188",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
+    },
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "El museo permitió a los visitantes tomar fotografías.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The museum permitted visitors to take pictures.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The museum let visitors take pictures."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The museum let visitors take pictures."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344189"
+    },
+    "id": "67fab6d59930102295344189",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
+    },
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "John me hizo llegar tarde al trabajo.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I was late for work because of John.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John made me late for work."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John made me late for work."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534418a"
+    },
+    "id": "67fab6d5993010229534418a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
+    },
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "Ella hizo que sus colegas la ayudaran.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She encouraged her colleagues to help her.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She made her colleagues help her."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She made her colleagues help her."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534418b"
+    },
+    "id": "67fab6d5993010229534418b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
+    },
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "David dejó que su hijo se quedara despierto hasta tarde.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "David permitted his son to stay up late.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "David let his son stay up late."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "David let his son stay up late."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534418c"
+    },
+    "id": "67fab6d5993010229534418c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
+    },
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "El polen nos hizo estornudar.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We sneezed because of the pollen.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The pollen made us sneeze."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The pollen made us sneeze."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534418d"
+    },
+    "id": "67fab6d5993010229534418d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
+    },
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "Dejé que los chicos usaran mi computadora.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I permitted the students to use my computer.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I let the boys use my computer."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I let the boys use my computer."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534418e"
+    },
+    "id": "67fab6d5993010229534418e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d428"
+    },
+    "title": "Let's and Makes: A Review",
+    "instructions": "Crea oraciones utilizando 'let' o 'make'.",
+    "translation": "Dejó que su hija comiera una galleta.",
+    "theoryId": "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.01.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He permitted his daughter to eat a cookie.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He let his daughter have a cookie."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He let his daughter have a cookie."
+      ]
+    }
   }
-} ]
+]

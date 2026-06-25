@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442f7"
-  },
-  "id" : "67fab6d599301022953442f7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "Nos permiten pocos descansos durante nuestro turno. Simplemente no es adecuado.",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442f7"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They allow us",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "breaks during our shift. It's simply not adequate.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442f8"
-  },
-  "id" : "67fab6d599301022953442f8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "Tomemos unas copas y relajémonos en el porche.",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953442f7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Let's grab",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "drinks and chill on the porch.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442f9"
-  },
-  "id" : "67fab6d599301022953442f9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "Esta zona recibe poca lluvia. Los campos están casi secos.",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "Nos permiten pocos descansos durante nuestro turno. Simplemente no es adecuado.",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "This area gets",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "rain. The fields are almost dry.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442fa"
-  },
-  "id" : "67fab6d599301022953442fa",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "Queda poco combustible, así que no podemos ir muy lejos.",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "There is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "fuel remaining, so we can't go very far.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442fb"
-  },
-  "id" : "67fab6d599301022953442fb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "Ha adquirido pocos conocimientos y le encanta aprender.",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He's gained",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "knowledge and he loves learning.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442fc"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They allow us",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "breaks during our shift. It's simply not adequate.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They allow us few breaks during our shift. It's simply not adequate."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953442fc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "Vamos a tener algunas reuniones el próximo verano. ¿Deberíamos ir juntos?",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442f8"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We are having",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "gatherings next summer. Should we go together?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442fd"
-  },
-  "id" : "67fab6d599301022953442fd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "Tendré un poco de energía más tarde. ¿Deberíamos empezar nuestro ejercicio entonces?",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953442f8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I will have",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "energy later. Should we start our exercise then?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442fe"
-  },
-  "id" : "67fab6d599301022953442fe",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "Ella recibirá un poco de ayuda con su trabajo para que puedas relajarte.",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "Tomemos unas copas y relajémonos en el porche.",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She will get",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "assistance with her work so you can relax.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442ff"
-  },
-  "id" : "67fab6d599301022953442ff",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "Preparamos un poco de postre. ¡Es suficiente para después del almuerzo!",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We prepared",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "dessert. It's enough for after lunch!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344300"
-  },
-  "id" : "67fab6d59930102295344300",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "Se quedó con pocos recuerdos del viaje. La mayoría los regaló.",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She kept",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "souvenirs from the trip. She mostly gave them away.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344301"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Let's grab",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "drinks and chill on the porch.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Let's grab a few drinks and chill on the porch."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344301",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "Conoce algunos chistes, y todos son muy graciosos.",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442f9"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He knows",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "jokes, and they're all very funny.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344302"
-  },
-  "id" : "67fab6d59930102295344302",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "Hay pocas oportunidades para inscribirse. Está casi cerrado.",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953442f9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "There are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "chances to sign up. It's nearly closed.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344303"
-  },
-  "id" : "67fab6d59930102295344303",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "La zona ofrece pocas rutas de senderismo. Deberíamos construir algunas más.",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "Esta zona recibe poca lluvia. Los campos están casi secos.",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The area offers",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "hiking trails. We should build some more.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344304"
-  },
-  "id" : "67fab6d59930102295344304",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "Hay un poco de jugo en la jarra, así que puedes tomar un vaso.",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "There's",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "juice in the pitcher, so you can have a glass.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344305"
-  },
-  "id" : "67fab6d59930102295344305",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "Tiene poca paciencia. No nos esperará esta vez.",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He has",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "patience. He won't wait for us this time.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344306"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This area gets",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "rain. The fields are almost dry.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This area gets little rain. The fields are almost dry."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344306",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "El jardín tiene pocas rosas. Deberíamos cultivar algunas más.",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442fa"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The garden has",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "roses. We should grow some more.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344307"
-  },
-  "id" : "67fab6d59930102295344307",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "¡Tiene algunos loros! Al menos cuatro, que yo sepa. ¡Eso es suficiente!",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953442fa",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She owns",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "parrots! At least four, I know. That is enough!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344308"
-  },
-  "id" : "67fab6d59930102295344308",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "Tenemos poca azúcar. ¿Podrías comprar más?",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "Queda poco combustible, así que no podemos ir muy lejos.",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We keep",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "sugar. Could you purchase some more?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344309"
-  },
-  "id" : "67fab6d59930102295344309",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "Obtienen pocas ganancias. Me piden que invierta con ellos.",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They make",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "profit. They are asking for me to invest with them.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534430a"
-  },
-  "id" : "67fab6d5993010229534430a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43c"
-  },
-  "title" : "Expressing Scarcity: 'Little' and 'Few'",
-  "instructions" : "Inserta 'little / a little / few / a few'.",
-  "translation" : "Conserva algunas pinturas y son lo que necesita.",
-  "theoryId" : "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.14.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He keeps",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "paintings and they're what he needs.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "fuel remaining, so we can't go very far.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "There is little fuel remaining, so we can't go very far."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442fb"
+    },
+    "id": "67fab6d599301022953442fb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
+    },
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "Ha adquirido pocos conocimientos y le encanta aprender.",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's gained",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "knowledge and he loves learning.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He's gained a little knowledge and he loves learning."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442fc"
+    },
+    "id": "67fab6d599301022953442fc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
+    },
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "Vamos a tener algunas reuniones el próximo verano. ¿Deberíamos ir juntos?",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We are having",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "gatherings next summer. Should we go together?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We are having a few gatherings next summer. Should we go together?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442fd"
+    },
+    "id": "67fab6d599301022953442fd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
+    },
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "Tendré un poco de energía más tarde. ¿Deberíamos empezar nuestro ejercicio entonces?",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I will have",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "energy later. Should we start our exercise then?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I will have a little energy later. Should we start our exercise then?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442fe"
+    },
+    "id": "67fab6d599301022953442fe",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
+    },
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "Ella recibirá un poco de ayuda con su trabajo para que puedas relajarte.",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She will get",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "assistance with her work so you can relax.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She will get a little assistance with her work so you can relax."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442ff"
+    },
+    "id": "67fab6d599301022953442ff",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
+    },
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "Preparamos un poco de postre. ¡Es suficiente para después del almuerzo!",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We prepared",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "dessert. It's enough for after lunch!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We prepared a little dessert. It's enough for after lunch!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344300"
+    },
+    "id": "67fab6d59930102295344300",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
+    },
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "Se quedó con pocos recuerdos del viaje. La mayoría los regaló.",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She kept",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "souvenirs from the trip. She mostly gave them away.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She kept few souvenirs from the trip. She mostly gave them away."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344301"
+    },
+    "id": "67fab6d59930102295344301",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
+    },
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "Conoce algunos chistes, y todos son muy graciosos.",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He knows",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "jokes, and they're all very funny.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He knows a few jokes, and they're all very funny."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344302"
+    },
+    "id": "67fab6d59930102295344302",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
+    },
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "Hay pocas oportunidades para inscribirse. Está casi cerrado.",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "chances to sign up. It's nearly closed.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "There are few chances to sign up. It's nearly closed."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344303"
+    },
+    "id": "67fab6d59930102295344303",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
+    },
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "La zona ofrece pocas rutas de senderismo. Deberíamos construir algunas más.",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The area offers",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "hiking trails. We should build some more.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The area offers few hiking trails. We should build some more."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344304"
+    },
+    "id": "67fab6d59930102295344304",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
+    },
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "Hay un poco de jugo en la jarra, así que puedes tomar un vaso.",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There's",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "juice in the pitcher, so you can have a glass.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "There's a little juice in the pitcher, so you can have a glass."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344305"
+    },
+    "id": "67fab6d59930102295344305",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
+    },
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "Tiene poca paciencia. No nos esperará esta vez.",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He has",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "patience. He won't wait for us this time.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He has little patience. He won't wait for us this time."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344306"
+    },
+    "id": "67fab6d59930102295344306",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
+    },
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "El jardín tiene pocas rosas. Deberíamos cultivar algunas más.",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The garden has",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "roses. We should grow some more.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The garden has few roses. We should grow some more."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344307"
+    },
+    "id": "67fab6d59930102295344307",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
+    },
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "¡Tiene algunos loros! Al menos cuatro, que yo sepa. ¡Eso es suficiente!",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She owns",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "parrots! At least four, I know. That is enough!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She owns a few parrots! At least four, I know. That is enough!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344308"
+    },
+    "id": "67fab6d59930102295344308",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
+    },
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "Tenemos poca azúcar. ¿Podrías comprar más?",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We keep",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "sugar. Could you purchase some more?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We keep little sugar. Could you purchase some more?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344309"
+    },
+    "id": "67fab6d59930102295344309",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
+    },
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "Obtienen pocas ganancias. Me piden que invierta con ellos.",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They make",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "profit. They are asking for me to invest with them.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They make little profit. They are asking for me to invest with them."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534430a"
+    },
+    "id": "67fab6d5993010229534430a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43c"
+    },
+    "title": "Expressing Scarcity: 'Little' and 'Few'",
+    "instructions": "Inserta 'little / a little / few / a few'.",
+    "translation": "Conserva algunas pinturas y son lo que necesita.",
+    "theoryId": "b2.06.Little_and_Few_to_Show_That_We_Don_t_Have_Enough",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.14.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He keeps",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "paintings and they're what he needs.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He keeps a few paintings and they're what he needs."
+      ]
+    }
   }
-} ]
+]

@@ -1,1021 +1,1227 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420d5"
-  },
-  "id" : "67fab6d599301022953420d5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "¿Está María leyendo un libro en este momento?",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420d5"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Is Mary reading" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(Mary / read) a book at the moment?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420d6"
-  },
-  "id" : "67fab6d599301022953420d6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "¿Está el médico hablando con el paciente ahora?",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953420d5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Is the doctor talking" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(the doctor / talk) to the patient now?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420d7"
-  },
-  "id" : "67fab6d599301022953420d7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "Los estudiantes están corriendo a la escuela ahora.",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "¿Está María leyendo un libro en este momento?",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The students",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are running" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(run) to the school now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420d8"
-  },
-  "id" : "67fab6d599301022953420d8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "Normalmente cenamos en casa.",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We normally",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "have" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(have) dinner at home.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420d9"
-  },
-  "id" : "67fab6d599301022953420d9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "Él ve la televisión todas las noches.",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "watches" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(watch) TV every night.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420da"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is Mary reading"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(Mary / read) a book at the moment?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Is Mary reading a book at the moment?"
+      ]
+    }
   },
-  "id" : "67fab6d599301022953420da",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "Mi padre está leyendo ahora.",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420d6"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "My father",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s reading|is reading" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(read) now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420db"
-  },
-  "id" : "67fab6d599301022953420db",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "¿Qué están haciendo ellos en este momento?",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953420d6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are they doing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / do) at the moment?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420dc"
-  },
-  "id" : "67fab6d599301022953420dc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "Peter escribe a su amigo por correspondencia todos los meses.",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "¿Está el médico hablando con el paciente ahora?",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Peter",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "writes" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(write) to his penfriend every month.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420dd"
-  },
-  "id" : "67fab6d599301022953420dd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "Él está limpiando el coche en este momento.",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s cleaning|is cleaning" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(clean) the car at the moment.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420de"
-  },
-  "id" : "67fab6d599301022953420de",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "¿Con qué frecuencia canta ella?",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "How often",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does she sing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / sing)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420df"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is the doctor talking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the doctor / talk) to the patient now?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Is the doctor talking to the patient now?"
+      ]
+    }
   },
-  "id" : "67fab6d599301022953420df",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "Los estudiantes no leen libros el fin de semana.",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420d7"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The students",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "don't read|do not read" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / read) books at the weekend.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420e0"
-  },
-  "id" : "67fab6d599301022953420e0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "¿Dónde está Peter? ¿Está desayunando?",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953420d7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where's Peter?",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Is he eating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(he / eat) his breakfast?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420e1"
-  },
-  "id" : "67fab6d599301022953420e1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "¿Qué hacen ellos por la tarde normalmente?",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "Los estudiantes están corriendo a la escuela ahora.",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do they do" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / do) in the afternoon usually?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420e2"
-  },
-  "id" : "67fab6d599301022953420e2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "Yo como cereales todas las mañanas.",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "eat" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) cereal every morning.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420e3"
-  },
-  "id" : "67fab6d599301022953420e3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "Susan está ayudando a su padre ahora.",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Susan",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s helping|is helping" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(help) her father now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420e4"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The students",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are running"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(run) to the school now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The students are running to the school now."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953420e4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "A veces corro en el parque.",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420d8"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I sometimes",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "run" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(run) in the park.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420e5"
-  },
-  "id" : "67fab6d599301022953420e5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "Él practica piano tres veces a la semana.",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953420d8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "practices" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(practice) piano three times a week.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420e6"
-  },
-  "id" : "67fab6d599301022953420e6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "¿Con qué frecuencia llama ella a su hermana?",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "Normalmente cenamos en casa.",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "How often",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does she call" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / call) her sister?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420e7"
-  },
-  "id" : "67fab6d599301022953420e7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "Mis amigos están viendo la televisión en este momento.",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "My friends",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are watching" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(watch) TV at the moment.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420e8"
-  },
-  "id" : "67fab6d599301022953420e8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a5"
-  },
-  "title" : "Habits or now? Present simple vs. continuous",
-  "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "Susan está practicando piano ahora.",
-  "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.15.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Susan",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s practicing|is practicing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(practice) piano now.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We normally",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "have"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(have) dinner at home.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We normally have dinner at home."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420d9"
+    },
+    "id": "67fab6d599301022953420d9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
+    },
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "Él ve la televisión todas las noches.",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "watches"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(watch) TV every night.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He watches TV every night."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420da"
+    },
+    "id": "67fab6d599301022953420da",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
+    },
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "Mi padre está leyendo ahora.",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My father",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s reading|is reading"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(read) now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "My father's reading now.",
+        "My father is reading now."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420db"
+    },
+    "id": "67fab6d599301022953420db",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
+    },
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "¿Qué están haciendo ellos en este momento?",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are they doing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / do) at the moment?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What are they doing at the moment?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420dc"
+    },
+    "id": "67fab6d599301022953420dc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
+    },
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "Peter escribe a su amigo por correspondencia todos los meses.",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Peter",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "writes"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(write) to his penfriend every month.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter writes to his penfriend every month."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420dd"
+    },
+    "id": "67fab6d599301022953420dd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
+    },
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "Él está limpiando el coche en este momento.",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s cleaning|is cleaning"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(clean) the car at the moment.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He's cleaning the car at the moment.",
+        "He is cleaning the car at the moment."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420de"
+    },
+    "id": "67fab6d599301022953420de",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
+    },
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "¿Con qué frecuencia canta ella?",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How often",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does she sing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / sing)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "How often does she sing?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420df"
+    },
+    "id": "67fab6d599301022953420df",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
+    },
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "Los estudiantes no leen libros el fin de semana.",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The students",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "don't read|do not read"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / read) books at the weekend.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The students don't read books at the weekend.",
+        "The students do not read books at the weekend."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420e0"
+    },
+    "id": "67fab6d599301022953420e0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
+    },
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "¿Dónde está Peter? ¿Está desayunando?",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where's Peter?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is he eating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / eat) his breakfast?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where's Peter? Is he eating his breakfast?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420e1"
+    },
+    "id": "67fab6d599301022953420e1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
+    },
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "¿Qué hacen ellos por la tarde normalmente?",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "do they do"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / do) in the afternoon usually?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What do they do in the afternoon usually?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420e2"
+    },
+    "id": "67fab6d599301022953420e2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
+    },
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "Yo como cereales todas las mañanas.",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "eat"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) cereal every morning.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I eat cereal every morning."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420e3"
+    },
+    "id": "67fab6d599301022953420e3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
+    },
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "Susan está ayudando a su padre ahora.",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Susan",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s helping|is helping"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(help) her father now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Susan's helping her father now.",
+        "Susan is helping her father now."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420e4"
+    },
+    "id": "67fab6d599301022953420e4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
+    },
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "A veces corro en el parque.",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I sometimes",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "run"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(run) in the park.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I sometimes run in the park."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420e5"
+    },
+    "id": "67fab6d599301022953420e5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
+    },
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "Él practica piano tres veces a la semana.",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "practices"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(practice) piano three times a week.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He practices piano three times a week."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420e6"
+    },
+    "id": "67fab6d599301022953420e6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
+    },
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "¿Con qué frecuencia llama ella a su hermana?",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How often",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does she call"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / call) her sister?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "How often does she call her sister?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420e7"
+    },
+    "id": "67fab6d599301022953420e7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
+    },
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "Mis amigos están viendo la televisión en este momento.",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My friends",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are watching"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(watch) TV at the moment.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "My friends are watching TV at the moment."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420e8"
+    },
+    "id": "67fab6d599301022953420e8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a5"
+    },
+    "title": "Habits or now? Present simple vs. continuous",
+    "instructions": "Elige entre 'present simple' o 'present continuous'.",
+    "translation": "Susan está practicando piano ahora.",
+    "theoryId": "a1.02.Present_Simple_or_Present_Continuous_",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.15.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Susan",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s practicing|is practicing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(practice) piano now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Susan's practicing piano now.",
+        "Susan is practicing piano now."
+      ]
+    }
   }
-} ]
+]

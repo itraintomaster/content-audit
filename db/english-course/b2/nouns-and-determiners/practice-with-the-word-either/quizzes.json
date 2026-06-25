@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534426b"
-  },
-  "id" : "67fab6d5993010229534426b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "Podría elegir cualquiera de los dos sombreros.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534426b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I could choose this hat or the other hat.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I could choose either hat." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534426c"
-  },
-  "id" : "67fab6d5993010229534426c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "Ella podría comprar cualquiera de las dos faldas.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534426b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She could buy this skirt or the other skirt.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She could buy either skirt." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534426d"
-  },
-  "id" : "67fab6d5993010229534426d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "Ellos podrían alquilar cualquiera de los dos apartamentos.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "Podría elegir cualquiera de los dos sombreros.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They could rent this apartment or the other apartment.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They could rent either apartment." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534426e"
-  },
-  "id" : "67fab6d5993010229534426e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "No me gusta ninguna de las dos canciones.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I don't like this song and I don't like that song.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I don't like either song." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534426f"
-  },
-  "id" : "67fab6d5993010229534426f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "Peter puede estudiar en cualquiera de las dos escuelas.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Peter can study in this school or he can study in the other school.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter can study in either school." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344270"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I could choose this hat or the other hat.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I could choose either hat."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I could choose either hat."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344270",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "Ella podría ver cualquiera de las dos películas.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534426c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She could watch this film or that film.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She could watch either film." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344271"
-  },
-  "id" : "67fab6d59930102295344271",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "Mary no pintó ninguno de los dos cuadros.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534426c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Mary didn't paint one picture and she didn't paint the other picture.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Mary didn't paint either picture." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344272"
-  },
-  "id" : "67fab6d59930102295344272",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "Podría adoptar cualquiera de los dos gatos.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "Ella podría comprar cualquiera de las dos faldas.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I could adopt this cat or that cat.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I could adopt either cat." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344273"
-  },
-  "id" : "67fab6d59930102295344273",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "Él no beberá ninguno de los dos zumos.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He won't drink this juice or the other juice.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He won't drink either juice." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344274"
-  },
-  "id" : "67fab6d59930102295344274",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "Podemos tomar cualquiera de los dos aviones.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We can catch this plane or the other plane.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We can catch either plane." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344275"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She could buy this skirt or the other skirt.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She could buy either skirt."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She could buy either skirt."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344275",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "No puedes sentarte en ninguna de las dos sillas.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534426d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You can't sit on that chair or this chair.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You can't sit on either chair." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344276"
-  },
-  "id" : "67fab6d59930102295344276",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "Ellos podrían aceptar cualquiera de las dos ofertas.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534426d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They could accept this offer or the other offer.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They could accept either offer." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344277"
-  },
-  "id" : "67fab6d59930102295344277",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "Yo no comería ninguna de las dos manzanas.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "Ellos podrían alquilar cualquiera de los dos apartamentos.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I wouldn't eat this apple and I wouldn't eat that apple.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I wouldn't eat either apple." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344278"
-  },
-  "id" : "67fab6d59930102295344278",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "Ella puede usar cualquiera de los dos portátiles.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She can use this laptop or that laptop.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She can use either laptop." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344279"
-  },
-  "id" : "67fab6d59930102295344279",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "Ellos pueden reservar cualquiera de las dos mesas.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They can book this table or the other table.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They can book either table." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534427a"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They could rent this apartment or the other apartment.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They could rent either apartment."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They could rent either apartment."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534427a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "El profesor no calificará ninguno de los dos exámenes.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534426e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The teacher won't mark this test or that test.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The teacher won't mark either test." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534427b"
-  },
-  "id" : "67fab6d5993010229534427b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "Él no usó ninguna de las dos chaquetas.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534426e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He didn't wear the first jacket and he didn't wear the second jacket.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He didn't wear either jacket." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534427c"
-  },
-  "id" : "67fab6d5993010229534427c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "Ellos visitarían cualquiera de los dos museos.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "No me gusta ninguna de las dos canciones.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They would visit this museum or that museum.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They would visit either museum." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534427d"
-  },
-  "id" : "67fab6d5993010229534427d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "No envié ninguna de las dos cartas.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I didn't send the first letter and I didn't send the second letter.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I didn't send either letter." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534427e"
-  },
-  "id" : "67fab6d5993010229534427e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d435"
-  },
-  "title" : "Practice with the word 'Either'",
-  "instructions" : "Cambia las oraciones para que incluyan la palabra 'either'.",
-  "translation" : "Ella podría invitar a cualquiera de los dos amigos.",
-  "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.07.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She might invite one friend or the other friend.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She might invite either friend." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I don't like this song and I don't like that song.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I don't like either song."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I don't like either song."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534426f"
+    },
+    "id": "67fab6d5993010229534426f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
+    },
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "Peter puede estudiar en cualquiera de las dos escuelas.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Peter can study in this school or he can study in the other school.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter can study in either school."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter can study in either school."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344270"
+    },
+    "id": "67fab6d59930102295344270",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
+    },
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "Ella podría ver cualquiera de las dos películas.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She could watch this film or that film.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She could watch either film."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She could watch either film."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344271"
+    },
+    "id": "67fab6d59930102295344271",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
+    },
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "Mary no pintó ninguno de los dos cuadros.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary didn't paint one picture and she didn't paint the other picture.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary didn't paint either picture."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Mary didn't paint either picture."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344272"
+    },
+    "id": "67fab6d59930102295344272",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
+    },
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "Podría adoptar cualquiera de los dos gatos.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I could adopt this cat or that cat.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I could adopt either cat."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I could adopt either cat."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344273"
+    },
+    "id": "67fab6d59930102295344273",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
+    },
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "Él no beberá ninguno de los dos zumos.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He won't drink this juice or the other juice.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He won't drink either juice."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He won't drink either juice."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344274"
+    },
+    "id": "67fab6d59930102295344274",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
+    },
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "Podemos tomar cualquiera de los dos aviones.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We can catch this plane or the other plane.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We can catch either plane."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We can catch either plane."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344275"
+    },
+    "id": "67fab6d59930102295344275",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
+    },
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "No puedes sentarte en ninguna de las dos sillas.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You can't sit on that chair or this chair.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "You can't sit on either chair."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You can't sit on either chair."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344276"
+    },
+    "id": "67fab6d59930102295344276",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
+    },
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "Ellos podrían aceptar cualquiera de las dos ofertas.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They could accept this offer or the other offer.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They could accept either offer."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They could accept either offer."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344277"
+    },
+    "id": "67fab6d59930102295344277",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
+    },
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "Yo no comería ninguna de las dos manzanas.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I wouldn't eat this apple and I wouldn't eat that apple.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I wouldn't eat either apple."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I wouldn't eat either apple."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344278"
+    },
+    "id": "67fab6d59930102295344278",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
+    },
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "Ella puede usar cualquiera de los dos portátiles.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She can use this laptop or that laptop.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She can use either laptop."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She can use either laptop."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344279"
+    },
+    "id": "67fab6d59930102295344279",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
+    },
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "Ellos pueden reservar cualquiera de las dos mesas.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They can book this table or the other table.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They can book either table."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They can book either table."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534427a"
+    },
+    "id": "67fab6d5993010229534427a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
+    },
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "El profesor no calificará ninguno de los dos exámenes.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teacher won't mark this test or that test.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The teacher won't mark either test."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The teacher won't mark either test."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534427b"
+    },
+    "id": "67fab6d5993010229534427b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
+    },
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "Él no usó ninguna de las dos chaquetas.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He didn't wear the first jacket and he didn't wear the second jacket.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He didn't wear either jacket."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He didn't wear either jacket."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534427c"
+    },
+    "id": "67fab6d5993010229534427c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
+    },
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "Ellos visitarían cualquiera de los dos museos.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They would visit this museum or that museum.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They would visit either museum."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They would visit either museum."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534427d"
+    },
+    "id": "67fab6d5993010229534427d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
+    },
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "No envié ninguna de las dos cartas.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I didn't send the first letter and I didn't send the second letter.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I didn't send either letter."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I didn't send either letter."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534427e"
+    },
+    "id": "67fab6d5993010229534427e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d435"
+    },
+    "title": "Practice with the word 'Either'",
+    "instructions": "Cambia las oraciones para que incluyan la palabra 'either'.",
+    "translation": "Ella podría invitar a cualquiera de los dos amigos.",
+    "theoryId": "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.07.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She might invite one friend or the other friend.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She might invite either friend."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She might invite either friend."
+      ]
+    }
   }
-} ]
+]

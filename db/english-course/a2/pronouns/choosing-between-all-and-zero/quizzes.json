@@ -1,511 +1,612 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c5e"
-  },
-  "id" : "67fab6d59930102295342c5e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27e"
-  },
-  "title" : "Choosing Between 'All' and 'Zero'",
-  "instructions" : "Elige 'all' o 'zero'.",
-  "translation" : "Nada",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.13.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c5e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: What did you find? B:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Nothing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ", it was empty.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c5f"
-  },
-  "id" : "67fab6d59930102295342c5f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27e"
-  },
-  "title" : "Choosing Between 'All' and 'Zero'",
-  "instructions" : "Elige 'all' o 'zero'.",
-  "translation" : "Todo",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.13.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342c5e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Everything" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "looks perfect, so I think we are ready.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c60"
-  },
-  "id" : "67fab6d59930102295342c60",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27e"
-  },
-  "title" : "Choosing Between 'All' and 'Zero'",
-  "instructions" : "Elige 'all' o 'zero'.",
-  "translation" : "Nada",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.13.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Choosing Between 'All' and 'Zero'",
+    "instructions": "Elige 'all' o 'zero'.",
+    "translation": "Nada",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Nothing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "important was said during the meeting. It was a waste of time!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c61"
-  },
-  "id" : "67fab6d59930102295342c61",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27e"
-  },
-  "title" : "Choosing Between 'All' and 'Zero'",
-  "instructions" : "Elige 'all' o 'zero'.",
-  "translation" : "nada",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.13.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She knows",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "nothing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "about computers! Do not trust her for support!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c62"
-  },
-  "id" : "67fab6d59930102295342c62",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27e"
-  },
-  "title" : "Choosing Between 'All' and 'Zero'",
-  "instructions" : "Elige 'all' o 'zero'.",
-  "translation" : "todo",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.13.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She hates",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "everything" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "about the city. She even hates the views!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c63"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.13.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: What did you find? B:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Nothing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", it was empty.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "A: What did you find? B: Nothing, it was empty."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342c63",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27e"
-  },
-  "title" : "Choosing Between 'All' and 'Zero'",
-  "instructions" : "Elige 'all' o 'zero'.",
-  "translation" : "nada",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.13.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c5f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They took",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "nothing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "from the store. The shelves were empty.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c64"
-  },
-  "id" : "67fab6d59930102295342c64",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27e"
-  },
-  "title" : "Choosing Between 'All' and 'Zero'",
-  "instructions" : "Elige 'all' o 'zero'.",
-  "translation" : "todo",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.13.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342c5f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We drank",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "everything" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "in the fridge. Now, we need more drinks!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c65"
-  },
-  "id" : "67fab6d59930102295342c65",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27e"
-  },
-  "title" : "Choosing Between 'All' and 'Zero'",
-  "instructions" : "Elige 'all' o 'zero'.",
-  "translation" : "todo",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.13.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Choosing Between 'All' and 'Zero'",
+    "instructions": "Elige 'all' o 'zero'.",
+    "translation": "Todo",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The wind blew and",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "everything" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "flew off the desk! It was messy!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c66"
-  },
-  "id" : "67fab6d59930102295342c66",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27e"
-  },
-  "title" : "Choosing Between 'All' and 'Zero'",
-  "instructions" : "Elige 'all' o 'zero'.",
-  "translation" : "todo",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.13.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I looked at the menu and I wanted to order",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "everything" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "! The plates looked delicious!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c67"
-  },
-  "id" : "67fab6d59930102295342c67",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27e"
-  },
-  "title" : "Choosing Between 'All' and 'Zero'",
-  "instructions" : "Elige 'all' o 'zero'.",
-  "translation" : "nada",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.13.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I offered them cake, but the children ate",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "nothing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ". They are not hungry!",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.13.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Everything"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "looks perfect, so I think we are ready.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Everything looks perfect, so I think we are ready."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c60"
+    },
+    "id": "67fab6d59930102295342c60",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27e"
+    },
+    "title": "Choosing Between 'All' and 'Zero'",
+    "instructions": "Elige 'all' o 'zero'.",
+    "translation": "Nada",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.13.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Nothing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "important was said during the meeting. It was a waste of time!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Nothing important was said during the meeting. It was a waste of time!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c61"
+    },
+    "id": "67fab6d59930102295342c61",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27e"
+    },
+    "title": "Choosing Between 'All' and 'Zero'",
+    "instructions": "Elige 'all' o 'zero'.",
+    "translation": "nada",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.13.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She knows",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nothing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "about computers! Do not trust her for support!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She knows nothing about computers! Do not trust her for support!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c62"
+    },
+    "id": "67fab6d59930102295342c62",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27e"
+    },
+    "title": "Choosing Between 'All' and 'Zero'",
+    "instructions": "Elige 'all' o 'zero'.",
+    "translation": "todo",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.13.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She hates",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "everything"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "about the city. She even hates the views!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She hates everything about the city. She even hates the views!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c63"
+    },
+    "id": "67fab6d59930102295342c63",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27e"
+    },
+    "title": "Choosing Between 'All' and 'Zero'",
+    "instructions": "Elige 'all' o 'zero'.",
+    "translation": "nada",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.13.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They took",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nothing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "from the store. The shelves were empty.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They took nothing from the store. The shelves were empty."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c64"
+    },
+    "id": "67fab6d59930102295342c64",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27e"
+    },
+    "title": "Choosing Between 'All' and 'Zero'",
+    "instructions": "Elige 'all' o 'zero'.",
+    "translation": "todo",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.13.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We drank",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "everything"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "in the fridge. Now, we need more drinks!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We drank everything in the fridge. Now, we need more drinks!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c65"
+    },
+    "id": "67fab6d59930102295342c65",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27e"
+    },
+    "title": "Choosing Between 'All' and 'Zero'",
+    "instructions": "Elige 'all' o 'zero'.",
+    "translation": "todo",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.13.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The wind blew and",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "everything"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "flew off the desk! It was messy!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The wind blew and everything flew off the desk! It was messy!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c66"
+    },
+    "id": "67fab6d59930102295342c66",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27e"
+    },
+    "title": "Choosing Between 'All' and 'Zero'",
+    "instructions": "Elige 'all' o 'zero'.",
+    "translation": "todo",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.13.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I looked at the menu and I wanted to order",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "everything"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "! The plates looked delicious!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I looked at the menu and I wanted to order everything! The plates looked delicious!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c67"
+    },
+    "id": "67fab6d59930102295342c67",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27e"
+    },
+    "title": "Choosing Between 'All' and 'Zero'",
+    "instructions": "Elige 'all' o 'zero'.",
+    "translation": "nada",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.13.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I offered them cake, but the children ate",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nothing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ". They are not hungry!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I offered them cake, but the children ate nothing. They are not hungry!"
+      ]
+    }
   }
-} ]
+]

@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d25"
-  },
-  "id" : "67fab6d59930102295343d25",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "Pudieron llamar al técnico a tiempo, así que el televisor fue arreglado.",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d25"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They were able to call the technician",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "in" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time, so the TV was fixed.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d26"
-  },
-  "id" : "67fab6d59930102295343d26",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "Ella necesita llegar a tiempo para su programa favorito.",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343d25",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She needs to arrive",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "in" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time for her favourite show.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d27"
-  },
-  "id" : "67fab6d59930102295343d27",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "¿Tu cita empezó a tiempo?",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "Pudieron llamar al técnico a tiempo, así que el televisor fue arreglado.",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Did your appointment start",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "on" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d28"
-  },
-  "id" : "67fab6d59930102295343d28",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "El programa empezó a tiempo.",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The show started",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "on" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d29"
-  },
-  "id" : "67fab6d59930102295343d29",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "Llegamos a tiempo para ver a nuestra hija cantar una canción.",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We were",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "in" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time to see our daughter sing a song.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d2a"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They were able to call the technician",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time, so the TV was fixed.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They were able to call the technician in time, so the TV was fixed."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343d2a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "Él llegó al cine a tiempo, pero la película se retrasó.",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d26"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He got to the cinema",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "on" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time but the movie was delayed.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d2b"
-  },
-  "id" : "67fab6d59930102295343d2b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "Llegué a casa a tiempo para ver la televisión con todos.",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343d26",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I arrived home",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "in" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time to watch TV with everyone.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d2c"
-  },
-  "id" : "67fab6d59930102295343d2c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "El concierto empezó a tiempo.",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "Ella necesita llegar a tiempo para su programa favorito.",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The concert started",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "on" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d2d"
-  },
-  "id" : "67fab6d59930102295343d2d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "¡Mi amigo nunca llega a tiempo!",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "My friend is never",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "on" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d2e"
-  },
-  "id" : "67fab6d59930102295343d2e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "Espero llegar a casa a tiempo para leer un libro antes de dormir.",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I hope I get home",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "in" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time to read a book before sleeping.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d2f"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She needs to arrive",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time for her favourite show.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She needs to arrive in time for her favourite show."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343d2f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "El electricista llegó a tiempo.",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d27"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The electrician arrived",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "on" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d30"
-  },
-  "id" : "67fab6d59930102295343d30",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "La reunión no terminó a tiempo. ¡Terminó media hora tarde!",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343d27",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The meeting didn't finish",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "on" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time. It finished half an hour late!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d31"
-  },
-  "id" : "67fab6d59930102295343d31",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "¿Llegaste a tiempo para ver la puesta de sol?",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "¿Tu cita empezó a tiempo?",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Were you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "in" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time to see the sunset?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d32"
-  },
-  "id" : "67fab6d59930102295343d32",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "¿El programa comenzó a tiempo?",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Did the show begin",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "on" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d33"
-  },
-  "id" : "67fab6d59930102295343d33",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "¿Llegaste a tiempo para ver a Fred antes de que se fuera?",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Did you get there",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "in" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time to see Fred before he left?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d34"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Did your appointment start",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Did your appointment start on time?"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343d34",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "Ese taxi nunca llega a tiempo.",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d28"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "That taxi is never",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "on" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d35"
-  },
-  "id" : "67fab6d59930102295343d35",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "Él no llamó al médico a tiempo y la enfermedad empeoró.",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343d28",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He didn't call the doctor",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "in" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time and the illness worsened.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d36"
-  },
-  "id" : "67fab6d59930102295343d36",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "¿La tienda suele abrir a tiempo?",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "El programa empezó a tiempo.",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Does the store usually open",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "on" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d37"
-  },
-  "id" : "67fab6d59930102295343d37",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "Llegué a tiempo para ver a mi padre. Pensé que podría haberse ido, pero no lo había hecho.",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I was",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "in" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time to see my father – I thought he might have left but he hadn't.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343d38"
-  },
-  "id" : "67fab6d59930102295343d38",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d37d"
-  },
-  "title" : "Learn to Differentiate 'In Time' from 'On Time'",
-  "instructions" : "Completar con 'in' o 'on'.",
-  "translation" : "Recogieron las flores a tiempo, antes de que se marchitaran.",
-  "theoryId" : "b1.17.On_Time_or_In_Time",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.17.13.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They picked the flowers",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "in" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "time, before they wilted.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The show started",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The show started on time."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d29"
+    },
+    "id": "67fab6d59930102295343d29",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
+    },
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "Llegamos a tiempo para ver a nuestra hija cantar una canción.",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We were",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time to see our daughter sing a song.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We were in time to see our daughter sing a song."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d2a"
+    },
+    "id": "67fab6d59930102295343d2a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
+    },
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "Él llegó al cine a tiempo, pero la película se retrasó.",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He got to the cinema",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time but the movie was delayed.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He got to the cinema on time but the movie was delayed."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d2b"
+    },
+    "id": "67fab6d59930102295343d2b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
+    },
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "Llegué a casa a tiempo para ver la televisión con todos.",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I arrived home",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time to watch TV with everyone.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I arrived home in time to watch TV with everyone."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d2c"
+    },
+    "id": "67fab6d59930102295343d2c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
+    },
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "El concierto empezó a tiempo.",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The concert started",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The concert started on time."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d2d"
+    },
+    "id": "67fab6d59930102295343d2d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
+    },
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "¡Mi amigo nunca llega a tiempo!",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My friend is never",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "My friend is never on time!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d2e"
+    },
+    "id": "67fab6d59930102295343d2e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
+    },
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "Espero llegar a casa a tiempo para leer un libro antes de dormir.",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I hope I get home",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time to read a book before sleeping.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I hope I get home in time to read a book before sleeping."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d2f"
+    },
+    "id": "67fab6d59930102295343d2f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
+    },
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "El electricista llegó a tiempo.",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The electrician arrived",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The electrician arrived on time."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d30"
+    },
+    "id": "67fab6d59930102295343d30",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
+    },
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "La reunión no terminó a tiempo. ¡Terminó media hora tarde!",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The meeting didn't finish",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time. It finished half an hour late!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The meeting didn't finish on time. It finished half an hour late!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d31"
+    },
+    "id": "67fab6d59930102295343d31",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
+    },
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "¿Llegaste a tiempo para ver la puesta de sol?",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Were you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time to see the sunset?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Were you in time to see the sunset?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d32"
+    },
+    "id": "67fab6d59930102295343d32",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
+    },
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "¿El programa comenzó a tiempo?",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Did the show begin",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Did the show begin on time?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d33"
+    },
+    "id": "67fab6d59930102295343d33",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
+    },
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "¿Llegaste a tiempo para ver a Fred antes de que se fuera?",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Did you get there",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time to see Fred before he left?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Did you get there in time to see Fred before he left?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d34"
+    },
+    "id": "67fab6d59930102295343d34",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
+    },
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "Ese taxi nunca llega a tiempo.",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That taxi is never",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That taxi is never on time."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d35"
+    },
+    "id": "67fab6d59930102295343d35",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
+    },
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "Él no llamó al médico a tiempo y la enfermedad empeoró.",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He didn't call the doctor",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time and the illness worsened.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He didn't call the doctor in time and the illness worsened."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d36"
+    },
+    "id": "67fab6d59930102295343d36",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
+    },
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "¿La tienda suele abrir a tiempo?",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Does the store usually open",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Does the store usually open on time?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d37"
+    },
+    "id": "67fab6d59930102295343d37",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
+    },
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "Llegué a tiempo para ver a mi padre. Pensé que podría haberse ido, pero no lo había hecho.",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time to see my father – I thought he might have left but he hadn't.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I was in time to see my father – I thought he might have left but he hadn't."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343d38"
+    },
+    "id": "67fab6d59930102295343d38",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d37d"
+    },
+    "title": "Learn to Differentiate 'In Time' from 'On Time'",
+    "instructions": "Completar con 'in' o 'on'.",
+    "translation": "Recogieron las flores a tiempo, antes de que se marchitaran.",
+    "theoryId": "b1.17.On_Time_or_In_Time",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.17.13.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They picked the flowers",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "in"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "time, before they wilted.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They picked the flowers in time, before they wilted."
+      ]
+    }
   }
-} ]
+]

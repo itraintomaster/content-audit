@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434c0"
-  },
-  "id" : "67fab6d599301022953434c0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Él bebió jugo.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434c0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He drank",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "juice. (The listener doesn't know which juice.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434c1"
-  },
-  "id" : "67fab6d599301022953434c1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Él bebió el jugo recién exprimido.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953434c0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He drank",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "juice that was freshly squeezed.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434c2"
-  },
-  "id" : "67fab6d599301022953434c2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Ella adoptó un perro.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Él bebió jugo.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She adopted",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "dog. (The listener doesn't know which dog.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434c3"
-  },
-  "id" : "67fab6d599301022953434c3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Ella adoptó el perro que fue abandonado cerca del parque.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She adopted",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "dog that was abandoned near the park.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434c4"
-  },
-  "id" : "67fab6d599301022953434c4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Ellos hornearon pasteles.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They baked",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "cakes. (The listener doesn't know which cakes.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434c5"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He drank",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "juice. (The listener doesn't know which juice.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He drank - juice."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953434c5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Ellos hornearon los pasteles que eran para la fiesta.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434c1"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They baked",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "cakes that were for the party.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434c6"
-  },
-  "id" : "67fab6d599301022953434c6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Los estudiantes estaban estudiando en la biblioteca.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953434c1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "students were studying in the library. (The listener doesn't know which students.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434c7"
-  },
-  "id" : "67fab6d599301022953434c7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Los estudiantes que asistieron a la conferencia estaban estudiando en la biblioteca.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Él bebió el jugo recién exprimido.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "students who attended the lecture were studying in the library.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434c8"
-  },
-  "id" : "67fab6d599301022953434c8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Ella encontró una billetera.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She found",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "wallet. (The listener doesn't know which wallet.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434c9"
-  },
-  "id" : "67fab6d599301022953434c9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Ella encontró la billetera que se perdió ayer.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She found",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "wallet that was lost yesterday.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434ca"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He drank",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "juice that was freshly squeezed.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He drank the juice that was freshly squeezed."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953434ca",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Ella sirvió leche.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434c2"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She poured",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "milk. (The listener doesn't know which milk.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434cb"
-  },
-  "id" : "67fab6d599301022953434cb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Ella sirvió la leche que estaba en la nevera.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953434c2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She poured",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "milk that was in the fridge.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434cc"
-  },
-  "id" : "67fab6d599301022953434cc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Un pájaro estaba en el árbol.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Ella adoptó un perro.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "A" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "bird was on the tree. (The listener doesn't know which bird.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434cd"
-  },
-  "id" : "67fab6d599301022953434cd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "El pájaro con las plumas coloridas estaba en el árbol.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "bird with the colorful feathers was on the tree.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434ce"
-  },
-  "id" : "67fab6d599301022953434ce",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Él necesitaba un pedazo de papel.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He needed",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "piece of paper. (The listener doesn't know which piece.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434cf"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She adopted",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "dog. (The listener doesn't know which dog.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She adopted a dog."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953434cf",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Él necesitaba el pedazo de papel que tenía las instrucciones.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434c3"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He needed",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "piece of paper that had the directions on it.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434d0"
-  },
-  "id" : "67fab6d599301022953434d0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Ella compró flores.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953434c3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She bought",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "flowers. (The listener doesn't know which flowers.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434d1"
-  },
-  "id" : "67fab6d599301022953434d1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Ella compró las flores de la nueva florería.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Ella adoptó el perro que fue abandonado cerca del parque.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She bought",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "flowers from the new florist shop.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434d2"
-  },
-  "id" : "67fab6d599301022953434d2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Nosotros vimos películas.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We watched",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "movies. (The listener doesn't know which movies.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953434d3"
-  },
-  "id" : "67fab6d599301022953434d3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d300"
-  },
-  "title" : "Article Use: A Practice Review",
-  "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Nosotros vimos las películas que descargamos la semana pasada.",
-  "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.01.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We watched",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "movies that we downloaded last week.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She adopted",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "dog that was abandoned near the park.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She adopted the dog that was abandoned near the park."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434c4"
+    },
+    "id": "67fab6d599301022953434c4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
+    },
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Ellos hornearon pasteles.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They baked",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "cakes. (The listener doesn't know which cakes.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They baked - cakes."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434c5"
+    },
+    "id": "67fab6d599301022953434c5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
+    },
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Ellos hornearon los pasteles que eran para la fiesta.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They baked",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "cakes that were for the party.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They baked the cakes that were for the party."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434c6"
+    },
+    "id": "67fab6d599301022953434c6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
+    },
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Los estudiantes estaban estudiando en la biblioteca.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "students were studying in the library. (The listener doesn't know which students.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "- students were studying in the library."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434c7"
+    },
+    "id": "67fab6d599301022953434c7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
+    },
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Los estudiantes que asistieron a la conferencia estaban estudiando en la biblioteca.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "students who attended the lecture were studying in the library.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The students who attended the lecture were studying in the library."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434c8"
+    },
+    "id": "67fab6d599301022953434c8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
+    },
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Ella encontró una billetera.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She found",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "wallet. (The listener doesn't know which wallet.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She found a wallet."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434c9"
+    },
+    "id": "67fab6d599301022953434c9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
+    },
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Ella encontró la billetera que se perdió ayer.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She found",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "wallet that was lost yesterday.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She found the wallet that was lost yesterday."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434ca"
+    },
+    "id": "67fab6d599301022953434ca",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
+    },
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Ella sirvió leche.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She poured",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "milk. (The listener doesn't know which milk.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She poured - milk."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434cb"
+    },
+    "id": "67fab6d599301022953434cb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
+    },
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Ella sirvió la leche que estaba en la nevera.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She poured",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "milk that was in the fridge.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She poured the milk that was in the fridge."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434cc"
+    },
+    "id": "67fab6d599301022953434cc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
+    },
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Un pájaro estaba en el árbol.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "A"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bird was on the tree. (The listener doesn't know which bird.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "A bird was on the tree."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434cd"
+    },
+    "id": "67fab6d599301022953434cd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
+    },
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "El pájaro con las plumas coloridas estaba en el árbol.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bird with the colorful feathers was on the tree.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The bird with the colorful feathers was on the tree."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434ce"
+    },
+    "id": "67fab6d599301022953434ce",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
+    },
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Él necesitaba un pedazo de papel.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He needed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "piece of paper. (The listener doesn't know which piece.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He needed a piece of paper."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434cf"
+    },
+    "id": "67fab6d599301022953434cf",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
+    },
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Él necesitaba el pedazo de papel que tenía las instrucciones.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He needed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "piece of paper that had the directions on it.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He needed the piece of paper that had the directions on it."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434d0"
+    },
+    "id": "67fab6d599301022953434d0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
+    },
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Ella compró flores.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She bought",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "flowers. (The listener doesn't know which flowers.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She bought - flowers."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434d1"
+    },
+    "id": "67fab6d599301022953434d1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
+    },
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Ella compró las flores de la nueva florería.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She bought",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "flowers from the new florist shop.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She bought the flowers from the new florist shop."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434d2"
+    },
+    "id": "67fab6d599301022953434d2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
+    },
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Nosotros vimos películas.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We watched",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "movies. (The listener doesn't know which movies.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We watched - movies."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953434d3"
+    },
+    "id": "67fab6d599301022953434d3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d300"
+    },
+    "title": "Article Use: A Practice Review",
+    "instructions": "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
+    "translation": "Nosotros vimos las películas que descargamos la semana pasada.",
+    "theoryId": "b1.07.Nouns_That_Are_Always_Plural",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.01.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We watched",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "movies that we downloaded last week.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We watched the movies that we downloaded last week."
+      ]
+    }
   }
-} ]
+]

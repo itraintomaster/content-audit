@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344972"
-  },
-  "id" : "67fab6d59930102295344972",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Por lo tanto, no pude comprar los comestibles.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344972"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I forgot my wallet.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Therefore" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ", I couldn't purchase the groceries.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344973"
-  },
-  "id" : "67fab6d59930102295344973",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "La película era aburrida, así que nos fuimos temprano.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344972",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The movie was boring,",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "so" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "we left early.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344974"
-  },
-  "id" : "67fab6d59930102295344974",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Por lo tanto, estaba descansado.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Por lo tanto, no pude comprar los comestibles.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I slept for 12 hours.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Therefore" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ", I was rested.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344975"
-  },
-  "id" : "67fab6d59930102295344975",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Por lo tanto, él necesita arreglarlo.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "His computer crashed.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Therefore" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ", he needs to fix it.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344976"
-  },
-  "id" : "67fab6d59930102295344976",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Los jugadores no entrenaron lo suficiente, así que perdieron el partido.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The players didn't train enough,",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "so" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "they lost the match.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344977"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I forgot my wallet.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Therefore"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", I couldn't purchase the groceries.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I forgot my wallet. Therefore, I couldn't purchase the groceries."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344977",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Él tiene una bicicleta, así que necesita usarla.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344973"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He has a bicycle,",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "so" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "he needs to use it.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344978"
-  },
-  "id" : "67fab6d59930102295344978",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Recibí el mensaje, así que tengo los detalles.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344973",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I received the message,",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "so" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "I have the details.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344979"
-  },
-  "id" : "67fab6d59930102295344979",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Por lo tanto, necesito reemplazarlo.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "La película era aburrida, así que nos fuimos temprano.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The cat scratched my couch.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Therefore" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ", I need to replace it.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534497a"
-  },
-  "id" : "67fab6d5993010229534497a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Entrené mucho, así que gané la carrera.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I trained a lot,",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "so" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "I won the race.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534497b"
-  },
-  "id" : "67fab6d5993010229534497b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Ella bebió un gran vaso de agua, así que no tiene sed.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She drank a big glass of water,",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "so" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "she's not thirsty.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534497c"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The movie was boring,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "so"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "we left early.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The movie was boring, so we left early."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534497c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Ella fue descortés, así que el gerente se molestó.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344974"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She was impolite,",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "so" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the manager was upset.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534497d"
-  },
-  "id" : "67fab6d5993010229534497d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Por lo tanto, nos retrasamos.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344974",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We missed the bus.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Therefore" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ", we were delayed.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534497e"
-  },
-  "id" : "67fab6d5993010229534497e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Por lo tanto, ella se va a especializar en eso en la universidad.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Por lo tanto, estaba descansado.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She enjoys science.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Therefore" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ", she's going to major in it at college.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534497f"
-  },
-  "id" : "67fab6d5993010229534497f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Por lo tanto, necesitan mejorar.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The athletes performed poorly.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Therefore" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ", they need to improve.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344980"
-  },
-  "id" : "67fab6d59930102295344980",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Por lo tanto, necesitan muchos muebles.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They own a large house.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Therefore" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ", they need a lot of furniture.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344981"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I slept for 12 hours.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Therefore"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", I was rested.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I slept for 12 hours. Therefore, I was rested."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344981",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Por lo tanto, él va a montar.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344975"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He has a motorcycle.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Therefore" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ", he's going to ride.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344982"
-  },
-  "id" : "67fab6d59930102295344982",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Nos quedamos despiertos toda la noche, así que teníamos sueño.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344975",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We stayed up all night,",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "so" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "we were sleepy.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344983"
-  },
-  "id" : "67fab6d59930102295344983",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Ella escuchó atentamente, así que su comprensión fue completa.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Por lo tanto, él necesita arreglarlo.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She listened carefully,",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "so" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "her understanding was complete.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344984"
-  },
-  "id" : "67fab6d59930102295344984",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Él estudia diligentemente, así que obtiene buenas calificaciones.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He studies diligently,",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "so" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "he achieves good grades.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344985"
-  },
-  "id" : "67fab6d59930102295344985",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d499"
-  },
-  "title" : "Using 'So' and 'Therefore' in Sentences",
-  "instructions" : "Incluye 'so' o 'therefore' en la oración.",
-  "translation" : "Por lo tanto, pospusimos el viaje.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.06.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The flight was cancelled.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Therefore" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ", we postponed the trip.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "His computer crashed.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Therefore"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", he needs to fix it.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "His computer crashed. Therefore, he needs to fix it."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344976"
+    },
+    "id": "67fab6d59930102295344976",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
+    },
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Los jugadores no entrenaron lo suficiente, así que perdieron el partido.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The players didn't train enough,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "so"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "they lost the match.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The players didn't train enough, so they lost the match."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344977"
+    },
+    "id": "67fab6d59930102295344977",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
+    },
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Él tiene una bicicleta, así que necesita usarla.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He has a bicycle,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "so"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "he needs to use it.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He has a bicycle, so he needs to use it."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344978"
+    },
+    "id": "67fab6d59930102295344978",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
+    },
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Recibí el mensaje, así que tengo los detalles.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I received the message,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "so"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "I have the details.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I received the message, so I have the details."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344979"
+    },
+    "id": "67fab6d59930102295344979",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
+    },
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Por lo tanto, necesito reemplazarlo.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cat scratched my couch.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Therefore"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", I need to replace it.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The cat scratched my couch. Therefore, I need to replace it."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534497a"
+    },
+    "id": "67fab6d5993010229534497a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
+    },
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Entrené mucho, así que gané la carrera.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I trained a lot,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "so"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "I won the race.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I trained a lot, so I won the race."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534497b"
+    },
+    "id": "67fab6d5993010229534497b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
+    },
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Ella bebió un gran vaso de agua, así que no tiene sed.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She drank a big glass of water,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "so"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "she's not thirsty.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She drank a big glass of water, so she's not thirsty."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534497c"
+    },
+    "id": "67fab6d5993010229534497c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
+    },
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Ella fue descortés, así que el gerente se molestó.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She was impolite,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "so"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the manager was upset.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She was impolite, so the manager was upset."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534497d"
+    },
+    "id": "67fab6d5993010229534497d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
+    },
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Por lo tanto, nos retrasamos.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We missed the bus.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Therefore"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", we were delayed.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We missed the bus. Therefore, we were delayed."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534497e"
+    },
+    "id": "67fab6d5993010229534497e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
+    },
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Por lo tanto, ella se va a especializar en eso en la universidad.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She enjoys science.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Therefore"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", she's going to major in it at college.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She enjoys science. Therefore, she's going to major in it at college."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534497f"
+    },
+    "id": "67fab6d5993010229534497f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
+    },
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Por lo tanto, necesitan mejorar.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The athletes performed poorly.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Therefore"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", they need to improve.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The athletes performed poorly. Therefore, they need to improve."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344980"
+    },
+    "id": "67fab6d59930102295344980",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
+    },
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Por lo tanto, necesitan muchos muebles.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They own a large house.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Therefore"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", they need a lot of furniture.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They own a large house. Therefore, they need a lot of furniture."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344981"
+    },
+    "id": "67fab6d59930102295344981",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
+    },
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Por lo tanto, él va a montar.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He has a motorcycle.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Therefore"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", he's going to ride.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He has a motorcycle. Therefore, he's going to ride."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344982"
+    },
+    "id": "67fab6d59930102295344982",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
+    },
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Nos quedamos despiertos toda la noche, así que teníamos sueño.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We stayed up all night,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "so"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "we were sleepy.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We stayed up all night, so we were sleepy."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344983"
+    },
+    "id": "67fab6d59930102295344983",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
+    },
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Ella escuchó atentamente, así que su comprensión fue completa.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She listened carefully,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "so"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "her understanding was complete.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She listened carefully, so her understanding was complete."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344984"
+    },
+    "id": "67fab6d59930102295344984",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
+    },
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Él estudia diligentemente, así que obtiene buenas calificaciones.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He studies diligently,",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "so"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "he achieves good grades.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He studies diligently, so he achieves good grades."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344985"
+    },
+    "id": "67fab6d59930102295344985",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d499"
+    },
+    "title": "Using 'So' and 'Therefore' in Sentences",
+    "instructions": "Incluye 'so' o 'therefore' en la oración.",
+    "translation": "Por lo tanto, pospusimos el viaje.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.06.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The flight was cancelled.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Therefore"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", we postponed the trip.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The flight was cancelled. Therefore, we postponed the trip."
+      ]
+    }
   }
-} ]
+]

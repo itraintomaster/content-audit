@@ -1,1021 +1,1236 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343dd9"
-  },
-  "id" : "67fab6d59930102295343dd9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Escribiré a las 9.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dd9"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll write|will write" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(write) at 9 (I'll start at 9).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343dda"
-  },
-  "id" : "67fab6d59930102295343dda",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Estaré escribiendo a las 9.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343dd9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll be writing|will be writing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(write) at 9 (I'll start before 9).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343ddb"
-  },
-  "id" : "67fab6d59930102295343ddb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Ellos cantarán la canción a las 7 pm.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Escribiré a las 9.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll sing|will sing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(sing) the song at 7 pm (they'll start at 7 pm).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343ddc"
-  },
-  "id" : "67fab6d59930102295343ddc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Ellos estarán cantando la canción a las 7 pm.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll be singing|will be singing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(sing) the song at 7 pm (they'll start at 6:30 pm).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343ddd"
-  },
-  "id" : "67fab6d59930102295343ddd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Estaremos conduciendo a las 5:30.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll be driving|will be driving" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(drive) at 5:30 (the trip is at 5:00).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343dde"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll write|will write"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(write) at 9 (I'll start at 9).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I'll write at 9 .",
+        "I will write at 9 ."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343dde",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Conduciremos a las 5:30.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dda"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll drive|will drive" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(drive) at 5:30 (the trip is at 5:30).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343ddf"
-  },
-  "id" : "67fab6d59930102295343ddf",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Él pintará el cuadro a las 9 en punto.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343dda",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll paint|will paint" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(paint) the picture at 9 o'clock (the lesson starts at 9).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343de0"
-  },
-  "id" : "67fab6d59930102295343de0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Él estará pintando el cuadro a las 9 en punto.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Estaré escribiendo a las 9.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll be painting|will be painting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(paint) the picture at 9 o'clock (the lesson starts at 8:30).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343de1"
-  },
-  "id" : "67fab6d59930102295343de1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Lisa estará dibujando un cuadro a las 11 am.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Lisa",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will be drawing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(draw) a picture at 11 am (she'll start at 10:45).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343de2"
-  },
-  "id" : "67fab6d59930102295343de2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Lisa dibujará un cuadro a las 11 am.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Lisa",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will draw" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(draw) a picture at 11 am (she'll start at 11 am).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343de3"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll be writing|will be writing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(write) at 9 (I'll start before 9).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I'll be writing at 9 .",
+        "I will be writing at 9 ."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343de3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Les leeré a los niños un cuento a las 7.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ddb"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll read|will read" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(read) the children a story at 7 (I'll start at 7).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343de4"
-  },
-  "id" : "67fab6d59930102295343de4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Estaré leyéndoles a los niños un cuento a las 7.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343ddb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll be reading|will be reading" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(read) the children a story at 7 (I'll start before 7).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343de5"
-  },
-  "id" : "67fab6d59930102295343de5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Los ingenieros estarán construyendo el puente a las 12.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Ellos cantarán la canción a las 7 pm.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The engineers",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will be building" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(build) the bridge at 12 (it starts at 11).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343de6"
-  },
-  "id" : "67fab6d59930102295343de6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Los ingenieros construirán el puente a las 12.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The engineers",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will build" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(build) the bridge at 12 (it starts at 12).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343de7"
-  },
-  "id" : "67fab6d59930102295343de7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Ella nadará a la una en punto.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll swim|will swim" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(swim) at one o'clock (her swimming starts at one o'clock).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343de8"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll sing|will sing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(sing) the song at 7 pm (they'll start at 7 pm).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They'll sing the song at 7 pm .",
+        "They will sing the song at 7 pm ."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343de8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Ella estará nadando a la una en punto.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ddc"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll be swimming|will be swimming" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(swim) at one o'clock (her swimming starts before one o'clock).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343de9"
-  },
-  "id" : "67fab6d59930102295343de9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Hablaremos a las 5.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343ddc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll talk|will talk" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(talk) at 5 (we'll start at 5).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343dea"
-  },
-  "id" : "67fab6d59930102295343dea",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Estaremos hablando a las 5.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Ellos estarán cantando la canción a las 7 pm.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll be talking|will be talking" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(talk) at 5 (we'll start at 4).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343deb"
-  },
-  "id" : "67fab6d59930102295343deb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Bob estará comiendo a las 8.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Bob",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will be eating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) at 8 (he'll start at 7:30).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343dec"
-  },
-  "id" : "67fab6d59930102295343dec",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f5"
-  },
-  "title" : "Future Continuous: Actions in Progress - Review",
-  "instructions" : "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
-  "translation" : "Bob comerá a las 8.",
-  "theoryId" : "b2.01.Future_Continuous_for_Politeness",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.05.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Bob",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will eat" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) at 8 (he'll start at 8).",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll be singing|will be singing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(sing) the song at 7 pm (they'll start at 6:30 pm).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They'll be singing the song at 7 pm .",
+        "They will be singing the song at 7 pm ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ddd"
+    },
+    "id": "67fab6d59930102295343ddd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
+    },
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Estaremos conduciendo a las 5:30.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll be driving|will be driving"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drive) at 5:30 (the trip is at 5:00).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We'll be driving at 5:30 .",
+        "We will be driving at 5:30 ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dde"
+    },
+    "id": "67fab6d59930102295343dde",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
+    },
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Conduciremos a las 5:30.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll drive|will drive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drive) at 5:30 (the trip is at 5:30).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We'll drive at 5:30 .",
+        "We will drive at 5:30 ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ddf"
+    },
+    "id": "67fab6d59930102295343ddf",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
+    },
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Él pintará el cuadro a las 9 en punto.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll paint|will paint"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(paint) the picture at 9 o'clock (the lesson starts at 9).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He'll paint the picture at 9 o'clock .",
+        "He will paint the picture at 9 o'clock ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343de0"
+    },
+    "id": "67fab6d59930102295343de0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
+    },
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Él estará pintando el cuadro a las 9 en punto.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll be painting|will be painting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(paint) the picture at 9 o'clock (the lesson starts at 8:30).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He'll be painting the picture at 9 o'clock .",
+        "He will be painting the picture at 9 o'clock ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343de1"
+    },
+    "id": "67fab6d59930102295343de1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
+    },
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Lisa estará dibujando un cuadro a las 11 am.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Lisa",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be drawing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(draw) a picture at 11 am (she'll start at 10:45).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Lisa will be drawing a picture at 11 am ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343de2"
+    },
+    "id": "67fab6d59930102295343de2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
+    },
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Lisa dibujará un cuadro a las 11 am.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Lisa",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will draw"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(draw) a picture at 11 am (she'll start at 11 am).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Lisa will draw a picture at 11 am ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343de3"
+    },
+    "id": "67fab6d59930102295343de3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
+    },
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Les leeré a los niños un cuento a las 7.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll read|will read"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(read) the children a story at 7 (I'll start at 7).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I'll read the children a story at 7 .",
+        "I will read the children a story at 7 ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343de4"
+    },
+    "id": "67fab6d59930102295343de4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
+    },
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Estaré leyéndoles a los niños un cuento a las 7.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll be reading|will be reading"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(read) the children a story at 7 (I'll start before 7).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I'll be reading the children a story at 7 .",
+        "I will be reading the children a story at 7 ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343de5"
+    },
+    "id": "67fab6d59930102295343de5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
+    },
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Los ingenieros estarán construyendo el puente a las 12.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The engineers",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be building"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(build) the bridge at 12 (it starts at 11).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The engineers will be building the bridge at 12 ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343de6"
+    },
+    "id": "67fab6d59930102295343de6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
+    },
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Los ingenieros construirán el puente a las 12.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The engineers",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will build"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(build) the bridge at 12 (it starts at 12).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The engineers will build the bridge at 12 ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343de7"
+    },
+    "id": "67fab6d59930102295343de7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
+    },
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Ella nadará a la una en punto.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll swim|will swim"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(swim) at one o'clock (her swimming starts at one o'clock).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She'll swim at one o'clock .",
+        "She will swim at one o'clock ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343de8"
+    },
+    "id": "67fab6d59930102295343de8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
+    },
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Ella estará nadando a la una en punto.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll be swimming|will be swimming"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(swim) at one o'clock (her swimming starts before one o'clock).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She'll be swimming at one o'clock .",
+        "She will be swimming at one o'clock ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343de9"
+    },
+    "id": "67fab6d59930102295343de9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
+    },
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Hablaremos a las 5.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll talk|will talk"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(talk) at 5 (we'll start at 5).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We'll talk at 5 .",
+        "We will talk at 5 ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dea"
+    },
+    "id": "67fab6d59930102295343dea",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
+    },
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Estaremos hablando a las 5.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ll be talking|will be talking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(talk) at 5 (we'll start at 4).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We'll be talking at 5 .",
+        "We will be talking at 5 ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343deb"
+    },
+    "id": "67fab6d59930102295343deb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
+    },
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Bob estará comiendo a las 8.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Bob",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be eating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) at 8 (he'll start at 7:30).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Bob will be eating at 8 ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dec"
+    },
+    "id": "67fab6d59930102295343dec",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f5"
+    },
+    "title": "Future Continuous: Actions in Progress - Review",
+    "instructions": "Crea oraciones en 'future continuous' o 'future simple' con 'will'.",
+    "translation": "Bob comerá a las 8.",
+    "theoryId": "b2.01.Future_Continuous_for_Politeness",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.05.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Bob",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will eat"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) at 8 (he'll start at 8).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Bob will eat at 8 ."
+      ]
+    }
   }
-} ]
+]

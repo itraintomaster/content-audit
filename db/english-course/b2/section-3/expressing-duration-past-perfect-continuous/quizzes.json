@@ -1,1181 +1,1477 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344077"
-  },
-  "id" : "67fab6d59930102295344077",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Habían estado saliendo durante un año cuando él le propuso matrimonio.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344077"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'d been dating|had been dating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(date) for a year when he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "proposed" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(propose) to her.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344078"
-  },
-  "id" : "67fab6d59930102295344078",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Sarah había estado aprendiendo francés durante varias semanas cuando visitó París.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344077",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Sarah",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had been learning" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(learn) French for several weeks by the time she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "visited" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(visit) Paris.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344079"
-  },
-  "id" : "67fab6d59930102295344079",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Él había estado estudiando durante horas cuando decidió parar.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Habían estado saliendo durante un año cuando él le propuso matrimonio.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'d been studying|had been studying" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(study) for hours when he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "decided" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(decide) to stop.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534407a"
-  },
-  "id" : "67fab6d5993010229534407a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Él había estado trabajando en el extranjero durante años cuando regresó a Londres.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'d been working|had been working" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(work) abroad for years when he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "returned" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(return) to London.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534407b"
-  },
-  "id" : "67fab6d5993010229534407b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Ella había estado viviendo en Nueva York durante cinco años cuando se convirtió en ciudadana estadounidense.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'d been living|had been living" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(live) in New York for five years when she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "became" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(become) a US citizen.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534407c"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d been dating|had been dating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(date) for a year when he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "proposed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(propose) to her.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They'd been dating for a year when he proposed to her.",
+        "They had been dating for a year when he proposed to her."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534407c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Habíamos estado charlando durante un tiempo cuando él nos interrumpió.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344078"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'d been chatting|had been chatting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(chat) for some time when he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "interrupted" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(interrupt) us.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534407d"
-  },
-  "id" : "67fab6d5993010229534407d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "El perro había estado ladrando durante horas cuando su dueño llegó a casa.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344078",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The dog",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had been barking" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(bark) for hours by the time his owner",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "came" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(come) home.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534407e"
-  },
-  "id" : "67fab6d5993010229534407e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Habían estado viajando durante horas cuando el autobús se averió.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Sarah había estado aprendiendo francés durante varias semanas cuando visitó París.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'d been travelling|had been travelling" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(travel) for hours when the bus",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "broke" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(break) down.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534407f"
-  },
-  "id" : "67fab6d5993010229534407f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Él había estado conduciendo durante mucho tiempo cuando notó el coche de policía.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had been driving" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(drive) for a long time when he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "noticed" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(notice) the police car.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344080"
-  },
-  "id" : "67fab6d59930102295344080",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Ella había estado vagando por la ciudad durante horas cuando localizó el museo.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'d been wandering|had been wandering" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(wander) around the city for hours when she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "located" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(locate) the museum.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344081"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Sarah",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had been learning"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(learn) French for several weeks by the time she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "visited"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(visit) Paris.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Sarah had been learning French for several weeks by the time she visited Paris."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344081",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Él había estado buscando sus llaves durante mucho tiempo cuando las encontró.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344079"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'d been looking|had been looking" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(look) for his keys for ages when he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "located" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(locate) them.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344082"
-  },
-  "id" : "67fab6d59930102295344082",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Habían estado bailando juntos durante un rato cuando el DJ cambió la música.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344079",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'d been dancing|had been dancing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(dance) together for a while when the DJ",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "changed" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(change) the music.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344083"
-  },
-  "id" : "67fab6d59930102295344083",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Lo habíamos estado esperando durante semanas cuando el concierto finalmente comenzó.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Él había estado estudiando durante horas cuando decidió parar.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'d been anticipating|had been anticipating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(anticipate) it for weeks when the concert finally",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "started" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(start).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344084"
-  },
-  "id" : "67fab6d59930102295344084",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Ella había estado corriendo en la cinta durante un rato cuando empezó a sudar.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'d been running|had been running" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(run) on the treadmill for a while when she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "began" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(begin) to sweat.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344085"
-  },
-  "id" : "67fab6d59930102295344085",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Él había estado enseñando a la clase durante meses cuando renunció a ese trabajo.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'d been teaching|had been teaching" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(teach) the class for months when he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "resigned" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(resign) from that job.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344086"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d been studying|had been studying"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(study) for hours when he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "decided"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(decide) to stop.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He'd been studying for hours when he decided to stop.",
+        "He had been studying for hours when he decided to stop."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344086",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Él había estado horneando todo el día cuando llegaron los invitados.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534407a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'d been baking|had been baking" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(bake) all day when the guests",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "came" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(come).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344087"
-  },
-  "id" : "67fab6d59930102295344087",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Mamá había estado leyendo su novela durante horas cuando sonó el teléfono.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534407a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Mum",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had been reading" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(read) her novel for hours when the phone",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "rang" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(ring).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344088"
-  },
-  "id" : "67fab6d59930102295344088",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Ella había estado escribiendo durante meses cuando publicó su primer libro.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Él había estado trabajando en el extranjero durante años cuando regresó a Londres.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'d been writing|had been writing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(write) for months when she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "published" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(publish) her first book.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344089"
-  },
-  "id" : "67fab6d59930102295344089",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Los fans habían estado esperando durante dos horas cuando comenzó el concierto.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The fans",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had been waiting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(wait) for two hours when the concert",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "started" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(start).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534408a"
-  },
-  "id" : "67fab6d5993010229534408a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d419"
-  },
-  "title" : "Expressing Duration: Past Perfect Continuous",
-  "instructions" : "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
-  "translation" : "Habíamos estado escuchando ese disco durante meses cuando descubrimos la canción.",
-  "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.13.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'d been listening|had been listening" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(listen) to that record for months when we",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "discovered" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(discover) the song.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d been working|had been working"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(work) abroad for years when he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "returned"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(return) to London.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He'd been working abroad for years when he returned to London.",
+        "He had been working abroad for years when he returned to London."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534407b"
+    },
+    "id": "67fab6d5993010229534407b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
+    },
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Ella había estado viviendo en Nueva York durante cinco años cuando se convirtió en ciudadana estadounidense.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d been living|had been living"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(live) in New York for five years when she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "became"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(become) a US citizen.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She'd been living in New York for five years when she became a US citizen.",
+        "She had been living in New York for five years when she became a US citizen."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534407c"
+    },
+    "id": "67fab6d5993010229534407c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
+    },
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Habíamos estado charlando durante un tiempo cuando él nos interrumpió.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d been chatting|had been chatting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(chat) for some time when he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "interrupted"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(interrupt) us.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We'd been chatting for some time when he interrupted us.",
+        "We had been chatting for some time when he interrupted us."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534407d"
+    },
+    "id": "67fab6d5993010229534407d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
+    },
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "El perro había estado ladrando durante horas cuando su dueño llegó a casa.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dog",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had been barking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(bark) for hours by the time his owner",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "came"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(come) home.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The dog had been barking for hours by the time his owner came home."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534407e"
+    },
+    "id": "67fab6d5993010229534407e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
+    },
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Habían estado viajando durante horas cuando el autobús se averió.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d been travelling|had been travelling"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(travel) for hours when the bus",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "broke"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(break) down.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They'd been travelling for hours when the bus broke down.",
+        "They had been travelling for hours when the bus broke down."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534407f"
+    },
+    "id": "67fab6d5993010229534407f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
+    },
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Él había estado conduciendo durante mucho tiempo cuando notó el coche de policía.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had been driving"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drive) for a long time when he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "noticed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(notice) the police car.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He had been driving for a long time when he noticed the police car."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344080"
+    },
+    "id": "67fab6d59930102295344080",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
+    },
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Ella había estado vagando por la ciudad durante horas cuando localizó el museo.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d been wandering|had been wandering"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(wander) around the city for hours when she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "located"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(locate) the museum.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She'd been wandering around the city for hours when she located the museum.",
+        "She had been wandering around the city for hours when she located the museum."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344081"
+    },
+    "id": "67fab6d59930102295344081",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
+    },
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Él había estado buscando sus llaves durante mucho tiempo cuando las encontró.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d been looking|had been looking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(look) for his keys for ages when he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "located"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(locate) them.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He'd been looking for his keys for ages when he located them.",
+        "He had been looking for his keys for ages when he located them."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344082"
+    },
+    "id": "67fab6d59930102295344082",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
+    },
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Habían estado bailando juntos durante un rato cuando el DJ cambió la música.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d been dancing|had been dancing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(dance) together for a while when the DJ",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "changed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(change) the music.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They'd been dancing together for a while when the DJ changed the music.",
+        "They had been dancing together for a while when the DJ changed the music."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344083"
+    },
+    "id": "67fab6d59930102295344083",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
+    },
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Lo habíamos estado esperando durante semanas cuando el concierto finalmente comenzó.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d been anticipating|had been anticipating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(anticipate) it for weeks when the concert finally",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "started"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(start).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We'd been anticipating it for weeks when the concert finally started.",
+        "We had been anticipating it for weeks when the concert finally started."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344084"
+    },
+    "id": "67fab6d59930102295344084",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
+    },
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Ella había estado corriendo en la cinta durante un rato cuando empezó a sudar.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d been running|had been running"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(run) on the treadmill for a while when she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "began"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(begin) to sweat.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She'd been running on the treadmill for a while when she began to sweat.",
+        "She had been running on the treadmill for a while when she began to sweat."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344085"
+    },
+    "id": "67fab6d59930102295344085",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
+    },
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Él había estado enseñando a la clase durante meses cuando renunció a ese trabajo.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d been teaching|had been teaching"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(teach) the class for months when he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "resigned"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(resign) from that job.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He'd been teaching the class for months when he resigned from that job.",
+        "He had been teaching the class for months when he resigned from that job."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344086"
+    },
+    "id": "67fab6d59930102295344086",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
+    },
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Él había estado horneando todo el día cuando llegaron los invitados.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d been baking|had been baking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(bake) all day when the guests",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "came"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(come).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He'd been baking all day when the guests came.",
+        "He had been baking all day when the guests came."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344087"
+    },
+    "id": "67fab6d59930102295344087",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
+    },
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Mamá había estado leyendo su novela durante horas cuando sonó el teléfono.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mum",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had been reading"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(read) her novel for hours when the phone",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "rang"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(ring).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Mum had been reading her novel for hours when the phone rang."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344088"
+    },
+    "id": "67fab6d59930102295344088",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
+    },
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Ella había estado escribiendo durante meses cuando publicó su primer libro.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d been writing|had been writing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(write) for months when she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "published"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(publish) her first book.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She'd been writing for months when she published her first book.",
+        "She had been writing for months when she published her first book."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344089"
+    },
+    "id": "67fab6d59930102295344089",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
+    },
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Los fans habían estado esperando durante dos horas cuando comenzó el concierto.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The fans",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had been waiting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(wait) for two hours when the concert",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "started"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(start).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The fans had been waiting for two hours when the concert started."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534408a"
+    },
+    "id": "67fab6d5993010229534408a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d419"
+    },
+    "title": "Expressing Duration: Past Perfect Continuous",
+    "instructions": "Utiliza el 'past perfect continuous' para expresar 'how long'. De lo contrario, utiliza el 'past simple'.",
+    "translation": "Habíamos estado escuchando ese disco durante meses cuando descubrimos la canción.",
+    "theoryId": "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.13.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'d been listening|had been listening"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(listen) to that record for months when we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "discovered"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(discover) the song.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We'd been listening to that record for months when we discovered the song.",
+        "We had been listening to that record for months when we discovered the song."
+      ]
+    }
   }
-} ]
+]

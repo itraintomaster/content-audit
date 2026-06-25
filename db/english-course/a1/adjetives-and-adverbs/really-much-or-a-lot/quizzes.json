@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342597"
-  },
-  "id" : "67fab6d59930102295342597",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "Me gusta mucho la pizza.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342597"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "really" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "like pizza.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342598"
-  },
-  "id" : "67fab6d59930102295342598",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "Ella quiere mucho un vestido nuevo.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342597",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She wants a new dress",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a lot" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ".",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342599"
-  },
-  "id" : "67fab6d59930102295342599",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "No nos gustan mucho los lunes.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "Me gusta mucho la pizza.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We don't like Mondays",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "much" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ".",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534259a"
-  },
-  "id" : "67fab6d5993010229534259a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "Disfrutamos mucho el concierto.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We enjoyed the concert",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a lot" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ".",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534259b"
-  },
-  "id" : "67fab6d5993010229534259b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "Te extraño mucho.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I miss you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a lot" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ".",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534259c"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "really"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "like pizza.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I really like pizza."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534259c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "A ellos les encantó París.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342598"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "really" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "loved Paris.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534259d"
-  },
-  "id" : "67fab6d5993010229534259d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "Los estudiantes podrían disfrutar mucho esto.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342598",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The students might",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "really" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "enjoy this.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534259e"
-  },
-  "id" : "67fab6d5993010229534259e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "No disfrutamos mucho los clubes.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "Ella quiere mucho un vestido nuevo.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We don't enjoy clubs",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "much" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ".",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534259f"
-  },
-  "id" : "67fab6d5993010229534259f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "A él no le gustó mucho la cerveza.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He didn't like the beer",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "much" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ".",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953425a0"
-  },
-  "id" : "67fab6d599301022953425a0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "Ella ama mucho a sus padres.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She loves her parents",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a lot" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ".",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953425a1"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She wants a new dress",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a lot"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She wants a new dress a lot."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953425a1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "Tenemos muchas ganas de cenar.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342599"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "really" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "want to have dinner.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953425a2"
-  },
-  "id" : "67fab6d599301022953425a2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "A él le gustó mucho la película.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342599",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He liked the film",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a lot" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ".",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953425a3"
-  },
-  "id" : "67fab6d599301022953425a3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "Ella no disfruta mucho las bodas.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "No nos gustan mucho los lunes.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She doesn't enjoy weddings",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "much" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ".",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953425a4"
-  },
-  "id" : "67fab6d599301022953425a4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "Él odió mucho el juego.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "really" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "hated the game.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953425a5"
-  },
-  "id" : "67fab6d599301022953425a5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "No les gustará mucho este plan.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They won't like this plan",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "much" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ".",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953425a6"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We don't like Mondays",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "much"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We don't like Mondays much."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953425a6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "Tengo muchas ganas de ir a la playa.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534259a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I want to go to the beach",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a lot" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ".",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953425a7"
-  },
-  "id" : "67fab6d599301022953425a7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "A ellos les gusta mucho el fútbol.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534259a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They like football",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a lot" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ".",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953425a8"
-  },
-  "id" : "67fab6d599301022953425a8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "A ella no le gustó mucho la banda.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "Disfrutamos mucho el concierto.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She didn't like the band",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "much" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ".",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953425a9"
-  },
-  "id" : "67fab6d599301022953425a9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "Los estudiantes no disfrutarán mucho el examen.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The students won't enjoy the exam",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "much" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ".",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953425aa"
-  },
-  "id" : "67fab6d599301022953425aa",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ee"
-  },
-  "title" : "Really, much, or a lot?",
-  "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "A ella le gustará mucho el viaje.",
-  "theoryId" : "a1.11.Adverbs_of_Manner",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.06.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She will",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "really" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "like the trip.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We enjoyed the concert",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a lot"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We enjoyed the concert a lot."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534259b"
+    },
+    "id": "67fab6d5993010229534259b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
+    },
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "Te extraño mucho.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I miss you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a lot"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I miss you a lot."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534259c"
+    },
+    "id": "67fab6d5993010229534259c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
+    },
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "A ellos les encantó París.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "really"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "loved Paris.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They really loved Paris."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534259d"
+    },
+    "id": "67fab6d5993010229534259d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
+    },
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "Los estudiantes podrían disfrutar mucho esto.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The students might",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "really"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "enjoy this.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The students might really enjoy this."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534259e"
+    },
+    "id": "67fab6d5993010229534259e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
+    },
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "No disfrutamos mucho los clubes.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We don't enjoy clubs",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "much"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We don't enjoy clubs much."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534259f"
+    },
+    "id": "67fab6d5993010229534259f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
+    },
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "A él no le gustó mucho la cerveza.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He didn't like the beer",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "much"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He didn't like the beer much."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425a0"
+    },
+    "id": "67fab6d599301022953425a0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
+    },
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "Ella ama mucho a sus padres.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She loves her parents",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a lot"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She loves her parents a lot."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425a1"
+    },
+    "id": "67fab6d599301022953425a1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
+    },
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "Tenemos muchas ganas de cenar.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "really"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "want to have dinner.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We really want to have dinner."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425a2"
+    },
+    "id": "67fab6d599301022953425a2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
+    },
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "A él le gustó mucho la película.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He liked the film",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a lot"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He liked the film a lot."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425a3"
+    },
+    "id": "67fab6d599301022953425a3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
+    },
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "Ella no disfruta mucho las bodas.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She doesn't enjoy weddings",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "much"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She doesn't enjoy weddings much."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425a4"
+    },
+    "id": "67fab6d599301022953425a4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
+    },
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "Él odió mucho el juego.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "really"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "hated the game.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He really hated the game."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425a5"
+    },
+    "id": "67fab6d599301022953425a5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
+    },
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "No les gustará mucho este plan.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They won't like this plan",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "much"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They won't like this plan much."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425a6"
+    },
+    "id": "67fab6d599301022953425a6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
+    },
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "Tengo muchas ganas de ir a la playa.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I want to go to the beach",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a lot"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I want to go to the beach a lot."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425a7"
+    },
+    "id": "67fab6d599301022953425a7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
+    },
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "A ellos les gusta mucho el fútbol.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They like football",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a lot"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They like football a lot."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425a8"
+    },
+    "id": "67fab6d599301022953425a8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
+    },
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "A ella no le gustó mucho la banda.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She didn't like the band",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "much"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She didn't like the band much."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425a9"
+    },
+    "id": "67fab6d599301022953425a9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
+    },
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "Los estudiantes no disfrutarán mucho el examen.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The students won't enjoy the exam",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "much"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ".",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The students won't enjoy the exam much."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953425aa"
+    },
+    "id": "67fab6d599301022953425aa",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ee"
+    },
+    "title": "Really, much, or a lot?",
+    "instructions": "Completa con 'really', 'much' o 'a lot'.",
+    "translation": "A ella le gustará mucho el viaje.",
+    "theoryId": "a1.11.Adverbs_of_Manner",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.06.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She will",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "really"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "like the trip.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She will really like the trip."
+      ]
+    }
   }
-} ]
+]

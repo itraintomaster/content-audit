@@ -1,1181 +1,1462 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534474c"
-  },
-  "id" : "67fab6d5993010229534474c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "Visito a mi madre si voy a Manchester.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534474c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "visit" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(visit) my mum if I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "go" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(go) to Manchester.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534474d"
-  },
-  "id" : "67fab6d5993010229534474d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "Si congelas agua, se vuelve sólida.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534474c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "freeze" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(freeze) water, it",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "becomes" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(become) solid.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534474e"
-  },
-  "id" : "67fab6d5993010229534474e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "Los gatos son juguetones si salen.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "Visito a mi madre si voy a Manchester.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The cats",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) playful if they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "go" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(go) outside.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534474f"
-  },
-  "id" : "67fab6d5993010229534474f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "Ella cocina bien si es una ocasión especial.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "cooks" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(cook) well if it",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) a special occasion.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344750"
-  },
-  "id" : "67fab6d59930102295344750",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "Si el pájaro tiene semillas, está contento.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the bird",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "has" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(have) seeds, he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) content.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344751"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "visit"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(visit) my mum if I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "go"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(go) to Manchester.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I visit my mum if I go to Manchester."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344751",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "Cuesta mucho si las entradas son caras.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534474d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "It",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "costs" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(cost) a lot if the tickets",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) expensive.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344752"
-  },
-  "id" : "67fab6d59930102295344752",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "Si no alimentas al perro, ladra.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534474d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "don't feed" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / feed) the dog, it",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "barks" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(bark).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344753"
-  },
-  "id" : "67fab6d59930102295344753",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "Si haces ejercicio, te mantienes fuerte.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "Si congelas agua, se vuelve sólida.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(do) exercise, you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "stay" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(stay) strong.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344754"
-  },
-  "id" : "67fab6d59930102295344754",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "Él tiene éxito en los negocios si trabaja duro.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "succeeds" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(succeed) in business if he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "works" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(work) hard.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344755"
-  },
-  "id" : "67fab6d59930102295344755",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "Si lees mucho, te vuelves más inteligente.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "read" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(read) a lot, you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "get" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(get) smarter.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344756"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "freeze"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(freeze) water, it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "becomes"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(become) solid.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If you freeze water, it becomes solid."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344756",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "Si nieva, la carretera es peligrosa.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534474e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If it",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "snows" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(snow), the road",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) dangerous.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344757"
-  },
-  "id" : "67fab6d59930102295344757",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "Te sientes feliz si duermes bien.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534474e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "feel" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(feel) happy if you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sleep" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(sleep) well.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344758"
-  },
-  "id" : "67fab6d59930102295344758",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "Las chicas ven películas si es fin de semana.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "Los gatos son juguetones si salen.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The girls",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "watch" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(watch) movies if it",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) the weekend.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344759"
-  },
-  "id" : "67fab6d59930102295344759",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "Si llueve, el partido no se lleva a cabo.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If it",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "rains" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(rain), the match",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "doesn't happen" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / happen).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534475a"
-  },
-  "id" : "67fab6d5993010229534475a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "Si hace mucho calor, el helado se derrite.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If it",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) very hot, the ice cream",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "melts" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(melt).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534475b"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cats",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) playful if they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "go"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(go) outside.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The cats are playful if they go outside."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534475b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "Él está tranquilo si hace yoga.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534474f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) calm if he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(do) yoga.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534475c"
-  },
-  "id" : "67fab6d5993010229534475c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "Si conduces rápido, llegas rápido.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534474f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "drive" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(drive) fast, you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "get" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(get) there quickly.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534475d"
-  },
-  "id" : "67fab6d5993010229534475d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "La música suena mejor si está alta.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "Ella cocina bien si es una ocasión especial.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The music",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sounds" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(sound) better if it",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) loud.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534475e"
-  },
-  "id" : "67fab6d5993010229534475e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "Si lees mucho, tu vocabulario mejora.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "read" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(read) a lot, your vocabulary",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "improves" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(improve).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534475f"
-  },
-  "id" : "67fab6d5993010229534475f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d47a"
-  },
-  "title" : "Zero Conditional Review",
-  "instructions" : "Escribe oraciones usando el 'zero conditional'.",
-  "translation" : "El coche se avería si hay un problema.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.01.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The car",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "breaks" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(break) if there",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) a problem.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "cooks"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(cook) well if it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) a special occasion.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She cooks well if it is a special occasion."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344750"
+    },
+    "id": "67fab6d59930102295344750",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
+    },
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "Si el pájaro tiene semillas, está contento.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the bird",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "has"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(have) seeds, he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) content.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If the bird has seeds, he is content."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344751"
+    },
+    "id": "67fab6d59930102295344751",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
+    },
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "Cuesta mucho si las entradas son caras.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "costs"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(cost) a lot if the tickets",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) expensive.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "It costs a lot if the tickets are expensive."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344752"
+    },
+    "id": "67fab6d59930102295344752",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
+    },
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "Si no alimentas al perro, ladra.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "don't feed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / feed) the dog, it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "barks"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(bark).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If you don't feed the dog, it barks."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344753"
+    },
+    "id": "67fab6d59930102295344753",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
+    },
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "Si haces ejercicio, te mantienes fuerte.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "do"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(do) exercise, you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "stay"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(stay) strong.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If you do exercise, you stay strong."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344754"
+    },
+    "id": "67fab6d59930102295344754",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
+    },
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "Él tiene éxito en los negocios si trabaja duro.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "succeeds"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(succeed) in business if he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "works"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(work) hard.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He succeeds in business if he works hard."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344755"
+    },
+    "id": "67fab6d59930102295344755",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
+    },
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "Si lees mucho, te vuelves más inteligente.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "read"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(read) a lot, you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "get"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(get) smarter.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If you read a lot, you get smarter."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344756"
+    },
+    "id": "67fab6d59930102295344756",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
+    },
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "Si nieva, la carretera es peligrosa.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "snows"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(snow), the road",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) dangerous.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If it snows, the road is dangerous."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344757"
+    },
+    "id": "67fab6d59930102295344757",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
+    },
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "Te sientes feliz si duermes bien.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "feel"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(feel) happy if you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "sleep"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(sleep) well.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You feel happy if you sleep well."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344758"
+    },
+    "id": "67fab6d59930102295344758",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
+    },
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "Las chicas ven películas si es fin de semana.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The girls",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "watch"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(watch) movies if it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) the weekend.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The girls watch movies if it is the weekend."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344759"
+    },
+    "id": "67fab6d59930102295344759",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
+    },
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "Si llueve, el partido no se lleva a cabo.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "rains"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(rain), the match",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "doesn't happen"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / happen).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If it rains, the match doesn't happen."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534475a"
+    },
+    "id": "67fab6d5993010229534475a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
+    },
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "Si hace mucho calor, el helado se derrite.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) very hot, the ice cream",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "melts"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(melt).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If it is very hot, the ice cream melts."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534475b"
+    },
+    "id": "67fab6d5993010229534475b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
+    },
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "Él está tranquilo si hace yoga.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) calm if he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(do) yoga.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He is calm if he does yoga."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534475c"
+    },
+    "id": "67fab6d5993010229534475c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
+    },
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "Si conduces rápido, llegas rápido.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "drive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drive) fast, you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "get"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(get) there quickly.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If you drive fast, you get there quickly."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534475d"
+    },
+    "id": "67fab6d5993010229534475d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
+    },
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "La música suena mejor si está alta.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The music",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "sounds"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(sound) better if it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) loud.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The music sounds better if it is loud."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534475e"
+    },
+    "id": "67fab6d5993010229534475e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
+    },
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "Si lees mucho, tu vocabulario mejora.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "read"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(read) a lot, your vocabulary",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "improves"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(improve).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If you read a lot, your vocabulary improves."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534475f"
+    },
+    "id": "67fab6d5993010229534475f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d47a"
+    },
+    "title": "Zero Conditional Review",
+    "instructions": "Escribe oraciones usando el 'zero conditional'.",
+    "translation": "El coche se avería si hay un problema.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.01.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The car",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "breaks"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(break) if there",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) a problem.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The car breaks if there is a problem."
+      ]
+    }
   }
-} ]
+]

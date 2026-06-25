@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bb4"
-  },
-  "id" : "67fab6d59930102295342bb4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "El profesor nos explicó la lección.",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bb4"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The teacher explained",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "us" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(we / us) the lesson.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bb5"
-  },
-  "id" : "67fab6d59930102295342bb5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Lo conocí cuando visité París.",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342bb4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I met",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "him" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(he / him) when I visited Paris.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bb6"
-  },
-  "id" : "67fab6d59930102295342bb6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Lo escuché atentamente hoy.",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "El profesor nos explicó la lección.",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I listened to",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "him" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(he / him) attentively today.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bb7"
-  },
-  "id" : "67fab6d59930102295342bb7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Decidieron cenar.",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / them) decided to have dinner.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bb8"
-  },
-  "id" : "67fab6d59930102295342bb8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Contactaron al gerente.",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / them) contacted the manager.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bb9"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teacher explained",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "us"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(we / us) the lesson.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The teacher explained us the lesson."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342bb9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Les envié un mensaje esta mañana.",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bb5"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I messaged",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "them" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / them) this morning.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bba"
-  },
-  "id" : "67fab6d59930102295342bba",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Encontré un libro viejo.",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342bb5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(I / me) found an old book.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bbb"
-  },
-  "id" : "67fab6d59930102295342bbb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Necesitaba un teléfono nuevo.",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "Lo conocí cuando visité París.",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(I / me) required a new phone.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bbc"
-  },
-  "id" : "67fab6d59930102295342bbc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "¿La llamaste?",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Did you phone",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "her" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / her)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bbd"
-  },
-  "id" : "67fab6d59930102295342bbd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Ella sobresalió en su examen.",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / her) aced her test.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bbe"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I met",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "him"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / him) when I visited Paris.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I met him when I visited Paris."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342bbe",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Él la admiraba.",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bb6"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He admired",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "her" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / her).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bbf"
-  },
-  "id" : "67fab6d59930102295342bbf",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Mi padre me agradeció.",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342bb6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "My father thanked",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "me" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(I / me).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bc0"
-  },
-  "id" : "67fab6d59930102295342bc0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Él planea llegar pronto.",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "Lo escuché atentamente hoy.",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(he / him) is planning to arrive soon.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bc1"
-  },
-  "id" : "67fab6d59930102295342bc1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "¿Las galletas? ¡Las consumimos!",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The cookies? We consumed",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "them" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / them)!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bc2"
-  },
-  "id" : "67fab6d59930102295342bc2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Nos encontramos en la tienda.",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(we / us) bumped into each other at the store.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bc3"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I listened to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "him"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / him) attentively today.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I listened to him attentively today."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342bc3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Él reside en Italia.",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bb7"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(he / him) resides in Italy.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bc4"
-  },
-  "id" : "67fab6d59930102295342bc4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Ella ayudó a su hermana.",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342bb7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / her) helped her sister.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bc5"
-  },
-  "id" : "67fab6d59930102295342bc5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Nuestros amigos nos visitaron.",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "Decidieron cenar.",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Our friends visited",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "us" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(we / us).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bc6"
-  },
-  "id" : "67fab6d59930102295342bc6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Podríamos llamarte mañana.",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(we / us) could call you tomorrow.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342bc7"
-  },
-  "id" : "67fab6d59930102295342bc7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d272"
-  },
-  "title" : "A Review of Subject and Object Pronouns",
-  "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Laura nos vio a mí y a Peter.",
-  "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.01.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Laura saw",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "me" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(I / me) and Peter.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / them) decided to have dinner.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They decided to have dinner."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bb8"
+    },
+    "id": "67fab6d59930102295342bb8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
+    },
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "Contactaron al gerente.",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / them) contacted the manager.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They contacted the manager."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bb9"
+    },
+    "id": "67fab6d59930102295342bb9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
+    },
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "Les envié un mensaje esta mañana.",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I messaged",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "them"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / them) this morning.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I messaged them this morning."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bba"
+    },
+    "id": "67fab6d59930102295342bba",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
+    },
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "Encontré un libro viejo.",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I / me) found an old book.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I found an old book."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bbb"
+    },
+    "id": "67fab6d59930102295342bbb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
+    },
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "Necesitaba un teléfono nuevo.",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I / me) required a new phone.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I required a new phone."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bbc"
+    },
+    "id": "67fab6d59930102295342bbc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
+    },
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "¿La llamaste?",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Did you phone",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "her"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / her)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Did you phone her?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bbd"
+    },
+    "id": "67fab6d59930102295342bbd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
+    },
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "Ella sobresalió en su examen.",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / her) aced her test.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She aced her test."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bbe"
+    },
+    "id": "67fab6d59930102295342bbe",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
+    },
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "Él la admiraba.",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He admired",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "her"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / her).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He admired her."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bbf"
+    },
+    "id": "67fab6d59930102295342bbf",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
+    },
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "Mi padre me agradeció.",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My father thanked",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "me"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I / me).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "My father thanked me."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bc0"
+    },
+    "id": "67fab6d59930102295342bc0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
+    },
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "Él planea llegar pronto.",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / him) is planning to arrive soon.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He is planning to arrive soon."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bc1"
+    },
+    "id": "67fab6d59930102295342bc1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
+    },
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "¿Las galletas? ¡Las consumimos!",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cookies? We consumed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "them"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / them)!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The cookies? We consumed them!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bc2"
+    },
+    "id": "67fab6d59930102295342bc2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
+    },
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "Nos encontramos en la tienda.",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(we / us) bumped into each other at the store.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We bumped into each other at the store."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bc3"
+    },
+    "id": "67fab6d59930102295342bc3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
+    },
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "Él reside en Italia.",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / him) resides in Italy.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He resides in Italy."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bc4"
+    },
+    "id": "67fab6d59930102295342bc4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
+    },
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "Ella ayudó a su hermana.",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / her) helped her sister.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She helped her sister."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bc5"
+    },
+    "id": "67fab6d59930102295342bc5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
+    },
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "Nuestros amigos nos visitaron.",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Our friends visited",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "us"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(we / us).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Our friends visited us."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bc6"
+    },
+    "id": "67fab6d59930102295342bc6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
+    },
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "Podríamos llamarte mañana.",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(we / us) could call you tomorrow.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We could call you tomorrow."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342bc7"
+    },
+    "id": "67fab6d59930102295342bc7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d272"
+    },
+    "title": "A Review of Subject and Object Pronouns",
+    "instructions": "Elige el pronombre correcto.",
+    "translation": "Laura nos vio a mí y a Peter.",
+    "theoryId": "a2.08.Possessives_with_of_Double_Genitive_",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.01.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Laura saw",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "me"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I / me) and Peter.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Laura saw me and Peter."
+      ]
+    }
   }
-} ]
+]

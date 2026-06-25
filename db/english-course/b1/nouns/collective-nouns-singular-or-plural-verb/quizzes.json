@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534351a"
-  },
-  "id" : "67fab6d5993010229534351a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "El comité estaba muy organizado.",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534351a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The committee was / were",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "very organized. (UK)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534351b"
-  },
-  "id" : "67fab6d5993010229534351b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "Mi familia extendida vive en Boston.",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534351a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "My extended family lives / live",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "lives" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "in Boston. (US)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534351c"
-  },
-  "id" : "67fab6d5993010229534351c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "El equipo ha ganado el campeonato.",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "El comité estaba muy organizado.",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The squad has / have",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "have" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "won the championship. (UK)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534351d"
-  },
-  "id" : "67fab6d5993010229534351d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "El panel estuvo de acuerdo.",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The panel was / were",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "in agreement. (US)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534351e"
-  },
-  "id" : "67fab6d5993010229534351e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "La junta está satisfecha con el resultado.",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The board is / are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "satisfied with the outcome. (UK)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534351f"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The committee was / were",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "very organized. (UK)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The committee was / were were very organized."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534351f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "La tripulación está bien entrenada.",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534351b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The crew is / are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "well trained. (UK)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343520"
-  },
-  "id" : "67fab6d59930102295343520",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "Ese grupo es el mejor.",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534351b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "That group is / are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the best one. (US)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343521"
-  },
-  "id" : "67fab6d59930102295343521",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "Sus familiares son de California.",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "Mi familia extendida vive en Boston.",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "His relatives is / are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "from California. (UK)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343522"
-  },
-  "id" : "67fab6d59930102295343522",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "El congreso ha aprobado el proyecto de ley.",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The congress has / have",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "has" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "approved the bill. (US)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343523"
-  },
-  "id" : "67fab6d59930102295343523",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "La junta no está satisfecha.",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The board is / are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "not satisfied. (US)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343524"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My extended family lives / live",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "lives"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "in Boston. (US)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "My extended family lives / live lives in Boston."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343524",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "La multitud estaba emocionada por el concierto.",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534351c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The crowd was / were",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "thrilled by the concert. (UK)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343525"
-  },
-  "id" : "67fab6d59930102295343525",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "¿Dónde celebra tu comunidad el Día de Acción de Gracias?",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534351c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where does / do",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "your community celebrate Thanksgiving? (US)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343526"
-  },
-  "id" : "67fab6d59930102295343526",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "Creo firmemente que esa empresa es sobresaliente.",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "El equipo ha ganado el campeonato.",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I firmly believe that company is / are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "outstanding. (UK)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343527"
-  },
-  "id" : "67fab6d59930102295343527",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "El panel normalmente está de acuerdo.",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The panel typically agrees / agree",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "agrees" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ". (US)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343528"
-  },
-  "id" : "67fab6d59930102295343528",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "¡El parlamento no entiende la urgencia!",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The parliament doesn't / don't",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "don't" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "understand the urgency! (UK)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343529"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The squad has / have",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "have"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "won the championship. (UK)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The squad has / have have won the championship."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343529",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "La banda es increíblemente talentosa.",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534351d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The band is / are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "incredibly talented. (UK)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534352a"
-  },
-  "id" : "67fab6d5993010229534352a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "El lado azul generalmente gana el partido.",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534351d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The blue side generally wins / win",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "wins" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the match. (US)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534352b"
-  },
-  "id" : "67fab6d5993010229534352b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "Esta clase quiere cambiar de salón.",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "El panel estuvo de acuerdo.",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "This class wants / want",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "want" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "to change rooms. (UK)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534352c"
-  },
-  "id" : "67fab6d5993010229534352c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "El senado se equivocó con el presupuesto.",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The senate was / were",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "mistaken about the budget. (US)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534352d"
-  },
-  "id" : "67fab6d5993010229534352d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d305"
-  },
-  "title" : "Collective Nouns: Singular or Plural Verb?",
-  "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "Considero que la tripulación necesita un mejor liderazgo.",
-  "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.07.06.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I consider the crew needs / need",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "needs" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "better leadership. (US)",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The panel was / were",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "in agreement. (US)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The panel was / were was in agreement."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534351e"
+    },
+    "id": "67fab6d5993010229534351e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
+    },
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "La junta está satisfecha con el resultado.",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The board is / are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "satisfied with the outcome. (UK)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The board is / are are satisfied with the outcome."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534351f"
+    },
+    "id": "67fab6d5993010229534351f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
+    },
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "La tripulación está bien entrenada.",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The crew is / are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "well trained. (UK)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The crew is / are are well trained."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343520"
+    },
+    "id": "67fab6d59930102295343520",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
+    },
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "Ese grupo es el mejor.",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That group is / are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the best one. (US)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That group is / are is the best one."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343521"
+    },
+    "id": "67fab6d59930102295343521",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
+    },
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "Sus familiares son de California.",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "His relatives is / are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "from California. (UK)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "His relatives is / are are from California."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343522"
+    },
+    "id": "67fab6d59930102295343522",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
+    },
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "El congreso ha aprobado el proyecto de ley.",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The congress has / have",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "has"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "approved the bill. (US)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The congress has / have has approved the bill."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343523"
+    },
+    "id": "67fab6d59930102295343523",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
+    },
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "La junta no está satisfecha.",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The board is / are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "not satisfied. (US)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The board is / are is not satisfied."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343524"
+    },
+    "id": "67fab6d59930102295343524",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
+    },
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "La multitud estaba emocionada por el concierto.",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The crowd was / were",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "thrilled by the concert. (UK)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The crowd was / were were thrilled by the concert."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343525"
+    },
+    "id": "67fab6d59930102295343525",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
+    },
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "¿Dónde celebra tu comunidad el Día de Acción de Gracias?",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where does / do",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "your community celebrate Thanksgiving? (US)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where does / do does your community celebrate Thanksgiving?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343526"
+    },
+    "id": "67fab6d59930102295343526",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
+    },
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "Creo firmemente que esa empresa es sobresaliente.",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I firmly believe that company is / are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "outstanding. (UK)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I firmly believe that company is / are are outstanding."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343527"
+    },
+    "id": "67fab6d59930102295343527",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
+    },
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "El panel normalmente está de acuerdo.",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The panel typically agrees / agree",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "agrees"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ". (US)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The panel typically agrees / agree agrees."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343528"
+    },
+    "id": "67fab6d59930102295343528",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
+    },
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "¡El parlamento no entiende la urgencia!",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The parliament doesn't / don't",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "don't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "understand the urgency! (UK)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The parliament doesn't / don't don't understand the urgency!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343529"
+    },
+    "id": "67fab6d59930102295343529",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
+    },
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "La banda es increíblemente talentosa.",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The band is / are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "incredibly talented. (UK)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The band is / are are incredibly talented."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534352a"
+    },
+    "id": "67fab6d5993010229534352a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
+    },
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "El lado azul generalmente gana el partido.",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The blue side generally wins / win",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "wins"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the match. (US)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The blue side generally wins / win wins the match."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534352b"
+    },
+    "id": "67fab6d5993010229534352b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
+    },
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "Esta clase quiere cambiar de salón.",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This class wants / want",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "want"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to change rooms. (UK)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This class wants / want want to change rooms."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534352c"
+    },
+    "id": "67fab6d5993010229534352c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
+    },
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "El senado se equivocó con el presupuesto.",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The senate was / were",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "mistaken about the budget. (US)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The senate was / were was mistaken about the budget."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534352d"
+    },
+    "id": "67fab6d5993010229534352d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d305"
+    },
+    "title": "Collective Nouns: Singular or Plural Verb?",
+    "instructions": "Escribe el verbo en su forma singular (US) o plural (UK).",
+    "translation": "Considero que la tripulación necesita un mejor liderazgo.",
+    "theoryId": "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.07.06.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I consider the crew needs / need",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "needs"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "better leadership. (US)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I consider the crew needs / need needs better leadership."
+      ]
+    }
   }
-} ]
+]

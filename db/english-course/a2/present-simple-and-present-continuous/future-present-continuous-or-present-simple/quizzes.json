@@ -1,1021 +1,1228 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534269f"
-  },
-  "id" : "67fab6d5993010229534269f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "El partido comienza a las 9 a.m.",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534269f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The match / begin / at 9am.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The match begins at 9am." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426a0"
-  },
-  "id" : "67fab6d599301022953426a0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "¿Dónde se lleva a cabo el concierto?",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534269f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where / the concert / take place?",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Where does the concert take place?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426a1"
-  },
-  "id" : "67fab6d599301022953426a1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "John cena fuera esta noche.",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "El partido comienza a las 9 a.m.",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "John / dine / out tonight.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John is dining out tonight." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426a2"
-  },
-  "id" : "67fab6d599301022953426a2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "Él conduce a la playa con nosotros mañana.",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He / drive / to the beach with us tomorrow.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He's driving to the beach with us tomorrow.|He is driving to the beach with us tomorrow." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426a3"
-  },
-  "id" : "67fab6d599301022953426a3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "Voy a visitar a mis padres esta noche.",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I / visit / my parents this evening.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I'm visiting my parents this evening.|I am visiting my parents this evening." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426a4"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The match / begin / at 9am.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The match begins at 9am."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The match begins at 9am."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953426a4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "La tienda abre la semana que viene.",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426a0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The shop / open / next week.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The shop opens next week." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426a5"
-  },
-  "id" : "67fab6d599301022953426a5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "¿Qué día es la cita?",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953426a0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What day / be / the appointment?",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "What day is the appointment?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426a6"
-  },
-  "id" : "67fab6d599301022953426a6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "¿A qué hora viajas al aeropuerto?",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "¿Dónde se lleva a cabo el concierto?",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What time / you / travel / to the airport?",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "What time are you traveling to the airport?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426a7"
-  },
-  "id" : "67fab6d599301022953426a7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "¿Vas al cine el viernes?",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You / go / to the cinema on Friday?",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Are you going to the cinema on Friday?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426a8"
-  },
-  "id" : "67fab6d599301022953426a8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "¿Cuándo vas a visitar el museo?",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When / you / visit / the museum?",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "When are you visiting the museum?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426a9"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where / the concert / take place?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Where does the concert take place?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where does the concert take place?"
+      ]
+    }
   },
-  "id" : "67fab6d599301022953426a9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "El espectáculo es a las 7 p.m.",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426a1"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The show / be / at 7 pm.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The show is at 7pm." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426aa"
-  },
-  "id" : "67fab6d599301022953426aa",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "El juego comienza a las 10.",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953426a1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The game / start / at 10.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The game starts at 10." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426ab"
-  },
-  "id" : "67fab6d599301022953426ab",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "El festival comienza en agosto.",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "John cena fuera esta noche.",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The festival / begin / in August.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The festival begins in August." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426ac"
-  },
-  "id" : "67fab6d599301022953426ac",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "¿Comemos pronto?",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We / eat / soon?",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We're eating soon?|We are eating soon?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426ad"
-  },
-  "id" : "67fab6d599301022953426ad",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "Voy a ver fútbol esta tarde.",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I / watch / football this afternoon.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I'm watching football this afternoon.|I am watching football this afternoon." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426ae"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "John / dine / out tonight.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John is dining out tonight."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John is dining out tonight."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953426ae",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "Vamos a tomar café mañana por la tarde.",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426a2"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We / drink coffee / tomorrow afternoon.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We're drinking coffee tomorrow afternoon.|We are drinking coffee tomorrow afternoon." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426af"
-  },
-  "id" : "67fab6d599301022953426af",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "¿A qué hora es el próximo autobús?",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953426a2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What time / be / the next bus?",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "What time is the next bus?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426b0"
-  },
-  "id" : "67fab6d599301022953426b0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "Me relajo este fin de semana.",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "Él conduce a la playa con nosotros mañana.",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I / relax / this weekend.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I'm relaxing this weekend.|I am relaxing this weekend." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426b1"
-  },
-  "id" : "67fab6d599301022953426b1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "¿Cuándo es tu entrevista?",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When / be / your interview?",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "When is your interview?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953426b2"
-  },
-  "id" : "67fab6d599301022953426b2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d227"
-  },
-  "title" : "Future: Present Continuous or Present Simple?",
-  "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "El servicio es a las 3 pm el domingo.",
-  "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.14.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The service / be / at 3 pm on Sunday.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The service is at 3 pm on Sunday." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He / drive / to the beach with us tomorrow.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He's driving to the beach with us tomorrow.|He is driving to the beach with us tomorrow."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He's driving to the beach with us tomorrow.",
+        "He is driving to the beach with us tomorrow."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426a3"
+    },
+    "id": "67fab6d599301022953426a3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
+    },
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "Voy a visitar a mis padres esta noche.",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I / visit / my parents this evening.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I'm visiting my parents this evening.|I am visiting my parents this evening."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I'm visiting my parents this evening.",
+        "I am visiting my parents this evening."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426a4"
+    },
+    "id": "67fab6d599301022953426a4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
+    },
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "La tienda abre la semana que viene.",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The shop / open / next week.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The shop opens next week."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The shop opens next week."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426a5"
+    },
+    "id": "67fab6d599301022953426a5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
+    },
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "¿Qué día es la cita?",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What day / be / the appointment?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "What day is the appointment?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What day is the appointment?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426a6"
+    },
+    "id": "67fab6d599301022953426a6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
+    },
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "¿A qué hora viajas al aeropuerto?",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What time / you / travel / to the airport?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "What time are you traveling to the airport?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What time are you traveling to the airport?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426a7"
+    },
+    "id": "67fab6d599301022953426a7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
+    },
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "¿Vas al cine el viernes?",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You / go / to the cinema on Friday?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Are you going to the cinema on Friday?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Are you going to the cinema on Friday?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426a8"
+    },
+    "id": "67fab6d599301022953426a8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
+    },
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "¿Cuándo vas a visitar el museo?",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When / you / visit / the museum?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "When are you visiting the museum?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When are you visiting the museum?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426a9"
+    },
+    "id": "67fab6d599301022953426a9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
+    },
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "El espectáculo es a las 7 p.m.",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The show / be / at 7 pm.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The show is at 7pm."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The show is at 7pm."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426aa"
+    },
+    "id": "67fab6d599301022953426aa",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
+    },
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "El juego comienza a las 10.",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The game / start / at 10.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The game starts at 10."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The game starts at 10."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426ab"
+    },
+    "id": "67fab6d599301022953426ab",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
+    },
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "El festival comienza en agosto.",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The festival / begin / in August.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The festival begins in August."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The festival begins in August."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426ac"
+    },
+    "id": "67fab6d599301022953426ac",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
+    },
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "¿Comemos pronto?",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We / eat / soon?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We're eating soon?|We are eating soon?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We're eating soon?",
+        "We are eating soon?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426ad"
+    },
+    "id": "67fab6d599301022953426ad",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
+    },
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "Voy a ver fútbol esta tarde.",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I / watch / football this afternoon.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I'm watching football this afternoon.|I am watching football this afternoon."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I'm watching football this afternoon.",
+        "I am watching football this afternoon."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426ae"
+    },
+    "id": "67fab6d599301022953426ae",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
+    },
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "Vamos a tomar café mañana por la tarde.",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We / drink coffee / tomorrow afternoon.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We're drinking coffee tomorrow afternoon.|We are drinking coffee tomorrow afternoon."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We're drinking coffee tomorrow afternoon.",
+        "We are drinking coffee tomorrow afternoon."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426af"
+    },
+    "id": "67fab6d599301022953426af",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
+    },
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "¿A qué hora es el próximo autobús?",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What time / be / the next bus?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "What time is the next bus?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What time is the next bus?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426b0"
+    },
+    "id": "67fab6d599301022953426b0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
+    },
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "Me relajo este fin de semana.",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I / relax / this weekend.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I'm relaxing this weekend.|I am relaxing this weekend."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I'm relaxing this weekend.",
+        "I am relaxing this weekend."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426b1"
+    },
+    "id": "67fab6d599301022953426b1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
+    },
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "¿Cuándo es tu entrevista?",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When / be / your interview?",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "When is your interview?"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When is your interview?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953426b2"
+    },
+    "id": "67fab6d599301022953426b2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d227"
+    },
+    "title": "Future: Present Continuous or Present Simple?",
+    "instructions": "Escribe una oración usando el presente simple o el presente continuo.",
+    "translation": "El servicio es a las 3 pm el domingo.",
+    "theoryId": "a2.01.Present_Continuous_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.14.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The service / be / at 3 pm on Sunday.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The service is at 3 pm on Sunday."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The service is at 3 pm on Sunday."
+      ]
+    }
   }
-} ]
+]

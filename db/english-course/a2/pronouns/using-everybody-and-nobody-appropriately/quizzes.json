@@ -1,511 +1,612 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c68"
-  },
-  "id" : "67fab6d59930102295342c68",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27f"
-  },
-  "title" : "Using 'Everybody' and 'Nobody' Appropriately",
-  "instructions" : "Escribe 'everybody' o 'nobody'.",
-  "translation" : "Nadie me llamó. Mi teléfono no sonó ni una vez.",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.14.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c68"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Nobody" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "called me. My phone didn't ring once.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c69"
-  },
-  "id" : "67fab6d59930102295342c69",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27f"
-  },
-  "title" : "Using 'Everybody' and 'Nobody' Appropriately",
-  "instructions" : "Escribe 'everybody' o 'nobody'.",
-  "translation" : "Todos disfrutaron del espectáculo. Todos aplaudieron con fuerza.",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.14.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342c68",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Everybody" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "enjoyed the show. They all clapped loudly.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c6a"
-  },
-  "id" : "67fab6d59930102295342c6a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27f"
-  },
-  "title" : "Using 'Everybody' and 'Nobody' Appropriately",
-  "instructions" : "Escribe 'everybody' o 'nobody'.",
-  "translation" : "Conoce a todo el mundo en la oficina. Lleva años trabajando allí.",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.14.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using 'Everybody' and 'Nobody' Appropriately",
+    "instructions": "Escribe 'everybody' o 'nobody'.",
+    "translation": "Nadie me llamó. Mi teléfono no sonó ni una vez.",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He knows",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "everybody" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "in the office. He's worked there for years.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c6b"
-  },
-  "id" : "67fab6d59930102295342c6b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27f"
-  },
-  "title" : "Using 'Everybody' and 'Nobody' Appropriately",
-  "instructions" : "Escribe 'everybody' o 'nobody'.",
-  "translation" : "Nadie vio el accidente. No hubo testigos.",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.14.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Nobody" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "saw the accident. There were no witnesses.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c6c"
-  },
-  "id" : "67fab6d59930102295342c6c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27f"
-  },
-  "title" : "Using 'Everybody' and 'Nobody' Appropriately",
-  "instructions" : "Escribe 'everybody' o 'nobody'.",
-  "translation" : "No vi a nadie en el parque. Estaba completamente desierto.",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.14.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I saw",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "nobody" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "at the park. It was completely deserted.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c6d"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.14.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Nobody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "called me. My phone didn't ring once.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Nobody called me. My phone didn't ring once."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342c6d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27f"
-  },
-  "title" : "Using 'Everybody' and 'Nobody' Appropriately",
-  "instructions" : "Escribe 'everybody' o 'nobody'.",
-  "translation" : "Todo el mundo está invitado a la boda. ¡Por favor, ven y celebra con nosotros!",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.14.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c69"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Everybody" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "is invited to the wedding. Please come and celebrate with us!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c6e"
-  },
-  "id" : "67fab6d59930102295342c6e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27f"
-  },
-  "title" : "Using 'Everybody' and 'Nobody' Appropriately",
-  "instructions" : "Escribe 'everybody' o 'nobody'.",
-  "translation" : "Prácticamente nadie entendió la conferencia. El profesor habló demasiado rápido.",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.14.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342c69",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Practically",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "nobody" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "understood the lecture. The professor spoke too fast.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c6f"
-  },
-  "id" : "67fab6d59930102295342c6f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27f"
-  },
-  "title" : "Using 'Everybody' and 'Nobody' Appropriately",
-  "instructions" : "Escribe 'everybody' o 'nobody'.",
-  "translation" : "El concierto comenzó y todo el mundo aplaudió con fuerza. ¡El artista apareció en el escenario!",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.14.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using 'Everybody' and 'Nobody' Appropriately",
+    "instructions": "Escribe 'everybody' o 'nobody'.",
+    "translation": "Todos disfrutaron del espectáculo. Todos aplaudieron con fuerza.",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The concert started and",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "everybody" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "cheered loudly. The artist appeared on stage!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c70"
-  },
-  "id" : "67fab6d59930102295342c70",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27f"
-  },
-  "title" : "Using 'Everybody' and 'Nobody' Appropriately",
-  "instructions" : "Escribe 'everybody' o 'nobody'.",
-  "translation" : "¡Envié invitaciones a todos los que conozco!",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.14.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I sent invitations to",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "everybody" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "I know!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342c71"
-  },
-  "id" : "67fab6d59930102295342c71",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d27f"
-  },
-  "title" : "Using 'Everybody' and 'Nobody' Appropriately",
-  "instructions" : "Escribe 'everybody' o 'nobody'.",
-  "translation" : "Miró a su alrededor pero no vio a nadie. La habitación estaba vacía.",
-  "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.08.14.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He looked around but he saw",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "nobody" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ". The room was empty.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.14.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Everybody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "enjoyed the show. They all clapped loudly.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Everybody enjoyed the show. They all clapped loudly."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c6a"
+    },
+    "id": "67fab6d59930102295342c6a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27f"
+    },
+    "title": "Using 'Everybody' and 'Nobody' Appropriately",
+    "instructions": "Escribe 'everybody' o 'nobody'.",
+    "translation": "Conoce a todo el mundo en la oficina. Lleva años trabajando allí.",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.14.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He knows",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "everybody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "in the office. He's worked there for years.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He knows everybody in the office. He's worked there for years."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c6b"
+    },
+    "id": "67fab6d59930102295342c6b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27f"
+    },
+    "title": "Using 'Everybody' and 'Nobody' Appropriately",
+    "instructions": "Escribe 'everybody' o 'nobody'.",
+    "translation": "Nadie vio el accidente. No hubo testigos.",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.14.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Nobody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "saw the accident. There were no witnesses.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Nobody saw the accident. There were no witnesses."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c6c"
+    },
+    "id": "67fab6d59930102295342c6c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27f"
+    },
+    "title": "Using 'Everybody' and 'Nobody' Appropriately",
+    "instructions": "Escribe 'everybody' o 'nobody'.",
+    "translation": "No vi a nadie en el parque. Estaba completamente desierto.",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.14.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I saw",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nobody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "at the park. It was completely deserted.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I saw nobody at the park. It was completely deserted."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c6d"
+    },
+    "id": "67fab6d59930102295342c6d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27f"
+    },
+    "title": "Using 'Everybody' and 'Nobody' Appropriately",
+    "instructions": "Escribe 'everybody' o 'nobody'.",
+    "translation": "Todo el mundo está invitado a la boda. ¡Por favor, ven y celebra con nosotros!",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.14.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Everybody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "is invited to the wedding. Please come and celebrate with us!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Everybody is invited to the wedding. Please come and celebrate with us!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c6e"
+    },
+    "id": "67fab6d59930102295342c6e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27f"
+    },
+    "title": "Using 'Everybody' and 'Nobody' Appropriately",
+    "instructions": "Escribe 'everybody' o 'nobody'.",
+    "translation": "Prácticamente nadie entendió la conferencia. El profesor habló demasiado rápido.",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.14.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Practically",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nobody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "understood the lecture. The professor spoke too fast.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Practically nobody understood the lecture. The professor spoke too fast."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c6f"
+    },
+    "id": "67fab6d59930102295342c6f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27f"
+    },
+    "title": "Using 'Everybody' and 'Nobody' Appropriately",
+    "instructions": "Escribe 'everybody' o 'nobody'.",
+    "translation": "El concierto comenzó y todo el mundo aplaudió con fuerza. ¡El artista apareció en el escenario!",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.14.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The concert started and",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "everybody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "cheered loudly. The artist appeared on stage!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The concert started and everybody cheered loudly. The artist appeared on stage!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c70"
+    },
+    "id": "67fab6d59930102295342c70",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27f"
+    },
+    "title": "Using 'Everybody' and 'Nobody' Appropriately",
+    "instructions": "Escribe 'everybody' o 'nobody'.",
+    "translation": "¡Envié invitaciones a todos los que conozco!",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.14.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I sent invitations to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "everybody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "I know!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I sent invitations to everybody I know!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342c71"
+    },
+    "id": "67fab6d59930102295342c71",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d27f"
+    },
+    "title": "Using 'Everybody' and 'Nobody' Appropriately",
+    "instructions": "Escribe 'everybody' o 'nobody'.",
+    "translation": "Miró a su alrededor pero no vio a nadie. La habitación estaba vacía.",
+    "theoryId": "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.08.14.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He looked around but he saw",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nobody"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ". The room was empty.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He looked around but he saw nobody. The room was empty."
+      ]
+    }
   }
-} ]
+]

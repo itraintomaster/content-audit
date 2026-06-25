@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343ab9"
-  },
-  "id" : "67fab6d59930102295343ab9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "¡Mi inglés es mejor que antes!",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ab9"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "My English is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "better" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(good) than before!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343aba"
-  },
-  "id" : "67fab6d59930102295343aba",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "Él es más alto que su hermano.",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343ab9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "taller" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(tall) than his brother.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343abb"
-  },
-  "id" : "67fab6d59930102295343abb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "Esta película es más emocionante de lo que pensaba.",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "¡Mi inglés es mejor que antes!",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "This movie is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more exciting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(exciting) than I thought.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343abc"
-  },
-  "id" : "67fab6d59930102295343abc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "El verano es más caluroso este año.",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The summer is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "hotter" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(hot) this year.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343abd"
-  },
-  "id" : "67fab6d59930102295343abd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "La escuela está más cerca que la biblioteca.",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The school is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "nearer" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(near) than the library.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343abe"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My English is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "better"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(good) than before!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "My English is better than before!"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343abe",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "Este pastel está más rico que el anterior.",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343aba"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "This cake is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "nicer" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(nice) than the last one.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343abf"
-  },
-  "id" : "67fab6d59930102295343abf",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "Es más fácil si pides ayuda.",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343aba",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "It's",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "easier" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(easy) if you ask for help.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343ac0"
-  },
-  "id" : "67fab6d59930102295343ac0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "Quiero un coche más pequeño.",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "Él es más alto que su hermano.",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I want a",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "smaller" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(small) car.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343ac1"
-  },
-  "id" : "67fab6d59930102295343ac1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "¡Esos gatos están más limpios que ayer!",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Those cats are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "cleaner" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(clean) than they were yesterday!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343ac2"
-  },
-  "id" : "67fab6d59930102295343ac2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "El suelo es más blando por allí.",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The ground is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "softer" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(soft) over there.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343ac3"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "taller"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(tall) than his brother.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He is taller than his brother."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343ac3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "La casa era más cálida de lo que esperaba.",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343abb"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The house was",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "warmer" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(warm) than I expected.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343ac4"
-  },
-  "id" : "67fab6d59930102295343ac4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "El campo está más verde ahora.",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343abb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The countryside is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "greener" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(green) now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343ac5"
-  },
-  "id" : "67fab6d59930102295343ac5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "Su gato es más juguetón que el tuyo.",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "Esta película es más emocionante de lo que pensaba.",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Her cat is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more playful" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(playful) than yours.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343ac6"
-  },
-  "id" : "67fab6d59930102295343ac6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "El libro era más complejo de lo que había previsto.",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The book was",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more complex" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(complex) than I'd anticipated.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343ac7"
-  },
-  "id" : "67fab6d59930102295343ac7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "Las camisas azules son más elegantes que las verdes.",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The blue shirts are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more elegant" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(elegant) than the green ones.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343ac8"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This movie is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more exciting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(exciting) than I thought.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This movie is more exciting than I thought."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343ac8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "¡Estoy incluso más cansado que esta mañana!",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343abc"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm even",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more tired" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(tired) than I was this morning!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343ac9"
-  },
-  "id" : "67fab6d59930102295343ac9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "Tienes que ser más paciente.",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343abc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You need to be",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more patient" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(patient).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343aca"
-  },
-  "id" : "67fab6d59930102295343aca",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "¿Tiene una cantidad mayor?",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "El verano es más caluroso este año.",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Do you have a",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "larger" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(large) quantity?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343acb"
-  },
-  "id" : "67fab6d59930102295343acb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "¡Espero que este plato esté más vacío!",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I expect this plate to be",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "emptier" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(empty)!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343acc"
-  },
-  "id" : "67fab6d59930102295343acc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d358"
-  },
-  "title" : "Practicing Comparative Adjectives",
-  "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "Su padre es mayor que ella.",
-  "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.02.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Her dad is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "older" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(old) than she is.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The summer is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "hotter"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(hot) this year.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The summer is hotter this year."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343abd"
+    },
+    "id": "67fab6d59930102295343abd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
+    },
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "La escuela está más cerca que la biblioteca.",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The school is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nearer"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(near) than the library.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The school is nearer than the library."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343abe"
+    },
+    "id": "67fab6d59930102295343abe",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
+    },
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "Este pastel está más rico que el anterior.",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This cake is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nicer"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(nice) than the last one.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This cake is nicer than the last one."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343abf"
+    },
+    "id": "67fab6d59930102295343abf",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
+    },
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "Es más fácil si pides ayuda.",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It's",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "easier"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(easy) if you ask for help.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "It's easier if you ask for help."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ac0"
+    },
+    "id": "67fab6d59930102295343ac0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
+    },
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "Quiero un coche más pequeño.",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I want a",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "smaller"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(small) car.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I want a smaller car."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ac1"
+    },
+    "id": "67fab6d59930102295343ac1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
+    },
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "¡Esos gatos están más limpios que ayer!",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Those cats are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "cleaner"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(clean) than they were yesterday!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Those cats are cleaner than they were yesterday!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ac2"
+    },
+    "id": "67fab6d59930102295343ac2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
+    },
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "El suelo es más blando por allí.",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The ground is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "softer"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(soft) over there.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The ground is softer over there."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ac3"
+    },
+    "id": "67fab6d59930102295343ac3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
+    },
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "La casa era más cálida de lo que esperaba.",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The house was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "warmer"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(warm) than I expected.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The house was warmer than I expected."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ac4"
+    },
+    "id": "67fab6d59930102295343ac4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
+    },
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "El campo está más verde ahora.",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The countryside is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "greener"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(green) now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The countryside is greener now."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ac5"
+    },
+    "id": "67fab6d59930102295343ac5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
+    },
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "Su gato es más juguetón que el tuyo.",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Her cat is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more playful"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(playful) than yours.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Her cat is more playful than yours."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ac6"
+    },
+    "id": "67fab6d59930102295343ac6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
+    },
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "El libro era más complejo de lo que había previsto.",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The book was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more complex"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(complex) than I'd anticipated.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The book was more complex than I'd anticipated."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ac7"
+    },
+    "id": "67fab6d59930102295343ac7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
+    },
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "Las camisas azules son más elegantes que las verdes.",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The blue shirts are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more elegant"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(elegant) than the green ones.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The blue shirts are more elegant than the green ones."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ac8"
+    },
+    "id": "67fab6d59930102295343ac8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
+    },
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "¡Estoy incluso más cansado que esta mañana!",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm even",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more tired"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(tired) than I was this morning!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I'm even more tired than I was this morning!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343ac9"
+    },
+    "id": "67fab6d59930102295343ac9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
+    },
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "Tienes que ser más paciente.",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You need to be",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more patient"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(patient).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You need to be more patient."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343aca"
+    },
+    "id": "67fab6d59930102295343aca",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
+    },
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "¿Tiene una cantidad mayor?",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you have a",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "larger"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(large) quantity?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Do you have a larger quantity?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343acb"
+    },
+    "id": "67fab6d59930102295343acb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
+    },
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "¡Espero que este plato esté más vacío!",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I expect this plate to be",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "emptier"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(empty)!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I expect this plate to be emptier!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343acc"
+    },
+    "id": "67fab6d59930102295343acc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d358"
+    },
+    "title": "Practicing Comparative Adjectives",
+    "instructions": "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
+    "translation": "Su padre es mayor que ella.",
+    "theoryId": "b1.15.Comparatives_Get_Better_and_Better",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.02.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Her dad is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "older"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(old) than she is.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Her dad is older than she is."
+      ]
+    }
   }
-} ]
+]

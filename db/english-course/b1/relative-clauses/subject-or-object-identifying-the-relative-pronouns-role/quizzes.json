@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438bb"
-  },
-  "id" : "67fab6d599301022953438bb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Él devolvió la camisa que compré.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438bb"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He returned the shirt that I bought.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "object" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438bc"
-  },
-  "id" : "67fab6d599301022953438bc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Ella preparó la ensalada que ellos ordenaron.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953438bb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She prepared the salad that they ordered.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "object" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438bd"
-  },
-  "id" : "67fab6d599301022953438bd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Llamamos al plomero que vive al lado.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Él devolvió la camisa que compré.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We called the plumber that lives next door.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "subject" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438be"
-  },
-  "id" : "67fab6d599301022953438be",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Tomé prestada la grapadora que usaste.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I borrowed the stapler that you used.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "object" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438bf"
-  },
-  "id" : "67fab6d599301022953438bf",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Ella visitó el parque que está cerca de su casa.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She visited the park that is near her house.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "subject" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438c0"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He returned the shirt that I bought.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "object"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He returned the shirt that I bought. object"
+      ]
+    }
   },
-  "id" : "67fab6d599301022953438c0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Ellos vieron a la mujer que enseña yoga aquí.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438bc"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They saw the woman that teaches yoga here.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "subject" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438c1"
-  },
-  "id" : "67fab6d599301022953438c1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Él vio la película que seleccionó.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953438bc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He watched the movie that he selected.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "object" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438c2"
-  },
-  "id" : "67fab6d599301022953438c2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Ellos encontraron la carta que estaba sobre la mesa.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Ella preparó la ensalada que ellos ordenaron.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They found the letter that was on the table.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "subject" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438c3"
-  },
-  "id" : "67fab6d599301022953438c3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Me gustó la canción que compartiste.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I liked the song that you shared.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "object" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438c4"
-  },
-  "id" : "67fab6d599301022953438c4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Ella recordó el paraguas que estaba detrás de la puerta.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She remembered the umbrella that was behind the door.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "subject" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438c5"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She prepared the salad that they ordered.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "object"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She prepared the salad that they ordered. object"
+      ]
+    }
   },
-  "id" : "67fab6d599301022953438c5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Ellos encontraron al gatito que los vecinos amaban.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438bd"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They found the kitten that the neighbors loved.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "object" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438c6"
-  },
-  "id" : "67fab6d599301022953438c6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Ella horneó un pastel que estaba increíble.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953438bd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She baked a cake that was amazing.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "subject" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438c7"
-  },
-  "id" : "67fab6d599301022953438c7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Ahí está el restaurante que te describí.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Llamamos al plomero que vive al lado.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "There's the restaurant that I described.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "object" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438c8"
-  },
-  "id" : "67fab6d599301022953438c8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Él visitó el museo que ella sugirió.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He visited the museum that she suggested.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "object" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438c9"
-  },
-  "id" : "67fab6d599301022953438c9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Laura diseñó un edificio que era innovador.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Laura designed a building that was innovative.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "subject" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438ca"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We called the plumber that lives next door.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "subject"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We called the plumber that lives next door. subject"
+      ]
+    }
   },
-  "id" : "67fab6d599301022953438ca",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Ellos cocinaron los platos que ella sugirió.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438be"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They cooked the dishes that she suggested.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "object" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438cb"
-  },
-  "id" : "67fab6d599301022953438cb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Yo califiqué el examen que ella escribió.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953438be",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I graded the exam that she wrote.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "object" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438cc"
-  },
-  "id" : "67fab6d599301022953438cc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Ella saludó a los niños que juegan afuera.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Tomé prestada la grapadora que usaste.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She greeted the kids that play outside.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "subject" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438cd"
-  },
-  "id" : "67fab6d599301022953438cd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Él le sonrió al perro que le ladró al auto.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He smiled at the dog that barked at the car.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "subject" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438ce"
-  },
-  "id" : "67fab6d599301022953438ce",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33a"
-  },
-  "title" : "Subject or Object? Identifying the Relative Pronoun's Role",
-  "instructions" : "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
-  "translation" : "Ellos derramaron el jugo que estaba lleno de azúcar.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.03.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They spilled the juice that was full of sugar.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "subject" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I borrowed the stapler that you used.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "object"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I borrowed the stapler that you used. object"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438bf"
+    },
+    "id": "67fab6d599301022953438bf",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
+    },
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Ella visitó el parque que está cerca de su casa.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She visited the park that is near her house.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "subject"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She visited the park that is near her house. subject"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438c0"
+    },
+    "id": "67fab6d599301022953438c0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
+    },
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Ellos vieron a la mujer que enseña yoga aquí.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They saw the woman that teaches yoga here.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "subject"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They saw the woman that teaches yoga here. subject"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438c1"
+    },
+    "id": "67fab6d599301022953438c1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
+    },
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Él vio la película que seleccionó.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He watched the movie that he selected.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "object"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He watched the movie that he selected. object"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438c2"
+    },
+    "id": "67fab6d599301022953438c2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
+    },
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Ellos encontraron la carta que estaba sobre la mesa.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They found the letter that was on the table.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "subject"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They found the letter that was on the table. subject"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438c3"
+    },
+    "id": "67fab6d599301022953438c3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
+    },
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Me gustó la canción que compartiste.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I liked the song that you shared.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "object"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I liked the song that you shared. object"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438c4"
+    },
+    "id": "67fab6d599301022953438c4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
+    },
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Ella recordó el paraguas que estaba detrás de la puerta.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She remembered the umbrella that was behind the door.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "subject"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She remembered the umbrella that was behind the door. subject"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438c5"
+    },
+    "id": "67fab6d599301022953438c5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
+    },
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Ellos encontraron al gatito que los vecinos amaban.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They found the kitten that the neighbors loved.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "object"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They found the kitten that the neighbors loved. object"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438c6"
+    },
+    "id": "67fab6d599301022953438c6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
+    },
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Ella horneó un pastel que estaba increíble.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She baked a cake that was amazing.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "subject"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She baked a cake that was amazing. subject"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438c7"
+    },
+    "id": "67fab6d599301022953438c7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
+    },
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Ahí está el restaurante que te describí.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There's the restaurant that I described.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "object"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "There's the restaurant that I described. object"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438c8"
+    },
+    "id": "67fab6d599301022953438c8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
+    },
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Él visitó el museo que ella sugirió.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He visited the museum that she suggested.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "object"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He visited the museum that she suggested. object"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438c9"
+    },
+    "id": "67fab6d599301022953438c9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
+    },
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Laura diseñó un edificio que era innovador.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Laura designed a building that was innovative.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "subject"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Laura designed a building that was innovative. subject"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438ca"
+    },
+    "id": "67fab6d599301022953438ca",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
+    },
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Ellos cocinaron los platos que ella sugirió.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They cooked the dishes that she suggested.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "object"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They cooked the dishes that she suggested. object"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438cb"
+    },
+    "id": "67fab6d599301022953438cb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
+    },
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Yo califiqué el examen que ella escribió.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I graded the exam that she wrote.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "object"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I graded the exam that she wrote. object"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438cc"
+    },
+    "id": "67fab6d599301022953438cc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
+    },
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Ella saludó a los niños que juegan afuera.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She greeted the kids that play outside.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "subject"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She greeted the kids that play outside. subject"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438cd"
+    },
+    "id": "67fab6d599301022953438cd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
+    },
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Él le sonrió al perro que le ladró al auto.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He smiled at the dog that barked at the car.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "subject"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He smiled at the dog that barked at the car. subject"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438ce"
+    },
+    "id": "67fab6d599301022953438ce",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33a"
+    },
+    "title": "Subject or Object? Identifying the Relative Pronoun's Role",
+    "instructions": "¿El relative pronoun (that) es el subject o el object de la relative clause? Escribe 'subject' u 'object'.",
+    "translation": "Ellos derramaron el jugo que estaba lleno de azúcar.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.03.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They spilled the juice that was full of sugar.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "subject"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They spilled the juice that was full of sugar. subject"
+      ]
+    }
   }
-} ]
+]

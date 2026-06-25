@@ -1,1021 +1,1223 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534264f"
-  },
-  "id" : "67fab6d5993010229534264f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "Estoy comiendo ahora mismo.",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534264f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "am eating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) right now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342650"
-  },
-  "id" : "67fab6d59930102295342650",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "Los niños están jugando afuera.",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534264f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The children",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are playing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(play) outside.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342651"
-  },
-  "id" : "67fab6d59930102295342651",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "¿Estás leyendo ese libro?",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "Estoy comiendo ahora mismo.",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Are you reading" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / read) that book?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342652"
-  },
-  "id" : "67fab6d59930102295342652",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "Realmente necesito un nuevo par de zapatos.",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I truly",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "need" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(need) a new pair of shoes.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342653"
-  },
-  "id" : "67fab6d59930102295342653",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "Él no tiene coche por el momento.",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "doesn't have" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / have) a car at the moment.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342654"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "am eating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) right now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I am eating right now."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342654",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "¿Prefieres té o café?",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342650"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Do you prefer" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / prefer) tea or coffee?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342655"
-  },
-  "id" : "67fab6d59930102295342655",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "¿Recuerdas su nombre?",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342650",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Do you remember" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / remember) her name?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342656"
-  },
-  "id" : "67fab6d59930102295342656",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "¿Me crees?",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "Los niños están jugando afuera.",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Do you believe" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / believe) me?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342657"
-  },
-  "id" : "67fab6d59930102295342657",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "Esta idea no suena muy bien.",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "This idea",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does not|doesn't" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / sound) very good.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342658"
-  },
-  "id" : "67fab6d59930102295342658",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "Él no está trabajando ahora mismo.",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "isn't working" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / work) right now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342659"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The children",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are playing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(play) outside.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The children are playing outside."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342659",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "Ella está en casa en este momento.",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342651"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) at home at the moment.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534265a"
-  },
-  "id" : "67fab6d5993010229534265a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "¿Está tocando el piano?",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342651",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Is he playing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(he / play) the piano?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534265b"
-  },
-  "id" : "67fab6d5993010229534265b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "Él está corriendo ahora mismo.",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "¿Estás leyendo ese libro?",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is running" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(run) right now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534265c"
-  },
-  "id" : "67fab6d5993010229534265c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "No quiero nada de comida.",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "don't want" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / want) any food.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534265d"
-  },
-  "id" : "67fab6d5993010229534265d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "Los adultos disfrutan de la fiesta.",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The adults",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "enjoy" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(enjoy) the party.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534265e"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Are you reading"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / read) that book?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Are you reading that book?"
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534265e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "A ella le gusta esta bebida caliente.",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342652"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "likes" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(like) this hot beverage.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534265f"
-  },
-  "id" : "67fab6d5993010229534265f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "Ella no está escribiendo.",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342652",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "isn't writing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / write).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342660"
-  },
-  "id" : "67fab6d59930102295342660",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "Estamos bebiendo jugo.",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "Realmente necesito un nuevo par de zapatos.",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are drinking" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(drink) juice.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342661"
-  },
-  "id" : "67fab6d59930102295342661",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "Estamos corriendo una maratón.",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are running" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(run) a marathon.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342662"
-  },
-  "id" : "67fab6d59930102295342662",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d222"
-  },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
-  "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "Están llegando al estadio.",
-  "theoryId" : "a2.01.Stative_Verbs",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.09.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are arriving" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(arrive) at the stadium.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I truly",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "need"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(need) a new pair of shoes.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I truly need a new pair of shoes."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342653"
+    },
+    "id": "67fab6d59930102295342653",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
+    },
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "Él no tiene coche por el momento.",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "doesn't have"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / have) a car at the moment.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He doesn't have a car at the moment."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342654"
+    },
+    "id": "67fab6d59930102295342654",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
+    },
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "¿Prefieres té o café?",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Do you prefer"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / prefer) tea or coffee?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Do you prefer tea or coffee?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342655"
+    },
+    "id": "67fab6d59930102295342655",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
+    },
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "¿Recuerdas su nombre?",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Do you remember"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / remember) her name?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Do you remember her name?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342656"
+    },
+    "id": "67fab6d59930102295342656",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
+    },
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "¿Me crees?",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Do you believe"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / believe) me?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Do you believe me?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342657"
+    },
+    "id": "67fab6d59930102295342657",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
+    },
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "Esta idea no suena muy bien.",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This idea",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does not|doesn't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / sound) very good.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This idea does not very good.",
+        "This idea doesn't very good."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342658"
+    },
+    "id": "67fab6d59930102295342658",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
+    },
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "Él no está trabajando ahora mismo.",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "isn't working"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / work) right now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He isn't working right now."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342659"
+    },
+    "id": "67fab6d59930102295342659",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
+    },
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "Ella está en casa en este momento.",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) at home at the moment.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She is at home at the moment."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534265a"
+    },
+    "id": "67fab6d5993010229534265a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
+    },
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "¿Está tocando el piano?",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is he playing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / play) the piano?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Is he playing the piano?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534265b"
+    },
+    "id": "67fab6d5993010229534265b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
+    },
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "Él está corriendo ahora mismo.",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is running"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(run) right now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He is running right now."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534265c"
+    },
+    "id": "67fab6d5993010229534265c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
+    },
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "No quiero nada de comida.",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "don't want"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / want) any food.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I don't want any food."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534265d"
+    },
+    "id": "67fab6d5993010229534265d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
+    },
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "Los adultos disfrutan de la fiesta.",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The adults",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "enjoy"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(enjoy) the party.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The adults enjoy the party."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534265e"
+    },
+    "id": "67fab6d5993010229534265e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
+    },
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "A ella le gusta esta bebida caliente.",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "likes"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(like) this hot beverage.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She likes this hot beverage."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534265f"
+    },
+    "id": "67fab6d5993010229534265f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
+    },
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "Ella no está escribiendo.",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "isn't writing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / write).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She isn't writing."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342660"
+    },
+    "id": "67fab6d59930102295342660",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
+    },
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "Estamos bebiendo jugo.",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are drinking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drink) juice.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We are drinking juice."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342661"
+    },
+    "id": "67fab6d59930102295342661",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
+    },
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "Estamos corriendo una maratón.",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are running"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(run) a marathon.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We are running a marathon."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342662"
+    },
+    "id": "67fab6d59930102295342662",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d222"
+    },
+    "title": "Reviewing Stative Verbs: A Practice Exercise",
+    "instructions": "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
+    "translation": "Están llegando al estadio.",
+    "theoryId": "a2.01.Stative_Verbs",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.09.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are arriving"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(arrive) at the stadium.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They are arriving at the stadium."
+      ]
+    }
   }
-} ]
+]

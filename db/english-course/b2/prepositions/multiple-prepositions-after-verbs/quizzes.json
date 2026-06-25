@@ -1,511 +1,612 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344af8"
-  },
-  "id" : "67fab6d59930102295344af8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d4af"
-  },
-  "title" : "Multiple Prepositions after Verbs",
-  "instructions" : "Escribe las preposiciones correctas.",
-  "translation" : "¿Has pensado en visitar París?",
-  "theoryId" : "b2.15.Verbs_and_Different_Prepositions",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.15.14.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344af8"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Have you thought",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "of" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "visiting Paris?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344af9"
-  },
-  "id" : "67fab6d59930102295344af9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d4af"
-  },
-  "title" : "Multiple Prepositions after Verbs",
-  "instructions" : "Escribe las preposiciones correctas.",
-  "translation" : "El profesor le dio el libro al estudiante, quien lo leyó con atención.",
-  "theoryId" : "b2.15.Verbs_and_Different_Prepositions",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.15.14.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344af8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4af"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The teacher gave the book",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the student, who read it carefully.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344afa"
-  },
-  "id" : "67fab6d59930102295344afa",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d4af"
-  },
-  "title" : "Multiple Prepositions after Verbs",
-  "instructions" : "Escribe las preposiciones correctas.",
-  "translation" : "Ella se enteró del concierto por su amiga.",
-  "theoryId" : "b2.15.Verbs_and_Different_Prepositions",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.15.14.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Multiple Prepositions after Verbs",
+    "instructions": "Escribe las preposiciones correctas.",
+    "translation": "¿Has pensado en visitar París?",
+    "theoryId": "b2.15.Verbs_and_Different_Prepositions",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She learned",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "about" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the concert from her friend.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344afb"
-  },
-  "id" : "67fab6d59930102295344afb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d4af"
-  },
-  "title" : "Multiple Prepositions after Verbs",
-  "instructions" : "Escribe las preposiciones correctas.",
-  "translation" : "¿Estás de acuerdo con él?",
-  "theoryId" : "b2.15.Verbs_and_Different_Prepositions",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.15.14.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Do you concur",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "with" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "him?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344afc"
-  },
-  "id" : "67fab6d59930102295344afc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d4af"
-  },
-  "title" : "Multiple Prepositions after Verbs",
-  "instructions" : "Escribe las preposiciones correctas.",
-  "translation" : "Pidió un vaso de agua.",
-  "theoryId" : "b2.15.Verbs_and_Different_Prepositions",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.15.14.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He requested",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "for" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "a glass of water.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344afd"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.15.14.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have you thought",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "visiting Paris?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Have you thought of visiting Paris?"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344afd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d4af"
-  },
-  "title" : "Multiple Prepositions after Verbs",
-  "instructions" : "Escribe las preposiciones correctas.",
-  "translation" : "¿Podrías justificar los comestibles?",
-  "theoryId" : "b2.15.Verbs_and_Different_Prepositions",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.15.14.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344af9"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Could you account",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "for" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the groceries?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344afe"
-  },
-  "id" : "67fab6d59930102295344afe",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d4af"
-  },
-  "title" : "Multiple Prepositions after Verbs",
-  "instructions" : "Escribe las preposiciones correctas.",
-  "translation" : "Ella pagó usando una tarjeta de débito.",
-  "theoryId" : "b2.15.Verbs_and_Different_Prepositions",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.15.14.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344af9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4af"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She settled",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "by" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "using a debit card.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344aff"
-  },
-  "id" : "67fab6d59930102295344aff",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d4af"
-  },
-  "title" : "Multiple Prepositions after Verbs",
-  "instructions" : "Escribe las preposiciones correctas.",
-  "translation" : "Apunto el dardo a la diana.",
-  "theoryId" : "b2.15.Verbs_and_Different_Prepositions",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.15.14.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Multiple Prepositions after Verbs",
+    "instructions": "Escribe las preposiciones correctas.",
+    "translation": "El profesor le dio el libro al estudiante, quien lo leyó con atención.",
+    "theoryId": "b2.15.Verbs_and_Different_Prepositions",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He aimed the dart",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "at" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the bullseye.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344b00"
-  },
-  "id" : "67fab6d59930102295344b00",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d4af"
-  },
-  "title" : "Multiple Prepositions after Verbs",
-  "instructions" : "Escribe las preposiciones correctas.",
-  "translation" : "Ella me preguntó sobre mi trabajo.",
-  "theoryId" : "b2.15.Verbs_and_Different_Prepositions",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.15.14.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She inquired me",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "about" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "my job.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344b01"
-  },
-  "id" : "67fab6d59930102295344b01",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d4af"
-  },
-  "title" : "Multiple Prepositions after Verbs",
-  "instructions" : "Escribe las preposiciones correctas.",
-  "translation" : "Todos estuvieron de acuerdo con la hora de la reunión.",
-  "theoryId" : "b2.15.Verbs_and_Different_Prepositions",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.15.14.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Everyone concurred",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "about" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the meeting time.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.15.14.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teacher gave the book",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the student, who read it carefully.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The teacher gave the book to the student, who read it carefully."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344afa"
+    },
+    "id": "67fab6d59930102295344afa",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4af"
+    },
+    "title": "Multiple Prepositions after Verbs",
+    "instructions": "Escribe las preposiciones correctas.",
+    "translation": "Ella se enteró del concierto por su amiga.",
+    "theoryId": "b2.15.Verbs_and_Different_Prepositions",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.15.14.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She learned",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the concert from her friend.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She learned about the concert from her friend."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344afb"
+    },
+    "id": "67fab6d59930102295344afb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4af"
+    },
+    "title": "Multiple Prepositions after Verbs",
+    "instructions": "Escribe las preposiciones correctas.",
+    "translation": "¿Estás de acuerdo con él?",
+    "theoryId": "b2.15.Verbs_and_Different_Prepositions",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.15.14.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you concur",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "with"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "him?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Do you concur with him?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344afc"
+    },
+    "id": "67fab6d59930102295344afc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4af"
+    },
+    "title": "Multiple Prepositions after Verbs",
+    "instructions": "Escribe las preposiciones correctas.",
+    "translation": "Pidió un vaso de agua.",
+    "theoryId": "b2.15.Verbs_and_Different_Prepositions",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.15.14.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He requested",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "for"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "a glass of water.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He requested for a glass of water."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344afd"
+    },
+    "id": "67fab6d59930102295344afd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4af"
+    },
+    "title": "Multiple Prepositions after Verbs",
+    "instructions": "Escribe las preposiciones correctas.",
+    "translation": "¿Podrías justificar los comestibles?",
+    "theoryId": "b2.15.Verbs_and_Different_Prepositions",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.15.14.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you account",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "for"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the groceries?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Could you account for the groceries?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344afe"
+    },
+    "id": "67fab6d59930102295344afe",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4af"
+    },
+    "title": "Multiple Prepositions after Verbs",
+    "instructions": "Escribe las preposiciones correctas.",
+    "translation": "Ella pagó usando una tarjeta de débito.",
+    "theoryId": "b2.15.Verbs_and_Different_Prepositions",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.15.14.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She settled",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "by"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "using a debit card.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She settled by using a debit card."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344aff"
+    },
+    "id": "67fab6d59930102295344aff",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4af"
+    },
+    "title": "Multiple Prepositions after Verbs",
+    "instructions": "Escribe las preposiciones correctas.",
+    "translation": "Apunto el dardo a la diana.",
+    "theoryId": "b2.15.Verbs_and_Different_Prepositions",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.15.14.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He aimed the dart",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "at"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the bullseye.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He aimed the dart at the bullseye."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344b00"
+    },
+    "id": "67fab6d59930102295344b00",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4af"
+    },
+    "title": "Multiple Prepositions after Verbs",
+    "instructions": "Escribe las preposiciones correctas.",
+    "translation": "Ella me preguntó sobre mi trabajo.",
+    "theoryId": "b2.15.Verbs_and_Different_Prepositions",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.15.14.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She inquired me",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "my job.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She inquired me about my job."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344b01"
+    },
+    "id": "67fab6d59930102295344b01",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d4af"
+    },
+    "title": "Multiple Prepositions after Verbs",
+    "instructions": "Escribe las preposiciones correctas.",
+    "translation": "Todos estuvieron de acuerdo con la hora de la reunión.",
+    "theoryId": "b2.15.Verbs_and_Different_Prepositions",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.15.14.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Everyone concurred",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "about"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the meeting time.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Everyone concurred about the meeting time."
+      ]
+    }
   }
-} ]
+]

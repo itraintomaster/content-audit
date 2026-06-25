@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438cf"
-  },
-  "id" : "67fab6d599301022953438cf",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Ahí está la mujer que habla italiano.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438cf"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "There's the woman (the woman speaks Italian).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "There's the woman who speaks Italian." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438d0"
-  },
-  "id" : "67fab6d599301022953438d0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Lavé la camisa que tenía una mancha de café.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953438cf",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I washed the shirt (the shirt had a coffee stain).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I washed the shirt that had a coffee stain." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438d1"
-  },
-  "id" : "67fab6d599301022953438d1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Ella habló con el hombre que canta en el pub.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Ahí está la mujer que habla italiano.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She spoke to the man (the man sings in the pub).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She spoke to the man who sings in the pub." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438d2"
-  },
-  "id" : "67fab6d599301022953438d2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Visitaron a la enfermera que se formó con Helen.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They visited the nurse (the nurse trained with Helen).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They visited the nurse who trained with Helen." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438d3"
-  },
-  "id" : "67fab6d599301022953438d3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Tomamos el autobús que va al aeropuerto.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We caught the bus (the bus goes to the airport).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We caught the bus that goes to the airport." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438d4"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There's the woman (the woman speaks Italian).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "There's the woman who speaks Italian."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "There's the woman who speaks Italian."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953438d4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Él juega en el parque que está cerca de la escuela.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438d0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He plays in the park (the park is near the school).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He plays in the park that is near the school." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438d5"
-  },
-  "id" : "67fab6d599301022953438d5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Ella observó los pájaros que vuelan en el jardín.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953438d0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She watched the birds (the birds fly in the garden).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She watched the birds who fly in the garden." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438d6"
-  },
-  "id" : "67fab6d599301022953438d6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Llamamos al director que dirige la escuela.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Lavé la camisa que tenía una mancha de café.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We phoned the headmaster (the headmaster runs the school).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We phoned the headmaster who runs the school." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438d7"
-  },
-  "id" : "67fab6d599301022953438d7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Horneé las galletas que estaban en la encimera.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I baked the cookies (the cookies were on the counter).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I baked the cookies that were on the counter." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438d8"
-  },
-  "id" : "67fab6d599301022953438d8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Ahí está el hombre que disfruta de la pesca.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "There's the man (the man enjoys fishing).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "There's the man who enjoys fishing." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438d9"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I washed the shirt (the shirt had a coffee stain).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I washed the shirt that had a coffee stain."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I washed the shirt that had a coffee stain."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953438d9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Entrevistamos a los profesores que enseñan historia.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438d1"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We interviewed the professors (the professors teach history).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We interviewed the professors who teach history." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438da"
-  },
-  "id" : "67fab6d599301022953438da",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Agradecieron a las personas que viven arriba.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953438d1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They thanked the people (the people live upstairs).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They thanked the people who live upstairs." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438db"
-  },
-  "id" : "67fab6d599301022953438db",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Ella va a conocer al cantante que vive en Londres.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Ella habló con el hombre que canta en el pub.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She is going to meet the singer (the singer lives in London).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She is going to meet the singer who lives in London." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438dc"
-  },
-  "id" : "67fab6d599301022953438dc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Él colabora con el artista que es nuestro vecino.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He collaborates with the artist (the artist is our neighbor).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He collaborates with the artist who is our neighbor." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438dd"
-  },
-  "id" : "67fab6d599301022953438dd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Ella admiró la pintura que venía de Francia.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She admired the painting (the painting came from France).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She admired the painting that came from France." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438de"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She spoke to the man (the man sings in the pub).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She spoke to the man who sings in the pub."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She spoke to the man who sings in the pub."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953438de",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Él escuchó la música que estaba en la radio.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438d2"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He listened to the music (the music was on the radio).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He listened to the music that was on the radio." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438df"
-  },
-  "id" : "67fab6d599301022953438df",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Disfrutamos de la sopa que estaba en la olla.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953438d2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We enjoyed the soup (the soup was in the pot).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We enjoyed the soup that was in the pot." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438e0"
-  },
-  "id" : "67fab6d599301022953438e0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Ella abrió la puerta que estaba cerrada con llave.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Visitaron a la enfermera que se formó con Helen.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She opened the door (the door was locked).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She opened the door that was locked." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438e1"
-  },
-  "id" : "67fab6d599301022953438e1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Alquilamos el apartamento que estaba en la ciudad.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We rented the apartment (the apartment was in the city).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We rented the apartment that was in the city." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953438e2"
-  },
-  "id" : "67fab6d599301022953438e2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d33b"
-  },
-  "title" : "Defining Relative Clauses: Subject Pronoun Practice",
-  "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
-  "translation" : "Consultó al abogado que se ocupa de los divorcios.",
-  "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.12.04.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He consulted the solicitor (the solicitor deals with divorces).",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He consulted the solicitor who deals with divorces." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They visited the nurse (the nurse trained with Helen).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They visited the nurse who trained with Helen."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They visited the nurse who trained with Helen."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438d3"
+    },
+    "id": "67fab6d599301022953438d3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
+    },
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Tomamos el autobús que va al aeropuerto.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We caught the bus (the bus goes to the airport).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We caught the bus that goes to the airport."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We caught the bus that goes to the airport."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438d4"
+    },
+    "id": "67fab6d599301022953438d4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
+    },
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Él juega en el parque que está cerca de la escuela.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He plays in the park (the park is near the school).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He plays in the park that is near the school."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He plays in the park that is near the school."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438d5"
+    },
+    "id": "67fab6d599301022953438d5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
+    },
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Ella observó los pájaros que vuelan en el jardín.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She watched the birds (the birds fly in the garden).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She watched the birds who fly in the garden."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She watched the birds who fly in the garden."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438d6"
+    },
+    "id": "67fab6d599301022953438d6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
+    },
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Llamamos al director que dirige la escuela.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We phoned the headmaster (the headmaster runs the school).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We phoned the headmaster who runs the school."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We phoned the headmaster who runs the school."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438d7"
+    },
+    "id": "67fab6d599301022953438d7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
+    },
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Horneé las galletas que estaban en la encimera.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I baked the cookies (the cookies were on the counter).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I baked the cookies that were on the counter."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I baked the cookies that were on the counter."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438d8"
+    },
+    "id": "67fab6d599301022953438d8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
+    },
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Ahí está el hombre que disfruta de la pesca.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There's the man (the man enjoys fishing).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "There's the man who enjoys fishing."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "There's the man who enjoys fishing."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438d9"
+    },
+    "id": "67fab6d599301022953438d9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
+    },
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Entrevistamos a los profesores que enseñan historia.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We interviewed the professors (the professors teach history).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We interviewed the professors who teach history."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We interviewed the professors who teach history."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438da"
+    },
+    "id": "67fab6d599301022953438da",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
+    },
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Agradecieron a las personas que viven arriba.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They thanked the people (the people live upstairs).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They thanked the people who live upstairs."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They thanked the people who live upstairs."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438db"
+    },
+    "id": "67fab6d599301022953438db",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
+    },
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Ella va a conocer al cantante que vive en Londres.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is going to meet the singer (the singer lives in London).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She is going to meet the singer who lives in London."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She is going to meet the singer who lives in London."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438dc"
+    },
+    "id": "67fab6d599301022953438dc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
+    },
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Él colabora con el artista que es nuestro vecino.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He collaborates with the artist (the artist is our neighbor).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He collaborates with the artist who is our neighbor."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He collaborates with the artist who is our neighbor."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438dd"
+    },
+    "id": "67fab6d599301022953438dd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
+    },
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Ella admiró la pintura que venía de Francia.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She admired the painting (the painting came from France).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She admired the painting that came from France."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She admired the painting that came from France."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438de"
+    },
+    "id": "67fab6d599301022953438de",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
+    },
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Él escuchó la música que estaba en la radio.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He listened to the music (the music was on the radio).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He listened to the music that was on the radio."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He listened to the music that was on the radio."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438df"
+    },
+    "id": "67fab6d599301022953438df",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
+    },
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Disfrutamos de la sopa que estaba en la olla.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We enjoyed the soup (the soup was in the pot).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We enjoyed the soup that was in the pot."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We enjoyed the soup that was in the pot."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438e0"
+    },
+    "id": "67fab6d599301022953438e0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
+    },
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Ella abrió la puerta que estaba cerrada con llave.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She opened the door (the door was locked).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She opened the door that was locked."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She opened the door that was locked."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438e1"
+    },
+    "id": "67fab6d599301022953438e1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
+    },
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Alquilamos el apartamento que estaba en la ciudad.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We rented the apartment (the apartment was in the city).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We rented the apartment that was in the city."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We rented the apartment that was in the city."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953438e2"
+    },
+    "id": "67fab6d599301022953438e2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d33b"
+    },
+    "title": "Defining Relative Clauses: Subject Pronoun Practice",
+    "instructions": "Añade una relative clause a las oraciones. Para este ejercicio, usa 'who' para personas y 'that' para cosas.",
+    "translation": "Consultó al abogado que se ocupa de los divorcios.",
+    "theoryId": "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.12.04.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He consulted the solicitor (the solicitor deals with divorces).",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He consulted the solicitor who deals with divorces."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He consulted the solicitor who deals with divorces."
+      ]
+    }
   }
-} ]
+]

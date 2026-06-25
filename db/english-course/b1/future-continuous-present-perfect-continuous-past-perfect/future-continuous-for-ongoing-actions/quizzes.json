@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431dd"
-  },
-  "id" : "67fab6d599301022953431dd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "Él jugará al tenis a las 10 de la mañana.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431dd"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will play" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(play) tennis at 10 am (= he will start playing at 10).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431de"
-  },
-  "id" : "67fab6d599301022953431de",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "Él estará jugando al tenis a las 10 de la mañana; el partido comienza a las 9:30.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953431dd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will be playing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(play) tennis at 10 am - the match starts at 9:30.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431df"
-  },
-  "id" : "67fab6d599301022953431df",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "Mary beberá té cuando llegues.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "Él jugará al tenis a las 10 de la mañana.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Mary",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will drink" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(drink) tea when you arrive (she will start after you arrive).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431e0"
-  },
-  "id" : "67fab6d599301022953431e0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "Mary estará bebiendo té cuando llegues.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Mary",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will be drinking" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(drink) tea when you arrive (the tea will be in progress).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431e1"
-  },
-  "id" : "67fab6d599301022953431e1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "Los perros cenarán a las 7; comenzarán a las 6:30.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The dogs",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will be eating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) dinner at 7 - they will start at 6:30.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431e2"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will play"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(play) tennis at 10 am (= he will start playing at 10).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He will play tennis at 10 am ."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953431e2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "Los perros cenarán a las 7; comenzarán a las 7.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431de"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The dogs",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will eat dinner" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) at 7 - they will start at 7.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431e3"
-  },
-  "id" : "67fab6d599301022953431e3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "David estará pintando la valla cuando lleguen los trabajadores. Él comenzará antes de que ellos lleguen.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953431de",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "David",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will be painting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(paint) the fence when the workers arrive. He will start before they come.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431e4"
-  },
-  "id" : "67fab6d599301022953431e4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "David pintará la valla cuando lleguen los trabajadores. Antes de que lleguen, pintará la puerta.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "Él estará jugando al tenis a las 10 de la mañana; el partido comienza a las 9:30.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "David",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will paint" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(paint) the fence when the workers arrive. Before they arrive, he will paint the door.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431e5"
-  },
-  "id" : "67fab6d599301022953431e5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "Correré a la escuela a las 8.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will run" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(run) to the school at 8 (I will leave at 8).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431e6"
-  },
-  "id" : "67fab6d599301022953431e6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "Estaré corriendo a la escuela a las 8.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will be running" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(run) to the school at 8 (I will leave at 7:50).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431e7"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be playing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(play) tennis at 10 am - the match starts at 9:30.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He will be playing tennis at 10 am - the match starts at 9:30."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953431e7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "Ellos estarán limpiando la casa a las 2 pm.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431df"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will be cleaning" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(clean) the house at 2 pm (they will start at 1:30).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431e8"
-  },
-  "id" : "67fab6d599301022953431e8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "Ellos limpiarán la casa a las 2 pm.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953431df",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will clean" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(clean) the house at 2 pm (they will start at 2 pm).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431e9"
-  },
-  "id" : "67fab6d599301022953431e9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "Él bailará cuando ella cante.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "Mary beberá té cuando llegues.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will dance" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(dance) when she sings (he will start after she sings).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431ea"
-  },
-  "id" : "67fab6d599301022953431ea",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "Él estará bailando cuando ella cante.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will be dancing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(dance) when she sings (he will start before she sings).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431eb"
-  },
-  "id" : "67fab6d599301022953431eb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "Linda estará llegando cuando llames.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Linda",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will be arriving" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(arrive) when you phone. (She will start arriving before your phone).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431ec"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will drink"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drink) tea when you arrive (she will start after you arrive).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Mary will drink tea when you arrive ."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953431ec",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "Linda llegará cuando llames.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431e0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Linda",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will arrive" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(arrive) when you phone. (She will arrive after your phone.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431ed"
-  },
-  "id" : "67fab6d599301022953431ed",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "Los profesores enseñarán a las 11 de la mañana.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953431e0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The teachers",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will teach" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(teach) at 11 am. (They will start at 11 am.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431ee"
-  },
-  "id" : "67fab6d599301022953431ee",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "Los profesores estarán enseñando a las 11 de la mañana.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "Mary estará bebiendo té cuando llegues.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The teachers",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will be teaching" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(teach) at 11 am. (they will start at 10 am.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431ef"
-  },
-  "id" : "67fab6d599301022953431ef",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "Estará nevando a las 3 de la mañana.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "It",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will be snowing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(snow) at 3 am. (It will start before 3 am.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431f0"
-  },
-  "id" : "67fab6d599301022953431f0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d8"
-  },
-  "title" : "Future Continuous for Ongoing Actions",
-  "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "Nevará a las 3 de la mañana.",
-  "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.04.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "It",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will snow" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(snow) at 3 am. (It will start at 3 am.)",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be drinking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drink) tea when you arrive (the tea will be in progress).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Mary will be drinking tea when you arrive ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431e1"
+    },
+    "id": "67fab6d599301022953431e1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
+    },
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "Los perros cenarán a las 7; comenzarán a las 6:30.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be eating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) dinner at 7 - they will start at 6:30.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The dogs will be eating dinner at 7 - they will start at 6:30."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431e2"
+    },
+    "id": "67fab6d599301022953431e2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
+    },
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "Los perros cenarán a las 7; comenzarán a las 7.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will eat dinner"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) at 7 - they will start at 7.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The dogs will eat dinner at 7 - they will start at 7."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431e3"
+    },
+    "id": "67fab6d599301022953431e3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
+    },
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "David estará pintando la valla cuando lleguen los trabajadores. Él comenzará antes de que ellos lleguen.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "David",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be painting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(paint) the fence when the workers arrive. He will start before they come.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "David will be painting the fence when the workers arrive. He will start before they come."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431e4"
+    },
+    "id": "67fab6d599301022953431e4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
+    },
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "David pintará la valla cuando lleguen los trabajadores. Antes de que lleguen, pintará la puerta.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "David",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will paint"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(paint) the fence when the workers arrive. Before they arrive, he will paint the door.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "David will paint the fence when the workers arrive. Before they arrive, he will paint the door."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431e5"
+    },
+    "id": "67fab6d599301022953431e5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
+    },
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "Correré a la escuela a las 8.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will run"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(run) to the school at 8 (I will leave at 8).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I will run to the school at 8 ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431e6"
+    },
+    "id": "67fab6d599301022953431e6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
+    },
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "Estaré corriendo a la escuela a las 8.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be running"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(run) to the school at 8 (I will leave at 7:50).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I will be running to the school at 8 ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431e7"
+    },
+    "id": "67fab6d599301022953431e7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
+    },
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "Ellos estarán limpiando la casa a las 2 pm.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be cleaning"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(clean) the house at 2 pm (they will start at 1:30).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They will be cleaning the house at 2 pm ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431e8"
+    },
+    "id": "67fab6d599301022953431e8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
+    },
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "Ellos limpiarán la casa a las 2 pm.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will clean"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(clean) the house at 2 pm (they will start at 2 pm).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They will clean the house at 2 pm ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431e9"
+    },
+    "id": "67fab6d599301022953431e9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
+    },
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "Él bailará cuando ella cante.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will dance"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(dance) when she sings (he will start after she sings).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He will dance when she sings ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431ea"
+    },
+    "id": "67fab6d599301022953431ea",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
+    },
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "Él estará bailando cuando ella cante.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be dancing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(dance) when she sings (he will start before she sings).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He will be dancing when she sings ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431eb"
+    },
+    "id": "67fab6d599301022953431eb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
+    },
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "Linda estará llegando cuando llames.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Linda",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be arriving"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(arrive) when you phone. (She will start arriving before your phone).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Linda will be arriving when you phone. ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431ec"
+    },
+    "id": "67fab6d599301022953431ec",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
+    },
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "Linda llegará cuando llames.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Linda",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will arrive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(arrive) when you phone. (She will arrive after your phone.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Linda will arrive when you phone."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431ed"
+    },
+    "id": "67fab6d599301022953431ed",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
+    },
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "Los profesores enseñarán a las 11 de la mañana.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teachers",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will teach"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(teach) at 11 am. (They will start at 11 am.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The teachers will teach at 11 am."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431ee"
+    },
+    "id": "67fab6d599301022953431ee",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
+    },
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "Los profesores estarán enseñando a las 11 de la mañana.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teachers",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be teaching"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(teach) at 11 am. (they will start at 10 am.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The teachers will be teaching at 11 am."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431ef"
+    },
+    "id": "67fab6d599301022953431ef",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
+    },
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "Estará nevando a las 3 de la mañana.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will be snowing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(snow) at 3 am. (It will start before 3 am.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "It will be snowing at 3 am."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431f0"
+    },
+    "id": "67fab6d599301022953431f0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d8"
+    },
+    "title": "Future Continuous for Ongoing Actions",
+    "instructions": "Completa con 'future simple' o 'future continuous'.",
+    "translation": "Nevará a las 3 de la mañana.",
+    "theoryId": "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.04.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will snow"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(snow) at 3 am. (It will start at 3 am.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "It will snow at 3 am."
+      ]
+    }
   }
-} ]
+]

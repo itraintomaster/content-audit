@@ -1,1021 +1,1232 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f37"
-  },
-  "id" : "67fab6d59930102295343f37",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "Vi esa película ayer.",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f37"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "saw" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(see) that movie yesterday.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f38"
-  },
-  "id" : "67fab6d59930102295343f38",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "He visto esa película, así que sé el final.",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343f37",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ve seen|have seen" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(see) that movie, so I know the ending.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f39"
-  },
-  "id" : "67fab6d59930102295343f39",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "Se ha roto la pierna, así que no puede caminar.",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "Vi esa película ayer.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s broken|has broken" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(break) her leg, so she can't walk.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f3a"
-  },
-  "id" : "67fab6d59930102295343f3a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "Se rompió la pierna el año pasado, pero ahora está bien.",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "broke" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(break) her leg last year but she is fine now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f3b"
-  },
-  "id" : "67fab6d59930102295343f3b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "Han pedido pizza. ¡Comamos!",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ve ordered|have ordered" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(order) pizza. Let's eat!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f3c"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "saw"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(see) that movie yesterday.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I saw that movie yesterday."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343f3c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "Pidieron pizza y estaba rica.",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f38"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "ordered" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(order) pizza and it was tasty.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f3d"
-  },
-  "id" : "67fab6d59930102295343f3d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "Pinté la pared y me gusta el color.",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343f38",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "painted" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(paint) the wall and I like the color.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f3e"
-  },
-  "id" : "67fab6d59930102295343f3e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "¡He pintado la pared! ¡Finalmente está terminado!",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "He visto esa película, así que sé el final.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ve painted|have painted" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(paint) the wall! It's finally done!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f3f"
-  },
-  "id" : "67fab6d59930102295343f3f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "Él limpió la cocina y cocinamos la cena juntos.",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "cleaned" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(clean) the kitchen and we cooked dinner together.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f40"
-  },
-  "id" : "67fab6d59930102295343f40",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "Él ha limpiado la cocina, así que podemos cocinar ahora.",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s cleaned|has cleaned" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(clean) the kitchen, so we can cook now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f41"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ve seen|have seen"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(see) that movie, so I know the ending.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I've seen that movie, so I know the ending.",
+        "I have seen that movie, so I know the ending."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343f41",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "¡He comido demasiado chocolate y me siento mal!",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f39"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ve eaten|have eaten" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) too much chocolate and I feel sick!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f42"
-  },
-  "id" : "67fab6d59930102295343f42",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "Comí demasiado chocolate antes, pero ahora me siento bien.",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343f39",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "ate" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) too much chocolate before but I feel fine now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f43"
-  },
-  "id" : "67fab6d59930102295343f43",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "¡Hemos limpiado el jardín para que puedas relajarte afuera!",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "Se ha roto la pierna, así que no puede caminar.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ve cleaned|have cleaned" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(clean) the garden so you can relax outside!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f44"
-  },
-  "id" : "67fab6d59930102295343f44",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "Limpiamos el jardín antes de que llegaras.",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "cleaned" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(clean) the garden before you arrived.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f45"
-  },
-  "id" : "67fab6d59930102295343f45",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "Ella encontró unas llaves, pero no encajaban en ninguna cerradura.",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "found" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(find) some keys but they didn't fit any lock.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f46"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s broken|has broken"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(break) her leg, so she can't walk.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She's broken her leg, so she can't walk.",
+        "She has broken her leg, so she can't walk."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343f46",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "¡Ha encontrado unas llaves y abren el garaje!",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f3a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s found|has found" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(find) some keys and they open the garage!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f47"
-  },
-  "id" : "67fab6d59930102295343f47",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "He reservado un vuelo, pero estoy esperando la confirmación.",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343f3a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ve booked|have booked" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(book) a flight but I am waiting for confirmation.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f48"
-  },
-  "id" : "67fab6d59930102295343f48",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "Reservé un vuelo y fue muy barato.",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "Se rompió la pierna el año pasado, pero ahora está bien.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "booked" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(book) a flight and it was very cheap.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f49"
-  },
-  "id" : "67fab6d59930102295343f49",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "Me corté el pelo y se veía bien para la fiesta.",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "cut" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(cut) my hair and it looked nice for the party.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343f4a"
-  },
-  "id" : "67fab6d59930102295343f4a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d408"
-  },
-  "title" : "Present perfect for current results",
-  "instructions" : "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
-  "translation" : "Me he cortado el pelo y ahora se ve increíble.",
-  "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
-  "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.02.07.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ve cut|have cut" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(cut) my hair and it looks amazing now.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "broke"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(break) her leg last year but she is fine now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She broke her leg last year but she is fine now."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f3b"
+    },
+    "id": "67fab6d59930102295343f3b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
+    },
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "Han pedido pizza. ¡Comamos!",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ve ordered|have ordered"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(order) pizza. Let's eat!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They've ordered pizza. Let's eat!",
+        "They have ordered pizza. Let's eat!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f3c"
+    },
+    "id": "67fab6d59930102295343f3c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
+    },
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "Pidieron pizza y estaba rica.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "ordered"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(order) pizza and it was tasty.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They ordered pizza and it was tasty."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f3d"
+    },
+    "id": "67fab6d59930102295343f3d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
+    },
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "Pinté la pared y me gusta el color.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "painted"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(paint) the wall and I like the color.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I painted the wall and I like the color."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f3e"
+    },
+    "id": "67fab6d59930102295343f3e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
+    },
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "¡He pintado la pared! ¡Finalmente está terminado!",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ve painted|have painted"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(paint) the wall! It's finally done!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I've painted the wall! It's finally done!",
+        "I have painted the wall! It's finally done!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f3f"
+    },
+    "id": "67fab6d59930102295343f3f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
+    },
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "Él limpió la cocina y cocinamos la cena juntos.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "cleaned"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(clean) the kitchen and we cooked dinner together.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He cleaned the kitchen and we cooked dinner together."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f40"
+    },
+    "id": "67fab6d59930102295343f40",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
+    },
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "Él ha limpiado la cocina, así que podemos cocinar ahora.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s cleaned|has cleaned"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(clean) the kitchen, so we can cook now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He's cleaned the kitchen, so we can cook now.",
+        "He has cleaned the kitchen, so we can cook now."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f41"
+    },
+    "id": "67fab6d59930102295343f41",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
+    },
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "¡He comido demasiado chocolate y me siento mal!",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ve eaten|have eaten"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) too much chocolate and I feel sick!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I've eaten too much chocolate and I feel sick!",
+        "I have eaten too much chocolate and I feel sick!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f42"
+    },
+    "id": "67fab6d59930102295343f42",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
+    },
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "Comí demasiado chocolate antes, pero ahora me siento bien.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "ate"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) too much chocolate before but I feel fine now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I ate too much chocolate before but I feel fine now."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f43"
+    },
+    "id": "67fab6d59930102295343f43",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
+    },
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "¡Hemos limpiado el jardín para que puedas relajarte afuera!",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ve cleaned|have cleaned"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(clean) the garden so you can relax outside!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We've cleaned the garden so you can relax outside!",
+        "We have cleaned the garden so you can relax outside!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f44"
+    },
+    "id": "67fab6d59930102295343f44",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
+    },
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "Limpiamos el jardín antes de que llegaras.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "cleaned"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(clean) the garden before you arrived.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We cleaned the garden before you arrived."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f45"
+    },
+    "id": "67fab6d59930102295343f45",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
+    },
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "Ella encontró unas llaves, pero no encajaban en ninguna cerradura.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "found"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(find) some keys but they didn't fit any lock.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She found some keys but they didn't fit any lock."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f46"
+    },
+    "id": "67fab6d59930102295343f46",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
+    },
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "¡Ha encontrado unas llaves y abren el garaje!",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s found|has found"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(find) some keys and they open the garage!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She's found some keys and they open the garage!",
+        "She has found some keys and they open the garage!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f47"
+    },
+    "id": "67fab6d59930102295343f47",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
+    },
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "He reservado un vuelo, pero estoy esperando la confirmación.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ve booked|have booked"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(book) a flight but I am waiting for confirmation.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I've booked a flight but I am waiting for confirmation.",
+        "I have booked a flight but I am waiting for confirmation."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f48"
+    },
+    "id": "67fab6d59930102295343f48",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
+    },
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "Reservé un vuelo y fue muy barato.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "booked"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(book) a flight and it was very cheap.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I booked a flight and it was very cheap."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f49"
+    },
+    "id": "67fab6d59930102295343f49",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
+    },
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "Me corté el pelo y se veía bien para la fiesta.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "cut"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(cut) my hair and it looked nice for the party.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I cut my hair and it looked nice for the party."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343f4a"
+    },
+    "id": "67fab6d59930102295343f4a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d408"
+    },
+    "title": "Present perfect for current results",
+    "instructions": "Escribe oraciones con el 'present perfect' si el resultado es en el presente. Si el resultado es en el pasado, usa el 'past simple'.",
+    "translation": "Me he cortado el pelo y ahora se ve increíble.",
+    "theoryId": "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
+    "topicName": "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.02.07.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'ve cut|have cut"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(cut) my hair and it looks amazing now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I've cut my hair and it looks amazing now.",
+        "I have cut my hair and it looks amazing now."
+      ]
+    }
   }
-} ]
+]

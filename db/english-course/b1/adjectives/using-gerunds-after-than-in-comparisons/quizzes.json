@@ -1,511 +1,612 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b59"
-  },
-  "id" : "67fab6d59930102295343b59",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d360"
-  },
-  "title" : "Using Gerunds After 'than' in Comparisons",
-  "instructions" : "Completa con 'comparative + than + gerund'.",
-  "translation" : "La honestidad es más valiosa que parecer inteligente.",
-  "theoryId" : "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.10.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b59"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Honesty is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more valuable than appearing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(valuable / appear) smart.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b5a"
-  },
-  "id" : "67fab6d59930102295343b5a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d360"
-  },
-  "title" : "Using Gerunds After 'than' in Comparisons",
-  "instructions" : "Completa con 'comparative + than + gerund'.",
-  "translation" : "Los trenes son más ruidosos que andar en bicicleta.",
-  "theoryId" : "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.10.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343b59",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d360"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Trains are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "noisier than cycling" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(noisy / cycle).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b5b"
-  },
-  "id" : "67fab6d59930102295343b5b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d360"
-  },
-  "title" : "Using Gerunds After 'than' in Comparisons",
-  "instructions" : "Completa con 'comparative + than + gerund'.",
-  "translation" : "Planificar con anticipación es más útil que sentirse perdido.",
-  "theoryId" : "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.10.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using Gerunds After 'than' in Comparisons",
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "translation": "La honestidad es más valiosa que parecer inteligente.",
+    "theoryId": "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Planning ahead is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more helpful than feeling" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(helpful / feel) lost.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b5c"
-  },
-  "id" : "67fab6d59930102295343b5c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d360"
-  },
-  "title" : "Using Gerunds After 'than' in Comparisons",
-  "instructions" : "Completa con 'comparative + than + gerund'.",
-  "translation" : "¡Cocinar es más emocionante que pedir comida para llevar!",
-  "theoryId" : "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.10.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Cooking meals is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more exciting than ordering" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(exciting / order) takeout!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b5d"
-  },
-  "id" : "67fab6d59930102295343b5d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d360"
-  },
-  "title" : "Using Gerunds After 'than' in Comparisons",
-  "instructions" : "Completa con 'comparative + than + gerund'.",
-  "translation" : "Unas vacaciones son más baratas que tener un yate.",
-  "theoryId" : "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.10.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A holiday is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "cheaper than owning" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(cheap / own) a yacht.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b5e"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.10.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Honesty is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more valuable than appearing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(valuable / appear) smart.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Honesty is more valuable than appearing smart."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343b5e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d360"
-  },
-  "title" : "Using Gerunds After 'than' in Comparisons",
-  "instructions" : "Completa con 'comparative + than + gerund'.",
-  "translation" : "Estar en París es más emocionante que estar en un pueblo pequeño.",
-  "theoryId" : "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.10.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b5a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Being in Paris is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more thrilling than being" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(thrilling / be) in a small village.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b5f"
-  },
-  "id" : "67fab6d59930102295343b5f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d360"
-  },
-  "title" : "Using Gerunds After 'than' in Comparisons",
-  "instructions" : "Completa con 'comparative + than + gerund'.",
-  "translation" : "Un baño es más relajante que estar de pie bajo la ducha.",
-  "theoryId" : "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.10.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343b5a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d360"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A bath is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more calming than standing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(calming / stand) under the shower.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b60"
-  },
-  "id" : "67fab6d59930102295343b60",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d360"
-  },
-  "title" : "Using Gerunds After 'than' in Comparisons",
-  "instructions" : "Completa con 'comparative + than + gerund'.",
-  "translation" : "Escribir historias es mejor que leerlas.",
-  "theoryId" : "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.10.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using Gerunds After 'than' in Comparisons",
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "translation": "Los trenes son más ruidosos que andar en bicicleta.",
+    "theoryId": "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Writing stories is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "better than reading" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(good / read) them.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b61"
-  },
-  "id" : "67fab6d59930102295343b61",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d360"
-  },
-  "title" : "Using Gerunds After 'than' in Comparisons",
-  "instructions" : "Completa con 'comparative + than + gerund'.",
-  "translation" : "Comer fruta es más fresco que comer dulces.",
-  "theoryId" : "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.10.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Eating fruit is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "fresher than eating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(fresh / eat) sweets.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b62"
-  },
-  "id" : "67fab6d59930102295343b62",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d360"
-  },
-  "title" : "Using Gerunds After 'than' in Comparisons",
-  "instructions" : "Completa con 'comparative + than + gerund'.",
-  "translation" : "Una noche en casa sería más tranquila que visitar un club nocturno.",
-  "theoryId" : "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.10.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A night in would be",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "quieter than visiting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(quiet / visit) a nightclub.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.10.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Trains are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "noisier than cycling"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(noisy / cycle).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Trains are noisier than cycling."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b5b"
+    },
+    "id": "67fab6d59930102295343b5b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d360"
+    },
+    "title": "Using Gerunds After 'than' in Comparisons",
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "translation": "Planificar con anticipación es más útil que sentirse perdido.",
+    "theoryId": "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.10.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Planning ahead is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more helpful than feeling"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(helpful / feel) lost.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Planning ahead is more helpful than feeling lost."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b5c"
+    },
+    "id": "67fab6d59930102295343b5c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d360"
+    },
+    "title": "Using Gerunds After 'than' in Comparisons",
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "translation": "¡Cocinar es más emocionante que pedir comida para llevar!",
+    "theoryId": "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.10.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Cooking meals is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more exciting than ordering"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(exciting / order) takeout!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Cooking meals is more exciting than ordering takeout!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b5d"
+    },
+    "id": "67fab6d59930102295343b5d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d360"
+    },
+    "title": "Using Gerunds After 'than' in Comparisons",
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "translation": "Unas vacaciones son más baratas que tener un yate.",
+    "theoryId": "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.10.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A holiday is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "cheaper than owning"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(cheap / own) a yacht.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "A holiday is cheaper than owning a yacht."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b5e"
+    },
+    "id": "67fab6d59930102295343b5e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d360"
+    },
+    "title": "Using Gerunds After 'than' in Comparisons",
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "translation": "Estar en París es más emocionante que estar en un pueblo pequeño.",
+    "theoryId": "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.10.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Being in Paris is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more thrilling than being"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(thrilling / be) in a small village.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Being in Paris is more thrilling than being in a small village."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b5f"
+    },
+    "id": "67fab6d59930102295343b5f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d360"
+    },
+    "title": "Using Gerunds After 'than' in Comparisons",
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "translation": "Un baño es más relajante que estar de pie bajo la ducha.",
+    "theoryId": "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.10.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A bath is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more calming than standing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(calming / stand) under the shower.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "A bath is more calming than standing under the shower."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b60"
+    },
+    "id": "67fab6d59930102295343b60",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d360"
+    },
+    "title": "Using Gerunds After 'than' in Comparisons",
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "translation": "Escribir historias es mejor que leerlas.",
+    "theoryId": "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.10.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Writing stories is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "better than reading"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(good / read) them.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Writing stories is better than reading them."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b61"
+    },
+    "id": "67fab6d59930102295343b61",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d360"
+    },
+    "title": "Using Gerunds After 'than' in Comparisons",
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "translation": "Comer fruta es más fresco que comer dulces.",
+    "theoryId": "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.10.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Eating fruit is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "fresher than eating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(fresh / eat) sweets.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Eating fruit is fresher than eating sweets."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b62"
+    },
+    "id": "67fab6d59930102295343b62",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d360"
+    },
+    "title": "Using Gerunds After 'than' in Comparisons",
+    "instructions": "Completa con 'comparative + than + gerund'.",
+    "translation": "Una noche en casa sería más tranquila que visitar un club nocturno.",
+    "theoryId": "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.10.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A night in would be",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "quieter than visiting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(quiet / visit) a nightclub.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "A night in would be quieter than visiting a nightclub."
+      ]
+    }
   }
-} ]
+]

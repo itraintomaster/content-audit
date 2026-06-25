@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534499a"
-  },
-  "id" : "67fab6d5993010229534499a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Los profesores preferirían tener menos reuniones.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534499a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The teachers",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would rather" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "have fewer meetings.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534499b"
-  },
-  "id" : "67fab6d5993010229534499b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Las chicas preferirían jugar al tenis.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534499a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The girls",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would rather" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "play tennis.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534499c"
-  },
-  "id" : "67fab6d5993010229534499c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Trajo una chaqueta en lugar de un abrigo.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Los profesores preferirían tener menos reuniones.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He brought a jacket",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "rather than" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "a coat.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534499d"
-  },
-  "id" : "67fab6d5993010229534499d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Por favor, usa WhatsApp en lugar de cartas.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Please use WhatsApp",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "rather than" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "letters.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534499e"
-  },
-  "id" : "67fab6d5993010229534499e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Ella preferiría tomar otro té.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would rather" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "have another tea.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534499f"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teachers",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would rather"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "have fewer meetings.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The teachers would rather have fewer meetings."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534499f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Los niños preferirían quedarse en la escuela.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534499b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The children",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would rather" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "stay at school.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449a0"
-  },
-  "id" : "67fab6d599301022953449a0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Están jugando al béisbol en lugar de al baloncesto.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534499b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They're playing baseball",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "rather than" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "basketball.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449a1"
-  },
-  "id" : "67fab6d599301022953449a1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Nadie preferiría ir a trabajar hoy.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Las chicas preferirían jugar al tenis.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Nobody",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would rather" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "go to work today.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449a2"
-  },
-  "id" : "67fab6d599301022953449a2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Hablé con Peter en lugar de con John.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I spoke to Peter",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "rather than" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "John.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449a3"
-  },
-  "id" : "67fab6d599301022953449a3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Él preferiría buscar otra casa.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would rather" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "look for another house.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449a4"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The girls",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would rather"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "play tennis.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The girls would rather play tennis."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953449a4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Los chicos necesitan libros en lugar de juegos.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534499c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The boys need books",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "rather than" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "games.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449a5"
-  },
-  "id" : "67fab6d599301022953449a5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Voy a llevar mi coche en lugar de un autobús.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534499c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm going to take my car",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "rather than" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "a bus.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449a6"
-  },
-  "id" : "67fab6d599301022953449a6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Preferiríamos no hacerlo.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Trajo una chaqueta en lugar de un abrigo.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would rather" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "not.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449a7"
-  },
-  "id" : "67fab6d599301022953449a7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Tom preferiría conducir su propio coche.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Tom",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would rather" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "drive his own car.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449a8"
-  },
-  "id" : "67fab6d599301022953449a8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Me gustaría zumo en lugar de agua.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'd like juice",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "rather than" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "water.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449a9"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He brought a jacket",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "rather than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "a coat.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He brought a jacket rather than a coat."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953449a9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Preferiríamos reunirnos antes.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534499d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would rather" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "meet sooner.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449aa"
-  },
-  "id" : "67fab6d599301022953449aa",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Preferiría ir al cine.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534499d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would rather" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "go to the cinema.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449ab"
-  },
-  "id" : "67fab6d599301022953449ab",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Ella compró un vestido nuevo en lugar de una falda nueva.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Por favor, usa WhatsApp en lugar de cartas.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She bought a new dress",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "rather than" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "a new skirt.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449ac"
-  },
-  "id" : "67fab6d599301022953449ac",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "Quieren pollo en lugar de cerdo.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They want chicken",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "rather than" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "pork.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449ad"
-  },
-  "id" : "67fab6d599301022953449ad",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49b"
-  },
-  "title" : "'Would Rather' vs. 'Rather Than'",
-  "instructions" : "Incluye 'would rather' o 'rather than' en la oración.",
-  "translation" : "A ella le gustaría el pequeño en lugar del grande.",
-  "theoryId" : "",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.08.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She'd like the small one",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "rather than" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the big one.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please use WhatsApp",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "rather than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "letters.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Please use WhatsApp rather than letters."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534499e"
+    },
+    "id": "67fab6d5993010229534499e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
+    },
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Ella preferiría tomar otro té.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would rather"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "have another tea.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She would rather have another tea."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534499f"
+    },
+    "id": "67fab6d5993010229534499f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
+    },
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Los niños preferirían quedarse en la escuela.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The children",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would rather"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "stay at school.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The children would rather stay at school."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449a0"
+    },
+    "id": "67fab6d599301022953449a0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
+    },
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Están jugando al béisbol en lugar de al baloncesto.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They're playing baseball",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "rather than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "basketball.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They're playing baseball rather than basketball."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449a1"
+    },
+    "id": "67fab6d599301022953449a1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
+    },
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Nadie preferiría ir a trabajar hoy.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Nobody",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would rather"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "go to work today.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Nobody would rather go to work today."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449a2"
+    },
+    "id": "67fab6d599301022953449a2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
+    },
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Hablé con Peter en lugar de con John.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I spoke to Peter",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "rather than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "John.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I spoke to Peter rather than John."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449a3"
+    },
+    "id": "67fab6d599301022953449a3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
+    },
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Él preferiría buscar otra casa.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would rather"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "look for another house.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He would rather look for another house."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449a4"
+    },
+    "id": "67fab6d599301022953449a4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
+    },
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Los chicos necesitan libros en lugar de juegos.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The boys need books",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "rather than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "games.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The boys need books rather than games."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449a5"
+    },
+    "id": "67fab6d599301022953449a5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
+    },
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Voy a llevar mi coche en lugar de un autobús.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm going to take my car",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "rather than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "a bus.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I'm going to take my car rather than a bus."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449a6"
+    },
+    "id": "67fab6d599301022953449a6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
+    },
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Preferiríamos no hacerlo.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would rather"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "not.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We would rather not."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449a7"
+    },
+    "id": "67fab6d599301022953449a7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
+    },
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Tom preferiría conducir su propio coche.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Tom",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would rather"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "drive his own car.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Tom would rather drive his own car."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449a8"
+    },
+    "id": "67fab6d599301022953449a8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
+    },
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Me gustaría zumo en lugar de agua.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'd like juice",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "rather than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "water.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I'd like juice rather than water."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449a9"
+    },
+    "id": "67fab6d599301022953449a9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
+    },
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Preferiríamos reunirnos antes.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would rather"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "meet sooner.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We would rather meet sooner."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449aa"
+    },
+    "id": "67fab6d599301022953449aa",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
+    },
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Preferiría ir al cine.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would rather"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "go to the cinema.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I would rather go to the cinema."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449ab"
+    },
+    "id": "67fab6d599301022953449ab",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
+    },
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Ella compró un vestido nuevo en lugar de una falda nueva.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She bought a new dress",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "rather than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "a new skirt.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She bought a new dress rather than a new skirt."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449ac"
+    },
+    "id": "67fab6d599301022953449ac",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
+    },
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "Quieren pollo en lugar de cerdo.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They want chicken",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "rather than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "pork.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They want chicken rather than pork."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449ad"
+    },
+    "id": "67fab6d599301022953449ad",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49b"
+    },
+    "title": "'Would Rather' vs. 'Rather Than'",
+    "instructions": "Incluye 'would rather' o 'rather than' en la oración.",
+    "translation": "A ella le gustaría el pequeño en lugar del grande.",
+    "theoryId": "",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.08.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She'd like the small one",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "rather than"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the big one.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She'd like the small one rather than the big one."
+      ]
+    }
   }
-} ]
+]

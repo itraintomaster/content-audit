@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433e4"
-  },
-  "id" : "67fab6d599301022953433e4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Nosotros tampoco.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433e4"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: He hasn't worked a lot. (we)\t\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Neither have we." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433e5"
-  },
-  "id" : "67fab6d599301022953433e5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Lucy también.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953433e4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: We've seen that film before. (Lucy)\t\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "So has Lucy." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433e6"
-  },
-  "id" : "67fab6d599301022953433e6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Tú tampoco.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Nosotros tampoco.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: He hasn't drunk anything. (you)\t\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Neither have you." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433e7"
-  },
-  "id" : "67fab6d599301022953433e7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Los niños también.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: I've tried scuba diving. (the kids)\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "So have the kids." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433e8"
-  },
-  "id" : "67fab6d599301022953433e8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Nosotros tampoco.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: The employees haven't seen this yet. (we)\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Neither have we." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433e9"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: He hasn't worked a lot. (we)\t\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither have we."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Neither have we."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953433e9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Yo también.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433e5"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: He's learned French. (I)\t\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "So have I." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433ea"
-  },
-  "id" : "67fab6d599301022953433ea",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Yo también.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953433e5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: She's bought some juice. (I)\t\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "So have I." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433eb"
-  },
-  "id" : "67fab6d599301022953433eb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Ellos tampoco.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Lucy también.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: We haven't spoken. (they)\t\t\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Neither have they." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433ec"
-  },
-  "id" : "67fab6d599301022953433ec",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Nosotros también.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: They've eaten everything. (we)\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "So have we." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433ed"
-  },
-  "id" : "67fab6d599301022953433ed",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Nosotros también.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: They've had dinner. (we)\t\t\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "So have we." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433ee"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: We've seen that film before. (Lucy)\t\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So has Lucy."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "So has Lucy."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953433ee",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Tú tampoco.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433e6"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: He hasn't had much to drink. (you)\t\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Neither have you." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433ef"
-  },
-  "id" : "67fab6d599301022953433ef",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Yo tampoco.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953433e6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: He haven't done anything. (I)\t\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Neither have I." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433f0"
-  },
-  "id" : "67fab6d599301022953433f0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Yo también.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Tú tampoco.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: He's been to Germany. (I)\t\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "So have I." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433f1"
-  },
-  "id" : "67fab6d599301022953433f1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Yo también.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: I've been to Berlin. (I)\t\t\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "So have I." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433f2"
-  },
-  "id" : "67fab6d599301022953433f2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Ella tampoco.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: She hasn't won the game. (she)\t\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Neither has she." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433f3"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: He hasn't drunk anything. (you)\t\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither have you."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Neither have you."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953433f3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Nosotros tampoco.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433e7"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: We haven't stayed here for long. (we)\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Neither have we." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433f4"
-  },
-  "id" : "67fab6d599301022953433f4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Yo tampoco.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953433e7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: I haven't had lunch. (I)\t\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Neither have I." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433f5"
-  },
-  "id" : "67fab6d599301022953433f5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Los estudiantes tampoco.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Los niños también.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: I haven't been to the beach. (the students)\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Neither have the students." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433f6"
-  },
-  "id" : "67fab6d599301022953433f6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Nosotros también.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: I've had a lot of tea. (we)\t\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "So have we." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953433f7"
-  },
-  "id" : "67fab6d599301022953433f7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2f3"
-  },
-  "title" : "Present Perfect: Using So and Neither in Short Answers",
-  "instructions" : "Crea respuestas cortas usando 'so' y 'neither'.",
-  "translation" : "Nosotros también.",
-  "theoryId" : "b1.05.Short_Answers_with_So_and_Neither_",
-  "topicName" : "Questions and short answers",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.05.18.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A: They've worked here for years. (we)\t\tB:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "So have we." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: I've tried scuba diving. (the kids)\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So have the kids."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "So have the kids."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433e8"
+    },
+    "id": "67fab6d599301022953433e8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
+    },
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Nosotros tampoco.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: The employees haven't seen this yet. (we)\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither have we."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Neither have we."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433e9"
+    },
+    "id": "67fab6d599301022953433e9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
+    },
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Yo también.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: He's learned French. (I)\t\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So have I."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "So have I."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433ea"
+    },
+    "id": "67fab6d599301022953433ea",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
+    },
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Yo también.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: She's bought some juice. (I)\t\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So have I."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "So have I."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433eb"
+    },
+    "id": "67fab6d599301022953433eb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
+    },
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Ellos tampoco.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: We haven't spoken. (they)\t\t\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither have they."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Neither have they."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433ec"
+    },
+    "id": "67fab6d599301022953433ec",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
+    },
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Nosotros también.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: They've eaten everything. (we)\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So have we."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "So have we."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433ed"
+    },
+    "id": "67fab6d599301022953433ed",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
+    },
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Nosotros también.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: They've had dinner. (we)\t\t\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So have we."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "So have we."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433ee"
+    },
+    "id": "67fab6d599301022953433ee",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
+    },
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Tú tampoco.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: He hasn't had much to drink. (you)\t\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither have you."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Neither have you."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433ef"
+    },
+    "id": "67fab6d599301022953433ef",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
+    },
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Yo tampoco.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: He haven't done anything. (I)\t\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither have I."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Neither have I."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433f0"
+    },
+    "id": "67fab6d599301022953433f0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
+    },
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Yo también.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: He's been to Germany. (I)\t\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So have I."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "So have I."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433f1"
+    },
+    "id": "67fab6d599301022953433f1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
+    },
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Yo también.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: I've been to Berlin. (I)\t\t\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So have I."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "So have I."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433f2"
+    },
+    "id": "67fab6d599301022953433f2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
+    },
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Ella tampoco.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: She hasn't won the game. (she)\t\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither has she."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Neither has she."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433f3"
+    },
+    "id": "67fab6d599301022953433f3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
+    },
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Nosotros tampoco.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: We haven't stayed here for long. (we)\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither have we."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Neither have we."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433f4"
+    },
+    "id": "67fab6d599301022953433f4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
+    },
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Yo tampoco.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: I haven't had lunch. (I)\t\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither have I."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Neither have I."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433f5"
+    },
+    "id": "67fab6d599301022953433f5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
+    },
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Los estudiantes tampoco.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: I haven't been to the beach. (the students)\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Neither have the students."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Neither have the students."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433f6"
+    },
+    "id": "67fab6d599301022953433f6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
+    },
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Nosotros también.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: I've had a lot of tea. (we)\t\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So have we."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "So have we."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953433f7"
+    },
+    "id": "67fab6d599301022953433f7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2f3"
+    },
+    "title": "Present Perfect: Using So and Neither in Short Answers",
+    "instructions": "Crea respuestas cortas usando 'so' y 'neither'.",
+    "translation": "Nosotros también.",
+    "theoryId": "b1.05.Short_Answers_with_So_and_Neither_",
+    "topicName": "Questions and short answers",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.05.18.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A: They've worked here for years. (we)\t\tB:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "So have we."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "So have we."
+      ]
+    }
   }
-} ]
+]

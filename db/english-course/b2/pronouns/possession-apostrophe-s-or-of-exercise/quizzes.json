@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344710"
-  },
-  "id" : "67fab6d59930102295344710",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "¿Cómo se llama la canción?",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344710"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the name of the song" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(the name that belongs to the song)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344711"
-  },
-  "id" : "67fab6d59930102295344711",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "¿Cuál es el trabajo de tu padre?",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344710",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "your father's job" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(job that belongs to your father)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344712"
-  },
-  "id" : "67fab6d59930102295344712",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "Calificaron las habilidades de los jugadores.",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "¿Cómo se llama la canción?",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They graded",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the players' skills" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(skills that belong to the players).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344713"
-  },
-  "id" : "67fab6d59930102295344713",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "¿Dónde están las llaves de mi padre?",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "my father's keys" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(keys that belong to my father)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344714"
-  },
-  "id" : "67fab6d59930102295344714",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "Pintó la puerta del coche.",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He painted",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the door of the car" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(the door that belongs to the car).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344715"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the name of the song"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the name that belongs to the song)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What is the name of the song?"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344715",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "¿Este es el auto de tu hermana?",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344711"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Is this",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "your sister's car" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(car that belongs to your sister)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344716"
-  },
-  "id" : "67fab6d59930102295344716",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "¿Esta es la comida del gato?",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344711",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Is this",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the cat's food" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(food that belongs to the cat)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344717"
-  },
-  "id" : "67fab6d59930102295344717",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "El estilo de su cabello es interesante.",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "¿Cuál es el trabajo de tu padre?",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The style of his hair" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(the style that belongs to his hair) is interesting.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344718"
-  },
-  "id" : "67fab6d59930102295344718",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "¿Has visto la billetera de John?",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Have you seen",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John's wallet" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(wallet that belongs to John)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344719"
-  },
-  "id" : "67fab6d59930102295344719",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "¿Cuál es el tema del ensayo?",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What's",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the topic of the essay" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(the topic that belongs to the essay)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534471a"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "your father's job"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(job that belongs to your father)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What is your father's job?"
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534471a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "¿Ese es el balcón de tu casa?",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344712"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Is that",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the balcony of your house" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(the balcony that belongs to your house)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534471b"
-  },
-  "id" : "67fab6d5993010229534471b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "Esos son los juguetes de los niños.",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344712",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Those are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the boys' toys" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(toys that belong to the boys).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534471c"
-  },
-  "id" : "67fab6d5993010229534471c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "Esta es la sombra del jardín.",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "Calificaron las habilidades de los jugadores.",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "This is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the shade of the garden" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(the shade that belongs to the garden).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534471d"
-  },
-  "id" : "67fab6d5993010229534471d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "Perdí la billetera de Edward.",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I lost",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Edward's wallet" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(wallet that belongs to Edward).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534471e"
-  },
-  "id" : "67fab6d5993010229534471e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "¿Cuál es la ubicación de la escuela?",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What's",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the location of the school" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(the location that belongs to the school)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534471f"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They graded",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the players' skills"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(skills that belong to the players).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They graded the players' skills."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534471f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "¿Podrías decirme el sabor del pastel?",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344713"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Could you tell me",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the flavour of the cake" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(the flavour that belongs to the cake)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344720"
-  },
-  "id" : "67fab6d59930102295344720",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "¿La tapa de la caja está abierta?",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344713",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the lid of the box" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(the lid that belongs to the box) open?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344721"
-  },
-  "id" : "67fab6d59930102295344721",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "Ella recogió los juguetes de los bebés.",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "¿Dónde están las llaves de mi padre?",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She gathered",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the babies' toys" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(toys that belong to the babies).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344722"
-  },
-  "id" : "67fab6d59930102295344722",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "¿Has estado en la granja de Michael?",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Have you been to",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Michael's farm" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(farm that belong to Michael)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344723"
-  },
-  "id" : "67fab6d59930102295344723",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d476"
-  },
-  "title" : "Possession: 'Apostrophe + s' or 'of' Exercise",
-  "instructions" : "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
-  "translation" : "Necesitamos la dirección de su casa.",
-  "theoryId" : "b2.11.Possessive_s_and_of",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.11.06.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We need",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the address of their house" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(the address that belongs to their house).",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "my father's keys"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(keys that belong to my father)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where are my father's keys?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344714"
+    },
+    "id": "67fab6d59930102295344714",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
+    },
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "Pintó la puerta del coche.",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He painted",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the door of the car"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the door that belongs to the car).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He painted the door of the car."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344715"
+    },
+    "id": "67fab6d59930102295344715",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
+    },
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "¿Este es el auto de tu hermana?",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Is this",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "your sister's car"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(car that belongs to your sister)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Is this your sister's car?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344716"
+    },
+    "id": "67fab6d59930102295344716",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
+    },
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "¿Esta es la comida del gato?",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Is this",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the cat's food"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(food that belongs to the cat)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Is this the cat's food?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344717"
+    },
+    "id": "67fab6d59930102295344717",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
+    },
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "El estilo de su cabello es interesante.",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The style of his hair"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the style that belongs to his hair) is interesting.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The style of his hair is interesting."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344718"
+    },
+    "id": "67fab6d59930102295344718",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
+    },
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "¿Has visto la billetera de John?",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have you seen",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John's wallet"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(wallet that belongs to John)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Have you seen John's wallet?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344719"
+    },
+    "id": "67fab6d59930102295344719",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
+    },
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "¿Cuál es el tema del ensayo?",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What's",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the topic of the essay"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the topic that belongs to the essay)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What's the topic of the essay?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534471a"
+    },
+    "id": "67fab6d5993010229534471a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
+    },
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "¿Ese es el balcón de tu casa?",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Is that",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the balcony of your house"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the balcony that belongs to your house)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Is that the balcony of your house?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534471b"
+    },
+    "id": "67fab6d5993010229534471b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
+    },
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "Esos son los juguetes de los niños.",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Those are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the boys' toys"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(toys that belong to the boys).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Those are the boys' toys."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534471c"
+    },
+    "id": "67fab6d5993010229534471c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
+    },
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "Esta es la sombra del jardín.",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the shade of the garden"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the shade that belongs to the garden).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This is the shade of the garden."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534471d"
+    },
+    "id": "67fab6d5993010229534471d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
+    },
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "Perdí la billetera de Edward.",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I lost",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Edward's wallet"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(wallet that belongs to Edward).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I lost Edward's wallet."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534471e"
+    },
+    "id": "67fab6d5993010229534471e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
+    },
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "¿Cuál es la ubicación de la escuela?",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What's",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the location of the school"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the location that belongs to the school)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What's the location of the school?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534471f"
+    },
+    "id": "67fab6d5993010229534471f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
+    },
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "¿Podrías decirme el sabor del pastel?",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you tell me",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the flavour of the cake"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the flavour that belongs to the cake)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Could you tell me the flavour of the cake?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344720"
+    },
+    "id": "67fab6d59930102295344720",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
+    },
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "¿La tapa de la caja está abierta?",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the lid of the box"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the lid that belongs to the box) open?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Is the lid of the box open?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344721"
+    },
+    "id": "67fab6d59930102295344721",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
+    },
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "Ella recogió los juguetes de los bebés.",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She gathered",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the babies' toys"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(toys that belong to the babies).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She gathered the babies' toys."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344722"
+    },
+    "id": "67fab6d59930102295344722",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
+    },
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "¿Has estado en la granja de Michael?",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Have you been to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Michael's farm"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(farm that belong to Michael)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Have you been to Michael's farm?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344723"
+    },
+    "id": "67fab6d59930102295344723",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d476"
+    },
+    "title": "Possession: 'Apostrophe + s' or 'of' Exercise",
+    "instructions": "Crea una oración posesiva. Usa 'of' o 'apostrophe + s'.",
+    "translation": "Necesitamos la dirección de su casa.",
+    "theoryId": "b2.11.Possessive_s_and_of",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.11.06.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We need",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the address of their house"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the address that belongs to their house).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We need the address of their house."
+      ]
+    }
   }
-} ]
+]

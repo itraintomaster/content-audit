@@ -1,511 +1,612 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343c2b"
-  },
-  "id" : "67fab6d59930102295343c2b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d36e"
-  },
-  "title" : "Linking Words: Because, As, Since...",
-  "instructions" : "Elige la palabra o expresión de enlace correcta.",
-  "translation" : "Visitamos el museo porque era gratis.",
-  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.10.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c2b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We visited the museum",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "as" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(as / on account of) it was free.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343c2c"
-  },
-  "id" : "67fab6d59930102295343c2c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d36e"
-  },
-  "title" : "Linking Words: Because, As, Since...",
-  "instructions" : "Elige la palabra o expresión de enlace correcta.",
-  "translation" : "Disfruto París por su historia.",
-  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.10.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343c2b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I enjoy Paris",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "because of" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(because / because of) its history.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343c2d"
-  },
-  "id" : "67fab6d59930102295343c2d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d36e"
-  },
-  "title" : "Linking Words: Because, As, Since...",
-  "instructions" : "Elige la palabra o expresión de enlace correcta.",
-  "translation" : "Empezó a hacer ejercicio porque no se sentía en forma.",
-  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.10.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Linking Words: Because, As, Since...",
+    "instructions": "Elige la palabra o expresión de enlace correcta.",
+    "translation": "Visitamos el museo porque era gratis.",
+    "theoryId": "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He started doing exercise",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "since" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(since / as a result of) he felt unfit.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343c2e"
-  },
-  "id" : "67fab6d59930102295343c2e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d36e"
-  },
-  "title" : "Linking Words: Because, As, Since...",
-  "instructions" : "Elige la palabra o expresión de enlace correcta.",
-  "translation" : "Llevaban una chaqueta porque hacía frío.",
-  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.10.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They wore a jacket",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "because" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(because / because of) it was cold.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343c2f"
-  },
-  "id" : "67fab6d59930102295343c2f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d36e"
-  },
-  "title" : "Linking Words: Because, As, Since...",
-  "instructions" : "Elige la palabra o expresión de enlace correcta.",
-  "translation" : "Dejó la empresa por culpa de sus colegas.",
-  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.10.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She left the company",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "on account of" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(as / on account of) her colleagues.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343c30"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.10.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We visited the museum",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "as"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(as / on account of) it was free.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We visited the museum as it was free."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343c30",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d36e"
-  },
-  "title" : "Linking Words: Because, As, Since...",
-  "instructions" : "Elige la palabra o expresión de enlace correcta.",
-  "translation" : "Comió chocolate porque tenía hambre.",
-  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.10.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c2c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He ate chocolate",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "because" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(because / because of) he was hungry.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343c31"
-  },
-  "id" : "67fab6d59930102295343c31",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d36e"
-  },
-  "title" : "Linking Words: Because, As, Since...",
-  "instructions" : "Elige la palabra o expresión de enlace correcta.",
-  "translation" : "Perdimos el tren como resultado del tráfico.",
-  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.10.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343c2c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We missed the train",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "as a result of" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(since / as a result of) the traffic.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343c32"
-  },
-  "id" : "67fab6d59930102295343c32",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d36e"
-  },
-  "title" : "Linking Words: Because, As, Since...",
-  "instructions" : "Elige la palabra o expresión de enlace correcta.",
-  "translation" : "Adora Italia por el vino.",
-  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.10.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Linking Words: Because, As, Since...",
+    "instructions": "Elige la palabra o expresión de enlace correcta.",
+    "translation": "Disfruto París por su historia.",
+    "theoryId": "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She adores Italy",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "on account of" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(as / on account of) the wine.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343c33"
-  },
-  "id" : "67fab6d59930102295343c33",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d36e"
-  },
-  "title" : "Linking Words: Because, As, Since...",
-  "instructions" : "Elige la palabra o expresión de enlace correcta.",
-  "translation" : "Los estudiantes guardaron silencio porque tenían un examen.",
-  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.10.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The students were silent",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "since" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(since / as a result of) they had an exam.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343c34"
-  },
-  "id" : "67fab6d59930102295343c34",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d36e"
-  },
-  "title" : "Linking Words: Because, As, Since...",
-  "instructions" : "Elige la palabra o expresión de enlace correcta.",
-  "translation" : "Nos quedamos adentro debido a la tormenta.",
-  "theoryId" : "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.16.10.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We stayed inside",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "because" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(because / because of) the storm.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.10.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I enjoy Paris",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "because of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(because / because of) its history.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I enjoy Paris because of its history."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c2d"
+    },
+    "id": "67fab6d59930102295343c2d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36e"
+    },
+    "title": "Linking Words: Because, As, Since...",
+    "instructions": "Elige la palabra o expresión de enlace correcta.",
+    "translation": "Empezó a hacer ejercicio porque no se sentía en forma.",
+    "theoryId": "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.10.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He started doing exercise",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "since"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(since / as a result of) he felt unfit.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He started doing exercise since he felt unfit."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c2e"
+    },
+    "id": "67fab6d59930102295343c2e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36e"
+    },
+    "title": "Linking Words: Because, As, Since...",
+    "instructions": "Elige la palabra o expresión de enlace correcta.",
+    "translation": "Llevaban una chaqueta porque hacía frío.",
+    "theoryId": "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.10.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They wore a jacket",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "because"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(because / because of) it was cold.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They wore a jacket because it was cold."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c2f"
+    },
+    "id": "67fab6d59930102295343c2f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36e"
+    },
+    "title": "Linking Words: Because, As, Since...",
+    "instructions": "Elige la palabra o expresión de enlace correcta.",
+    "translation": "Dejó la empresa por culpa de sus colegas.",
+    "theoryId": "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.10.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She left the company",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on account of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(as / on account of) her colleagues.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She left the company on account of her colleagues."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c30"
+    },
+    "id": "67fab6d59930102295343c30",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36e"
+    },
+    "title": "Linking Words: Because, As, Since...",
+    "instructions": "Elige la palabra o expresión de enlace correcta.",
+    "translation": "Comió chocolate porque tenía hambre.",
+    "theoryId": "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.10.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He ate chocolate",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "because"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(because / because of) he was hungry.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He ate chocolate because he was hungry."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c31"
+    },
+    "id": "67fab6d59930102295343c31",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36e"
+    },
+    "title": "Linking Words: Because, As, Since...",
+    "instructions": "Elige la palabra o expresión de enlace correcta.",
+    "translation": "Perdimos el tren como resultado del tráfico.",
+    "theoryId": "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.10.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We missed the train",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "as a result of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(since / as a result of) the traffic.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We missed the train as a result of the traffic."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c32"
+    },
+    "id": "67fab6d59930102295343c32",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36e"
+    },
+    "title": "Linking Words: Because, As, Since...",
+    "instructions": "Elige la palabra o expresión de enlace correcta.",
+    "translation": "Adora Italia por el vino.",
+    "theoryId": "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.10.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She adores Italy",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "on account of"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(as / on account of) the wine.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She adores Italy on account of the wine."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c33"
+    },
+    "id": "67fab6d59930102295343c33",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36e"
+    },
+    "title": "Linking Words: Because, As, Since...",
+    "instructions": "Elige la palabra o expresión de enlace correcta.",
+    "translation": "Los estudiantes guardaron silencio porque tenían un examen.",
+    "theoryId": "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.10.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The students were silent",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "since"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(since / as a result of) they had an exam.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The students were silent since they had an exam."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343c34"
+    },
+    "id": "67fab6d59930102295343c34",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d36e"
+    },
+    "title": "Linking Words: Because, As, Since...",
+    "instructions": "Elige la palabra o expresión de enlace correcta.",
+    "translation": "Nos quedamos adentro debido a la tormenta.",
+    "theoryId": "b1.16.Adverbs_for_Linking_Because_As_Since_Because_of_As_a_Result_of_On_Account_of",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.16.10.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We stayed inside",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "because"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(because / because of) the storm.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We stayed inside because the storm."
+      ]
+    }
   }
-} ]
+]

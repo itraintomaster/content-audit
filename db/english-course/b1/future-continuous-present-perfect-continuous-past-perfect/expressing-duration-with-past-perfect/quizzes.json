@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534327c"
-  },
-  "id" : "67fab6d5993010229534327c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "Cuando hablamos, no había llamado a mamá en semanas.",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534327c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When we spoke, I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "hadn't called mom for weeks" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / call / mom / weeks).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534327d"
-  },
-  "id" : "67fab6d5993010229534327d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "Habíamos vivido en Londres durante dos años cuando nació mi hermano.",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534327c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had lived in London for two years" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(live / in London / two years) when my brother was born.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534327e"
-  },
-  "id" : "67fab6d5993010229534327e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "Había practicado durante horas antes de tocar el piano.",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "Cuando hablamos, no había llamado a mamá en semanas.",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had practiced for hours" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(practice / hours) before he played the piano.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534327f"
-  },
-  "id" : "67fab6d5993010229534327f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "A las 10 en punto, llevaba una hora en el gimnasio.",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "At 10 o'clock, I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had been at the gym for an hour" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be / at the gym / an hour).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343280"
-  },
-  "id" : "67fab6d59930102295343280",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "Habían estado en el concierto durante cuatro horas cuando finalmente apareció el cantante.",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had been at the concert for four hours" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be / at the concert / four hours) when the singer finally appeared.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343281"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When we spoke, I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "hadn't called mom for weeks"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / call / mom / weeks).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When we spoke, I hadn't called mom for weeks."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343281",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "Cuando la conocimos, no había ido a la escuela desde julio.",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534327d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When we met her, she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "hadn't gone to school since July" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / go to school / July).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343282"
-  },
-  "id" : "67fab6d59930102295343282",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "Habías trabajado en esa tienda durante cinco años cuando te ascendieron.",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534327d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had worked at that store for five years" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(work / at that store / five years) when you got promoted.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343283"
-  },
-  "id" : "67fab6d59930102295343283",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "Cuando salió con Sarah, la conocía desde 2002.",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "Habíamos vivido en Londres durante dos años cuando nació mi hermano.",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When he went on a date with Sarah, he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had known her since 2002" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(know / her / 2002).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343284"
-  },
-  "id" : "67fab6d59930102295343284",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "Me había gustado el helado desde que era un bebé, pero decidí dejar de comerlo.",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had liked ice cream since I was a baby" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(like / ice cream / I was a baby) but I decided to stop eating it.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343285"
-  },
-  "id" : "67fab6d59930102295343285",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "A las 5 de la tarde, llevaba cinco horas despierta.",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "At 5 pm, she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had been awake for five hours" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be / awake / five hours).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343286"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had lived in London for two years"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(live / in London / two years) when my brother was born.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We had lived in London for two years when my brother was born."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343286",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "¡Había estudiado inglés durante un año antes de mudarme a los Estados Unidos!",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534327e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had studied English for a year" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(study / English / a year) before I moved to the USA!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343287"
-  },
-  "id" : "67fab6d59930102295343287",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "Habían alquilado ese apartamento durante diez años cuando compraron uno nuevo.",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534327e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had rented that apartment for ten years" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(rent / that apartment / ten years) when they bought a new one.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343288"
-  },
-  "id" : "67fab6d59930102295343288",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "Había caminado al trabajo durante semanas cuando compró un coche.",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "Había practicado durante horas antes de tocar el piano.",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had walked to work for weeks" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(walk / to work / weeks) when she bought a car.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343289"
-  },
-  "id" : "67fab6d59930102295343289",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "¡Había tenido este teléfono durante una semana cuando se rompió!",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had owned this phone for a week" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(own / this phone / a week) when it broke!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534328a"
-  },
-  "id" : "67fab6d5993010229534328a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "A las 8 de la tarde, llevaba 10 horas en la oficina.",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "At 8 pm, she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had been at the office for 10 hours" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be / at the office / 10 hours).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534328b"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had practiced for hours"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(practice / hours) before he played the piano.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He had practiced for hours before he played the piano."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534328b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "Llevábamos cinco horas en la fiesta cuando te vimos.",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534327f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had been at the party for five hours" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be / at the party / five hours) when we saw you.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534328c"
-  },
-  "id" : "67fab6d5993010229534328c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "Los niños habían estado en sus tabletas durante diez minutos cuando llegamos a casa.",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534327f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The children",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had been on their tablets for ten minutes" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be / on their tablets / ten minutes) when we got home.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534328d"
-  },
-  "id" : "67fab6d5993010229534328d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "A las 9 de la noche, ella había estado en el cine desde las 7 de la tarde.",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "A las 10 en punto, llevaba una hora en el gimnasio.",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "At 9 pm, she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had been at the cinema since 7 pm" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be / at the cinema / 7 pm).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534328e"
-  },
-  "id" : "67fab6d5993010229534328e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "Había entrenado durante semanas antes de ganar el partido.",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had trained for weeks" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(train / weeks) before he won the match.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534328f"
-  },
-  "id" : "67fab6d5993010229534328f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2e0"
-  },
-  "title" : "Expressing Duration with Past Perfect",
-  "instructions" : "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
-  "translation" : "Cuando llegaron, habían conducido durante 12 horas.",
-  "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.12.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When they arrived, they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had driven for 12 hours" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(drive / 12 hours).",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "At 10 o'clock, I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had been at the gym for an hour"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be / at the gym / an hour).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "At 10 o'clock, I had been at the gym for an hour."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343280"
+    },
+    "id": "67fab6d59930102295343280",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
+    },
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "Habían estado en el concierto durante cuatro horas cuando finalmente apareció el cantante.",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had been at the concert for four hours"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be / at the concert / four hours) when the singer finally appeared.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They had been at the concert for four hours when the singer finally appeared."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343281"
+    },
+    "id": "67fab6d59930102295343281",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
+    },
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "Cuando la conocimos, no había ido a la escuela desde julio.",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When we met her, she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "hadn't gone to school since July"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / go to school / July).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When we met her, she hadn't gone to school since July."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343282"
+    },
+    "id": "67fab6d59930102295343282",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
+    },
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "Habías trabajado en esa tienda durante cinco años cuando te ascendieron.",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had worked at that store for five years"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(work / at that store / five years) when you got promoted.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You had worked at that store for five years when you got promoted."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343283"
+    },
+    "id": "67fab6d59930102295343283",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
+    },
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "Cuando salió con Sarah, la conocía desde 2002.",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When he went on a date with Sarah, he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had known her since 2002"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(know / her / 2002).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When he went on a date with Sarah, he had known her since 2002."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343284"
+    },
+    "id": "67fab6d59930102295343284",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
+    },
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "Me había gustado el helado desde que era un bebé, pero decidí dejar de comerlo.",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had liked ice cream since I was a baby"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(like / ice cream / I was a baby) but I decided to stop eating it.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I had liked ice cream since I was a baby but I decided to stop eating it."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343285"
+    },
+    "id": "67fab6d59930102295343285",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
+    },
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "A las 5 de la tarde, llevaba cinco horas despierta.",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "At 5 pm, she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had been awake for five hours"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be / awake / five hours).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "At 5 pm, she had been awake for five hours."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343286"
+    },
+    "id": "67fab6d59930102295343286",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
+    },
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "¡Había estudiado inglés durante un año antes de mudarme a los Estados Unidos!",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had studied English for a year"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(study / English / a year) before I moved to the USA!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I had studied English for a year before I moved to the USA!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343287"
+    },
+    "id": "67fab6d59930102295343287",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
+    },
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "Habían alquilado ese apartamento durante diez años cuando compraron uno nuevo.",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had rented that apartment for ten years"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(rent / that apartment / ten years) when they bought a new one.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They had rented that apartment for ten years when they bought a new one."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343288"
+    },
+    "id": "67fab6d59930102295343288",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
+    },
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "Había caminado al trabajo durante semanas cuando compró un coche.",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had walked to work for weeks"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(walk / to work / weeks) when she bought a car.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She had walked to work for weeks when she bought a car."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343289"
+    },
+    "id": "67fab6d59930102295343289",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
+    },
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "¡Había tenido este teléfono durante una semana cuando se rompió!",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had owned this phone for a week"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(own / this phone / a week) when it broke!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I had owned this phone for a week when it broke!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534328a"
+    },
+    "id": "67fab6d5993010229534328a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
+    },
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "A las 8 de la tarde, llevaba 10 horas en la oficina.",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "At 8 pm, she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had been at the office for 10 hours"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be / at the office / 10 hours).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "At 8 pm, she had been at the office for 10 hours."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534328b"
+    },
+    "id": "67fab6d5993010229534328b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
+    },
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "Llevábamos cinco horas en la fiesta cuando te vimos.",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had been at the party for five hours"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be / at the party / five hours) when we saw you.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We had been at the party for five hours when we saw you."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534328c"
+    },
+    "id": "67fab6d5993010229534328c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
+    },
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "Los niños habían estado en sus tabletas durante diez minutos cuando llegamos a casa.",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The children",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had been on their tablets for ten minutes"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be / on their tablets / ten minutes) when we got home.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The children had been on their tablets for ten minutes when we got home."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534328d"
+    },
+    "id": "67fab6d5993010229534328d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
+    },
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "A las 9 de la noche, ella había estado en el cine desde las 7 de la tarde.",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "At 9 pm, she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had been at the cinema since 7 pm"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be / at the cinema / 7 pm).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "At 9 pm, she had been at the cinema since 7 pm."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534328e"
+    },
+    "id": "67fab6d5993010229534328e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
+    },
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "Había entrenado durante semanas antes de ganar el partido.",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had trained for weeks"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(train / weeks) before he won the match.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He had trained for weeks before he won the match."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534328f"
+    },
+    "id": "67fab6d5993010229534328f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2e0"
+    },
+    "title": "Expressing Duration with Past Perfect",
+    "instructions": "Responde las preguntas usando el 'past perfect'. Debes agregar 'since' o 'for'.",
+    "translation": "Cuando llegaron, habían conducido durante 12 horas.",
+    "theoryId": "b1.04.Past_Perfect_for_Time_Up_To_Then",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.12.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When they arrived, they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had driven for 12 hours"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drive / 12 hours).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When they arrived, they had driven for 12 hours."
+      ]
+    }
   }
-} ]
+]

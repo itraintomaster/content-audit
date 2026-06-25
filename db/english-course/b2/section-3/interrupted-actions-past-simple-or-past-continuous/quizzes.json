@@ -1,1181 +1,1462 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fd7"
-  },
-  "id" : "67fab6d59930102295343fd7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Estabas nadando cuando viste al tiburón.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fd7"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were swimming" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(swim) when you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "saw" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(see) the shark.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fd8"
-  },
-  "id" : "67fab6d59930102295343fd8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Estábamos almorzando cuando cerramos el trato.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343fd7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were eating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) lunch when we",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "finalized" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(finalize) the deal.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fd9"
-  },
-  "id" : "67fab6d59930102295343fd9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Estaba leyendo un libro cuando tocaron la puerta.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Estabas nadando cuando viste al tiburón.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was reading" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(read) a book when they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "knocked" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(knock) on the door.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fda"
-  },
-  "id" : "67fab6d59930102295343fda",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Ella estaba cocinando cuando llegué a su casa.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was cooking" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(cook) when I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "arrived" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(arrive) at her house.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fdb"
-  },
-  "id" : "67fab6d59930102295343fdb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Los pájaros estaban cantando cuando salió el sol.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The birds",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were singing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(sing) when the sun",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "came" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(come) out.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fdc"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were swimming"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(swim) when you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "saw"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(see) the shark.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You were swimming when you saw the shark."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343fdc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Cuando empezó la música, yo estaba parado en la barra.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fd8"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When the music",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "started" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(start), I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was standing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(stand) by the bar.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fdd"
-  },
-  "id" : "67fab6d59930102295343fdd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Estaba estudiando cuando enviaste el mensaje.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343fd8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was studying" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(study) when you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sent" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(send) the message.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fde"
-  },
-  "id" : "67fab6d59930102295343fde",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Estaba escribiendo una carta cuando escuchó al cartero.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Estábamos almorzando cuando cerramos el trato.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was writing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(write) a letter when she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "heard" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(hear) the postman.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fdf"
-  },
-  "id" : "67fab6d59930102295343fdf",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Cuando llamé, él estaba viendo la televisión.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "called" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(call), he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was watching" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(watch) television.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fe0"
-  },
-  "id" : "67fab6d59930102295343fe0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Cuando lo llamaron, estaba jugando videojuegos.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "called" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(call) him, he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was playing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(play) video games.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fe1"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were eating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) lunch when we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "finalized"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(finalize) the deal.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We were eating lunch when we finalized the deal."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343fe1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Cuando ella necesitaba ayuda, yo estaba preparando la cena.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fd9"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "needed" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(need) assistance, I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was preparing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(prepare) dinner.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fe2"
-  },
-  "id" : "67fab6d59930102295343fe2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Cuando rompió el jarrón, estábamos desayunando.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343fd9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "broke" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(break) the vase, we",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were eating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) breakfast.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fe3"
-  },
-  "id" : "67fab6d59930102295343fe3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Ella estaba montando en bicicleta cuando se cayó.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Estaba leyendo un libro cuando tocaron la puerta.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was riding" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(ride) her bike when she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "fell" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(fall) down.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fe4"
-  },
-  "id" : "67fab6d59930102295343fe4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Cuando vi a Peter, estaba caminando a casa.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "saw" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(see) Peter, I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was walking" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(walk) home.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fe5"
-  },
-  "id" : "67fab6d59930102295343fe5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Estaba dibujando cuando me enviaste un mensaje de texto.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was drawing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(draw) when you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "texted" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(text).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fe6"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was reading"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(read) a book when they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "knocked"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(knock) on the door.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He was reading a book when they knocked on the door."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343fe6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Cuando comenzó el espectáculo, él estaba bebiendo un refresco.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fda"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When the show",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "began" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(begin), he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was drinking" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(drink) a soda.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fe7"
-  },
-  "id" : "67fab6d59930102295343fe7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Cuando la camarera sirvió la comida, estábamos discutiendo el plan.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343fda",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When the waitress",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "served" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(serve) the food, we",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were discussing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(discuss) the plan.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fe8"
-  },
-  "id" : "67fab6d59930102295343fe8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Los perros ladraban fuerte cuando entré al jardín.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Ella estaba cocinando cuando llegué a su casa.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The dogs",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were barking" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(bark) loudly when I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "entered" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(enter) the garden.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fe9"
-  },
-  "id" : "67fab6d59930102295343fe9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Llegaba tarde cuando mi jefe me dio la mala noticia.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was running" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(run) late when my boss",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "gave" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(give) me the bad news.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343fea"
-  },
-  "id" : "67fab6d59930102295343fea",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d411"
-  },
-  "title" : "Interrupted Actions: Past Simple or Past Continuous?",
-  "instructions" : "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Estaban trabajando en la computadora cuando encontraron la solución.",
-  "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
-  "topicName" : "Section 3",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.03.05.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were working" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(work) on the computer when they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "found" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(find) the solution.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was cooking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(cook) when I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "arrived"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(arrive) at her house.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She was cooking when I arrived at her house."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fdb"
+    },
+    "id": "67fab6d59930102295343fdb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
+    },
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Los pájaros estaban cantando cuando salió el sol.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The birds",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were singing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(sing) when the sun",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "came"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(come) out.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The birds were singing when the sun came out."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fdc"
+    },
+    "id": "67fab6d59930102295343fdc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
+    },
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Cuando empezó la música, yo estaba parado en la barra.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When the music",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "started"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(start), I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was standing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(stand) by the bar.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When the music started, I was standing by the bar."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fdd"
+    },
+    "id": "67fab6d59930102295343fdd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
+    },
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Estaba estudiando cuando enviaste el mensaje.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was studying"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(study) when you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "sent"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(send) the message.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I was studying when you sent the message."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fde"
+    },
+    "id": "67fab6d59930102295343fde",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
+    },
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Estaba escribiendo una carta cuando escuchó al cartero.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was writing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(write) a letter when she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "heard"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(hear) the postman.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She was writing a letter when she heard the postman."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fdf"
+    },
+    "id": "67fab6d59930102295343fdf",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
+    },
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Cuando llamé, él estaba viendo la televisión.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "called"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(call), he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was watching"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(watch) television.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When I called, he was watching television."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fe0"
+    },
+    "id": "67fab6d59930102295343fe0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
+    },
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Cuando lo llamaron, estaba jugando videojuegos.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "called"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(call) him, he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was playing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(play) video games.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When they called him, he was playing video games."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fe1"
+    },
+    "id": "67fab6d59930102295343fe1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
+    },
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Cuando ella necesitaba ayuda, yo estaba preparando la cena.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "needed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(need) assistance, I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was preparing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(prepare) dinner.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When she needed assistance, I was preparing dinner."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fe2"
+    },
+    "id": "67fab6d59930102295343fe2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
+    },
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Cuando rompió el jarrón, estábamos desayunando.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "broke"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(break) the vase, we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were eating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) breakfast.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When he broke the vase, we were eating breakfast."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fe3"
+    },
+    "id": "67fab6d59930102295343fe3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
+    },
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Ella estaba montando en bicicleta cuando se cayó.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was riding"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(ride) her bike when she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "fell"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(fall) down.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She was riding her bike when she fell down."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fe4"
+    },
+    "id": "67fab6d59930102295343fe4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
+    },
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Cuando vi a Peter, estaba caminando a casa.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "saw"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(see) Peter, I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was walking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(walk) home.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When I saw Peter, I was walking home."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fe5"
+    },
+    "id": "67fab6d59930102295343fe5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
+    },
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Estaba dibujando cuando me enviaste un mensaje de texto.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was drawing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(draw) when you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "texted"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(text).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I was drawing when you texted."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fe6"
+    },
+    "id": "67fab6d59930102295343fe6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
+    },
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Cuando comenzó el espectáculo, él estaba bebiendo un refresco.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When the show",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "began"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(begin), he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was drinking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drink) a soda.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When the show began, he was drinking a soda."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fe7"
+    },
+    "id": "67fab6d59930102295343fe7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
+    },
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Cuando la camarera sirvió la comida, estábamos discutiendo el plan.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When the waitress",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "served"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(serve) the food, we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were discussing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(discuss) the plan.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When the waitress served the food, we were discussing the plan."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fe8"
+    },
+    "id": "67fab6d59930102295343fe8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
+    },
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Los perros ladraban fuerte cuando entré al jardín.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were barking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(bark) loudly when I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "entered"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(enter) the garden.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The dogs were barking loudly when I entered the garden."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fe9"
+    },
+    "id": "67fab6d59930102295343fe9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
+    },
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Llegaba tarde cuando mi jefe me dio la mala noticia.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was running"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(run) late when my boss",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "gave"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(give) me the bad news.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I was running late when my boss gave me the bad news."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343fea"
+    },
+    "id": "67fab6d59930102295343fea",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d411"
+    },
+    "title": "Interrupted Actions: Past Simple or Past Continuous?",
+    "instructions": "Conjuga los verbos en 'past simple' o 'past continuous'. Cada oración tiene uno de cada tiempo verbal.",
+    "translation": "Estaban trabajando en la computadora cuando encontraron la solución.",
+    "theoryId": "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
+    "topicName": "Section 3",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.03.05.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were working"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(work) on the computer when they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "found"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(find) the solution.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They were working on the computer when they found the solution."
+      ]
+    }
   }
-} ]
+]

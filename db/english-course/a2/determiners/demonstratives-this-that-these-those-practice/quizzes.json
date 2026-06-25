@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ac4"
-  },
-  "id" : "67fab6d59930102295342ac4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Él recogió estas bayas.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ac4"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He picked",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "these" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "berries (the berries are close to you).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ac5"
-  },
-  "id" : "67fab6d59930102295342ac5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Pasamos por esa tienda de allí esta mañana.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342ac4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We drove by",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "that" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "shop over there this morning.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ac6"
-  },
-  "id" : "67fab6d59930102295342ac6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Estos zapatos son elegantes.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "Él recogió estas bayas.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "These" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "shoes are stylish (I'm wearing the shoes).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ac7"
-  },
-  "id" : "67fab6d59930102295342ac7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Rompí este jarrón.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I shattered",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "this" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "vase (I have the vase).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ac8"
-  },
-  "id" : "67fab6d59930102295342ac8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Esta cuchara está limpia.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "This" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "spoon is clean (I'm holding the spoon).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ac9"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He picked",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "these"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "berries (the berries are close to you).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He picked these berries ."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342ac9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Él quiere recortar esos arbustos.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ac5"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He wants to trim",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "those" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "bushes (the bushes are at the end of the yard).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342aca"
-  },
-  "id" : "67fab6d59930102295342aca",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Esta naranja es jugosa.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342ac5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "This" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "orange is juicy (I'm eating the orange).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342acb"
-  },
-  "id" : "67fab6d59930102295342acb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "¿Michael nos dio estas servilletas?",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "Pasamos por esa tienda de allí esta mañana.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Did Michael hand us",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "these" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "napkins (I'm holding the napkins).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342acc"
-  },
-  "id" : "67fab6d59930102295342acc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Esa bicicleta es de Mary.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "That" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "bicycle is Mary's (the bicycle is twenty metres away).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342acd"
-  },
-  "id" : "67fab6d59930102295342acd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Ese chico es mi hermano.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "That" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "boy is my brother (the boy is on the other side of the room).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ace"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We drove by",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "shop over there this morning.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We drove by that shop over there this morning."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342ace",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Estos documentos son importantes.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ac6"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "These" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "documents are important (I'm reading the documents on my computer).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342acf"
-  },
-  "id" : "67fab6d59930102295342acf",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Ese vaso está lleno de agua.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342ac6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "That" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "glass is filled with water (the glass is close to you).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ad0"
-  },
-  "id" : "67fab6d59930102295342ad0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "¿Podrías ayudarme con estas cajas?",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "Estos zapatos son elegantes.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Could you assist me with",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "these" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "boxes? (I'm holding the boxes).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ad1"
-  },
-  "id" : "67fab6d59930102295342ad1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Este bolígrafo es mío.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "This" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "pen is mine (I'm holding the pen).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ad2"
-  },
-  "id" : "67fab6d59930102295342ad2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Ella quiere este sombrero.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She wants",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "this" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "hat (you're holding the hat).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ad3"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "These"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "shoes are stylish (I'm wearing the shoes).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "These shoes are stylish ."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342ad3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Preferiría esas gomas de borrar, por favor.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ac7"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'd prefer",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "those" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "erasers, please (the erasers are near you).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ad4"
-  },
-  "id" : "67fab6d59930102295342ad4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Ella estudió este gráfico.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342ac7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She studied",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "this" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "chart (we have the chart).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ad5"
-  },
-  "id" : "67fab6d59930102295342ad5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Esos robots pertenecen a Samuel.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "Rompí este jarrón.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Those" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "robots belong to Samuel (the robots are near you).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ad6"
-  },
-  "id" : "67fab6d59930102295342ad6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Esos padres viven a la vuelta de la esquina.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Those" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "parents live around the corner (the parents are across the road).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ad7"
-  },
-  "id" : "67fab6d59930102295342ad7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d264"
-  },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
-  "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Compré estas manzanas hoy.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.01.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I purchased",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "these" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "apples today (I'm close to the apples).",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I shattered",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "this"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "vase (I have the vase).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I shattered this vase ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ac8"
+    },
+    "id": "67fab6d59930102295342ac8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
+    },
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "Esta cuchara está limpia.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "This"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "spoon is clean (I'm holding the spoon).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This spoon is clean ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ac9"
+    },
+    "id": "67fab6d59930102295342ac9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
+    },
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "Él quiere recortar esos arbustos.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He wants to trim",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "those"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bushes (the bushes are at the end of the yard).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He wants to trim those bushes ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aca"
+    },
+    "id": "67fab6d59930102295342aca",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
+    },
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "Esta naranja es jugosa.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "This"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "orange is juicy (I'm eating the orange).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This orange is juicy ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342acb"
+    },
+    "id": "67fab6d59930102295342acb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
+    },
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "¿Michael nos dio estas servilletas?",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Did Michael hand us",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "these"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "napkins (I'm holding the napkins).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Did Michael hand us these napkins ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342acc"
+    },
+    "id": "67fab6d59930102295342acc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
+    },
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "Esa bicicleta es de Mary.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bicycle is Mary's (the bicycle is twenty metres away).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That bicycle is Mary's ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342acd"
+    },
+    "id": "67fab6d59930102295342acd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
+    },
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "Ese chico es mi hermano.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "boy is my brother (the boy is on the other side of the room).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That boy is my brother ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ace"
+    },
+    "id": "67fab6d59930102295342ace",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
+    },
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "Estos documentos son importantes.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "These"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "documents are important (I'm reading the documents on my computer).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "These documents are important ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342acf"
+    },
+    "id": "67fab6d59930102295342acf",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
+    },
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "Ese vaso está lleno de agua.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "glass is filled with water (the glass is close to you).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That glass is filled with water ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ad0"
+    },
+    "id": "67fab6d59930102295342ad0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
+    },
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "¿Podrías ayudarme con estas cajas?",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you assist me with",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "these"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "boxes? (I'm holding the boxes).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Could you assist me with these boxes? ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ad1"
+    },
+    "id": "67fab6d59930102295342ad1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
+    },
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "Este bolígrafo es mío.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "This"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "pen is mine (I'm holding the pen).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This pen is mine ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ad2"
+    },
+    "id": "67fab6d59930102295342ad2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
+    },
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "Ella quiere este sombrero.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She wants",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "this"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "hat (you're holding the hat).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She wants this hat ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ad3"
+    },
+    "id": "67fab6d59930102295342ad3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
+    },
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "Preferiría esas gomas de borrar, por favor.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'd prefer",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "those"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "erasers, please (the erasers are near you).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I'd prefer those erasers, please ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ad4"
+    },
+    "id": "67fab6d59930102295342ad4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
+    },
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "Ella estudió este gráfico.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She studied",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "this"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "chart (we have the chart).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She studied this chart ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ad5"
+    },
+    "id": "67fab6d59930102295342ad5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
+    },
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "Esos robots pertenecen a Samuel.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Those"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "robots belong to Samuel (the robots are near you).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Those robots belong to Samuel ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ad6"
+    },
+    "id": "67fab6d59930102295342ad6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
+    },
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "Esos padres viven a la vuelta de la esquina.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Those"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "parents live around the corner (the parents are across the road).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Those parents live around the corner ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ad7"
+    },
+    "id": "67fab6d59930102295342ad7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d264"
+    },
+    "title": "Demonstratives: This, That, These, Those - Practice",
+    "instructions": "Completa con 'this', 'that', 'these' o 'those'.",
+    "translation": "Compré estas manzanas hoy.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.01.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I purchased",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "these"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "apples today (I'm close to the apples).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I purchased these apples today ."
+      ]
+    }
   }
-} ]
+]

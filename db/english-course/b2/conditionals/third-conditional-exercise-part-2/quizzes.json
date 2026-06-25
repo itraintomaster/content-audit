@@ -1,1021 +1,1232 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447ec"
-  },
-  "id" : "67fab6d599301022953447ec",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si no hubiéramos estudiado juntos, habríamos suspendido el examen.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447ec"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We did study together and so we didn't fail the exam.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If we hadn't studied together, we would have failed the exam.|If we had not studied together, we would have failed the exam." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447ed"
-  },
-  "id" : "67fab6d599301022953447ed",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si hubiera perdido el vuelo, habría llegado tarde a las vacaciones.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953447ec",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I didn't miss the flight and so I wasn't late for the vacation.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If I had missed the flight, I would have been late for the vacation." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447ee"
-  },
-  "id" : "67fab6d599301022953447ee",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si ella hubiera ido a la fiesta, se habría divertido.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si no hubiéramos estudiado juntos, habríamos suspendido el examen.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She didn't go to the party and so she didn't have fun.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If she had gone to the party, she would have had fun." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447ef"
-  },
-  "id" : "67fab6d599301022953447ef",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si Peter se hubiera despertado más temprano, no habría perdido la lección.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Peter didn't wake up earlier and so he missed the lesson.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If Peter had woken up earlier, he wouldn't have missed the lesson.|If Peter had woken up earlier, he would not have missed the lesson." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447f0"
-  },
-  "id" : "67fab6d599301022953447f0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si hubieran comido comida sana, no se habrían sentido mal.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They didn't eat healthy food and so they felt ill.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If they had eaten healthy food, they wouldn't have felt ill.|If they had eaten healthy food, they would not have felt ill." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447f1"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We did study together and so we didn't fail the exam.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If we hadn't studied together, we would have failed the exam.|If we had not studied together, we would have failed the exam."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If we hadn't studied together, we would have failed the exam.",
+        "If we had not studied together, we would have failed the exam."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953447f1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si los estudiantes hubieran estudiado en la biblioteca, habrían estado más preparados.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447ed"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The students didn't study in the library and so they weren't more prepared.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If the students had studied in the library, they would have been more prepared." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447f2"
-  },
-  "id" : "67fab6d599301022953447f2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si hubiéramos bebido agua, no habríamos tenido tanta sed.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953447ed",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We didn't drink water and so we were so thirsty.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If we had drunk water, we wouldn't have been so thirsty.|If we had drunk water, we would not have been so thirsty." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447f3"
-  },
-  "id" : "67fab6d599301022953447f3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si ella no hubiera perdido su trabajo, no habría buscado uno nuevo.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si hubiera perdido el vuelo, habría llegado tarde a las vacaciones.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She lost her job and so she looked for a new one.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If she hadn't lost her job, she wouldn't have looked for a new one.|If she had not lost her job, she wouldn't have looked for a new one." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447f4"
-  },
-  "id" : "67fab6d599301022953447f4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si no hubiéramos viajado a Italia, no habríamos aprendido italiano.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We traveled to Italy and so we learned Italian.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If we hadn't traveled to Italy, we wouldn't have learned Italian.|If we had not traveled to Italy, we would not have learned Italian." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447f5"
-  },
-  "id" : "67fab6d599301022953447f5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si él hubiera corrido más rápido, habría ganado el partido.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He didn't run faster and so he didn't win the game.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If he had run faster, he would have won the game." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447f6"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I didn't miss the flight and so I wasn't late for the vacation.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If I had missed the flight, I would have been late for the vacation."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If I had missed the flight, I would have been late for the vacation."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953447f6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si él hubiera salido, se lo habría pasado bien.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447ee"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He didn't go out and so he didn't have a good time.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If he had gone out, he would have had a good time." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447f7"
-  },
-  "id" : "67fab6d599301022953447f7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si ella hubiera aplicado a tiempo, habría conseguido la beca.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953447ee",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She didn't apply on time and so she didn't get the grant.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If she had applied on time, she would have got the grant." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447f8"
-  },
-  "id" : "67fab6d599301022953447f8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si los chicos no hubieran jugado videojuegos, habrían terminado sus deberes.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si ella hubiera ido a la fiesta, se habría divertido.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The boys played videogames and so they didn't finish their homework.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If the boys hadn't played videogames, they would have finished their homework.|If the boys had not played videogames, they would have finished their homework." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447f9"
-  },
-  "id" : "67fab6d599301022953447f9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si no hubiéramos hablado mucho, habríamos cogido el tren.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We talked a lot and so we didn't catch the train.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If we hadn't talked a lot, we would have caught the train.|If we had not talked a lot, we would have caught the train." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447fa"
-  },
-  "id" : "67fab6d599301022953447fa",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si hubieras tomado un Uber, habrías llegado antes de que empezara el concierto.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You didn't get an Uber and so you didn't arrive before the concert started.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If you had got an Uber, you would have arrived before the concert started." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447fb"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She didn't go to the party and so she didn't have fun.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If she had gone to the party, she would have had fun."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If she had gone to the party, she would have had fun."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953447fb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si nos hubieran visitado la semana pasada, habríamos visto una película juntos.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447ef"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They didn't visit us last week and so we didn't watch a movie together.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If they had visited us last week, we would have watched a movie together." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447fc"
-  },
-  "id" : "67fab6d599301022953447fc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si Peter le hubiera pedido a Rose su número de teléfono, ella lo habría llamado.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953447ef",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Peter didn't ask Rose for her phone number and so she didn't call him.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If Peter had asked Rose for her phone number, she would have called him." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447fd"
-  },
-  "id" : "67fab6d599301022953447fd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si el helado hubiera estado rico, lo habríamos comprado.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si Peter se hubiera despertado más temprano, no habría perdido la lección.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The ice cream wasn't tasty so we didn't buy it.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If the ice cream had been tasty, we would have bought it." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447fe"
-  },
-  "id" : "67fab6d599301022953447fe",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si ella no hubiera hecho una mala acción, habría obtenido el premio.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She did a bad action and so she didn't get the award.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If she hadn't done a bad action, she would have got the award.|If she had not done a bad action, she would have got the award." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953447ff"
-  },
-  "id" : "67fab6d599301022953447ff",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d482"
-  },
-  "title" : "Third Conditional Exercise Part 2",
-  "instructions" : "Escribe oraciones usando el 'third conditional'.",
-  "translation" : "Si no me hubiera olvidado de apagar la estufa, la comida habría sido comestible.",
-  "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.09.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I forgot to turn off the stove and so the food wasn't eatable.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If I hadn't forgotten to turn off the stove, the food would have been eatable.|If I had not forgotten to turn off the stove, the food would have been eatable." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Peter didn't wake up earlier and so he missed the lesson.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If Peter had woken up earlier, he wouldn't have missed the lesson.|If Peter had woken up earlier, he would not have missed the lesson."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If Peter had woken up earlier, he wouldn't have missed the lesson.",
+        "If Peter had woken up earlier, he would not have missed the lesson."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447f0"
+    },
+    "id": "67fab6d599301022953447f0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
+    },
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si hubieran comido comida sana, no se habrían sentido mal.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They didn't eat healthy food and so they felt ill.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If they had eaten healthy food, they wouldn't have felt ill.|If they had eaten healthy food, they would not have felt ill."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If they had eaten healthy food, they wouldn't have felt ill.",
+        "If they had eaten healthy food, they would not have felt ill."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447f1"
+    },
+    "id": "67fab6d599301022953447f1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
+    },
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si los estudiantes hubieran estudiado en la biblioteca, habrían estado más preparados.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The students didn't study in the library and so they weren't more prepared.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If the students had studied in the library, they would have been more prepared."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If the students had studied in the library, they would have been more prepared."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447f2"
+    },
+    "id": "67fab6d599301022953447f2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
+    },
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si hubiéramos bebido agua, no habríamos tenido tanta sed.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We didn't drink water and so we were so thirsty.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If we had drunk water, we wouldn't have been so thirsty.|If we had drunk water, we would not have been so thirsty."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If we had drunk water, we wouldn't have been so thirsty.",
+        "If we had drunk water, we would not have been so thirsty."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447f3"
+    },
+    "id": "67fab6d599301022953447f3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
+    },
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si ella no hubiera perdido su trabajo, no habría buscado uno nuevo.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She lost her job and so she looked for a new one.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If she hadn't lost her job, she wouldn't have looked for a new one.|If she had not lost her job, she wouldn't have looked for a new one."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If she hadn't lost her job, she wouldn't have looked for a new one.",
+        "If she had not lost her job, she wouldn't have looked for a new one."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447f4"
+    },
+    "id": "67fab6d599301022953447f4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
+    },
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si no hubiéramos viajado a Italia, no habríamos aprendido italiano.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We traveled to Italy and so we learned Italian.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If we hadn't traveled to Italy, we wouldn't have learned Italian.|If we had not traveled to Italy, we would not have learned Italian."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If we hadn't traveled to Italy, we wouldn't have learned Italian.",
+        "If we had not traveled to Italy, we would not have learned Italian."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447f5"
+    },
+    "id": "67fab6d599301022953447f5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
+    },
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si él hubiera corrido más rápido, habría ganado el partido.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He didn't run faster and so he didn't win the game.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If he had run faster, he would have won the game."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If he had run faster, he would have won the game."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447f6"
+    },
+    "id": "67fab6d599301022953447f6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
+    },
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si él hubiera salido, se lo habría pasado bien.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He didn't go out and so he didn't have a good time.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If he had gone out, he would have had a good time."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If he had gone out, he would have had a good time."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447f7"
+    },
+    "id": "67fab6d599301022953447f7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
+    },
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si ella hubiera aplicado a tiempo, habría conseguido la beca.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She didn't apply on time and so she didn't get the grant.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If she had applied on time, she would have got the grant."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If she had applied on time, she would have got the grant."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447f8"
+    },
+    "id": "67fab6d599301022953447f8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
+    },
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si los chicos no hubieran jugado videojuegos, habrían terminado sus deberes.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The boys played videogames and so they didn't finish their homework.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If the boys hadn't played videogames, they would have finished their homework.|If the boys had not played videogames, they would have finished their homework."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If the boys hadn't played videogames, they would have finished their homework.",
+        "If the boys had not played videogames, they would have finished their homework."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447f9"
+    },
+    "id": "67fab6d599301022953447f9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
+    },
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si no hubiéramos hablado mucho, habríamos cogido el tren.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We talked a lot and so we didn't catch the train.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If we hadn't talked a lot, we would have caught the train.|If we had not talked a lot, we would have caught the train."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If we hadn't talked a lot, we would have caught the train.",
+        "If we had not talked a lot, we would have caught the train."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447fa"
+    },
+    "id": "67fab6d599301022953447fa",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
+    },
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si hubieras tomado un Uber, habrías llegado antes de que empezara el concierto.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You didn't get an Uber and so you didn't arrive before the concert started.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If you had got an Uber, you would have arrived before the concert started."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If you had got an Uber, you would have arrived before the concert started."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447fb"
+    },
+    "id": "67fab6d599301022953447fb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
+    },
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si nos hubieran visitado la semana pasada, habríamos visto una película juntos.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They didn't visit us last week and so we didn't watch a movie together.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If they had visited us last week, we would have watched a movie together."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If they had visited us last week, we would have watched a movie together."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447fc"
+    },
+    "id": "67fab6d599301022953447fc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
+    },
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si Peter le hubiera pedido a Rose su número de teléfono, ella lo habría llamado.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Peter didn't ask Rose for her phone number and so she didn't call him.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If Peter had asked Rose for her phone number, she would have called him."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If Peter had asked Rose for her phone number, she would have called him."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447fd"
+    },
+    "id": "67fab6d599301022953447fd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
+    },
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si el helado hubiera estado rico, lo habríamos comprado.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The ice cream wasn't tasty so we didn't buy it.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If the ice cream had been tasty, we would have bought it."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If the ice cream had been tasty, we would have bought it."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447fe"
+    },
+    "id": "67fab6d599301022953447fe",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
+    },
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si ella no hubiera hecho una mala acción, habría obtenido el premio.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She did a bad action and so she didn't get the award.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If she hadn't done a bad action, she would have got the award.|If she had not done a bad action, she would have got the award."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If she hadn't done a bad action, she would have got the award.",
+        "If she had not done a bad action, she would have got the award."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953447ff"
+    },
+    "id": "67fab6d599301022953447ff",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d482"
+    },
+    "title": "Third Conditional Exercise Part 2",
+    "instructions": "Escribe oraciones usando el 'third conditional'.",
+    "translation": "Si no me hubiera olvidado de apagar la estufa, la comida habría sido comestible.",
+    "theoryId": "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.09.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I forgot to turn off the stove and so the food wasn't eatable.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "If I hadn't forgotten to turn off the stove, the food would have been eatable.|If I had not forgotten to turn off the stove, the food would have been eatable."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If I hadn't forgotten to turn off the stove, the food would have been eatable.",
+        "If I had not forgotten to turn off the stove, the food would have been eatable."
+      ]
+    }
   }
-} ]
+]

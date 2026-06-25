@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534444b"
-  },
-  "id" : "67fab6d5993010229534444b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que el profesor estaba dando una conferencia a los estudiantes ese día.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534444b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The teacher is lecturing the students today.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that the teacher was lecturing the students that day." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534444c"
-  },
-  "id" : "67fab6d5993010229534444c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que los perros estaban ladrando entonces.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534444b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The dogs are barking now.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that the dogs were barking then." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534444d"
-  },
-  "id" : "67fab6d5993010229534444d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que estaba escuchando entonces.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que el profesor estaba dando una conferencia a los estudiantes ese día.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm listening now.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that he was listening then." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534444e"
-  },
-  "id" : "67fab6d5993010229534444e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que ella había vendido su coche el año anterior.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She sold her car last year.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that she had sold her car the year before." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534444f"
-  },
-  "id" : "67fab6d5993010229534444f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que ella le había enviado un correo electrónico a su padre el día anterior.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She emailed her father yesterday.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that she had emailed her father the day before." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344450"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teacher is lecturing the students today.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that the teacher was lecturing the students that day."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that the teacher was lecturing the students that day."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344450",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que los jugadores habían ganado el partido la semana anterior.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534444c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The players won the game last week.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that the players had won the game the week before." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344451"
-  },
-  "id" : "67fab6d59930102295344451",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que los había conocido el año anterior.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534444c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He knew them last year.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that he had known them the year before." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344452"
-  },
-  "id" : "67fab6d59930102295344452",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que los niños iban a estar cansados al día siguiente.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que los perros estaban ladrando entonces.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The children are going to be tired tomorrow.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that the children were going to be tired the next day." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344453"
-  },
-  "id" : "67fab6d59930102295344453",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que habían visitado Roma el mes anterior.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They visited Rome last month.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that they had visited Rome the month before." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344454"
-  },
-  "id" : "67fab6d59930102295344454",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que Michael estaba almorzando en casa ese día.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Michael is having lunch at home today.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that Michael was having lunch at home that day." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344455"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs are barking now.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that the dogs were barking then."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that the dogs were barking then."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344455",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que Sarah iba a salir a correr al día siguiente.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534444d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Sarah is going to go jogging tomorrow.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that Sarah was going to go jogging the next day." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344456"
-  },
-  "id" : "67fab6d59930102295344456",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que se había comido un sándwich el día anterior.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534444d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He ate a sandwich yesterday.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that he had eaten a sandwich the day before." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344457"
-  },
-  "id" : "67fab6d59930102295344457",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que ella había estado corriendo el día anterior.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que estaba escuchando entonces.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She was running yesterday.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that she had been running the day before." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344458"
-  },
-  "id" : "67fab6d59930102295344458",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que los gatos estaban en el jardín entonces.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The cats are in the garden now.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that the cats were in the garden then." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344459"
-  },
-  "id" : "67fab6d59930102295344459",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que Tommy había leído un libro la noche anterior.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Tommy read a book last night.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that Tommy had read a book the night before." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534445a"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm listening now.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that he was listening then."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that he was listening then."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534445a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que Jane la había visto el mes anterior.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534444e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Jane saw her last month.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that Jane had seen her the month before." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534445b"
-  },
-  "id" : "67fab6d5993010229534445b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que estaba jugando al fútbol ese día.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534444e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He is playing football today.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that he was playing football that day." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534445c"
-  },
-  "id" : "67fab6d5993010229534445c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que estaría en la escuela al día siguiente.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que ella había vendido su coche el año anterior.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'll be at school tomorrow.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that he would be at school the next day." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534445d"
-  },
-  "id" : "67fab6d5993010229534445d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que cantarían al día siguiente.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They will sing tomorrow.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that they would sing the next day." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534445e"
-  },
-  "id" : "67fab6d5993010229534445e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d44f"
-  },
-  "title" : "Reported Speech and Time Expressions Practice",
-  "instructions" : "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
-  "translation" : "Peter dijo que habían bailado la noche anterior.",
-  "theoryId" : "b2.08.Reporting_Verbs_with_that",
-  "topicName" : "Reported speech",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.08.08.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They danced last night.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that they had danced the night before." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She sold her car last year.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that she had sold her car the year before."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that she had sold her car the year before."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534444f"
+    },
+    "id": "67fab6d5993010229534444f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
+    },
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que ella le había enviado un correo electrónico a su padre el día anterior.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She emailed her father yesterday.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that she had emailed her father the day before."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that she had emailed her father the day before."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344450"
+    },
+    "id": "67fab6d59930102295344450",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
+    },
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que los jugadores habían ganado el partido la semana anterior.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The players won the game last week.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that the players had won the game the week before."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that the players had won the game the week before."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344451"
+    },
+    "id": "67fab6d59930102295344451",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
+    },
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que los había conocido el año anterior.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He knew them last year.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that he had known them the year before."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that he had known them the year before."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344452"
+    },
+    "id": "67fab6d59930102295344452",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
+    },
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que los niños iban a estar cansados al día siguiente.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The children are going to be tired tomorrow.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that the children were going to be tired the next day."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that the children were going to be tired the next day."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344453"
+    },
+    "id": "67fab6d59930102295344453",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
+    },
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que habían visitado Roma el mes anterior.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They visited Rome last month.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that they had visited Rome the month before."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that they had visited Rome the month before."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344454"
+    },
+    "id": "67fab6d59930102295344454",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
+    },
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que Michael estaba almorzando en casa ese día.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Michael is having lunch at home today.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that Michael was having lunch at home that day."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that Michael was having lunch at home that day."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344455"
+    },
+    "id": "67fab6d59930102295344455",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
+    },
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que Sarah iba a salir a correr al día siguiente.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Sarah is going to go jogging tomorrow.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that Sarah was going to go jogging the next day."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that Sarah was going to go jogging the next day."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344456"
+    },
+    "id": "67fab6d59930102295344456",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
+    },
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que se había comido un sándwich el día anterior.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He ate a sandwich yesterday.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that he had eaten a sandwich the day before."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that he had eaten a sandwich the day before."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344457"
+    },
+    "id": "67fab6d59930102295344457",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
+    },
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que ella había estado corriendo el día anterior.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She was running yesterday.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that she had been running the day before."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that she had been running the day before."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344458"
+    },
+    "id": "67fab6d59930102295344458",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
+    },
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que los gatos estaban en el jardín entonces.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cats are in the garden now.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that the cats were in the garden then."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that the cats were in the garden then."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344459"
+    },
+    "id": "67fab6d59930102295344459",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
+    },
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que Tommy había leído un libro la noche anterior.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Tommy read a book last night.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that Tommy had read a book the night before."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that Tommy had read a book the night before."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534445a"
+    },
+    "id": "67fab6d5993010229534445a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
+    },
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que Jane la había visto el mes anterior.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Jane saw her last month.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that Jane had seen her the month before."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that Jane had seen her the month before."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534445b"
+    },
+    "id": "67fab6d5993010229534445b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
+    },
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que estaba jugando al fútbol ese día.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is playing football today.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that he was playing football that day."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that he was playing football that day."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534445c"
+    },
+    "id": "67fab6d5993010229534445c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
+    },
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que estaría en la escuela al día siguiente.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'll be at school tomorrow.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that he would be at school the next day."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that he would be at school the next day."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534445d"
+    },
+    "id": "67fab6d5993010229534445d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
+    },
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que cantarían al día siguiente.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They will sing tomorrow.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that they would sing the next day."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that they would sing the next day."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534445e"
+    },
+    "id": "67fab6d5993010229534445e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d44f"
+    },
+    "title": "Reported Speech and Time Expressions Practice",
+    "instructions": "Transforma a 'reported speech' y cambia las 'time expressions' como lo harías en un examen. Comienza con 'Peter said that'.",
+    "translation": "Peter dijo que habían bailado la noche anterior.",
+    "theoryId": "b2.08.Reporting_Verbs_with_that",
+    "topicName": "Reported speech",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.08.08.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They danced last night.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter said that they had danced the night before."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter said that they had danced the night before."
+      ]
+    }
   }
-} ]
+]

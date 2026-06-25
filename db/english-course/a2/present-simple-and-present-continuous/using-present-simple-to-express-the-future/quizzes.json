@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342677"
-  },
-  "id" : "67fab6d59930102295342677",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "El autobús sale mañana.",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342677"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The bus",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "departs" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(depart) tomorrow.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342678"
-  },
-  "id" : "67fab6d59930102295342678",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "Ellos toman vacaciones en junio.",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342677",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "take" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(take) vacations in June.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342679"
-  },
-  "id" : "67fab6d59930102295342679",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "El partido comienza a las 9 p.m.",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "El autobús sale mañana.",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The match",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "begins" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(begin) at 9pm.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534267a"
-  },
-  "id" : "67fab6d5993010229534267a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "Me iré a dormir cuando haya silencio.",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'll go to sleep when it",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "becomes" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(become) quiet.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534267b"
-  },
-  "id" : "67fab6d5993010229534267b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "Veremos una película cuando la cena esté preparada.",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We'll watch a film when the dinner",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) prepared.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534267c"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The bus",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "departs"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(depart) tomorrow.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The bus departs tomorrow."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534267c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "Lavaremos el coche cuando esté limpio.",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342678"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We'll wash the car when it",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) clean.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534267d"
-  },
-  "id" : "67fab6d5993010229534267d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "Mi hijo quiere ser ingeniero cuando madure.",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342678",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "My son wants to be an engineer when he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "matures" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(mature) up.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534267e"
-  },
-  "id" : "67fab6d5993010229534267e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "La lección comienza mañana.",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "Ellos toman vacaciones en junio.",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The lesson",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "begins" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(begin) tomorrow.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534267f"
-  },
-  "id" : "67fab6d5993010229534267f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "Los bebés dormirán cuando tengan sueño.",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The babies will sleep when they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) sleepy.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342680"
-  },
-  "id" : "67fab6d59930102295342680",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "La tienda abre a las 6 a.m.",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The store",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "opens" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(open) at 6am.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342681"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "take"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(take) vacations in June.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They take vacations in June."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342681",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "¿Cuándo partes para Roma?",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342679"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do you depart" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / depart) to Rome?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342682"
-  },
-  "id" : "67fab6d59930102295342682",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "Él visitará cuando desee venir.",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342679",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He'll visit when he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "wishes" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(wish) to come.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342683"
-  },
-  "id" : "67fab6d59930102295342683",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "Los maestros enseñarán cuando tengan alumnos.",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "El partido comienza a las 9 p.m.",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The teachers will teach when they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "have" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(have) pupils.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342684"
-  },
-  "id" : "67fab6d59930102295342684",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "Robert estará triste cuando vea esta comedia.",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Robert will be sad when he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "watches" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(watch) this comedy.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342685"
-  },
-  "id" : "67fab6d59930102295342685",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "Te enviaremos un mensaje de texto cuando lleguemos al hotel.",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We'll text you when we",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "arrive" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(arrive) to the hotel.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342686"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The match",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "begins"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(begin) at 9pm.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The match begins at 9pm."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342686",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "¿Cuándo termina la reunión?",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534267a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does the meeting end" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(the meeting / end)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342687"
-  },
-  "id" : "67fab6d59930102295342687",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "¿A qué hora comienza el concierto?",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534267a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What time",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does the concert start" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(the concert / start)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342688"
-  },
-  "id" : "67fab6d59930102295342688",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "Te llevaré a casa cuando te vayas.",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "Me iré a dormir cuando haya silencio.",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'll take you home when you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "depart" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(depart).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342689"
-  },
-  "id" : "67fab6d59930102295342689",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "Los bancos abren a las 10 a.m.",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The banks",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "open" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(open) at 10am.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534268a"
-  },
-  "id" : "67fab6d5993010229534268a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d224"
-  },
-  "title" : "Using Present Simple to Express the Future",
-  "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "El centro comercial cierra a las 9 p.m.",
-  "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
-  "topicName" : "Present simple and Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.01.11.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The mall",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "closes" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(close) at 9pm",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'll go to sleep when it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "becomes"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(become) quiet.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I'll go to sleep when it becomes quiet."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534267b"
+    },
+    "id": "67fab6d5993010229534267b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
+    },
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "Veremos una película cuando la cena esté preparada.",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We'll watch a film when the dinner",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) prepared.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We'll watch a film when the dinner is prepared."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534267c"
+    },
+    "id": "67fab6d5993010229534267c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
+    },
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "Lavaremos el coche cuando esté limpio.",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We'll wash the car when it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) clean.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We'll wash the car when it is clean."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534267d"
+    },
+    "id": "67fab6d5993010229534267d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
+    },
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "Mi hijo quiere ser ingeniero cuando madure.",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My son wants to be an engineer when he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "matures"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(mature) up.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "My son wants to be an engineer when he matures up."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534267e"
+    },
+    "id": "67fab6d5993010229534267e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
+    },
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "La lección comienza mañana.",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The lesson",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "begins"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(begin) tomorrow.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The lesson begins tomorrow."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534267f"
+    },
+    "id": "67fab6d5993010229534267f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
+    },
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "Los bebés dormirán cuando tengan sueño.",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The babies will sleep when they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) sleepy.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The babies will sleep when they are sleepy."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342680"
+    },
+    "id": "67fab6d59930102295342680",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
+    },
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "La tienda abre a las 6 a.m.",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The store",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "opens"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(open) at 6am.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The store opens at 6am."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342681"
+    },
+    "id": "67fab6d59930102295342681",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
+    },
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "¿Cuándo partes para Roma?",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "do you depart"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / depart) to Rome?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When do you depart to Rome?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342682"
+    },
+    "id": "67fab6d59930102295342682",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
+    },
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "Él visitará cuando desee venir.",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He'll visit when he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "wishes"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(wish) to come.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He'll visit when he wishes to come."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342683"
+    },
+    "id": "67fab6d59930102295342683",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
+    },
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "Los maestros enseñarán cuando tengan alumnos.",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teachers will teach when they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "have"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(have) pupils.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The teachers will teach when they have pupils."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342684"
+    },
+    "id": "67fab6d59930102295342684",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
+    },
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "Robert estará triste cuando vea esta comedia.",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Robert will be sad when he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "watches"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(watch) this comedy.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Robert will be sad when he watches this comedy."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342685"
+    },
+    "id": "67fab6d59930102295342685",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
+    },
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "Te enviaremos un mensaje de texto cuando lleguemos al hotel.",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We'll text you when we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "arrive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(arrive) to the hotel.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We'll text you when we arrive to the hotel."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342686"
+    },
+    "id": "67fab6d59930102295342686",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
+    },
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "¿Cuándo termina la reunión?",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does the meeting end"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the meeting / end)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When does the meeting end?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342687"
+    },
+    "id": "67fab6d59930102295342687",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
+    },
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "¿A qué hora comienza el concierto?",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What time",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does the concert start"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the concert / start)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What time does the concert start?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342688"
+    },
+    "id": "67fab6d59930102295342688",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
+    },
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "Te llevaré a casa cuando te vayas.",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'll take you home when you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "depart"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(depart).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I'll take you home when you depart."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342689"
+    },
+    "id": "67fab6d59930102295342689",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
+    },
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "Los bancos abren a las 10 a.m.",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The banks",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "open"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(open) at 10am.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The banks open at 10am."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534268a"
+    },
+    "id": "67fab6d5993010229534268a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d224"
+    },
+    "title": "Using Present Simple to Express the Future",
+    "instructions": "Escribe las oraciones en presente simple.",
+    "translation": "El centro comercial cierra a las 9 p.m.",
+    "theoryId": "a2.01.Present_Simple_Use_For_the_Future",
+    "topicName": "Present simple and Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.01.11.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The mall",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "closes"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(close) at 9pm",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The mall closes at 9pm"
+      ]
+    }
   }
-} ]
+]

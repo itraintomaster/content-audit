@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342551"
-  },
-  "id" : "67fab6d59930102295342551",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ella cantó fuerte.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342551"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She sang",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "loudly" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(loud / loudly).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342552"
-  },
-  "id" : "67fab6d59930102295342552",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ella es una cantante terrible.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342551",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She is a",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "terrible" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(terrible / terribly) singer.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342553"
-  },
-  "id" : "67fab6d59930102295342553",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Él cerró la puerta ruidosamente.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "Ella cantó fuerte.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He closed the door",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "noisily" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(noisy / noisily).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342554"
-  },
-  "id" : "67fab6d59930102295342554",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ese fue un buen concierto.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "That was a",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "good" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(good / well) concert.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342555"
-  },
-  "id" : "67fab6d59930102295342555",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ellos susurraron suavemente.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They whispered",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "softly" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(soft / softly).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342556"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She sang",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "loudly"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(loud / loudly).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She sang loudly."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342556",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ella pinta hermosos retratos.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342552"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She paints",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "beautiful" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(beautiful / beautifully) portraits.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342557"
-  },
-  "id" : "67fab6d59930102295342557",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Él sonrió ampliamente.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342552",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He smiled",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "widely" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(wide / widely).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342558"
-  },
-  "id" : "67fab6d59930102295342558",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Thomas tocó la guitarra maravillosamente.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "Ella es una cantante terrible.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Thomas played the guitar",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "wonderfully" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(wonderful / wonderfully).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342559"
-  },
-  "id" : "67fab6d59930102295342559",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ella estaba emocionada por el viaje.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She was",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "excited" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(excited / excitedly) about the trip.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534255a"
-  },
-  "id" : "67fab6d5993010229534255a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "El examen fue difícil.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The test was",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "hard" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(hard / hardly).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534255b"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is a",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "terrible"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(terrible / terribly) singer.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She is a terrible singer."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534255b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Mary tenía mucha sed.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342553"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Mary was very",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "thirsty" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(thirsty / thirstily).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534255c"
-  },
-  "id" : "67fab6d5993010229534255c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Esa fue una pregunta tonta.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342553",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "That was a",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "silly" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(silly / sillily) question.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534255d"
-  },
-  "id" : "67fab6d5993010229534255d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ella baila con gracia.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "Él cerró la puerta ruidosamente.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She dances",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "gracefully" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(graceful / gracefully).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534255e"
-  },
-  "id" : "67fab6d5993010229534255e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Él dibuja caricaturas habilidosas.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He draws",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "skillful" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(skillful / skillfully) cartoons.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534255f"
-  },
-  "id" : "67fab6d5993010229534255f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "La sopa estaba caliente.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The soup was",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "hot" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(hot / hotly).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342560"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He closed the door",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "noisily"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(noisy / noisily).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He closed the door noisily."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342560",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Él tocó la estatua bruscamente.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342554"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He touched the statue",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "roughly" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(rough / roughly).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342561"
-  },
-  "id" : "67fab6d59930102295342561",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Tengo sueño.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342554",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sleepy" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(sleepy / sleepily).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342562"
-  },
-  "id" : "67fab6d59930102295342562",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ella se alejó enojada.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "Ese fue un buen concierto.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She walked away",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "angrily" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(angry / angrily).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342563"
-  },
-  "id" : "67fab6d59930102295342563",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "La música cambió abruptamente.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The music changed",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "abruptly" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(abrupt / abruptly).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342564"
-  },
-  "id" : "67fab6d59930102295342564",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3ea"
-  },
-  "title" : "Adjective vs Adverb",
-  "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Por favor, explica de forma sencilla.",
-  "theoryId" : "a1.11.Adjective_or_Adverb_",
-  "topicName" : "Adjetives and Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.11.02.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Please explain",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "simply" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(simple / simply).",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That was a",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "good"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(good / well) concert.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That was a good concert."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342555"
+    },
+    "id": "67fab6d59930102295342555",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
+    },
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "Ellos susurraron suavemente.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They whispered",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "softly"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(soft / softly).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They whispered softly."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342556"
+    },
+    "id": "67fab6d59930102295342556",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
+    },
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "Ella pinta hermosos retratos.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She paints",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "beautiful"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(beautiful / beautifully) portraits.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She paints beautiful portraits."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342557"
+    },
+    "id": "67fab6d59930102295342557",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
+    },
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "Él sonrió ampliamente.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He smiled",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "widely"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(wide / widely).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He smiled widely."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342558"
+    },
+    "id": "67fab6d59930102295342558",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
+    },
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "Thomas tocó la guitarra maravillosamente.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Thomas played the guitar",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "wonderfully"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(wonderful / wonderfully).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Thomas played the guitar wonderfully."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342559"
+    },
+    "id": "67fab6d59930102295342559",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
+    },
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "Ella estaba emocionada por el viaje.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "excited"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(excited / excitedly) about the trip.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She was excited about the trip."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534255a"
+    },
+    "id": "67fab6d5993010229534255a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
+    },
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "El examen fue difícil.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The test was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "hard"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(hard / hardly).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The test was hard."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534255b"
+    },
+    "id": "67fab6d5993010229534255b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
+    },
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "Mary tenía mucha sed.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary was very",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "thirsty"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(thirsty / thirstily).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Mary was very thirsty."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534255c"
+    },
+    "id": "67fab6d5993010229534255c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
+    },
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "Esa fue una pregunta tonta.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That was a",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "silly"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(silly / sillily) question.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That was a silly question."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534255d"
+    },
+    "id": "67fab6d5993010229534255d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
+    },
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "Ella baila con gracia.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She dances",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "gracefully"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(graceful / gracefully).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She dances gracefully."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534255e"
+    },
+    "id": "67fab6d5993010229534255e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
+    },
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "Él dibuja caricaturas habilidosas.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He draws",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "skillful"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(skillful / skillfully) cartoons.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He draws skillful cartoons."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534255f"
+    },
+    "id": "67fab6d5993010229534255f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
+    },
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "La sopa estaba caliente.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The soup was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "hot"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(hot / hotly).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The soup was hot."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342560"
+    },
+    "id": "67fab6d59930102295342560",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
+    },
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "Él tocó la estatua bruscamente.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He touched the statue",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "roughly"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(rough / roughly).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He touched the statue roughly."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342561"
+    },
+    "id": "67fab6d59930102295342561",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
+    },
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "Tengo sueño.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "sleepy"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(sleepy / sleepily).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I'm sleepy."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342562"
+    },
+    "id": "67fab6d59930102295342562",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
+    },
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "Ella se alejó enojada.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She walked away",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "angrily"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(angry / angrily).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She walked away angrily."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342563"
+    },
+    "id": "67fab6d59930102295342563",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
+    },
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "La música cambió abruptamente.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The music changed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "abruptly"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(abrupt / abruptly).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The music changed abruptly."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342564"
+    },
+    "id": "67fab6d59930102295342564",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3ea"
+    },
+    "title": "Adjective vs Adverb",
+    "instructions": "Elige entre el adjetivo o el adverbio.",
+    "translation": "Por favor, explica de forma sencilla.",
+    "theoryId": "a1.11.Adjective_or_Adverb_",
+    "topicName": "Adjetives and Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.11.02.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please explain",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "simply"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(simple / simply).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Please explain simply."
+      ]
+    }
   }
-} ]
+]

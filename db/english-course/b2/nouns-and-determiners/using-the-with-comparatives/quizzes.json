@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442a7"
-  },
-  "id" : "67fab6d599301022953442a7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "Cuanto más larga es la película, más aburrida.",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442a7"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the movie is longer, it is more boring.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The longer the movie, the more boring." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442a8"
-  },
-  "id" : "67fab6d599301022953442a8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "¡Cuanto más dulce es el té, mejor!",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953442a7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the tea is sweeter, it is better!",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The sweeter the tea, the better!" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442a9"
-  },
-  "id" : "67fab6d599301022953442a9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "Cuanto más fría el agua, mejor.",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "Cuanto más larga es la película, más aburrida.",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the water is colder, it is better.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The colder the water, the better." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442aa"
-  },
-  "id" : "67fab6d599301022953442aa",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "Cuanto más dinero consigue, mejor.",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If he gets more money, it is better.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The more money he gets, the better." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442ab"
-  },
-  "id" : "67fab6d599301022953442ab",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "¡Cuanto más grande es el pastel, mejor!",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the cake is bigger, it is better!",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The bigger the cake, the better!" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442ac"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the movie is longer, it is more boring.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The longer the movie, the more boring."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The longer the movie, the more boring."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953442ac",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "¡Cuanto más corto el paseo, mejor!",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442a8"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the walk is shorter, it is better!",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The shorter the walk, the better!" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442ad"
-  },
-  "id" : "67fab6d599301022953442ad",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "Cuanto más suave es la almohada, más cómoda.",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953442a8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the pillow is softer, it is more comfortable.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The softer the pillow, the more comfortable." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442ae"
-  },
-  "id" : "67fab6d599301022953442ae",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "Cuanto más rápida es la bicicleta, más divertido es montarla.",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "¡Cuanto más dulce es el té, mejor!",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the bike is faster, it is more fun to ride.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The faster the bike, the more fun it is to ride." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442af"
-  },
-  "id" : "67fab6d599301022953442af",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "Cuanto más limpia esté la casa, mejor.",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the house is cleaner, it is better.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The cleaner the house, the better." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442b0"
-  },
-  "id" : "67fab6d599301022953442b0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "Cuantas más películas veo, más cosas entiendo.",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If I watch more films, I understand more things.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The more films I watch, the more things I understand." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442b1"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the tea is sweeter, it is better!",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The sweeter the tea, the better!"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The sweeter the tea, the better!"
+      ]
+    }
   },
-  "id" : "67fab6d599301022953442b1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "Cuanto mejor es el profesor, más tranquila es la clase.",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442a9"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the teacher is better, the class is calmer.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The better the teacher, the calmer the class." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442b2"
-  },
-  "id" : "67fab6d599301022953442b2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "¡Cuanto más pequeño es el cachorro, más lindo!",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953442a9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the puppy is smaller, it is cuter!",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The smaller the puppy, the cuter!" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442b3"
-  },
-  "id" : "67fab6d599301022953442b3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "¡Cuanto más fácil es el examen, más popular es!",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "Cuanto más fría el agua, mejor.",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the test is easier, it is more popular!",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The easier the test, the more popular it is!" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442b4"
-  },
-  "id" : "67fab6d599301022953442b4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "Cuanto más fresco es el pan, mejor.",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the bread is fresher, it is better.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The fresher the bread, the better." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442b5"
-  },
-  "id" : "67fab6d599301022953442b5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "A cuantos más conciertos va, mejor se siente.",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If she goes to more concerts, she feels better.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The more concerts she goes to, the better she feels." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442b6"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the water is colder, it is better.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The colder the water, the better."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The colder the water, the better."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953442b6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "Cuanto más rápida es la computadora, más fácil.",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442aa"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the computer is faster, it is easier.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The faster the computer, the easier." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442b7"
-  },
-  "id" : "67fab6d599301022953442b7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "Cuanto más alto es el edificio, más impresionante.",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953442aa",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the building is taller, it is more impressive.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The taller the building, the more impressive." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442b8"
-  },
-  "id" : "67fab6d599301022953442b8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "Cuanta más luz, mejor.",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "Cuanto más dinero consigue, mejor.",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If there is more light, it is better.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The more light, the better." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442b9"
-  },
-  "id" : "67fab6d599301022953442b9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "¡Cuanto más largas son las vacaciones, más relajantes!",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the vacation is longer, it is more relaxing!",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The longer the vacation, the more relaxing!" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442ba"
-  },
-  "id" : "67fab6d599301022953442ba",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d438"
-  },
-  "title" : "Using 'The' with Comparatives",
-  "instructions" : "Cambia las oraciones para que incluyan 'the + comparative'.",
-  "translation" : "Cuanto más cómoda es la silla, mejor.",
-  "theoryId" : "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.10.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the chair is more comfortable, it is better.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The more comfortable the chair, the better." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If he gets more money, it is better.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The more money he gets, the better."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The more money he gets, the better."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442ab"
+    },
+    "id": "67fab6d599301022953442ab",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
+    },
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "¡Cuanto más grande es el pastel, mejor!",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the cake is bigger, it is better!",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The bigger the cake, the better!"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The bigger the cake, the better!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442ac"
+    },
+    "id": "67fab6d599301022953442ac",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
+    },
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "¡Cuanto más corto el paseo, mejor!",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the walk is shorter, it is better!",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The shorter the walk, the better!"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The shorter the walk, the better!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442ad"
+    },
+    "id": "67fab6d599301022953442ad",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
+    },
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "Cuanto más suave es la almohada, más cómoda.",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the pillow is softer, it is more comfortable.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The softer the pillow, the more comfortable."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The softer the pillow, the more comfortable."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442ae"
+    },
+    "id": "67fab6d599301022953442ae",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
+    },
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "Cuanto más rápida es la bicicleta, más divertido es montarla.",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the bike is faster, it is more fun to ride.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The faster the bike, the more fun it is to ride."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The faster the bike, the more fun it is to ride."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442af"
+    },
+    "id": "67fab6d599301022953442af",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
+    },
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "Cuanto más limpia esté la casa, mejor.",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the house is cleaner, it is better.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The cleaner the house, the better."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The cleaner the house, the better."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442b0"
+    },
+    "id": "67fab6d599301022953442b0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
+    },
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "Cuantas más películas veo, más cosas entiendo.",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If I watch more films, I understand more things.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The more films I watch, the more things I understand."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The more films I watch, the more things I understand."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442b1"
+    },
+    "id": "67fab6d599301022953442b1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
+    },
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "Cuanto mejor es el profesor, más tranquila es la clase.",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the teacher is better, the class is calmer.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The better the teacher, the calmer the class."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The better the teacher, the calmer the class."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442b2"
+    },
+    "id": "67fab6d599301022953442b2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
+    },
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "¡Cuanto más pequeño es el cachorro, más lindo!",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the puppy is smaller, it is cuter!",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The smaller the puppy, the cuter!"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The smaller the puppy, the cuter!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442b3"
+    },
+    "id": "67fab6d599301022953442b3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
+    },
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "¡Cuanto más fácil es el examen, más popular es!",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the test is easier, it is more popular!",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The easier the test, the more popular it is!"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The easier the test, the more popular it is!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442b4"
+    },
+    "id": "67fab6d599301022953442b4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
+    },
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "Cuanto más fresco es el pan, mejor.",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the bread is fresher, it is better.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The fresher the bread, the better."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The fresher the bread, the better."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442b5"
+    },
+    "id": "67fab6d599301022953442b5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
+    },
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "A cuantos más conciertos va, mejor se siente.",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If she goes to more concerts, she feels better.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The more concerts she goes to, the better she feels."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The more concerts she goes to, the better she feels."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442b6"
+    },
+    "id": "67fab6d599301022953442b6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
+    },
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "Cuanto más rápida es la computadora, más fácil.",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the computer is faster, it is easier.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The faster the computer, the easier."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The faster the computer, the easier."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442b7"
+    },
+    "id": "67fab6d599301022953442b7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
+    },
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "Cuanto más alto es el edificio, más impresionante.",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the building is taller, it is more impressive.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The taller the building, the more impressive."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The taller the building, the more impressive."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442b8"
+    },
+    "id": "67fab6d599301022953442b8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
+    },
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "Cuanta más luz, mejor.",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If there is more light, it is better.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The more light, the better."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The more light, the better."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442b9"
+    },
+    "id": "67fab6d599301022953442b9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
+    },
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "¡Cuanto más largas son las vacaciones, más relajantes!",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the vacation is longer, it is more relaxing!",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The longer the vacation, the more relaxing!"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The longer the vacation, the more relaxing!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442ba"
+    },
+    "id": "67fab6d599301022953442ba",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d438"
+    },
+    "title": "Using 'The' with Comparatives",
+    "instructions": "Cambia las oraciones para que incluyan 'the + comparative'.",
+    "translation": "Cuanto más cómoda es la silla, mejor.",
+    "theoryId": "b2.06.The_in_Comparative_Structures_The_Bigger_The_Better_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.10.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the chair is more comfortable, it is better.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The more comfortable the chair, the better."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The more comfortable the chair, the better."
+      ]
+    }
   }
-} ]
+]

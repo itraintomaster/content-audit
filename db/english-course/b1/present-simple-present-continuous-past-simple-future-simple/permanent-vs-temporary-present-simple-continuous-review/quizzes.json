@@ -1,1021 +1,1230 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fba"
-  },
-  "id" : "67fab6d59930102295342fba",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "Los trabajadores están pintando la oficina estas semanas.",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fba"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The workers",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are painting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(paint) the office these weeks.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fbb"
-  },
-  "id" : "67fab6d59930102295342fbb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "¿Van a ir a la playa este año?",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342fba",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Are they going" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / go) to the beach this year?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fbc"
-  },
-  "id" : "67fab6d59930102295342fbc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "Ella no come suficientes verduras.",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "Los trabajadores están pintando la oficina estas semanas.",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "doesn't eat" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / eat) vegetables enough.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fbd"
-  },
-  "id" : "67fab6d59930102295342fbd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "Ella canta en el coro.",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sings" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(sing) in the choir.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fbe"
-  },
-  "id" : "67fab6d59930102295342fbe",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "Ellos están viviendo allí por unos meses.",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'re living|are living" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(live) there for a few months.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fbf"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The workers",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are painting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(paint) the office these weeks.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The workers are painting the office these weeks."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342fbf",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "¿Hablas alemán?",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fbb"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Do you speak" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / speak) German?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fc0"
-  },
-  "id" : "67fab6d59930102295342fc0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "Él enseña en una escuela.",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342fbb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "teaches" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(teach) at a school.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fc1"
-  },
-  "id" : "67fab6d59930102295342fc1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "Él no cocina a menudo.",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "¿Van a ir a la playa este año?",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "doesn't cook|does not cook" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / cook) often.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fc2"
-  },
-  "id" : "67fab6d59930102295342fc2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "Estamos viendo películas estos días.",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'re watching|are watching" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(watch) movies these days.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fc3"
-  },
-  "id" : "67fab6d59930102295342fc3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "Ellos están visitando a Peter por un tiempo.",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'re visiting|are visiting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(visit) to Peter for a while.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fc4"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Are they going"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / go) to the beach this year?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Are they going to the beach this year?"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342fc4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "¿Te gusta el chocolate?",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fbc"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Do you like" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / like) chocolate?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fc5"
-  },
-  "id" : "67fab6d59930102295342fc5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "Ella come mucha fruta.",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342fbc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "eats" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) a lot of fruit.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fc6"
-  },
-  "id" : "67fab6d59930102295342fc6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "Él no fuma mucho.",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "Ella no come suficientes verduras.",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "doesn't smoke|does not smoke" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / smoke) much.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fc7"
-  },
-  "id" : "67fab6d59930102295342fc7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "Estoy comiendo en el jardín en este momento.",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'m eating|am eating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) in the garden at the moment.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fc8"
-  },
-  "id" : "67fab6d59930102295342fc8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "Ellos están nadando en el mar este verano.",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'re swimming|are swimming" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(swim) in the sea this summer.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fc9"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "doesn't eat"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / eat) vegetables enough.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She doesn't eat vegetables enough."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342fc9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "¿Ella está estudiando mucho en este momento?",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fbd"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Is she studying" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / study) hard at the moment?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fca"
-  },
-  "id" : "67fab6d59930102295342fca",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "Ellos hablan francés.",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342fbd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "speak" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(speak) French.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fcb"
-  },
-  "id" : "67fab6d59930102295342fcb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "Ella usa mucha azúcar.",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "Ella canta en el coro.",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "uses" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(use) a lot of sugar.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fcc"
-  },
-  "id" : "67fab6d59930102295342fcc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "Estamos jugando a las cartas estos días.",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We're",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "playing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(play) cards these days.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342fcd"
-  },
-  "id" : "67fab6d59930102295342fcd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2b9"
-  },
-  "title" : "Permanent vs. Temporary: Present Simple & Continuous Review",
-  "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "Él está visitando Londres por unas semanas.",
-  "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.03.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s visiting|is visiting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(visit) to London for a few weeks.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "sings"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(sing) in the choir.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She sings in the choir."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fbe"
+    },
+    "id": "67fab6d59930102295342fbe",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
+    },
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "Ellos están viviendo allí por unos meses.",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'re living|are living"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(live) there for a few months.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They're living there for a few months.",
+        "They are living there for a few months."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fbf"
+    },
+    "id": "67fab6d59930102295342fbf",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
+    },
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "¿Hablas alemán?",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Do you speak"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / speak) German?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Do you speak German?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fc0"
+    },
+    "id": "67fab6d59930102295342fc0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
+    },
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "Él enseña en una escuela.",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "teaches"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(teach) at a school.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He teaches at a school."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fc1"
+    },
+    "id": "67fab6d59930102295342fc1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
+    },
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "Él no cocina a menudo.",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "doesn't cook|does not cook"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / cook) often.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He doesn't cook often.",
+        "He does not cook often."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fc2"
+    },
+    "id": "67fab6d59930102295342fc2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
+    },
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "Estamos viendo películas estos días.",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'re watching|are watching"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(watch) movies these days.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We're watching movies these days.",
+        "We are watching movies these days."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fc3"
+    },
+    "id": "67fab6d59930102295342fc3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
+    },
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "Ellos están visitando a Peter por un tiempo.",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'re visiting|are visiting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(visit) to Peter for a while.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They're visiting to Peter for a while.",
+        "They are visiting to Peter for a while."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fc4"
+    },
+    "id": "67fab6d59930102295342fc4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
+    },
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "¿Te gusta el chocolate?",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Do you like"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / like) chocolate?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Do you like chocolate?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fc5"
+    },
+    "id": "67fab6d59930102295342fc5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
+    },
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "Ella come mucha fruta.",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "eats"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) a lot of fruit.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She eats a lot of fruit."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fc6"
+    },
+    "id": "67fab6d59930102295342fc6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
+    },
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "Él no fuma mucho.",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "doesn't smoke|does not smoke"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / smoke) much.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He doesn't smoke much.",
+        "He does not smoke much."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fc7"
+    },
+    "id": "67fab6d59930102295342fc7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
+    },
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "Estoy comiendo en el jardín en este momento.",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'m eating|am eating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) in the garden at the moment.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I'm eating in the garden at the moment.",
+        "I am eating in the garden at the moment."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fc8"
+    },
+    "id": "67fab6d59930102295342fc8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
+    },
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "Ellos están nadando en el mar este verano.",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'re swimming|are swimming"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(swim) in the sea this summer.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They're swimming in the sea this summer.",
+        "They are swimming in the sea this summer."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fc9"
+    },
+    "id": "67fab6d59930102295342fc9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
+    },
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "¿Ella está estudiando mucho en este momento?",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is she studying"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / study) hard at the moment?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Is she studying hard at the moment?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fca"
+    },
+    "id": "67fab6d59930102295342fca",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
+    },
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "Ellos hablan francés.",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "speak"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(speak) French.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They speak French."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fcb"
+    },
+    "id": "67fab6d59930102295342fcb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
+    },
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "Ella usa mucha azúcar.",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "uses"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(use) a lot of sugar.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She uses a lot of sugar."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fcc"
+    },
+    "id": "67fab6d59930102295342fcc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
+    },
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "Estamos jugando a las cartas estos días.",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We're",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "playing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(play) cards these days.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We're playing cards these days."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342fcd"
+    },
+    "id": "67fab6d59930102295342fcd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2b9"
+    },
+    "title": "Permanent vs. Temporary: Present Simple & Continuous Review",
+    "instructions": "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
+    "translation": "Él está visitando Londres por unas semanas.",
+    "theoryId": "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.03.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "'s visiting|is visiting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(visit) to London for a few weeks.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He's visiting to London for a few weeks.",
+        "He is visiting to London for a few weeks."
+      ]
+    }
   }
-} ]
+]

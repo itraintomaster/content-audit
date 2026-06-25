@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442e3"
-  },
-  "id" : "67fab6d599301022953442e3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "Permaneció en cama toda la mañana debido a un resfriado.",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442e3"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She remained in",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "bed all morning due to a cold.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442e4"
-  },
-  "id" : "67fab6d599301022953442e4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "Quieren visitar la ciudad mañana.",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953442e3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They want to visit",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "town tomorrow.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442e5"
-  },
-  "id" : "67fab6d599301022953442e5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "¡Disfruto mucho estar en casa!",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "Permaneció en cama toda la mañana debido a un resfriado.",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I enjoy being at",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "home a lot!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442e6"
-  },
-  "id" : "67fab6d599301022953442e6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "El pueblo donde vive mi abuela es hermoso.",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "town where my grandma lives is beautiful.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442e7"
-  },
-  "id" : "67fab6d599301022953442e7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "Ella no terminó el trabajo hasta las 7 pm.",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She didn't finish",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "work until 7 pm.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442e8"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She remained in",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bed all morning due to a cold.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She remained in - bed all morning due to a cold."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953442e8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "¿Ya están en la cama?",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442e4"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Are they in",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "bed yet?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442e9"
-  },
-  "id" : "67fab6d599301022953442e9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "No les gustó el ruido y se fueron de la ciudad.",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953442e4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They disliked the noise and departed",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "town.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442ea"
-  },
-  "id" : "67fab6d599301022953442ea",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "Ella no podía esperar para llegar a casa.",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "Quieren visitar la ciudad mañana.",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She couldn't wait to arrive",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "home.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442eb"
-  },
-  "id" : "67fab6d599301022953442eb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "¿Completaste el trabajo que tenías que hacer?",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Did you complete",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "work that you had to?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442ec"
-  },
-  "id" : "67fab6d599301022953442ec",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "Esta era la casa de un escritor conocido.",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "This was",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "home of a well-known writer.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442ed"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They want to visit",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "town tomorrow.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They want to visit - town tomorrow."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953442ed",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "Ella se encuentra en la ciudad esta noche.",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442e5"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She is located in",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "town tonight.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442ee"
-  },
-  "id" : "67fab6d599301022953442ee",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "Durmió en la cama durante horas.",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953442e5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He slept on",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "bed for hours.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442ef"
-  },
-  "id" : "67fab6d599301022953442ef",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "No puedo localizar la ciudad en la guía.",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "¡Disfruto mucho estar en casa!",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I cannot locate",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "town in the guide.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442f0"
-  },
-  "id" : "67fab6d599301022953442f0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "¿Está terminado el trabajo para este proyecto?",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "work for this project completed?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442f1"
-  },
-  "id" : "67fab6d599301022953442f1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "Él dedica mucho tiempo al trabajo.",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He dedicates a lot of time at",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "work.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442f2"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I enjoy being at",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "home a lot!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I enjoy being at - home a lot!"
+      ]
+    }
   },
-  "id" : "67fab6d599301022953442f2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "¿A qué hora empiezas a trabajar?",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442e6"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What time do you commence",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "work?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442f3"
-  },
-  "id" : "67fab6d599301022953442f3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "¿A qué hora llegaste a casa?",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953442e6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What time did you arrive",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "home?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442f4"
-  },
-  "id" : "67fab6d599301022953442f4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "Permaneció en casa toda la tarde.",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "El pueblo donde vive mi abuela es hermoso.",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He remained at",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "home all afternoon.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442f5"
-  },
-  "id" : "67fab6d599301022953442f5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "La cama en su habitación es extremadamente suave.",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "bed in their room is extremely soft.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953442f6"
-  },
-  "id" : "67fab6d599301022953442f6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d43b"
-  },
-  "title" : "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
-  "instructions" : "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
-  "translation" : "Creo que todos deberíamos acostarnos tarde esta noche.",
-  "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
-  "topicName" : "Nouns and determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.06.13.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I believe we should all go to",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "bed late tonight.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "town where my grandma lives is beautiful.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The town where my grandma lives is beautiful."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442e7"
+    },
+    "id": "67fab6d599301022953442e7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
+    },
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "Ella no terminó el trabajo hasta las 7 pm.",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She didn't finish",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "work until 7 pm.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She didn't finish - work until 7 pm."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442e8"
+    },
+    "id": "67fab6d599301022953442e8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
+    },
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "¿Ya están en la cama?",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Are they in",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bed yet?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Are they in - bed yet?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442e9"
+    },
+    "id": "67fab6d599301022953442e9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
+    },
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "No les gustó el ruido y se fueron de la ciudad.",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They disliked the noise and departed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "town.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They disliked the noise and departed - town."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442ea"
+    },
+    "id": "67fab6d599301022953442ea",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
+    },
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "Ella no podía esperar para llegar a casa.",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She couldn't wait to arrive",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "home.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She couldn't wait to arrive - home."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442eb"
+    },
+    "id": "67fab6d599301022953442eb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
+    },
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "¿Completaste el trabajo que tenías que hacer?",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Did you complete",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "work that you had to?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Did you complete the work that you had to?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442ec"
+    },
+    "id": "67fab6d599301022953442ec",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
+    },
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "Esta era la casa de un escritor conocido.",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "home of a well-known writer.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This was the home of a well-known writer."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442ed"
+    },
+    "id": "67fab6d599301022953442ed",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
+    },
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "Ella se encuentra en la ciudad esta noche.",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is located in",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "town tonight.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She is located in - town tonight."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442ee"
+    },
+    "id": "67fab6d599301022953442ee",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
+    },
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "Durmió en la cama durante horas.",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He slept on",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bed for hours.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He slept on the bed for hours."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442ef"
+    },
+    "id": "67fab6d599301022953442ef",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
+    },
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "No puedo localizar la ciudad en la guía.",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I cannot locate",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "town in the guide.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I cannot locate the town in the guide."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442f0"
+    },
+    "id": "67fab6d599301022953442f0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
+    },
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "¿Está terminado el trabajo para este proyecto?",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "work for this project completed?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Is the work for this project completed?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442f1"
+    },
+    "id": "67fab6d599301022953442f1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
+    },
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "Él dedica mucho tiempo al trabajo.",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He dedicates a lot of time at",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "work.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He dedicates a lot of time at - work."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442f2"
+    },
+    "id": "67fab6d599301022953442f2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
+    },
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "¿A qué hora empiezas a trabajar?",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What time do you commence",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "work?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What time do you commence - work?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442f3"
+    },
+    "id": "67fab6d599301022953442f3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
+    },
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "¿A qué hora llegaste a casa?",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What time did you arrive",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "home?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What time did you arrive - home?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442f4"
+    },
+    "id": "67fab6d599301022953442f4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
+    },
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "Permaneció en casa toda la tarde.",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He remained at",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "home all afternoon.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He remained at - home all afternoon."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442f5"
+    },
+    "id": "67fab6d599301022953442f5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
+    },
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "La cama en su habitación es extremadamente suave.",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bed in their room is extremely soft.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The bed in their room is extremely soft."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953442f6"
+    },
+    "id": "67fab6d599301022953442f6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d43b"
+    },
+    "title": "Using Articles with 'Bed', 'Home', 'Work', 'Town'",
+    "instructions": "Si es posible, usa 'no article' (-). De lo contrario, usa 'the'.",
+    "translation": "Creo que todos deberíamos acostarnos tarde esta noche.",
+    "theoryId": "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
+    "topicName": "Nouns and determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.06.13.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I believe we should all go to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bed late tonight.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I believe we should all go to - bed late tonight."
+      ]
+    }
   }
-} ]
+]

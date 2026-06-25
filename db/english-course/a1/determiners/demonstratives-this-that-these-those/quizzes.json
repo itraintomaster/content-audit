@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534237b"
-  },
-  "id" : "67fab6d5993010229534237b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "¡Pateó esa pelota muy lejos!",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534237b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He kicked",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "that" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "ball very far! (The ball is next to the other person.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534237c"
-  },
-  "id" : "67fab6d5993010229534237c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "¿De quién es esta bicicleta?",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534237b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Whose is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "this" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "bike? (The bike is near me.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534237d"
-  },
-  "id" : "67fab6d5993010229534237d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "¿Podrías llevar estas bolsas, por favor?",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "¡Pateó esa pelota muy lejos!",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Could you carry",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "these" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "bags, please? (I am holding the bags when I say this.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534237e"
-  },
-  "id" : "67fab6d5993010229534237e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Esa película fue fantástica.",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "That" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "film was fantastic. (we watched the film last night.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534237f"
-  },
-  "id" : "67fab6d5993010229534237f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Este es mi papá. Papá, te presento a Sarah.",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "This" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "is my dad. Dad, meet Sarah.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342380"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He kicked",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "ball very far! (The ball is next to the other person.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He kicked that ball very far!"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342380",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Esas son mis llaves.",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534237c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Those" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "are my keys. (the other person is holding the keys.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342381"
-  },
-  "id" : "67fab6d59930102295342381",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Este teléfono es genial.",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534237c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "This" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "phone is great. (I'm using the phone.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342382"
-  },
-  "id" : "67fab6d59930102295342382",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Estos son los mejores dulces.",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "¿De quién es esta bicicleta?",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "These" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "are the best sweets. (I'm eating the sweets.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342383"
-  },
-  "id" : "67fab6d59930102295342383",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "¿Son tuyos estos bolígrafos?",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "these" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "pens yours? (The pens are on a desk near you.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342384"
-  },
-  "id" : "67fab6d59930102295342384",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Esa chica de allá es mi hermana.",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "That" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "girl over there is my sister.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342385"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Whose is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "this"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bike? (The bike is near me.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Whose is this bike?"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342385",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Estas flores son para ti.",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534237d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "These" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "flowers are for you. (I'm holding the flowers.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342386"
-  },
-  "id" : "67fab6d59930102295342386",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Esta billetera es muy nueva.",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534237d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "This" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "wallet is very new. (I'm holding the wallet.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342387"
-  },
-  "id" : "67fab6d59930102295342387",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Esas galletas están sabrosas.",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "¿Podrías llevar estas bolsas, por favor?",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Those" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "biscuits are tasty. (the biscuits are not beside me.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342388"
-  },
-  "id" : "67fab6d59930102295342388",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Estos libros necesitan un nuevo dueño.",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "These" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "books need a new owner. (I'm beside the books.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342389"
-  },
-  "id" : "67fab6d59930102295342389",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "¿Sabes qué es este objeto?",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Do you know what",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "this" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "object is? (I'm holding the object.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534238a"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you carry",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "these"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bags, please? (I am holding the bags when I say this.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Could you carry these bags, please?"
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534238a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "¿Conoces a ese perro al final de la calle?",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534237e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Do you know",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "that" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "dog at the end of the street?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534238b"
-  },
-  "id" : "67fab6d5993010229534238b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Esos zapatos realmente te quedan bien.",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534237e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Those" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "shoes really suit you.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534238c"
-  },
-  "id" : "67fab6d5993010229534238c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "¿Qué son esos?",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "Esa película fue fantástica.",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "those" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "? (I mean more than one thing next to the other person.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534238d"
-  },
-  "id" : "67fab6d5993010229534238d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "A: Estos son mis amigos, Lisa y John. B: Encantado de conocerte.",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "A:",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "These" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "are my friends, Lisa and John. B: Nice to meet you.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534238e"
-  },
-  "id" : "67fab6d5993010229534238e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3cc"
-  },
-  "title" : "Demonstratives: This, That, These, Those",
-  "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "¿Me puedes pasar eso?",
-  "theoryId" : "a1.07.This_That_These_Those",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.07.01.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Can you pass me",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "that" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "? (I mean one thing near to the other person.)",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "film was fantastic. (we watched the film last night.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That film was fantastic."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534237f"
+    },
+    "id": "67fab6d5993010229534237f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
+    },
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "Este es mi papá. Papá, te presento a Sarah.",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "This"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "is my dad. Dad, meet Sarah.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This is my dad. Dad, meet Sarah."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342380"
+    },
+    "id": "67fab6d59930102295342380",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
+    },
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "Esas son mis llaves.",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Those"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "are my keys. (the other person is holding the keys.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Those are my keys."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342381"
+    },
+    "id": "67fab6d59930102295342381",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
+    },
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "Este teléfono es genial.",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "This"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "phone is great. (I'm using the phone.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This phone is great."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342382"
+    },
+    "id": "67fab6d59930102295342382",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
+    },
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "Estos son los mejores dulces.",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "These"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "are the best sweets. (I'm eating the sweets.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "These are the best sweets."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342383"
+    },
+    "id": "67fab6d59930102295342383",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
+    },
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "¿Son tuyos estos bolígrafos?",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "these"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "pens yours? (The pens are on a desk near you.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Are these pens yours?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342384"
+    },
+    "id": "67fab6d59930102295342384",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
+    },
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "Esa chica de allá es mi hermana.",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "That"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "girl over there is my sister.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That girl over there is my sister."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342385"
+    },
+    "id": "67fab6d59930102295342385",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
+    },
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "Estas flores son para ti.",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "These"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "flowers are for you. (I'm holding the flowers.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "These flowers are for you."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342386"
+    },
+    "id": "67fab6d59930102295342386",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
+    },
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "Esta billetera es muy nueva.",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "This"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "wallet is very new. (I'm holding the wallet.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This wallet is very new."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342387"
+    },
+    "id": "67fab6d59930102295342387",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
+    },
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "Esas galletas están sabrosas.",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Those"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "biscuits are tasty. (the biscuits are not beside me.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Those biscuits are tasty."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342388"
+    },
+    "id": "67fab6d59930102295342388",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
+    },
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "Estos libros necesitan un nuevo dueño.",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "These"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "books need a new owner. (I'm beside the books.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "These books need a new owner."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342389"
+    },
+    "id": "67fab6d59930102295342389",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
+    },
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "¿Sabes qué es este objeto?",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you know what",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "this"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "object is? (I'm holding the object.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Do you know what this object is?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534238a"
+    },
+    "id": "67fab6d5993010229534238a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
+    },
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "¿Conoces a ese perro al final de la calle?",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you know",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "dog at the end of the street?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Do you know that dog at the end of the street?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534238b"
+    },
+    "id": "67fab6d5993010229534238b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
+    },
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "Esos zapatos realmente te quedan bien.",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Those"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "shoes really suit you.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Those shoes really suit you."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534238c"
+    },
+    "id": "67fab6d5993010229534238c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
+    },
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "¿Qué son esos?",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "those"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "? (I mean more than one thing next to the other person.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What are those?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534238d"
+    },
+    "id": "67fab6d5993010229534238d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
+    },
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "A: Estos son mis amigos, Lisa y John. B: Encantado de conocerte.",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "A:",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "These"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "are my friends, Lisa and John. B: Nice to meet you.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "A: These are my friends, Lisa and John. B: Nice to meet you."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534238e"
+    },
+    "id": "67fab6d5993010229534238e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3cc"
+    },
+    "title": "Demonstratives: This, That, These, Those",
+    "instructions": "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
+    "translation": "¿Me puedes pasar eso?",
+    "theoryId": "a1.07.This_That_These_Those",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.07.01.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Can you pass me",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "that"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "? (I mean one thing near to the other person.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Can you pass me that?"
+      ]
+    }
   }
-} ]
+]

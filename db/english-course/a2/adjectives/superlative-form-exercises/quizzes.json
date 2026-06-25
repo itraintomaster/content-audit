@@ -1,1531 +1,1832 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e98"
-  },
-  "id" : "67fab6d59930102295342e98",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "¡Ese es el gato más raro que he conocido!",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e98"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "That is the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "oddest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(odd) cat that I've ever met!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e99"
-  },
-  "id" : "67fab6d59930102295342e99",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "Compró el coche más pequeño.",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342e98",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He bought the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "smallest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(small) car.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e9a"
-  },
-  "id" : "67fab6d59930102295342e9a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "Quiero la ruta más fácil.",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "¡Ese es el gato más raro que he conocido!",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I want the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "easiest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(easy) route.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e9b"
-  },
-  "id" : "67fab6d59930102295342e9b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "Ayer fue el día más cálido de este mes.",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Yesterday was the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "warmest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(warm) day this month.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e9c"
-  },
-  "id" : "67fab6d59930102295342e9c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "Esa es la mejor tienda de la ciudad.",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "That is the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "best" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(good) shop in town.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e9d"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That is the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "oddest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(odd) cat that I've ever met!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That is the oddest cat that I've ever met!"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342e9d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "¡Esta es la conferencia más aburrida!",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e99"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "This is the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "most boring" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(boring) lecture!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e9e"
-  },
-  "id" : "67fab6d59930102295342e9e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "Es el hombre más afortunado que conozco.",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342e99",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He's the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "luckiest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(lucky) man I know.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e9f"
-  },
-  "id" : "67fab6d59930102295342e9f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "¡Eso es lo más ridículo que has hecho!",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "Compró el coche más pequeño.",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "That is the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "most ridiculous" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(ridiculous) thing you've ever done!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ea0"
-  },
-  "id" : "67fab6d59930102295342ea0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "¿Cuál es el desierto más seco del mundo?",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Which is the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "driest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(dry) desert in the world?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ea1"
-  },
-  "id" : "67fab6d59930102295342ea1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "Ese es el coche más asequible.",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "That is the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "most affordable" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(affordable) car.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ea2"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He bought the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "smallest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(small) car.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He bought the smallest car."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342ea2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "La lección de inglés fue la más difícil de todas.",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e9a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The English lesson was the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "most difficult" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(difficult) of all.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ea3"
-  },
-  "id" : "67fab6d59930102295342ea3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "Ella es la mujer más amable de nuestra calle.",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342e9a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She is the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "kindest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(kind) woman in our street.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ea4"
-  },
-  "id" : "67fab6d59930102295342ea4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "Creo que este abrigo es el más brillante.",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "Quiero la ruta más fácil.",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I think this coat is the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "shiniest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(shiny).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ea5"
-  },
-  "id" : "67fab6d59930102295342ea5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "¡Eres el más equivocado!",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You are the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "most mistaken" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(mistaken)!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ea6"
-  },
-  "id" : "67fab6d59930102295342ea6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "¿Qué animal es el más peligroso?",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Which animal is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "most dangerous" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(dangerous)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ea7"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I want the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "easiest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(easy) route.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I want the easiest route."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342ea7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "¿Qué montaña es la más alta?",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e9b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Which mountain is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "highest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(high)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ea8"
-  },
-  "id" : "67fab6d59930102295342ea8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "¡El perro tenía la expresión más feliz de todos!",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342e9b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The dog had the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "happiest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(happy) expression of all!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ea9"
-  },
-  "id" : "67fab6d59930102295342ea9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "Ella es la maestra más inteligente de la escuela.",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "Ayer fue el día más cálido de este mes.",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She is the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "smartest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(smart) teacher in the school.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342eaa"
-  },
-  "id" : "67fab6d59930102295342eaa",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "¿Es Australia el país más cercano a Asia?",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Is Australia the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "nearest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(near) country from Asia?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342eab"
-  },
-  "id" : "67fab6d59930102295342eab",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "¿Quién tiene el escritorio más ordenado?",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Who has the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "tidiest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(tidy) desk?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342eac"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Yesterday was the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "warmest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(warm) day this month.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Yesterday was the warmest day this month."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342eac",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "Él fue el más imprudente con los vasos.",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.21",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e9c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He was the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "most reckless" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(reckless) with the glasses.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342ead"
-  },
-  "id" : "67fab6d59930102295342ead",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "¡Este concepto es el más preciso!",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.22",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342e9c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "This concept is the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "most precise" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(precise)!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342eae"
-  },
-  "id" : "67fab6d59930102295342eae",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "¿Podría tomar el pastel más pequeño, por favor?",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.23",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "Esa es la mejor tienda de la ciudad.",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Could I have the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "smallest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(small) cake, please?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342eaf"
-  },
-  "id" : "67fab6d59930102295342eaf",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "Ella es la más baja de la clase.",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.24",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She is the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "shortest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(short) in the class.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342eb0"
-  },
-  "id" : "67fab6d59930102295342eb0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "¡Esa película es la mejor!",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.25",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "That movie is the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "best" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(good)!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342eb1"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That is the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "best"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(good) shop in town.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That is the best shop in town."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342eb1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "El jugador más viejo debería comenzar el partido.",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.26",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e9d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "oldest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(old) player should start the match.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342eb2"
-  },
-  "id" : "67fab6d59930102295342eb2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "Esta es la zona más ruidosa que he visitado.",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.27",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342e9d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "This is the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "noisiest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(noisy) area that I've ever visited.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342eb3"
-  },
-  "id" : "67fab6d59930102295342eb3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "¡Eso fue lo más emocionado que me he sentido!",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.28",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "¡Esta es la conferencia más aburrida!",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "That was the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "most excited" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(excited) that I've ever felt!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342eb4"
-  },
-  "id" : "67fab6d59930102295342eb4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "¡Esa es la vista más increíble!",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.29",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "That is the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "most amazing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(amazing) view!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342eb5"
-  },
-  "id" : "67fab6d59930102295342eb5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2a6"
-  },
-  "title" : "Superlative Form Exercises",
-  "instructions" : "Escribe la forma superlativa.",
-  "translation" : "Esa es la casa más grande.",
-  "theoryId" : "a2.11.Form_the_Superlative",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.11.07.30",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "That's the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "biggest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(big) house.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "most boring"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(boring) lecture!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This is the most boring lecture!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e9e"
+    },
+    "id": "67fab6d59930102295342e9e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "Es el hombre más afortunado que conozco.",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He's the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "luckiest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(lucky) man I know.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He's the luckiest man I know."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e9f"
+    },
+    "id": "67fab6d59930102295342e9f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "¡Eso es lo más ridículo que has hecho!",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That is the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "most ridiculous"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(ridiculous) thing you've ever done!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That is the most ridiculous thing you've ever done!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ea0"
+    },
+    "id": "67fab6d59930102295342ea0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "¿Cuál es el desierto más seco del mundo?",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Which is the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "driest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(dry) desert in the world?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Which is the driest desert in the world?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ea1"
+    },
+    "id": "67fab6d59930102295342ea1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "Ese es el coche más asequible.",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That is the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "most affordable"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(affordable) car.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That is the most affordable car."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ea2"
+    },
+    "id": "67fab6d59930102295342ea2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "La lección de inglés fue la más difícil de todas.",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The English lesson was the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "most difficult"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(difficult) of all.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The English lesson was the most difficult of all."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ea3"
+    },
+    "id": "67fab6d59930102295342ea3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "Ella es la mujer más amable de nuestra calle.",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "kindest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(kind) woman in our street.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She is the kindest woman in our street."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ea4"
+    },
+    "id": "67fab6d59930102295342ea4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "Creo que este abrigo es el más brillante.",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I think this coat is the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "shiniest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(shiny).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I think this coat is the shiniest."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ea5"
+    },
+    "id": "67fab6d59930102295342ea5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "¡Eres el más equivocado!",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You are the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "most mistaken"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(mistaken)!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You are the most mistaken!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ea6"
+    },
+    "id": "67fab6d59930102295342ea6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "¿Qué animal es el más peligroso?",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Which animal is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "most dangerous"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(dangerous)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Which animal is most dangerous?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ea7"
+    },
+    "id": "67fab6d59930102295342ea7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "¿Qué montaña es la más alta?",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Which mountain is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "highest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(high)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Which mountain is highest?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ea8"
+    },
+    "id": "67fab6d59930102295342ea8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "¡El perro tenía la expresión más feliz de todos!",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dog had the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "happiest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(happy) expression of all!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The dog had the happiest expression of all!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ea9"
+    },
+    "id": "67fab6d59930102295342ea9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "Ella es la maestra más inteligente de la escuela.",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "smartest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(smart) teacher in the school.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She is the smartest teacher in the school."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342eaa"
+    },
+    "id": "67fab6d59930102295342eaa",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "¿Es Australia el país más cercano a Asia?",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Is Australia the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "nearest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(near) country from Asia?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Is Australia the nearest country from Asia?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342eab"
+    },
+    "id": "67fab6d59930102295342eab",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "¿Quién tiene el escritorio más ordenado?",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Who has the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "tidiest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(tidy) desk?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Who has the tidiest desk?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342eac"
+    },
+    "id": "67fab6d59930102295342eac",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "Él fue el más imprudente con los vasos.",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.21",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He was the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "most reckless"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(reckless) with the glasses.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He was the most reckless with the glasses."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342ead"
+    },
+    "id": "67fab6d59930102295342ead",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "¡Este concepto es el más preciso!",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.22",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This concept is the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "most precise"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(precise)!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This concept is the most precise!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342eae"
+    },
+    "id": "67fab6d59930102295342eae",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "¿Podría tomar el pastel más pequeño, por favor?",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.23",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could I have the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "smallest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(small) cake, please?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Could I have the smallest cake, please?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342eaf"
+    },
+    "id": "67fab6d59930102295342eaf",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "Ella es la más baja de la clase.",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.24",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She is the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "shortest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(short) in the class.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She is the shortest in the class."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342eb0"
+    },
+    "id": "67fab6d59930102295342eb0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "¡Esa película es la mejor!",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.25",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That movie is the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "best"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(good)!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That movie is the best!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342eb1"
+    },
+    "id": "67fab6d59930102295342eb1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "El jugador más viejo debería comenzar el partido.",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.26",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "oldest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(old) player should start the match.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The oldest player should start the match."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342eb2"
+    },
+    "id": "67fab6d59930102295342eb2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "Esta es la zona más ruidosa que he visitado.",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.27",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "noisiest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(noisy) area that I've ever visited.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This is the noisiest area that I've ever visited."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342eb3"
+    },
+    "id": "67fab6d59930102295342eb3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "¡Eso fue lo más emocionado que me he sentido!",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.28",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That was the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "most excited"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(excited) that I've ever felt!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That was the most excited that I've ever felt!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342eb4"
+    },
+    "id": "67fab6d59930102295342eb4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "¡Esa es la vista más increíble!",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.29",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That is the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "most amazing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(amazing) view!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That is the most amazing view!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342eb5"
+    },
+    "id": "67fab6d59930102295342eb5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2a6"
+    },
+    "title": "Superlative Form Exercises",
+    "instructions": "Escribe la forma superlativa.",
+    "translation": "Esa es la casa más grande.",
+    "theoryId": "a2.11.Form_the_Superlative",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.11.07.30",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That's the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "biggest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(big) house.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That's the biggest house."
+      ]
+    }
   }
-} ]
+]

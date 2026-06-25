@@ -1,1181 +1,1462 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344800"
-  },
-  "id" : "67fab6d59930102295344800",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Él estaría en la biblioteca ahora si no hubiera ido al estadio.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344800"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would be" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) at the library now if he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "hadn't gone" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / go) to the stadium.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344801"
-  },
-  "id" : "67fab6d59930102295344801",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Se sentiría mejor si hubiera visitado al médico.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344800",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would feel" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(feel) better if he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had visited" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(visit) the doctor.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344802"
-  },
-  "id" : "67fab6d59930102295344802",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Si hubieran tomado el autobús, estarían aquí ahora.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Él estaría en la biblioteca ahora si no hubiera ido al estadio.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had caught" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(catch) the bus, they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would be" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) here now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344803"
-  },
-  "id" : "67fab6d59930102295344803",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Si ella le hubiera enviado un mensaje de texto a Mary, yo no tendría que enviarle un mensaje de texto.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had texted" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(text) Mary, I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "wouldn't have" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / have) to text her.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344804"
-  },
-  "id" : "67fab6d59930102295344804",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Los gatos estarían más limpios si se hubieran lavado mejor.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The cats",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would be" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) cleaner if they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had washed" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(wash) themselves better.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344805"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would be"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) at the library now if he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "hadn't gone"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / go) to the stadium.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He would be at the library now if he hadn't gone to the stadium."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344805",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Si hubiera estudiado más, aprobaría el examen.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344801"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had studied" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(study) harder, she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would pass" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(pass) the exam.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344806"
-  },
-  "id" : "67fab6d59930102295344806",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Las carreteras serían más seguras si no hubiera llovido tanto.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344801",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The roads",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would be" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) safer if it",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "hadn't rained" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / rain) so much.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344807"
-  },
-  "id" : "67fab6d59930102295344807",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Si no hubiera bebido el vino, no se sentiría mareada.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Se sentiría mejor si hubiera visitado al médico.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "hadn't drunk" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / drink) the wine, she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "wouldn't feel" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / feel) dizzy.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344808"
-  },
-  "id" : "67fab6d59930102295344808",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Si hubiera pedido ese préstamo, lo tendría ahora.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had asked" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(ask) for that loan, he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would have" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(have) it now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344809"
-  },
-  "id" : "67fab6d59930102295344809",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Descansaría ahora si hubiera terminado antes.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would rest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(rest) now if I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had finished" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(finish) earlier.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534480a"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would feel"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(feel) better if he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had visited"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(visit) the doctor.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He would feel better if he had visited the doctor."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534480a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Si hubieras aprendido francés cuando eras más joven, hablarías con fluidez ahora.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344802"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had learned" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(learn) French when you were younger, you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would speak" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(speak) fluently now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534480b"
-  },
-  "id" : "67fab6d5993010229534480b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Si hubieras comido más sano, te sentirías más sano ahora.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344802",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had eaten" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) healthier, you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would feel" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(feel) healthier now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534480c"
-  },
-  "id" : "67fab6d5993010229534480c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Si el policía hubiera atrapado al ladrón, lo elogiaríamos.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Si hubieran tomado el autobús, estarían aquí ahora.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the policeman",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had caught" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(catch) the thief, we",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would praise" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(praise) him.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534480d"
-  },
-  "id" : "67fab6d5993010229534480d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Tendrías sed si no hubieras bebido toda esa agua.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would be" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) thirsty if you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "hadn't drunk" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / drink) all that water.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534480e"
-  },
-  "id" : "67fab6d5993010229534480e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "No se preocuparían si hubieran reservado un hotel.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "wouldn't worry" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / worry) if they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had booked" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(book) a hotel.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534480f"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had caught"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(catch) the bus, they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would be"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) here now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If they had caught the bus, they would be here now."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534480f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Si hubieras comprado limones, tendríamos limonada ahora.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344803"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had bought" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(buy) lemons, we",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would have" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(have) lemonade now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344810"
-  },
-  "id" : "67fab6d59930102295344810",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Los animales estarían afuera ahora si no hubiera hecho frío.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344803",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The animals",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would be" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) outside now if it",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "hadn't turned" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / turn) cold.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344811"
-  },
-  "id" : "67fab6d59930102295344811",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Si hubieras bebido agua, no estarías deshidratado.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Si ella le hubiera enviado un mensaje de texto a Mary, yo no tendría que enviarle un mensaje de texto.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had drunk" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(drink) water, you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "wouldn't be" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / be) dehydrated.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344812"
-  },
-  "id" : "67fab6d59930102295344812",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Conocería a Susan si la hubiera visto antes.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would know" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(know) Susan if he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had seen" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(see) her before.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344813"
-  },
-  "id" : "67fab6d59930102295344813",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d483"
-  },
-  "title" : "Mixed Conditionals Practice",
-  "instructions" : "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Estaríamos en el restaurante ahora si no hubieran perdido la reserva.",
-  "theoryId" : "b2.12.Mixed_Conditionals",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.12.10.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would be" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) at the restaurant now if they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "hadn't missed" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / miss) the reservation.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had texted"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(text) Mary, I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "wouldn't have"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / have) to text her.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If she had texted Mary, I wouldn't have to text her."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344804"
+    },
+    "id": "67fab6d59930102295344804",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
+    },
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Los gatos estarían más limpios si se hubieran lavado mejor.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The cats",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would be"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) cleaner if they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had washed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(wash) themselves better.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The cats would be cleaner if they had washed themselves better."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344805"
+    },
+    "id": "67fab6d59930102295344805",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
+    },
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Si hubiera estudiado más, aprobaría el examen.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had studied"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(study) harder, she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would pass"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(pass) the exam.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If she had studied harder, she would pass the exam."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344806"
+    },
+    "id": "67fab6d59930102295344806",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
+    },
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Las carreteras serían más seguras si no hubiera llovido tanto.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The roads",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would be"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) safer if it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "hadn't rained"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / rain) so much.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The roads would be safer if it hadn't rained so much."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344807"
+    },
+    "id": "67fab6d59930102295344807",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
+    },
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Si no hubiera bebido el vino, no se sentiría mareada.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "hadn't drunk"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / drink) the wine, she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "wouldn't feel"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / feel) dizzy.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If she hadn't drunk the wine, she wouldn't feel dizzy."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344808"
+    },
+    "id": "67fab6d59930102295344808",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
+    },
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Si hubiera pedido ese préstamo, lo tendría ahora.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had asked"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(ask) for that loan, he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would have"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(have) it now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If he had asked for that loan, he would have it now."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344809"
+    },
+    "id": "67fab6d59930102295344809",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
+    },
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Descansaría ahora si hubiera terminado antes.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would rest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(rest) now if I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had finished"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(finish) earlier.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I would rest now if I had finished earlier."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534480a"
+    },
+    "id": "67fab6d5993010229534480a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
+    },
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Si hubieras aprendido francés cuando eras más joven, hablarías con fluidez ahora.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had learned"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(learn) French when you were younger, you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would speak"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(speak) fluently now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If you had learned French when you were younger, you would speak fluently now."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534480b"
+    },
+    "id": "67fab6d5993010229534480b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
+    },
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Si hubieras comido más sano, te sentirías más sano ahora.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had eaten"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) healthier, you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would feel"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(feel) healthier now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If you had eaten healthier, you would feel healthier now."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534480c"
+    },
+    "id": "67fab6d5993010229534480c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
+    },
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Si el policía hubiera atrapado al ladrón, lo elogiaríamos.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the policeman",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had caught"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(catch) the thief, we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would praise"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(praise) him.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If the policeman had caught the thief, we would praise him."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534480d"
+    },
+    "id": "67fab6d5993010229534480d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
+    },
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Tendrías sed si no hubieras bebido toda esa agua.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would be"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) thirsty if you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "hadn't drunk"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / drink) all that water.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You would be thirsty if you hadn't drunk all that water."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534480e"
+    },
+    "id": "67fab6d5993010229534480e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
+    },
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "No se preocuparían si hubieran reservado un hotel.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "wouldn't worry"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / worry) if they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had booked"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(book) a hotel.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They wouldn't worry if they had booked a hotel."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534480f"
+    },
+    "id": "67fab6d5993010229534480f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
+    },
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Si hubieras comprado limones, tendríamos limonada ahora.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had bought"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(buy) lemons, we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would have"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(have) lemonade now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If you had bought lemons, we would have lemonade now."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344810"
+    },
+    "id": "67fab6d59930102295344810",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
+    },
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Los animales estarían afuera ahora si no hubiera hecho frío.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The animals",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would be"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) outside now if it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "hadn't turned"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / turn) cold.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The animals would be outside now if it hadn't turned cold."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344811"
+    },
+    "id": "67fab6d59930102295344811",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
+    },
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Si hubieras bebido agua, no estarías deshidratado.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had drunk"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drink) water, you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "wouldn't be"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) dehydrated.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If you had drunk water, you wouldn't be dehydrated."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344812"
+    },
+    "id": "67fab6d59930102295344812",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
+    },
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Conocería a Susan si la hubiera visto antes.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would know"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(know) Susan if he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "had seen"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(see) her before.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He would know Susan if he had seen her before."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344813"
+    },
+    "id": "67fab6d59930102295344813",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d483"
+    },
+    "title": "Mixed Conditionals Practice",
+    "instructions": "Escribe oraciones condicionales mixtas de 'third/second conditional', donde la condición está en el pasado y el resultado en el presente.",
+    "translation": "Estaríamos en el restaurante ahora si no hubieran perdido la reserva.",
+    "theoryId": "b2.12.Mixed_Conditionals",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.12.10.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would be"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) at the restaurant now if they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "hadn't missed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / miss) the reservation.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We would be at the restaurant now if they hadn't missed the reservation."
+      ]
+    }
   }
-} ]
+]

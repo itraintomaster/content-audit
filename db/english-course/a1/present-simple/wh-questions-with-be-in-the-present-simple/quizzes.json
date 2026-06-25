@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341e9b"
-  },
-  "id" : "67fab6d59930102295341e9b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Cómo está ella?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e9b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "How",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is she" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "? (She)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341e9c"
-  },
-  "id" : "67fab6d59930102295341e9c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Dónde está él?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295341e9b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is he" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "? (He)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341e9d"
-  },
-  "id" : "67fab6d59930102295341e9d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Qué tan alto es él?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Cómo está ella?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "How tall",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is he" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "? (He)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341e9e"
-  },
-  "id" : "67fab6d59930102295341e9e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Por qué está ella en casa?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is she" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "at home? (She)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341e9f"
-  },
-  "id" : "67fab6d59930102295341e9f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Por qué está él en el tren?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is he" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "on the train? (He)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ea0"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "? (She)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "How is she?"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295341ea0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Por qué estamos tristes?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e9c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are we" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "sad? (We)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ea1"
-  },
-  "id" : "67fab6d59930102295341ea1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿A dónde vas?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295341e9c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are you" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "going? (You)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ea2"
-  },
-  "id" : "67fab6d59930102295341ea2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Por qué tiene sed?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Dónde está él?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is he" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "thirsty? (He)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ea3"
-  },
-  "id" : "67fab6d59930102295341ea3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Por qué están ellos allí?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are they" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "there? (They)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ea4"
-  },
-  "id" : "67fab6d59930102295341ea4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Cuántos son?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "How many",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is it" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "? (It)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ea5"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "? (He)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where is he?"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295341ea5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Cómo están ellos?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e9d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "How",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are they" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "? (They)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ea6"
-  },
-  "id" : "67fab6d59930102295341ea6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Con qué frecuencia está él allí?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295341e9d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "How often",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is he" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "there? (He)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ea7"
-  },
-  "id" : "67fab6d59930102295341ea7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Quién eres?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Qué tan alto es él?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Who",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are you" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "? (You)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ea8"
-  },
-  "id" : "67fab6d59930102295341ea8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Dónde está él?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is he" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "? (He)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ea9"
-  },
-  "id" : "67fab6d59930102295341ea9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Por qué está ella feliz?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is she" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "happy? (She)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341eaa"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How tall",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "? (He)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "How tall is he?"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295341eaa",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Qué es esto?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e9e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is this" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "? (This)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341eab"
-  },
-  "id" : "67fab6d59930102295341eab",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Quién es él?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295341e9e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Who",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is he" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "? (He)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341eac"
-  },
-  "id" : "67fab6d59930102295341eac",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Dónde están ellos ahora?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Por qué está ella en casa?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are they" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "now? (They)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ead"
-  },
-  "id" : "67fab6d59930102295341ead",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Por qué llega él temprano?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is he" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "early? (He)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341eae"
-  },
-  "id" : "67fab6d59930102295341eae",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d387"
-  },
-  "title" : "'Wh' questions with 'be' in the present simple",
-  "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Cuándo es ella?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.04.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is she" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "? (She)",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "at home? (She)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why is she at home?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341e9f"
+    },
+    "id": "67fab6d59930102295341e9f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
+    },
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Por qué está él en el tren?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "on the train? (He)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why is he on the train?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ea0"
+    },
+    "id": "67fab6d59930102295341ea0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
+    },
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Por qué estamos tristes?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are we"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "sad? (We)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why are we sad?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ea1"
+    },
+    "id": "67fab6d59930102295341ea1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
+    },
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿A dónde vas?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are you"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "going? (You)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where are you going?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ea2"
+    },
+    "id": "67fab6d59930102295341ea2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
+    },
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Por qué tiene sed?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "thirsty? (He)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why is he thirsty?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ea3"
+    },
+    "id": "67fab6d59930102295341ea3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
+    },
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Por qué están ellos allí?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "there? (They)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why are they there?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ea4"
+    },
+    "id": "67fab6d59930102295341ea4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
+    },
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Cuántos son?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How many",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is it"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "? (It)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "How many is it?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ea5"
+    },
+    "id": "67fab6d59930102295341ea5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
+    },
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Cómo están ellos?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "? (They)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "How are they?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ea6"
+    },
+    "id": "67fab6d59930102295341ea6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
+    },
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Con qué frecuencia está él allí?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How often",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "there? (He)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "How often is he there?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ea7"
+    },
+    "id": "67fab6d59930102295341ea7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
+    },
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Quién eres?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Who",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are you"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "? (You)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Who are you?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ea8"
+    },
+    "id": "67fab6d59930102295341ea8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
+    },
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Dónde está él?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "? (He)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where is he?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ea9"
+    },
+    "id": "67fab6d59930102295341ea9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
+    },
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Por qué está ella feliz?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "happy? (She)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why is she happy?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341eaa"
+    },
+    "id": "67fab6d59930102295341eaa",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
+    },
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Qué es esto?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is this"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "? (This)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What is this?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341eab"
+    },
+    "id": "67fab6d59930102295341eab",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
+    },
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Quién es él?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Who",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "? (He)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Who is he?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341eac"
+    },
+    "id": "67fab6d59930102295341eac",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
+    },
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Dónde están ellos ahora?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "now? (They)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where are they now?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ead"
+    },
+    "id": "67fab6d59930102295341ead",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
+    },
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Por qué llega él temprano?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "early? (He)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why is he early?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341eae"
+    },
+    "id": "67fab6d59930102295341eae",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d387"
+    },
+    "title": "'Wh' questions with 'be' in the present simple",
+    "instructions": "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
+    "translation": "¿Cuándo es ella?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.04.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "? (She)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When is she?"
+      ]
+    }
   }
-} ]
+]

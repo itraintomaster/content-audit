@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a38"
-  },
-  "id" : "67fab6d59930102295342a38",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Él estrelló la bicicleta de su hermana.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a38"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He crashed his",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sister's bicycle" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(bicycle that belongs to his sister).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a39"
-  },
-  "id" : "67fab6d59930102295342a39",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Se comió la comida del gato.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342a38",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He ate the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "cat's food" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(food that belongs to the cat).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a3a"
-  },
-  "id" : "67fab6d59930102295342a3a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Esas son las bicicletas de nuestros primos.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Él estrelló la bicicleta de su hermana.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Those are our",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "cousins' bicycles" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(bicycles that belong to our cousins).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a3b"
-  },
-  "id" : "67fab6d59930102295342a3b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Estas son las bicicletas de los chicos.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "These are the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "boys' bikes" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(bikes that belong to the boys).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a3c"
-  },
-  "id" : "67fab6d59930102295342a3c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Estas son las flores de Mary.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "These are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Mary's flowers" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(flowers that belong to Mary).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a3d"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He crashed his",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "sister's bicycle"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(bicycle that belongs to his sister).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He crashed his sister's bicycle."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342a3d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Estos son los consultorios de los médicos.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a39"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "These are the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "doctors' offices" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(offices that belong to the doctors).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a3e"
-  },
-  "id" : "67fab6d59930102295342a3e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Probé la sopa del chef.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342a39",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I tasted the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "chef's soup" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(soup that belongs to the chef).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a3f"
-  },
-  "id" : "67fab6d59930102295342a3f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Estas son las gafas de mi padre.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Se comió la comida del gato.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "These are my",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "father's glasses" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(glasses that belong to my father).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a40"
-  },
-  "id" : "67fab6d59930102295342a40",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Estos son los baños de damas.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "These are the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "ladies' toilets" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(toilets that belong to the ladies).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a41"
-  },
-  "id" : "67fab6d59930102295342a41",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Ese es el globo del niño.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "That is the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "child's balloon" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(balloon that belongs to the child).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a42"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He ate the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "cat's food"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(food that belongs to the cat).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He ate the cat's food."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342a42",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Este es el reloj de mi abuelo.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a3a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "This is my",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "grandfather's watch" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(watch that belongs to my grandfather).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a43"
-  },
-  "id" : "67fab6d59930102295342a43",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Visitamos la granja de mi tío.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342a3a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We visited my",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "uncle's farm" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(farm that belongs to my uncle).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a44"
-  },
-  "id" : "67fab6d59930102295342a44",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Ella encontró los archivos de sus clientes.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Esas son las bicicletas de nuestros primos.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She found their",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "clients' files" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(files that belong to their clients).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a45"
-  },
-  "id" : "67fab6d59930102295342a45",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Tomé prestada la camisa de mi hermano.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I borrowed my",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "brother's shirt" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(shirt that belongs to my brother).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a46"
-  },
-  "id" : "67fab6d59930102295342a46",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Este es el perro de Anna.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "This is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Anna's dog" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(dog that belongs to Anna).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a47"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Those are our",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "cousins' bicycles"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(bicycles that belong to our cousins).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Those are our cousins' bicycles."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342a47",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "¿Conoces los nombres de los dentistas?",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a3b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Do you know the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "dentists' names" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(names that belong to the dentists)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a48"
-  },
-  "id" : "67fab6d59930102295342a48",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Esa es la bicicleta de Peter.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342a3b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "That is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter's bike" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(bike that belongs to Peter).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a49"
-  },
-  "id" : "67fab6d59930102295342a49",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Esos son los sombreros de los caballeros.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Estas son las bicicletas de los chicos.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Those are the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "gentlemen's hats" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(hats that belong to the gentlemen).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a4a"
-  },
-  "id" : "67fab6d59930102295342a4a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Leímos los poemas del autor.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We read the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "author's poems" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(poems that belong to the author).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a4b"
-  },
-  "id" : "67fab6d59930102295342a4b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25c"
-  },
-  "title" : "Practice with Possessive 's'",
-  "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Fuimos a la fiesta de nuestra tía.",
-  "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.08.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We went to our",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "aunt's party" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(party that belongs to our aunt).",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "These are the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "boys' bikes"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(bikes that belong to the boys).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "These are the boys' bikes."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a3c"
+    },
+    "id": "67fab6d59930102295342a3c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
+    },
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Estas son las flores de Mary.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "These are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Mary's flowers"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(flowers that belong to Mary).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "These are Mary's flowers."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a3d"
+    },
+    "id": "67fab6d59930102295342a3d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
+    },
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Estos son los consultorios de los médicos.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "These are the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "doctors' offices"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(offices that belong to the doctors).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "These are the doctors' offices."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a3e"
+    },
+    "id": "67fab6d59930102295342a3e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
+    },
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Probé la sopa del chef.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I tasted the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "chef's soup"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(soup that belongs to the chef).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I tasted the chef's soup."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a3f"
+    },
+    "id": "67fab6d59930102295342a3f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
+    },
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Estas son las gafas de mi padre.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "These are my",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "father's glasses"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(glasses that belong to my father).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "These are my father's glasses."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a40"
+    },
+    "id": "67fab6d59930102295342a40",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
+    },
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Estos son los baños de damas.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "These are the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "ladies' toilets"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(toilets that belong to the ladies).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "These are the ladies' toilets."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a41"
+    },
+    "id": "67fab6d59930102295342a41",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
+    },
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Ese es el globo del niño.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That is the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "child's balloon"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(balloon that belongs to the child).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That is the child's balloon."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a42"
+    },
+    "id": "67fab6d59930102295342a42",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
+    },
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Este es el reloj de mi abuelo.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is my",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "grandfather's watch"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(watch that belongs to my grandfather).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This is my grandfather's watch."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a43"
+    },
+    "id": "67fab6d59930102295342a43",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
+    },
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Visitamos la granja de mi tío.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We visited my",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "uncle's farm"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(farm that belongs to my uncle).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We visited my uncle's farm."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a44"
+    },
+    "id": "67fab6d59930102295342a44",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
+    },
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Ella encontró los archivos de sus clientes.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She found their",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "clients' files"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(files that belong to their clients).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She found their clients' files."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a45"
+    },
+    "id": "67fab6d59930102295342a45",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
+    },
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Tomé prestada la camisa de mi hermano.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I borrowed my",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "brother's shirt"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(shirt that belongs to my brother).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I borrowed my brother's shirt."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a46"
+    },
+    "id": "67fab6d59930102295342a46",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
+    },
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Este es el perro de Anna.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "This is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Anna's dog"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(dog that belongs to Anna).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "This is Anna's dog."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a47"
+    },
+    "id": "67fab6d59930102295342a47",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
+    },
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "¿Conoces los nombres de los dentistas?",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you know the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "dentists' names"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(names that belong to the dentists)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Do you know the dentists' names?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a48"
+    },
+    "id": "67fab6d59930102295342a48",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
+    },
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Esa es la bicicleta de Peter.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter's bike"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(bike that belongs to Peter).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That is Peter's bike."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a49"
+    },
+    "id": "67fab6d59930102295342a49",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
+    },
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Esos son los sombreros de los caballeros.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Those are the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "gentlemen's hats"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(hats that belong to the gentlemen).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Those are the gentlemen's hats."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a4a"
+    },
+    "id": "67fab6d59930102295342a4a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
+    },
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Leímos los poemas del autor.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We read the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "author's poems"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(poems that belong to the author).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We read the author's poems."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a4b"
+    },
+    "id": "67fab6d59930102295342a4b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25c"
+    },
+    "title": "Practice with Possessive 's'",
+    "instructions": "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
+    "translation": "Fuimos a la fiesta de nuestra tía.",
+    "theoryId": "a2.06.Using_No_Article_to_Talk_in_General",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.08.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We went to our",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "aunt's party"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(party that belongs to our aunt).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We went to our aunt's party."
+      ]
+    }
   }
-} ]
+]

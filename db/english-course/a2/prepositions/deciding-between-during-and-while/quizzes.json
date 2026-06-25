@@ -1,511 +1,612 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342d26"
-  },
-  "id" : "67fab6d59930102295342d26",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d28c"
-  },
-  "title" : "Deciding Between During and While",
-  "instructions" : "Elige 'during' o 'while'.",
-  "translation" : "El bebé durmió durante la tarde.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.09.11.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d26"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The baby slept",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "during" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the afternoon.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342d27"
-  },
-  "id" : "67fab6d59930102295342d27",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d28c"
-  },
-  "title" : "Deciding Between During and While",
-  "instructions" : "Elige 'during' o 'while'.",
-  "translation" : "Ella vio a su amiga mientras estaba en el trabajo.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.09.11.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342d26",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She saw her friend",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "while" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "she was at work.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342d28"
-  },
-  "id" : "67fab6d59930102295342d28",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d28c"
-  },
-  "title" : "Deciding Between During and While",
-  "instructions" : "Elige 'during' o 'while'.",
-  "translation" : "Ellos escucharon música mientras cocinaban.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.09.11.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Deciding Between During and While",
+    "instructions": "Elige 'during' o 'while'.",
+    "translation": "El bebé durmió durante la tarde.",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They listened to music",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "while" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "they were cooking.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342d29"
-  },
-  "id" : "67fab6d59930102295342d29",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d28c"
-  },
-  "title" : "Deciding Between During and While",
-  "instructions" : "Elige 'during' o 'while'.",
-  "translation" : "Se fue la luz durante la tormenta.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.09.11.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The power went out",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "during" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the storm.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342d2a"
-  },
-  "id" : "67fab6d59930102295342d2a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d28c"
-  },
-  "title" : "Deciding Between During and While",
-  "instructions" : "Elige 'during' o 'while'.",
-  "translation" : "El perro ladró mientras dormíamos.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.09.11.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The dog barked",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "while" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "we were sleeping.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342d2b"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.09.11.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The baby slept",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "during"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the afternoon.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The baby slept during the afternoon."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342d2b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d28c"
-  },
-  "title" : "Deciding Between During and While",
-  "instructions" : "Elige 'during' o 'while'.",
-  "translation" : "El cartero llegó durante la mañana.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.09.11.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d27"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The postman arrived",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "during" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the morning.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342d2c"
-  },
-  "id" : "67fab6d59930102295342d2c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d28c"
-  },
-  "title" : "Deciding Between During and While",
-  "instructions" : "Elige 'during' o 'while'.",
-  "translation" : "Tomamos café durante el descanso.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.09.11.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342d27",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We drank coffee",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "during" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the break.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342d2d"
-  },
-  "id" : "67fab6d59930102295342d2d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d28c"
-  },
-  "title" : "Deciding Between During and While",
-  "instructions" : "Elige 'during' o 'while'.",
-  "translation" : "Él vio a Mary hablar con Susan durante el concierto.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.09.11.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Deciding Between During and While",
+    "instructions": "Elige 'during' o 'while'.",
+    "translation": "Ella vio a su amiga mientras estaba en el trabajo.",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He saw Mary spoke to Susan",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "during" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the concert.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342d2e"
-  },
-  "id" : "67fab6d59930102295342d2e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d28c"
-  },
-  "title" : "Deciding Between During and While",
-  "instructions" : "Elige 'during' o 'while'.",
-  "translation" : "Se les cayó la taza mientras yo estaba en el jardín.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.09.11.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They dropped the cup",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "while" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "I was in the garden.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342d2f"
-  },
-  "id" : "67fab6d59930102295342d2f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d28c"
-  },
-  "title" : "Deciding Between During and While",
-  "instructions" : "Elige 'during' o 'while'.",
-  "translation" : "Se durmió en el coche mientras conducía.",
-  "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
-  "topicName" : "Prepositions",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.09.11.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He slept in the car",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "while" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "he was driving.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.09.11.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She saw her friend",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "while"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "she was at work.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She saw her friend while she was at work."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d28"
+    },
+    "id": "67fab6d59930102295342d28",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28c"
+    },
+    "title": "Deciding Between During and While",
+    "instructions": "Elige 'during' o 'while'.",
+    "translation": "Ellos escucharon música mientras cocinaban.",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.09.11.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They listened to music",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "while"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "they were cooking.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They listened to music while they were cooking."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d29"
+    },
+    "id": "67fab6d59930102295342d29",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28c"
+    },
+    "title": "Deciding Between During and While",
+    "instructions": "Elige 'during' o 'while'.",
+    "translation": "Se fue la luz durante la tormenta.",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.09.11.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The power went out",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "during"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the storm.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The power went out during the storm."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d2a"
+    },
+    "id": "67fab6d59930102295342d2a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28c"
+    },
+    "title": "Deciding Between During and While",
+    "instructions": "Elige 'during' o 'while'.",
+    "translation": "El perro ladró mientras dormíamos.",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.09.11.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dog barked",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "while"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "we were sleeping.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The dog barked while we were sleeping."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d2b"
+    },
+    "id": "67fab6d59930102295342d2b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28c"
+    },
+    "title": "Deciding Between During and While",
+    "instructions": "Elige 'during' o 'while'.",
+    "translation": "El cartero llegó durante la mañana.",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.09.11.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The postman arrived",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "during"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the morning.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The postman arrived during the morning."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d2c"
+    },
+    "id": "67fab6d59930102295342d2c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28c"
+    },
+    "title": "Deciding Between During and While",
+    "instructions": "Elige 'during' o 'while'.",
+    "translation": "Tomamos café durante el descanso.",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.09.11.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We drank coffee",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "during"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the break.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We drank coffee during the break."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d2d"
+    },
+    "id": "67fab6d59930102295342d2d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28c"
+    },
+    "title": "Deciding Between During and While",
+    "instructions": "Elige 'during' o 'while'.",
+    "translation": "Él vio a Mary hablar con Susan durante el concierto.",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.09.11.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He saw Mary spoke to Susan",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "during"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the concert.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He saw Mary spoke to Susan during the concert."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d2e"
+    },
+    "id": "67fab6d59930102295342d2e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28c"
+    },
+    "title": "Deciding Between During and While",
+    "instructions": "Elige 'during' o 'while'.",
+    "translation": "Se les cayó la taza mientras yo estaba en el jardín.",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.09.11.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They dropped the cup",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "while"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "I was in the garden.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They dropped the cup while I was in the garden."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342d2f"
+    },
+    "id": "67fab6d59930102295342d2f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d28c"
+    },
+    "title": "Deciding Between During and While",
+    "instructions": "Elige 'during' o 'while'.",
+    "translation": "Se durmió en el coche mientras conducía.",
+    "theoryId": "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
+    "topicName": "Prepositions",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.09.11.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He slept in the car",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "while"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "he was driving.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He slept in the car while he was driving."
+      ]
+    }
   }
-} ]
+]

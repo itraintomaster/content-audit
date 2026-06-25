@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342aec"
-  },
-  "id" : "67fab6d59930102295342aec",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "Él no bebe mucha cerveza.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aec"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He doesn't drink",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "much" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "beer.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342aed"
-  },
-  "id" : "67fab6d59930102295342aed",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "Ellos no compraron muchos CDs.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342aec",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They didn't buy",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "many" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "CDs.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342aee"
-  },
-  "id" : "67fab6d59930102295342aee",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "Él comió un poco de arroz.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "Él no bebe mucha cerveza.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He ate",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "rice.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342aef"
-  },
-  "id" : "67fab6d59930102295342aef",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "Ella compró un poco de azúcar.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She bought",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "sugar.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342af0"
-  },
-  "id" : "67fab6d59930102295342af0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "Vi unas pocas películas durante las vacaciones.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I watched",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "movies during the holidays.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342af1"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He doesn't drink",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "much"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "beer.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He doesn't drink much beer."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342af1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "Él compró unos pocos plátanos.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aed"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He bought",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "bananas.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342af2"
-  },
-  "id" : "67fab6d59930102295342af2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "No tengo mucha energía.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342aed",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I don't have",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "much" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "energy.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342af3"
-  },
-  "id" : "67fab6d59930102295342af3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "¿Los profesores corrigieron muchos exámenes?",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "Ellos no compraron muchos CDs.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Did the teachers correct",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "many" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "tests?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342af4"
-  },
-  "id" : "67fab6d59930102295342af4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "Ellos tienen un poco de paciencia.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They have",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "patience.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342af5"
-  },
-  "id" : "67fab6d59930102295342af5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "¿Ellos comieron mucho arroz?",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Did they eat",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "much" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "rice?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342af6"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They didn't buy",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "CDs.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They didn't buy many CDs."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342af6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "¿Los empleados tienen mucho trabajo?",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aee"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Do the employees have",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "much" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "work?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342af7"
-  },
-  "id" : "67fab6d59930102295342af7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "La casa necesita unas pocas plantas.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342aee",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The house needs",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "plants.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342af8"
-  },
-  "id" : "67fab6d59930102295342af8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "La ensalada necesita un poco de pimienta.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "Él comió un poco de arroz.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The salad needs",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "pepper.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342af9"
-  },
-  "id" : "67fab6d59930102295342af9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "Ella invitó a unos pocos colegas.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She invited",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "colleagues.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342afa"
-  },
-  "id" : "67fab6d59930102295342afa",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "No tengo muchas dudas sobre esto.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I don't have",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "many" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "doubts about this.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342afb"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He ate",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "rice.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He ate a little rice."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342afb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "No tenemos mucha leche.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aef"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We don't have",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "much" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "milk.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342afc"
-  },
-  "id" : "67fab6d59930102295342afc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "¿Recibiste muchas cartas?",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342aef",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Did you receive",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "many" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "letters?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342afd"
-  },
-  "id" : "67fab6d59930102295342afd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "Ella no necesita muchos sándwiches.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "Ella compró un poco de azúcar.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She doesn't need",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "many" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "sandwiches.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342afe"
-  },
-  "id" : "67fab6d59930102295342afe",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "Lo terminamos en unos pocos días.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We finished it in",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a few" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "days.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342aff"
-  },
-  "id" : "67fab6d59930102295342aff",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d266"
-  },
-  "title" : "Quantity Practice: Much, Many, A Little, A Few",
-  "instructions" : "Completa con 'much', 'many', 'a little' o 'a few'.",
-  "translation" : "Quisiera un poco de té, por favor.",
-  "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
-  "topicName" : "Determiners",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.07.03.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'd like",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "tea, please.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She bought",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "sugar.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She bought a little sugar."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342af0"
+    },
+    "id": "67fab6d59930102295342af0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
+    },
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "Vi unas pocas películas durante las vacaciones.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I watched",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "movies during the holidays.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I watched a few movies during the holidays."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342af1"
+    },
+    "id": "67fab6d59930102295342af1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
+    },
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "Él compró unos pocos plátanos.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He bought",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bananas.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He bought a few bananas."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342af2"
+    },
+    "id": "67fab6d59930102295342af2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
+    },
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "No tengo mucha energía.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I don't have",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "much"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "energy.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I don't have much energy."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342af3"
+    },
+    "id": "67fab6d59930102295342af3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
+    },
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "¿Los profesores corrigieron muchos exámenes?",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Did the teachers correct",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "tests?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Did the teachers correct many tests?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342af4"
+    },
+    "id": "67fab6d59930102295342af4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
+    },
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "Ellos tienen un poco de paciencia.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They have",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "patience.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They have a little patience."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342af5"
+    },
+    "id": "67fab6d59930102295342af5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
+    },
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "¿Ellos comieron mucho arroz?",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Did they eat",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "much"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "rice?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Did they eat much rice?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342af6"
+    },
+    "id": "67fab6d59930102295342af6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
+    },
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "¿Los empleados tienen mucho trabajo?",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do the employees have",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "much"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "work?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Do the employees have much work?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342af7"
+    },
+    "id": "67fab6d59930102295342af7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
+    },
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "La casa necesita unas pocas plantas.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The house needs",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "plants.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The house needs a few plants."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342af8"
+    },
+    "id": "67fab6d59930102295342af8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
+    },
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "La ensalada necesita un poco de pimienta.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The salad needs",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "pepper.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The salad needs a little pepper."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342af9"
+    },
+    "id": "67fab6d59930102295342af9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
+    },
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "Ella invitó a unos pocos colegas.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She invited",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "colleagues.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She invited a few colleagues."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342afa"
+    },
+    "id": "67fab6d59930102295342afa",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
+    },
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "No tengo muchas dudas sobre esto.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I don't have",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "doubts about this.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I don't have many doubts about this."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342afb"
+    },
+    "id": "67fab6d59930102295342afb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
+    },
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "No tenemos mucha leche.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We don't have",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "much"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "milk.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We don't have much milk."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342afc"
+    },
+    "id": "67fab6d59930102295342afc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
+    },
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "¿Recibiste muchas cartas?",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Did you receive",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "letters?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Did you receive many letters?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342afd"
+    },
+    "id": "67fab6d59930102295342afd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
+    },
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "Ella no necesita muchos sándwiches.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She doesn't need",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "many"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "sandwiches.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She doesn't need many sandwiches."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342afe"
+    },
+    "id": "67fab6d59930102295342afe",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
+    },
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "Lo terminamos en unos pocos días.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We finished it in",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a few"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "days.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We finished it in a few days."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342aff"
+    },
+    "id": "67fab6d59930102295342aff",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d266"
+    },
+    "title": "Quantity Practice: Much, Many, A Little, A Few",
+    "instructions": "Completa con 'much', 'many', 'a little' o 'a few'.",
+    "translation": "Quisiera un poco de té, por favor.",
+    "theoryId": "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
+    "topicName": "Determiners",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.07.03.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'd like",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a little"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "tea, please.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I'd like a little tea, please."
+      ]
+    }
   }
-} ]
+]

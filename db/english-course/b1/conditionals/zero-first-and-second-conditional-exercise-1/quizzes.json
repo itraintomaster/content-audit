@@ -1,1181 +1,1462 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a7d"
-  },
-  "id" : "67fab6d59930102295343a7d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si condujeras con cuidado, evitarías el accidente.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a7d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Second: If you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "drove" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(drive) carefully, you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would avoid" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(avoid) the accident.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a7e"
-  },
-  "id" : "67fab6d59930102295343a7e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si practicaran más, ganarían el partido.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343a7d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Second: If they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "practiced" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(practice) harder, they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would win" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(win) the match.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a7f"
-  },
-  "id" : "67fab6d59930102295343a7f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si está ocupada, te llamará más tarde.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si condujeras con cuidado, evitarías el accidente.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "First: If she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) busy, she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will call" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(call) you later.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a80"
-  },
-  "id" : "67fab6d59930102295343a80",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si necesita ayuda, le ayudaré.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "First: If he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "needs" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(need) help, I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will assist" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(assist) him.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a81"
-  },
-  "id" : "67fab6d59930102295343a81",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si come cacahuates, tose.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Zero: If he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "eats" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) peanuts, he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "coughs" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(cough).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a82"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Second: If you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "drove"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drive) carefully, you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would avoid"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(avoid) the accident.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Second: If you drove carefully, you would avoid the accident."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343a82",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si se despertara más temprano, no perdería el autobús.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a7e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Second: If he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "woke" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(wake) up earlier, he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "wouldn't miss" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / miss) the bus.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a83"
-  },
-  "id" : "67fab6d59930102295343a83",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si el sol brilla, vamos a la playa.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343a7e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Zero: If the sun",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "shines" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(shine), we",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "go" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(go) to the beach.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a84"
-  },
-  "id" : "67fab6d59930102295343a84",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si organiza una fiesta, invitará a sus amigos.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si practicaran más, ganarían el partido.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "First: If she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "throws" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(throw) a party, she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will invite" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(invite) her friends.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a85"
-  },
-  "id" : "67fab6d59930102295343a85",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si toma el tren, llegará más temprano.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "First: If she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "takes" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(take) the train, she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will arrive" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(arrive) earlier.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a86"
-  },
-  "id" : "67fab6d59930102295343a86",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si los estudiantes estudiaran más, tendrían éxito en sus exámenes.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Second: If the students",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "studied" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(study) harder, they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would succeed" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(succeed) in their exams.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a87"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Second: If they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "practiced"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(practice) harder, they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would win"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(win) the match.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Second: If they practiced harder, they would win the match."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343a87",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si pides pizza, yo comeré una rebanada.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a7f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "First: If you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "order" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(order) pizza, I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will have" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(have) a slice.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a88"
-  },
-  "id" : "67fab6d59930102295343a88",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si ganara la lotería, viajaría por todo el mundo.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343a7f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Second: If I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "won" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(win) the lottery, I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would travel" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(travel) around the world.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a89"
-  },
-  "id" : "67fab6d59930102295343a89",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si comemos pizza, siempre estamos felices.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si está ocupada, te llamará más tarde.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Zero: If we",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "eat" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) pizza, we",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) always happy.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a8a"
-  },
-  "id" : "67fab6d59930102295343a8a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si invitaran a Mary, ella traería las bebidas.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Second: If they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "invited" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(invite) Mary, she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would bring" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(bring) the drinks.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a8b"
-  },
-  "id" : "67fab6d59930102295343a8b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si están cansados, su padre es comprensivo.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Zero: If they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) tired, their father",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) understanding.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a8c"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "First: If she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) busy, she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will call"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(call) you later.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "First: If she is busy, she will call you later."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343a8c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si vuela en avión, se siente nerviosa.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a80"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Zero: If she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "flies" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(fly) on a plane, she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "feels" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(feel) nervous.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a8d"
-  },
-  "id" : "67fab6d59930102295343a8d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si se queda aquí, jugaremos videojuegos.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343a80",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "First: If he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "stays" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(stay) here, we",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will play" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(play) video games.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a8e"
-  },
-  "id" : "67fab6d59930102295343a8e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si mezclas rojo y blanco, obtienes rosa.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si necesita ayuda, le ayudaré.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Zero: If you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "mix" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(mix) red and white, you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "get" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(get) pink.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a8f"
-  },
-  "id" : "67fab6d59930102295343a8f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si nieva, las carreteras se vuelven resbaladizas.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Zero: If it",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "snows" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(snow), the roads",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "become" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) slippery.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a90"
-  },
-  "id" : "67fab6d59930102295343a90",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d354"
-  },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
-  "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si aprendemos mucho, mejoraremos nuestras habilidades.",
-  "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.09.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "First: If we",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "learn" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(learn) hard, we",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will improve" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(improve) our skills.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "First: If he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "needs"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(need) help, I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will assist"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(assist) him.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "First: If he needs help, I will assist him."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a81"
+    },
+    "id": "67fab6d59930102295343a81",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
+    },
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si come cacahuates, tose.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Zero: If he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "eats"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) peanuts, he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "coughs"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(cough).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Zero: If he eats peanuts, he coughs."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a82"
+    },
+    "id": "67fab6d59930102295343a82",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
+    },
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si se despertara más temprano, no perdería el autobús.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Second: If he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "woke"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(wake) up earlier, he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "wouldn't miss"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / miss) the bus.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Second: If he woke up earlier, he wouldn't miss the bus."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a83"
+    },
+    "id": "67fab6d59930102295343a83",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
+    },
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si el sol brilla, vamos a la playa.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Zero: If the sun",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "shines"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(shine), we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "go"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(go) to the beach.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Zero: If the sun shines, we go to the beach."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a84"
+    },
+    "id": "67fab6d59930102295343a84",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
+    },
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si organiza una fiesta, invitará a sus amigos.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "First: If she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "throws"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(throw) a party, she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will invite"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(invite) her friends.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "First: If she throws a party, she will invite her friends."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a85"
+    },
+    "id": "67fab6d59930102295343a85",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
+    },
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si toma el tren, llegará más temprano.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "First: If she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "takes"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(take) the train, she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will arrive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(arrive) earlier.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "First: If she takes the train, she will arrive earlier."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a86"
+    },
+    "id": "67fab6d59930102295343a86",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
+    },
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si los estudiantes estudiaran más, tendrían éxito en sus exámenes.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Second: If the students",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "studied"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(study) harder, they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would succeed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(succeed) in their exams.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Second: If the students studied harder, they would succeed in their exams."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a87"
+    },
+    "id": "67fab6d59930102295343a87",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
+    },
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si pides pizza, yo comeré una rebanada.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "First: If you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "order"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(order) pizza, I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will have"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(have) a slice.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "First: If you order pizza, I will have a slice."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a88"
+    },
+    "id": "67fab6d59930102295343a88",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
+    },
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si ganara la lotería, viajaría por todo el mundo.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Second: If I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "won"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(win) the lottery, I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would travel"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(travel) around the world.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Second: If I won the lottery, I would travel around the world."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a89"
+    },
+    "id": "67fab6d59930102295343a89",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
+    },
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si comemos pizza, siempre estamos felices.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Zero: If we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "eat"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) pizza, we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) always happy.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Zero: If we eat pizza, we are always happy."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a8a"
+    },
+    "id": "67fab6d59930102295343a8a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
+    },
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si invitaran a Mary, ella traería las bebidas.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Second: If they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "invited"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(invite) Mary, she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "would bring"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(bring) the drinks.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Second: If they invited Mary, she would bring the drinks."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a8b"
+    },
+    "id": "67fab6d59930102295343a8b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
+    },
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si están cansados, su padre es comprensivo.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Zero: If they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) tired, their father",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) understanding.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Zero: If they are tired, their father is understanding."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a8c"
+    },
+    "id": "67fab6d59930102295343a8c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
+    },
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si vuela en avión, se siente nerviosa.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Zero: If she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "flies"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(fly) on a plane, she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "feels"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(feel) nervous.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Zero: If she flies on a plane, she feels nervous."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a8d"
+    },
+    "id": "67fab6d59930102295343a8d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
+    },
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si se queda aquí, jugaremos videojuegos.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "First: If he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "stays"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(stay) here, we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will play"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(play) video games.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "First: If he stays here, we will play video games."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a8e"
+    },
+    "id": "67fab6d59930102295343a8e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
+    },
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si mezclas rojo y blanco, obtienes rosa.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Zero: If you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "mix"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(mix) red and white, you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "get"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(get) pink.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Zero: If you mix red and white, you get pink."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a8f"
+    },
+    "id": "67fab6d59930102295343a8f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
+    },
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si nieva, las carreteras se vuelven resbaladizas.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Zero: If it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "snows"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(snow), the roads",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "become"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) slippery.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Zero: If it snows, the roads become slippery."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a90"
+    },
+    "id": "67fab6d59930102295343a90",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d354"
+    },
+    "title": "Zero, First, and Second Conditional Exercise 1",
+    "instructions": "Escribe la forma verbal correcta, según el tipo de condicional.",
+    "translation": "Si aprendemos mucho, mejoraremos nuestras habilidades.",
+    "theoryId": "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.09.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "First: If we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "learn"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(learn) hard, we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will improve"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(improve) our skills.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "First: If we learn hard, we will improve our skills."
+      ]
+    }
   }
-} ]
+]

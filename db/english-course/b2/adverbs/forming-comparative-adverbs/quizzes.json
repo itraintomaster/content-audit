@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449c2"
-  },
-  "id" : "67fab6d599301022953449c2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "Los niños jugaban más felices que la semana pasada.",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449c2"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The kids were playing",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more happily" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(happily) than last week.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449c3"
-  },
-  "id" : "67fab6d599301022953449c3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "Ella terminó el examen más rápido que nadie.",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953449c2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She finished the test",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more quickly" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(quickly) than anyone.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449c4"
-  },
-  "id" : "67fab6d599301022953449c4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "Me desperté más tarde que mi alarma.",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "Los niños jugaban más felices que la semana pasada.",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I woke up",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "later" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(late) than my alarm.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449c5"
-  },
-  "id" : "67fab6d599301022953449c5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "Ella puede bailar más hermosamente que él.",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She can dance",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more beautifully" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(beautifully) than he can.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449c6"
-  },
-  "id" : "67fab6d599301022953449c6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "Él juega al tenis peor que yo.",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He plays tennis",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "worse" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(badly) than I do.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449c7"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The kids were playing",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more happily"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(happily) than last week.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The kids were playing more happily than last week."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953449c7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "Los fuegos artificiales explotaron más fuerte después de las 10 de la noche.",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449c3"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The fireworks exploded",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more loudly" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(loudly) after 10PM.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449c8"
-  },
-  "id" : "67fab6d599301022953449c8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "Ellos entienden español con más fluidez ahora.",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953449c3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They understand Spanish",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more fluently" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(fluently) now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449c9"
-  },
-  "id" : "67fab6d599301022953449c9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "Ella suele despertarse más temprano que yo.",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "Ella terminó el examen más rápido que nadie.",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She usually wakes up",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "earlier" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(early) than I do.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449ca"
-  },
-  "id" : "67fab6d599301022953449ca",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "John puede nadar más rápido ahora.",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "John can swim",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "faster" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(fast) now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449cb"
-  },
-  "id" : "67fab6d599301022953449cb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "¿Podrías caminar más despacio?",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Could you walk",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more slowly" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(slowly)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449cc"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She finished the test",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more quickly"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(quickly) than anyone.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She finished the test more quickly than anyone."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953449cc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "¿Estudias más que tu hermana?",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449c4"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Do you study",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "harder" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(hard) than your sister?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449cd"
-  },
-  "id" : "67fab6d599301022953449cd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "Él gritó más enojado que nunca lo había visto gritar.",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953449c4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He shouted",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more angrily" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(angrily) than I'd ever seen him shout.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449ce"
-  },
-  "id" : "67fab6d599301022953449ce",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "Deberías tratar al perro con más cuidado.",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "Me desperté más tarde que mi alarma.",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You should treat the dog",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more gently" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(gently).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449cf"
-  },
-  "id" : "67fab6d599301022953449cf",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "Él resolvió el rompecabezas más fácilmente que ellos.",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He solved the puzzle",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more easily" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(easily) than they did.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449d0"
-  },
-  "id" : "67fab6d599301022953449d0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "Por favor, manipula los huevos con más cuidado.",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Please handle the eggs",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more carefully" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(carefully).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449d1"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I woke up",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "later"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(late) than my alarm.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I woke up later than my alarm."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953449d1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "El pájaro voló más alto de lo que esperábamos.",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449c5"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The bird flew",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "higher" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(high) than we expected.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449d2"
-  },
-  "id" : "67fab6d599301022953449d2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "Ella puede escribir mejor que yo.",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953449c5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She can write",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "better" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(well) than I can.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449d3"
-  },
-  "id" : "67fab6d599301022953449d3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "¿Puedes susurrar más bajo?",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "Ella puede bailar más hermosamente que él.",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Can you whisper",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more quietly" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(quietly)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449d4"
-  },
-  "id" : "67fab6d599301022953449d4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "¡Ella conduce su coche con más seguridad que tú!",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She drives her car",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more safely" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(safely) than you do!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953449d5"
-  },
-  "id" : "67fab6d599301022953449d5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d49d"
-  },
-  "title" : "Forming Comparative Adverbs",
-  "instructions" : "Forma adverbios comparativos.",
-  "translation" : "Ellos responden más educadamente ahora.",
-  "theoryId" : "b2.14.Comparative_Adverbs",
-  "topicName" : "Adverbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.14.10.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They respond",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more politely" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(politely) now.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She can dance",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more beautifully"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(beautifully) than he can.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She can dance more beautifully than he can."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449c6"
+    },
+    "id": "67fab6d599301022953449c6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
+    },
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "Él juega al tenis peor que yo.",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He plays tennis",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "worse"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(badly) than I do.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He plays tennis worse than I do."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449c7"
+    },
+    "id": "67fab6d599301022953449c7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
+    },
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "Los fuegos artificiales explotaron más fuerte después de las 10 de la noche.",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The fireworks exploded",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more loudly"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(loudly) after 10PM.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The fireworks exploded more loudly after 10PM."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449c8"
+    },
+    "id": "67fab6d599301022953449c8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
+    },
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "Ellos entienden español con más fluidez ahora.",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They understand Spanish",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more fluently"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(fluently) now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They understand Spanish more fluently now."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449c9"
+    },
+    "id": "67fab6d599301022953449c9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
+    },
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "Ella suele despertarse más temprano que yo.",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She usually wakes up",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "earlier"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(early) than I do.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She usually wakes up earlier than I do."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449ca"
+    },
+    "id": "67fab6d599301022953449ca",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
+    },
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "John puede nadar más rápido ahora.",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "John can swim",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "faster"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(fast) now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John can swim faster now."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449cb"
+    },
+    "id": "67fab6d599301022953449cb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
+    },
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "¿Podrías caminar más despacio?",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Could you walk",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more slowly"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(slowly)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Could you walk more slowly?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449cc"
+    },
+    "id": "67fab6d599301022953449cc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
+    },
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "¿Estudias más que tu hermana?",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you study",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "harder"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(hard) than your sister?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Do you study harder than your sister?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449cd"
+    },
+    "id": "67fab6d599301022953449cd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
+    },
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "Él gritó más enojado que nunca lo había visto gritar.",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He shouted",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more angrily"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(angrily) than I'd ever seen him shout.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He shouted more angrily than I'd ever seen him shout."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449ce"
+    },
+    "id": "67fab6d599301022953449ce",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
+    },
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "Deberías tratar al perro con más cuidado.",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You should treat the dog",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more gently"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(gently).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You should treat the dog more gently."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449cf"
+    },
+    "id": "67fab6d599301022953449cf",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
+    },
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "Él resolvió el rompecabezas más fácilmente que ellos.",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He solved the puzzle",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more easily"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(easily) than they did.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He solved the puzzle more easily than they did."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449d0"
+    },
+    "id": "67fab6d599301022953449d0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
+    },
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "Por favor, manipula los huevos con más cuidado.",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please handle the eggs",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more carefully"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(carefully).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Please handle the eggs more carefully."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449d1"
+    },
+    "id": "67fab6d599301022953449d1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
+    },
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "El pájaro voló más alto de lo que esperábamos.",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The bird flew",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "higher"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(high) than we expected.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The bird flew higher than we expected."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449d2"
+    },
+    "id": "67fab6d599301022953449d2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
+    },
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "Ella puede escribir mejor que yo.",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She can write",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "better"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(well) than I can.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She can write better than I can."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449d3"
+    },
+    "id": "67fab6d599301022953449d3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
+    },
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "¿Puedes susurrar más bajo?",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Can you whisper",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more quietly"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(quietly)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Can you whisper more quietly?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449d4"
+    },
+    "id": "67fab6d599301022953449d4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
+    },
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "¡Ella conduce su coche con más seguridad que tú!",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She drives her car",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more safely"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(safely) than you do!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She drives her car more safely than you do!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953449d5"
+    },
+    "id": "67fab6d599301022953449d5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d49d"
+    },
+    "title": "Forming Comparative Adverbs",
+    "instructions": "Forma adverbios comparativos.",
+    "translation": "Ellos responden más educadamente ahora.",
+    "theoryId": "b2.14.Comparative_Adverbs",
+    "topicName": "Adverbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.14.10.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They respond",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "more politely"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(politely) now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They respond more politely now."
+      ]
+    }
   }
-} ]
+]

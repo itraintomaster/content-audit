@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431b5"
-  },
-  "id" : "67fab6d599301022953431b5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿Por qué estarán jugando?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431b5"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will they be playing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / play)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431b6"
-  },
-  "id" : "67fab6d599301022953431b6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿Ella estará leyendo un libro entonces?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953431b5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Will she be reading" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / read) a book then?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431b7"
-  },
-  "id" : "67fab6d599301022953431b7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿Estarán limpiando mañana?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿Por qué estarán jugando?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Will they be cleaning" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / clean) tomorrow?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431b8"
-  },
-  "id" : "67fab6d599301022953431b8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿Cuándo estará llamando él?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will he be calling" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(he / call)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431b9"
-  },
-  "id" : "67fab6d599301022953431b9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿Estarás nadando?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Will you be swimming" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / swim)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431ba"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will they be playing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / play)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why will they be playing?"
+      ]
+    }
   },
-  "id" : "67fab6d599301022953431ba",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿A qué hora estará cantando ella?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431b6"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What time",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will she be singing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / sing)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431bb"
-  },
-  "id" : "67fab6d599301022953431bb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿Cómo estarán llegando?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953431b6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "How",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will they be getting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / get)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431bc"
-  },
-  "id" : "67fab6d599301022953431bc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿Estarás montando tu bicicleta?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿Ella estará leyendo un libro entonces?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Will you be riding" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / ride) your bike?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431bd"
-  },
-  "id" : "67fab6d599301022953431bd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿Qué estará bebiendo ella?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will she be drinking" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / drink)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431be"
-  },
-  "id" : "67fab6d599301022953431be",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿Él estará de pie?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Will he be standing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(he / stand)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431bf"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will she be reading"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / read) a book then?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Will she be reading a book then?"
+      ]
+    }
   },
-  "id" : "67fab6d599301022953431bf",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿Estará David preparando el almuerzo al mediodía?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431b7"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Will David be preparing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(David / prepare) lunch at noon?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431c0"
-  },
-  "id" : "67fab6d599301022953431c0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿Con quién se reunirá ella?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953431b7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Who",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will she be meeting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / meet)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431c1"
-  },
-  "id" : "67fab6d599301022953431c1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿Él estará presentando en el evento?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿Estarán limpiando mañana?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Will he be presenting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(he / present) at the event?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431c2"
-  },
-  "id" : "67fab6d599301022953431c2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿A qué hora estarán llegando?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What time",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will they be arriving" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / arrive)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431c3"
-  },
-  "id" : "67fab6d599301022953431c3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿Ella estará enviando una carta?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Will she be sending" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / send) a letter?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431c4"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will they be cleaning"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / clean) tomorrow?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Will they be cleaning tomorrow?"
+      ]
+    }
   },
-  "id" : "67fab6d599301022953431c4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿Por qué estará estudiando Mary?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431b8"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will Mary be studying" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(Mary / study)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431c5"
-  },
-  "id" : "67fab6d599301022953431c5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿Estarán viviendo en la ciudad?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953431b8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Will they be living" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / live) in the city?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431c6"
-  },
-  "id" : "67fab6d599301022953431c6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿Cuándo estará terminando ella?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿Cuándo estará llamando él?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will she be finishing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / finish)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431c7"
-  },
-  "id" : "67fab6d599301022953431c7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿Estarás bailando?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Will you be dancing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / dance)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953431c8"
-  },
-  "id" : "67fab6d599301022953431c8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2d6"
-  },
-  "title" : "Question Formation with Future Continuous",
-  "instructions" : "Escribe preguntas en el futuro continuo ('future continuous').",
-  "translation" : "¿A qué hora estarán paseando los perros en el parque?",
-  "theoryId" : "b1.04.Future_Continuous_Forms_2_Questions",
-  "topicName" : "Future continuous / present perfect continuous / past perfect",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.04.02.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What time",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will the dogs be walking" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(the dogs / walk) in the park?",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will he be calling"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / call)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When will he be calling?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431b9"
+    },
+    "id": "67fab6d599301022953431b9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
+    },
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿Estarás nadando?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will you be swimming"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / swim)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Will you be swimming?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431ba"
+    },
+    "id": "67fab6d599301022953431ba",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
+    },
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿A qué hora estará cantando ella?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What time",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will she be singing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / sing)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What time will she be singing?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431bb"
+    },
+    "id": "67fab6d599301022953431bb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
+    },
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿Cómo estarán llegando?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will they be getting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / get)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "How will they be getting?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431bc"
+    },
+    "id": "67fab6d599301022953431bc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
+    },
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿Estarás montando tu bicicleta?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will you be riding"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / ride) your bike?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Will you be riding your bike?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431bd"
+    },
+    "id": "67fab6d599301022953431bd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
+    },
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿Qué estará bebiendo ella?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will she be drinking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / drink)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What will she be drinking?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431be"
+    },
+    "id": "67fab6d599301022953431be",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
+    },
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿Él estará de pie?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will he be standing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / stand)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Will he be standing?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431bf"
+    },
+    "id": "67fab6d599301022953431bf",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
+    },
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿Estará David preparando el almuerzo al mediodía?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will David be preparing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(David / prepare) lunch at noon?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Will David be preparing lunch at noon?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431c0"
+    },
+    "id": "67fab6d599301022953431c0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
+    },
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿Con quién se reunirá ella?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Who",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will she be meeting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / meet)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Who will she be meeting?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431c1"
+    },
+    "id": "67fab6d599301022953431c1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
+    },
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿Él estará presentando en el evento?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will he be presenting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / present) at the event?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Will he be presenting at the event?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431c2"
+    },
+    "id": "67fab6d599301022953431c2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
+    },
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿A qué hora estarán llegando?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What time",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will they be arriving"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / arrive)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What time will they be arriving?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431c3"
+    },
+    "id": "67fab6d599301022953431c3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
+    },
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿Ella estará enviando una carta?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will she be sending"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / send) a letter?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Will she be sending a letter?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431c4"
+    },
+    "id": "67fab6d599301022953431c4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
+    },
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿Por qué estará estudiando Mary?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will Mary be studying"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(Mary / study)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why will Mary be studying?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431c5"
+    },
+    "id": "67fab6d599301022953431c5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
+    },
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿Estarán viviendo en la ciudad?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will they be living"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / live) in the city?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Will they be living in the city?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431c6"
+    },
+    "id": "67fab6d599301022953431c6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
+    },
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿Cuándo estará terminando ella?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will she be finishing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / finish)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When will she be finishing?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431c7"
+    },
+    "id": "67fab6d599301022953431c7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
+    },
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿Estarás bailando?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Will you be dancing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / dance)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Will you be dancing?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953431c8"
+    },
+    "id": "67fab6d599301022953431c8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2d6"
+    },
+    "title": "Question Formation with Future Continuous",
+    "instructions": "Escribe preguntas en el futuro continuo ('future continuous').",
+    "translation": "¿A qué hora estarán paseando los perros en el parque?",
+    "theoryId": "b1.04.Future_Continuous_Forms_2_Questions",
+    "topicName": "Future continuous / present perfect continuous / past perfect",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.04.02.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What time",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will the dogs be walking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the dogs / walk) in the park?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What time will the dogs be walking in the park?"
+      ]
+    }
   }
-} ]
+]

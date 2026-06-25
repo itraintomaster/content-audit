@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b09"
-  },
-  "id" : "67fab6d59930102295343b09",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "¿Te fascina la ciencia?",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b09"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Are you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "fascinated" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(fascinated / fascinating) by science?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b0a"
-  },
-  "id" : "67fab6d59930102295343b0a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "A ella le irritaba el ruido constante.",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343b09",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She was",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "irritated" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(irritated / irritating) by the constant noise.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b0b"
-  },
-  "id" : "67fab6d59930102295343b0b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "Ese trabajo es realmente agotador y exigente.",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "¿Te fascina la ciencia?",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "That job is really",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "exhausting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(exhausted / exhausting) and demanding.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b0c"
-  },
-  "id" : "67fab6d59930102295343b0c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "Se sintieron renovados después de su descanso.",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They felt",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "refreshed" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(refreshed / refreshing) after their break.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b0d"
-  },
-  "id" : "67fab6d59930102295343b0d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "¿Crees que las matemáticas son desconcertantes?",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Do you believe mathematics is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "perplexing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(perplexed / perplexing)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b0e"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Are you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "fascinated"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(fascinated / fascinating) by science?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Are you fascinated by science?"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343b0e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "Consideré que la película era muy cautivadora.",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b0a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I considered the movie very",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "captivating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(captivated / captivating).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b0f"
-  },
-  "id" : "67fab6d59930102295343b0f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "Estamos emocionados por el concierto.",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343b0a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "thrilled" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(thrilled / thrilling) about the concert.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b10"
-  },
-  "id" : "67fab6d59930102295343b10",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "El juego fue realmente emocionante.",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "A ella le irritaba el ruido constante.",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The game was really",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "thrilling" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(thrilled / thrilling).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b11"
-  },
-  "id" : "67fab6d59930102295343b11",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "¡Esa es una información asombrosa!",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "That's",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "astonishing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(astonished / astonishing) information!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b12"
-  },
-  "id" : "67fab6d59930102295343b12",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "Ella parece realmente agotada hoy. Tuvo un día largo.",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She seems really",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "exhausted" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(exhausted / exhausting) today. She had a long day.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b13"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "irritated"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(irritated / irritating) by the constant noise.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She was irritated by the constant noise."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343b13",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "La jardinería es bastante gratificante. ¡Me encanta ver crecer las plantas!",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b0b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Gardening is quite",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "rewarding" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(rewarded / rewarding). I love watching plants grow!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b14"
-  },
-  "id" : "67fab6d59930102295343b14",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "Se sintió sobresaltado cuando el perro ladró de repente.",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343b0b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He felt",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "startled" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(startled / startling) when the dog barked suddenly.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b15"
-  },
-  "id" : "67fab6d59930102295343b15",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "La música era relajante. Me sentí muy tranquilo.",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "Ese trabajo es realmente agotador y exigente.",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The music was",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "soothing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(soothed / soothing). I felt very calm.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b16"
-  },
-  "id" : "67fab6d59930102295343b16",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "Ella encuentra la ópera tediosa.",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She finds opera to be",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "tedious" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(tedious / tedium).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b17"
-  },
-  "id" : "67fab6d59930102295343b17",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "Me siento un poco desconcertado. No lo entiendo del todo.",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I feel a bit",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "puzzled" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(puzzled / puzzling). I don't quite grasp it.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b18"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That job is really",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "exhausting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(exhausted / exhausting) and demanding.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That job is really exhausting and demanding."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343b18",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "¡Qué situación tan exasperante!",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b0c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What an",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "aggravating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(aggravated / aggravating) situation!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b19"
-  },
-  "id" : "67fab6d59930102295343b19",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "¿Están asombrados por el regalo?",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343b0c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Are they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "astonished" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(astonished / astonishing) by the gift?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b1a"
-  },
-  "id" : "67fab6d59930102295343b1a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "¡Qué pesadilla tan aterradora! ¡Es tan vívida!",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "Se sintieron renovados después de su descanso.",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What a",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "terrifying" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(terrified / terrifying) nightmare! It's so vivid!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b1b"
-  },
-  "id" : "67fab6d59930102295343b1b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "¿Estás contento con tu salario?",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Are you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "content" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(content / contenting) with your salary?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343b1c"
-  },
-  "id" : "67fab6d59930102295343b1c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d35c"
-  },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
-  "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "Por lo general, él no está interesado en las conferencias.",
-  "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.15.06.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He is usually",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "uninterested" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(uninterested / uninteresting) in lectures.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They felt",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "refreshed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(refreshed / refreshing) after their break.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They felt refreshed after their break."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b0d"
+    },
+    "id": "67fab6d59930102295343b0d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
+    },
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "¿Crees que las matemáticas son desconcertantes?",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do you believe mathematics is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "perplexing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(perplexed / perplexing)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Do you believe mathematics is perplexing?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b0e"
+    },
+    "id": "67fab6d59930102295343b0e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
+    },
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "Consideré que la película era muy cautivadora.",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I considered the movie very",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "captivating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(captivated / captivating).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I considered the movie very captivating."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b0f"
+    },
+    "id": "67fab6d59930102295343b0f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
+    },
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "Estamos emocionados por el concierto.",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "thrilled"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(thrilled / thrilling) about the concert.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We are thrilled about the concert."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b10"
+    },
+    "id": "67fab6d59930102295343b10",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
+    },
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "El juego fue realmente emocionante.",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The game was really",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "thrilling"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(thrilled / thrilling).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The game was really thrilling."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b11"
+    },
+    "id": "67fab6d59930102295343b11",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
+    },
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "¡Esa es una información asombrosa!",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That's",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "astonishing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(astonished / astonishing) information!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That's astonishing information!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b12"
+    },
+    "id": "67fab6d59930102295343b12",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
+    },
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "Ella parece realmente agotada hoy. Tuvo un día largo.",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She seems really",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "exhausted"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(exhausted / exhausting) today. She had a long day.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She seems really exhausted today. She had a long day."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b13"
+    },
+    "id": "67fab6d59930102295343b13",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
+    },
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "La jardinería es bastante gratificante. ¡Me encanta ver crecer las plantas!",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Gardening is quite",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "rewarding"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(rewarded / rewarding). I love watching plants grow!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Gardening is quite rewarding. I love watching plants grow!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b14"
+    },
+    "id": "67fab6d59930102295343b14",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
+    },
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "Se sintió sobresaltado cuando el perro ladró de repente.",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He felt",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "startled"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(startled / startling) when the dog barked suddenly.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He felt startled when the dog barked suddenly."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b15"
+    },
+    "id": "67fab6d59930102295343b15",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
+    },
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "La música era relajante. Me sentí muy tranquilo.",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The music was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "soothing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(soothed / soothing). I felt very calm.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The music was soothing. I felt very calm."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b16"
+    },
+    "id": "67fab6d59930102295343b16",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
+    },
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "Ella encuentra la ópera tediosa.",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She finds opera to be",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "tedious"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(tedious / tedium).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She finds opera to be tedious."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b17"
+    },
+    "id": "67fab6d59930102295343b17",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
+    },
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "Me siento un poco desconcertado. No lo entiendo del todo.",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I feel a bit",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "puzzled"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(puzzled / puzzling). I don't quite grasp it.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I feel a bit puzzled. I don't quite grasp it."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b18"
+    },
+    "id": "67fab6d59930102295343b18",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
+    },
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "¡Qué situación tan exasperante!",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What an",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "aggravating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(aggravated / aggravating) situation!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What an aggravating situation!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b19"
+    },
+    "id": "67fab6d59930102295343b19",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
+    },
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "¿Están asombrados por el regalo?",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Are they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "astonished"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(astonished / astonishing) by the gift?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Are they astonished by the gift?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b1a"
+    },
+    "id": "67fab6d59930102295343b1a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
+    },
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "¡Qué pesadilla tan aterradora! ¡Es tan vívida!",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What a",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "terrifying"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(terrified / terrifying) nightmare! It's so vivid!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What a terrifying nightmare! It's so vivid!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b1b"
+    },
+    "id": "67fab6d59930102295343b1b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
+    },
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "¿Estás contento con tu salario?",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Are you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "content"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(content / contenting) with your salary?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Are you content with your salary?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343b1c"
+    },
+    "id": "67fab6d59930102295343b1c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d35c"
+    },
+    "title": "-ed vs. -ing Adjectives: Test Your Knowledge",
+    "instructions": "Selecciona la forma correcta del adjetivo.",
+    "translation": "Por lo general, él no está interesado en las conferencias.",
+    "theoryId": "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.15.06.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He is usually",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "uninterested"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(uninterested / uninteresting) in lectures.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He is usually uninterested in lectures."
+      ]
+    }
   }
-} ]
+]

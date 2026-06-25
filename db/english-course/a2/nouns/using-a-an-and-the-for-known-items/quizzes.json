@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a60"
-  },
-  "id" : "67fab6d59930102295342a60",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Fuimos a un concierto en el estadio. El concierto estuvo genial.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a60"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We went to",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "concert at the stadium. The concert was great.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a61"
-  },
-  "id" : "67fab6d59930102295342a61",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Estamos construyendo un garaje. El garaje está detrás de la casa.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342a60",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We are building",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "garage. The garage is behind the house.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a62"
-  },
-  "id" : "67fab6d59930102295342a62",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Pedimos pizzas anoche. Mary entregó las pizzas.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Fuimos a un concierto en el estadio. El concierto estuvo genial.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We ordered pizzas last night. Mary delivered",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "pizzas.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a63"
-  },
-  "id" : "67fab6d59930102295342a63",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Él escribió una canción para el musical. La canción era sobre el amor.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He wrote a song for the musical.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "song was about love.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a64"
-  },
-  "id" : "67fab6d59930102295342a64",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Ella encontró un bolígrafo. El bolígrafo es para escribir notas.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She found",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "pen. The pen is for writing notes.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a65"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We went to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "concert at the stadium. The concert was great.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We went to a concert at the stadium. The concert was great."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342a65",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Él compró una chaqueta y un sombrero. El sombrero es verde.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a61"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He bought a jacket and a hat.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "hat is green.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a66"
-  },
-  "id" : "67fab6d59930102295342a66",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Leí revistas todo el mes. Las revistas eran en su mayoría cómics.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342a61",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I read",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "magazines all month. The magazines were mostly comics.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a67"
-  },
-  "id" : "67fab6d59930102295342a67",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Ella fue a una panadería. La panadería vendía pan y pasteles.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Estamos construyendo un garaje. El garaje está detrás de la casa.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She went to a bakery.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "bakery sold bread and cakes.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a68"
-  },
-  "id" : "67fab6d59930102295342a68",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Él compró una bicicleta. La bicicleta era azul.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He purchased",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "bicycle. The bicycle was blue.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a69"
-  },
-  "id" : "67fab6d59930102295342a69",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Comí sopa y pan para cenar. La sopa estaba muy caliente.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I had",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "soup and bread for dinner. The soup was very hot.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a6a"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We are building",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "garage. The garage is behind the house.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We are building a garage. The garage is behind the house."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342a6a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Ella se puso calcetines. Los calcetines eran rosas.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a62"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She put on socks.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "socks were pink.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a6b"
-  },
-  "id" : "67fab6d59930102295342a6b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Mis amigos estuvieron en fiestas todo el fin de semana. Las fiestas fueron en la playa.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342a62",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "My friends were at",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "parties all weekend. The parties were at the beach.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a6c"
-  },
-  "id" : "67fab6d59930102295342a6c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Los chefs cocinan sopa y guisos. Ellos hacen la sopa aquí.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Pedimos pizzas anoche. Mary entregó las pizzas.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The chefs cook soup and stews. They make",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "soup here.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a6d"
-  },
-  "id" : "67fab6d59930102295342a6d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Vi basura en la playa. La basura era asquerosa.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I saw",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "litter on the beach. The litter was disgusting.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a6e"
-  },
-  "id" : "67fab6d59930102295342a6e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Ella siempre solía hacernos helado. El helado siempre tenía nueces.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She always used to make",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "ice cream for us. The ice cream always had nuts.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a6f"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We ordered pizzas last night. Mary delivered",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "pizzas.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We ordered pizzas last night. Mary delivered the pizzas."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342a6f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Él escribió cartas y envió postales. Las cartas eran largas.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a63"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He wrote letters and sent postcards.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "letters were long.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a70"
-  },
-  "id" : "67fab6d59930102295342a70",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Había ramas en el suelo. Las ramas provenían de los robles.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342a63",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "There were branches on the ground.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "branches came from the oak trees.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a71"
-  },
-  "id" : "67fab6d59930102295342a71",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Ella bebió jugo y refresco. El jugo era muy dulce.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Él escribió una canción para el musical. La canción era sobre el amor.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She drank juice and soda.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "juice was very sweet.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a72"
-  },
-  "id" : "67fab6d59930102295342a72",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Los perros jugaron con una pelota. La pelota era de Charlie.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The dogs played with a ball.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "ball came from Charlie.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342a73"
-  },
-  "id" : "67fab6d59930102295342a73",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d25e"
-  },
-  "title" : "Using A/An and The for Known Items",
-  "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Ella ayudó a un anciano a cruzar la calle. El hombre tenía más de ochenta años.",
-  "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
-  "topicName" : "Nouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.06.10.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She assisted an elderly man cross the street.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "man was over eighty.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He wrote a song for the musical.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "song was about love.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He wrote a song for the musical. The song was about love."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a64"
+    },
+    "id": "67fab6d59930102295342a64",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
+    },
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Ella encontró un bolígrafo. El bolígrafo es para escribir notas.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She found",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "pen. The pen is for writing notes.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She found a pen. The pen is for writing notes."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a65"
+    },
+    "id": "67fab6d59930102295342a65",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
+    },
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Él compró una chaqueta y un sombrero. El sombrero es verde.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He bought a jacket and a hat.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "hat is green.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He bought a jacket and a hat. The hat is green."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a66"
+    },
+    "id": "67fab6d59930102295342a66",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
+    },
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Leí revistas todo el mes. Las revistas eran en su mayoría cómics.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I read",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "magazines all month. The magazines were mostly comics.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I read - magazines all month. The magazines were mostly comics."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a67"
+    },
+    "id": "67fab6d59930102295342a67",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
+    },
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Ella fue a una panadería. La panadería vendía pan y pasteles.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She went to a bakery.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bakery sold bread and cakes.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She went to a bakery. The bakery sold bread and cakes."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a68"
+    },
+    "id": "67fab6d59930102295342a68",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
+    },
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Él compró una bicicleta. La bicicleta era azul.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He purchased",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "a"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bicycle. The bicycle was blue.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He purchased a bicycle. The bicycle was blue."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a69"
+    },
+    "id": "67fab6d59930102295342a69",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
+    },
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Comí sopa y pan para cenar. La sopa estaba muy caliente.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I had",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "soup and bread for dinner. The soup was very hot.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I had - soup and bread for dinner. The soup was very hot."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a6a"
+    },
+    "id": "67fab6d59930102295342a6a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
+    },
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Ella se puso calcetines. Los calcetines eran rosas.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She put on socks.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "socks were pink.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She put on socks. The socks were pink."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a6b"
+    },
+    "id": "67fab6d59930102295342a6b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
+    },
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Mis amigos estuvieron en fiestas todo el fin de semana. Las fiestas fueron en la playa.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My friends were at",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "parties all weekend. The parties were at the beach.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "My friends were at - parties all weekend. The parties were at the beach."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a6c"
+    },
+    "id": "67fab6d59930102295342a6c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
+    },
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Los chefs cocinan sopa y guisos. Ellos hacen la sopa aquí.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The chefs cook soup and stews. They make",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "the"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "soup here.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The chefs cook soup and stews. They make the soup here."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a6d"
+    },
+    "id": "67fab6d59930102295342a6d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
+    },
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Vi basura en la playa. La basura era asquerosa.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I saw",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "litter on the beach. The litter was disgusting.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I saw - litter on the beach. The litter was disgusting."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a6e"
+    },
+    "id": "67fab6d59930102295342a6e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
+    },
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Ella siempre solía hacernos helado. El helado siempre tenía nueces.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She always used to make",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "ice cream for us. The ice cream always had nuts.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She always used to make - ice cream for us. The ice cream always had nuts."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a6f"
+    },
+    "id": "67fab6d59930102295342a6f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
+    },
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Él escribió cartas y envió postales. Las cartas eran largas.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He wrote letters and sent postcards.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "letters were long.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He wrote letters and sent postcards. The letters were long."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a70"
+    },
+    "id": "67fab6d59930102295342a70",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
+    },
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Había ramas en el suelo. Las ramas provenían de los robles.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There were branches on the ground.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "branches came from the oak trees.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "There were branches on the ground. The branches came from the oak trees."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a71"
+    },
+    "id": "67fab6d59930102295342a71",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
+    },
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Ella bebió jugo y refresco. El jugo era muy dulce.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She drank juice and soda.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "juice was very sweet.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She drank juice and soda. The juice was very sweet."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a72"
+    },
+    "id": "67fab6d59930102295342a72",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
+    },
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Los perros jugaron con una pelota. La pelota era de Charlie.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs played with a ball.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "ball came from Charlie.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The dogs played with a ball. The ball came from Charlie."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342a73"
+    },
+    "id": "67fab6d59930102295342a73",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d25e"
+    },
+    "title": "Using A/An and The for Known Items",
+    "instructions": "Completa con 'a', 'an', 'the' o 'no article' (-).",
+    "translation": "Ella ayudó a un anciano a cruzar la calle. El hombre tenía más de ochenta años.",
+    "theoryId": "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
+    "topicName": "Nouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.06.10.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She assisted an elderly man cross the street.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "man was over eighty.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She assisted an elderly man cross the street. The man was over eighty."
+      ]
+    }
   }
-} ]
+]

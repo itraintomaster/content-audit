@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344896"
-  },
-  "id" : "67fab6d59930102295344896",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Los viajeros en descanso se bajaron del autobús en la terminal.",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344896"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "resting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(asleep / resting) travelers got off the bus at the terminal.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344897"
-  },
-  "id" : "67fab6d59930102295344897",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Hay algunas personas aisladas en Nueva York.",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344896",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "There are some",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "isolated" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(alone / isolated) people in New York.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344898"
-  },
-  "id" : "67fab6d59930102295344898",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Los estudiantes están despiertos.",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "Los viajeros en descanso se bajaron del autobús en la terminal.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The students are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "awake" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(awake / waking).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344899"
-  },
-  "id" : "67fab6d59930102295344899",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "¿Está bien ir?",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Is it",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "okay" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(alright / okay) to go?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534489a"
-  },
-  "id" : "67fab6d5993010229534489a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Le habló suavemente al pájaro asustado.",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He spoke softly to the",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "scared" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(afraid / scared) bird.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534489b"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "resting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(asleep / resting) travelers got off the bus at the terminal.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The resting travelers got off the bus at the terminal."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534489b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Estaba despierto cuando me enviaste un mensaje de texto.",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344897"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I was",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "awake" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(awake / waking) when you texted.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534489c"
-  },
-  "id" : "67fab6d5993010229534489c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Esa es una película aceptable.",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344897",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "That is a / an",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "alright" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(alright / okay) movie.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534489d"
-  },
-  "id" : "67fab6d5993010229534489d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Ella tiene plantas que respiran en el balcón.",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "Hay algunas personas aisladas en Nueva York.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She has",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "breathing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(alive / breathing) plants in the balcony.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534489e"
-  },
-  "id" : "67fab6d5993010229534489e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "¡No toques a un perro en reposo!",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Don't touch a / an",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "resting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(asleep / resting) dog!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534489f"
-  },
-  "id" : "67fab6d5993010229534489f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "¿Está bien el postre?",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Is the dessert",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "okay" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(alright / okay)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953448a0"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There are some",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "isolated"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(alone / isolated) people in New York.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "There are some isolated people in New York."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953448a0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "El loro estaba asustado.",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344898"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The parrot was",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "scared" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(afraid / scared).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953448a1"
-  },
-  "id" : "67fab6d599301022953448a1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Estos son zapatos aceptables.",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344898",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "These are",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "alright" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(okay / alright) shoes.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953448a2"
-  },
-  "id" : "67fab6d599301022953448a2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "El conejo asustado corrió hacia el bosque.",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "Los estudiantes están despiertos.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "scared" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(afraid / scared) rabbit ran into the forest.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953448a3"
-  },
-  "id" : "67fab6d599301022953448a3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Ella es un poco una mujer aislada.",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She's a bit of a / an",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "isolated" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(alone / isolated) woman.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953448a4"
-  },
-  "id" : "67fab6d599301022953448a4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "El pájaro está vivo.",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The bird is",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "living" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(alive / living).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953448a5"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The students are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "awake"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(awake / waking).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The students are awake."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953448a5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Tienes rosas que respiran en la cocina.",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344899"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You have",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "breathing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(alive / breathing) roses in the kitchen.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953448a6"
-  },
-  "id" : "67fab6d599301022953448a6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Ella estaba sola en el parque.",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344899",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She was",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "alone" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(alone / isolated) at the park.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953448a7"
-  },
-  "id" : "67fab6d599301022953448a7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Todas las ovejas siguen respirando.",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "¿Está bien ir?",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "All the sheep are still",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "breathing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(alive / living).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953448a8"
-  },
-  "id" : "67fab6d599301022953448a8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Tengo miedo a las alturas.",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "scared" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(afraid / scared) of heights.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953448a9"
-  },
-  "id" : "67fab6d599301022953448a9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d48c"
-  },
-  "title" : "Predicative Adjective Exercise",
-  "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "¿Están solas las chicas?",
-  "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
-  "topicName" : "Adjectives",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.13.06.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Are the girls",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "alone" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(alone / isolated)?",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Is it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "okay"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(alright / okay) to go?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Is it okay to go?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534489a"
+    },
+    "id": "67fab6d5993010229534489a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
+    },
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "Le habló suavemente al pájaro asustado.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He spoke softly to the",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "scared"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(afraid / scared) bird.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He spoke softly to the scared bird."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534489b"
+    },
+    "id": "67fab6d5993010229534489b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
+    },
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "Estaba despierto cuando me enviaste un mensaje de texto.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "awake"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(awake / waking) when you texted.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I was awake when you texted."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534489c"
+    },
+    "id": "67fab6d5993010229534489c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
+    },
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "Esa es una película aceptable.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "That is a / an",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "alright"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(alright / okay) movie.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "That is a / an alright movie."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534489d"
+    },
+    "id": "67fab6d5993010229534489d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
+    },
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "Ella tiene plantas que respiran en el balcón.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She has",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "breathing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(alive / breathing) plants in the balcony.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She has breathing plants in the balcony."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534489e"
+    },
+    "id": "67fab6d5993010229534489e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
+    },
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "¡No toques a un perro en reposo!",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Don't touch a / an",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "resting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(asleep / resting) dog!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Don't touch a / an resting dog!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534489f"
+    },
+    "id": "67fab6d5993010229534489f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
+    },
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "¿Está bien el postre?",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Is the dessert",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "okay"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(alright / okay)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Is the dessert okay?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448a0"
+    },
+    "id": "67fab6d599301022953448a0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
+    },
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "El loro estaba asustado.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The parrot was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "scared"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(afraid / scared).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The parrot was scared."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448a1"
+    },
+    "id": "67fab6d599301022953448a1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
+    },
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "Estos son zapatos aceptables.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "These are",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "alright"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(okay / alright) shoes.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "These are alright shoes."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448a2"
+    },
+    "id": "67fab6d599301022953448a2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
+    },
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "El conejo asustado corrió hacia el bosque.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "scared"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(afraid / scared) rabbit ran into the forest.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The scared rabbit ran into the forest."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448a3"
+    },
+    "id": "67fab6d599301022953448a3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
+    },
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "Ella es un poco una mujer aislada.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She's a bit of a / an",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "isolated"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(alone / isolated) woman.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She's a bit of a / an isolated woman."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448a4"
+    },
+    "id": "67fab6d599301022953448a4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
+    },
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "El pájaro está vivo.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The bird is",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "living"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(alive / living).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The bird is living."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448a5"
+    },
+    "id": "67fab6d599301022953448a5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
+    },
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "Tienes rosas que respiran en la cocina.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You have",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "breathing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(alive / breathing) roses in the kitchen.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You have breathing roses in the kitchen."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448a6"
+    },
+    "id": "67fab6d599301022953448a6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
+    },
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "Ella estaba sola en el parque.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She was",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "alone"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(alone / isolated) at the park.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She was alone at the park."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448a7"
+    },
+    "id": "67fab6d599301022953448a7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
+    },
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "Todas las ovejas siguen respirando.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "All the sheep are still",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "breathing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(alive / living).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "All the sheep are still breathing."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448a8"
+    },
+    "id": "67fab6d599301022953448a8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
+    },
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "Tengo miedo a las alturas.",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "scared"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(afraid / scared) of heights.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I'm scared of heights."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953448a9"
+    },
+    "id": "67fab6d599301022953448a9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d48c"
+    },
+    "title": "Predicative Adjective Exercise",
+    "instructions": "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
+    "translation": "¿Están solas las chicas?",
+    "theoryId": "b2.13.Adjectives_That_Only_Go_Before_Nouns",
+    "topicName": "Adjectives",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.13.06.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Are the girls",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "alone"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(alone / isolated)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Are the girls alone?"
+      ]
+    }
   }
-} ]
+]

@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343db1"
-  },
-  "id" : "67fab6d59930102295343db1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Iba a ver la televisión, pero en lugar de eso leí un libro.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343db1"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "watch TV, but I read a book instead.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343db2"
-  },
-  "id" : "67fab6d59930102295343db2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Iban a asistir al concierto, pero el cantante canceló.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343db1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "attend the concert, but the singer cancelled.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343db3"
-  },
-  "id" : "67fab6d59930102295343db3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Iba a arreglar el coche, pero le faltaban las herramientas.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Iba a ver la televisión, pero en lugar de eso leí un libro.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "fix the car, but he lacked the tools.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343db4"
-  },
-  "id" : "67fab6d59930102295343db4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Íbamos a comer fuera, pero el viento era demasiado fuerte.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "eat outside, but the wind was too strong.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343db5"
-  },
-  "id" : "67fab6d59930102295343db5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Ella iba a llamar a su mamá pero se le olvidó.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "call her mom but she forgot.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343db6"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "watch TV, but I read a book instead.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I was going to watch TV, but I read a book instead."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343db6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Los estudiantes iban a estudiar español pero el profesor estaba enfermo.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343db2"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The students",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "study Spanish but the teacher was ill.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343db7"
-  },
-  "id" : "67fab6d59930102295343db7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Iba a tomar café pero elegí té en su lugar.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343db2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "drink coffee but I chose tea instead.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343db8"
-  },
-  "id" : "67fab6d59930102295343db8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Ella iba a viajar al extranjero, pero su pasaporte expiró.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Iban a asistir al concierto, pero el cantante canceló.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "travel abroad but her passport expired.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343db9"
-  },
-  "id" : "67fab6d59930102295343db9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Iba a escribir un correo electrónico, pero en su lugar llamé por teléfono.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "write an email but I phoned instead.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343dba"
-  },
-  "id" : "67fab6d59930102295343dba",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Él iba a pedir pasta, pero su amigo le sugirió pescado.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "order pasta but his friend suggested fish.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343dbb"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "attend the concert, but the singer cancelled.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They were going to attend the concert, but the singer cancelled."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343dbb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Íbamos a almorzar hoy, pero tuve que irme.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343db3"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "have lunch today but I had to leave.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343dbc"
-  },
-  "id" : "67fab6d59930102295343dbc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Iban a visitar el museo, pero estaba cerrado.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343db3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "visit the museum, but it was closed.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343dbd"
-  },
-  "id" : "67fab6d59930102295343dbd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Lucy iba a comprarse un vestido nuevo, pero no le gustó ninguno.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Iba a arreglar el coche, pero le faltaban las herramientas.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Lucy",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "get a new dress but she didn't like any.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343dbe"
-  },
-  "id" : "67fab6d59930102295343dbe",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Ella iba a pintar la pared, pero se quedó sin pintura.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "paint the wall but she run out of paint.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343dbf"
-  },
-  "id" : "67fab6d59930102295343dbf",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Iba a llamarte esta mañana, pero se me olvidó.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "call you this morning but I forgot.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343dc0"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "fix the car, but he lacked the tools.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He was going to fix the car, but he lacked the tools."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343dc0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Mi padre iba a coger el autobús, pero lo perdió.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343db4"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "My father",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "catch the bus but he missed it.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343dc1"
-  },
-  "id" : "67fab6d59930102295343dc1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Iban a jugar videojuegos, pero no había electricidad.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343db4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "play videogames but there was no electricity.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343dc2"
-  },
-  "id" : "67fab6d59930102295343dc2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Los niños iban a visitar a su abuelo, pero él se sintió enfermo.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Íbamos a comer fuera, pero el viento era demasiado fuerte.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The children",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "visit their grandpa but he felt sick.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343dc3"
-  },
-  "id" : "67fab6d59930102295343dc3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "Ella iba a ordenar su habitación, pero se distrajo.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "tidy up her room but she got distracted.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343dc4"
-  },
-  "id" : "67fab6d59930102295343dc4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3f3"
-  },
-  "title" : "'Was / Were Going To': Practicing the Future in the Past",
-  "instructions" : "Crea oraciones con 'was / were going to'.",
-  "translation" : "James iba a hornear un pastel, pero no había leche.",
-  "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
-  "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.01.03.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "James",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was going to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "bake a cake but there was no milk.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "eat outside, but the wind was too strong.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We were going to eat outside, but the wind was too strong."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343db5"
+    },
+    "id": "67fab6d59930102295343db5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
+    },
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Ella iba a llamar a su mamá pero se le olvidó.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "call her mom but she forgot.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She was going to call her mom but she forgot."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343db6"
+    },
+    "id": "67fab6d59930102295343db6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
+    },
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Los estudiantes iban a estudiar español pero el profesor estaba enfermo.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The students",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "study Spanish but the teacher was ill.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The students were going to study Spanish but the teacher was ill."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343db7"
+    },
+    "id": "67fab6d59930102295343db7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
+    },
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Iba a tomar café pero elegí té en su lugar.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "drink coffee but I chose tea instead.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I was going to drink coffee but I chose tea instead."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343db8"
+    },
+    "id": "67fab6d59930102295343db8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
+    },
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Ella iba a viajar al extranjero, pero su pasaporte expiró.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "travel abroad but her passport expired.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She was going to travel abroad but her passport expired."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343db9"
+    },
+    "id": "67fab6d59930102295343db9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
+    },
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Iba a escribir un correo electrónico, pero en su lugar llamé por teléfono.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "write an email but I phoned instead.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I was going to write an email but I phoned instead."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dba"
+    },
+    "id": "67fab6d59930102295343dba",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
+    },
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Él iba a pedir pasta, pero su amigo le sugirió pescado.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "order pasta but his friend suggested fish.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He was going to order pasta but his friend suggested fish."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dbb"
+    },
+    "id": "67fab6d59930102295343dbb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
+    },
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Íbamos a almorzar hoy, pero tuve que irme.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "have lunch today but I had to leave.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We were going to have lunch today but I had to leave."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dbc"
+    },
+    "id": "67fab6d59930102295343dbc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
+    },
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Iban a visitar el museo, pero estaba cerrado.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "visit the museum, but it was closed.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They were going to visit the museum, but it was closed."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dbd"
+    },
+    "id": "67fab6d59930102295343dbd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
+    },
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Lucy iba a comprarse un vestido nuevo, pero no le gustó ninguno.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Lucy",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "get a new dress but she didn't like any.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Lucy was going to get a new dress but she didn't like any."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dbe"
+    },
+    "id": "67fab6d59930102295343dbe",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
+    },
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Ella iba a pintar la pared, pero se quedó sin pintura.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "paint the wall but she run out of paint.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She was going to paint the wall but she run out of paint."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dbf"
+    },
+    "id": "67fab6d59930102295343dbf",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
+    },
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Iba a llamarte esta mañana, pero se me olvidó.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "call you this morning but I forgot.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I was going to call you this morning but I forgot."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dc0"
+    },
+    "id": "67fab6d59930102295343dc0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
+    },
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Mi padre iba a coger el autobús, pero lo perdió.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My father",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "catch the bus but he missed it.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "My father was going to catch the bus but he missed it."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dc1"
+    },
+    "id": "67fab6d59930102295343dc1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
+    },
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Iban a jugar videojuegos, pero no había electricidad.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "play videogames but there was no electricity.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They were going to play videogames but there was no electricity."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dc2"
+    },
+    "id": "67fab6d59930102295343dc2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
+    },
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Los niños iban a visitar a su abuelo, pero él se sintió enfermo.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The children",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "visit their grandpa but he felt sick.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The children were going to visit their grandpa but he felt sick."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dc3"
+    },
+    "id": "67fab6d59930102295343dc3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
+    },
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "Ella iba a ordenar su habitación, pero se distrajo.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "tidy up her room but she got distracted.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She was going to tidy up her room but she got distracted."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343dc4"
+    },
+    "id": "67fab6d59930102295343dc4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3f3"
+    },
+    "title": "'Was / Were Going To': Practicing the Future in the Past",
+    "instructions": "Crea oraciones con 'was / were going to'.",
+    "translation": "James iba a hornear un pastel, pero no había leche.",
+    "theoryId": "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
+    "topicName": "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.01.03.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "James",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was going to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "bake a cake but there was no milk.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "James was going to bake a cake but there was no milk."
+      ]
+    }
   }
-} ]
+]

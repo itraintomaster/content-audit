@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e16"
-  },
-  "id" : "67fab6d59930102295342e16",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "No debes hacer ruido en una biblioteca.",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e16"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "mustn't" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "make noise in a library.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e17"
-  },
-  "id" : "67fab6d59930102295342e17",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "Los perros no deben comer de la mesa.",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342e16",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The dogs",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "mustn't" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "eat from the table.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e18"
-  },
-  "id" : "67fab6d59930102295342e18",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "No tienes que ir a la escuela mañana. Es festivo.",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "No debes hacer ruido en una biblioteca.",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "don't have to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "go to school tomorrow. It's a holiday.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e19"
-  },
-  "id" : "67fab6d59930102295342e19",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "No tengo que cocinar la cena esta noche. Vamos a comer fuera.",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "don't have to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "cook dinner tonight. We are eating out.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e1a"
-  },
-  "id" : "67fab6d59930102295342e1a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "No debemos olvidar las llaves. ¡Vamos a comprobarlo!",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "mustn't" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "forget the keys. Let's check!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e1b"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "mustn't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "make noise in a library.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You mustn't make noise in a library."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342e1b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "No tienes que usar sombrero adentro. Puedes quitártelo.",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e17"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "don't have to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "wear a hat inside. You can take it off.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e1c"
-  },
-  "id" : "67fab6d59930102295342e1c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "Los estudiantes no tienen que leer esta noche. Leyeron ayer.",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342e17",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The students",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "don't have to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "read tonight. They read yesterday.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e1d"
-  },
-  "id" : "67fab6d59930102295342e1d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "Los visitantes no deben tocar las estatuas del museo. Está prohibido.",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "Los perros no deben comer de la mesa.",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The visitors",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "mustn't" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "touch the statues in the museum. It's forbidden.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e1e"
-  },
-  "id" : "67fab6d59930102295342e1e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "No debes operar maquinaria si estás cansado.",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "mustn't" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "operate machinery if you are tired.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e1f"
-  },
-  "id" : "67fab6d59930102295342e1f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "Ella no tiene que estudiar Matemáticas. Lo estudia porque le gusta.",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "doesn't have to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "study Maths. She studies it because she likes it.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e20"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "mustn't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "eat from the table.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The dogs mustn't eat from the table."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342e20",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "No tienes que llamar ahora. Puedes llamar más tarde.",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e18"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "don't have to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "call now. You can call later.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e21"
-  },
-  "id" : "67fab6d59930102295342e21",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "Ella ya no tiene que pagar el alquiler. Es dueña de la casa.",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342e18",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "doesn't have to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "pay rent any more. She owns the house.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e22"
-  },
-  "id" : "67fab6d59930102295342e22",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "No tenemos que reservar entradas con antelación para el museo.",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "No tienes que ir a la escuela mañana. Es festivo.",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "don't have to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "book tickets in advance for the museum.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e23"
-  },
-  "id" : "67fab6d59930102295342e23",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "Él no tiene que caminar hasta la tienda. Tiene una bicicleta.",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "doesn't have to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "walk to the shop. He has a bike.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e24"
-  },
-  "id" : "67fab6d59930102295342e24",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "Los invitados no tienen que lavar los platos. Lo haremos más tarde.",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The guests",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "don't have to" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "wash the dishes. We will do it later.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e25"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "don't have to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "go to school tomorrow. It's a holiday.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You don't have to go to school tomorrow. It's a holiday."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342e25",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "¡No debemos olvidar la cita! El médico se enfadará.",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e19"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "mustn't" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "forget the appointment! The doctor will be annoyed.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e26"
-  },
-  "id" : "67fab6d59930102295342e26",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "No debes aparcar ahí. Está prohibido.",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342e19",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "mustn't" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "park there. It's prohibited.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e27"
-  },
-  "id" : "67fab6d59930102295342e27",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "¡Realmente no debo perder esta oportunidad. Es muy especial!",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "No tengo que cocinar la cena esta noche. Vamos a comer fuera.",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I really",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "mustn't" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "miss this opportunity. It's very special!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e28"
-  },
-  "id" : "67fab6d59930102295342e28",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "Los huéspedes no deben dejar sus pertenencias desatendidas o serán robadas.",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The guests",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "mustn't" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "leave their belongings unattended or they will be stolen.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342e29"
-  },
-  "id" : "67fab6d59930102295342e29",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d29b"
-  },
-  "title" : "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
-  "instructions" : "Elige 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "¡No debe beber tanto! ¡Se pondrá enfermo!",
-  "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
-  "topicName" : "Modal Verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.10.07.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "mustn't" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "drink so much! He'll be ill!",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "don't have to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "cook dinner tonight. We are eating out.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I don't have to cook dinner tonight. We are eating out."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e1a"
+    },
+    "id": "67fab6d59930102295342e1a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
+    },
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "No debemos olvidar las llaves. ¡Vamos a comprobarlo!",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "mustn't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "forget the keys. Let's check!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We mustn't forget the keys. Let's check!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e1b"
+    },
+    "id": "67fab6d59930102295342e1b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
+    },
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "No tienes que usar sombrero adentro. Puedes quitártelo.",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "don't have to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "wear a hat inside. You can take it off.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You don't have to wear a hat inside. You can take it off."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e1c"
+    },
+    "id": "67fab6d59930102295342e1c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
+    },
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "Los estudiantes no tienen que leer esta noche. Leyeron ayer.",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The students",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "don't have to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "read tonight. They read yesterday.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The students don't have to read tonight. They read yesterday."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e1d"
+    },
+    "id": "67fab6d59930102295342e1d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
+    },
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "Los visitantes no deben tocar las estatuas del museo. Está prohibido.",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The visitors",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "mustn't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "touch the statues in the museum. It's forbidden.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The visitors mustn't touch the statues in the museum. It's forbidden."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e1e"
+    },
+    "id": "67fab6d59930102295342e1e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
+    },
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "No debes operar maquinaria si estás cansado.",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "mustn't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "operate machinery if you are tired.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You mustn't operate machinery if you are tired."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e1f"
+    },
+    "id": "67fab6d59930102295342e1f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
+    },
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "Ella no tiene que estudiar Matemáticas. Lo estudia porque le gusta.",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "doesn't have to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "study Maths. She studies it because she likes it.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She doesn't have to study Maths. She studies it because she likes it."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e20"
+    },
+    "id": "67fab6d59930102295342e20",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
+    },
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "No tienes que llamar ahora. Puedes llamar más tarde.",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "don't have to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "call now. You can call later.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You don't have to call now. You can call later."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e21"
+    },
+    "id": "67fab6d59930102295342e21",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
+    },
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "Ella ya no tiene que pagar el alquiler. Es dueña de la casa.",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "doesn't have to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "pay rent any more. She owns the house.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She doesn't have to pay rent any more. She owns the house."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e22"
+    },
+    "id": "67fab6d59930102295342e22",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
+    },
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "No tenemos que reservar entradas con antelación para el museo.",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "don't have to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "book tickets in advance for the museum.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We don't have to book tickets in advance for the museum."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e23"
+    },
+    "id": "67fab6d59930102295342e23",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
+    },
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "Él no tiene que caminar hasta la tienda. Tiene una bicicleta.",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "doesn't have to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "walk to the shop. He has a bike.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He doesn't have to walk to the shop. He has a bike."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e24"
+    },
+    "id": "67fab6d59930102295342e24",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
+    },
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "Los invitados no tienen que lavar los platos. Lo haremos más tarde.",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The guests",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "don't have to"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "wash the dishes. We will do it later.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The guests don't have to wash the dishes. We will do it later."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e25"
+    },
+    "id": "67fab6d59930102295342e25",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
+    },
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "¡No debemos olvidar la cita! El médico se enfadará.",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "mustn't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "forget the appointment! The doctor will be annoyed.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We mustn't forget the appointment! The doctor will be annoyed."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e26"
+    },
+    "id": "67fab6d59930102295342e26",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
+    },
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "No debes aparcar ahí. Está prohibido.",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "mustn't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "park there. It's prohibited.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You mustn't park there. It's prohibited."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e27"
+    },
+    "id": "67fab6d59930102295342e27",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
+    },
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "¡Realmente no debo perder esta oportunidad. Es muy especial!",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I really",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "mustn't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "miss this opportunity. It's very special!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I really mustn't miss this opportunity. It's very special!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e28"
+    },
+    "id": "67fab6d59930102295342e28",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
+    },
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "Los huéspedes no deben dejar sus pertenencias desatendidas o serán robadas.",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The guests",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "mustn't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "leave their belongings unattended or they will be stolen.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The guests mustn't leave their belongings unattended or they will be stolen."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342e29"
+    },
+    "id": "67fab6d59930102295342e29",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d29b"
+    },
+    "title": "'Mustn't' vs 'Don't Have To': Expressing Prohibition and Lack of Necessity",
+    "instructions": "Elige 'mustn't' o 'don't / doesn't have to'.",
+    "translation": "¡No debe beber tanto! ¡Se pondrá enfermo!",
+    "theoryId": "a2.10.Mustnt_and_Dont_Have_to",
+    "topicName": "Modal Verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.10.07.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "mustn't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "drink so much! He'll be ill!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He mustn't drink so much! He'll be ill!"
+      ]
+    }
   }
-} ]
+]

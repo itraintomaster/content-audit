@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534398d"
-  },
-  "id" : "67fab6d5993010229534398d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "La banda tocó para nosotros.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534398d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The band played for",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "us" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "us / ourselves.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534398e"
-  },
-  "id" : "67fab6d5993010229534398e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Los perros se lamieron.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534398d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The dogs licked",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "themselves" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "them / themselves.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534398f"
-  },
-  "id" : "67fab6d5993010229534398f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Mark se observó a sí mismo.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "La banda tocó para nosotros.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Mark observed",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "himself" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "him / himself. (Mark observed Mark.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343990"
-  },
-  "id" : "67fab6d59930102295343990",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Se tropezó.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He tripped",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "himself" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "him / himself. (There was nothing else there.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343991"
-  },
-  "id" : "67fab6d59930102295343991",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "¡A veces te cantas a ti mismo!",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You sometimes sing to",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "yourself" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "you / yourself!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343992"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The band played for",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "us"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "us / ourselves.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The band played for us us / ourselves."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343992",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Laura se miró a sí misma.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534398e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Laura looked at",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "her" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "her / herself. (Laura looked at Anne.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343993"
-  },
-  "id" : "67fab6d59930102295343993",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Los profesores hicieron un regalo para ellos mismos.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534398e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The teachers made a gift for",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "them" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "them / themselves. (The teachers made a gift for the students.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343994"
-  },
-  "id" : "67fab6d59930102295343994",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Oliver se saludó a sí mismo.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "Los perros se lamieron.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Oliver waved at",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "him" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "him / himself. (Oliver waved at Kevin.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343995"
-  },
-  "id" : "67fab6d59930102295343995",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Bella se dio una palmada en la espalda.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Bella patted",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "herself" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "her / herself on the back. (Bella patted Bella's back.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343996"
-  },
-  "id" : "67fab6d59930102295343996",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Los turistas compraron un recuerdo para ellos mismos.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The tourists bought a souvenir for",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "themselves" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "them / themselves. (The tourists bought a souvenir for the tourists.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343997"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The dogs licked",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "themselves"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "them / themselves.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The dogs licked themselves them / themselves."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343997",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "¡Ustedes se hornearon un pastel!",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534398f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You baked",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "yourselves" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "you / yourselves a cake!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343998"
-  },
-  "id" : "67fab6d59930102295343998",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Me envolví en una manta porque me sentía mal.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534398f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I wrapped",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "myself" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "me / myself in a blanket because I was feeling unwell.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343999"
-  },
-  "id" : "67fab6d59930102295343999",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Él se escuchó a sí mismo.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "Mark se observó a sí mismo.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He listened to",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "him" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "him / himself. (Kenji listened to George.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534399a"
-  },
-  "id" : "67fab6d5993010229534399a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Mi padre nos escribió una carta.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "My father wrote",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "us" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "us / ourselves a letter.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534399b"
-  },
-  "id" : "67fab6d5993010229534399b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Aprendí a conducir un coche yo solo.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I learned",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "myself" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "me / myself to drive a car.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534399c"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mark observed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "himself"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "him / himself. (Mark observed Mark.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Mark observed himself him / himself."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534399c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Ella les describió los lugares.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343990"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She described",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "them" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "them / themselves the places.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534399d"
-  },
-  "id" : "67fab6d5993010229534399d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Se abrazaron.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343990",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They hugged",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "them" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "them / themselves. (The friends hugged the classmates).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534399e"
-  },
-  "id" : "67fab6d5993010229534399e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Michael se visitó a sí mismo.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "Se tropezó.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Michael visited",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "him" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "him / himself. (Michael visited Luis).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534399f"
-  },
-  "id" : "67fab6d5993010229534399f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Ella se salpicó con el agua.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She splashed the water on",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "herself" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "her / herself. (Sophie splashed the water on Sophie.)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439a0"
-  },
-  "id" : "67fab6d599301022953439a0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d347"
-  },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
-  "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Se pellizcó la pierna.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.05.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He pinched",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "him" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "him / himself on the leg. (George pinched Anthony.)",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He tripped",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "himself"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "him / himself. (There was nothing else there.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He tripped himself him / himself."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343991"
+    },
+    "id": "67fab6d59930102295343991",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
+    },
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "¡A veces te cantas a ti mismo!",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You sometimes sing to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "yourself"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "you / yourself!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You sometimes sing to yourself you / yourself!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343992"
+    },
+    "id": "67fab6d59930102295343992",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
+    },
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "Laura se miró a sí misma.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Laura looked at",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "her"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "her / herself. (Laura looked at Anne.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Laura looked at her her / herself."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343993"
+    },
+    "id": "67fab6d59930102295343993",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
+    },
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "Los profesores hicieron un regalo para ellos mismos.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teachers made a gift for",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "them"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "them / themselves. (The teachers made a gift for the students.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The teachers made a gift for them them / themselves."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343994"
+    },
+    "id": "67fab6d59930102295343994",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
+    },
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "Oliver se saludó a sí mismo.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Oliver waved at",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "him"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "him / himself. (Oliver waved at Kevin.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Oliver waved at him him / himself."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343995"
+    },
+    "id": "67fab6d59930102295343995",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
+    },
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "Bella se dio una palmada en la espalda.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Bella patted",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "herself"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "her / herself on the back. (Bella patted Bella's back.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Bella patted herself her / herself on the back."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343996"
+    },
+    "id": "67fab6d59930102295343996",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
+    },
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "Los turistas compraron un recuerdo para ellos mismos.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The tourists bought a souvenir for",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "themselves"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "them / themselves. (The tourists bought a souvenir for the tourists.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The tourists bought a souvenir for themselves them / themselves."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343997"
+    },
+    "id": "67fab6d59930102295343997",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
+    },
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "¡Ustedes se hornearon un pastel!",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You baked",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "yourselves"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "you / yourselves a cake!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You baked yourselves you / yourselves a cake!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343998"
+    },
+    "id": "67fab6d59930102295343998",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
+    },
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "Me envolví en una manta porque me sentía mal.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I wrapped",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "myself"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "me / myself in a blanket because I was feeling unwell.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I wrapped myself me / myself in a blanket because I was feeling unwell."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343999"
+    },
+    "id": "67fab6d59930102295343999",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
+    },
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "Él se escuchó a sí mismo.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He listened to",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "him"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "him / himself. (Kenji listened to George.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He listened to him him / himself."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534399a"
+    },
+    "id": "67fab6d5993010229534399a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
+    },
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "Mi padre nos escribió una carta.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My father wrote",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "us"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "us / ourselves a letter.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "My father wrote us us / ourselves a letter."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534399b"
+    },
+    "id": "67fab6d5993010229534399b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
+    },
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "Aprendí a conducir un coche yo solo.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I learned",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "myself"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "me / myself to drive a car.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I learned myself me / myself to drive a car."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534399c"
+    },
+    "id": "67fab6d5993010229534399c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
+    },
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "Ella les describió los lugares.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She described",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "them"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "them / themselves the places.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She described them them / themselves the places."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534399d"
+    },
+    "id": "67fab6d5993010229534399d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
+    },
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "Se abrazaron.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They hugged",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "them"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "them / themselves. (The friends hugged the classmates).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They hugged them them / themselves. ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534399e"
+    },
+    "id": "67fab6d5993010229534399e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
+    },
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "Michael se visitó a sí mismo.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Michael visited",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "him"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "him / himself. (Michael visited Luis).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Michael visited him him / himself. ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534399f"
+    },
+    "id": "67fab6d5993010229534399f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
+    },
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "Ella se salpicó con el agua.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She splashed the water on",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "herself"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "her / herself. (Sophie splashed the water on Sophie.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She splashed the water on herself her / herself."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439a0"
+    },
+    "id": "67fab6d599301022953439a0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d347"
+    },
+    "title": "Reflexive Pronouns: Object vs. Reflexive",
+    "instructions": "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
+    "translation": "Se pellizcó la pierna.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.05.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He pinched",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "him"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "him / himself on the leg. (George pinched Anthony.)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He pinched him him / himself on the leg."
+      ]
+    }
   }
-} ]
+]

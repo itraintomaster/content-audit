@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444af"
-  },
-  "id" : "67fab6d599301022953444af",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "¡No pueden querer más té!",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444af"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure they don't want more tea!",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They can't want more tea!" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444b0"
-  },
-  "id" : "67fab6d599301022953444b0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "El gato no puede estar jugando.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953444af",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure the cat isn't playing.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The cat can't be playing." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444b1"
-  },
-  "id" : "67fab6d599301022953444b1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "La cena debe estar deliciosa.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "¡No pueden querer más té!",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure the dinner is delicious.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The dinner must be delicious." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444b2"
-  },
-  "id" : "67fab6d599301022953444b2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "Él no puede trabajar allí.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure he doesn't work there.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He can't work there." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444b3"
-  },
-  "id" : "67fab6d599301022953444b3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "Peter no puede estar en la escuela.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure Peter isn't at school.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter can't be at school." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444b4"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure they don't want more tea!",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They can't want more tea!"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They can't want more tea!"
+      ]
+    }
   },
-  "id" : "67fab6d599301022953444b4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "Debe tener un yate de lujo.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444b0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure he owns a fancy yacht.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He must have a fancy yacht." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444b5"
-  },
-  "id" : "67fab6d599301022953444b5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "Debe necesitar ayuda.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953444b0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure he requires assistance.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He must need assistance." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444b6"
-  },
-  "id" : "67fab6d599301022953444b6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "La tienda no puede estar lejos.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "El gato no puede estar jugando.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure the shop isn't far away.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The shop can't be far away." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444b7"
-  },
-  "id" : "67fab6d599301022953444b7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "Los bebés no pueden tener sed.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure the babies aren't thirsty.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The babies can't be thirsty." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444b8"
-  },
-  "id" : "67fab6d599301022953444b8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "Ella no puede estar en la fiesta.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure she isn't at the party.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She can't be at the party." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444b9"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure the cat isn't playing.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The cat can't be playing."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The cat can't be playing."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953444b9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "La puerta no puede estar cerrada.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444b1"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure the gate isn't closed.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The gate can't be closed." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444ba"
-  },
-  "id" : "67fab6d599301022953444ba",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "Deben querer algo de comida.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953444b1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure they desire some food.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They must want some food." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444bb"
-  },
-  "id" : "67fab6d599301022953444bb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "Él no puede estar en el avión.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "La cena debe estar deliciosa.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure he isn't on the plane.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He can't be on the plane." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444bc"
-  },
-  "id" : "67fab6d599301022953444bc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "Deben tener una casa.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure they own a house.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They must have a house." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444bd"
-  },
-  "id" : "67fab6d599301022953444bd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "A Sarah no le puede gustar tener calor.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure Sarah dislikes being hot.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Sarah can't like being hot." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444be"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure the dinner is delicious.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The dinner must be delicious."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The dinner must be delicious."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953444be",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "El gato debe necesitar ser alimentado.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444b2"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure the cat needs feeding.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The cat must need feeding." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444bf"
-  },
-  "id" : "67fab6d599301022953444bf",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "La puerta trasera debe estar cerrada con llave.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953444b2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure the back door is locked.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The back door must be locked." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444c0"
-  },
-  "id" : "67fab6d599301022953444c0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "Las chicas deben estar aburridas.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "Él no puede trabajar allí.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure the girls are bored.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The girls must be bored." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444c1"
-  },
-  "id" : "67fab6d599301022953444c1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "John debe estar en el autobús.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure John is on the coach.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John must be on the coach." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953444c2"
-  },
-  "id" : "67fab6d599301022953444c2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d455"
-  },
-  "title" : "Logical Necessity Review: Using 'Must' and 'Can't'",
-  "instructions" : "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
-  "translation" : "Ella debe estar en la tienda.",
-  "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
-  "topicName" : "Modal verbs",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.09.01.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I'm sure she is at the store.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She must be at the store." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure he doesn't work there.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He can't work there."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He can't work there."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444b3"
+    },
+    "id": "67fab6d599301022953444b3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
+    },
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "Peter no puede estar en la escuela.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure Peter isn't at school.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Peter can't be at school."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter can't be at school."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444b4"
+    },
+    "id": "67fab6d599301022953444b4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
+    },
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "Debe tener un yate de lujo.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure he owns a fancy yacht.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He must have a fancy yacht."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He must have a fancy yacht."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444b5"
+    },
+    "id": "67fab6d599301022953444b5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
+    },
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "Debe necesitar ayuda.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure he requires assistance.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He must need assistance."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He must need assistance."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444b6"
+    },
+    "id": "67fab6d599301022953444b6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
+    },
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "La tienda no puede estar lejos.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure the shop isn't far away.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The shop can't be far away."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The shop can't be far away."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444b7"
+    },
+    "id": "67fab6d599301022953444b7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
+    },
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "Los bebés no pueden tener sed.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure the babies aren't thirsty.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The babies can't be thirsty."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The babies can't be thirsty."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444b8"
+    },
+    "id": "67fab6d599301022953444b8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
+    },
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "Ella no puede estar en la fiesta.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure she isn't at the party.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She can't be at the party."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She can't be at the party."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444b9"
+    },
+    "id": "67fab6d599301022953444b9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
+    },
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "La puerta no puede estar cerrada.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure the gate isn't closed.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The gate can't be closed."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The gate can't be closed."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444ba"
+    },
+    "id": "67fab6d599301022953444ba",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
+    },
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "Deben querer algo de comida.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure they desire some food.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They must want some food."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They must want some food."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444bb"
+    },
+    "id": "67fab6d599301022953444bb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
+    },
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "Él no puede estar en el avión.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure he isn't on the plane.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He can't be on the plane."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He can't be on the plane."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444bc"
+    },
+    "id": "67fab6d599301022953444bc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
+    },
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "Deben tener una casa.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure they own a house.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They must have a house."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They must have a house."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444bd"
+    },
+    "id": "67fab6d599301022953444bd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
+    },
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "A Sarah no le puede gustar tener calor.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure Sarah dislikes being hot.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Sarah can't like being hot."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Sarah can't like being hot."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444be"
+    },
+    "id": "67fab6d599301022953444be",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
+    },
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "El gato debe necesitar ser alimentado.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure the cat needs feeding.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The cat must need feeding."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The cat must need feeding."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444bf"
+    },
+    "id": "67fab6d599301022953444bf",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
+    },
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "La puerta trasera debe estar cerrada con llave.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure the back door is locked.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The back door must be locked."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The back door must be locked."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444c0"
+    },
+    "id": "67fab6d599301022953444c0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
+    },
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "Las chicas deben estar aburridas.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure the girls are bored.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The girls must be bored."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The girls must be bored."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444c1"
+    },
+    "id": "67fab6d599301022953444c1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
+    },
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "John debe estar en el autobús.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure John is on the coach.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "John must be on the coach."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "John must be on the coach."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953444c2"
+    },
+    "id": "67fab6d599301022953444c2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d455"
+    },
+    "title": "Logical Necessity Review: Using 'Must' and 'Can't'",
+    "instructions": "Crea oraciones usando 'must' o 'can't'. Debes eliminar 'I'm sure'.",
+    "translation": "Ella debe estar en la tienda.",
+    "theoryId": "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
+    "topicName": "Modal verbs",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.09.01.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I'm sure she is at the store.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She must be at the store."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She must be at the store."
+      ]
+    }
   }
-} ]
+]

@@ -1,511 +1,612 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534297b"
-  },
-  "id" : "67fab6d5993010229534297b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d24f"
-  },
-  "title" : "Exercise: Verbs Followed by Gerunds",
-  "instructions" : "Crea oraciones con el gerundio.",
-  "translation" : "Consideraron cenar tarde.",
-  "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
-  "topicName" : "Verb Patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.05.05.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534297b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They considered",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "eating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) dinner late.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534297c"
-  },
-  "id" : "67fab6d5993010229534297c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d24f"
-  },
-  "title" : "Exercise: Verbs Followed by Gerunds",
-  "instructions" : "Crea oraciones con el gerundio.",
-  "translation" : "¿Te importaría abrir la puerta?",
-  "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
-  "topicName" : "Verb Patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.05.05.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534297b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d24f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Would you mind",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "opening" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(open) the door?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534297d"
-  },
-  "id" : "67fab6d5993010229534297d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d24f"
-  },
-  "title" : "Exercise: Verbs Followed by Gerunds",
-  "instructions" : "Crea oraciones con el gerundio.",
-  "translation" : "Propusieron tomar el tren.",
-  "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
-  "topicName" : "Verb Patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.05.05.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Exercise: Verbs Followed by Gerunds",
+    "instructions": "Crea oraciones con el gerundio.",
+    "translation": "Consideraron cenar tarde.",
+    "theoryId": "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
+    "topicName": "Verb Patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They proposed",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "catching" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(catch) the train.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534297e"
-  },
-  "id" : "67fab6d5993010229534297e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d24f"
-  },
-  "title" : "Exercise: Verbs Followed by Gerunds",
-  "instructions" : "Crea oraciones con el gerundio.",
-  "translation" : "Practicamos la escritura de ensayos.",
-  "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
-  "topicName" : "Verb Patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.05.05.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We practised",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "writing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(write) essays.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534297f"
-  },
-  "id" : "67fab6d5993010229534297f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d24f"
-  },
-  "title" : "Exercise: Verbs Followed by Gerunds",
-  "instructions" : "Crea oraciones con el gerundio.",
-  "translation" : "Ella no puede evitar sentirse triste.",
-  "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
-  "topicName" : "Verb Patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.05.05.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She can't help",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "feeling" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(feel) sad.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342980"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.05.05.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They considered",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "eating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) dinner late.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They considered eating dinner late."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342980",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d24f"
-  },
-  "title" : "Exercise: Verbs Followed by Gerunds",
-  "instructions" : "Crea oraciones con el gerundio.",
-  "translation" : "Ella mencionó programar la cita para el miércoles.",
-  "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
-  "topicName" : "Verb Patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.05.05.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534297c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She mentioned",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "scheduling" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(schedule) the appointment on Wednesday.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342981"
-  },
-  "id" : "67fab6d59930102295342981",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d24f"
-  },
-  "title" : "Exercise: Verbs Followed by Gerunds",
-  "instructions" : "Crea oraciones con el gerundio.",
-  "translation" : "No me importa ayudarte.",
-  "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
-  "topicName" : "Verb Patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.05.05.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534297c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d24f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I don't mind",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "assisting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(assist) you.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342982"
-  },
-  "id" : "67fab6d59930102295342982",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d24f"
-  },
-  "title" : "Exercise: Verbs Followed by Gerunds",
-  "instructions" : "Crea oraciones con el gerundio.",
-  "translation" : "Ella recomienda visitar la galería de arte.",
-  "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
-  "topicName" : "Verb Patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.05.05.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Exercise: Verbs Followed by Gerunds",
+    "instructions": "Crea oraciones con el gerundio.",
+    "translation": "¿Te importaría abrir la puerta?",
+    "theoryId": "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
+    "topicName": "Verb Patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She recommends",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "visiting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(visit) the art gallery.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342983"
-  },
-  "id" : "67fab6d59930102295342983",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d24f"
-  },
-  "title" : "Exercise: Verbs Followed by Gerunds",
-  "instructions" : "Crea oraciones con el gerundio.",
-  "translation" : "Él practicó tocando la guitarra toda la noche.",
-  "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
-  "topicName" : "Verb Patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.05.05.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He practised",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "playing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(play) guitar all evening.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342984"
-  },
-  "id" : "67fab6d59930102295342984",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d24f"
-  },
-  "title" : "Exercise: Verbs Followed by Gerunds",
-  "instructions" : "Crea oraciones con el gerundio.",
-  "translation" : "No pueden evitar amar la pizza.",
-  "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
-  "topicName" : "Verb Patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.05.05.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They can't help",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "loving" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(love) pizza.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.05.05.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Would you mind",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "opening"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(open) the door?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Would you mind opening the door?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534297d"
+    },
+    "id": "67fab6d5993010229534297d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d24f"
+    },
+    "title": "Exercise: Verbs Followed by Gerunds",
+    "instructions": "Crea oraciones con el gerundio.",
+    "translation": "Propusieron tomar el tren.",
+    "theoryId": "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
+    "topicName": "Verb Patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.05.05.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They proposed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "catching"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(catch) the train.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They proposed catching the train."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534297e"
+    },
+    "id": "67fab6d5993010229534297e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d24f"
+    },
+    "title": "Exercise: Verbs Followed by Gerunds",
+    "instructions": "Crea oraciones con el gerundio.",
+    "translation": "Practicamos la escritura de ensayos.",
+    "theoryId": "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
+    "topicName": "Verb Patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.05.05.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We practised",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "writing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(write) essays.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We practised writing essays."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534297f"
+    },
+    "id": "67fab6d5993010229534297f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d24f"
+    },
+    "title": "Exercise: Verbs Followed by Gerunds",
+    "instructions": "Crea oraciones con el gerundio.",
+    "translation": "Ella no puede evitar sentirse triste.",
+    "theoryId": "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
+    "topicName": "Verb Patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.05.05.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She can't help",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "feeling"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(feel) sad.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She can't help feeling sad."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342980"
+    },
+    "id": "67fab6d59930102295342980",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d24f"
+    },
+    "title": "Exercise: Verbs Followed by Gerunds",
+    "instructions": "Crea oraciones con el gerundio.",
+    "translation": "Ella mencionó programar la cita para el miércoles.",
+    "theoryId": "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
+    "topicName": "Verb Patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.05.05.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She mentioned",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "scheduling"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(schedule) the appointment on Wednesday.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She mentioned scheduling the appointment on Wednesday."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342981"
+    },
+    "id": "67fab6d59930102295342981",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d24f"
+    },
+    "title": "Exercise: Verbs Followed by Gerunds",
+    "instructions": "Crea oraciones con el gerundio.",
+    "translation": "No me importa ayudarte.",
+    "theoryId": "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
+    "topicName": "Verb Patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.05.05.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I don't mind",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "assisting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(assist) you.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I don't mind assisting you."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342982"
+    },
+    "id": "67fab6d59930102295342982",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d24f"
+    },
+    "title": "Exercise: Verbs Followed by Gerunds",
+    "instructions": "Crea oraciones con el gerundio.",
+    "translation": "Ella recomienda visitar la galería de arte.",
+    "theoryId": "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
+    "topicName": "Verb Patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.05.05.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She recommends",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "visiting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(visit) the art gallery.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She recommends visiting the art gallery."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342983"
+    },
+    "id": "67fab6d59930102295342983",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d24f"
+    },
+    "title": "Exercise: Verbs Followed by Gerunds",
+    "instructions": "Crea oraciones con el gerundio.",
+    "translation": "Él practicó tocando la guitarra toda la noche.",
+    "theoryId": "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
+    "topicName": "Verb Patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.05.05.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He practised",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "playing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(play) guitar all evening.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He practised playing guitar all evening."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342984"
+    },
+    "id": "67fab6d59930102295342984",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d24f"
+    },
+    "title": "Exercise: Verbs Followed by Gerunds",
+    "instructions": "Crea oraciones con el gerundio.",
+    "translation": "No pueden evitar amar la pizza.",
+    "theoryId": "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
+    "topicName": "Verb Patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.05.05.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They can't help",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "loving"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(love) pizza.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They can't help loving pizza."
+      ]
+    }
   }
-} ]
+]

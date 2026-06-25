@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341eff"
-  },
-  "id" : "67fab6d59930102295341eff",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Con qué frecuencia llama él?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341eff"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "How often",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does he call" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(he / call)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f00"
-  },
-  "id" : "67fab6d59930102295341f00",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Cómo llegamos al estadio?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295341eff",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "How",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do we reach" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(we / reach) the stadium?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f01"
-  },
-  "id" : "67fab6d59930102295341f01",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Dónde practica ella yoga?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿Con qué frecuencia llama él?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does she practice" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / practice) yoga?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f02"
-  },
-  "id" : "67fab6d59930102295341f02",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Qué género prefiere él?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What genre",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does he prefer" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(he / prefer)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f03"
-  },
-  "id" : "67fab6d59930102295341f03",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿A quién contacto?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Who",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do I contact" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(I / contact)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f04"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How often",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does he call"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / call)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "How often does he call?"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295341f04",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Cuándo viaja ella al extranjero?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f00"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does she travel" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / travel) abroad?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f05"
-  },
-  "id" : "67fab6d59930102295341f05",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Cuándo llueve?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295341f00",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does it rain" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(it / rain)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f06"
-  },
-  "id" : "67fab6d59930102295341f06",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Por qué bebe él tanta soda?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿Cómo llegamos al estadio?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does he drink" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(he / drink) so much soda?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f07"
-  },
-  "id" : "67fab6d59930102295341f07",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Por qué duermen ellos tan tarde?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do they sleep" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / sleep) so late?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f08"
-  },
-  "id" : "67fab6d59930102295341f08",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Por qué se preocupa ella tanto por eso?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does she worry" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / worry) so much about that?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f09"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "do we reach"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(we / reach) the stadium?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "How do we reach the stadium?"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295341f09",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Dónde se inunda más?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f01"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does it flood" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(it / flood) the most?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f0a"
-  },
-  "id" : "67fab6d59930102295341f0a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Dónde trabajas?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295341f01",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do you work" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / work)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f0b"
-  },
-  "id" : "67fab6d59930102295341f0b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Cuándo te veo?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿Dónde practica ella yoga?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do I see" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(I / see) you?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f0c"
-  },
-  "id" : "67fab6d59930102295341f0c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Qué cenas?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do you have" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / have) for dinner?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f0d"
-  },
-  "id" : "67fab6d59930102295341f0d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Con qué frecuencia viajamos?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "How frequently",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do we travel" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(we / travel)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f0e"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does she practice"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / practice) yoga?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where does she practice yoga?"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295341f0e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Cuándo regresan ellos?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f02"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do they return" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / return)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f0f"
-  },
-  "id" : "67fab6d59930102295341f0f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿A qué hora partimos?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295341f02",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What time",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do we depart" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(we / depart)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f10"
-  },
-  "id" : "67fab6d59930102295341f10",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Qué miras?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿Qué género prefiere él?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do you watch" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / watch)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f11"
-  },
-  "id" : "67fab6d59930102295341f11",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Qué digo?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do I say" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(I / say)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341f12"
-  },
-  "id" : "67fab6d59930102295341f12",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d38c"
-  },
-  "title" : "'Wh' questions with regular verbs in the present simple",
-  "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Dónde se juntan ellos?",
-  "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.09.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do they hang" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / hang)?",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What genre",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does he prefer"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / prefer)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What genre does he prefer?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f03"
+    },
+    "id": "67fab6d59930102295341f03",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
+    },
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿A quién contacto?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Who",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "do I contact"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I / contact)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Who do I contact?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f04"
+    },
+    "id": "67fab6d59930102295341f04",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
+    },
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿Cuándo viaja ella al extranjero?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does she travel"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / travel) abroad?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When does she travel abroad?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f05"
+    },
+    "id": "67fab6d59930102295341f05",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
+    },
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿Cuándo llueve?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does it rain"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(it / rain)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When does it rain?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f06"
+    },
+    "id": "67fab6d59930102295341f06",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
+    },
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿Por qué bebe él tanta soda?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does he drink"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / drink) so much soda?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why does he drink so much soda?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f07"
+    },
+    "id": "67fab6d59930102295341f07",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
+    },
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿Por qué duermen ellos tan tarde?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "do they sleep"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / sleep) so late?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why do they sleep so late?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f08"
+    },
+    "id": "67fab6d59930102295341f08",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
+    },
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿Por qué se preocupa ella tanto por eso?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does she worry"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / worry) so much about that?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why does she worry so much about that?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f09"
+    },
+    "id": "67fab6d59930102295341f09",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
+    },
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿Dónde se inunda más?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "does it flood"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(it / flood) the most?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where does it flood the most?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f0a"
+    },
+    "id": "67fab6d59930102295341f0a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
+    },
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿Dónde trabajas?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "do you work"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / work)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where do you work?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f0b"
+    },
+    "id": "67fab6d59930102295341f0b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
+    },
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿Cuándo te veo?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "do I see"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I / see) you?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When do I see you?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f0c"
+    },
+    "id": "67fab6d59930102295341f0c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
+    },
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿Qué cenas?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "do you have"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / have) for dinner?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What do you have for dinner?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f0d"
+    },
+    "id": "67fab6d59930102295341f0d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
+    },
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿Con qué frecuencia viajamos?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How frequently",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "do we travel"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(we / travel)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "How frequently do we travel?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f0e"
+    },
+    "id": "67fab6d59930102295341f0e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
+    },
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿Cuándo regresan ellos?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "do they return"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / return)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When do they return?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f0f"
+    },
+    "id": "67fab6d59930102295341f0f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
+    },
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿A qué hora partimos?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What time",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "do we depart"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(we / depart)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What time do we depart?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f10"
+    },
+    "id": "67fab6d59930102295341f10",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
+    },
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿Qué miras?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "do you watch"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / watch)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What do you watch?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f11"
+    },
+    "id": "67fab6d59930102295341f11",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
+    },
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿Qué digo?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "do I say"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I / say)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What do I say?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341f12"
+    },
+    "id": "67fab6d59930102295341f12",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d38c"
+    },
+    "title": "'Wh' questions with regular verbs in the present simple",
+    "instructions": "Formula preguntas en presente simple.",
+    "translation": "¿Dónde se juntan ellos?",
+    "theoryId": "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.09.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "do they hang"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / hang)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where do they hang?"
+      ]
+    }
   }
-} ]
+]

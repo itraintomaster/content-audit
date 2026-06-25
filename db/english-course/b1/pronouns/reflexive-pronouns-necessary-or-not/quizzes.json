@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439a1"
-  },
-  "id" : "67fab6d599301022953439a1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "Ella se vistió.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439a1"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She dressed",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "herself" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "herself / -.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439a2"
-  },
-  "id" : "67fab6d599301022953439a2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "Ellos vieron en el teatro.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953439a1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They saw",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "themselves / - at the theater.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439a3"
-  },
-  "id" : "67fab6d599301022953439a3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "¿Él se lastimó?",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "Ella se vistió.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Did he hurt",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "himself" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "himself / - ?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439a4"
-  },
-  "id" : "67fab6d599301022953439a4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "Mi hijo es muy pequeño. No puede alimentarse solo.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "My son is very small. He can't feed",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "himself" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "himself / - .",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439a5"
-  },
-  "id" : "67fab6d599301022953439a5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "Debo concentrarme.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I must concentrate",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "myself / -.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439a6"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She dressed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "herself"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "herself / -.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She dressed herself herself / -."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953439a6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "¿Te lavarás, por favor?",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439a2"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Will you please wash",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "yourself / - ?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439a7"
-  },
-  "id" : "67fab6d599301022953439a7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "¿Recuerdan ellos su primera mascota?",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953439a2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Do they remember",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "himself / - their first pet?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439a8"
-  },
-  "id" : "67fab6d599301022953439a8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "Yo sequé.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "Ellos vieron en el teatro.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I dried",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "myself / - .",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439a9"
-  },
-  "id" : "67fab6d599301022953439a9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "Mi abuelo ya no puede alimentarse solo.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "My grandfather can't feed",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "himself" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "himself / - anymore.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439aa"
-  },
-  "id" : "67fab6d599301022953439aa",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "Me siento un poco mejor.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I feel",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "myself / - a little better.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439ab"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They saw",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "themselves / - at the theater.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They saw - themselves / - at the theater."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953439ab",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "Ella se lavó.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439a3"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She washed",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "herself / -.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439ac"
-  },
-  "id" : "67fab6d599301022953439ac",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "Deseo que te diviertas.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953439a3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I wish you enjoy",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "yourself" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "yourself / -.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439ad"
-  },
-  "id" : "67fab6d599301022953439ad",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "Ella se peinó.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "¿Él se lastimó?",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She combed",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "herself / - her hair.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439ae"
-  },
-  "id" : "67fab6d599301022953439ae",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "El niño pequeño no podía alimentarse solo.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The young boy couldn't feed",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "himself" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "himself / -.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439af"
-  },
-  "id" : "67fab6d599301022953439af",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "Él se sintió muy feliz.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He felt",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "himself / - very happy.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439b0"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Did he hurt",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "himself"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "himself / - ?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Did he hurt himself himself / - ?"
+      ]
+    }
   },
-  "id" : "67fab6d599301022953439b0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "Los estudiantes pueden alimentarse solos ahora. Es más cómodo.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439a4"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The students can feed",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "themselves" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "themselves / - now. It's more comfortable.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439b1"
-  },
-  "id" : "67fab6d599301022953439b1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "Me puse ropa.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953439a4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I put on clothes",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "myself / - .",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439b2"
-  },
-  "id" : "67fab6d599301022953439b2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "Nosotros vimos en el parque.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "Mi hijo es muy pequeño. No puede alimentarse solo.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We saw",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "ourselves / - at the park.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439b3"
-  },
-  "id" : "67fab6d599301022953439b3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "¡Por favor, concéntrate!",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Please concentrate",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "yourself / -!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953439b4"
-  },
-  "id" : "67fab6d599301022953439b4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d348"
-  },
-  "title" : "Reflexive Pronouns: Necessary or Not?",
-  "instructions" : "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
-  "translation" : "Él recuerda esa experiencia.",
-  "theoryId" : "b1.13.Reflexive_Pronouns",
-  "topicName" : "Pronouns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.13.06.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He remembers",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "-" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "himself / - that experience.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My son is very small. He can't feed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "himself"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "himself / - .",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "My son is very small. He can't feed himself himself / - ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439a5"
+    },
+    "id": "67fab6d599301022953439a5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
+    },
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "Debo concentrarme.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I must concentrate",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "myself / -.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I must concentrate - myself / -."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439a6"
+    },
+    "id": "67fab6d599301022953439a6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
+    },
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "¿Te lavarás, por favor?",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Will you please wash",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "yourself / - ?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Will you please wash - yourself / - ?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439a7"
+    },
+    "id": "67fab6d599301022953439a7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
+    },
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "¿Recuerdan ellos su primera mascota?",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Do they remember",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "himself / - their first pet?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Do they remember - himself / - their first pet?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439a8"
+    },
+    "id": "67fab6d599301022953439a8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
+    },
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "Yo sequé.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I dried",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "myself / - .",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I dried - myself / - ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439a9"
+    },
+    "id": "67fab6d599301022953439a9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
+    },
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "Mi abuelo ya no puede alimentarse solo.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My grandfather can't feed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "himself"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "himself / - anymore.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "My grandfather can't feed himself himself / - anymore."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439aa"
+    },
+    "id": "67fab6d599301022953439aa",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
+    },
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "Me siento un poco mejor.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I feel",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "myself / - a little better.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I feel - myself / - a little better."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439ab"
+    },
+    "id": "67fab6d599301022953439ab",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
+    },
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "Ella se lavó.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She washed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "herself / -.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She washed - herself / -."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439ac"
+    },
+    "id": "67fab6d599301022953439ac",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
+    },
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "Deseo que te diviertas.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I wish you enjoy",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "yourself"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "yourself / -.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I wish you enjoy yourself yourself / -."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439ad"
+    },
+    "id": "67fab6d599301022953439ad",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
+    },
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "Ella se peinó.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She combed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "herself / - her hair.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She combed - herself / - her hair."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439ae"
+    },
+    "id": "67fab6d599301022953439ae",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
+    },
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "El niño pequeño no podía alimentarse solo.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The young boy couldn't feed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "himself"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "himself / -.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The young boy couldn't feed himself himself / -."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439af"
+    },
+    "id": "67fab6d599301022953439af",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
+    },
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "Él se sintió muy feliz.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He felt",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "himself / - very happy.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He felt - himself / - very happy."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439b0"
+    },
+    "id": "67fab6d599301022953439b0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
+    },
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "Los estudiantes pueden alimentarse solos ahora. Es más cómodo.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The students can feed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "themselves"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "themselves / - now. It's more comfortable.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The students can feed themselves themselves / - now. It's more comfortable."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439b1"
+    },
+    "id": "67fab6d599301022953439b1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
+    },
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "Me puse ropa.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I put on clothes",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "myself / - .",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I put on clothes - myself / - ."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439b2"
+    },
+    "id": "67fab6d599301022953439b2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
+    },
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "Nosotros vimos en el parque.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We saw",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "ourselves / - at the park.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We saw - ourselves / - at the park."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439b3"
+    },
+    "id": "67fab6d599301022953439b3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
+    },
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "¡Por favor, concéntrate!",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Please concentrate",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "yourself / -!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Please concentrate - yourself / -!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953439b4"
+    },
+    "id": "67fab6d599301022953439b4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d348"
+    },
+    "title": "Reflexive Pronouns: Necessary or Not?",
+    "instructions": "Elige el pronombre o escribe un guion (–) si no necesitamos un pronombre. Este ejercicio trata sobre el uso de reflexive pronouns con verbos como 'dress', 'wash' y 'concentrate'.",
+    "translation": "Él recuerda esa experiencia.",
+    "theoryId": "b1.13.Reflexive_Pronouns",
+    "topicName": "Pronouns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.13.06.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He remembers",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "-"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "himself / - that experience.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He remembers - himself / - that experience."
+      ]
+    }
   }
-} ]
+]

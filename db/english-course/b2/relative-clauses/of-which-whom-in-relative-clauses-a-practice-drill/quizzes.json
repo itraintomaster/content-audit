@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344698"
-  },
-  "id" : "67fab6d59930102295344698",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "Hablamos con los jugadores, varios de los cuales estaban lesionados.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344698"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We spoke to the players. Several of the players were injured.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We spoke to the players, several of whom were injured." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344699"
-  },
-  "id" : "67fab6d59930102295344699",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "Cocinaron cuatro platos, la mayoría de los cuales eran picantes.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344698",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They cooked four dishes. Most of the dishes were spicy.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They cooked four dishes, most of which were spicy." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534469a"
-  },
-  "id" : "67fab6d5993010229534469a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "Les di algunos dulces a los niños, algunos de los cuales estaban felices.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "Hablamos con los jugadores, varios de los cuales estaban lesionados.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I gave some sweets to the kids. Some of the kids were happy.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I gave some sweets to the kids, some of whom were happy." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534469b"
-  },
-  "id" : "67fab6d5993010229534469b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "Entrena a atletas, muchos de los cuales son de Europa.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He trains athletes. Many of the athletes are from Europe.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He trains athletes, many of whom are from Europe." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534469c"
-  },
-  "id" : "67fab6d5993010229534469c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "Hay muchos vehículos aquí, dos de los cuales son camiones.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "There are many vehicles here. Two of the vehicles are trucks.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "There are many vehicles here, two of which are trucks." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534469d"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We spoke to the players. Several of the players were injured.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We spoke to the players, several of whom were injured."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We spoke to the players, several of whom were injured."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534469d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "Allí estaba un grupo de soldados, varios de los cuales tenían rifles.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344699"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "There stood a group of soldiers. Several of the soldiers had rifles.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "There stood a group of soldiers, several of whom had rifles." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534469e"
-  },
-  "id" : "67fab6d5993010229534469e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "Leyeron muchos poemas, algunos de los cuales eran de Shakespeare.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344699",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They read many poems. Some of the poems were by Shakespeare.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They read many poems, some of which were by Shakespeare." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534469f"
-  },
-  "id" : "67fab6d5993010229534469f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "Tiene tres computadoras portátiles, una de las cuales es para juegos.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "Cocinaron cuatro platos, la mayoría de los cuales eran picantes.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She has three laptops. One of the laptops is for gaming.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She has three laptops, one of which is for gaming." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953446a0"
-  },
-  "id" : "67fab6d599301022953446a0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "Advirtieron a los vecinos, ninguno de los cuales parecía preocupado.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They warned the neighbors. None of the neighbors seemed concerned.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They warned the neighbors, none of whom seemed concerned." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953446a1"
-  },
-  "id" : "67fab6d599301022953446a1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "Visitó varios museos, pocos de los cuales estaban abiertos.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He visited several museums. Few of the museums were open.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He visited several museums, few of which were open." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953446a2"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They cooked four dishes. Most of the dishes were spicy.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They cooked four dishes, most of which were spicy."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They cooked four dishes, most of which were spicy."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953446a2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "Habló con las dependientas, todas las cuales eran mujeres.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534469a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She talked to the shop assistants. All of the shop assistants were women.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She talked to the shop assistants, all of whom were women." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953446a3"
-  },
-  "id" : "67fab6d599301022953446a3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "Ella pinta cuadros, ¡ninguno de los cuales se vende muy bien!",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534469a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She paints pictures. None of the pictures sell very well!",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She paints pictures, none of which sell very well!" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953446a4"
-  },
-  "id" : "67fab6d599301022953446a4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "Hay libros en el estante, la mayoría de los cuales son novelas.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "Les di algunos dulces a los niños, algunos de los cuales estaban felices.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "There are books on the shelf. Most of the books are novels.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "There are books on the shelf, most of which are novels." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953446a5"
-  },
-  "id" : "67fab6d599301022953446a5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "El anfitrión saludó a las celebridades, algunas de las cuales parecían aburridas.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The host greeted the celebrities. Some of the celebrities looked bored.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The host greeted the celebrities, some of whom looked bored." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953446a6"
-  },
-  "id" : "67fab6d599301022953446a6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "Saludé a los niños, algunos de los cuales sonrieron.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I waved to the children. A few of the children smiled.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I waved to the children, a few of whom smiled." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953446a7"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I gave some sweets to the kids. Some of the kids were happy.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I gave some sweets to the kids, some of whom were happy."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I gave some sweets to the kids, some of whom were happy."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953446a7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "Entrevistó a los candidatos, dos de los cuales la impresionaron.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534469b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She interviewed the candidates. Two of the candidates impressed her.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She interviewed the candidates, two of whom impressed her." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953446a8"
-  },
-  "id" : "67fab6d599301022953446a8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "Probamos vino, la mayor parte del cual era italiano.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534469b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We tasted wine. Most of the wine was Italian.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We tasted wine, most of which was Italian." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953446a9"
-  },
-  "id" : "67fab6d599301022953446a9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "Compró cuatro plátanos, dos de los cuales estaban podridos.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "Entrena a atletas, muchos de los cuales son de Europa.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He bought four bananas. Two of the bananas were rotten.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He bought four bananas, two of which were rotten." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953446aa"
-  },
-  "id" : "67fab6d599301022953446aa",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "El director confía en los maestros, todos los cuales también lo respetan.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The principal trusts the teachers. All of the teachers respect him too.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The principal trusts the teachers, all of whom respect him too." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953446ab"
-  },
-  "id" : "67fab6d599301022953446ab",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d46f"
-  },
-  "title" : "'Of Which / Whom' in Relative Clauses: A Practice Drill",
-  "instructions" : "Crea oraciones que incluyan 'of which' o 'whom'.",
-  "translation" : "Ella posee muchas joyas, la mayoría de las cuales fueron un regalo.",
-  "theoryId" : "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
-  "topicName" : "Relative clauses",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.10.11.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She owns a lot of jewelry. Most of the jewelry was a gift.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She owns a lot of jewelry, most of which was a gift." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He trains athletes. Many of the athletes are from Europe.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He trains athletes, many of whom are from Europe."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He trains athletes, many of whom are from Europe."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534469c"
+    },
+    "id": "67fab6d5993010229534469c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
+    },
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "Hay muchos vehículos aquí, dos de los cuales son camiones.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There are many vehicles here. Two of the vehicles are trucks.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "There are many vehicles here, two of which are trucks."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "There are many vehicles here, two of which are trucks."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534469d"
+    },
+    "id": "67fab6d5993010229534469d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
+    },
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "Allí estaba un grupo de soldados, varios de los cuales tenían rifles.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There stood a group of soldiers. Several of the soldiers had rifles.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "There stood a group of soldiers, several of whom had rifles."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "There stood a group of soldiers, several of whom had rifles."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534469e"
+    },
+    "id": "67fab6d5993010229534469e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
+    },
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "Leyeron muchos poemas, algunos de los cuales eran de Shakespeare.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They read many poems. Some of the poems were by Shakespeare.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They read many poems, some of which were by Shakespeare."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They read many poems, some of which were by Shakespeare."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534469f"
+    },
+    "id": "67fab6d5993010229534469f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
+    },
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "Tiene tres computadoras portátiles, una de las cuales es para juegos.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She has three laptops. One of the laptops is for gaming.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She has three laptops, one of which is for gaming."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She has three laptops, one of which is for gaming."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446a0"
+    },
+    "id": "67fab6d599301022953446a0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
+    },
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "Advirtieron a los vecinos, ninguno de los cuales parecía preocupado.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They warned the neighbors. None of the neighbors seemed concerned.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "They warned the neighbors, none of whom seemed concerned."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They warned the neighbors, none of whom seemed concerned."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446a1"
+    },
+    "id": "67fab6d599301022953446a1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
+    },
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "Visitó varios museos, pocos de los cuales estaban abiertos.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He visited several museums. Few of the museums were open.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He visited several museums, few of which were open."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He visited several museums, few of which were open."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446a2"
+    },
+    "id": "67fab6d599301022953446a2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
+    },
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "Habló con las dependientas, todas las cuales eran mujeres.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She talked to the shop assistants. All of the shop assistants were women.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She talked to the shop assistants, all of whom were women."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She talked to the shop assistants, all of whom were women."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446a3"
+    },
+    "id": "67fab6d599301022953446a3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
+    },
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "Ella pinta cuadros, ¡ninguno de los cuales se vende muy bien!",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She paints pictures. None of the pictures sell very well!",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She paints pictures, none of which sell very well!"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She paints pictures, none of which sell very well!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446a4"
+    },
+    "id": "67fab6d599301022953446a4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
+    },
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "Hay libros en el estante, la mayoría de los cuales son novelas.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "There are books on the shelf. Most of the books are novels.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "There are books on the shelf, most of which are novels."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "There are books on the shelf, most of which are novels."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446a5"
+    },
+    "id": "67fab6d599301022953446a5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
+    },
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "El anfitrión saludó a las celebridades, algunas de las cuales parecían aburridas.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The host greeted the celebrities. Some of the celebrities looked bored.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The host greeted the celebrities, some of whom looked bored."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The host greeted the celebrities, some of whom looked bored."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446a6"
+    },
+    "id": "67fab6d599301022953446a6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
+    },
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "Saludé a los niños, algunos de los cuales sonrieron.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I waved to the children. A few of the children smiled.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "I waved to the children, a few of whom smiled."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I waved to the children, a few of whom smiled."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446a7"
+    },
+    "id": "67fab6d599301022953446a7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
+    },
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "Entrevistó a los candidatos, dos de los cuales la impresionaron.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She interviewed the candidates. Two of the candidates impressed her.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She interviewed the candidates, two of whom impressed her."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She interviewed the candidates, two of whom impressed her."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446a8"
+    },
+    "id": "67fab6d599301022953446a8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
+    },
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "Probamos vino, la mayor parte del cual era italiano.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We tasted wine. Most of the wine was Italian.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "We tasted wine, most of which was Italian."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We tasted wine, most of which was Italian."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446a9"
+    },
+    "id": "67fab6d599301022953446a9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
+    },
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "Compró cuatro plátanos, dos de los cuales estaban podridos.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He bought four bananas. Two of the bananas were rotten.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "He bought four bananas, two of which were rotten."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He bought four bananas, two of which were rotten."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446aa"
+    },
+    "id": "67fab6d599301022953446aa",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
+    },
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "El director confía en los maestros, todos los cuales también lo respetan.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The principal trusts the teachers. All of the teachers respect him too.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "The principal trusts the teachers, all of whom respect him too."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The principal trusts the teachers, all of whom respect him too."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953446ab"
+    },
+    "id": "67fab6d599301022953446ab",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d46f"
+    },
+    "title": "'Of Which / Whom' in Relative Clauses: A Practice Drill",
+    "instructions": "Crea oraciones que incluyan 'of which' o 'whom'.",
+    "translation": "Ella posee muchas joyas, la mayoría de las cuales fueron un regalo.",
+    "theoryId": "b2.10.Number_Quantifiers_+_o_f_which_of_whom",
+    "topicName": "Relative clauses",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.10.11.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She owns a lot of jewelry. Most of the jewelry was a gift.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "She owns a lot of jewelry, most of which was a gift."
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She owns a lot of jewelry, most of which was a gift."
+      ]
+    }
   }
-} ]
+]

@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342003"
-  },
-  "id" : "67fab6d59930102295342003",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "No estoy comiendo.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342003"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "am not eating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342004"
-  },
-  "id" : "67fab6d59930102295342004",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "No está brillando.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342003",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "It",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is not shining" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(shine).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342005"
-  },
-  "id" : "67fab6d59930102295342005",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "Mary no está viendo la televisión.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "No estoy comiendo.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Mary",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is not watching" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(watch) TV.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342006"
-  },
-  "id" : "67fab6d59930102295342006",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "Ella no está chateando con su amiga.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is not chatting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(chat) with her friend.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342007"
-  },
-  "id" : "67fab6d59930102295342007",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "No estás corriendo.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are not running" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(run).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342008"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "am not eating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I am not eating."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342008",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "No está granizando.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342004"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "It",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is not hailing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(hail).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342009"
-  },
-  "id" : "67fab6d59930102295342009",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "Ellos no están comiendo pizza.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342004",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are not eating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) pizza.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534200a"
-  },
-  "id" : "67fab6d5993010229534200a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "No nos quedaremos aquí esta noche.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "No está brillando.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are not staying" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(stay) here tonight.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534200b"
-  },
-  "id" : "67fab6d5993010229534200b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "Ellos no se van mañana.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are not leaving" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(leave) tomorrow.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534200c"
-  },
-  "id" : "67fab6d5993010229534200c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "No estás preparando el desayuno.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are not preparing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(prepare) breakfast.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534200d"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is not shining"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(shine).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "It is not shining."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534200d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "Él no está leyendo un libro.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342005"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is not reading" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(read) a book.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534200e"
-  },
-  "id" : "67fab6d5993010229534200e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "No estoy enviando una carta.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342005",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "am not sending" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(send) a letter.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534200f"
-  },
-  "id" : "67fab6d5993010229534200f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "No estamos aprendiendo.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "Mary no está viendo la televisión.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are not learning" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(learn).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342010"
-  },
-  "id" : "67fab6d59930102295342010",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "Ella no se va antes.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is not departing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(depart) sooner.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342011"
-  },
-  "id" : "67fab6d59930102295342011",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "No estás conduciendo a la oficina.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are not driving" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(drive) to the office.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342012"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is not watching"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(watch) TV.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Mary is not watching TV."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342012",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "No nos reuniremos mañana.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342006"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are not gathering" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(gather) tomorrow.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342013"
-  },
-  "id" : "67fab6d59930102295342013",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "Michael no está leyendo un libro.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342006",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Michael",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is not reading" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(read) a book.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342014"
-  },
-  "id" : "67fab6d59930102295342014",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "Peter y Tom no están comiendo pastel.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "Ella no está chateando con su amiga.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Peter and Tom",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are not eating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) cake.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342015"
-  },
-  "id" : "67fab6d59930102295342015",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "No estoy descansando.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "am not resting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(rest).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342016"
-  },
-  "id" : "67fab6d59930102295342016",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39a"
-  },
-  "title" : "Negative sentences in the present continuous",
-  "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "Ella no está limpiando la casa.",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.04.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is not cleaning" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(clean) the house.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is not chatting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(chat) with her friend.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She is not chatting with her friend."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342007"
+    },
+    "id": "67fab6d59930102295342007",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
+    },
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "No estás corriendo.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are not running"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(run).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You are not running."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342008"
+    },
+    "id": "67fab6d59930102295342008",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
+    },
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "No está granizando.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is not hailing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(hail).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "It is not hailing."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342009"
+    },
+    "id": "67fab6d59930102295342009",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
+    },
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "Ellos no están comiendo pizza.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are not eating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) pizza.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They are not eating pizza."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534200a"
+    },
+    "id": "67fab6d5993010229534200a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
+    },
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "No nos quedaremos aquí esta noche.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are not staying"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(stay) here tonight.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We are not staying here tonight."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534200b"
+    },
+    "id": "67fab6d5993010229534200b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
+    },
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "Ellos no se van mañana.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are not leaving"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(leave) tomorrow.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They are not leaving tomorrow."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534200c"
+    },
+    "id": "67fab6d5993010229534200c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
+    },
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "No estás preparando el desayuno.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are not preparing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(prepare) breakfast.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You are not preparing breakfast."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534200d"
+    },
+    "id": "67fab6d5993010229534200d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
+    },
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "Él no está leyendo un libro.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is not reading"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(read) a book.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He is not reading a book."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534200e"
+    },
+    "id": "67fab6d5993010229534200e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
+    },
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "No estoy enviando una carta.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "am not sending"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(send) a letter.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I am not sending a letter."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534200f"
+    },
+    "id": "67fab6d5993010229534200f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
+    },
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "No estamos aprendiendo.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are not learning"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(learn).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We are not learning."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342010"
+    },
+    "id": "67fab6d59930102295342010",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
+    },
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "Ella no se va antes.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is not departing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(depart) sooner.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She is not departing sooner."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342011"
+    },
+    "id": "67fab6d59930102295342011",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
+    },
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "No estás conduciendo a la oficina.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are not driving"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drive) to the office.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You are not driving to the office."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342012"
+    },
+    "id": "67fab6d59930102295342012",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
+    },
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "No nos reuniremos mañana.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are not gathering"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(gather) tomorrow.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We are not gathering tomorrow."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342013"
+    },
+    "id": "67fab6d59930102295342013",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
+    },
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "Michael no está leyendo un libro.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Michael",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is not reading"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(read) a book.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Michael is not reading a book."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342014"
+    },
+    "id": "67fab6d59930102295342014",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
+    },
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "Peter y Tom no están comiendo pastel.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Peter and Tom",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are not eating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) cake.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter and Tom are not eating cake."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342015"
+    },
+    "id": "67fab6d59930102295342015",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
+    },
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "No estoy descansando.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "am not resting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(rest).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I am not resting."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342016"
+    },
+    "id": "67fab6d59930102295342016",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39a"
+    },
+    "title": "Negative sentences in the present continuous",
+    "instructions": "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
+    "translation": "Ella no está limpiando la casa.",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.04.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is not cleaning"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(clean) the house.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She is not cleaning the house."
+      ]
+    }
   }
-} ]
+]

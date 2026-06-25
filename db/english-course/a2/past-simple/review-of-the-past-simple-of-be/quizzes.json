@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342734"
-  },
-  "id" : "67fab6d59930102295342734",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "¿Dónde estuvieron la semana pasada?",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342734"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were they" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / be) last week?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342735"
-  },
-  "id" : "67fab6d59930102295342735",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "Los niños no estaban en la escuela.",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342734",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The children",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "weren't" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / be) at school.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342736"
-  },
-  "id" : "67fab6d59930102295342736",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "Ella era una artista talentosa.",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "¿Dónde estuvieron la semana pasada?",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) a talented artist.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342737"
-  },
-  "id" : "67fab6d59930102295342737",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "Él no estaba en el cine.",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "wasn't" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / be) at the cinema.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342738"
-  },
-  "id" : "67fab6d59930102295342738",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "¿Cuándo estuvieron en Londres?",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were they" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / be) in London?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342739"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / be) last week?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where were they last week?"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342739",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "¿Llegaron tarde los profesores a la reunión?",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342735"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Were the teachers" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(the teachers / be) late for the meeting?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534273a"
-  },
-  "id" : "67fab6d5993010229534273a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "¿Estaba equivocado?",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342735",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Was I" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(I / be) wrong?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534273b"
-  },
-  "id" : "67fab6d5993010229534273b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "¿Estuvimos en Irlanda el mes pasado?",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "Los niños no estaban en la escuela.",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Were we" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(we / be) in Ireland last month?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534273c"
-  },
-  "id" : "67fab6d5993010229534273c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "Estaban en el tren.",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) on the train.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534273d"
-  },
-  "id" : "67fab6d5993010229534273d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "Tenía sueño ayer.",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) sleepy yesterday.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534273e"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The children",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "weren't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) at school.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The children weren't at school."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534273e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "Él estuvo en el trabajo ayer.",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342736"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) at work yesterday.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534273f"
-  },
-  "id" : "67fab6d5993010229534273f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "Estuvimos en el cine.",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342736",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) at the cinema.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342740"
-  },
-  "id" : "67fab6d59930102295342740",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "¿Estuvo ella en el concierto?",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "Ella era una artista talentosa.",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Was she" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / be) at the concert?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342741"
-  },
-  "id" : "67fab6d59930102295342741",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "¿Tenías sed?",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Were you" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / be) thirsty?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342742"
-  },
-  "id" : "67fab6d59930102295342742",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "No estaba emocionado por la salida temprana.",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "wasn't" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / be) excited about the early finish.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342743"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) a talented artist.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She was a talented artist."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342743",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "¿Dónde estaban mis gafas?",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342737"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were my glasses" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(my glasses / be)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342744"
-  },
-  "id" : "67fab6d59930102295342744",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "No teníamos calor.",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342737",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "weren't" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / be) hot.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342745"
-  },
-  "id" : "67fab6d59930102295342745",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "Ella no estaba en Roma entonces.",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "Él no estaba en el cine.",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "wasn't" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / be) in Rome then.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342746"
-  },
-  "id" : "67fab6d59930102295342746",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "¿Por qué seguía ella en casa a la hora del almuerzo?",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was she" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / be) still at home at lunchtime?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342747"
-  },
-  "id" : "67fab6d59930102295342747",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d231"
-  },
-  "title" : "Review of the past simple of 'be'",
-  "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "¿Quién era esa mujer?",
-  "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A2.03.01.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Who",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was that woman" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(that woman / be)?",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "wasn't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) at the cinema.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He wasn't at the cinema."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342738"
+    },
+    "id": "67fab6d59930102295342738",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
+    },
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "¿Cuándo estuvieron en Londres?",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / be) in London?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When were they in London?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342739"
+    },
+    "id": "67fab6d59930102295342739",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
+    },
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "¿Llegaron tarde los profesores a la reunión?",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Were the teachers"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(the teachers / be) late for the meeting?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Were the teachers late for the meeting?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534273a"
+    },
+    "id": "67fab6d5993010229534273a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
+    },
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "¿Estaba equivocado?",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Was I"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I / be) wrong?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Was I wrong?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534273b"
+    },
+    "id": "67fab6d5993010229534273b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
+    },
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "¿Estuvimos en Irlanda el mes pasado?",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Were we"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(we / be) in Ireland last month?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Were we in Ireland last month?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534273c"
+    },
+    "id": "67fab6d5993010229534273c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
+    },
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "Estaban en el tren.",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) on the train.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They were on the train."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534273d"
+    },
+    "id": "67fab6d5993010229534273d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
+    },
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "Tenía sueño ayer.",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) sleepy yesterday.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I was sleepy yesterday."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534273e"
+    },
+    "id": "67fab6d5993010229534273e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
+    },
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "Él estuvo en el trabajo ayer.",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) at work yesterday.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He was at work yesterday."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534273f"
+    },
+    "id": "67fab6d5993010229534273f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
+    },
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "Estuvimos en el cine.",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) at the cinema.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We were at the cinema."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342740"
+    },
+    "id": "67fab6d59930102295342740",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
+    },
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "¿Estuvo ella en el concierto?",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Was she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / be) at the concert?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Was she at the concert?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342741"
+    },
+    "id": "67fab6d59930102295342741",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
+    },
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "¿Tenías sed?",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Were you"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / be) thirsty?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Were you thirsty?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342742"
+    },
+    "id": "67fab6d59930102295342742",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
+    },
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "No estaba emocionado por la salida temprana.",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "wasn't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) excited about the early finish.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I wasn't excited about the early finish."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342743"
+    },
+    "id": "67fab6d59930102295342743",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
+    },
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "¿Dónde estaban mis gafas?",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were my glasses"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(my glasses / be)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where were my glasses?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342744"
+    },
+    "id": "67fab6d59930102295342744",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
+    },
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "No teníamos calor.",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "weren't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) hot.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We weren't hot."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342745"
+    },
+    "id": "67fab6d59930102295342745",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
+    },
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "Ella no estaba en Roma entonces.",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "wasn't"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) in Rome then.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She wasn't in Rome then."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342746"
+    },
+    "id": "67fab6d59930102295342746",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
+    },
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "¿Por qué seguía ella en casa a la hora del almuerzo?",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / be) still at home at lunchtime?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why was she still at home at lunchtime?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342747"
+    },
+    "id": "67fab6d59930102295342747",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d231"
+    },
+    "title": "Review of the past simple of 'be'",
+    "instructions": "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
+    "translation": "¿Quién era esa mujer?",
+    "theoryId": "a2.03.Past_Simple_Form_with_Irregular_Verbs",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A2.03.01.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Who",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was that woman"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(that woman / be)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Who was that woman?"
+      ]
+    }
   }
-} ]
+]

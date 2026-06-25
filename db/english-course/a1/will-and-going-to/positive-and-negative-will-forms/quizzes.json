@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420fd"
-  },
-  "id" : "67fab6d599301022953420fd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "Ellos no beberán jugo.",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420fd"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will not drink" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / drink) juice.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420fe"
-  },
-  "id" : "67fab6d599301022953420fe",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "Él te enseñará matemáticas.",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953420fd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will teach" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(teach) you maths.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953420ff"
-  },
-  "id" : "67fab6d599301022953420ff",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "Te llamaremos más tarde.",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "Ellos no beberán jugo.",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will call" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(call) you later.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342100"
-  },
-  "id" : "67fab6d59930102295342100",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "No te llevarás a tu gato.",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will not take" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / take) your cat.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342101"
-  },
-  "id" : "67fab6d59930102295342101",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "¡No nos quedaremos despiertos hasta tarde!",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will not stay" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / stay) up!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342102"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will not drink"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / drink) juice.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They will not drink juice."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342102",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "Ellos no nadarán en la piscina.",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420fe"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will not swim" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / swim) in the pool.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342103"
-  },
-  "id" : "67fab6d59930102295342103",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "Él no nos verá en el restaurante.",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953420fe",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will not see" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / see) us in the restaurant.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342104"
-  },
-  "id" : "67fab6d59930102295342104",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "Lloverá pronto.",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "Él te enseñará matemáticas.",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "It",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will rain" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(rain) soon.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342105"
-  },
-  "id" : "67fab6d59930102295342105",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "Ellos nos devolverán la llamada.",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will call" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(call) us back.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342106"
-  },
-  "id" : "67fab6d59930102295342106",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "No lloverá mucho.",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "It",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will not rain" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / rain) much.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342107"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will teach"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(teach) you maths.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He will teach you maths."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342107",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "Te sentirás mejor pronto.",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953420ff"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will feel" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(feel) better soon.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342108"
-  },
-  "id" : "67fab6d59930102295342108",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "Ella leerá tu carta.",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953420ff",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will read" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(read) your letter.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342109"
-  },
-  "id" : "67fab6d59930102295342109",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "Encontraré leche camino a casa.",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "Te llamaremos más tarde.",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will find" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(find) some milk on the way home.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534210a"
-  },
-  "id" : "67fab6d5993010229534210a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "No perderé la llave.",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will not lose" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / lose) the key.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534210b"
-  },
-  "id" : "67fab6d5993010229534210b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "¡Te encontraré!",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will find" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(find) you!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534210c"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will call"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(call) you later.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We will call you later."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534210c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "Él no dirá eso de nuevo.",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342100"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will not say" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / say) that again.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534210d"
-  },
-  "id" : "67fab6d5993010229534210d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "Ella llegará a nuestra casa más tarde.",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295342100",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will arrive" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(arrive) to our house later.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534210e"
-  },
-  "id" : "67fab6d5993010229534210e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "¡Tendrás éxito pronto!",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "No te llevarás a tu gato.",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will succeed" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(succeed) soon!",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534210f"
-  },
-  "id" : "67fab6d5993010229534210f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "No usaremos tu coche.",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will not use" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / use) your car.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342110"
-  },
-  "id" : "67fab6d59930102295342110",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3a8"
-  },
-  "title" : "Positive and Negative 'Will' Forms",
-  "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "Ella no tomará el autobús.",
-  "theoryId" : "a1.03.Will_Forms",
-  "topicName" : "'Will' and 'Going to'",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.03.01.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will not catch" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / catch) the bus.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will not take"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / take) your cat.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You will not take your cat."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342101"
+    },
+    "id": "67fab6d59930102295342101",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
+    },
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "¡No nos quedaremos despiertos hasta tarde!",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will not stay"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / stay) up!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We will not stay up!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342102"
+    },
+    "id": "67fab6d59930102295342102",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
+    },
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "Ellos no nadarán en la piscina.",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will not swim"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / swim) in the pool.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They will not swim in the pool."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342103"
+    },
+    "id": "67fab6d59930102295342103",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
+    },
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "Él no nos verá en el restaurante.",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will not see"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / see) us in the restaurant.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He will not see us in the restaurant."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342104"
+    },
+    "id": "67fab6d59930102295342104",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
+    },
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "Lloverá pronto.",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will rain"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(rain) soon.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "It will rain soon."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342105"
+    },
+    "id": "67fab6d59930102295342105",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
+    },
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "Ellos nos devolverán la llamada.",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will call"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(call) us back.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They will call us back."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342106"
+    },
+    "id": "67fab6d59930102295342106",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
+    },
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "No lloverá mucho.",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will not rain"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / rain) much.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "It will not rain much."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342107"
+    },
+    "id": "67fab6d59930102295342107",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
+    },
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "Te sentirás mejor pronto.",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will feel"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(feel) better soon.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You will feel better soon."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342108"
+    },
+    "id": "67fab6d59930102295342108",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
+    },
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "Ella leerá tu carta.",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will read"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(read) your letter.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She will read your letter."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342109"
+    },
+    "id": "67fab6d59930102295342109",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
+    },
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "Encontraré leche camino a casa.",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will find"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(find) some milk on the way home.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I will find some milk on the way home."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534210a"
+    },
+    "id": "67fab6d5993010229534210a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
+    },
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "No perderé la llave.",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will not lose"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / lose) the key.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I will not lose the key."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534210b"
+    },
+    "id": "67fab6d5993010229534210b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
+    },
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "¡Te encontraré!",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will find"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(find) you!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I will find you!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534210c"
+    },
+    "id": "67fab6d5993010229534210c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
+    },
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "Él no dirá eso de nuevo.",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will not say"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / say) that again.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He will not say that again."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534210d"
+    },
+    "id": "67fab6d5993010229534210d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
+    },
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "Ella llegará a nuestra casa más tarde.",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will arrive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(arrive) to our house later.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She will arrive to our house later."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534210e"
+    },
+    "id": "67fab6d5993010229534210e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
+    },
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "¡Tendrás éxito pronto!",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will succeed"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(succeed) soon!",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You will succeed soon!"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534210f"
+    },
+    "id": "67fab6d5993010229534210f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
+    },
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "No usaremos tu coche.",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will not use"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / use) your car.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We will not use your car."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342110"
+    },
+    "id": "67fab6d59930102295342110",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3a8"
+    },
+    "title": "Positive and Negative 'Will' Forms",
+    "instructions": "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
+    "translation": "Ella no tomará el autobús.",
+    "theoryId": "a1.03.Will_Forms",
+    "topicName": "'Will' and 'Going to'",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.03.01.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "will not catch"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / catch) the bus.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She will not catch the bus."
+      ]
+    }
   }
-} ]
+]

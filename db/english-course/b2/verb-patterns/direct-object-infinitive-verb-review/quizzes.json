@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534418f"
-  },
-  "id" : "67fab6d5993010229534418f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Ella necesitaba comprar pan.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534418f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She needed",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "to buy" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(buy) some bread.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344190"
-  },
-  "id" : "67fab6d59930102295344190",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "El entrenador nos animó a practicar nuestras habilidades.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534418f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The coach encouraged",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "us to practice" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(practice) our skills.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344191"
-  },
-  "id" : "67fab6d59930102295344191",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Quería beber un poco de jugo.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "Ella necesitaba comprar pan.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I wanted",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "to drink" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(drink) some juice.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344192"
-  },
-  "id" : "67fab6d59930102295344192",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Nos encantaría visitar el museo.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We would love",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "to visit" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(visit) the museum.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344193"
-  },
-  "id" : "67fab6d59930102295344193",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Ella nos recordó que lleváramos nuestros paraguas.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She reminded",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "us to take" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(take) our umbrellas.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344194"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She needed",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to buy"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(buy) some bread.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She needed to buy some bread."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344194",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Él preferiría beber jugo ahora.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344190"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He would prefer",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "to drink" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(drink) juice now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344195"
-  },
-  "id" : "67fab6d59930102295344195",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Los adultos preferirían escuchar música.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344190",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The adults would prefer",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "to listen" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(listen) to music.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344196"
-  },
-  "id" : "67fab6d59930102295344196",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Ella nos aconsejó correr.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "El entrenador nos animó a practicar nuestras habilidades.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She advised",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "us to run" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(run).",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344197"
-  },
-  "id" : "67fab6d59930102295344197",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Ella nos invitó a jugar tenis con ella.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She invited",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "us to play" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(play) tennis with her.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344198"
-  },
-  "id" : "67fab6d59930102295344198",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Ella nos dijo que llegáramos tarde.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She told",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "us to arrive" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(arrive) late.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295344199"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The coach encouraged",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "us to practice"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(practice) our skills.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The coach encouraged us to practice our skills."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295344199",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Mi abuelo nos enseñó a construir casas.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344191"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "My grandfather taught",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "us to build" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(build) houses.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534419a"
-  },
-  "id" : "67fab6d5993010229534419a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Los profesores querían preparar las lecciones.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344191",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "The teachers wanted",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "to prepare" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(prepare) the lessons.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534419b"
-  },
-  "id" : "67fab6d5993010229534419b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Mary nos convenció de pedir pizza.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "Quería beber un poco de jugo.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Mary convinced",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "us to order" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(order) pizza.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534419c"
-  },
-  "id" : "67fab6d5993010229534419c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Él esperaba ganar el juego.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He hoped",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "to win" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(win) the game.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534419d"
-  },
-  "id" : "67fab6d5993010229534419d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Nos ordenaron permanecer aquí.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They commanded",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "us to remain" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(stay) here.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534419e"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I wanted",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to drink"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drink) some juice.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I wanted to drink some juice."
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534419e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Él nos animó a buscar nuevas oportunidades.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344192"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He encouraged",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "us to look" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(look) for new opportunities.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534419f"
-  },
-  "id" : "67fab6d5993010229534419f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "A Peter le gustaría comer pizza ahora.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295344192",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Peter would like",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "to eat" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(eat) pizza now.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953441a0"
-  },
-  "id" : "67fab6d599301022953441a0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Él nos rogó que ordenáramos.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "Nos encantaría visitar el museo.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He begged",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "us to tidy" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(clean) up.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953441a1"
-  },
-  "id" : "67fab6d599301022953441a1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Ella quería conducir tu coche.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She wanted",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "to drive" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(drive) your car.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953441a2"
-  },
-  "id" : "67fab6d599301022953441a2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d429"
-  },
-  "title" : "Direct Object + Infinitive Verb Review",
-  "instructions" : "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Quieres coger el autobús.",
-  "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
-  "topicName" : "Verb patterns",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B2.05.02.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You want",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "to catch" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(take) the bus.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We would love",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to visit"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(visit) the museum.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We would love to visit the museum."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344193"
+    },
+    "id": "67fab6d59930102295344193",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
+    },
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "Ella nos recordó que lleváramos nuestros paraguas.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She reminded",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "us to take"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(take) our umbrellas.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She reminded us to take our umbrellas."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344194"
+    },
+    "id": "67fab6d59930102295344194",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
+    },
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "Él preferiría beber jugo ahora.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He would prefer",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to drink"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drink) juice now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He would prefer to drink juice now."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344195"
+    },
+    "id": "67fab6d59930102295344195",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
+    },
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "Los adultos preferirían escuchar música.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The adults would prefer",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to listen"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(listen) to music.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The adults would prefer to listen to music."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344196"
+    },
+    "id": "67fab6d59930102295344196",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
+    },
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "Ella nos aconsejó correr.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She advised",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "us to run"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(run).",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She advised us to run."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344197"
+    },
+    "id": "67fab6d59930102295344197",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
+    },
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "Ella nos invitó a jugar tenis con ella.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She invited",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "us to play"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(play) tennis with her.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She invited us to play tennis with her."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344198"
+    },
+    "id": "67fab6d59930102295344198",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
+    },
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "Ella nos dijo que llegáramos tarde.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She told",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "us to arrive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(arrive) late.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She told us to arrive late."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295344199"
+    },
+    "id": "67fab6d59930102295344199",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
+    },
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "Mi abuelo nos enseñó a construir casas.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My grandfather taught",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "us to build"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(build) houses.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "My grandfather taught us to build houses."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534419a"
+    },
+    "id": "67fab6d5993010229534419a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
+    },
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "Los profesores querían preparar las lecciones.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "The teachers wanted",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to prepare"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(prepare) the lessons.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "The teachers wanted to prepare the lessons."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534419b"
+    },
+    "id": "67fab6d5993010229534419b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
+    },
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "Mary nos convenció de pedir pizza.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mary convinced",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "us to order"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(order) pizza.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Mary convinced us to order pizza."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534419c"
+    },
+    "id": "67fab6d5993010229534419c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
+    },
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "Él esperaba ganar el juego.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He hoped",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to win"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(win) the game.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He hoped to win the game."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534419d"
+    },
+    "id": "67fab6d5993010229534419d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
+    },
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "Nos ordenaron permanecer aquí.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They commanded",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "us to remain"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(stay) here.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They commanded us to remain here."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534419e"
+    },
+    "id": "67fab6d5993010229534419e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
+    },
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "Él nos animó a buscar nuevas oportunidades.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He encouraged",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "us to look"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(look) for new opportunities.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He encouraged us to look for new opportunities."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534419f"
+    },
+    "id": "67fab6d5993010229534419f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
+    },
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "A Peter le gustaría comer pizza ahora.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Peter would like",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to eat"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(eat) pizza now.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Peter would like to eat pizza now."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953441a0"
+    },
+    "id": "67fab6d599301022953441a0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
+    },
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "Él nos rogó que ordenáramos.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He begged",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "us to tidy"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(clean) up.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He begged us to tidy up."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953441a1"
+    },
+    "id": "67fab6d599301022953441a1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
+    },
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "Ella quería conducir tu coche.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She wanted",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to drive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(drive) your car.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She wanted to drive your car."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953441a2"
+    },
+    "id": "67fab6d599301022953441a2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d429"
+    },
+    "title": "Direct Object + Infinitive Verb Review",
+    "instructions": "¿Necesitamos un objeto directo? Agrega 'us + to + infinitive' solo si es necesario. De lo contrario, usa 'to + infinitive'.",
+    "translation": "Quieres coger el autobús.",
+    "theoryId": "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
+    "topicName": "Verb patterns",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B2.05.02.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You want",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "to catch"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(take) the bus.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You want to catch the bus."
+      ]
+    }
   }
-} ]
+]

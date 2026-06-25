@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534304b"
-  },
-  "id" : "67fab6d5993010229534304b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Ella se despertó y se lavó los dientes.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534304b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She woke up and brushed her teeth.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sequence" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534304c"
-  },
-  "id" : "67fab6d5993010229534304c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Ella miró televisión y soñó con sus vacaciones.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534304b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She watched television and dreamed of her vacation.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "simultaneous" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534304d"
-  },
-  "id" : "67fab6d5993010229534304d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Él terminó la escuela secundaria y viajó a Roma.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Ella se despertó y se lavó los dientes.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He finished high school and traveled to Rome.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sequence" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534304e"
-  },
-  "id" : "67fab6d5993010229534304e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Él pintó la cerca y ella cortó el césped.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He painted the fence and she mowed the lawn.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "simultaneous" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534304f"
-  },
-  "id" : "67fab6d5993010229534304f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Mike se quitó los zapatos y se acostó en el sofá.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Mike took off his shoes and laid on the couch.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sequence" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343050"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She woke up and brushed her teeth.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "sequence"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She woke up and brushed her teeth. sequence"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343050",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Ella preparó la cena y puso la mesa.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534304c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She cooked dinner and set the table.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sequence" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343051"
-  },
-  "id" : "67fab6d59930102295343051",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Él cocinó y ella horneó.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534304c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He cooked and she baked.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "simultaneous" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343052"
-  },
-  "id" : "67fab6d59930102295343052",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Agarré el teléfono y comencé a marcar.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Ella miró televisión y soñó con sus vacaciones.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I grabbed the phone and began dialing.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sequence" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343053"
-  },
-  "id" : "67fab6d59930102295343053",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Ella cerró la puerta con llave y salió.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She locked the door and went outside.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sequence" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343054"
-  },
-  "id" : "67fab6d59930102295343054",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Visitaron el museo y aprendieron mucho.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They visited the museum and learned a lot.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "simultaneous" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343055"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She watched television and dreamed of her vacation.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "simultaneous"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She watched television and dreamed of her vacation. simultaneous"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343055",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Yo monté mi bicicleta, pero todos los demás tomaron el tren.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534304d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I rode my bike, but everyone else took the train.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "simultaneous" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343056"
-  },
-  "id" : "67fab6d59930102295343056",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Yo escribí un correo electrónico y él se quedó mirando la pantalla.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534304d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I wrote an email and he stared at the screen.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "simultaneous" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343057"
-  },
-  "id" : "67fab6d59930102295343057",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Nos reímos y contamos chistes.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Él terminó la escuela secundaria y viajó a Roma.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We laughed and told jokes.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "simultaneous" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343058"
-  },
-  "id" : "67fab6d59930102295343058",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "¡Horneé galletas y me las comí todas!",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I baked cookies and ate them all!",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sequence" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343059"
-  },
-  "id" : "67fab6d59930102295343059",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Leyeron las instrucciones y armaron el juguete.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They read the instructions and assembled the toy.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sequence" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534305a"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He finished high school and traveled to Rome.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "sequence"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He finished high school and traveled to Rome. sequence"
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534305a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Reservó una habitación y se registró en el hotel.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534304e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He reserved a room and checked into the hotel.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sequence" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534305b"
-  },
-  "id" : "67fab6d5993010229534305b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Ella bebió té y contempló el río.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534304e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She drank tea and gazed at the river.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "simultaneous" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534305c"
-  },
-  "id" : "67fab6d5993010229534305c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Él jugó videojuegos y ella escribió una carta.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Él pintó la cerca y ella cortó el césped.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He played video games and she wrote a letter.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "simultaneous" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534305d"
-  },
-  "id" : "67fab6d5993010229534305d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Recogimos a nuestro hijo y nos marchamos.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We collected our son and drove away.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sequence" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534305e"
-  },
-  "id" : "67fab6d5993010229534305e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d2c0"
-  },
-  "title" : "Describing Events: Using the Past Simple",
-  "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Pedimos sushi y bebimos vino.",
-  "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
-  "topicName" : "Present simple / present continuous / past simple / future simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.01.10.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We ordered sushi and drank wine.",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "simultaneous" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He painted the fence and she mowed the lawn.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "simultaneous"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He painted the fence and she mowed the lawn. simultaneous"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534304f"
+    },
+    "id": "67fab6d5993010229534304f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
+    },
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Mike se quitó los zapatos y se acostó en el sofá.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Mike took off his shoes and laid on the couch.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "sequence"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Mike took off his shoes and laid on the couch. sequence"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343050"
+    },
+    "id": "67fab6d59930102295343050",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
+    },
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Ella preparó la cena y puso la mesa.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She cooked dinner and set the table.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "sequence"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She cooked dinner and set the table. sequence"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343051"
+    },
+    "id": "67fab6d59930102295343051",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
+    },
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Él cocinó y ella horneó.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He cooked and she baked.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "simultaneous"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He cooked and she baked. simultaneous"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343052"
+    },
+    "id": "67fab6d59930102295343052",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
+    },
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Agarré el teléfono y comencé a marcar.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I grabbed the phone and began dialing.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "sequence"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I grabbed the phone and began dialing. sequence"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343053"
+    },
+    "id": "67fab6d59930102295343053",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
+    },
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Ella cerró la puerta con llave y salió.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She locked the door and went outside.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "sequence"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She locked the door and went outside. sequence"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343054"
+    },
+    "id": "67fab6d59930102295343054",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
+    },
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Visitaron el museo y aprendieron mucho.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They visited the museum and learned a lot.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "simultaneous"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They visited the museum and learned a lot. simultaneous"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343055"
+    },
+    "id": "67fab6d59930102295343055",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
+    },
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Yo monté mi bicicleta, pero todos los demás tomaron el tren.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I rode my bike, but everyone else took the train.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "simultaneous"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I rode my bike, but everyone else took the train. simultaneous"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343056"
+    },
+    "id": "67fab6d59930102295343056",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
+    },
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Yo escribí un correo electrónico y él se quedó mirando la pantalla.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I wrote an email and he stared at the screen.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "simultaneous"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I wrote an email and he stared at the screen. simultaneous"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343057"
+    },
+    "id": "67fab6d59930102295343057",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
+    },
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Nos reímos y contamos chistes.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We laughed and told jokes.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "simultaneous"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We laughed and told jokes. simultaneous"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343058"
+    },
+    "id": "67fab6d59930102295343058",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
+    },
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "¡Horneé galletas y me las comí todas!",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I baked cookies and ate them all!",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "sequence"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I baked cookies and ate them all! sequence"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343059"
+    },
+    "id": "67fab6d59930102295343059",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
+    },
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Leyeron las instrucciones y armaron el juguete.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They read the instructions and assembled the toy.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "sequence"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They read the instructions and assembled the toy. sequence"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534305a"
+    },
+    "id": "67fab6d5993010229534305a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
+    },
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Reservó una habitación y se registró en el hotel.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He reserved a room and checked into the hotel.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "sequence"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He reserved a room and checked into the hotel. sequence"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534305b"
+    },
+    "id": "67fab6d5993010229534305b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
+    },
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Ella bebió té y contempló el río.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She drank tea and gazed at the river.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "simultaneous"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She drank tea and gazed at the river. simultaneous"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534305c"
+    },
+    "id": "67fab6d5993010229534305c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
+    },
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Él jugó videojuegos y ella escribió una carta.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He played video games and she wrote a letter.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "simultaneous"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He played video games and she wrote a letter. simultaneous"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534305d"
+    },
+    "id": "67fab6d5993010229534305d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
+    },
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Recogimos a nuestro hijo y nos marchamos.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We collected our son and drove away.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "sequence"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We collected our son and drove away. sequence"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534305e"
+    },
+    "id": "67fab6d5993010229534305e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d2c0"
+    },
+    "title": "Describing Events: Using the Past Simple",
+    "instructions": "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
+    "translation": "Pedimos sushi y bebimos vino.",
+    "theoryId": "b1.01.The_Past_Simple_for_Ordering_Actions",
+    "topicName": "Present simple / present continuous / past simple / future simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.01.10.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We ordered sushi and drank wine.",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "simultaneous"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We ordered sushi and drank wine. simultaneous"
+      ]
+    }
   }
-} ]
+]

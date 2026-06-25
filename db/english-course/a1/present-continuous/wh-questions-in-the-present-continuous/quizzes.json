@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534202b"
-  },
-  "id" : "67fab6d5993010229534202b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Cuándo llegas?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534202b"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are you arriving" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / arrive)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534202c"
-  },
-  "id" : "67fab6d5993010229534202c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Qué están viendo?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534202b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are they seeing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / watch)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534202d"
-  },
-  "id" : "67fab6d5993010229534202d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Por qué te ríes?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Cuándo llegas?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are you laughing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / laugh)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534202e"
-  },
-  "id" : "67fab6d5993010229534202e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Qué está cocinando ella?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is she cooking" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / cook)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534202f"
-  },
-  "id" : "67fab6d5993010229534202f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Adónde vamos?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are we going" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(we / go)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342030"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are you arriving"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / arrive)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When are you arriving?"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342030",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Cuándo te vas?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534202c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are you leaving" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / leave)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342031"
-  },
-  "id" : "67fab6d59930102295342031",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿A quién estás viendo?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534202c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Who",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are you seeing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(I / see)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342032"
-  },
-  "id" : "67fab6d59930102295342032",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Cuándo está estudiando ella?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Qué están viendo?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is she studying" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(he / work)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342033"
-  },
-  "id" : "67fab6d59930102295342033",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Cómo se siente él?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "How",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is he feeling" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / do)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342034"
-  },
-  "id" : "67fab6d59930102295342034",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Por qué está nevando?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is it snowing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(it / rain)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342035"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are they seeing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / watch)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What are they seeing?"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295342035",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Con quién te vas a reunir?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534202d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Who",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are you meeting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(we / meet)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342036"
-  },
-  "id" : "67fab6d59930102295342036",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Por qué estás corriendo?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534202d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are you running" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / walk)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342037"
-  },
-  "id" : "67fab6d59930102295342037",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Cuándo vas a comer?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Por qué te ríes?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are you eating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(I / cook)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342038"
-  },
-  "id" : "67fab6d59930102295342038",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Qué están leyendo?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are they reading" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / do)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295342039"
-  },
-  "id" : "67fab6d59930102295342039",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Cómo estás?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "How",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are you doing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / feel)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534203a"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are you laughing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / laugh)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why are you laughing?"
+      ]
+    }
   },
-  "id" : "67fab6d5993010229534203a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Por qué está llorando él?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534202e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is he crying" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / sleep)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534203b"
-  },
-  "id" : "67fab6d5993010229534203b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Qué estás comiendo?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534202e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are you eating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / drink)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534203c"
-  },
-  "id" : "67fab6d5993010229534203c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Cuándo termina?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Qué está cocinando ella?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is it finishing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(it / start)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534203d"
-  },
-  "id" : "67fab6d5993010229534203d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Cuándo juega al fútbol él?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "When",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is he playing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "football (she / play)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534203e"
-  },
-  "id" : "67fab6d5993010229534203e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d39c"
-  },
-  "title" : "WH- questions in the present continuous",
-  "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Por qué está cantando ella?",
-  "theoryId" : "a1.02.Present_Continuous_Forms",
-  "topicName" : "Present Continuous",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.02.06.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is she singing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(he / dance)?",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is she cooking"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / cook)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What is she cooking?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534202f"
+    },
+    "id": "67fab6d5993010229534202f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
+    },
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Adónde vamos?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are we going"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(we / go)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where are we going?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342030"
+    },
+    "id": "67fab6d59930102295342030",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
+    },
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Cuándo te vas?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are you leaving"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / leave)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When are you leaving?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342031"
+    },
+    "id": "67fab6d59930102295342031",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
+    },
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿A quién estás viendo?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Who",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are you seeing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I / see)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Who are you seeing?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342032"
+    },
+    "id": "67fab6d59930102295342032",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
+    },
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Cuándo está estudiando ella?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is she studying"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / work)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When is she studying?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342033"
+    },
+    "id": "67fab6d59930102295342033",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
+    },
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Cómo se siente él?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he feeling"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / do)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "How is he feeling?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342034"
+    },
+    "id": "67fab6d59930102295342034",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
+    },
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Por qué está nevando?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is it snowing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(it / rain)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why is it snowing?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342035"
+    },
+    "id": "67fab6d59930102295342035",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
+    },
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Con quién te vas a reunir?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Who",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are you meeting"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(we / meet)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Who are you meeting?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342036"
+    },
+    "id": "67fab6d59930102295342036",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
+    },
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Por qué estás corriendo?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are you running"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / walk)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why are you running?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342037"
+    },
+    "id": "67fab6d59930102295342037",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
+    },
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Cuándo vas a comer?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are you eating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(I / cook)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When are you eating?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342038"
+    },
+    "id": "67fab6d59930102295342038",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
+    },
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Qué están leyendo?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are they reading"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / do)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What are they reading?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295342039"
+    },
+    "id": "67fab6d59930102295342039",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
+    },
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Cómo estás?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are you doing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / feel)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "How are you doing?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534203a"
+    },
+    "id": "67fab6d5993010229534203a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
+    },
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Por qué está llorando él?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he crying"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / sleep)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why is he crying?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534203b"
+    },
+    "id": "67fab6d5993010229534203b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
+    },
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Qué estás comiendo?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are you eating"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / drink)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What are you eating?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534203c"
+    },
+    "id": "67fab6d5993010229534203c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
+    },
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Cuándo termina?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is it finishing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(it / start)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When is it finishing?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534203d"
+    },
+    "id": "67fab6d5993010229534203d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
+    },
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Cuándo juega al fútbol él?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "When",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he playing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "football (she / play)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "When is he playing football ?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534203e"
+    },
+    "id": "67fab6d5993010229534203e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d39c"
+    },
+    "title": "WH- questions in the present continuous",
+    "instructions": "Formula preguntas 'wh' en 'present continuous'.",
+    "translation": "¿Por qué está cantando ella?",
+    "theoryId": "a1.02.Present_Continuous_Forms",
+    "topicName": "Present Continuous",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.02.06.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is she singing"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / dance)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why is she singing?"
+      ]
+    }
   }
-} ]
+]

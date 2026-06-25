@@ -1,1181 +1,1462 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a2d"
-  },
-  "id" : "67fab6d59930102295343a2d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Si el correo se retrasa, podríamos perder la fecha límite.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a2d"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the post",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "delayed, we",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "might miss" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the deadline. (be / might miss)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a2e"
-  },
-  "id" : "67fab6d59930102295343a2e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Podemos comer afuera si el sol brilla a la hora del almuerzo.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343a2d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "can eat" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "outside if the sun",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "shining at lunchtime. (can eat / be)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a2f"
-  },
-  "id" : "67fab6d59930102295343a2f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Si termina el proyecto, puede descansar un rato.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Si el correo se retrasa, podríamos perder la fecha límite.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "finishes" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the project, he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "can rest" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "for a while. (finish / can rest)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a30"
-  },
-  "id" : "67fab6d59930102295343a30",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Debes comer vegetales si quieres crecer fuerte.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "must eat" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "vegetables if you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "want" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "to grow strong. (must eat / want)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a31"
-  },
-  "id" : "67fab6d59930102295343a31",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Si quiere aprender a conducir, puede tomar clases de conducir.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "wants" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "to learn to drive, she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "can take" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "driving lessons. (want / can take)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a32"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the post",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "delayed, we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "might miss"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the deadline. (be / might miss)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If the post is delayed, we might miss the deadline."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343a32",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Si aprende francés, puede viajar a Francia.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a2e"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "learns" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "French, he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "can travel" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "to France. (learn / can travel)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a33"
-  },
-  "id" : "67fab6d59930102295343a33",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Podrías necesitar un paraguas si llueve más tarde.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343a2e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "might need" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "an umbrella if it",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "rains" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "later. (might need / rain)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a34"
-  },
-  "id" : "67fab6d59930102295343a34",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Puedes quedarte conmigo si consigues un trabajo en la ciudad.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Podemos comer afuera si el sol brilla a la hora del almuerzo.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "can stay" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "with me if you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "get" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "a job in the city. (can stay / get)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a35"
-  },
-  "id" : "67fab6d59930102295343a35",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Si los vecinos cocinan afuera, podrían molestar a los vecinos de al lado.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the neighbours",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "cook" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "outside, they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "might bother" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the people next door. (cook / might bother)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a36"
-  },
-  "id" : "67fab6d59930102295343a36",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Podría llegar tarde si hay huelga de trenes.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "might arrive" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "late if there",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "a train strike. (might arrive / be)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a37"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "can eat"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "outside if the sun",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "shining at lunchtime. (can eat / be)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We can eat outside if the sun is shining at lunchtime."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343a37",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Si trabajan horas extras, podrían ganar más dinero.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a2f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "work" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "overtime, they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "might earn" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "more money. (work / might earn)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a38"
-  },
-  "id" : "67fab6d59930102295343a38",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Él puede usar mi coche si el suyo se avería.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343a2f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "can use" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "my car if his car",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "breaks" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "down. (can use / break)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a39"
-  },
-  "id" : "67fab6d59930102295343a39",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Ella podría visitar el museo si el clima es lluvioso.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Si termina el proyecto, puede descansar un rato.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "might visit" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the museum if the weather",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "rainy. (might visit / be)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a3a"
-  },
-  "id" : "67fab6d59930102295343a3a",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Si los estudiantes se portan bien, pueden obtener una recompensa.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If the students",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "behave" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "well, they",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "can get" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "a reward. (behave / can get)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a3b"
-  },
-  "id" : "67fab6d59930102295343a3b",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Si disfruta de la comida, puede pedir otro plato.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "enjoys" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the meal, he",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "can order" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "another dish. (enjoy / can order)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a3c"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "finishes"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the project, he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "can rest"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "for a while. (finish / can rest)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If he finishes the project, he can rest for a while."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295343a3c",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Debes seguir las reglas si practicas deportes.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a30"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "must follow" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "the rules if you",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "play" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "sports. (must follow / play)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a3d"
-  },
-  "id" : "67fab6d59930102295343a3d",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Podrían enfadarse si nos vamos sin despedirnos.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295343a30",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "might be" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "angry if we",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "leave" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "without saying goodbye. (might be / leave)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a3e"
-  },
-  "id" : "67fab6d59930102295343a3e",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Si vamos a la playa, debemos llevar protector solar.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Debes comer vegetales si quieres crecer fuerte.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If we",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "go" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "to the beach, we",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "must take" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "sunscreen. (go / must take)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a3f"
-  },
-  "id" : "67fab6d59930102295343a3f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Ella podría sentirse cansada si duerme mal.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "might feel" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "tired if she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sleeps" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "badly. (might feel / sleep)",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295343a40"
-  },
-  "id" : "67fab6d59930102295343a40",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d350"
-  },
-  "title" : "Conditionals and Modal Verbs",
-  "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Si está de acuerdo, puede venir a la fiesta.",
-  "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
-  "topicName" : "Conditionals",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "B1.14.05.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "If she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "agrees" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ", she",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "can come" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "to the party. (agree / can come)",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "must eat"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "vegetables if you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "want"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to grow strong. (must eat / want)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You must eat vegetables if you want to grow strong."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a31"
+    },
+    "id": "67fab6d59930102295343a31",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
+    },
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Si quiere aprender a conducir, puede tomar clases de conducir.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "wants"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to learn to drive, she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "can take"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "driving lessons. (want / can take)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If she wants to learn to drive, she can take driving lessons."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a32"
+    },
+    "id": "67fab6d59930102295343a32",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
+    },
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Si aprende francés, puede viajar a Francia.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "learns"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "French, he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "can travel"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to France. (learn / can travel)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If he learns French, he can travel to France."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a33"
+    },
+    "id": "67fab6d59930102295343a33",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
+    },
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Podrías necesitar un paraguas si llueve más tarde.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "might need"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "an umbrella if it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "rains"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "later. (might need / rain)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You might need an umbrella if it rains later."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a34"
+    },
+    "id": "67fab6d59930102295343a34",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
+    },
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Puedes quedarte conmigo si consigues un trabajo en la ciudad.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "can stay"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "with me if you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "get"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "a job in the city. (can stay / get)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You can stay with me if you get a job in the city."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a35"
+    },
+    "id": "67fab6d59930102295343a35",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
+    },
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Si los vecinos cocinan afuera, podrían molestar a los vecinos de al lado.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the neighbours",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "cook"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "outside, they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "might bother"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the people next door. (cook / might bother)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If the neighbours cook outside, they might bother the people next door."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a36"
+    },
+    "id": "67fab6d59930102295343a36",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
+    },
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Podría llegar tarde si hay huelga de trenes.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "might arrive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "late if there",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "a train strike. (might arrive / be)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She might arrive late if there is a train strike."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a37"
+    },
+    "id": "67fab6d59930102295343a37",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
+    },
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Si trabajan horas extras, podrían ganar más dinero.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "work"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "overtime, they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "might earn"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "more money. (work / might earn)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If they work overtime, they might earn more money."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a38"
+    },
+    "id": "67fab6d59930102295343a38",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
+    },
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Él puede usar mi coche si el suyo se avería.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "can use"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "my car if his car",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "breaks"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "down. (can use / break)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He can use my car if his car breaks down."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a39"
+    },
+    "id": "67fab6d59930102295343a39",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
+    },
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Ella podría visitar el museo si el clima es lluvioso.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "might visit"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the museum if the weather",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "rainy. (might visit / be)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She might visit the museum if the weather is rainy."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a3a"
+    },
+    "id": "67fab6d59930102295343a3a",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
+    },
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Si los estudiantes se portan bien, pueden obtener una recompensa.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If the students",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "behave"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "well, they",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "can get"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "a reward. (behave / can get)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If the students behave well, they can get a reward."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a3b"
+    },
+    "id": "67fab6d59930102295343a3b",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
+    },
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Si disfruta de la comida, puede pedir otro plato.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "enjoys"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the meal, he",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "can order"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "another dish. (enjoy / can order)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If he enjoys the meal, he can order another dish."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a3c"
+    },
+    "id": "67fab6d59930102295343a3c",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
+    },
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Debes seguir las reglas si practicas deportes.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "must follow"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "the rules if you",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "play"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "sports. (must follow / play)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You must follow the rules if you play sports."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a3d"
+    },
+    "id": "67fab6d59930102295343a3d",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
+    },
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Podrían enfadarse si nos vamos sin despedirnos.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "might be"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "angry if we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "leave"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "without saying goodbye. (might be / leave)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They might be angry if we leave without saying goodbye."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a3e"
+    },
+    "id": "67fab6d59930102295343a3e",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
+    },
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Si vamos a la playa, debemos llevar protector solar.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "go"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to the beach, we",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "must take"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "sunscreen. (go / must take)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If we go to the beach, we must take sunscreen."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a3f"
+    },
+    "id": "67fab6d59930102295343a3f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
+    },
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Ella podría sentirse cansada si duerme mal.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "might feel"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "tired if she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "sleeps"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "badly. (might feel / sleep)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She might feel tired if she sleeps badly."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295343a40"
+    },
+    "id": "67fab6d59930102295343a40",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d350"
+    },
+    "title": "Conditionals and Modal Verbs",
+    "instructions": "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
+    "translation": "Si está de acuerdo, puede venir a la fiesta.",
+    "theoryId": "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
+    "topicName": "Conditionals",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "B1.14.05.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "If she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "agrees"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": ", she",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "can come"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "to the party. (agree / can come)",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "If she agrees, she can come to the party."
+      ]
+    }
   }
-} ]
+]

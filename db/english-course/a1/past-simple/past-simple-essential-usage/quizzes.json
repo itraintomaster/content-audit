@@ -1,1021 +1,1228 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d5993010229534229f"
-  },
-  "id" : "67fab6d5993010229534229f",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "Visitaste a tu familia la semana pasada.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d5993010229534229f"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "visited" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(visit) your family last week.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422a0"
-  },
-  "id" : "67fab6d599301022953422a0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "Llegué aquí antes de las 8 am.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d5993010229534229f",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "arrived" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(arrive) here before 8 am.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422a1"
-  },
-  "id" : "67fab6d599301022953422a1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "¿Dónde vivió él en 2005?",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "Visitaste a tu familia la semana pasada.",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "did he live" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(he / live) in 2005?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422a2"
-  },
-  "id" : "67fab6d599301022953422a2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "No leí el libro el mes pasado.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "didn't read|did not read" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / read) the book last month.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422a3"
-  },
-  "id" : "67fab6d599301022953422a3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "No estuviste en la escuela ayer.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "weren't|were not" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / be) at school yesterday.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422a4"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "visited"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(visit) your family last week.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You visited your family last week."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953422a4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "Él jugó al fútbol en el parque.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422a0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "played" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(play) football in the park.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422a5"
-  },
-  "id" : "67fab6d599301022953422a5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "¿Ella llegó antes del mediodía?",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953422a0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Did she arrive" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / arrive) before midday?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422a6"
-  },
-  "id" : "67fab6d599301022953422a6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "Ella odió la música anoche.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "Llegué aquí antes de las 8 am.",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "hated" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(hate) the music last night.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422a7"
-  },
-  "id" : "67fab6d599301022953422a7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "Ella no tomó el autobús esta mañana.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "didn't catch|did not catch" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / catch) the bus this morning.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422a8"
-  },
-  "id" : "67fab6d599301022953422a8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "En 2001, hizo mucho calor.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "In 2001, it",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) very hot.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422a9"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "arrived"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(arrive) here before 8 am.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I arrived here before 8 am."
+      ]
+    }
   },
-  "id" : "67fab6d599301022953422a9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "Él no estaba listo para la lección.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422a1"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "wasn't|was not" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / be) ready for the lesson.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422aa"
-  },
-  "id" : "67fab6d599301022953422aa",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "¿Dónde estaban ellos a las 5 pm?",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953422a1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were they" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / be) at 5 pm?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422ab"
-  },
-  "id" : "67fab6d599301022953422ab",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "¿Qué compraste esta mañana?",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "¿Dónde vivió él en 2005?",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "did you buy" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / buy) this morning?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422ac"
-  },
-  "id" : "67fab6d599301022953422ac",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "¿A quién llamó ella el lunes pasado?",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Who",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "did she call" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / call) last monday?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422ad"
-  },
-  "id" : "67fab6d599301022953422ad",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "¿Llovió el mes pasado?",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Did it rain" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(it / rain) last month?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422ae"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "did he live"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / live) in 2005?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where did he live in 2005?"
+      ]
+    }
   },
-  "id" : "67fab6d599301022953422ae",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "Ellos no se quedaron en casa el lunes pasado.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422a2"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "didn't stay|did not stay" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / stay) at home last monday.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422af"
-  },
-  "id" : "67fab6d599301022953422af",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "Volamos a España el invierno pasado.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d599301022953422a2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "flew" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(fly) to Spain last winter.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422b0"
-  },
-  "id" : "67fab6d599301022953422b0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "¿Qué bebió ella esta mañana?",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "No leí el libro el mes pasado.",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "What",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "did she drink" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / drink) this morning?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422b1"
-  },
-  "id" : "67fab6d599301022953422b1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "¿Dónde estuvo Mary en marzo?",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) Mary in March?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d599301022953422b2"
-  },
-  "id" : "67fab6d599301022953422b2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d3be"
-  },
-  "title" : "Past Simple: Essential Usage",
-  "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "No estuve en el cine anoche.",
-  "theoryId" : "a1.04.Past_Simple_Basic_Use",
-  "topicName" : "Past Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.04.14.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "wasn't|was not" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / be) at the cinema last night.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "didn't read|did not read"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / read) the book last month.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I didn't read the book last month.",
+        "I did not read the book last month."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422a3"
+    },
+    "id": "67fab6d599301022953422a3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
+    },
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "No estuviste en la escuela ayer.",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "weren't|were not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) at school yesterday.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You weren't at school yesterday.",
+        "You were not at school yesterday."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422a4"
+    },
+    "id": "67fab6d599301022953422a4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
+    },
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "Él jugó al fútbol en el parque.",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "played"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(play) football in the park.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He played football in the park."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422a5"
+    },
+    "id": "67fab6d599301022953422a5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
+    },
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "¿Ella llegó antes del mediodía?",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Did she arrive"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / arrive) before midday?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Did she arrive before midday?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422a6"
+    },
+    "id": "67fab6d599301022953422a6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
+    },
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "Ella odió la música anoche.",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "hated"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(hate) the music last night.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She hated the music last night."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422a7"
+    },
+    "id": "67fab6d599301022953422a7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
+    },
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "Ella no tomó el autobús esta mañana.",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "didn't catch|did not catch"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / catch) the bus this morning.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She didn't catch the bus this morning.",
+        "She did not catch the bus this morning."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422a8"
+    },
+    "id": "67fab6d599301022953422a8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
+    },
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "En 2001, hizo mucho calor.",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "In 2001, it",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) very hot.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "In 2001, it was very hot."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422a9"
+    },
+    "id": "67fab6d599301022953422a9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
+    },
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "Él no estaba listo para la lección.",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "wasn't|was not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) ready for the lesson.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He wasn't ready for the lesson.",
+        "He was not ready for the lesson."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422aa"
+    },
+    "id": "67fab6d599301022953422aa",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
+    },
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "¿Dónde estaban ellos a las 5 pm?",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "were they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / be) at 5 pm?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where were they at 5 pm?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422ab"
+    },
+    "id": "67fab6d599301022953422ab",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
+    },
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "¿Qué compraste esta mañana?",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "did you buy"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / buy) this morning?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What did you buy this morning?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422ac"
+    },
+    "id": "67fab6d599301022953422ac",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
+    },
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "¿A quién llamó ella el lunes pasado?",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Who",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "did she call"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / call) last monday?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Who did she call last monday?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422ad"
+    },
+    "id": "67fab6d599301022953422ad",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
+    },
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "¿Llovió el mes pasado?",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Did it rain"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(it / rain) last month?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Did it rain last month?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422ae"
+    },
+    "id": "67fab6d599301022953422ae",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
+    },
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "Ellos no se quedaron en casa el lunes pasado.",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "didn't stay|did not stay"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / stay) at home last monday.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They didn't stay at home last monday.",
+        "They did not stay at home last monday."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422af"
+    },
+    "id": "67fab6d599301022953422af",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
+    },
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "Volamos a España el invierno pasado.",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "flew"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(fly) to Spain last winter.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We flew to Spain last winter."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422b0"
+    },
+    "id": "67fab6d599301022953422b0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
+    },
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "¿Qué bebió ella esta mañana?",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "What",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "did she drink"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / drink) this morning?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "What did she drink this morning?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422b1"
+    },
+    "id": "67fab6d599301022953422b1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
+    },
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "¿Dónde estuvo Mary en marzo?",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "was"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) Mary in March?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where was Mary in March?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d599301022953422b2"
+    },
+    "id": "67fab6d599301022953422b2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d3be"
+    },
+    "title": "Past Simple: Essential Usage",
+    "instructions": "Escribe oraciones usando el 'past simple'.",
+    "translation": "No estuve en el cine anoche.",
+    "theoryId": "a1.04.Past_Simple_Basic_Use",
+    "topicName": "Past Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.04.14.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "wasn't|was not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) at the cinema last night.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I wasn't at the cinema last night.",
+        "I was not at the cinema last night."
+      ]
+    }
   }
-} ]
+]

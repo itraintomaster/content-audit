@@ -1,1021 +1,1222 @@
-[ {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341eaf"
-  },
-  "id" : "67fab6d59930102295341eaf",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "¿Por qué llega temprano?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.01",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+[
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341eaf"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Why",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is he" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(he / be) early?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341eb0"
-  },
-  "id" : "67fab6d59930102295341eb0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "No estoy en la estación.",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.02",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295341eaf",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "am not" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not be) at the station.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341eb1"
-  },
-  "id" : "67fab6d59930102295341eb1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "Ellos son alemanes.",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.03",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "¿Por qué llega temprano?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) Germans.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341eb2"
-  },
-  "id" : "67fab6d59930102295341eb2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "No somos profesores.",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.04",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are not" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / be) teachers.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341eb3"
-  },
-  "id" : "67fab6d59930102295341eb3",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "¿Quiénes son ellos?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.05",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Who",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are they" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / be)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341eb4"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.01",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Why",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / be) early?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Why is he early?"
+      ]
+    }
   },
-  "id" : "67fab6d59930102295341eb4",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "Él es médico.",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.06",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341eb0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) a doctor.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341eb5"
-  },
-  "id" : "67fab6d59930102295341eb5",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "¿Está despierto?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.07",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295341eb0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Is he" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(he / be) awake?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341eb6"
-  },
-  "id" : "67fab6d59930102295341eb6",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "¿Hace sol afuera?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.08",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "No estoy en la estación.",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Is it" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(it / be) bright outside?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341eb7"
-  },
-  "id" : "67fab6d59930102295341eb7",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "Estoy aquí.",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.09",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "I",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "am" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) here.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341eb8"
-  },
-  "id" : "67fab6d59930102295341eb8",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "Ella no está en el restaurante.",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.10",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "She",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is not" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / be) in the restaurant.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341eb9"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.02",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "am not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not be) at the station.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I am not at the station."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295341eb9",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "¿Está ella en el trabajo?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.11",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341eb1"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Is she" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(she / be) at work?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341eba"
-  },
-  "id" : "67fab6d59930102295341eba",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "¿Están ellos en París?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.12",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295341eb1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Are they" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(they / be) in Paris?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ebb"
-  },
-  "id" : "67fab6d59930102295341ebb",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "Llegamos a tiempo.",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.13",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "Ellos son alemanes.",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "We",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) on time.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ebc"
-  },
-  "id" : "67fab6d59930102295341ebc",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "¿Cuánto cuesta?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.14",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "How much",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is it" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(it / be)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ebd"
-  },
-  "id" : "67fab6d59930102295341ebd",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "No estás en el lugar equivocado.",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.15",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are not" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / be) in the wrong place.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ebe"
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.03",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) Germans.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They are Germans."
+      ]
+    }
   },
-  "id" : "67fab6d59930102295341ebe",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "¿Dónde está él?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.16",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341eb2"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Where",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is he" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(he / be)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ebf"
-  },
-  "id" : "67fab6d59930102295341ebf",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "Llegas temprano.",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.17",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "id": "67fab6d59930102295341eb2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "You",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(be) early.",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ec0"
-  },
-  "id" : "67fab6d59930102295341ec0",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "¿Tienes hambre?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.18",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "No somos profesores.",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Are you" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / be) hungry?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ec1"
-  },
-  "id" : "67fab6d59930102295341ec1",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "¿Cómo estás?",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.19",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "retries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "How",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are you" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(you / be)?",
-      "options" : null
-    } ]
-  }
-}, {
-  "_id" : {
-    "$oid" : "67fab6d59930102295341ec2"
-  },
-  "id" : "67fab6d59930102295341ec2",
-  "kind" : "CLOZE",
-  "knowledgeId" : {
-    "$oid" : "6814dafa7d73e7209a13d388"
-  },
-  "title" : "Mixed practice with 'be' in the present simple",
-  "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "Ellos no son italianos.",
-  "theoryId" : "a1.01.Present_Simple_Forms_Be",
-  "topicName" : "Present Simple",
-  "difficulty" : {
-    "$numberDouble" : "0.0"
-  },
-  "retries" : {
-    "$numberDouble" : "0.0"
-  },
-  "noScoreRetries" : {
-    "$numberDouble" : "0.0"
-  },
-  "code" : "",
-  "audioUrl" : "",
-  "imageUrl" : "",
-  "answerAudioUrl" : "A1.01.05.20",
-  "answerImageUrl" : "",
-  "miniTheory" : "",
-  "successMessage" : "",
-  "form" : {
-    "kind" : "CLOZE",
-    "incidence" : {
-      "$numberDouble" : "1.0"
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
     },
-    "label" : "",
-    "name" : "",
-    "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They",
-      "options" : null
-    }, {
-      "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are not" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "(not / be) Italian.",
-      "options" : null
-    } ]
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.04",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) teachers.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We are not teachers."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341eb3"
+    },
+    "id": "67fab6d59930102295341eb3",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
+    },
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "¿Quiénes son ellos?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.05",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Who",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / be)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Who are they?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341eb4"
+    },
+    "id": "67fab6d59930102295341eb4",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
+    },
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "Él es médico.",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.06",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "He",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) a doctor.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "He is a doctor."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341eb5"
+    },
+    "id": "67fab6d59930102295341eb5",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
+    },
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "¿Está despierto?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.07",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / be) awake?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Is he awake?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341eb6"
+    },
+    "id": "67fab6d59930102295341eb6",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
+    },
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "¿Hace sol afuera?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.08",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is it"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(it / be) bright outside?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Is it bright outside?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341eb7"
+    },
+    "id": "67fab6d59930102295341eb7",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
+    },
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "Estoy aquí.",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.09",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "I",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "am"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) here.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "I am here."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341eb8"
+    },
+    "id": "67fab6d59930102295341eb8",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
+    },
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "Ella no está en el restaurante.",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.10",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "She",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) in the restaurant.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "She is not in the restaurant."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341eb9"
+    },
+    "id": "67fab6d59930102295341eb9",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
+    },
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "¿Está ella en el trabajo?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.11",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Is she"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(she / be) at work?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Is she at work?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341eba"
+    },
+    "id": "67fab6d59930102295341eba",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
+    },
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "¿Están ellos en París?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.12",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Are they"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(they / be) in Paris?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Are they in Paris?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ebb"
+    },
+    "id": "67fab6d59930102295341ebb",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
+    },
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "Llegamos a tiempo.",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.13",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "We",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) on time.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "We are on time."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ebc"
+    },
+    "id": "67fab6d59930102295341ebc",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
+    },
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "¿Cuánto cuesta?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.14",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How much",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is it"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(it / be)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "How much is it?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ebd"
+    },
+    "id": "67fab6d59930102295341ebd",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
+    },
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "No estás en el lugar equivocado.",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.15",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) in the wrong place.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You are not in the wrong place."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ebe"
+    },
+    "id": "67fab6d59930102295341ebe",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
+    },
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "¿Dónde está él?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.16",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Where",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "is he"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(he / be)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Where is he?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ebf"
+    },
+    "id": "67fab6d59930102295341ebf",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
+    },
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "Llegas temprano.",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.17",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "You",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(be) early.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "You are early."
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ec0"
+    },
+    "id": "67fab6d59930102295341ec0",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
+    },
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "¿Tienes hambre?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.18",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "Are you"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / be) hungry?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "Are you hungry?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ec1"
+    },
+    "id": "67fab6d59930102295341ec1",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
+    },
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "¿Cómo estás?",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.19",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "How",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are you"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(you / be)?",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "How are you?"
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "67fab6d59930102295341ec2"
+    },
+    "id": "67fab6d59930102295341ec2",
+    "kind": "CLOZE",
+    "knowledgeId": {
+      "$oid": "6814dafa7d73e7209a13d388"
+    },
+    "title": "Mixed practice with 'be' in the present simple",
+    "instructions": "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
+    "translation": "Ellos no son italianos.",
+    "theoryId": "a1.01.Present_Simple_Forms_Be",
+    "topicName": "Present Simple",
+    "difficulty": {
+      "$numberDouble": "0.0"
+    },
+    "retries": {
+      "$numberDouble": "0.0"
+    },
+    "noScoreRetries": {
+      "$numberDouble": "0.0"
+    },
+    "code": "",
+    "audioUrl": "",
+    "imageUrl": "",
+    "answerAudioUrl": "A1.01.05.20",
+    "answerImageUrl": "",
+    "miniTheory": "",
+    "successMessage": "",
+    "form": {
+      "kind": "CLOZE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "They",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": [
+            "are not"
+          ]
+        },
+        {
+          "kind": "TEXT",
+          "text": "(not / be) Italian.",
+          "options": null
+        }
+      ],
+      "sentences": [
+        "They are not Italian."
+      ]
+    }
   }
-} ]
+]
