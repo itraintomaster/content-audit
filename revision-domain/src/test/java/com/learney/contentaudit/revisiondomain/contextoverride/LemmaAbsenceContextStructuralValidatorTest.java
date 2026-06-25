@@ -2,6 +2,8 @@ package com.learney.contentaudit.revisiondomain.contextoverride;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
 import com.learney.contentaudit.revisiondomain.OverrideRejectedException;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +12,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Generated(
@@ -201,5 +204,42 @@ public class LemmaAbsenceContextStructuralValidatorTest {
             JsonNode payload = objectMapper.readTree(partialJson);
             sut.validateAndBuild(payload, "task-r013c");
         }, "R013: OverrideRejectedException must be thrown when lemma-count triple is partially informed (lemmaCount present but threshold/isUnderexposed missing)");
+    }
+
+    @Test
+    @DisplayName("should reconstruct a LEMMA_ABSENCE correction context whose sentenceMode is REWRITE when the override payload declares sentenceMode REWRITE instead of falling back to null")
+    @Tag("FEAT-SMODE")
+    @Tag("F-SMODE-R006")
+    public void shouldReconstructALEMMAABSENCECorrectionContextWhoseSentenceModeIsREWRITEWhenTheOverridePayloadDeclaresSentenceModeREWRITEInsteadOfFallingBackToNull() throws Exception {
+        // Arrange: a structurally valid LEMMA_ABSENCE payload that explicitly carries
+        // sentenceMode=REWRITE, as would be present in an override JSON after a REWRITE quiz
+        // revision preserves its structure (F-SMODE-R006). All required fields present.
+        String json = """
+                {
+                  "taskId": "task-smode-r006",
+                  "sentence": "Watch the DVD.",
+                  "translation": "Mira el DVD.",
+                  "knowledgeTitle": "Imperatives",
+                  "knowledgeInstructions": "Rewrite in the imperative form.",
+                  "topicLabel": "Grammar",
+                  "cefrLevel": "A2",
+                  "tokenCount": 4,
+                  "targetMin": 3,
+                  "targetMax": 8,
+                  "delta": 0,
+                  "misplacedLemmas": [],
+                  "suggestedLemmas": [],
+                  "sentenceMode": "REWRITE"
+                }
+                """;
+
+        // Act: parse and validate — must not throw (payload is structurally valid)
+        JsonNode payload = objectMapper.readTree(json);
+        LemmaAbsenceCorrectionContext result =
+                (LemmaAbsenceCorrectionContext) sut.validateAndBuild(payload, "task-smode-r006");
+
+        // Assert: R006 — the reconstructed context must carry SentenceMode.REWRITE, not null
+        assertEquals(SentenceMode.REWRITE, result.getSentenceMode(),
+                "F-SMODE-R006: sentenceMode declared in the payload must be preserved in the reconstructed LemmaAbsenceCorrectionContext");
     }
 }

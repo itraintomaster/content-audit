@@ -57,6 +57,19 @@ Current state, last action, next step.
   Fallo correcto: producción pasa null en linea ~104 en vez de knowledge.getSentenceMode().
   Developer debe corregir DefaultCourseElementLocator.replace() para propagar sentenceMode.
 
+2026-06-25 — test-writer — DefaultCorrectionContextJsonMapperTest implementado (F-SMODE-R006)
+  Fixture: LemmaAbsenceCorrectionContext con sentenceMode=REWRITE, task-01/Watch the DVD./A1/4 tokens.
+  Act: new DefaultCorrectionContextJsonMapper().toJsonMap(context).
+  Assert: payload.containsKey("sentenceMode") + payload.get("sentenceMode")=="REWRITE".
+  Falla TDD correcta: "expected: <true> but was: <false>" (mapper no emite la key "sentenceMode").
+  Siguiente paso: @developer agrega sentenceMode al buildLemmaAbsenceContextMap en DefaultCorrectionContextJsonMapper.
+
+2026-06-25 — test-writer — Implementado stub F-SMODE-R006 en LemmaAbsenceContextStructuralValidatorTest
+  Payload JSON con sentenceMode=REWRITE + campos requeridos. Cast a LemmaAbsenceCorrectionContext
+  para acceder getSentenceMode(). Falla TDD correcto: expected REWRITE but was null.
+  5 tests previos intactos (6 run total, 1 falla = solo el nuevo).
+  Developer debe mapear "sentenceMode" del JSON al enum en validateAndBuild del validator.
+
 2026-06-25 — developer — Implementacion FEAT-SMODE completa: 2404 tests pasan (BUILD SUCCESS)
   Modulos implementados en orden:
   1. course-domain: DefaultQuizSentenceConverter.toPlainSentences(FormEntity, SentenceMode) + PlainSentenceDeriver

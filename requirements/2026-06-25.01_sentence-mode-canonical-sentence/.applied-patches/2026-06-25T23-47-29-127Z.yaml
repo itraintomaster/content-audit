@@ -1,0 +1,26 @@
+code: FEAT-SMODE
+modules:
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: DefaultCorrectionContextJsonMapper
+      handwrittenTests:
+      - name: should include the sentenceMode in the serialized payload when a LEMMA_ABSENCE
+          correction context carries REWRITE so the override round-trip preserves
+          the knowledge phrase mode
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R006
+- name: revision-domain
+  packages:
+  - name: contextoverride
+    implementations:
+    - name: LemmaAbsenceContextStructuralValidator
+      handwrittenTests:
+      - name: should reconstruct a LEMMA_ABSENCE correction context whose sentenceMode
+          is REWRITE when the override payload declares sentenceMode REWRITE instead
+          of falling back to null
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R006

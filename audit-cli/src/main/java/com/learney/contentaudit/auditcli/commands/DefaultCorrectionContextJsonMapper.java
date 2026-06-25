@@ -108,6 +108,8 @@ class DefaultCorrectionContextJsonMapper implements CorrectionContextJsonMapper 
                     return lm;
                 })
                 .collect(Collectors.toList()));
+        // F-SMODE-R006: preserve sentence mode so the override round-trip retains the knowledge phrase mode
+        map.put("sentenceMode", ctx.getSentenceMode() != null ? ctx.getSentenceMode().name() : null);
         return map;
     }
 }

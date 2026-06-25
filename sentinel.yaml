@@ -6726,6 +6726,13 @@ modules:
       - EphemeralPlanRenderer
     - name: DefaultCorrectionContextJsonMapper
       visibility: internal
+      handwrittenTests:
+      - name: should include the sentenceMode in the serialized payload when a LEMMA_ABSENCE
+          correction context carries REWRITE so the override round-trip preserves
+          the knowledge phrase mode
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R006
       implements:
       - CorrectionContextJsonMapper
   - name: formatting
@@ -10208,6 +10215,12 @@ modules:
         traceability:
           feature: FEAT-LEMMA-SUGGESTIONS
           rule: F-SLEM-R013
+      - name: should reconstruct a LEMMA_ABSENCE correction context whose sentenceMode
+          is REWRITE when the override payload declares sentenceMode REWRITE instead
+          of falling back to null
+        traceability:
+          feature: FEAT-SMODE
+          rule: F-SMODE-R006
       implements:
       - CorrectionContextStructuralValidator
     - name: SentenceLengthContextStructuralValidator

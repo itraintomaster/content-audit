@@ -54,3 +54,21 @@ Implementation/test fixes that worked, with a short why. Newest on top.
   Gotcha del patch: el impl vive en package 'engine'; hay que anidar bajo modules[].packages[name=engine], no
   en module root (el validador rechaza module-root con "declared at (module root) ... but ... at package engine").
   arreglo lo hace developer (pasar knowledge.getSentenceMode() en vez de null).
+
+2026-06-25 — qa-tester — Gap R006 en el path de OVERRIDE: round-trip pierde sentenceMode (2 handwrittenTests)
+  Las revisiones del dashboard van por contextSource OVERRIDE: correctionContext -> JSON -> re-parse.
+  El round-trip descarta sentenceMode en dos lugares (confirmado en source, hoy ambos tests FALLAN/TDD):
+  1. DefaultCorrectionContextJsonMapper.buildLemmaAbsenceContextMap (audit-cli, pkg commands, package-private):
+     serializa quizSentence/sentence/... pero NO emite key "sentenceMode" (lineas 60-112). Test: serializar
+     un LemmaAbsenceCorrectionContext con sentenceMode=REWRITE debe producir payload con "sentenceMode".
+     Sin clase previa (handwrittenTests:[]) -> el stub DefaultCorrectionContextJsonMapperTest se crea en pkg commands.
+  2. LemmaAbsenceContextStructuralValidator.validateAndBuild (revision-domain, pkg contextoverride, package-private):
+     reconstruye LemmaAbsenceCorrectionContext pasando null como 17vo arg (linea 232: "sourceAuditId, null"),
+     nunca lee sentenceMode del JSON. Test: parsear payload con "sentenceMode":"REWRITE" -> getSentenceMode()==REWRITE.
+     Elegida esta impl (no el parser publico) porque es donde vive el bug y su validateAndBuild devuelve el context
+     directo (superficie observable directa); ya tiene clase de test en el pkg correcto -> visibilidad OK.
+  Trazabilidad DIRECTA a F-SMODE-R006 (la revision conserva el modo del knowledge); R006 ya estaba [covered] a nivel
+  deriver+locator, pero el path OVERRIDE es otra impl que realiza la misma regla (comportamiento distribuido).
+  Patch: requirements/2026-06-25.01.../architectural_patch.yaml (2 modifications, 0 conflicts). NO aplicado.
+  Gotcha: patch propose REEMPLAZA el proposal file; verifique que el test previo de DefaultCourseElementLocator
+  (R006) YA estaba aplicado en sentinel.yaml (lineas 8568-8577), asi que no se perdio trabajo pendiente.

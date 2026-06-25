@@ -3,6 +3,7 @@ package com.learney.contentaudit.revisiondomain.contextoverride;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.refinerdomain.CorrectionContext;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
 import com.learney.contentaudit.refinerdomain.LengthDirection;
@@ -213,6 +214,20 @@ class LemmaAbsenceContextStructuralValidator implements CorrectionContextStructu
         String sourceAuditId = ctx.has("sourceAuditId")
                 ? ctx.get("sourceAuditId").asText(null) : null;
 
+        // F-SMODE-R006: sentenceMode is optional; absent or blank in legacy payloads -> null.
+        // Unknown values are silently treated as null to avoid breaking legacy payloads.
+        SentenceMode sentenceMode = null;
+        if (ctx.has("sentenceMode") && !ctx.get("sentenceMode").isNull()) {
+            String modeStr = ctx.get("sentenceMode").asText(null);
+            if (modeStr != null && !modeStr.isBlank()) {
+                try {
+                    sentenceMode = SentenceMode.valueOf(modeStr);
+                } catch (IllegalArgumentException ignored) {
+                    // unknown value -> null (backwards-compat)
+                }
+            }
+        }
+
         return new LemmaAbsenceCorrectionContext(
                 taskId,
                 sentence,
@@ -229,6 +244,6 @@ class LemmaAbsenceContextStructuralValidator implements CorrectionContextStructu
                 targetMax,
                 delta,
                 lengthDirection,
-                sourceAuditId, null);
+                sourceAuditId, sentenceMode);
     }
 }
