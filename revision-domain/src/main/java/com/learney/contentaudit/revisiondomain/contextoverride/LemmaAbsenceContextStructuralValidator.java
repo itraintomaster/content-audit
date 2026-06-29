@@ -228,6 +228,21 @@ class LemmaAbsenceContextStructuralValidator implements CorrectionContextStructu
             }
         }
 
+        // exerciseQuizzes: optional list; absent in legacy payloads -> empty list (never null).
+        List<String> exerciseQuizzes = new ArrayList<>();
+        if (ctx.has("exerciseQuizzes") && ctx.get("exerciseQuizzes").isArray()) {
+            for (JsonNode eq : ctx.get("exerciseQuizzes")) {
+                String qs = eq.asText(null);
+                if (qs != null && !qs.isBlank()) {
+                    exerciseQuizzes.add(qs);
+                }
+            }
+        }
+
+        // nodeId: quiz node identity — preserved through the override round-trip so the
+        // suggested-lemmas session re-binds to the real node (else the tool returns []).
+        String nodeId = ctx.has("nodeId") ? ctx.get("nodeId").asText(null) : null;
+
         return new LemmaAbsenceCorrectionContext(
                 taskId,
                 sentence,
@@ -244,6 +259,6 @@ class LemmaAbsenceContextStructuralValidator implements CorrectionContextStructu
                 targetMax,
                 delta,
                 lengthDirection,
-                sourceAuditId, sentenceMode);
+                sourceAuditId, sentenceMode, exerciseQuizzes, nodeId);
     }
 }

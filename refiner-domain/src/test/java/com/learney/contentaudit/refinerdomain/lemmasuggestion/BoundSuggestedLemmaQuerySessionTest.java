@@ -58,7 +58,8 @@ public class BoundSuggestedLemmaQuerySessionTest {
                 Optional.of(5),
                 Optional.of("VERB"),
                 Optional.of(CefrLevel.A1),
-                false);
+                false,
+                Optional.empty());
 
         SuggestedLemmaQueryResult expected =
                 new SuggestedLemmaQueryResult("task-bound-1", CefrLevel.A1, List.of());

@@ -505,6 +505,13 @@ class Main {
         DefaultSetActiveAnalysisCommand setActiveCmd = new DefaultSetActiveAnalysisCommand(activeAnalysisSelectionStore);
         cmd.addSubcommand("set-active", new picocli.CommandLine(new SetActiveCmd(setActiveCmd)));
 
+        // tokens — count NLP tokens of a quizSentence DSL using the SAME spaCy pipeline as the
+        // audit (parse -> toPlainSentences -> NlpTokenizer.countTokens). Reuses the already-wired
+        // converter + tokenizer so the lemma-absence-agent length eval measures candidates exactly
+        // as the audit does. Hand-wired helper (not a governed feature) — see TokensCmd Javadoc.
+        cmd.addSubcommand("tokens", new picocli.CommandLine(
+                new TokensCmd(quizSentenceConverter, nlpTokenizer)));
+
         // get-consolidated — build and format the consolidated view (F-CDIFF-R001, R013 detail 3)
         NodeFieldDiffer nodeFieldDiffer = new DefaultNodeFieldDifferFactory().create();
         ConsolidatedViewBuilderConfig builderConfig = new ConsolidatedViewBuilderConfig(

@@ -25,6 +25,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+import java.util.stream.Collectors;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -144,6 +147,27 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPort implements SuggestedLemm
         // Step 5 (OFF): OFF candidates already come sorted from UnderexposedLemmaInventory.
         // (ON): needs-exposure block preserves OFF order; already-exposed tail is COCA-sorted above.
         // No additional sort needed here — the structure is already correct.
+
+        // Step 5b: Apply regex filter if present (F-SLREGEX-R002, R003, R004, R005, R006, R009).
+        // Executed after all other filters (level, pos, exposure) and BEFORE the limit cut (R007).
+        Optional<String> regex = criteria.getRegex();
+        if (regex != null && regex.isPresent()) {
+            String raw = regex.get();
+            Pattern pattern;
+            try {
+                pattern = Pattern.compile(raw, Pattern.CASE_INSENSITIVE);
+            } catch (PatternSyntaxException e) {
+                // R008: reject with clear validation, not a raw exception or empty list
+                throw new SuggestedLemmaQueryRejectedException(task.getId(),
+                        "El patrón de búsqueda informado en --regex no es válido.");
+            }
+            // R002: match only against lemma text (not pos or other fields)
+            // R003: partial/grep-like match via find() — no implicit anchoring
+            // R006: filter preserves encounter order (stream filter maintains order)
+            candidates = candidates.stream()
+                    .filter(sl -> sl.getLemma() != null && pattern.matcher(sl.getLemma()).find())
+                    .collect(Collectors.toList());
+        }
 
         // Step 6: Apply limit as last step (R008, R009)
         if (limit.isPresent()) {

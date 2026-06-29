@@ -3493,6 +3493,14 @@ modules:
         \ del quiz revisado con el mismo modo del original (F-SMODE-R006). Nullable:\
         \ el deriver/converter aplica fallback a FILL (comportamiento historico) cuando\
         \ es null."
+    - name: exerciseQuizzes
+      type: List<String>
+      description: |
+        Lista de los quizSentence (forma DSL) de los OTROS quizzes del mismo ejercicio (los quizzes hermanos bajo el mismo knowledge), recolectados por LemmaAbsenceContextResolver al recorrer el arbol de auditoria. La consume el agente lemma-absence para evitar proponer un quiz demasiado parecido a uno que ya existe en el ejercicio. Lista vacia cuando el ejercicio no tiene otros quizzes.
+    - name: nodeId
+      type: String
+      description: |
+        Identificador del nodo quiz auditado al que corresponde este contexto (igual a RefinementTask.nodeId). Lo estampa LemmaAbsenceContextResolver desde la task. Lo consume el camino revise (LemmaAbsenceAgentGenerator) para re-bindear la SuggestedLemmaQuerySession con el nodo real: sin el, la sesion se ata con un task de nodeId null y la tool get_suggested_lemmas devuelve siempre lista vacia (el query port no encuentra el nodo). El nodeTarget asociado es siempre QUIZ para LEMMA_ABSENCE. Nullable cuando el contexto se construye sin task asociada.
     implements:
     - CorrectionContext
   - name: LengthDirection
@@ -3575,6 +3583,16 @@ modules:
         \ el universo se amplia a todos los lemas del level+POS incluyendo los ya\
         \ expuestos (F-INCEXP-R002), que quedan al final como un unico grado de prioridad\
         \ ordenado por COCA ascendente (F-INCEXP-R003, F-INCEXP-R004)."
+    - name: regex
+      type: Optional<String>
+      description: "Patron de texto opcional, evaluado unicamente contra el texto\
+        \ del SuggestedLemma (F-SLREGEX-R002). Vacio (default) = sin filtrado textual\
+        \ (F-SLREGEX-R001). Coincidencia parcial estilo grep, no anclada, insensible\
+        \ a mayusculas/minusculas (F-SLREGEX-R003, F-SLREGEX-R004). Filtro aditivo:\
+        \ se aplica sobre los candidatos que ya pasaron Level/PoS/condicion de exposicion,\
+        \ sin relajarlos, preservando el orden por prioridad; el limit recorta despues\
+        \ (F-SLREGEX-R005, F-SLREGEX-R006, F-SLREGEX-R007). Espeja la optionality\
+        \ de partOfSpeech."
     visibility: public
   interfaces:
   - name: RefinerEngine
@@ -4194,6 +4212,50 @@ modules:
         traceability:
           feature: FEAT-INCEXP
           rule: F-INCEXP-R011
+      - name: should return the same suggested lemmas as a query without a regex when
+          no regex pattern is provided
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R001
+      - name: should match the regex pattern only against the suggested lemma text
+          and never against its partOfSpeech or other result fields
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R002
+      - name: should keep a suggested lemma when the pattern matches anywhere inside
+          the lemma text since the match is partial and not anchored
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R003
+      - name: should match the regex pattern against the lemma text case-insensitively
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R004
+      - name: should apply the regex as an additional filter that never reintroduces
+          lemmas excluded by the level partOfSpeech or exposure filters
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R005
+      - name: should preserve the recommendation priority order among the lemmas that
+          match the regex pattern
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R006
+      - name: should apply the limit after the regex filter so it caps only lemmas
+          that already matched the pattern
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R007
+      - name: should reject the query with a clear validation when the regex pattern
+          is malformed
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R008
+      - name: should return an empty lemma list with a functional explanation and
+          no error when no candidate lemma matches the regex pattern
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R009
       implements:
       - SuggestedLemmaQueryPort
     - name: BoundSuggestedLemmaQuerySession
@@ -5504,6 +5566,15 @@ modules:
         \ por COCA ascendente (F-INCEXP-R002, F-INCEXP-R003, F-INCEXP-R004). Paridad\
         \ con SuggestedLemmaQueryCriteria.includeExposed (refiner-domain): GetCmd\
         \ mapea este campo al carrier al construir la consulta."
+    - name: regex
+      type: Optional<String>
+      description: "Patron de texto opcional para filtrar los SuggestedLemma por su\
+        \ forma superficial (F-SLREGEX-R002). Vacio (default) = sin filtrado textual;\
+        \ el comportamiento queda identico a FEAT-CSLATDC/FEAT-INCEXP (F-SLREGEX-R001).\
+        \ Coincidencia parcial estilo grep e insensible a la caja; el cliente ancla\
+        \ con ^ y $ (F-SLREGEX-R003, F-SLREGEX-R004). Espeja la optionality de partOfSpeech.\
+        \ GetCmd mapea este campo al carrier SuggestedLemmaQueryCriteria.regex (refiner-domain)\
+        \ al construir la consulta."
     visibility: public
   interfaces:
   - name: AnalyzeCommand
@@ -6113,6 +6184,12 @@ modules:
         traceability:
           feature: FEAT-CSLATDC
           rule: F-CSLATDC-R002
+      - name: should document the regex filter semantics in the suggested-lemmas help
+          text covering what it matches partial grep-like matching case-insensitivity
+          and at least one example
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R010
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -10982,6 +11059,17 @@ features:
     validation: AUTO_VALIDATED
     testModule: revision-domain
     testPackage: com.learney.contentaudit.revisiondomain.engine
+- id: FEAT-SLREGEX
+  code: F-SLREGEX
+  journeys:
+  - id: F-SLREGEX-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-SLREGEX-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
 dependencies:
 - alias: langchain4j-openai
   artifact: dev.langchain4j:langchain4j-open-ai:1.13.0

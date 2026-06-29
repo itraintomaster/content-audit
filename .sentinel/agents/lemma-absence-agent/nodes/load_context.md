@@ -11,6 +11,8 @@ description: |
   En el primer intento el archivo no existe → carryForward vacío. Es el initial
   node y el destino del retry, así cada regeneración ve el feedback del fallo
   previo (qué evals reprobaron + el candidato anterior) y no repite el error.
+  También publica `curation_cached` (¿ya existe curated_lemmas.json con palabras?)
+  para que route_curate saltee la curación de vocabulario en los reintentos.
 edges:
-  - { to: generate }
+  - { to: route_curate }
 ---

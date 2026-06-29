@@ -18,15 +18,18 @@ public class SuggestedLemmaQueryCriteria {
 
     private boolean includeExposed;
 
+    private Optional<String> regex;
+
     public SuggestedLemmaQueryCriteria() {
     }
 
     public SuggestedLemmaQueryCriteria(Optional<Integer> limit, Optional<String> partOfSpeech,
-            Optional<CefrLevel> explicitLevel, boolean includeExposed) {
+            Optional<CefrLevel> explicitLevel, boolean includeExposed, Optional<String> regex) {
         this.limit = limit;
         this.partOfSpeech = partOfSpeech;
         this.explicitLevel = explicitLevel;
         this.includeExposed = includeExposed;
+        this.regex = regex;
     }
 
     public Optional<Integer> getLimit() {
@@ -61,6 +64,14 @@ public class SuggestedLemmaQueryCriteria {
         this.includeExposed = includeExposed;
     }
 
+    public Optional<String> getRegex() {
+        return this.regex;
+    }
+
+    public void setRegex(Optional<String> regex) {
+        this.regex = regex;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -69,11 +80,12 @@ public class SuggestedLemmaQueryCriteria {
         return Objects.equals(this.limit, that.limit)
                     && Objects.equals(this.partOfSpeech, that.partOfSpeech)
                     && Objects.equals(this.explicitLevel, that.explicitLevel)
-                    && Objects.equals(this.includeExposed, that.includeExposed);
+                    && Objects.equals(this.includeExposed, that.includeExposed)
+                    && Objects.equals(this.regex, that.regex);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(limit, partOfSpeech, explicitLevel, includeExposed);
+        return Objects.hash(limit, partOfSpeech, explicitLevel, includeExposed, regex);
     }
 }

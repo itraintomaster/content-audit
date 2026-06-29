@@ -11,10 +11,26 @@ description: |
 
   Flujo:
 
-      generate (react: UNA tool get_suggested_lemmas para filtrar
-        suggestedWords; produce candidate.json)
+      load_context (script: carga carryForward + flag curation_cached)
+        ──▶ route_curate (conditional: ¿ya se curó? cached ▶ generate;
+              fresh ▶ curate_lemmas) — la curación corre una vez por run
+        ──▶ curate_lemmas (react: ÚNICO nodo con la tool get_suggested_lemmas;
+              cura el vocabulario específico del ejercicio con filtros dirigidos
+              —partOfSpeech/regex/limit/includeExposed— y emite curation_spec.json
+              [artefacto curationSpec: filtros + veto, NO la lista de lemmas])
+        ──▶ gate_curation (gate: verifica vía events.jsonl que curate_lemmas REALMENTE
+              llamó la tool —el framework no fuerza tool-choice—; passed ▶ finalize,
+              failed ▶ vuelve a curate_lemmas; al agotar curate.max_attempts el edge
+              `exhausted` de curate cae a finalize, fallback a suggestedWords)
+        ──▶ finalize_curation (script: valida el pool vs requiredRegex, publica
+              curatedWords, escribe el pool en curated_lemmas.json [artefacto
+              curatedLemmas: los lemmas resultantes, en orden]; fallback a suggestedWords)
+        ──▶ generate (react: SIN tool; construye el candidato usando el
+              vocabulario curado; produce candidate.json)
         ──▶ eval_length  (script: no-regresión de longitud — bloqueante,
               determinista, eval #3)
+        ──▶ eval_distinct (script: distinción vs los quizzes ya existentes del
+              ejercicio — bloqueante, determinista, eval #7)
         ──▶ eval_quality (llm_call: evals #1 oración con sentido, #2 quiz
               resoluble, #4 pragmatismo [score, deseable], #5 traducción
               fiel — bloqueantes salvo #4)
@@ -22,12 +38,15 @@ description: |
               escribe carry_forward en fallo)
         ──▶ route_verdict (conditional)
               │ all_blocking_pass ▶ emit
-              │ needs_retry       ▶ generate  (reintento con carry-forward)
+              │ needs_retry       ▶ load_context (reintento: recarga carry-forward;
+                                    curation_cached=true ▶ saltea curación,
+                                    reusa el pool ▶ generate)
         ──▶ emit (script: escribe el artifact `quizCandidate` — el champion)
 
   Contrato (R001–R012):
-    - R001/R002: durante generate la única tool es get_suggested_lemmas;
-      ningún otro verbo CLI.
+    - R001/R002: la única tool es get_suggested_lemmas y vive en curate_lemmas
+      (generate ya no consulta, solo construye); ningún otro verbo CLI. gate_curation
+      garantiza que curate la USE de verdad (no shortcut), o se cae al fallback.
     - R003: exactamente un QuizCandidate {quizSentence, translation}.
     - R004: presupuesto de tool por-run (max_tool_calls); agotarlo NO falla.
     - R005/R006/R012: las fallas de runtime las maneja el adaptador Java
@@ -44,13 +63,25 @@ strategy: graph
 initial_node: load_context
 budgets:
   # Circuit breaker del grafo entero: el lazo generate ↔ eval ↔ route.
-  # Holgado respecto a maxEvalRetries (cada reintento visita ~5 nodos).
-  max_iterations: 40
+  # Pase fresco ~12 nodos (load_context, route_curate, curate_lemmas, gate_curation,
+  # finalize_curation, generate, gate_candidate, eval_length, eval_distinct,
+  # eval_quality, tally, route_verdict); reintentos de eval saltean la curación (~10).
+  # gate_curation↔curate puede sumar hasta curate.max_attempts vueltas extra. Debe ser HOLGADO
+  # respecto a generate.max_attempts (=maxEvalRetries+1) para que la salida
+  # best-effort (R009: generate `exhausted` → emit) se dispare ANTES que este
+  # breaker. Con maxEvalRetries por defecto (3) hacen falta ~48 iteraciones; 90
+  # deja margen para maxEvalRetries más altos sin halt prematuro.
+  max_iterations: 90
 nodes:
   - ./nodes/load_context.md
+  - ./nodes/route_curate.md
+  - ./nodes/curate_lemmas.md
+  - ./nodes/gate_curation.md
+  - ./nodes/finalize_curation.md
   - ./nodes/generate.md
   - ./nodes/gate_candidate.md
   - ./nodes/eval_length.md
+  - ./nodes/eval_distinct.md
   - ./nodes/eval_quality.md
   - ./nodes/tally.md
   - ./nodes/route_verdict.md
@@ -70,6 +101,8 @@ dependencies:
   - translation       # traducción original al español
   - knowledgeTitle    # objetivo pedagógico del ejercicio
   - suggestedWords    # vocabulario preferido (coma-separado; puede ser "")
+  - exerciseQuizzes   # quizSentence de los otros quizzes del ejercicio (uno por
+                      # línea; puede ser "") — eval #7 de distinción (R013)
   # Perillas de LagenConfig (coma con default por si vienen vacías):
   - maxEvalRetries          # default efectivo 3 (R008/R011)
   - maxSuggestedLemmaRequests   # presupuesto de tool por-run (R004)

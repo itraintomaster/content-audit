@@ -79,7 +79,8 @@ public class DefaultSuggestedLemmaQuerySessionFactoryTest {
                 Optional.of(3),
                 Optional.of("NOUN"),
                 Optional.of(CefrLevel.A1),
-                false);
+                false,
+                Optional.empty());
 
         // Query result from analysis A: "butter" is NOT included (was consumed)
         SuggestedLemmaQueryResult resultFromA = new SuggestedLemmaQueryResult(

@@ -168,7 +168,7 @@ public class FCslatdcJ001JourneyTest {
         when(suggestedLemmaQueryPort.query(
                 any(AuditReport.class),
                 eq(task),
-                eq(new SuggestedLemmaQueryCriteria(Optional.of(3), Optional.of("VERB"), Optional.empty(), false)))).thenReturn(queryResult);
+                eq(new SuggestedLemmaQueryCriteria(Optional.of(3), Optional.of("VERB"), Optional.empty(), false, Optional.empty())))).thenReturn(queryResult);
 
         GetCommand cmd = buildGetCmd(auditReportStore, refinementPlanStore, suggestedLemmaQueryPort);
 
@@ -178,7 +178,7 @@ public class FCslatdcJ001JourneyTest {
                 Optional.of(3),
                 Optional.of("VERB"),
                 Optional.empty(),
-                false);   // no explicit level — must be inferred (R004)
+                false, Optional.empty());   // no explicit level — must be inferred (R004)
         int exit = cmd.get("suggested-lemmas", TASK_ID, filter);
 
         // Assert — success: at most N=3 lemmas returned, ordered by priority (R008, R010)
@@ -222,7 +222,7 @@ public class FCslatdcJ001JourneyTest {
         when(suggestedLemmaQueryPort.query(
                 any(AuditReport.class),
                 eq(task),
-                eq(new SuggestedLemmaQueryCriteria(Optional.of(5), Optional.of("VERB"), Optional.empty(), false)))).thenReturn(queryResult);
+                eq(new SuggestedLemmaQueryCriteria(Optional.of(5), Optional.of("VERB"), Optional.empty(), false, Optional.empty())))).thenReturn(queryResult);
 
         GetCommand cmd = buildGetCmd(auditReportStore, refinementPlanStore, suggestedLemmaQueryPort);
 
@@ -231,7 +231,7 @@ public class FCslatdcJ001JourneyTest {
                 Optional.of(5),
                 Optional.of("VERB"),
                 Optional.empty(),
-                false);   // no explicit level — inferred (R004)
+                false, Optional.empty());   // no explicit level — inferred (R004)
         int exit = cmd.get("suggested-lemmas", TASK_ID, filter);
 
         // Assert — success: partial result (2 < 5) is not an error (R009); exit zero
@@ -269,7 +269,7 @@ public class FCslatdcJ001JourneyTest {
         when(suggestedLemmaQueryPort.query(
                 any(AuditReport.class),
                 eq(task),
-                eq(new SuggestedLemmaQueryCriteria(Optional.of(3), Optional.of("VERB"), Optional.empty(), false)))).thenReturn(emptyResult);
+                eq(new SuggestedLemmaQueryCriteria(Optional.of(3), Optional.of("VERB"), Optional.empty(), false, Optional.empty())))).thenReturn(emptyResult);
 
         GetCommand cmd = buildGetCmd(auditReportStore, refinementPlanStore, suggestedLemmaQueryPort);
 
@@ -278,7 +278,7 @@ public class FCslatdcJ001JourneyTest {
                 Optional.of(3),
                 Optional.of("VERB"),
                 Optional.empty(),
-                false);   // no explicit level — inferred (R004)
+                false, Optional.empty());   // no explicit level — inferred (R004)
         int exit = cmd.get("suggested-lemmas", TASK_ID, filter);
 
         // Assert — success: empty list is a valid response, not an error (R012); exit zero
@@ -326,7 +326,7 @@ public class FCslatdcJ001JourneyTest {
                 Optional.of(3),
                 Optional.of("VERB"),
                 Optional.empty(),
-                false);   // no explicit level — cannot infer → rejected (R005)
+                false, Optional.empty());   // no explicit level — cannot infer → rejected (R005)
         int exit = cmd.get("suggested-lemmas", TASK_ID, filter);
 
         // Assert — failure: query rejected with non-zero exit (R005)

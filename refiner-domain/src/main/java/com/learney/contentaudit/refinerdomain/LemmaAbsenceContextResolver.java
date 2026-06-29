@@ -206,6 +206,14 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
             }
         }
 
+        // Collect sibling quizSentences from the KNOWLEDGE node (distinctness signal)
+        List<String> exerciseQuizzes = new ArrayList<>();
+        Optional<AuditNode> knowledgeAncestorForSiblings = quizNode.ancestor(AuditTarget.KNOWLEDGE);
+        if (knowledgeAncestorForSiblings.isPresent()) {
+            exerciseQuizzes = collectSiblingQuizSentences(
+                    knowledgeAncestorForSiblings.get(), task.getNodeId());
+        }
+
         LemmaAbsenceCorrectionContext context = new LemmaAbsenceCorrectionContext(
                 task.getId(),
                 sentence,
@@ -221,7 +229,7 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
                 targetMin,
                 targetMax,
                 delta,
-                lengthDirection, null, sentenceMode);
+                lengthDirection, null, sentenceMode, exerciseQuizzes, task.getNodeId());
 
         return Optional.of(context);
     }
@@ -534,6 +542,44 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
     // Tree navigation helpers
     // -----------------------------------------------------------------------
 
+    /**
+     * Recursively collects the quizSentence of every QUIZ-target descendant of knowledgeNode
+     * whose entity id differs from excludeNodeId (the current quiz being resolved).
+     * Null/blank quizSentences are skipped. Encounter order is preserved.
+     */
+    private List<String> collectSiblingQuizSentences(AuditNode knowledgeNode, String excludeNodeId) {
+        List<String> result = new ArrayList<>();
+        collectSiblingQuizSentencesRecursive(knowledgeNode, excludeNodeId, result);
+        return result;
+    }
+
+    private void collectSiblingQuizSentencesRecursive(AuditNode node, String excludeNodeId,
+            List<String> result) {
+        if (node == null) {
+            return;
+        }
+        List<AuditNode> children = node.getChildren();
+        if (children == null) {
+            return;
+        }
+        for (AuditNode child : children) {
+            if (child.getTarget() == AuditTarget.QUIZ) {
+                AuditableEntity entity = child.getEntity();
+                if (entity instanceof AuditableQuiz) {
+                    // Exclude the current quiz node by entity id
+                    if (excludeNodeId == null || !excludeNodeId.equals(entity.getId())) {
+                        String qs = ((AuditableQuiz) entity).getQuizSentence();
+                        if (qs != null && !qs.isBlank()) {
+                            result.add(qs);
+                        }
+                    }
+                }
+            } else {
+                collectSiblingQuizSentencesRecursive(child, excludeNodeId, result);
+            }
+        }
+    }
+
     private Optional<AuditNode> findNode(AuditNode node, String nodeId, AuditTarget nodeTarget) {
         if (node == null) {
             return Optional.empty();
@@ -700,6 +746,14 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
             }
         }
 
+        // Collect sibling quizSentences from the KNOWLEDGE node (distinctness signal)
+        List<String> exerciseQuizzes = new ArrayList<>();
+        Optional<AuditNode> knowledgeAncestorForSiblings = quizNode.ancestor(AuditTarget.KNOWLEDGE);
+        if (knowledgeAncestorForSiblings.isPresent()) {
+            exerciseQuizzes = collectSiblingQuizSentences(
+                    knowledgeAncestorForSiblings.get(), task.getNodeId());
+        }
+
         LemmaAbsenceCorrectionContext context = new LemmaAbsenceCorrectionContext(
                 task.getId(),
                 sentence,
@@ -715,7 +769,7 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
                 targetMin,
                 targetMax,
                 delta,
-                lengthDirection, null, sentenceMode);
+                lengthDirection, null, sentenceMode, exerciseQuizzes, task.getNodeId());
 
         return Optional.of(context);
     }

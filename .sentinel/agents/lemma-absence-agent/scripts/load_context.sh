@@ -23,5 +23,18 @@ try:
 except Exception:
     carry = ""
 
-print(json.dumps({"route": "done", "carryForward": carry}, ensure_ascii=False))
+# curation_cached: ¿ya corrió la curación de vocabulario en este run? finalize_curation
+# escribe curated_lemmas.json con el pool resultante. Si existe y tiene palabras, los
+# reintentos saltean la curación (route_curate) y reusan el pool. Primer intento:
+# ausente -> False -> se cura. (Es el artefacto curatedLemmas; la spec del LLM vive
+# en curation_spec.json.)
+curation_cached = False
+try:
+    with open(os.path.join(run_dir, "curated_lemmas.json"), "r", encoding="utf-8") as f:
+        curation_cached = bool((json.load(f) or {}).get("words"))
+except Exception:
+    curation_cached = False
+
+print(json.dumps({"route": "done", "carryForward": carry,
+                  "curation_cached": curation_cached}, ensure_ascii=False))
 PY

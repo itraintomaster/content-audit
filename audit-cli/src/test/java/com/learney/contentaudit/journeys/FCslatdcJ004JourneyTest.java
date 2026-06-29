@@ -246,7 +246,7 @@ public class FCslatdcJ004JourneyTest {
         // Step 3: dynamic_query_scope — gate R011
         // The system resolves dynamically from the AuditReport, not limited to the static 3.
         SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
-                Optional.of(REQUESTED_LIMIT), Optional.of("NOUN"), Optional.of(CefrLevel.A1), false);
+                Optional.of(REQUESTED_LIMIT), Optional.of("NOUN"), Optional.of(CefrLevel.A1), false, Optional.empty());
         SuggestedLemmaQueryResult result = port.query(report, task, criteria);
 
         // Step 4: return_dynamic_results

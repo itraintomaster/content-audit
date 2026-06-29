@@ -183,7 +183,7 @@ public class FCslatdcJ002JourneyTest {
         when(suggestedLemmaQueryPort.query(
                 any(AuditReport.class),
                 eq(task),
-                eq(new SuggestedLemmaQueryCriteria(Optional.of(4), Optional.of("NOUN"), Optional.of(EXPLICIT_LEVEL), false)))).thenReturn(queryResult);
+                eq(new SuggestedLemmaQueryCriteria(Optional.of(4), Optional.of("NOUN"), Optional.of(EXPLICIT_LEVEL), false, Optional.empty())))).thenReturn(queryResult);
 
         GetCommand cmd = buildGetCmd(auditReportStore, refinementPlanStore, suggestedLemmaQueryPort);
 
@@ -193,7 +193,7 @@ public class FCslatdcJ002JourneyTest {
                 Optional.of(4),
                 Optional.of("NOUN"),
                 Optional.of(EXPLICIT_LEVEL),
-                false);   // explicit level — R006
+                false, Optional.empty());   // explicit level — R006
         int exit = cmd.get("suggested-lemmas", TASK_ID, filter);
 
         // Assert — success: up to N=4 lemmas matching explicit level B1 and NOUN, ordered by priority.
@@ -238,7 +238,7 @@ public class FCslatdcJ002JourneyTest {
         when(suggestedLemmaQueryPort.query(
                 any(AuditReport.class),
                 eq(task),
-                eq(new SuggestedLemmaQueryCriteria(Optional.of(4), Optional.of("NOUN"), Optional.of(EXPLICIT_LEVEL), false)))).thenReturn(emptyResult);
+                eq(new SuggestedLemmaQueryCriteria(Optional.of(4), Optional.of("NOUN"), Optional.of(EXPLICIT_LEVEL), false, Optional.empty())))).thenReturn(emptyResult);
 
         GetCommand cmd = buildGetCmd(auditReportStore, refinementPlanStore, suggestedLemmaQueryPort);
 
@@ -248,7 +248,7 @@ public class FCslatdcJ002JourneyTest {
                 Optional.of(4),
                 Optional.of("NOUN"),
                 Optional.of(EXPLICIT_LEVEL),
-                false);   // explicit level — R006
+                false, Optional.empty());   // explicit level — R006
         int exit = cmd.get("suggested-lemmas", TASK_ID, filter);
 
         // Assert — success: empty list is valid, not an error (R012). Exit zero with functional explanation.

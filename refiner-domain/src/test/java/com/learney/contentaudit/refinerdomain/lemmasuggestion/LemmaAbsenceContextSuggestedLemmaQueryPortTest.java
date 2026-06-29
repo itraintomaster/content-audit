@@ -205,7 +205,17 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
     /** Builds a SuggestedLemmaQueryCriteria for the default (includeExposed=false) mode. */
     private SuggestedLemmaQueryCriteria defaultCriteria(Optional<Integer> limit,
             Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel) {
-        return new SuggestedLemmaQueryCriteria(limit, partOfSpeech, explicitLevel, false);
+        return new SuggestedLemmaQueryCriteria(limit, partOfSpeech, explicitLevel, false, Optional.empty());
+    }
+
+    /**
+     * Builds a SuggestedLemmaQueryCriteria with a specific regex pattern.
+     * Used by FEAT-SLREGEX tests.
+     */
+    private SuggestedLemmaQueryCriteria criteriaWithRegex(Optional<Integer> limit,
+            Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel,
+            boolean includeExposed, Optional<String> regex) {
+        return new SuggestedLemmaQueryCriteria(limit, partOfSpeech, explicitLevel, includeExposed, regex);
     }
 
     /**
@@ -577,7 +587,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
 
         // Act — includeExposed=false (the default OFF mode, F-INCEXP-R001)
         SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
-                Optional.empty(), Optional.empty(), Optional.empty(), false);
+                Optional.empty(), Optional.empty(), Optional.empty(), false, Optional.empty());
         SuggestedLemmaQueryResult result = sut.query(report, task, criteria);
 
         // Assert — only the two underexposed lemmas are returned; none is from the "already-exposed" set.
@@ -639,14 +649,14 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
 
         // OFF query (includeExposed=false) — establishes the baseline set that ON must be a superset of
         SuggestedLemmaQueryCriteria offCriteria = new SuggestedLemmaQueryCriteria(
-                Optional.empty(), Optional.empty(), Optional.empty(), false);
+                Optional.empty(), Optional.empty(), Optional.empty(), false, Optional.empty());
         SuggestedLemmaQueryResult offResult = sut.query(report, task, offCriteria);
         List<String> offLemmaNames = offResult.getSuggestedLemmas().stream()
                 .map(SuggestedLemma::getLemma).toList();
 
         // Act — ON query (includeExposed=true): must return the needs-exposure set PLUS already-exposed
         SuggestedLemmaQueryCriteria onCriteria = new SuggestedLemmaQueryCriteria(
-                Optional.empty(), Optional.empty(), Optional.empty(), true);
+                Optional.empty(), Optional.empty(), Optional.empty(), true, Optional.empty());
         SuggestedLemmaQueryResult onResult = sutWithLevelWide.query(report, task, onCriteria);
         List<SuggestedLemma> onLemmas = onResult.getSuggestedLemmas();
         List<String> onLemmaNames = onLemmas.stream().map(SuggestedLemma::getLemma).toList();
@@ -714,7 +724,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
                 buildSutWithLevelWide(mockEvpCatalog, mockLemmaCountConfig);
 
         SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
-                Optional.empty(), Optional.empty(), Optional.empty(), true);
+                Optional.empty(), Optional.empty(), Optional.empty(), true, Optional.empty());
         SuggestedLemmaQueryResult result = sutWithLevelWide.query(report, task, criteria);
 
         // Assert — ALL needs-exposure lemmas (run, walk) appear before ALL already-exposed (sleep).
@@ -792,7 +802,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
                 buildSutWithLevelWide(mockEvpCatalog, mockLemmaCountConfig);
 
         SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
-                Optional.empty(), Optional.empty(), Optional.empty(), true);
+                Optional.empty(), Optional.empty(), Optional.empty(), true, Optional.empty());
         SuggestedLemmaQueryResult result = sutWithLevelWide.query(report, task, criteria);
 
         List<SuggestedLemma> lemmas = result.getSuggestedLemmas();
@@ -840,7 +850,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
                 buildSutWithLevelWide(mockEvpCatalog, mockLemmaCountConfig);
 
         SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
-                Optional.empty(), Optional.empty(), Optional.empty(), true);
+                Optional.empty(), Optional.empty(), Optional.empty(), true, Optional.empty());
         SuggestedLemmaQueryResult result = sutWithLevelWide.query(report, task, criteria);
 
         // Assert — result level is A1 (the inferred level) and EVP was called only for A1
@@ -888,7 +898,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
 
         // Act — partOfSpeech="VERB" filter must exclude "cat" (NOUN)
         SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
-                Optional.empty(), Optional.of("VERB"), Optional.empty(), true);
+                Optional.empty(), Optional.of("VERB"), Optional.empty(), true, Optional.empty());
         SuggestedLemmaQueryResult result = sutWithLevelWide.query(report, task, criteria);
 
         // Assert — all returned lemmas are VERBs; "cat" must not be present
@@ -953,7 +963,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
 
         // Act — limit=3, includeExposed=true; 4 candidates total (2 needs-exposure + 2 exposed)
         SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
-                Optional.of(3), Optional.empty(), Optional.empty(), true);
+                Optional.of(3), Optional.empty(), Optional.empty(), true, Optional.empty());
         SuggestedLemmaQueryResult result = sutWithLevelWide.query(report, task, criteria);
 
         // Assert — exactly 3 returned; ALL needs-exposure lemmas kept; only already-exposed trimmed
@@ -1009,7 +1019,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
 
         // Act — explicit level B1, includeExposed=true
         SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
-                Optional.empty(), Optional.empty(), Optional.of(CefrLevel.B1), true);
+                Optional.empty(), Optional.empty(), Optional.of(CefrLevel.B1), true, Optional.empty());
         SuggestedLemmaQueryResult result = sutWithLevelWide.query(report, task, criteria);
 
         // Assert — result uses B1 (the explicit level) without error
@@ -1046,7 +1056,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
 
         // Act — no exception must be thrown
         SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
-                Optional.empty(), Optional.empty(), Optional.empty(), true);
+                Optional.empty(), Optional.empty(), Optional.empty(), true, Optional.empty());
         SuggestedLemmaQueryResult result = sutWithLevelWide.query(report, task, criteria);
 
         // Assert — empty list returned, no exception, level is still reported
@@ -1086,7 +1096,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
 
         // Act — request 10 but only 1 available; no exception expected
         SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
-                Optional.of(10), Optional.empty(), Optional.empty(), true);
+                Optional.of(10), Optional.empty(), Optional.empty(), true, Optional.empty());
         SuggestedLemmaQueryResult result = sutWithLevelWide.query(report, task, criteria);
 
         // Assert — 1 lemma returned, no error, no exception
@@ -1127,7 +1137,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
                 buildSutWithLevelWide(mockEvpCatalog, mockLemmaCountConfig);
 
         SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
-                Optional.empty(), Optional.empty(), Optional.empty(), true);
+                Optional.empty(), Optional.empty(), Optional.empty(), true, Optional.empty());
         SuggestedLemmaQueryResult result = sutWithLevelWide.query(report, task, criteria);
 
         // Assert — find the already-exposed lemma "sleep" and verify isUnderexposed=false
@@ -1151,5 +1161,394 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
                         "F-INCEXP-R011: 'sleep' (already-exposed) must be present in result"));
         Assertions.assertEquals(Boolean.FALSE, sleepLemma.getIsUnderexposed(),
                 "F-INCEXP-R011: already-exposed lemma 'sleep' must have isUnderexposed=false");
+    }
+
+    @Test
+    @DisplayName("should return the same suggested lemmas as a query without a regex when no regex pattern is provided")
+    @Tag("FEAT-SLREGEX")
+    @Tag("F-SLREGEX-R001")
+    public void shouldReturnTheSameSuggestedLemmasAsAQueryWithoutARegexWhenNoRegexPatternIsProvided() {
+        // F-SLREGEX-R001: absent regex (Optional.empty()) must produce identical behavior to pre-feature
+        // queries. Verify by running the same scenario twice: once with the helper (no regex) and once
+        // with an explicit Optional.empty() regex — results must be equal.
+        String quizId = "quiz-slregex-r001";
+        AbsentLemma run  = buildAbsentLemma("run",  "VERB", 200);
+        AbsentLemma walk = buildAbsentLemma("walk", "VERB", 400);
+
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-slregex-r001", "A1 Milestone", null),
+                buildMilestoneDiagnoses(CefrLevel.A1, List.of(run, walk)),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        // Query without regex (via defaultCriteria helper — same behaviour as before this feature)
+        SuggestedLemmaQueryResult resultWithoutRegex = sut.query(
+                report, task, defaultCriteria(Optional.empty(), Optional.empty(), Optional.empty()));
+
+        // Query with explicit Optional.empty() regex (5-arg constructor)
+        SuggestedLemmaQueryResult resultEmptyRegex = sut.query(
+                report, task, criteriaWithRegex(Optional.empty(), Optional.empty(), Optional.empty(),
+                        false, Optional.empty()));
+
+        // Both results must be identical: same level, same lemmas in the same order
+        Assertions.assertEquals(resultWithoutRegex.getCefrLevel(), resultEmptyRegex.getCefrLevel(),
+                "F-SLREGEX-R001: level must be the same with or without regex=empty");
+        List<String> namesWithout = resultWithoutRegex.getSuggestedLemmas().stream()
+                .map(SuggestedLemma::getLemma).toList();
+        List<String> namesEmpty = resultEmptyRegex.getSuggestedLemmas().stream()
+                .map(SuggestedLemma::getLemma).toList();
+        Assertions.assertEquals(namesWithout, namesEmpty,
+                "F-SLREGEX-R001: absent regex must produce the same lemma list as the pre-feature query. " +
+                "Without regex: " + namesWithout + " / Empty regex: " + namesEmpty);
+    }
+
+    @Test
+    @DisplayName("should match the regex pattern only against the suggested lemma text and never against its partOfSpeech or other result fields")
+    @Tag("FEAT-SLREGEX")
+    @Tag("F-SLREGEX-R002")
+    public void shouldMatchTheRegexPatternOnlyAgainstTheSuggestedLemmaTextAndNeverAgainstItsPartOfSpeechOrOtherResultFields() {
+        // F-SLREGEX-R002: the pattern is evaluated against the lemma TEXT only, never against PoS.
+        // Build lemmas "run" (VERB, cocaRank=200) and "cat" (NOUN, cocaRank=300).
+        // Pattern "VERB" matches the PoS of "run" but NOT the text "run" or "cat".
+        // Expected: no lemmas pass the regex filter — the pattern is NOT matched against PoS.
+        String quizId = "quiz-slregex-r002";
+        AbsentLemma run = buildAbsentLemma("run",  "VERB", 200);
+        AbsentLemma cat = buildAbsentLemma("cat",  "NOUN", 300);
+
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-slregex-r002", "A1 Milestone", null),
+                buildMilestoneDiagnoses(CefrLevel.A1, List.of(run, cat)),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        // Pattern "VERB" coincides with the PoS of "run" but with neither lemma's text.
+        // If the system incorrectly matched against PoS, "run" would appear in the result.
+        SuggestedLemmaQueryResult result = sut.query(
+                report, task, criteriaWithRegex(Optional.empty(), Optional.empty(), Optional.empty(),
+                        false, Optional.of("VERB")));
+
+        List<SuggestedLemma> lemmas = result.getSuggestedLemmas();
+        // No lemma text contains "VERB" (case-insensitive: "verb"), so the list must be empty.
+        Assertions.assertTrue(lemmas.isEmpty(),
+                "F-SLREGEX-R002: pattern 'VERB' must NOT match against PoS; only text 'run'/'cat' are evaluated. " +
+                "Expected empty result but got: " + lemmas.stream().map(SuggestedLemma::getLemma).toList());
+    }
+
+    @Test
+    @DisplayName("should keep a suggested lemma when the pattern matches anywhere inside the lemma text since the match is partial and not anchored")
+    @Tag("FEAT-SLREGEX")
+    @Tag("F-SLREGEX-R003")
+    public void shouldKeepASuggestedLemmaWhenThePatternMatchesAnywhereInsideTheLemmaTextSinceTheMatchIsPartialAndNotAnchored() {
+        // F-SLREGEX-R003: coincidencia parcial estilo grep (no anclada).
+        // Four scenarios verified in a single test fixture:
+        //  - "butter"   matches "tt"      (internal sequence)
+        //  - "running"  matches "ing$"    (suffix anchor)
+        //  - "undo"     matches "^un"     (prefix anchor)
+        //  - "category" does NOT match "^cat$" (exact match — anchored both sides; "category" != "cat")
+        //  - "cat"      matches "^cat$"   (exact match)
+        String quizId = "quiz-slregex-r003";
+        AbsentLemma butter   = buildAbsentLemma("butter",   "NOUN", 100);
+        AbsentLemma running  = buildAbsentLemma("running",  "VERB", 200);
+        AbsentLemma run      = buildAbsentLemma("run",      "VERB", 300);
+        AbsentLemma undo     = buildAbsentLemma("undo",     "VERB", 400);
+        AbsentLemma fun      = buildAbsentLemma("fun",      "NOUN", 500);
+        AbsentLemma cat      = buildAbsentLemma("cat",      "NOUN", 600);
+        AbsentLemma category = buildAbsentLemma("category", "NOUN", 700);
+
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-slregex-r003", "A1 Milestone", null),
+                buildMilestoneDiagnoses(CefrLevel.A1,
+                        List.of(butter, running, run, undo, fun, cat, category)),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        // Scenario 1: "tt" — internal sequence — only "butter" should match
+        SuggestedLemmaQueryResult r1 = sut.query(report, task,
+                criteriaWithRegex(Optional.empty(), Optional.empty(), Optional.empty(), false, Optional.of("tt")));
+        List<String> n1 = r1.getSuggestedLemmas().stream().map(SuggestedLemma::getLemma).toList();
+        Assertions.assertTrue(n1.contains("butter"),
+                "F-SLREGEX-R003: pattern 'tt' must match 'butter' (internal sequence). Got: " + n1);
+        Assertions.assertEquals(1, n1.size(),
+                "F-SLREGEX-R003: only 'butter' contains 'tt'. Got: " + n1);
+
+        // Scenario 2: "ing$" — suffix — only "running" should match (not "run")
+        SuggestedLemmaQueryResult r2 = sut.query(report, task,
+                criteriaWithRegex(Optional.empty(), Optional.empty(), Optional.empty(), false, Optional.of("ing$")));
+        List<String> n2 = r2.getSuggestedLemmas().stream().map(SuggestedLemma::getLemma).toList();
+        Assertions.assertTrue(n2.contains("running"),
+                "F-SLREGEX-R003: pattern 'ing$' must match 'running'. Got: " + n2);
+        Assertions.assertFalse(n2.contains("run"),
+                "F-SLREGEX-R003: pattern 'ing$' must NOT match 'run'. Got: " + n2);
+
+        // Scenario 3: "^un" — prefix — only "undo" should match (not "fun")
+        SuggestedLemmaQueryResult r3 = sut.query(report, task,
+                criteriaWithRegex(Optional.empty(), Optional.empty(), Optional.empty(), false, Optional.of("^un")));
+        List<String> n3 = r3.getSuggestedLemmas().stream().map(SuggestedLemma::getLemma).toList();
+        Assertions.assertTrue(n3.contains("undo"),
+                "F-SLREGEX-R003: pattern '^un' must match 'undo'. Got: " + n3);
+        Assertions.assertFalse(n3.contains("fun"),
+                "F-SLREGEX-R003: pattern '^un' must NOT match 'fun' (not starting with 'un'). Got: " + n3);
+
+        // Scenario 4: "^cat$" — exact match — only "cat" should match (not "category")
+        SuggestedLemmaQueryResult r4 = sut.query(report, task,
+                criteriaWithRegex(Optional.empty(), Optional.empty(), Optional.empty(), false, Optional.of("^cat$")));
+        List<String> n4 = r4.getSuggestedLemmas().stream().map(SuggestedLemma::getLemma).toList();
+        Assertions.assertTrue(n4.contains("cat"),
+                "F-SLREGEX-R003: pattern '^cat$' must match 'cat' exactly. Got: " + n4);
+        Assertions.assertFalse(n4.contains("category"),
+                "F-SLREGEX-R003: pattern '^cat$' must NOT match 'category'. Got: " + n4);
+    }
+
+    @Test
+    @DisplayName("should match the regex pattern against the lemma text case-insensitively")
+    @Tag("FEAT-SLREGEX")
+    @Tag("F-SLREGEX-R004")
+    public void shouldMatchTheRegexPatternAgainstTheLemmaTextCaseinsensitively() {
+        // F-SLREGEX-R004: the match is case-insensitive in both directions:
+        //  - "ING$" (all-caps pattern) matches "running" (lowercase lemma)
+        //  - "BUTTER" (all-caps pattern) matches "butter" (lowercase lemma)
+        String quizId = "quiz-slregex-r004";
+        AbsentLemma running = buildAbsentLemma("running", "VERB", 200);
+        AbsentLemma butter  = buildAbsentLemma("butter",  "NOUN", 300);
+        AbsentLemma walk    = buildAbsentLemma("walk",    "VERB", 400);
+
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-slregex-r004", "A1 Milestone", null),
+                buildMilestoneDiagnoses(CefrLevel.A1, List.of(running, butter, walk)),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        // Pattern "ING$" (uppercase) must match "running" (lowercase lemma ends in "ing")
+        SuggestedLemmaQueryResult r1 = sut.query(report, task,
+                criteriaWithRegex(Optional.empty(), Optional.empty(), Optional.empty(), false, Optional.of("ING$")));
+        List<String> n1 = r1.getSuggestedLemmas().stream().map(SuggestedLemma::getLemma).toList();
+        Assertions.assertTrue(n1.contains("running"),
+                "F-SLREGEX-R004: uppercase pattern 'ING$' must match lowercase lemma 'running'. Got: " + n1);
+        Assertions.assertFalse(n1.contains("walk"),
+                "F-SLREGEX-R004: pattern 'ING$' must NOT match 'walk'. Got: " + n1);
+
+        // Pattern "BUTTER" (uppercase) must match "butter" (lowercase)
+        SuggestedLemmaQueryResult r2 = sut.query(report, task,
+                criteriaWithRegex(Optional.empty(), Optional.empty(), Optional.empty(), false, Optional.of("BUTTER")));
+        List<String> n2 = r2.getSuggestedLemmas().stream().map(SuggestedLemma::getLemma).toList();
+        Assertions.assertTrue(n2.contains("butter"),
+                "F-SLREGEX-R004: uppercase pattern 'BUTTER' must match lowercase lemma 'butter'. Got: " + n2);
+        Assertions.assertFalse(n2.contains("running"),
+                "F-SLREGEX-R004: pattern 'BUTTER' must NOT match 'running'. Got: " + n2);
+    }
+
+    @Test
+    @DisplayName("should apply the regex as an additional filter that never reintroduces lemmas excluded by the level partOfSpeech or exposure filters")
+    @Tag("FEAT-SLREGEX")
+    @Tag("F-SLREGEX-R005")
+    public void shouldApplyTheRegexAsAnAdditionalFilterThatNeverReintroducesLemmasExcludedByTheLevelPartOfSpeechOrExposureFilters() {
+        // F-SLREGEX-R005: regex is additive — it does NOT relax the PoS or level filters.
+        // Fixture: VERB lemmas "run" (VERB) and "running" (VERB), plus "butter" (NOUN).
+        // Pattern "un" matches both "run" and "undo" conceptually; but "butter" (NOUN) must NOT
+        // appear even if it happens to match the regex, because partOfSpeech=VERB excludes it.
+        // Specifically: "run" (VERB) text contains "un" → passes both PoS filter AND regex.
+        // "butter" (NOUN) even if it did NOT match "un" — it is excluded by PoS filter first.
+        // Key assertion: applying regex with partOfSpeech=VERB must never include NOUN lemmas.
+        String quizId = "quiz-slregex-r005";
+        // "run" is VERB and text contains "un" → matches both PoS filter AND regex
+        AbsentLemma run    = buildAbsentLemma("run",    "VERB", 200);
+        // "button" is NOUN and text contains "un" → matches regex but must be excluded by PoS filter
+        AbsentLemma button = buildAbsentLemma("button", "NOUN", 300);
+        // "walk" is VERB but text does NOT contain "un" → excluded by regex
+        AbsentLemma walk   = buildAbsentLemma("walk",   "VERB", 400);
+
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-slregex-r005", "A1 Milestone", null),
+                buildMilestoneDiagnoses(CefrLevel.A1, List.of(run, button, walk)),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        // Query with partOfSpeech=VERB AND regex="un" — should return only "run"
+        SuggestedLemmaQueryResult result = sut.query(report, task,
+                criteriaWithRegex(Optional.empty(), Optional.of("VERB"), Optional.empty(),
+                        false, Optional.of("un")));
+
+        List<SuggestedLemma> lemmas = result.getSuggestedLemmas();
+        List<String> names = lemmas.stream().map(SuggestedLemma::getLemma).toList();
+
+        // "run" must be present: VERB + text "run" contains "un"
+        Assertions.assertTrue(names.contains("run"),
+                "F-SLREGEX-R005: 'run' (VERB, contains 'un') must be in result. Got: " + names);
+        // "button" must NOT be present: NOUN filter excludes it even though text contains "un"
+        Assertions.assertFalse(names.contains("button"),
+                "F-SLREGEX-R005: 'button' (NOUN) must NOT appear — PoS filter excludes it before regex. Got: " + names);
+        // "walk" must NOT be present: text "walk" does not contain "un"
+        Assertions.assertFalse(names.contains("walk"),
+                "F-SLREGEX-R005: 'walk' (VERB) must NOT appear — text 'walk' does not match regex 'un'. Got: " + names);
+        // All returned lemmas must be VERBs
+        lemmas.forEach(l -> Assertions.assertEquals("VERB", l.getPos(),
+                "F-SLREGEX-R005: all returned lemmas must be VERB. Got pos=" + l.getPos() + " for lemma=" + l.getLemma()));
+    }
+
+    @Test
+    @DisplayName("should preserve the recommendation priority order among the lemmas that match the regex pattern")
+    @Tag("FEAT-SLREGEX")
+    @Tag("F-SLREGEX-R006")
+    public void shouldPreserveTheRecommendationPriorityOrderAmongTheLemmasThatMatchTheRegexPattern() {
+        // F-SLREGEX-R006: applying regex must not reorder the matching lemmas.
+        // The order among matching lemmas must be the same as their order without the filter.
+        // Fixture: 4 lemmas, all verbs ending in "ing", provided in out-of-priority order.
+        // After regex "ing$" filters them, the remaining lemmas must be ordered ascending by cocaRank.
+        String quizId = "quiz-slregex-r006";
+        // These lemmas all end in "ing" and thus match the pattern "ing$".
+        // They are provided in reverse cocaRank order to force the port to sort.
+        AbsentLemma singing  = buildAbsentLemmaWithPos("singing",  "VERB", 900, PriorityLevel.MEDIUM);
+        AbsentLemma running  = buildAbsentLemmaWithPos("running",  "VERB", 100, PriorityLevel.HIGH);
+        AbsentLemma drinking = buildAbsentLemmaWithPos("drinking", "VERB", 500, PriorityLevel.HIGH);
+        // "walk" does NOT match "ing$" — it should be filtered out by regex
+        AbsentLemma walk     = buildAbsentLemmaWithPos("walk",     "VERB", 50,  PriorityLevel.HIGH);
+
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-slregex-r006", "A1 Milestone", null),
+                buildMilestoneDiagnoses(CefrLevel.A1, List.of(singing, running, drinking, walk)),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        SuggestedLemmaQueryResult result = sut.query(report, task,
+                criteriaWithRegex(Optional.empty(), Optional.empty(), Optional.empty(), false, Optional.of("ing$")));
+
+        List<SuggestedLemma> lemmas = result.getSuggestedLemmas();
+        List<String> names = lemmas.stream().map(SuggestedLemma::getLemma).toList();
+
+        // "walk" must not be in results (does not match "ing$")
+        Assertions.assertFalse(names.contains("walk"),
+                "F-SLREGEX-R006: 'walk' must be filtered out by regex 'ing$'. Got: " + names);
+        // All 3 "ing$" lemmas must be present
+        Assertions.assertTrue(names.contains("running"),  "F-SLREGEX-R006: 'running' must be in result. Got: " + names);
+        Assertions.assertTrue(names.contains("drinking"), "F-SLREGEX-R006: 'drinking' must be in result. Got: " + names);
+        Assertions.assertTrue(names.contains("singing"),  "F-SLREGEX-R006: 'singing' must be in result. Got: " + names);
+        // Verify ascending cocaRank order among matched lemmas: running(100) < drinking(500) < singing(900)
+        int runningIdx  = names.indexOf("running");
+        int drinkingIdx = names.indexOf("drinking");
+        int singingIdx  = names.indexOf("singing");
+        Assertions.assertTrue(runningIdx < drinkingIdx,
+                "F-SLREGEX-R006: 'running' (cocaRank=100) must appear before 'drinking' (cocaRank=500). " +
+                "Positions: running=" + runningIdx + " drinking=" + drinkingIdx);
+        Assertions.assertTrue(drinkingIdx < singingIdx,
+                "F-SLREGEX-R006: 'drinking' (cocaRank=500) must appear before 'singing' (cocaRank=900). " +
+                "Positions: drinking=" + drinkingIdx + " singing=" + singingIdx);
+    }
+
+    @Test
+    @DisplayName("should apply the limit after the regex filter so it caps only lemmas that already matched the pattern")
+    @Tag("FEAT-SLREGEX")
+    @Tag("F-SLREGEX-R007")
+    public void shouldApplyTheLimitAfterTheRegexFilterSoItCapsOnlyLemmasThatAlreadyMatchedThePattern() {
+        // F-SLREGEX-R007: limit is applied AFTER regex filtering.
+        // Fixture: 6 lemmas ending in "ing" + 4 non-"ing" lemmas. Pattern "ing$" leaves 6 matches.
+        // limit=3 must cap the result at 3 of the 6 matching lemmas (the 3 with lowest cocaRank).
+        String quizId = "quiz-slregex-r007";
+        // 6 lemmas matching "ing$", ordered by cocaRank so the port can pick top-3
+        AbsentLemma running  = buildAbsentLemma("running",  "VERB", 100);
+        AbsentLemma singing  = buildAbsentLemma("singing",  "VERB", 200);
+        AbsentLemma drinking = buildAbsentLemma("drinking", "VERB", 300);
+        AbsentLemma jumping  = buildAbsentLemma("jumping",  "VERB", 400);
+        AbsentLemma eating   = buildAbsentLemma("eating",   "VERB", 500);
+        AbsentLemma sleeping = buildAbsentLemma("sleeping", "VERB", 600);
+        // 2 non-matching lemmas
+        AbsentLemma walk     = buildAbsentLemma("walk",     "VERB", 50);
+        AbsentLemma run      = buildAbsentLemma("run",      "VERB", 75);
+
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-slregex-r007", "A1 Milestone", null),
+                buildMilestoneDiagnoses(CefrLevel.A1,
+                        List.of(running, singing, drinking, jumping, eating, sleeping, walk, run)),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        // limit=3 with regex "ing$" — must return exactly 3 of the 6 matching lemmas
+        SuggestedLemmaQueryResult result = sut.query(report, task,
+                criteriaWithRegex(Optional.of(3), Optional.empty(), Optional.empty(), false, Optional.of("ing$")));
+
+        List<SuggestedLemma> lemmas = result.getSuggestedLemmas();
+        List<String> names = lemmas.stream().map(SuggestedLemma::getLemma).toList();
+
+        // Exactly limit=3 lemmas returned
+        Assertions.assertEquals(3, lemmas.size(),
+                "F-SLREGEX-R007: limit=3 must cap results at 3 among the 6 matching lemmas. Got: " + names);
+        // None of the non-matching lemmas must appear
+        Assertions.assertFalse(names.contains("walk"),
+                "F-SLREGEX-R007: 'walk' (no 'ing$') must NOT appear. Got: " + names);
+        Assertions.assertFalse(names.contains("run"),
+                "F-SLREGEX-R007: 'run' (no 'ing$') must NOT appear. Got: " + names);
+        // All returned lemmas must match "ing$"
+        lemmas.forEach(l -> Assertions.assertTrue(l.getLemma().endsWith("ing"),
+                "F-SLREGEX-R007: every returned lemma must end in 'ing' (match regex 'ing$'). Got: " + l.getLemma()));
+    }
+
+    @Test
+    @DisplayName("should reject the query with a clear validation when the regex pattern is malformed")
+    @Tag("FEAT-SLREGEX")
+    @Tag("F-SLREGEX-R008")
+    public void shouldRejectTheQueryWithAClearValidationWhenTheRegexPatternIsMalformed() {
+        // F-SLREGEX-R008: a syntactically invalid pattern must cause query rejection via
+        // SuggestedLemmaQueryRejectedException — NOT an empty list and NOT a raw PatternSyntaxException.
+        // Two examples of invalid patterns: "[a-" (unclosed character class) and "(" (unclosed group).
+        String quizId = "quiz-slregex-r008";
+        AbsentLemma run = buildAbsentLemma("run", "VERB", 200);
+
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-slregex-r008", "A1 Milestone", null),
+                buildMilestoneDiagnoses(CefrLevel.A1, List.of(run)),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        // Invalid pattern 1: unclosed character class "[a-"
+        Assertions.assertThrows(SuggestedLemmaQueryRejectedException.class, () ->
+                sut.query(report, task, criteriaWithRegex(
+                        Optional.empty(), Optional.empty(), Optional.empty(), false, Optional.of("[a-"))),
+                "F-SLREGEX-R008: invalid pattern '[a-' must throw SuggestedLemmaQueryRejectedException");
+
+        // Invalid pattern 2: unclosed group "("
+        Assertions.assertThrows(SuggestedLemmaQueryRejectedException.class, () ->
+                sut.query(report, task, criteriaWithRegex(
+                        Optional.empty(), Optional.empty(), Optional.empty(), false, Optional.of("("))),
+                "F-SLREGEX-R008: invalid pattern '(' must throw SuggestedLemmaQueryRejectedException");
+    }
+
+    @Test
+    @DisplayName("should return an empty lemma list with a functional explanation and no error when no candidate lemma matches the regex pattern")
+    @Tag("FEAT-SLREGEX")
+    @Tag("F-SLREGEX-R009")
+    public void shouldReturnAnEmptyLemmaListWithAFunctionalExplanationAndNoErrorWhenNoCandidateLemmaMatchesTheRegexPattern() {
+        // F-SLREGEX-R009: when a valid pattern matches none of the candidates, the result is an
+        // empty list — not an error and not an exception. The level is still reported in the result.
+        String quizId = "quiz-slregex-r009";
+        AbsentLemma run  = buildAbsentLemma("run",  "VERB", 200);
+        AbsentLemma walk = buildAbsentLemma("walk", "VERB", 400);
+
+        AuditReport report = buildReport(
+                new AuditableMilestone(List.of(), "ms-slregex-r009", "B1 Milestone", null),
+                buildMilestoneDiagnoses(CefrLevel.B1, List.of(run, walk)),
+                buildQuiz(quizId),
+                new DefaultQuizDiagnoses());
+        RefinementTask task = buildLemmaAbsenceTask(quizId);
+
+        // Pattern "xyz" does not appear in "run" or "walk" — a valid but non-matching regex
+        SuggestedLemmaQueryResult result = sut.query(report, task,
+                criteriaWithRegex(Optional.empty(), Optional.empty(), Optional.empty(), false, Optional.of("xyz")));
+
+        // No exception must be thrown — the call above would have propagated it if thrown.
+        Assertions.assertNotNull(result,
+                "F-SLREGEX-R009: result must not be null when no lemma matches the regex");
+        Assertions.assertTrue(result.getSuggestedLemmas().isEmpty(),
+                "F-SLREGEX-R009: valid pattern with no matches must return an empty list (not an error). " +
+                "Got: " + result.getSuggestedLemmas().stream().map(SuggestedLemma::getLemma).toList());
+        // The effective level must still be reported for traceability (parity with R012/R009 in prior features)
+        Assertions.assertEquals(CefrLevel.B1, result.getCefrLevel(),
+                "F-SLREGEX-R009: the effective level must still be reported even when no lemmas match the regex");
     }
 }

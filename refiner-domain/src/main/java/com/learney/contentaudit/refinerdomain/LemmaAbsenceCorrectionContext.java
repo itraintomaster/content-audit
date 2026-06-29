@@ -45,6 +45,10 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
 
     private SentenceMode sentenceMode;
 
+    private List<String> exerciseQuizzes;
+
+    private String nodeId;
+
     public LemmaAbsenceCorrectionContext() {
     }
 
@@ -53,7 +57,8 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
             CefrLevel cefrLevel, List<MisplacedLemmaContext> misplacedLemmas,
             List<SuggestedLemma> suggestedLemmas, String quizSentence, Integer tokenCount,
             Integer targetMin, Integer targetMax, Integer delta, LengthDirection lengthDirection,
-            String sourceAuditId, SentenceMode sentenceMode) {
+            String sourceAuditId, SentenceMode sentenceMode, List<String> exerciseQuizzes,
+            String nodeId) {
         this.taskId = taskId;
         this.sentence = sentence;
         this.translation = translation;
@@ -71,6 +76,8 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
         this.lengthDirection = lengthDirection;
         this.sourceAuditId = sourceAuditId;
         this.sentenceMode = sentenceMode;
+        this.exerciseQuizzes = exerciseQuizzes;
+        this.nodeId = nodeId;
     }
 
     public String getTaskId() {
@@ -209,6 +216,22 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
         this.sentenceMode = sentenceMode;
     }
 
+    public List<String> getExerciseQuizzes() {
+        return this.exerciseQuizzes;
+    }
+
+    public void setExerciseQuizzes(List<String> exerciseQuizzes) {
+        this.exerciseQuizzes = exerciseQuizzes;
+    }
+
+    public String getNodeId() {
+        return this.nodeId;
+    }
+
+    public void setNodeId(String nodeId) {
+        this.nodeId = nodeId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -230,11 +253,13 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
                     && Objects.equals(this.delta, that.delta)
                     && Objects.equals(this.lengthDirection, that.lengthDirection)
                     && Objects.equals(this.sourceAuditId, that.sourceAuditId)
-                    && Objects.equals(this.sentenceMode, that.sentenceMode);
+                    && Objects.equals(this.sentenceMode, that.sentenceMode)
+                    && Objects.equals(this.exerciseQuizzes, that.exerciseQuizzes)
+                    && Objects.equals(this.nodeId, that.nodeId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskId, sentence, translation, knowledgeTitle, knowledgeInstructions, topicLabel, cefrLevel, misplacedLemmas, suggestedLemmas, quizSentence, tokenCount, targetMin, targetMax, delta, lengthDirection, sourceAuditId, sentenceMode);
+        return Objects.hash(taskId, sentence, translation, knowledgeTitle, knowledgeInstructions, topicLabel, cefrLevel, misplacedLemmas, suggestedLemmas, quizSentence, tokenCount, targetMin, targetMax, delta, lengthDirection, sourceAuditId, sentenceMode, exerciseQuizzes, nodeId);
     }
 }

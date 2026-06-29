@@ -82,6 +82,7 @@ import picocli.CommandLine.Parameters;
                 "  # Query dynamic suggested-lemmas for a task during review",
                 "  content-audit get suggested-lemmas <taskId> --limit 5 --part-of-speech NOUN",
                 "  content-audit get suggested-lemmas <taskId> --level B1",
+                "  content-audit get suggested-lemmas <taskId> --regex 'ing$' --limit 10",
         }
 )
 final class GetCmd implements GetCommand, Callable<Integer> {
@@ -150,6 +151,15 @@ final class GetCmd implements GetCommand, Callable<Integer> {
             defaultValue = "false")
     private boolean includeExposed;
 
+    @Option(names = {"--regex"},
+            description = {
+                "For 'suggested-lemmas': filter lemmas whose text matches this regex.",
+                "Partial/grep-like match (anchor with ^ and $), case-insensitive.",
+                "Matches the lemma text only (not part-of-speech or other fields).",
+                "Examples: 'ing$' (suffix), '^un' (prefix), 'tt' (substring)."
+            })
+    private String regex;
+
     private ImpactPreviewStore impactPreviewStore;
 
     private ImpactPreviewFormatter impactPreviewFormatter;
@@ -198,7 +208,7 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
                 SuggestedLemmasFilter slFilter = new SuggestedLemmasFilter(
                         Optional.ofNullable(limit),
                         Optional.ofNullable(partOfSpeech),
-                        Optional.ofNullable(level), includeExposed
+                        Optional.ofNullable(level), includeExposed, Optional.ofNullable(regex)
                 );
                 return get(resource, name, slFilter);
             }
@@ -1315,8 +1325,9 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
             Optional<com.learney.contentaudit.auditdomain.CefrLevel> queryLevel =
                     filter != null ? filter.getLevel() : Optional.empty();
             boolean queryIncludeExposed = filter != null && filter.isIncludeExposed();
+            Optional<String> queryRegex = filter != null ? filter.getRegex() : Optional.empty();
             SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
-                    queryLimit, queryPartOfSpeech, queryLevel, queryIncludeExposed);
+                    queryLimit, queryPartOfSpeech, queryLevel, queryIncludeExposed, queryRegex);
             result = suggestedLemmaQueryPort.query(report, task, criteria);
         } catch (com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryRejectedException e) {
             System.err.println("Suggested lemma query rejected for task '" + e.getTaskId()

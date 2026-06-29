@@ -110,6 +110,14 @@ class DefaultCorrectionContextJsonMapper implements CorrectionContextJsonMapper 
                 .collect(Collectors.toList()));
         // F-SMODE-R006: preserve sentence mode so the override round-trip retains the knowledge phrase mode
         map.put("sentenceMode", ctx.getSentenceMode() != null ? ctx.getSentenceMode().name() : null);
+        // exerciseQuizzes: sibling quizSentences — serialized as array so the override round-trip is faithful
+        List<String> siblings = ctx.getExerciseQuizzes();
+        map.put("exerciseQuizzes", siblings == null ? List.of() : siblings.stream()
+                .filter(s -> s != null && !s.isBlank())
+                .collect(Collectors.toList()));
+        // nodeId: quiz node identity — preserved so the override round-trip can re-bind the
+        // suggested-lemmas session to the real node (else get_suggested_lemmas returns []).
+        map.put("nodeId", ctx.getNodeId());
         return map;
     }
 }

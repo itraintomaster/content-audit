@@ -33,7 +33,8 @@ public class DefaultSuggestedLemmaAgentToolTest {
                 Optional.of(5),
                 Optional.of("verb"),
                 Optional.of(CefrLevel.A1),
-                false
+                false,
+                Optional.empty()
         );
 
         SuggestedLemmaQueryResult expectedResult = new SuggestedLemmaQueryResult(

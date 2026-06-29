@@ -4,14 +4,13 @@ kind: agent
 strategy: react
 label: Generate Candidate
 description: |
-  Fase de generación (R001–R004). CORRIGE el quiz dado (no inventa uno nuevo)
-  en el DSL de quizSentence, reemplazando los misplaced lemmas por vocabulario
-  del nivel, refinable con la ÚNICA tool `get_suggested_lemmas` (R002). El
-  presupuesto de tool es max_tool_calls; agotarlo NO es falla (R004). En un
-  reintento, el feedback del intento previo llega como mensaje de usuario
-  ({carryForward}, cargado por load_context) y DEBE corregirse (R010).
-tools:
-  - get_suggested_lemmas   # ÚNICA tool durante la generación (R001/R002)
+  Fase de generación. CORRIGE el quiz dado (no inventa uno nuevo) en el DSL de
+  quizSentence, reemplazando los misplaced lemmas por el VOCABULARIO YA CURADO
+  para este ejercicio ({curatedWords}, producido por curate_lemmas + validado por
+  finalize_curation). Este nodo NO tiene tool: la curación de vocabulario es
+  responsabilidad de curate_lemmas; generate solo construye la oración con el pool
+  curado. En un reintento, el feedback del intento previo llega como mensaje de
+  usuario ({carryForward}, cargado por load_context) y DEBE corregirse (R010).
 dependencies:
   - taskId
   - cefrLevel
@@ -23,11 +22,11 @@ dependencies:
   - topicLabel
   - misplacedLemmas
   - suggestedWords
+  - exerciseQuizzes
   - lengthGuidance
   - maxSuggestedLemmaRequests
 budgets:
   max_iterations: 12
-  max_tool_calls: "max(1, {maxSuggestedLemmaRequests})"
   max_attempts: "max(1, {maxEvalRetries}) + 1"
 completion:
   produces:
@@ -49,6 +48,7 @@ nuevo, NO cambiás de tema: tomás EXACTAMENTE el quiz que te dan y lo mejorás.
 1. **Respetá el TIPO de ejercicio original.** Mirá el `quizSentence` original: si es una oración con un hueco, tu candidato también es una oración con sentido (sujeto + predicado). Si es de otro tipo (una transformación, un par `verbo → forma`, una construcción por cues, etc.), seguí ESE mismo tipo/molde — NO lo fuerces a oración. En todos los casos mantené el fenómeno gramatical que el ejercicio practica y la consigna del `knowledge`.
 2. **Si recibís "Feedback del intento anterior" (más abajo), está PROHIBIDO devolver el mismo candidato u otro casi igual.** Cambiá sustancialmente el ejercicio (otro sujeto/contexto/vocabulario) Y corregí cada punto del feedback. Devolver lo mismo es un fallo.
 3. **Reutilizá la respuesta finita del original.** Mirá la respuesta `[...]` del `quizSentence` original. Si pertenece a un conjunto CERRADO/FINITO (p.ej. formas de *to be*: am/is/are/was/were; contabilidad: countable/uncountable/singular countable/plural countable; existenciales: there is/there are; artículos: a/an/the; demostrativos: this/that/these/those; auxiliares: do/does/did, have/has; cuantificadores: some/any, much/many) Y el ejercicio admite seguir usando esa misma respuesta, entonces tu candidato DEBE usar la MISMA respuesta `[...]`. Elegí la palabra/sujeto que reemplazás de modo que esa misma respuesta siga siendo correcta — NO cambies la categoría de la respuesta. Ej.: original `sadness ____ [uncountable]` → reemplazá por OTRO sustantivo incontable (water, music, advice, information…) manteniendo `[uncountable]`; NO pases a `[singular countable]`. Si la respuesta del original es de vocabulario abierto, o reutilizarla daría un ejercicio inválido/forzado, esta regla no aplica.
+4. **Diferenciate de los quizzes que YA existen en el ejercicio.** Más abajo te paso `otros quizzes del ejercicio`. Tu candidato NO debe ser prácticamente el mismo que alguno de ellos — nada de la misma oración con solo otra palabra en el hueco (para el alumno sería el mismo ejercicio). Cambiá sujeto/objeto/contexto/estructura para que quede claramente distinto, manteniendo el mismo fenómeno gramatical y molde.
 
 ## Formato DSL del quizSentence (obligatorio — el parser es estricto)
 
@@ -62,9 +62,10 @@ nuevo, NO cambiás de tema: tomás EXACTAMENTE el quiz que te dan y lo mejorás.
 
 ## Qué cambiar
 
-- Reemplazá los lemmas mal ubicados (`misplacedLemmas`) por vocabulario del nivel del ejercicio. Tenés `suggestedWords` como vocabulario preferido.
-- Si necesitás más opciones de vocabulario, usá `get_suggested_lemmas`. Acepta estos filtros (todos opcionales): nivel CEFR, categoría gramatical (`partOfSpeech`: NOUN/VERB/ADJ/ADV/…), límite de resultados, e incluir o no lemas ya expuestos. Pedí lo que necesites (p.ej. adjetivos del nivel A1). Si no podés consultar más, seguí con lo que ya tengas.
-- Si la respuesta es de conjunto finito (regla dura #3) y necesitás un reemplazo que la conserve, pedí vocabulario por categoría con `get_suggested_lemmas` (p.ej. `partOfSpeech: NOUN`) y elegí uno compatible con esa respuesta (p.ej. un sustantivo incontable si la respuesta es `[uncountable]`).
+- Reemplazá los lemmas mal ubicados (`misplacedLemmas`) por palabras del `vocabulario curado` (`{curatedWords}`): ya viene filtrado para lo que ESTE ejercicio necesita (p.ej. solo verbos, solo palabras que empiezan en vocal, solo formas en -ing). Elegí de ahí.
+- **Está RANKEADO: respetá el orden.** Los primeros son los de mayor prioridad pedagógica (vocabulario ausente/subexpuesto que conviene introducir). Preferí el PRIMERO que produzca un ejercicio válido y natural; bajá en la lista solo si los de arriba no encajan. No saltees a uno de más abajo por gusto.
+- Si la respuesta es de conjunto finito (regla dura #3), elegí del vocabulario curado una palabra compatible con esa respuesta (p.ej. un sustantivo incontable si la respuesta es `[uncountable]`).
+- Si el vocabulario curado no te alcanza, usá el mejor reemplazo del nivel que se te ocurra coherente con el fenómeno — en este nodo NO tenés tool para pedir más.
 - Mantené el mismo fenómeno gramatical (knowledge/instructions) y el mismo molde.
 - Longitud: el candidato debe quedar **DENTRO del rango esperado** que indica `lengthGuidance` (ver "longitud" abajo) — no importa si queda más corto o más largo que el original; lo que importa es estar dentro del rango.
 - Es una mejora real, no una copia.
@@ -76,6 +77,7 @@ nuevo, NO cambiás de tema: tomás EXACTAMENTE el quiz que te dan y lo mejorás.
 - Los hints `(...)` hacen el hueco resoluble desde el stem + hint.
 - El hueco ejercita el fenómeno del knowledge/instructions (p.ej. si es "be o do", el hueco debe ser be/do — NO otro verbo).
 - Si la respuesta del original es de conjunto finito/cerrado (regla dura #3) y el ejercicio admite reusarla, el candidato reutiliza esa MISMA respuesta `[...]` (no cambiaste la categoría de la respuesta).
+- El candidato es claramente distinto de los `otros quizzes del ejercicio` (no es la misma oración con otra palabra en el hueco).
 - Tipo/molde del original preservado; longitud dentro del rango de `lengthGuidance`; sin `[[...]]`; sin schema ajeno.
 
 ## Salida (CRÍTICO)
@@ -97,6 +99,7 @@ motivos. CORREGÍ EXACTAMENTE cada uno y no repitas el error:
 - Si menciona la longitud → ajustá el ejercicio para que quede DENTRO del rango esperado de `lengthGuidance` (si está por debajo, agregá contexto; si está por encima, acortá), sin cambiar el fenómeno gramatical ni el molde.
 - Si dice que el hueco no ejercita el fenómeno (p.ej. usa otro verbo en vez de be/do) → rehacelo para que el `____ [respuesta]` sea exactamente ese fenómeno.
 - Si dice que no reutilizaste la respuesta finita del original → elegí otra palabra/sujeto de modo que la MISMA respuesta `[...]` del original siga siendo correcta (no cambies la categoría de la respuesta).
+- Si dice que es demasiado parecido a un quiz que ya existe en el ejercicio → cambiá sujeto/objeto/contexto/estructura para que sea claramente distinto; no alcanza con cambiar la palabra del hueco.
 
 ## El quiz a corregir (este, no otro)
 
@@ -107,7 +110,8 @@ motivos. CORREGÍ EXACTAMENTE cada uno y no repitas el error:
 - knowledge: {knowledgeTitle} — {knowledgeInstructions}
 - topic: {topicLabel}
 - lemmas mal ubicados (reemplazalos): {misplacedLemmas}
-- vocabulario preferido: {suggestedWords}
+- vocabulario curado para este ejercicio (elegí de acá): {curatedWords}
+- otros quizzes del ejercicio (NO te parezcas a estos; vacío = no hay otros): {exerciseQuizzes}
 - longitud: {lengthGuidance}
 
 Emití SOLO el JSON `{"quizSentence": "...", "translation": "..."}`.

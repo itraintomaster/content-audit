@@ -77,7 +77,8 @@ public class FCslatdcJ005JourneyTest {
                 Optional.of(3),
                 Optional.of("NOUN"),
                 Optional.of(CefrLevel.A1),
-                false);
+                false,
+                Optional.empty());
     }
 
     // -----------------------------------------------------------------------

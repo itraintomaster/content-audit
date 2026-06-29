@@ -12,5 +12,5 @@ description: |
   `length_ok` (+ detalle) en el data bus; el routing lo decide route_verdict
   tras combinar con los evals de calidad en `tally`.
 edges:
-  - { to: eval_quality }
+  - { to: eval_distinct }
 ---

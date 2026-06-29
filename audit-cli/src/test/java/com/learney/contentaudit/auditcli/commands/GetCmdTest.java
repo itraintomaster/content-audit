@@ -1674,7 +1674,7 @@ public class GetCmdTest {
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null, null, null, null, null, null,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -1728,7 +1728,7 @@ public class GetCmdTest {
                         new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null, null, null, null, null, null,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -1793,7 +1793,7 @@ public class GetCmdTest {
                 List.of(negotiateLemma),
                 List.of(),
                 null, null, null, null, null, null,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -1861,7 +1861,7 @@ public class GetCmdTest {
                         new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null),
                         new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89, null, null, null)),
                 null, null, null, null, null, null,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -1971,7 +1971,7 @@ public class GetCmdTest {
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
                 List.of(),
                 null, null, null, null, null, null,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2039,7 +2039,7 @@ public class GetCmdTest {
                         new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null, null, null, null, null, null,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2100,7 +2100,7 @@ public class GetCmdTest {
                         new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
                 List.of(),
                 null, null, null, null, null, null,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2165,7 +2165,7 @@ public class GetCmdTest {
                         new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null),
                         new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89, null, null, null)),
                 null, null, null, null, null, null,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2224,7 +2224,7 @@ public class GetCmdTest {
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
                 List.of(),
                 null, null, null, null, null, null,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2686,7 +2686,7 @@ public class GetCmdTest {
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 dsl, null, null, null, null, null,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2748,7 +2748,7 @@ public class GetCmdTest {
                 List.of(new MisplacedLemmaContext("great", "ADJ", CefrLevel.A2, CefrLevel.A1, 100)),
                 List.of(new SuggestedLemma("nice", "ADJ", "COMPLETELY_ABSENT", 75, null, null, null)),
                 "He ____ [is|'s] (to be) great.", null, null, null, null, null,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3034,7 +3034,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 10, 5, 8, 2, LengthDirection.SHORTEN,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3107,7 +3107,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 10, 5, 8, 2, LengthDirection.SHORTEN,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3173,7 +3173,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("play", "VERB", "APPEARS_TOO_LATE", 78, null, null, null)),
                 null,
                 6, 5, 8, 0, LengthDirection.KEEP_SAME,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3242,7 +3242,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 3, 5, 8, -2, LengthDirection.LENGTHEN,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3314,7 +3314,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 null, null, null, null, LengthDirection.UNKNOWN,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3380,7 +3380,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 10, 5, 8, 2, LengthDirection.SHORTEN,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3445,7 +3445,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 10, 5, 8, 2, LengthDirection.SHORTEN,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3511,7 +3511,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("play", "VERB", "APPEARS_TOO_LATE", 78, null, null, null)),
                 null,
                 6, 5, 8, 0, LengthDirection.KEEP_SAME,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3577,7 +3577,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 3, 5, 8, -2, LengthDirection.LENGTHEN,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3643,7 +3643,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 null, null, null, null, LengthDirection.UNKNOWN,
-                null, null
+                null, null, List.of(), "quiz-node-001"
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3711,7 +3711,7 @@ public class GetCmdTest {
 
         // Filter: limit=5, no partOfSpeech, no explicit level (inferred from task)
         SuggestedLemmasFilter filter = new SuggestedLemmasFilter(
-                Optional.of(5), Optional.empty(), Optional.empty(), false);
+                Optional.of(5), Optional.empty(), Optional.empty(), false, Optional.empty());
 
         // Act: dispatch through GetCommand.get — R002 requires NO new command type
         int exit = localCmd.get("suggested-lemmas", taskId, filter);
@@ -3720,5 +3720,57 @@ public class GetCmdTest {
         // and the port was invoked, proving the routing went through GetCmd.get
         assertEquals(0, exit);
         verify(suggestedLemmaQueryPort).query(any(), any(), any());
+    }
+
+    @Test
+    @DisplayName("should document the regex filter semantics in the suggested-lemmas help text covering what it matches partial grep-like matching case-insensitivity and at least one example")
+    @Tag("FEAT-SLREGEX")
+    @Tag("F-SLREGEX-R010")
+    public void shouldDocumentTheRegexFilterSemanticsInTheSuggestedlemmasHelpTextCoveringWhatItMatchesPartialGreplikeMatchingCaseinsensitivityAndAtLeastOneExample() {
+        // F-SLREGEX-R010: the --help output for GetCmd must document the semantics of --regex:
+        //   1. What it matches: the pattern is evaluated against the lemma TEXT (not PoS or other fields).
+        //   2. Partial / grep-like: the match is partial (not anchored); ^ and $ anchor it.
+        //   3. Case-insensitive: the match ignores case differences.
+        //   4. At least one example (e.g. "ing$", "^un", or "tt").
+        //
+        // This test generates the picocli usage/help message from GetCmd and verifies that the
+        // --regex option description communicates each of those four aspects.
+        // When production code has not yet added the --regex option description, this test will fail — that is
+        // the expected TDD state (development will make it green by adding the option with proper description).
+        picocli.CommandLine commandLine = new picocli.CommandLine(cmd);
+        java.io.ByteArrayOutputStream buf = new java.io.ByteArrayOutputStream();
+        java.io.PrintWriter writer = new java.io.PrintWriter(buf);
+        commandLine.usage(writer);
+        writer.flush();
+        String helpText = buf.toString().toLowerCase(java.util.Locale.ROOT);
+
+        // 1. What it matches: must mention matching against lemma text / form of the lemma / suggested word
+        // (the exact wording is not prescribed; check for key concepts in lowercase)
+        assertTrue(helpText.contains("lema") || helpText.contains("lemma") || helpText.contains("text") || helpText.contains("forma"),
+                "F-SLREGEX-R010: help text must mention what the pattern is matched against " +
+                "(lemma text / forma / text). Got: " + helpText.substring(0, Math.min(helpText.length(), 1000)));
+
+        // 2. Partial / grep-like: must mention partial match, grep-like, or anchoring with ^ and $
+        boolean mentionsPartialOrGrep = helpText.contains("parcial") || helpText.contains("grep")
+                || helpText.contains("partial") || helpText.contains("cualquier")
+                || (helpText.contains("^") && helpText.contains("$"));
+        assertTrue(mentionsPartialOrGrep,
+                "F-SLREGEX-R010: help text must mention partial (grep-like) matching and/or ^ $ anchoring. " +
+                "Got: " + helpText.substring(0, Math.min(helpText.length(), 1000)));
+
+        // 3. Case-insensitive: must mention case-insensitive / mayúsculas / insensible
+        boolean mentionsCase = helpText.contains("case") || helpText.contains("may") || helpText.contains("insensible")
+                || helpText.contains("minúscula") || helpText.contains("insensitiv");
+        assertTrue(mentionsCase,
+                "F-SLREGEX-R010: help text must mention case-insensitive matching. " +
+                "Got: " + helpText.substring(0, Math.min(helpText.length(), 1000)));
+
+        // 4. At least one example: must show a concrete regex example
+        boolean hasExample = helpText.contains("ing$") || helpText.contains("^un") || helpText.contains("tt")
+                || helpText.contains("^cat$") || helpText.contains("e.g") || helpText.contains("ej:")
+                || helpText.contains("ejemplo") || helpText.contains("example");
+        assertTrue(hasExample,
+                "F-SLREGEX-R010: help text must include at least one regex example (e.g. 'ing$', '^un', 'tt'). " +
+                "Got: " + helpText.substring(0, Math.min(helpText.length(), 1000)));
     }
 }

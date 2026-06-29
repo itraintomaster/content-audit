@@ -69,20 +69,25 @@ verdicts  = read_json("verdicts.json", {}) or {}
 
 # length_ok lo publicó eval_length al data bus.
 length_ok = bool(data.get("length_ok", False))
+# distinct_ok lo publicó eval_distinct al data bus (eval #7). Default True: si la
+# señal falta (eval no corrió), no penalizamos el candidato.
+distinct_ok = bool(data.get("distinct_ok", True))
 
 def passed(key):
     v = verdicts.get(key) or {}
     return bool(v.get("pass", False))
 
-# Bloqueantes: #1 sense, #2 solvable, #3 length, #5 translation, #6 finite-reuse.
-# (#4 deseable.) #6 auto-pasa (N/A) cuando la respuesta no es de conjunto finito
-# o reutilizarla no daría un ejercicio válido — el juez lo emite como pass:true.
+# Bloqueantes: #1 sense, #2 solvable, #3 length, #5 translation, #6 finite-reuse,
+# #7 distinción. (#4 deseable.) #6 auto-pasa (N/A) cuando la respuesta no es de
+# conjunto finito o reutilizarla no daría un ejercicio válido — el juez lo emite
+# como pass:true. #7 auto-pasa cuando el ejercicio no tiene otros quizzes.
 blocking = {
     "eval1_sense":        passed("eval1_sense"),
     "eval2_solvable":     passed("eval2_solvable"),
     "eval3_length":       length_ok,
     "eval5_translation":  passed("eval5_translation"),
     "eval6_finite_reuse": passed("eval6_finite_reuse"),
+    "eval7_distinct":     distinct_ok,
 }
 all_blocking_pass = all(blocking.values())
 blocking_passed_count = sum(1 for ok in blocking.values() if ok)
@@ -102,10 +107,14 @@ for _k in _failed:
     if _k == "eval3_length":
         _tmin, _tmax = data.get("length_target_min", ""), data.get("length_target_max", "")
         if _tmin != "" and _tmax != "":
-            _reason = "length %s words out of expected range %s-%s" % (
-                data.get("length_candidate_words", "?"), _tmin, _tmax)
+            _reason = "length %s tokens out of expected range %s-%s" % (
+                data.get("length_candidate_tokens", "?"), _tmin, _tmax)
         else:
-            _reason = "length %s words does not meet the expected length" % data.get("length_candidate_words", "?")
+            _reason = "length %s tokens does not meet the expected length" % data.get("length_candidate_tokens", "?")
+    if _k == "eval7_distinct":
+        _reason = "too similar (%.0f%%) to an existing exercise quiz: %s" % (
+            float(data.get("distinct_max_similarity", 0.0)) * 100,
+            data.get("distinct_nearest", "") or "(unknown)")
     sys.stderr.write("[eval]   - %s: %s\n" % (_k, _reason or "(no reason)"))
 
 try:
@@ -163,14 +172,25 @@ if not all_blocking_pass:
         lines.append("- 🛑 REPETISTE EL MISMO CANDIDATO que ya fue rechazado. NO lo vuelvas a generar: "
                      "cambiá la oración (otro sujeto/contexto/vocabulario) Y corregí los puntos de abajo.")
     if not length_ok:
-        _cw = data.get('length_candidate_words', '?')
+        _cw = data.get('length_candidate_tokens', '?')
         _tmin, _tmax = data.get('length_target_min', ''), data.get('length_target_max', '')
         if _tmin != '' and _tmax != '':
-            lines.append(f"- ❌ #3 longitud: el candidato ({_cw} palabras) está FUERA del rango esperado "
+            lines.append(f"- ❌ #3 longitud: el candidato ({_cw} tokens) está FUERA del rango esperado "
                          f"({_tmin}-{_tmax}). Ajustá la longitud para que quede DENTRO del rango "
                          f"(si está por debajo, agregá contexto; si está por encima, acortá).")
         else:
-            lines.append(f"- ❌ #3 longitud: el candidato ({_cw} palabras) no cumple la longitud esperada. Ajustá.")
+            lines.append(f"- ❌ #3 longitud: el candidato ({_cw} tokens) no cumple la longitud esperada. Ajustá.")
+    if not distinct_ok:
+        _near = data.get("distinct_nearest", "")
+        _sim = data.get("distinct_max_similarity", "")
+        _msg = "- ❌ #7 distinción: el candidato es demasiado parecido a un quiz que YA existe en el ejercicio"
+        if _sim != "":
+            _msg += f" (similitud {_sim})"
+        if _near:
+            _msg += f": «{_near}»"
+        _msg += (". Generá una oración claramente DISTINTA (otro sujeto/objeto/contexto/estructura); "
+                 "no alcanza con cambiar solo la palabra del hueco — el alumno vería el mismo ejercicio.")
+        lines.append(_msg)
     for key, label in [("eval1_sense","#1 sentido"),("eval2_solvable","#2 resoluble"),
                        ("eval5_translation","#5 traducción"),
                        ("eval6_finite_reuse","#6 reutilizar respuesta finita")]:

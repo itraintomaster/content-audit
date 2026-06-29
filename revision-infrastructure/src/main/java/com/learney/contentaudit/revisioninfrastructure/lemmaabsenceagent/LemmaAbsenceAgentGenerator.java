@@ -58,6 +58,8 @@ class LemmaAbsenceAgentGenerator implements LemmaAbsenceQuizCandidateGenerator {
      *   topicLabel            — context.getTopicLabel() (or "")
      *   misplacedLemmas       — formatted list: "&lt;lemma&gt; (expected level: X, found at: Y)" joined by ", " (or "none")
      *   lengthGuidance        — "current token count: N; target range: A-B tokens; delta: D tokens; direction: dir" (or "none")
+     *   sentenceMode          — "FILL"/"REWRITE" (or "") — eval_length forwards it to `content-audit tokens --mode`
+     *   exerciseQuizzes       — sibling quizSentences joined by "\n", one per line; empty string if none
      * </pre>
      *
      * <p><strong>Adapter↔graph contract (tool side):</strong>
@@ -95,12 +97,20 @@ class LemmaAbsenceAgentGenerator implements LemmaAbsenceQuizCandidateGenerator {
                         ? maxSuggestedLemmaRequests : 3));
 
         // Build tools map: exactly one entry — the suggested-lemmas tool (F-LASAG-R002).
-        com.learney.contentaudit.refinerdomain.RefinementTask minimalTask =
+        // The bound session must carry the REAL nodeId + nodeTarget: the query port locates the
+        // quiz node by (nodeId, nodeTarget) to resolve its diagnosis. With nulls the port finds no
+        // node and get_suggested_lemmas always returns an empty list (the tool looks "broken").
+        // nodeTarget is always QUIZ for LEMMA_ABSENCE; nodeId comes from the context (stamped by
+        // LemmaAbsenceContextResolver).
+        com.learney.contentaudit.refinerdomain.RefinementTask boundTask =
                 new com.learney.contentaudit.refinerdomain.RefinementTask(
-                        context.getTaskId(), null, null, null, null, 0, null);
+                        context.getTaskId(),
+                        com.learney.contentaudit.auditdomain.AuditTarget.QUIZ,
+                        context.getNodeId(),
+                        null, null, 0, null);
         com.learney.contentaudit.refinerdomain.SuggestedLemmaQuerySession session =
-                sessionFactory.bindForTask(context.getSourceAuditId(), minimalTask);
-        SuggestedLemmaAgentTool suggestedLemmaTool = new DefaultSuggestedLemmaAgentTool(session);
+                sessionFactory.bindForTask(context.getSourceAuditId(), boundTask);
+        SuggestedLemmaAgentTool suggestedLemmaTool = new SuggestedLemmaReactTool(session);
 
         java.util.Map<String, Object> tools = java.util.Map.of(
                 TOOL_NAME_SUGGESTED_LEMMAS, suggestedLemmaTool);
@@ -149,6 +159,8 @@ class LemmaAbsenceAgentGenerator implements LemmaAbsenceQuizCandidateGenerator {
      *   <li>{@code topicLabel} — context.getTopicLabel() (or "")</li>
      *   <li>{@code misplacedLemmas} — formatted list of MisplacedLemmaContext items (or "none")</li>
      *   <li>{@code lengthGuidance} — length guidance string when direction is known (or "none")</li>
+     *   <li>{@code sentenceMode} — "FILL"/"REWRITE" or "" (forwarded by eval_length.sh to `tokens --mode`)</li>
+     *   <li>{@code exerciseQuizzes} — sibling quizSentences joined by "\n"; "" if none (read by eval_distinct.sh)</li>
      * </ul>
      */
     private static java.util.Map<String, String> buildInputs(LemmaAbsenceCorrectionContext context) {
@@ -211,6 +223,22 @@ class LemmaAbsenceAgentGenerator implements LemmaAbsenceQuizCandidateGenerator {
             lengthGuidance = "none";
         }
         inputs.put("lengthGuidance", lengthGuidance);
+
+        // Sentence mode (FILL/REWRITE) — consumed by eval_length.sh, which forwards it to
+        // `content-audit tokens --mode` so the candidate is rendered/tokenized exactly as the
+        // audit rendered the original. Empty string → eval defaults to FILL.
+        inputs.put("sentenceMode",
+                context.getSentenceMode() != null ? context.getSentenceMode().name() : "");
+
+        // Sibling quizSentences joined by newline — consumed by eval_distinct.sh as inputs.exerciseQuizzes.
+        java.util.List<String> siblings = context.getExerciseQuizzes();
+        String exerciseQuizzes = "";
+        if (siblings != null && !siblings.isEmpty()) {
+            exerciseQuizzes = siblings.stream()
+                    .filter(s -> s != null && !s.isBlank())
+                    .collect(java.util.stream.Collectors.joining("\n"));
+        }
+        inputs.put("exerciseQuizzes", exerciseQuizzes);
 
         return inputs;
     }
