@@ -1,0 +1,75 @@
+code: FEAT-SLREGEX
+modules:
+- name: refiner-domain
+  packages:
+  - name: lemmasuggestion
+    implementations:
+    - name: LemmaAbsenceContextSuggestedLemmaQueryPort
+      handwrittenTests:
+      - name: should return the same suggested lemmas as a query without a regex when
+          no regex pattern is provided
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R001
+      - name: should match the regex pattern only against the suggested lemma text
+          and never against its partOfSpeech or other result fields
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R002
+      - name: should keep a suggested lemma when the pattern matches anywhere inside
+          the lemma text since the match is partial and not anchored
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R003
+      - name: should match the regex pattern against the lemma text case-insensitively
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R004
+      - name: should apply the regex as an additional filter that never reintroduces
+          lemmas excluded by the level partOfSpeech or exposure filters
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R005
+      - name: should preserve the recommendation priority order among the lemmas that
+          match the regex pattern
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R006
+      - name: should apply the limit after the regex filter so it caps only lemmas
+          that already matched the pattern
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R007
+      - name: should reject the query with a clear validation when the regex pattern
+          is malformed
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R008
+      - name: should return an empty lemma list with a functional explanation and
+          no error when no candidate lemma matches the regex pattern
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R009
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: GetCmd
+      handwrittenTests:
+      - name: should document the regex filter semantics in the suggested-lemmas help
+          text covering what it matches partial grep-like matching case-insensitivity
+          and at least one example
+        traceability:
+          feature: FEAT-SLREGEX
+          rule: F-SLREGEX-R010
+features:
+- id: FEAT-SLREGEX
+  journeys:
+  - id: F-SLREGEX-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-SLREGEX-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys

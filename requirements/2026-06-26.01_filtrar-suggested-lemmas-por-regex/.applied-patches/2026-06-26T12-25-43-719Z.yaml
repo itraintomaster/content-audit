@@ -1,0 +1,40 @@
+code: FEAT-SLREGEX
+description: "FEAT-SLREGEX: add optional regex text filter field to the suggested-lemmas\
+  \ query carriers (SuggestedLemmasFilter, SuggestedLemmaQueryCriteria), mirroring\
+  \ partOfSpeech optionality. No new interfaces/impls/modules/deps."
+modules:
+- name: audit-cli
+  models:
+  - name: SuggestedLemmasFilter
+    type: record
+    fields:
+    - name: regex
+      type: Optional<String>
+      description: "Patron de texto opcional para filtrar los SuggestedLemma por su\
+        \ forma superficial (F-SLREGEX-R002). Vacio (default) = sin filtrado textual;\
+        \ el comportamiento queda identico a FEAT-CSLATDC/FEAT-INCEXP (F-SLREGEX-R001).\
+        \ Coincidencia parcial estilo grep e insensible a la caja; el cliente ancla\
+        \ con ^ y $ (F-SLREGEX-R003, F-SLREGEX-R004). Espeja la optionality de partOfSpeech.\
+        \ GetCmd mapea este campo al carrier SuggestedLemmaQueryCriteria.regex (refiner-domain)\
+        \ al construir la consulta."
+      _change: add
+    _change: modify
+  _change: modify
+- name: refiner-domain
+  models:
+  - name: SuggestedLemmaQueryCriteria
+    type: record
+    fields:
+    - name: regex
+      type: Optional<String>
+      description: "Patron de texto opcional, evaluado unicamente contra el texto\
+        \ del SuggestedLemma (F-SLREGEX-R002). Vacio (default) = sin filtrado textual\
+        \ (F-SLREGEX-R001). Coincidencia parcial estilo grep, no anclada, insensible\
+        \ a mayusculas/minusculas (F-SLREGEX-R003, F-SLREGEX-R004). Filtro aditivo:\
+        \ se aplica sobre los candidatos que ya pasaron Level/PoS/condicion de exposicion,\
+        \ sin relajarlos, preservando el orden por prioridad; el limit recorta despues\
+        \ (F-SLREGEX-R005, F-SLREGEX-R006, F-SLREGEX-R007). Espeja la optionality\
+        \ de partOfSpeech."
+      _change: add
+    _change: modify
+  _change: modify
