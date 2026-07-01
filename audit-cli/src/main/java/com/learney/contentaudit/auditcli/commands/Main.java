@@ -510,7 +510,7 @@ class Main {
         // converter + tokenizer so the lemma-absence-agent length eval measures candidates exactly
         // as the audit does. Hand-wired helper (not a governed feature) — see TokensCmd Javadoc.
         cmd.addSubcommand("tokens", new picocli.CommandLine(
-                new TokensCmd(quizSentenceConverter, nlpTokenizer)));
+                new TokensCmd(quizSentenceConverter, nlpTokenizer, sentenceLengthConfig)));
 
         // get-consolidated — build and format the consolidated view (F-CDIFF-R001, R013 detail 3)
         NodeFieldDiffer nodeFieldDiffer = new DefaultNodeFieldDifferFactory().create();

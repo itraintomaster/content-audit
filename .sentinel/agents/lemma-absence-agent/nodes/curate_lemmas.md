@@ -88,7 +88,8 @@ Devuelve lemmas sugeridos para la task, ya rankeados por prioridad. Filtros
 - `limit`: máximo de resultados (subilo si necesitás más opciones).
 - `includeExposed`: `true` incluye también los lemmas ya expuestos = los **comunes
   y frecuentes** del nivel (make, write, ride…). Sin esto solo vienen los AUSENTES
-  (raros). Usalo cuando la respuesta debe ser una palabra común y natural.
+  (los que MEJORAN la cobertura). Dejalo en `false` por defecto; usá `true` SOLO
+  como fallback si sin él el pool queda vacío/insuficiente (ver paso 2).
 - `level`: CefrLevel explícito (si no, se infiere de la task).
 
 ## Procedimiento
@@ -107,15 +108,18 @@ Devuelve lemmas sugeridos para la task, ya rankeados por prioridad. Filtros
    los filtros del paso 1 (`partOfSpeech` y/o `regex`, `limit`, `level`). La
    semilla `suggestedWords` es solo una pista de contexto; el pool real lo traés
    de la tool. Esta llamada NO es opcional (ver REGLA DURA).
-   - **Por defecto la tool devuelve solo lemmas AUSENTES del nivel** (los que
-     conviene introducir). Para una transformación gramatical (p.ej. verbo→-ing)
-     suelen ser POCOS y raros. Si la respuesta debe ser una palabra **común y
-     natural** del nivel (el caso típico de reemplazar un lema mal ubicado),
-     **volvé a llamar la tool con `includeExposed: true`** para traer también los
-     verbos/sustantivos comunes (make, write, ride, …). Mejor 2 llamadas (ausentes
-     + comunes) que un pool pobre.
-   - Si aún trae pocas opciones, subí `limit` y reintentá. Tenés presupuesto para
-     varias llamadas.
+   - **Primera llamada SIN `includeExposed`.** Por defecto la tool devuelve solo
+     los lemmas AUSENTES del nivel — que son EXACTAMENTE los que hay que introducir
+     para MEJORAR la cobertura del curso. Ese es el pool que querés: NO pongas
+     `includeExposed: true` en la primera llamada.
+   - **Si vienen pocos, primero ampliá la búsqueda SIN exponer:** subí `limit` y/o
+     aflojá el `regex`. Muchas veces hay ausentes suficientes y solo falta pedir
+     más. Tenés presupuesto para varias llamadas.
+   - **`includeExposed: true` es solo FALLBACK.** Recurrí a él ÚNICAMENTE si, tras
+     lo anterior, la búsqueda de ausentes vuelve VACÍA o con muy pocas opciones
+     válidas para el ejercicio. Recién ahí volvé a llamar con `includeExposed: true`
+     para sumar los lemmas comunes ya expuestos (make, write, ride…). Ojo: los ya
+     expuestos NO mejoran la cobertura, así que son el último recurso, no el primero.
 3. **NO armás vos la lista de palabras.** El pool lo construye el sistema
    AUTOMÁTICAMENTE con lo que devolvió la tool, **en el ORDEN en que la tool lo
    rankeó** (ausentes/subexpuestos primero, luego por frecuencia). No reordenes, no
@@ -157,7 +161,8 @@ SIN texto antes/después:
 - vocabulario pre-rankeado (semilla): {suggestedWords}
 
 Clasificá qué necesita el ejercicio, **llamá obligatoriamente** get_suggested_lemmas
-con filtros dirigidos (incluí `includeExposed: true` si la respuesta debe ser una
-palabra común; no emitas el JSON sin haberla llamado — REGLA DURA), y emití SOLO el
-JSON de clasificación + `exclude` (el sistema arma el pool desde el resultado de la
-tool, en orden; vos no listás `words`).
+con filtros dirigidos (primera llamada SIN `includeExposed` — trae los ausentes que
+mejoran cobertura; escalá a `includeExposed: true` solo si vuelve vacía/insuficiente;
+no emitas el JSON sin haberla llamado — REGLA DURA), y emití SOLO el JSON de
+clasificación + `exclude` (el sistema arma el pool desde el resultado de la tool, en
+orden; vos no listás `words`).
