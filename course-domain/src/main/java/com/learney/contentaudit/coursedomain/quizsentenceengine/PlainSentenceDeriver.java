@@ -139,12 +139,16 @@ public PlainSentenceDeriver(WhitespaceNormalizer whitespaceNormalizer) {
     /**
      * Returns true when {@code text} is a scaffold sentence: non-blank text that ends with
      * sentence-terminal punctuation (., ?, !), possibly followed by whitespace.
+     *
+     * <p>Inline hints are stripped before matching (F-SMODE-R004): a trailing hint block
+     * (e.g. {@code "(every Friday) "}) must not mask terminal punctuation that precedes it.
      */
     private boolean isScaffoldSentence(String text) {
         if (text == null || text.isBlank()) {
             return false;
         }
-        return SENTENCE_END_PATTERN.matcher(text).matches();
+        String withoutHints = HINT_PATTERN.matcher(text).replaceAll("");
+        return SENTENCE_END_PATTERN.matcher(withoutHints).matches();
     }
 
     /**

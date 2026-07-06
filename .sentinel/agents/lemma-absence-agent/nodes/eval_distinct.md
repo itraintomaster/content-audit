@@ -13,5 +13,5 @@ description: |
   publica `distinct_ok` (+ el hermano más cercano y la similitud) en el data bus;
   el routing lo decide route_verdict tras combinar con los demás evals en `tally`.
 edges:
-  - { to: eval_quality }
+  - { to: eval_global_distinct }
 ---

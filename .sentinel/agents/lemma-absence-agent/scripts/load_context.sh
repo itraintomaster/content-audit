@@ -23,6 +23,18 @@ try:
 except Exception:
     carry = ""
 
+# Invalidar veredictos del intento anterior: cada vuelta de generate produce un
+# candidato NUEVO, y un verdicts.json remanente permitiría que (a) tally combine
+# el candidato nuevo con veredictos viejos si eval_quality se agota, y (b) la
+# completion `produces` de eval_quality pase con un archivo stale aunque el juez
+# no haya emitido nada. Primer intento: archivo ausente, no-op.
+try:
+    os.remove(os.path.join(run_dir, "verdicts.json"))
+except FileNotFoundError:
+    pass
+except Exception as e:
+    sys.stderr.write("load_context: no pude borrar verdicts.json stale: %s\n" % e)
+
 # curation_cached: ¿ya corrió la curación de vocabulario en este run? finalize_curation
 # escribe curated_lemmas.json con el pool resultante. Si existe y tiene palabras, los
 # reintentos saltean la curación (route_curate) y reusan el pool. Primer intento:

@@ -979,4 +979,26 @@ public class DefaultQuizSentenceConverterTest {
         assertFalse(canonical.toLowerCase().contains("should"),
                 "el token 'should' de la oracion fuente no debe aparecer en la frase canonica REWRITE: " + canonical);
     }
+
+    @Test
+    @DisplayName("should exclude the source TEXT scaffold from the REWRITE canonical phrase even when an inline hint sits between the scaffold and the blank")
+    @Tag("FEAT-SMODE")
+    @Tag("F-SMODE-R004")
+    public void shouldExcludeTheSourceTEXTScaffoldFromTheREWRITECanonicalPhraseEvenWhenAnInlineHintSitsBetweenTheScaffoldAndTheBlank() {
+        // R004 (regresion): un hint inline "(every Friday)" entre la oracion fuente y el blank
+        // no debe enmascarar la puntuacion terminal de la oracion fuente. Antes del fix,
+        // isScaffoldSentence no reconocia el TEXT "We eat cake. (every Friday) " como andamio
+        // porque el texto terminaba en el hint, no en puntuacion, y la fuente quedaba incluida.
+        String quizSentence = "We eat cake. (every Friday) ____ [We eat cake every Friday.]";
+
+        FormEntity parsed = converter.parse(quizSentence);
+        List<String> result = converter.toPlainSentences(parsed, SentenceMode.REWRITE);
+
+        assertNotNull(result, "el resultado no debe ser null");
+        assertFalse(result.isEmpty(), "el resultado no debe estar vacio");
+        String canonical = normalize(result.get(0));
+
+        assertEquals("We eat cake every Friday.", canonical,
+                "la frase canonica REWRITE debe excluir la oracion fuente y su hint inline: " + canonical);
+    }
 }

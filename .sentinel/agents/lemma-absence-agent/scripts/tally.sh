@@ -53,6 +53,14 @@ def _parse_json_lenient(raw):
                         return json.loads(text[start:i + 1])
                     except Exception:
                         return None
+        # 4) depth > 0: el objeto nunca cerró (el juez pierde `}` finales a veces)
+        #    → reparar apendeando las llaves de cierre faltantes.
+        if depth > 0:
+            candidate = text[start:].rstrip().rstrip(",")
+            try:
+                return json.loads(candidate + "}" * depth)
+            except Exception:
+                return None
     return None
 
 def read_json(name, default=None):
@@ -65,13 +73,26 @@ def read_json(name, default=None):
     return parsed if parsed is not None else default
 
 candidate = read_json("candidate.json", {}) or {}
-verdicts  = read_json("verdicts.json", {}) or {}
+# gate_verdicts ya validó/canonicalizó verdicts.json en el camino normal. Si acá
+# no parsea o falta (juez agotado tras reintentos, malformado terminal), NO es
+# culpa del candidato: los evals LLM cuentan como no-pasados (conservador, no se
+# emite sin veredicto real) pero el carry-forward debe decir la verdad — un
+# feedback falso («tu oración no tiene sentido») desorienta al generador.
+verdicts = read_json("verdicts.json", None)
+verdicts_readable = isinstance(verdicts, dict) and bool(verdicts)
+if not verdicts_readable:
+    sys.stderr.write("[eval] verdicts.json ausente/ilegible → evals LLM no evaluados (infra)\n")
+    verdicts = {}
 
 # length_ok lo publicó eval_length al data bus.
 length_ok = bool(data.get("length_ok", False))
 # distinct_ok lo publicó eval_distinct al data bus (eval #7). Default True: si la
 # señal falta (eval no corrió), no penalizamos el candidato.
 distinct_ok = bool(data.get("distinct_ok", True))
+# global_distinct_ok lo publicó eval_global_distinct (eval #8): el candidato no es
+# casi-idéntico a NINGÚN quiz del curso ni a otra propuesta pending del batch.
+# Default True: si la señal falta (eval no corrió / corpus ausente), no penaliza.
+global_distinct_ok = bool(data.get("global_distinct_ok", True))
 
 def passed(key):
     v = verdicts.get(key) or {}
@@ -88,6 +109,7 @@ blocking = {
     "eval5_translation":  passed("eval5_translation"),
     "eval6_finite_reuse": passed("eval6_finite_reuse"),
     "eval7_distinct":     distinct_ok,
+    "eval8_global_distinct": global_distinct_ok,
 }
 all_blocking_pass = all(blocking.values())
 blocking_passed_count = sum(1 for ok in blocking.values() if ok)
@@ -115,6 +137,11 @@ for _k in _failed:
         _reason = "too similar (%.0f%%) to an existing exercise quiz: %s" % (
             float(data.get("distinct_max_similarity", 0.0)) * 100,
             data.get("distinct_nearest", "") or "(unknown)")
+    if _k == "eval8_global_distinct":
+        _reason = "too similar (%.0f%%) to another course quiz [%s]: %s" % (
+            float(data.get("global_distinct_max_similarity", 0.0)) * 100,
+            data.get("global_distinct_nearest_level", "") or "?",
+            data.get("global_distinct_nearest", "") or "(unknown)")
     sys.stderr.write("[eval]   - %s: %s\n" % (_k, _reason or "(no reason)"))
 
 try:
@@ -137,6 +164,7 @@ try:
             "all_blocking_pass": all_blocking_pass,
             "failed": _failed,
             "pragmatism": pragmatism,
+            "verdicts_readable": verdicts_readable,
         }, ensure_ascii=False) + "\n")
 except Exception as _e:
     sys.stderr.write("[eval]   (could not append attempts.jsonl: %s)\n" % _e)
@@ -191,12 +219,34 @@ if not all_blocking_pass:
         _msg += (". Generá una oración claramente DISTINTA (otro sujeto/objeto/contexto/estructura); "
                  "no alcanza con cambiar solo la palabra del hueco — el alumno vería el mismo ejercicio.")
         lines.append(_msg)
-    for key, label in [("eval1_sense","#1 sentido"),("eval2_solvable","#2 resoluble"),
-                       ("eval5_translation","#5 traducción"),
-                       ("eval6_finite_reuse","#6 reutilizar respuesta finita")]:
-        v = verdicts.get(key) or {}
-        if not v.get("pass", False):
-            lines.append(f"- ❌ {label}: {v.get('reason','(sin detalle)')}")
+    if not global_distinct_ok:
+        _near = data.get("global_distinct_nearest", "")
+        _sim = data.get("global_distinct_max_similarity", "")
+        _lvl = data.get("global_distinct_nearest_level", "")
+        _msg = "- ❌ #8 distinción global: el candidato es casi idéntico a otro quiz que YA existe en el curso"
+        if _lvl:
+            _msg += f" (nivel {_lvl})"
+        if _sim != "":
+            _msg += f" [similitud {_sim}]"
+        if _near:
+            _msg += f": «{_near}»"
+        _msg += (". Generá una oración claramente DISTINTA (otro sujeto/objeto/contexto/vocabulario); "
+                 "el curso no debe tener dos ejercicios prácticamente iguales.")
+        lines.append(_msg)
+    if verdicts_readable:
+        for key, label in [("eval1_sense","#1 sentido"),("eval2_solvable","#2 resoluble"),
+                           ("eval5_translation","#5 traducción"),
+                           ("eval6_finite_reuse","#6 reutilizar respuesta finita")]:
+            v = verdicts.get(key) or {}
+            if not v.get("pass", False):
+                lines.append(f"- ❌ {label}: {v.get('reason','(sin detalle)')}")
+    else:
+        # Sin veredictos reales NO inventamos reproches: un feedback falso
+        # («tu oración no tiene sentido») empuja al generador a romper un
+        # candidato que quizás era correcto.
+        lines.append("- ⚠️ los evals de calidad (#1/#2/#5/#6) no pudieron ejecutarse en esta vuelta "
+                     "(problema de infraestructura del juez, NO de tu candidato). Si los demás puntos "
+                     "de arriba están resueltos, mantené tu candidato con ajustes mínimos.")
     prev = candidate.get("quizSentence", "")
     if prev:
         lines.append("")

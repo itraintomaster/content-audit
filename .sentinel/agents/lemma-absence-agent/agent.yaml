@@ -34,6 +34,9 @@ description: |
         ──▶ eval_quality (llm_call: evals #1 oración con sentido, #2 quiz
               resoluble, #4 pragmatismo [score, deseable], #5 traducción
               fiel — bloqueantes salvo #4)
+        ──▶ gate_verdicts (gate: valida la FORMA del verdicts.json del juez;
+              malformado ▶ eval_quality re-emite; al agotar su budget, el edge
+              `exhausted` de eval_quality degrada a tally sin veredictos)
         ──▶ tally        (script: combina veredictos, actualiza el champion,
               escribe carry_forward en fallo)
         ──▶ route_verdict (conditional)
@@ -82,7 +85,9 @@ nodes:
   - ./nodes/gate_candidate.md
   - ./nodes/eval_length.md
   - ./nodes/eval_distinct.md
+  - ./nodes/eval_global_distinct.md
   - ./nodes/eval_quality.md
+  - ./nodes/gate_verdicts.md
   - ./nodes/tally.md
   - ./nodes/route_verdict.md
   - ./nodes/emit.md

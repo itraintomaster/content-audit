@@ -16,16 +16,22 @@ description: |
   Emite verdicts.json; el combinado bloqueante/champion lo hace `tally`.
 budgets:
   max_tokens: 1200
-  # claude -p puede flakear (respuesta vacía/transporte); reintentos para
-  # absorber ruido transitorio antes de degradar.
-  max_attempts: 5
+  # claude -p puede flakear (respuesta vacía/transporte) y gate_verdicts devuelve
+  # acá los JSON malformados. OJO: max_attempts es presupuesto GLOBAL del nodo en
+  # el run, no por invocación — el juez corre una vez por vuelta de generate, así
+  # que debe escalar con maxEvalRetries (+ margen de flakes). Con un valor fijo
+  # menor (era 5), la última vuelta salteaba al juez por `exhausted` y tally
+  # combinaba el candidato NUEVO con los veredictos VIEJOS del intento anterior.
+  max_attempts: "max(1, {maxEvalRetries}) + 4"
 completion:
   produces:
     - kind: verdicts
       pointer: "{run_dir}/verdicts.json"
       required: true
 edges:
-  - { to: tally }
+  # gate_verdicts valida la FORMA del JSON del juez antes de que tally lo combine
+  # (malformado → failed → re-emite acá mismo).
+  - { to: gate_verdicts }
   # Si el juez no produce veredictos tras los reintentos, NO haltees el run:
   # degradá a tally (que trata la calidad como no-pasada) y dejá que el
   # best-effort (R009) emita el mejor candidato visto.
@@ -61,6 +67,10 @@ Tu **mensaje final** debe ser EXCLUSIVAMENTE este JSON (sin prosa, sin fences):
 ```
 {"eval1_sense":{"pass":true,"reason":"..."},"eval2_solvable":{"pass":true,"reason":"..."},"eval4_pragmatism":{"score":0.8,"reason":"..."},"eval5_translation":{"pass":true,"reason":"..."},"eval6_finite_reuse":{"pass":true,"reason":"..."}}
 ```
+
+- Cada `reason`: UNA frase corta (máx. ~12 palabras). No expliques de más.
+- Las 5 claves `evalN_*` son TOP-LEVEL: cerrá cada objeto `{...}` con su `}`
+  antes de abrir el siguiente. Verificá que las llaves balanceen antes de emitir.
 
 # User prompt template
 
