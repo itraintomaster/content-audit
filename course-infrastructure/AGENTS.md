@@ -50,6 +50,8 @@ Infrastructure module for course persistence. Contains the filesystem adapter th
 - should populate QuizTemplateEntity sentences literally from the quiz JSON without deriving from sentenceParts → FEAT-DBSENT/F-DBSENT-R001
 - should preserve the order of every entry from the JSON sentences list when loading a quiz with multiple variants → FEAT-DBSENT/F-DBSENT-R001
 - should load sentences verbatim for a transformation-pattern quiz even when sentenceParts would yield a different concatenation → FEAT-DBSENT/F-DBSENT-R001
+- should preserve each quiz plain sentences identically after a load save load round-trip → FEAT-DBSENT/F-DBSENT-R004
+- should preserve the plain sentences of every quiz in a multi-quiz course after a whole-course save without dropping or cross-contaminating any list → FEAT-DBSENT/F-DBSENT-R004
 
 ## Dependency Contracts
 
@@ -142,6 +144,7 @@ The following models and interfaces are available from dependencies. You can use
 | order | `int` |
 | slug | `String` |
 | quizTemplates | `List<QuizTemplateEntity>` |
+| sentenceMode | `SentenceMode` |
 
 ### QuizTemplateEntity (`record`)
 
@@ -197,6 +200,13 @@ The following models and interfaces are available from dependencies. You can use
 |-------|------|
 | path | `String` |
 | detail | `String` |
+
+### SentenceMode (`enum`)
+
+| Field | Type |
+|-------|------|
+| REWRITE | `null` |
+| FILL | `null` |
 
 ### CourseRepository (port)
 

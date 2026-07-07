@@ -1,0 +1,13 @@
+code: FEAT-KTLR
+description: "Correctivo: eliminar la interfaz espuria RevisionEngineConfig de revision-domain.\
+  \ RevisionEngineConfig es un record (bloque models); una entrada homonima quedo\
+  \ en el bloque interfaces del patch ARCH-KTLR y el generador emitio 'public interface\
+  \ RevisionEngineConfig {}' pisando el record de 14 campos, rompiendo DefaultRevisionEngineFactory\
+  \ y el reactor downstream."
+modules:
+- name: revision-domain
+  interfaces:
+  - name: RevisionEngineConfig
+    sealed: false
+    _change: delete
+  _change: modify

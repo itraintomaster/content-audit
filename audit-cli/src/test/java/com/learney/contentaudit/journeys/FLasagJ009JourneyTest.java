@@ -76,7 +76,7 @@ public class FLasagJ009JourneyTest {
                 "She ____[goes|walks] to school.",
                 0, 0, 0, 0,
                 LengthDirection.UNKNOWN,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
 
         CannedLemmaAbsenceQuizCandidateGenerator cannedGenerator =

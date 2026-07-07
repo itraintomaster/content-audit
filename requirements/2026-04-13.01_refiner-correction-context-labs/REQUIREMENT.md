@@ -37,6 +37,7 @@ Sin embargo, el analyzer `LemmaByLevelAbsenceAnalyzer` ya escribe un score de `l
 - **FEAT-DLABS** (diagnosticos tipados de lemma-absence): provee el `LemmaPlacementDiagnosis` a nivel quiz con la lista de `MisplacedLemma`, y el `LemmaAbsenceLevelDiagnosis` a nivel milestone. Este requerimiento consume el diagnostico de quiz; el de milestone no se ve afectado.
 - **FEAT-RCSL** (contexto de correccion para SENTENCE_LENGTH): establecio el patron de contexto de correccion para el refiner. Ese feature ya consume los lemas ausentes del milestone como `suggestedLemmas` para oraciones demasiado cortas. La cobertura de lemas a nivel milestone sigue siendo util como enriquecedor de contexto en SENTENCE_LENGTH, aunque deje de generar tareas propias.
 - **FEAT-CSTRUCT** (estructura del curso): provee la oracion original del quiz a traves de la entidad AuditableQuiz.
+- **FEAT-LCOUNT** (analisis de conteo de repeticiones de lemas): provee la señal de `lemma-count` (cantidad de oraciones distintas del curso donde aparece cada lema content-word) y su umbral de exposicion. Este requerimiento la consume para marcar las palabras de contenido escasas de la oracion actual (R003b). Es la misma señal y el mismo umbral que ya usa **F-SLEM** para enriquecer `suggestedLemmas`.
 
 ### Prerequisito: sourceAuditId
 
@@ -87,8 +88,9 @@ Para cada tarea de refinamiento de tipo LEMMA_ABSENCE, el sistema debe poder con
 | cefrLevel | Nivel CEFR | Determinado por el milestone ancestro | Nivel CEFR del quiz (A1, A2, B1, B2) |
 | misplacedLemmas | Lista de lemas fuera de nivel | LemmaPlacementDiagnosis.misplacedLemmas | Palabras del quiz cuyo nivel esperado es mas alto que el del quiz (ver R004) |
 | suggestedLemmas | Lista de lemas sugeridos | Derivado de LemmaAbsenceLevelDiagnosis | Lemas ausentes del nivel CEFR que el LLM podria usar como reemplazo de las palabras fuera de nivel (ver R004b) |
+| scarceContentWords | Lista de palabras escasas de la oración | Derivado de la señal de lemma-count del curso sobre las palabras de contenido de la oración actual | Palabras de contenido de la oración actual con exposición global baja (por debajo del umbral de lemma-count), que el LLM NO debería quitar al reescribir (ver R003b) |
 
-Este contexto reune informacion de multiples fuentes: la tarea de refinamiento, el nodo quiz del arbol de auditoria (con su diagnostico de placement y la entidad AuditableQuiz), los nodos ancestros knowledge y topic (para el contexto pedagogico), la entidad QuizTemplateEntity (para la traduccion), y el nodo milestone ancestro (con su diagnostico de ausencia de lemas para las sugerencias de reemplazo).
+Este contexto reune informacion de multiples fuentes: la tarea de refinamiento, el nodo quiz del arbol de auditoria (con su diagnostico de placement y la entidad AuditableQuiz), los nodos ancestros knowledge y topic (para el contexto pedagogico), la entidad QuizTemplateEntity (para la traduccion), el nodo milestone ancestro (con su diagnostico de ausencia de lemas para las sugerencias de reemplazo), y la señal de `lemma-count` del curso aplicada a las palabras de contenido de la oracion actual (para las palabras escasas; ver R003b).
 
 **Error**: N/A (esta regla define la estructura de un registro)
 
@@ -138,6 +140,37 @@ El proposito de estos lemas sugeridos es doble: cuando el LLM reemplaza una pala
 Si no hay lemas sugeridos disponibles (porque no existe diagnostico de ausencia de lemas en el milestone, o porque todos los lemas del nivel son de tipo APPEARS_TOO_EARLY, o porque el milestone ancestro no se encontro), el contexto de correccion se construye igualmente con la lista de lemas sugeridos vacia. La informacion de las palabras fuera de nivel sigue siendo suficiente para que el LLM reescriba la oracion con vocabulario apropiado, aunque sin sugerencias especificas de reemplazo.
 
 **Error**: N/A (la ausencia de sugerencias no impide la correccion)
+
+### Rule[F-RCLA-R003b] - Palabras de contenido escasas de la oracion actual
+**Severity**: major | **Validation**: ASSUMPTION
+
+El contexto de correccion incluye una lista `scarceContentWords`: las palabras de contenido de la oracion actual del quiz cuya exposicion global en el curso es baja, es decir, las que aparecen en menos oraciones distintas que el umbral de lemma-count. El proposito es complementar la edicion minima: le avisan al LLM que esas palabras son escasas en el curso para que **no las quite** al reescribir la oracion reemplazando el vocabulario fuera de nivel. Quitar una palabra de baja exposicion reduciria la cobertura de vocabulario del curso.
+
+La lista se construye a partir de la oracion actual del quiz (la misma `sentence` del contexto) y la señal de `lemma-count` del curso (FEAT-LCOUNT / F-SLEM):
+
+1. Considerar solo las **palabras de contenido** de la oracion actual: las que son sustantivo (NOUN), verbo (VERB), adjetivo (ADJ) o adverbio (ADV). Las palabras funcionales (articulos, preposiciones, conjunciones, pronombres, auxiliares, etc.) se excluyen: no son vocabulario que interese preservar.
+2. Para cada una, obtener su exposicion global en el curso (`count`) segun la señal de `lemma-count`: la cantidad de oraciones distintas del curso donde aparece ese lema (identificado por su forma base mas su POS).
+3. Incluir en `scarceContentWords` **unicamente** las palabras cuyo `count` esta **estrictamente por debajo** del umbral de lemma-count (`count < threshold`). Las palabras que igualan o superan el umbral (`count >= threshold`) NO son escasas: ya tienen suficiente exposicion en otras oraciones y su reemplazo no reduce cobertura, por lo que se omiten.
+
+El umbral usado es el mismo umbral de exposicion de `lemma-count` (el valor `threshold` / N de FEAT-LCOUNT, con el que se decide sub-exposicion), y se expone junto a cada palabra para que el LLM entienda la escala.
+
+Cada entrada en la lista `scarceContentWords` incluye:
+
+| Campo | Tipo | Origen | Descripcion |
+|-------|------|--------|-------------|
+| lemma | Texto | Forma base de la palabra de contenido de la oracion | Forma base de la palabra (e.g., "butter") |
+| pos | Texto | Parte de la oracion de la palabra | Parte de la oracion (NOUN, VERB, ADJ o ADV) |
+| count | Entero | Señal de lemma-count del curso | Apariciones globales: cantidad de oraciones distintas del curso donde aparece el lema. Siempre menor que `threshold` |
+| threshold | Entero | Umbral de exposicion de lemma-count | Umbral minimo de exposicion de lemma-count usado para decidir baja exposicion. Es el mismo umbral para todas las entradas de la lista |
+
+**Error**: N/A (esta regla define la estructura de un registro y su criterio de inclusion)
+
+### Rule[F-RCLA-R003c] - Contexto sin palabras escasas
+**Severity**: major | **Validation**: ASSUMPTION
+
+Si no hay palabras de contenido escasas que reportar —porque la auditoria no incluyo `lemma-count` y por lo tanto no hay señal de exposicion disponible, o porque ninguna palabra de contenido de la oracion actual esta por debajo del umbral, o porque la oracion no tiene palabras de contenido— el contexto de correccion se construye igualmente con la lista `scarceContentWords` **vacia**, sin impedir la construccion del contexto ni degradar el resto de la informacion. La ausencia de palabras escasas no es un error: simplemente significa que no hay palabras escasas de la oracion actual que advertir al LLM. Espeja el comportamiento de R004c para las sugerencias.
+
+**Error**: N/A (la ausencia de palabras escasas no impide la correccion)
 
 ### Rule[F-RCLA-R005] - Resolucion del nodo quiz desde una tarea de refinamiento
 **Severity**: critical | **Validation**: AUTO_VALIDATED
@@ -210,10 +243,16 @@ En formato JSON, el contexto de correccion se incluye como un campo `correctionC
       { "lemma": "like", "pos": "VERB", "reason": "COMPLETELY_ABSENT", "cocaRank": 52 },
       { "lemma": "want", "pos": "VERB", "reason": "APPEARS_TOO_LATE", "cocaRank": 89 },
       { "lemma": "big", "pos": "ADJ", "reason": "COMPLETELY_ABSENT", "cocaRank": 201 }
+    ],
+    "scarceContentWords": [
+      { "lemma": "friday", "pos": "NOUN", "count": 1, "threshold": 4 },
+      { "lemma": "before", "pos": "ADV", "count": 3, "threshold": 4 }
     ]
   }
 }
 ```
+
+El campo `scarceContentWords` siempre esta presente en `correctionContext`; cuando no hay palabras escasas que reportar (ver R003c) es una lista vacia `[]`.
 
 Si el contexto de correccion no puede construirse (por ejemplo, porque el reporte de auditoria no se encuentra o el diagnostico no esta disponible), el campo `correctionContext` debe ser nulo y se incluye un campo `correctionContextError` con un mensaje descriptivo.
 
@@ -246,9 +285,16 @@ Next task (#1 of 42):
       1. like (VERB) - COMPLETELY_ABSENT [COCA #52]
       2. want (VERB) - APPEARS_TOO_LATE [COCA #89]
       3. big (ADJ) - COMPLETELY_ABSENT [COCA #201]
+    Scarce content words (do not remove):
+      1. friday (NOUN) - appears in 1/4 sentences
+      2. before (ADV) - appears in 3/4 sentences
 ```
 
+Cada palabra escasa se muestra con su exposicion global frente al umbral (`count`/`threshold`), para que quede claro cuan escasa es en el curso.
+
 Si no hay lemas sugeridos, la seccion "Suggested replacements" muestra "(none available)".
+
+Si no hay palabras escasas (ver R003c), la seccion "Scarce content words" muestra "(none)".
 
 Si el contexto no puede construirse, se muestra un aviso en lugar de la seccion de contexto.
 
@@ -312,18 +358,32 @@ journeys:
         gate: [F-RCLA-R004b]
         outcomes:
           - when: "Hay lemas ausentes de tipo COMPLETELY_ABSENT o APPEARS_TOO_LATE disponibles"
-            then: construir_contexto_completo
+            then: marcar_escasas
           - when: "No hay lemas sugeridos disponibles"
             then: construir_contexto_sin_sugerencias
 
+      - id: marcar_escasas
+        action: "El sistema evalua las palabras de contenido de la oracion actual con la señal de lemma-count del curso y marca como escasas las que estan por debajo del umbral de exposicion"
+        gate: [F-RCLA-R003b, F-RCLA-R003c]
+        outcomes:
+          - when: "La auditoria incluyo lemma-count y al menos una palabra de contenido de la oracion esta por debajo del umbral"
+            then: construir_contexto_completo
+          - when: "No hay palabras de contenido por debajo del umbral, o la auditoria no incluyo lemma-count"
+            then: construir_contexto_con_escasas_vacio
+
       - id: construir_contexto_completo
-        action: "El sistema construye el contexto con la oracion, la traduccion, el contexto pedagogico, la lista de lemas fuera de nivel, y los top 10 lemas sugeridos como candidatos de reemplazo"
-        gate: [F-RCLA-R003, F-RCLA-R004, F-RCLA-R004b]
+        action: "El sistema construye el contexto con la oracion, la traduccion, el contexto pedagogico, la lista de lemas fuera de nivel, los top 10 lemas sugeridos como candidatos de reemplazo, y la lista de palabras de contenido escasas que el LLM no debe quitar"
+        gate: [F-RCLA-R003, F-RCLA-R004, F-RCLA-R004b, F-RCLA-R003b]
+        then: presentar_contexto
+
+      - id: construir_contexto_con_escasas_vacio
+        action: "El sistema construye el contexto con la oracion, la traduccion, el contexto pedagogico, la lista de lemas fuera de nivel y los lemas sugeridos, pero con la lista de palabras escasas vacia"
+        gate: [F-RCLA-R003, F-RCLA-R004, F-RCLA-R004b, F-RCLA-R003c]
         then: presentar_contexto
 
       - id: construir_contexto_sin_sugerencias
-        action: "El sistema construye el contexto con la oracion, la traduccion, el contexto pedagogico y la lista de lemas fuera de nivel, pero sin sugerencias de reemplazo"
-        gate: [F-RCLA-R003, F-RCLA-R004, F-RCLA-R004c]
+        action: "El sistema construye el contexto con la oracion, la traduccion, el contexto pedagogico y la lista de lemas fuera de nivel, pero sin sugerencias de reemplazo. Igual evalua e incluye las palabras de contenido escasas de la oracion actual"
+        gate: [F-RCLA-R003, F-RCLA-R004, F-RCLA-R004c, F-RCLA-R003b, F-RCLA-R003c]
         then: presentar_contexto
 
       - id: presentar_contexto
@@ -377,3 +437,21 @@ Puede un quiz tener score de lemma-absence < 1.0 pero una lista vacia de Misplac
 Segun la implementacion actual del analyzer (`scoreQuiz()`), el score se calcula como `1.0 - maxDiscount`, donde `maxDiscount` solo es > 0 si se encuentra al menos un MisplacedLemma. Por lo tanto, score < 1.0 implica al menos un MisplacedLemma. Sin embargo, el diagnostico podria no estar disponible si la estructura de diagnosticos del nodo no es `DefaultQuizDiagnoses`.
 
 **Answer**: No puede ocurrir por logica del analyzer, pero el diagnostico podria no estar disponible por incompatibilidad de tipos. R006 cubre este caso.
+
+### Doubt[DOUBT-SCARCE-FIELD-NAME] - Nombre del campo de palabras escasas
+**Status**: OPEN
+
+Se eligio `scarceContentWords` para el campo nuevo (R003b), con entradas `{ lemma, pos, count, threshold }`. El nombre describe el concepto (palabras de contenido escasas de la oracion actual que no conviene quitar) y evita nombres genericos. Alternativas consideradas: `fragileContentWords`, `lowExposureContentWords`, `preserveLemmas`.
+
+- [x] `scarceContentWords`
+- [ ] `lowExposureContentWords`
+- [ ] `preserveContentWords`
+
+**Answer**: Confirmado por el usuario: `scarceContentWords` (tipo record `ScarceContentWord`). Cerrada.
+
+### Doubt[DOUBT-SCARCE-COUNT-SOURCE] - Palabras de contenido de la oracion sin señal de lemma-count
+**Status**: OPEN
+
+R003b usa la señal de `lemma-count`, que solo mide lemas content-word que aparecen al menos una vez en el curso (FEAT-LCOUNT R003). Toda palabra de contenido de la oracion actual aparece, por definicion, al menos en esa oracion, por lo que siempre tiene un `count >= 1` medible. La decision asumida es: si `lemma-count` no formo parte de la auditoria, `scarceContentWords` queda vacia (R003c); no se recalcula la señal ad hoc durante la construccion del contexto (mismo criterio de no-recalculo que F-SLEM). 
+
+**Answer**: (pendiente de confirmacion del usuario) Se asume: sin auditoria de `lemma-count`, lista vacia; no hay recalculo ad hoc. Si el usuario quiere que el contexto recalcule la exposicion cuando falta `lemma-count`, seria un cambio de alcance a evaluar con el arquitecto.

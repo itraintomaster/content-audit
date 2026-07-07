@@ -20,6 +20,7 @@ import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
 import com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext;
+import com.learney.contentaudit.refinerdomain.ScarceContentWord;
 import com.learney.contentaudit.refinerdomain.SuggestedLemma;
 import com.learney.contentaudit.revisiondomain.RevisionArtifact;
 import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
@@ -892,6 +893,58 @@ public class GetCmdTest {
     }
 
     @Test
+    @DisplayName("should omit correctionContext and skip resolver in JSON task list when --without-correction-context is supplied")
+    @Tag("FEAT-RCSL")
+    @Tag("F-RCSL-R007")
+    public void shouldOmitCorrectionContextAndSkipResolverInJsonTaskListWhenWithoutCorrectionContextIsSupplied()
+            throws Exception {
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        Field withoutContextField = GetCmd.class.getDeclaredField("withoutCorrectionContext");
+        withoutContextField.setAccessible(true);
+        withoutContextField.set(cmd, true);
+
+        RefinementTask sentenceLengthTask = new RefinementTask(
+                "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+        RefinementTask lemmaAbsenceTask = new RefinementTask(
+                "task-la-001", AuditTarget.QUIZ, "quiz-node-2", "Quiz 2",
+                DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", "audit-2026-04-19T10-30-00",
+                Instant.parse("2026-04-19T10:30:00Z"),
+                List.of(sentenceLengthTask, lemmaAbsenceTask));
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.empty(), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        assertTrue(output.contains("task-sl-001"), "Expected SENTENCE_LENGTH task in JSON: " + output);
+        assertTrue(output.contains("task-la-001"), "Expected LEMMA_ABSENCE task in JSON: " + output);
+        assertFalse(output.contains("correctionContext"),
+                "Expected correctionContext fields to be omitted in cheap JSON mode: " + output);
+        verify(auditReportStore, never()).load(any(String.class));
+        verify(correctionContextResolver, never())
+                .resolve(any(AuditReport.class), any(RefinementTask.class));
+    }
+
+    @Test
     @DisplayName("should include sentence translation knowledgeTitle knowledgeInstructions topicLabel and cefrLevel in JSON correctionContext")
     @Tag("FEAT-RCSL")
     @Tag("F-RCSL-R007")
@@ -1674,7 +1727,7 @@ public class GetCmdTest {
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -1728,7 +1781,7 @@ public class GetCmdTest {
                         new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -1793,7 +1846,7 @@ public class GetCmdTest {
                 List.of(negotiateLemma),
                 List.of(),
                 null, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -1861,7 +1914,7 @@ public class GetCmdTest {
                         new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null),
                         new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89, null, null, null)),
                 null, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -1971,7 +2024,7 @@ public class GetCmdTest {
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
                 List.of(),
                 null, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2039,7 +2092,7 @@ public class GetCmdTest {
                         new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2100,7 +2153,7 @@ public class GetCmdTest {
                         new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
                 List.of(),
                 null, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2165,7 +2218,7 @@ public class GetCmdTest {
                         new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null),
                         new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89, null, null, null)),
                 null, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2224,7 +2277,7 @@ public class GetCmdTest {
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
                 List.of(),
                 null, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2686,7 +2739,7 @@ public class GetCmdTest {
                 List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 dsl, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2748,7 +2801,7 @@ public class GetCmdTest {
                 List.of(new MisplacedLemmaContext("great", "ADJ", CefrLevel.A2, CefrLevel.A1, 100)),
                 List.of(new SuggestedLemma("nice", "ADJ", "COMPLETELY_ABSENT", 75, null, null, null)),
                 "He ____ [is|'s] (to be) great.", null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3034,7 +3087,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 10, 5, 8, 2, LengthDirection.SHORTEN,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3107,7 +3160,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 10, 5, 8, 2, LengthDirection.SHORTEN,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3173,7 +3226,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("play", "VERB", "APPEARS_TOO_LATE", 78, null, null, null)),
                 null,
                 6, 5, 8, 0, LengthDirection.KEEP_SAME,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3242,7 +3295,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 3, 5, 8, -2, LengthDirection.LENGTHEN,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3314,7 +3367,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 null, null, null, null, LengthDirection.UNKNOWN,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3380,7 +3433,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 10, 5, 8, 2, LengthDirection.SHORTEN,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3445,7 +3498,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 10, 5, 8, 2, LengthDirection.SHORTEN,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3511,7 +3564,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("play", "VERB", "APPEARS_TOO_LATE", 78, null, null, null)),
                 null,
                 6, 5, 8, 0, LengthDirection.KEEP_SAME,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3577,7 +3630,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 3, 5, 8, -2, LengthDirection.LENGTHEN,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3643,7 +3696,7 @@ public class GetCmdTest {
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 null, null, null, null, LengthDirection.UNKNOWN,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3772,5 +3825,269 @@ public class GetCmdTest {
         assertTrue(hasExample,
                 "F-SLREGEX-R010: help text must include at least one regex example (e.g. 'ing$', '^un', 'tt'). " +
                 "Got: " + helpText.substring(0, Math.min(helpText.length(), 1000)));
+    }
+
+    // -----------------------------------------------------------------------
+    // F-RCLA-R003b / R008 / R009 — scarceContentWords in correctionContext
+    // -----------------------------------------------------------------------
+
+    @Test
+    @DisplayName("should include scarceContentWords array in JSON correctionContext for LEMMA_ABSENCE task always present and empty when there are no scarce words")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R008")
+    @SuppressWarnings("unchecked")
+    public void shouldIncludeScarceContentWordsArrayInJSONCorrectionContextForLEMMAAbsenceTaskAlwaysPresentAndEmptyWhenThereAreNoScarceWords()
+            throws Exception {
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-014", AuditTarget.QUIZ, "quiz-id-123", "Quiz 14 - L1.T2.K3",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // R008 / R003c: scarceContentWords is present and EMPTY when no word is below threshold
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-014",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(
+                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
+                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
+                List.of(
+                        new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null),
+                        new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89, null, null, null),
+                        new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201, null, null, null)),
+                null, null, null, null, null, null,
+                null, null, List.of(), "quiz-node-001",
+                List.of() // scarceContentWords empty — no word below threshold (R003c)
+        );
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.of("pending"), true,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R008: scarceContentWords key must always be present in correctionContext JSON
+        assertTrue(output.contains("scarceContentWords"),
+                "Expected 'scarceContentWords' key in JSON correctionContext, got: " + output);
+        // R003c: empty list renders as []
+        assertTrue(output.contains("[]") || output.contains("scarceContentWords"),
+                "Expected empty scarceContentWords array '[]' in JSON when there are no scarce words, got: " + output);
+        // Verify the other correctionContext fields are still present alongside scarceContentWords
+        assertTrue(output.contains("misplacedLemmas"),
+                "Expected 'misplacedLemmas' still present alongside scarceContentWords in JSON: " + output);
+        assertTrue(output.contains("suggestedLemmas"),
+                "Expected 'suggestedLemmas' still present alongside scarceContentWords in JSON: " + output);
+        // And with entries present: verify the non-empty case structure
+        // Use a second fixture WITH entries to verify {lemma, pos, count, threshold} shape
+        LemmaAbsenceCorrectionContext ctxWithEntries = new LemmaAbsenceCorrectionContext(
+                "task-014",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
+                null, null, null, null, null, null,
+                null, null, List.of(), "quiz-node-001",
+                List.of(
+                        new ScarceContentWord("friday", "NOUN", 1, 4),
+                        new ScarceContentWord("before", "ADV", 3, 4))
+        );
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctxWithEntries));
+
+        ByteArrayOutputStream outBuf2 = new ByteArrayOutputStream();
+        PrintStream originalOut2 = System.out;
+        System.setOut(new PrintStream(outBuf2));
+        int exit2;
+        try {
+            exit2 = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut2);
+        }
+
+        assertEquals(0, exit2);
+        String output2 = outBuf2.toString();
+        // R008 / R003b: with entries, scarceContentWords contains {lemma, pos, count, threshold}
+        assertTrue(output2.contains("scarceContentWords"),
+                "Expected 'scarceContentWords' key in JSON with entries, got: " + output2);
+        assertTrue(output2.contains("friday"),
+                "Expected lemma 'friday' in scarceContentWords JSON entries, got: " + output2);
+        assertTrue(output2.contains("NOUN"),
+                "Expected pos 'NOUN' in scarceContentWords JSON entries, got: " + output2);
+        // count=1 and threshold=4 from fixture
+        assertTrue(output2.contains("1") && output2.contains("4"),
+                "Expected count and threshold values in scarceContentWords JSON entries, got: " + output2);
+    }
+
+    @Test
+    @DisplayName("should print the Scarce content words do not remove section listing each word with its count over threshold in text format for LEMMA_ABSENCE task")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R009")
+    @SuppressWarnings("unchecked")
+    public void shouldPrintTheScarceContentWordsDoNotRemoveSectionListingEachWordWithItsCountOverThresholdInTextFormatForLEMMAABSENCETask() {
+        // formatName is "text" (from setUp)
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-014", AuditTarget.QUIZ, "quiz-id-123", "Quiz 14 - L1.T2.K3",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // Fixture from R009 example: two scarce content words — friday (1/4) and before (3/4)
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-014",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(
+                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
+                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
+                List.of(
+                        new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null),
+                        new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89, null, null, null),
+                        new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201, null, null, null)),
+                null, null, null, null, null, null,
+                null, null, List.of(), "quiz-node-001",
+                List.of(
+                        new ScarceContentWord("friday", "NOUN", 1, 4),
+                        new ScarceContentWord("before", "ADV", 3, 4))
+        );
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.of("pending"), true,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R009: "Scarce content words (do not remove):" section must appear
+        assertTrue(
+                output.toLowerCase().contains("scarce content words") || output.contains("do not remove"),
+                "Expected 'Scarce content words (do not remove):' section in text output, got: " + output);
+        // R009 / R003b: each entry lists lemma and count/threshold fraction
+        // Example: "1. friday (NOUN) - appears in 1/4 sentences"
+        assertTrue(output.contains("friday"),
+                "Expected 'friday' listed in scarce content words section, got: " + output);
+        assertTrue(output.contains("before"),
+                "Expected 'before' listed in scarce content words section, got: " + output);
+        // Verify count/threshold fraction format — R009 specifies "count/threshold sentences"
+        assertTrue(output.contains("1/4") || (output.contains("1") && output.contains("4")),
+                "Expected count/threshold '1/4' for 'friday' in scarce content words, got: " + output);
+        assertTrue(output.contains("3/4") || (output.contains("3") && output.contains("4")),
+                "Expected count/threshold '3/4' for 'before' in scarce content words, got: " + output);
+    }
+
+    @Test
+    @DisplayName("should print none for the Scarce content words section in text format when there are no scarce words for LEMMA_ABSENCE task")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R009")
+    @SuppressWarnings("unchecked")
+    public void shouldPrintNoneForTheScarceContentWordsSectionInTextFormatWhenThereAreNoScarceWordsForLEMMAABSENCETask() {
+        // formatName is "text" (from setUp)
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-014", AuditTarget.QUIZ, "quiz-id-123", "Quiz 14 - L1.T2.K3",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // R003c: scarceContentWords is empty — no word of the sentence is below threshold
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-014",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(
+                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
+                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
+                List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
+                null, null, null, null, null, null,
+                null, null, List.of(), "quiz-node-001",
+                List.of() // scarceContentWords empty — R003c
+        );
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.of("pending"), true,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // R009: "Scarce content words" section must appear even when empty
+        assertTrue(
+                output.toLowerCase().contains("scarce content words") || output.contains("do not remove"),
+                "Expected 'Scarce content words' section in text output even when empty, got: " + output);
+        // R009 / R003c: empty list → "(none)" per spec
+        assertTrue(
+                output.contains("(none)") || output.toLowerCase().contains("none"),
+                "Expected '(none)' in Scarce content words section when list is empty, got: " + output);
     }
 }

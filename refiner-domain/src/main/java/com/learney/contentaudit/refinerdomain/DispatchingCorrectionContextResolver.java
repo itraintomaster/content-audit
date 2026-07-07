@@ -14,12 +14,13 @@ public class DispatchingCorrectionContextResolver implements CorrectionContextRe
 
     private final LemmaAbsenceContextResolver lemmaAbsenceResolver;
 
-    public DispatchingCorrectionContextResolver(
-            SentenceLengthContextResolver sentenceLengthResolver,
-            LemmaAbsenceContextResolver lemmaAbsenceResolver) {
-        this.sentenceLengthResolver = sentenceLengthResolver;
-        this.lemmaAbsenceResolver = lemmaAbsenceResolver;
-    }
+private final KnowledgeTitleContextResolver knowledgeTitleResolver;
+
+public DispatchingCorrectionContextResolver(SentenceLengthContextResolver sentenceLengthResolver, LemmaAbsenceContextResolver lemmaAbsenceResolver, KnowledgeTitleContextResolver knowledgeTitleResolver) {
+    this.sentenceLengthResolver = sentenceLengthResolver;
+    this.lemmaAbsenceResolver = lemmaAbsenceResolver;
+    this.knowledgeTitleResolver = knowledgeTitleResolver;
+}
 
     @Override
     public Optional<CorrectionContext> resolve(AuditReport report, RefinementTask task) {
@@ -27,6 +28,8 @@ public class DispatchingCorrectionContextResolver implements CorrectionContextRe
             return sentenceLengthResolver.resolve(report, task).map(ctx -> (CorrectionContext) ctx);
         } else if (task.getDiagnosisKind() == DiagnosisKind.LEMMA_ABSENCE) {
             return lemmaAbsenceResolver.resolve(report, task).map(ctx -> (CorrectionContext) ctx);
+        } else if (task.getDiagnosisKind() == DiagnosisKind.KNOWLEDGE_TITLE_LENGTH) {
+            return knowledgeTitleResolver.resolve(report, task).map(ctx -> (CorrectionContext) ctx);
         }
         return Optional.empty();
     }
@@ -38,13 +41,16 @@ public class DispatchingCorrectionContextResolver implements CorrectionContextRe
             return sentenceLengthResolver.resolveWithIndex(nodeIndex, report, task).map(ctx -> (CorrectionContext) ctx);
         } else if (task.getDiagnosisKind() == DiagnosisKind.LEMMA_ABSENCE) {
             return lemmaAbsenceResolver.resolveWithIndex(nodeIndex, report, task).map(ctx -> (CorrectionContext) ctx);
+        } else if (task.getDiagnosisKind() == DiagnosisKind.KNOWLEDGE_TITLE_LENGTH) {
+            return knowledgeTitleResolver.resolveWithIndex(nodeIndex, report, task).map(ctx -> (CorrectionContext) ctx);
         }
         return Optional.empty();
     }
 
     @Override
     public boolean supports(DiagnosisKind kind) {
-        return sentenceLengthResolver.supports(kind) || lemmaAbsenceResolver.supports(kind);
+        return sentenceLengthResolver.supports(kind) || lemmaAbsenceResolver.supports(kind)
+                || knowledgeTitleResolver.supports(kind);
     }
 
 }

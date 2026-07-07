@@ -1,0 +1,31 @@
+code: FEAT-KTLR
+description: "Wiring del sub-dominio de titulo en el config del engine (espejo del\
+  \ par LAPS). RevisionEngineConfig (record en models:) gana knowledgeTitleStrategyRegistry\
+  \ + knowledgeTitleProposalDeriver, ambos nullable, para que DefaultRevisionEngineFactory\
+  \ pueda construir/enrutar KnowledgeTitleReviser (package-private) hacia la rama\
+  \ KNOWLEDGE_TITLE_LENGTH del DispatchingReviser sin que el composition root conozca\
+  \ tipos internos del engine (P4). Cierra el gap del journey FKtlrJ001. NB: los campos\
+  \ van en el RECORD (models:), NO en interfaces: (evita la colision cross-kind de\
+  \ ESC2)."
+modules:
+- name: revision-domain
+  models:
+  - name: RevisionEngineConfig
+    type: record
+    fields:
+    - name: knowledgeTitleStrategyRegistry
+      type: KnowledgeTitleProposalStrategyRegistry
+      description: "Registry de estrategias KNOWLEDGE_TITLE_LENGTH registradas. Nullable\
+        \ -> la factory wirea un registry vacio, en cuyo caso toda tarea KNOWLEDGE_TITLE_LENGTH\
+        \ cae al IdentityReviser bypass (sin propuesta). Espejo de lemmaAbsenceStrategyRegistry\
+        \ (F-KTLR-R003)."
+      _change: add
+    - name: knowledgeTitleProposalDeriver
+      type: KnowledgeTitleProposalDeriver
+      description: "Deriver determinista que convierte un KnowledgeTitleCandidate\
+        \ en el elementAfter (title->label + instructions sobre copia del knowledge\
+        \ before). Nullable -> la factory wirea DefaultKnowledgeTitleProposalDeriver.\
+        \ Espejo de lemmaAbsenceProposalDeriver (F-KTLR-R005, R006, R007)."
+      _change: add
+    _change: modify
+  _change: modify

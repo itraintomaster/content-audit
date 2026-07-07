@@ -1,0 +1,3454 @@
+{
+  "scores" : {
+    "a1" : {
+      "a1aPassed" : true,
+      "a1aViolations" : [ ],
+      "a1bScore" : 0.6143867924528302,
+      "a1bDetails" : [ {
+        "elementName" : "SentenceLengthContextResolver",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "DefaultLemmaAbsenceConfig",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "DefaultLemmaRecurrenceConfig",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "DefaultLemmaCountConfig",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "JsonReportFormatter",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "CorrectionContextOverrideParser",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "SelfDescribingConfig",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "private",
+        "elementScore" : 0.25
+      }, {
+        "elementName" : "DefaultAnalyzerRegistry",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "CorrectionContextStructuralValidator",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "AnalyzerStatsTransformer",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "internal",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "ApproveCommand",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "RawJsonReportFormatter",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "SpacyNlpTokenizerFactory",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "private",
+        "elementScore" : 0.0
+      }, {
+        "elementName" : "ReviseCommand",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "FileSystemAuditReportStore",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "LemmaAbsenceLlmGeneratorFactory",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "LemmaCountConfigLoader",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "LevelDiagnoses",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "private",
+        "elementScore" : 0.25
+      }, {
+        "elementName" : "DefaultLemmaAbsenceResponseParser",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultConsolidatedViewFormatter",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "WorkdirResolver",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "RefinerEngine",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "SpacyResultParser",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "private",
+        "elementScore" : 0.0
+      }, {
+        "elementName" : "DefaultListIdentityRegistry",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "LemmaCountAnalyzer",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultRevisionEngine",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "LemmaAbsenceContextResolver",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "DefaultLemmaAbsencePromptBuilder",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "AuditableEntity",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "private",
+        "elementScore" : 0.25
+      }, {
+        "elementName" : "IAuditEngine",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "DefaultFieldExclusionRegistry",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DispatchingCorrectionContextResolver",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "CachedNlpTokenizer",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "NlpTokenizer",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "LemmaAbsencePromptBuilder",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultConsolidatedViewBuilder",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "RevisionValidatorFactory",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ScoreAggregator",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "IScoreAggregator",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "DefaultAuditNodeIndexFactory",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "AuditRunner",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "ApprovalModeResolver",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "LemmaAbsenceProposalStrategy",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "RawReportFormatter",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "internal",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "DefaultGetConsolidatedCommand",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "EphemeralPlanRenderer",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "LagenConfigResolver",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ExposureClassifier",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "NodeFieldDifferFactory",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "PruneCommand",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "TopicDiagnoses",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "private",
+        "elementScore" : 0.25
+      }, {
+        "elementName" : "FileSystemActiveAnalysisSelectionStore",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "AnalysisResult",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "private",
+        "elementScore" : 0.25
+      }, {
+        "elementName" : "GetCommand",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "LemmaAbsenceResponseParser",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ImpactPreviewComputer",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultExposureClassifier",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "IdentityReviser",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "StatsAnalyzerCmd",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultLagenConfigResolver",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "AnalyzeCmd",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "LemmaCountConfig",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "CocaBucketsDetailedFormatter",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "Reviser",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ReviseCmd",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ProposalDecisionServiceFactory",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "LemmaAbsenceProposalDeriver",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultRevisionValidatorResult",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ConsolidatedViewBuilderFactory",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "CocaTokenAccumulationAggregator",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "CorrectionContextResolver",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "DefaultLemmaAbsenceProposalDeriver",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "PlainSentenceDeriver",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "LemmaAbsenceLlmGenerator",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "QuizSentenceSerializer",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultCorrectionContextJsonMapper",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "SentenceLengthAnalyzer",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "private",
+        "elementScore" : 0.25
+      }, {
+        "elementName" : "QuizDiagnoses",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "private",
+        "elementScore" : 0.25
+      }, {
+        "elementName" : "SpacyNlpTokenizer",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "FileSystemRefinementPlanStore",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "QuizSentenceConverter",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "ConfigAnalyzerCommand",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "EvpCatalogPort",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "CourseValidator",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "FormatterRegistry",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "internal",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "CourseMapper",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "PlanCommand",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "KnowledgeTitleLengthAnalyzer",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "private",
+        "elementScore" : 0.25
+      }, {
+        "elementName" : "GetCmd",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ConsolidatedViewFormatter",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "internal",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "DefaultAuditRunner",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "LemmaByLevelAbsenceAnalyzer",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "KnowledgeInstructionsLengthAnalyzer",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "private",
+        "elementScore" : 0.25
+      }, {
+        "elementName" : "KnowledgeDiagnoses",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "private",
+        "elementScore" : 0.25
+      }, {
+        "elementName" : "DefaultQuizSentenceConverter",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "ProgressionEvaluator",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ListIdentityRegistry",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "FileSystemCourseRepository",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "LemmaAbsenceConfig",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "ScoreRow",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultSentenceLengthConfig",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "LemmaAbsenceMvpStrategy",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "private",
+        "elementScore" : 0.0
+      }, {
+        "elementName" : "IntervalCalculator",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "EvpThenNlpLemmaCefrLevelResolver",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DetailedFormatter",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultImprovementPlanner",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "CocaBucketsAnalyzer",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "PlanCmd",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultFormatterRegistry",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultProgressionEvaluator",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "CorrectionContext",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "private",
+        "elementScore" : 0.25
+      }, {
+        "elementName" : "GetConsolidatedCommand",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "SetActiveAnalysisCommand",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "SentenceLengthConfig",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "TableReportFormatter",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "AnalyzeCommand",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "StatsAnalyzerCommand",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DeleteCommand",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ConfigAnalyzerCmd",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ActiveAnalysisSelectionStore",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "LemmaAbsenceScoreAggregator",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "RevisionEngine",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "ProposalStrategySelector",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "SentenceLengthContextStructuralValidator",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "LemmaRecurrenceConfig",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "DefaultRevisionValidatorFactory",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "QuizSentenceParser",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultTokenClassifier",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "TextReportFormatter",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultLemmaCountConfigLoader",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "private",
+        "elementScore" : 0.0
+      }, {
+        "elementName" : "DefaultRevisionEngineFactory",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "FileSystemRevisionArtifactStore",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "ContentWordFilter",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "WhitespaceNormalizer",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultEphemeralPlanRenderer",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "LemmaCefrLevelResolver",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultNodeFieldDifferFactory",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ProposalDecisionService",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "DefaultCocaBucketsConfig",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "DefaultImpactPreviewComputer",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "RevisionValidator",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "FileSystemImpactPreviewStore",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "NodeFieldDiffer",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "AuditReportStore",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "CocaBucketsConfig",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "CourseDiagnoses",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "private",
+        "elementScore" : 0.25
+      }, {
+        "elementName" : "ApproveCmd",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultApprovalModeResolver",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "FieldExclusionRegistry",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultLemmaAbsenceLlmGeneratorFactory",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ReportFormatter",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "NodeDiagnoses",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "private",
+        "elementScore" : 0.25
+      }, {
+        "elementName" : "DeleteCmd",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "TokenClassifier",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DispatchingReviser",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "CannedLemmaAbsenceQuizCandidateGenerator",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "private",
+        "elementScore" : 0.0
+      }, {
+        "elementName" : "DefaultAnalyzerStatsTransformer",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "LemmaAbsenceProposalStrategyRegistry",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ImpactPreviewStore",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "DefaultProposalDecisionServiceFactory",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ReportViewModelTransformer",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "internal",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "LagenModeResolver",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ImprovementPlanner",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "PruneCmd",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "RejectCommand",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "AnalyzerRegistry",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "LemmaAbsenceDetailedFormatter",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultProposalStrategySelector",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "AutoApproveValidator",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultImpactPreviewFormatter",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultLangChainErrorClassifier",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "LemmaRecurrenceAnalyzer",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "MapAuditNodeIndex",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ImpactPreviewFormatter",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "internal",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "RevisionValidatorResult",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "AuditNodeIndexFactory",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "DefaultSetActiveAnalysisCommand",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "RevisionArtifactStore",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "DefaultReportViewModelTransformer",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultWorkdirResolver",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultLagenModeResolver",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "CorrectionContextJsonMapper",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultCourseElementLocator",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "CourseRepository",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "HumanApprovalValidator",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultIntervalCalculator",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultContentWordFilter",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ConsolidatedViewBuilder",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "NlpTokenizerFactory",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "AuditEngine",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "DefaultProposalDecisionService",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "RevisionEngineFactory",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "AuditNodeIndex",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "DefaultRefinerEngine",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "DefaultDrillDownResolver",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "FileSystemEvpCatalog",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "LemmaAbsenceQuizCandidateGenerator",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "RejectCmd",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "CourseElementLocator",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "RecursiveNodeFieldDiffer",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ContentAnalyzer",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "LangChainErrorClassifier",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultCorrectionContextOverrideParser",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "ContentAuditCmd",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultLemmaAbsenceProposalStrategyRegistry",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "CourseToAuditableMapper",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "SpacyProcessRunner",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "private",
+        "elementScore" : 0.0
+      }, {
+        "elementName" : "DrillDownResolver",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "internal",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "DefaultConsolidatedViewBuilderFactory",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "LemmaAbsenceContextStructuralValidator",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "Main",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "RefinementPlanStore",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public+allowedClients",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      } ],
+      "a1cScore" : 0.9423076923076923,
+      "a1dScore" : 0.5601731601731601,
+      "compositeScore" : 0.644600156133175
+    },
+    "a2" : {
+      "structurallySound" : false,
+      "a2a" : {
+        "id" : "A2a",
+        "name" : "Structural Integrity",
+        "score" : 0.0,
+        "violations" : [ {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "IAuditEngine requires List<ContentAnalyzer> but no such interface exists in audit-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultQuizSentenceConverter requires QuizSentenceSerializer but no such interface exists in course-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultQuizSentenceConverter requires QuizSentenceParser but no such interface exists in course-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultQuizSentenceConverter requires PlainSentenceDeriver but no such interface exists in course-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "PlainSentenceDeriver requires WhitespaceNormalizer but no such interface exists in course-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DispatchingCorrectionContextResolver requires SentenceLengthContextResolver but no such interface exists in refiner-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DispatchingCorrectionContextResolver requires LemmaAbsenceContextResolver but no such interface exists in refiner-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultAuditRunner requires CourseToAuditableMapper but no such interface exists in audit-application or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultAuditRunner requires List<ContentAnalyzer> but no such interface exists in audit-application or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultAnalyzerRegistry requires List<ContentAnalyzer> but no such interface exists in audit-application or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultAnalyzerRegistry requires List<SelfDescribingConfig> but no such interface exists in audit-application or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultLemmaCountConfig requires int but no such interface exists in audit-application or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "AnalyzeCmd requires Map<String,DetailedFormatter> but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultFormatterRegistry requires Map<String, ReportFormatter> but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "SpacyNlpTokenizer requires SpacyProcessRunner but no such interface exists in nlp-infrastructure or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "SpacyNlpTokenizer requires SpacyResultParser but no such interface exists in nlp-infrastructure or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "SpacyProcessRunner requires NlpTokenizerConfig but no such interface exists in nlp-infrastructure or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultRevisionValidatorResult requires RevisionVerdict but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultRevisionValidatorResult requires Optional<String> but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DispatchingReviser requires Map<DiagnosisKind,Reviser> but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DispatchingReviser requires IdentityReviser but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultRevisionEngine requires CorrectionContextResolver<CorrectionContext> but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultLemmaAbsenceProposalStrategyRegistry requires LemmaAbsenceProposalStrategyRegistryConfig but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultCorrectionContextOverrideParser requires ObjectMapper but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultCorrectionContextOverrideParser requires Map<DiagnosisKind,CorrectionContextStructuralValidator> but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "LemmaAbsenceContextStructuralValidator requires ObjectMapper but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "SentenceLengthContextStructuralValidator requires ObjectMapper but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "LemmaAbsenceLlmGenerator requires LagenConfig but no such interface exists in revision-infrastructure or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "LemmaAbsenceLlmGenerator requires ChatLanguageModel but no such interface exists in revision-infrastructure or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "IAuditEngine requires List<ContentAnalyzer> but no such interface exists in audit-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultQuizSentenceConverter requires QuizSentenceSerializer but no such interface exists in course-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultQuizSentenceConverter requires QuizSentenceParser but no such interface exists in course-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultQuizSentenceConverter requires PlainSentenceDeriver but no such interface exists in course-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "PlainSentenceDeriver requires WhitespaceNormalizer but no such interface exists in course-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DispatchingCorrectionContextResolver requires SentenceLengthContextResolver but no such interface exists in refiner-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DispatchingCorrectionContextResolver requires LemmaAbsenceContextResolver but no such interface exists in refiner-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultAuditRunner requires CourseToAuditableMapper but no such interface exists in audit-application or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultAuditRunner requires List<ContentAnalyzer> but no such interface exists in audit-application or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultAnalyzerRegistry requires List<ContentAnalyzer> but no such interface exists in audit-application or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultAnalyzerRegistry requires List<SelfDescribingConfig> but no such interface exists in audit-application or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultLemmaCountConfig requires int but no such interface exists in audit-application or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "AnalyzeCmd requires Map<String,DetailedFormatter> but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultFormatterRegistry requires Map<String, ReportFormatter> but no such interface exists in audit-cli or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "SpacyNlpTokenizer requires SpacyProcessRunner but no such interface exists in nlp-infrastructure or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "SpacyNlpTokenizer requires SpacyResultParser but no such interface exists in nlp-infrastructure or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "SpacyProcessRunner requires NlpTokenizerConfig but no such interface exists in nlp-infrastructure or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultRevisionValidatorResult requires RevisionVerdict but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultRevisionValidatorResult requires Optional<String> but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DispatchingReviser requires Map<DiagnosisKind,Reviser> but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DispatchingReviser requires IdentityReviser but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultRevisionEngine requires CorrectionContextResolver<CorrectionContext> but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultLemmaAbsenceProposalStrategyRegistry requires LemmaAbsenceProposalStrategyRegistryConfig but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultCorrectionContextOverrideParser requires ObjectMapper but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultCorrectionContextOverrideParser requires Map<DiagnosisKind,CorrectionContextStructuralValidator> but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "LemmaAbsenceContextStructuralValidator requires ObjectMapper but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "SentenceLengthContextStructuralValidator requires ObjectMapper but no such interface exists in revision-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "LemmaAbsenceLlmGenerator requires LagenConfig but no such interface exists in revision-infrastructure or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "LemmaAbsenceLlmGenerator requires ChatLanguageModel but no such interface exists in revision-infrastructure or its dependsOn"
+        } ]
+      },
+      "a2b" : {
+        "id" : "A2b",
+        "name" : "Port Coverage",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2c" : {
+        "id" : "A2c",
+        "name" : "Reachability",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2d" : {
+        "id" : "A2d",
+        "name" : "Contract Utilization",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2e" : {
+        "id" : "A2e",
+        "name" : "Path Traceability",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "composite" : 0.0
+    },
+    "a3" : {
+      "modules" : [ {
+        "name" : "revision-infrastructure",
+        "ca" : 1,
+        "ce" : 2,
+        "instability" : 0.6666666666666666,
+        "abstractness" : 0.2857142857142857,
+        "distance" : 0.04761904761904767,
+        "zone" : "main_sequence",
+        "score" : 0.9523809523809523
+      }, {
+        "name" : "audit-cli",
+        "ca" : 0,
+        "ce" : 10,
+        "instability" : 1.0,
+        "abstractness" : 0.3411764705882353,
+        "distance" : 0.3411764705882354,
+        "zone" : "off_sequence",
+        "score" : 0.6588235294117646
+      }, {
+        "name" : "refiner-domain",
+        "ca" : 5,
+        "ce" : 1,
+        "instability" : 0.16666666666666666,
+        "abstractness" : 0.23529411764705882,
+        "distance" : 0.5980392156862745,
+        "zone" : "pain",
+        "score" : 0.4019607843137255
+      }, {
+        "name" : "course-domain",
+        "ca" : 5,
+        "ce" : 0,
+        "instability" : 0.0,
+        "abstractness" : 0.14285714285714285,
+        "distance" : 0.8571428571428572,
+        "zone" : "pain",
+        "score" : 0.1428571428571428
+      }, {
+        "name" : "revision-domain",
+        "ca" : 4,
+        "ce" : 3,
+        "instability" : 0.42857142857142855,
+        "abstractness" : 0.2696629213483146,
+        "distance" : 0.3017656500802568,
+        "zone" : "pain",
+        "score" : 0.6982343499197432
+      }, {
+        "name" : "audit-domain",
+        "ca" : 7,
+        "ce" : 1,
+        "instability" : 0.125,
+        "abstractness" : 0.2818181818181818,
+        "distance" : 0.5931818181818183,
+        "zone" : "pain",
+        "score" : 0.40681818181818175
+      }, {
+        "name" : "audit-infrastructure",
+        "ca" : 2,
+        "ce" : 3,
+        "instability" : 0.6,
+        "abstractness" : 0.0,
+        "distance" : 0.4,
+        "zone" : "off_sequence",
+        "score" : 0.6
+      }, {
+        "name" : "nlp-infrastructure",
+        "ca" : 2,
+        "ce" : 1,
+        "instability" : 0.3333333333333333,
+        "abstractness" : 0.14285714285714285,
+        "distance" : 0.5238095238095238,
+        "zone" : "pain",
+        "score" : 0.47619047619047616
+      }, {
+        "name" : "vocabulary-infrastructure",
+        "ca" : 2,
+        "ce" : 1,
+        "instability" : 0.3333333333333333,
+        "abstractness" : 0.0,
+        "distance" : 0.6666666666666667,
+        "zone" : "pain",
+        "score" : 0.33333333333333326
+      }, {
+        "name" : "audit-application",
+        "ca" : 1,
+        "ce" : 8,
+        "instability" : 0.8888888888888888,
+        "abstractness" : 0.25,
+        "distance" : 0.13888888888888884,
+        "zone" : "main_sequence",
+        "score" : 0.8611111111111112
+      }, {
+        "name" : "course-infrastructure",
+        "ca" : 2,
+        "ce" : 1,
+        "instability" : 0.3333333333333333,
+        "abstractness" : 0.0,
+        "distance" : 0.6666666666666667,
+        "zone" : "pain",
+        "score" : 0.33333333333333326
+      } ],
+      "componentCount" : 362,
+      "threshold" : 30,
+      "ramp" : 1.0,
+      "rawScore" : 0.5331857449699785,
+      "effectiveScore" : 0.5331857449699785
+    },
+    "a4" : {
+      "dependencyInversionHolds" : true,
+      "acyclic" : true,
+      "a4a" : {
+        "id" : "A4a",
+        "name" : "Dependency Inversion",
+        "score" : 1.0,
+        "violations" : [ {
+          "code" : "A4-NOLAYER",
+          "severity" : "warning",
+          "message" : "No modules declare a layer — A4 cannot be evaluated"
+        } ]
+      },
+      "a4b" : {
+        "id" : "A4b",
+        "name" : "Acyclicity",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4c" : {
+        "id" : "A4c",
+        "name" : "Adapter Polarity",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4d" : {
+        "id" : "A4d",
+        "name" : "Layer Isolation",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4e" : {
+        "id" : "A4e",
+        "name" : "Composition Root Discipline",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "composite" : 1.0
+    },
+    "a5" : {
+      "a5aScore" : 0.5599999999999999,
+      "a5bScore" : 1.0,
+      "a5cScore" : 1.0,
+      "a5dScore" : 0.8983050847457628,
+      "a5eScore" : 0.9545454545454546,
+      "violations" : [ {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'AuditNodeIndexFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'NlpTokenizerFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Strategy pattern 'LemmaAbsenceProposalStrategy' has 1 implementation(s) — needs ≥2 for polymorphism"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'LemmaAbsenceLlmGeneratorFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5d",
+        "severity" : "warning",
+        "message" : "'FileSystemCourseRepository' has type=Repository but lives in module 'course-infrastructure'"
+      }, {
+        "code" : "A5d",
+        "severity" : "warning",
+        "message" : "'FileSystemAuditReportStore' has type=Repository but lives in module 'audit-infrastructure'"
+      }, {
+        "code" : "A5d",
+        "severity" : "warning",
+        "message" : "'FileSystemRefinementPlanStore' has type=Repository but lives in module 'audit-infrastructure'"
+      }, {
+        "code" : "A5d",
+        "severity" : "warning",
+        "message" : "'FileSystemRevisionArtifactStore' has type=Repository but lives in module 'audit-infrastructure'"
+      }, {
+        "code" : "A5d",
+        "severity" : "warning",
+        "message" : "'FileSystemImpactPreviewStore' has type=Repository but lives in module 'audit-infrastructure'"
+      }, {
+        "code" : "A5d",
+        "severity" : "warning",
+        "message" : "'FileSystemActiveAnalysisSelectionStore' has type=Repository but lives in module 'audit-infrastructure'"
+      }, {
+        "code" : "A5d",
+        "severity" : "warning",
+        "message" : "'FileSystemCourseRepository' has type=Repository but lives in module 'course-infrastructure'"
+      }, {
+        "code" : "A5d",
+        "severity" : "warning",
+        "message" : "'FileSystemAuditReportStore' has type=Repository but lives in module 'audit-infrastructure'"
+      }, {
+        "code" : "A5d",
+        "severity" : "warning",
+        "message" : "'FileSystemRefinementPlanStore' has type=Repository but lives in module 'audit-infrastructure'"
+      }, {
+        "code" : "A5d",
+        "severity" : "warning",
+        "message" : "'FileSystemRevisionArtifactStore' has type=Repository but lives in module 'audit-infrastructure'"
+      }, {
+        "code" : "A5d",
+        "severity" : "warning",
+        "message" : "'FileSystemImpactPreviewStore' has type=Repository but lives in module 'audit-infrastructure'"
+      }, {
+        "code" : "A5d",
+        "severity" : "warning",
+        "message" : "'FileSystemActiveAnalysisSelectionStore' has type=Repository but lives in module 'audit-infrastructure'"
+      }, {
+        "code" : "A5e",
+        "severity" : "warning",
+        "message" : "Sealed interface 'NodeDiagnoses' has no implementations in patch"
+      }, {
+        "code" : "A5e",
+        "severity" : "warning",
+        "message" : "Sealed interface 'NodeDiagnoses' has no implementations in patch"
+      } ],
+      "composite" : 0.8459275808936826
+    },
+    "a6" : {
+      "score" : 1.0,
+      "totalInterfaces" : 198,
+      "inflatedCount" : 0,
+      "inflated" : [ ]
+    },
+    "c1" : {
+      "score" : 0.5909090909090909,
+      "maxDepth" : 8,
+      "avgDepth" : 3.6363636363636362,
+      "entries" : [ {
+        "entryPoint" : "audit-cli.commands.ContentAuditCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.AnalyzeCmd",
+        "depth" : 5
+      }, {
+        "entryPoint" : "audit-cli.commands.GetCmd",
+        "depth" : 2
+      }, {
+        "entryPoint" : "audit-cli.commands.DeleteCmd",
+        "depth" : 2
+      }, {
+        "entryPoint" : "audit-cli.commands.PruneCmd",
+        "depth" : 2
+      }, {
+        "entryPoint" : "audit-cli.commands.PlanCmd",
+        "depth" : 4
+      }, {
+        "entryPoint" : "audit-cli.commands.ReviseCmd",
+        "depth" : 8
+      }, {
+        "entryPoint" : "audit-cli.commands.ConfigAnalyzerCmd",
+        "depth" : 2
+      }, {
+        "entryPoint" : "audit-cli.commands.StatsAnalyzerCmd",
+        "depth" : 5
+      }, {
+        "entryPoint" : "audit-cli.commands.ApproveCmd",
+        "depth" : 5
+      }, {
+        "entryPoint" : "audit-cli.commands.RejectCmd",
+        "depth" : 5
+      }, {
+        "entryPoint" : "audit-cli.commands.ContentAuditCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.AnalyzeCmd",
+        "depth" : 5
+      }, {
+        "entryPoint" : "audit-cli.commands.GetCmd",
+        "depth" : 2
+      }, {
+        "entryPoint" : "audit-cli.commands.DeleteCmd",
+        "depth" : 2
+      }, {
+        "entryPoint" : "audit-cli.commands.PruneCmd",
+        "depth" : 2
+      }, {
+        "entryPoint" : "audit-cli.commands.PlanCmd",
+        "depth" : 4
+      }, {
+        "entryPoint" : "audit-cli.commands.ReviseCmd",
+        "depth" : 8
+      }, {
+        "entryPoint" : "audit-cli.commands.ConfigAnalyzerCmd",
+        "depth" : 2
+      }, {
+        "entryPoint" : "audit-cli.commands.StatsAnalyzerCmd",
+        "depth" : 5
+      }, {
+        "entryPoint" : "audit-cli.commands.ApproveCmd",
+        "depth" : 5
+      }, {
+        "entryPoint" : "audit-cli.commands.RejectCmd",
+        "depth" : 5
+      } ]
+    },
+    "c3" : {
+      "score" : 0.9398230088495575,
+      "details" : [ {
+        "name" : "IAuditEngine",
+        "moduleName" : "audit-domain",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "KnowledgeTitleLengthAnalyzer",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "KnowledgeInstructionsLengthAnalyzer",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "SentenceLengthAnalyzer",
+        "moduleName" : "audit-domain",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "IScoreAggregator",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "CocaBucketsAnalyzer",
+        "moduleName" : "audit-domain",
+        "cbo" : 6,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.6
+      }, {
+        "name" : "CocaTokenAccumulationAggregator",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultTokenClassifier",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultProgressionEvaluator",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultImprovementPlanner",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LemmaRecurrenceAnalyzer",
+        "moduleName" : "audit-domain",
+        "cbo" : 5,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.8
+      }, {
+        "name" : "DefaultContentWordFilter",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultIntervalCalculator",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultExposureClassifier",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LemmaByLevelAbsenceAnalyzer",
+        "moduleName" : "audit-domain",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LemmaAbsenceScoreAggregator",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultAuditNodeIndexFactory",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "MapAuditNodeIndex",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "EvpThenNlpLemmaCefrLevelResolver",
+        "moduleName" : "audit-domain",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LemmaCountAnalyzer",
+        "moduleName" : "audit-domain",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultQuizSentenceConverter",
+        "moduleName" : "course-domain",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "QuizSentenceSerializer",
+        "moduleName" : "course-domain",
+        "cbo" : 0,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "QuizSentenceParser",
+        "moduleName" : "course-domain",
+        "cbo" : 0,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "PlainSentenceDeriver",
+        "moduleName" : "course-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "WhitespaceNormalizer",
+        "moduleName" : "course-domain",
+        "cbo" : 0,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "SentenceLengthContextResolver",
+        "moduleName" : "refiner-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LemmaAbsenceContextResolver",
+        "moduleName" : "refiner-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DispatchingCorrectionContextResolver",
+        "moduleName" : "refiner-domain",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultRefinerEngine",
+        "moduleName" : "refiner-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "CourseToAuditableMapper",
+        "moduleName" : "audit-application",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultSentenceLengthConfig",
+        "moduleName" : "audit-application",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultAuditRunner",
+        "moduleName" : "audit-application",
+        "cbo" : 6,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.6
+      }, {
+        "name" : "DefaultCocaBucketsConfig",
+        "moduleName" : "audit-application",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLemmaRecurrenceConfig",
+        "moduleName" : "audit-application",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLemmaAbsenceConfig",
+        "moduleName" : "audit-application",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultAnalyzerRegistry",
+        "moduleName" : "audit-application",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLemmaCountConfig",
+        "moduleName" : "audit-application",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLemmaCountConfigLoader",
+        "moduleName" : "audit-application",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "FileSystemCourseRepository",
+        "moduleName" : "course-infrastructure",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "infrastructure",
+        "score" : 1.0
+      }, {
+        "name" : "Main",
+        "moduleName" : "audit-cli",
+        "cbo" : 0,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "ContentAuditCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "AnalyzeCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 9,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.0
+      }, {
+        "name" : "GetCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 10,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.0
+      }, {
+        "name" : "DeleteCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "PruneCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "PlanCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 6,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.6
+      }, {
+        "name" : "ReviseCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "ConfigAnalyzerCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "StatsAnalyzerCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 5,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.8
+      }, {
+        "name" : "ApproveCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "RejectCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultGetConsolidatedCommand",
+        "moduleName" : "audit-cli",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultSetActiveAnalysisCommand",
+        "moduleName" : "audit-cli",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultEphemeralPlanRenderer",
+        "moduleName" : "audit-cli",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultCorrectionContextJsonMapper",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "TextReportFormatter",
+        "moduleName" : "audit-cli",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "JsonReportFormatter",
+        "moduleName" : "audit-cli",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "TableReportFormatter",
+        "moduleName" : "audit-cli",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultFormatterRegistry",
+        "moduleName" : "audit-cli",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultReportViewModelTransformer",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "RawJsonReportFormatter",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultDrillDownResolver",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultAnalyzerStatsTransformer",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LemmaAbsenceDetailedFormatter",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "CocaBucketsDetailedFormatter",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultImpactPreviewFormatter",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultConsolidatedViewFormatter",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultWorkdirResolver",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultApprovalModeResolver",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultProposalStrategySelector",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLagenModeResolver",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLagenConfigResolver",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "SpacyNlpTokenizerFactory",
+        "moduleName" : "nlp-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "SpacyNlpTokenizer",
+        "moduleName" : "nlp-infrastructure",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "SpacyProcessRunner",
+        "moduleName" : "nlp-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "SpacyResultParser",
+        "moduleName" : "nlp-infrastructure",
+        "cbo" : 0,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "CachedNlpTokenizer",
+        "moduleName" : "nlp-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "FileSystemEvpCatalog",
+        "moduleName" : "vocabulary-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "FileSystemAuditReportStore",
+        "moduleName" : "audit-infrastructure",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "infrastructure",
+        "score" : 1.0
+      }, {
+        "name" : "FileSystemRefinementPlanStore",
+        "moduleName" : "audit-infrastructure",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "infrastructure",
+        "score" : 1.0
+      }, {
+        "name" : "FileSystemRevisionArtifactStore",
+        "moduleName" : "audit-infrastructure",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "infrastructure",
+        "score" : 1.0
+      }, {
+        "name" : "FileSystemImpactPreviewStore",
+        "moduleName" : "audit-infrastructure",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "infrastructure",
+        "score" : 1.0
+      }, {
+        "name" : "FileSystemActiveAnalysisSelectionStore",
+        "moduleName" : "audit-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "infrastructure",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultRevisionEngineFactory",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "IdentityReviser",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "AutoApproveValidator",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultRevisionValidatorResult",
+        "moduleName" : "revision-domain",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DispatchingReviser",
+        "moduleName" : "revision-domain",
+        "cbo" : 5,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.8
+      }, {
+        "name" : "DefaultCourseElementLocator",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultRevisionEngine",
+        "moduleName" : "revision-domain",
+        "cbo" : 12,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.0
+      }, {
+        "name" : "HumanApprovalValidator",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultRevisionValidatorFactory",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultProposalDecisionServiceFactory",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultProposalDecisionService",
+        "moduleName" : "revision-domain",
+        "cbo" : 5,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.8
+      }, {
+        "name" : "DefaultLemmaAbsenceProposalStrategyRegistry",
+        "moduleName" : "revision-domain",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLemmaAbsenceProposalDeriver",
+        "moduleName" : "revision-domain",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultImpactPreviewComputer",
+        "moduleName" : "revision-domain",
+        "cbo" : 5,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.8
+      }, {
+        "name" : "DefaultConsolidatedViewBuilderFactory",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultConsolidatedViewBuilder",
+        "moduleName" : "revision-domain",
+        "cbo" : 10,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.0
+      }, {
+        "name" : "LemmaAbsenceMvpStrategy",
+        "moduleName" : "revision-domain",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "CannedLemmaAbsenceQuizCandidateGenerator",
+        "moduleName" : "revision-domain",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "RecursiveNodeFieldDiffer",
+        "moduleName" : "revision-domain",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultFieldExclusionRegistry",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultListIdentityRegistry",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultNodeFieldDifferFactory",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultCorrectionContextOverrideParser",
+        "moduleName" : "revision-domain",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LemmaAbsenceContextStructuralValidator",
+        "moduleName" : "revision-domain",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "SentenceLengthContextStructuralValidator",
+        "moduleName" : "revision-domain",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLemmaAbsenceLlmGeneratorFactory",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LemmaAbsenceLlmGenerator",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 7,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.3999999999999999
+      }, {
+        "name" : "DefaultLemmaAbsencePromptBuilder",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLemmaAbsenceResponseParser",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLangChainErrorClassifier",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "IAuditEngine",
+        "moduleName" : "audit-domain",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "KnowledgeTitleLengthAnalyzer",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "KnowledgeInstructionsLengthAnalyzer",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "SentenceLengthAnalyzer",
+        "moduleName" : "audit-domain",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "IScoreAggregator",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "CocaBucketsAnalyzer",
+        "moduleName" : "audit-domain",
+        "cbo" : 6,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.6
+      }, {
+        "name" : "CocaTokenAccumulationAggregator",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultTokenClassifier",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultProgressionEvaluator",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultImprovementPlanner",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LemmaRecurrenceAnalyzer",
+        "moduleName" : "audit-domain",
+        "cbo" : 5,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.8
+      }, {
+        "name" : "DefaultContentWordFilter",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultIntervalCalculator",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultExposureClassifier",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LemmaByLevelAbsenceAnalyzer",
+        "moduleName" : "audit-domain",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LemmaAbsenceScoreAggregator",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultAuditNodeIndexFactory",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "MapAuditNodeIndex",
+        "moduleName" : "audit-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "EvpThenNlpLemmaCefrLevelResolver",
+        "moduleName" : "audit-domain",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LemmaCountAnalyzer",
+        "moduleName" : "audit-domain",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultQuizSentenceConverter",
+        "moduleName" : "course-domain",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "QuizSentenceSerializer",
+        "moduleName" : "course-domain",
+        "cbo" : 0,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "QuizSentenceParser",
+        "moduleName" : "course-domain",
+        "cbo" : 0,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "PlainSentenceDeriver",
+        "moduleName" : "course-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "WhitespaceNormalizer",
+        "moduleName" : "course-domain",
+        "cbo" : 0,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "SentenceLengthContextResolver",
+        "moduleName" : "refiner-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LemmaAbsenceContextResolver",
+        "moduleName" : "refiner-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DispatchingCorrectionContextResolver",
+        "moduleName" : "refiner-domain",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultRefinerEngine",
+        "moduleName" : "refiner-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "CourseToAuditableMapper",
+        "moduleName" : "audit-application",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultSentenceLengthConfig",
+        "moduleName" : "audit-application",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultAuditRunner",
+        "moduleName" : "audit-application",
+        "cbo" : 6,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.6
+      }, {
+        "name" : "DefaultCocaBucketsConfig",
+        "moduleName" : "audit-application",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLemmaRecurrenceConfig",
+        "moduleName" : "audit-application",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLemmaAbsenceConfig",
+        "moduleName" : "audit-application",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultAnalyzerRegistry",
+        "moduleName" : "audit-application",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLemmaCountConfig",
+        "moduleName" : "audit-application",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLemmaCountConfigLoader",
+        "moduleName" : "audit-application",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "FileSystemCourseRepository",
+        "moduleName" : "course-infrastructure",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "infrastructure",
+        "score" : 1.0
+      }, {
+        "name" : "Main",
+        "moduleName" : "audit-cli",
+        "cbo" : 0,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "ContentAuditCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "AnalyzeCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 9,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.0
+      }, {
+        "name" : "GetCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 10,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.0
+      }, {
+        "name" : "DeleteCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "PruneCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "PlanCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 6,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.6
+      }, {
+        "name" : "ReviseCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "ConfigAnalyzerCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "StatsAnalyzerCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 5,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.8
+      }, {
+        "name" : "ApproveCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "RejectCmd",
+        "moduleName" : "audit-cli",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultGetConsolidatedCommand",
+        "moduleName" : "audit-cli",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultSetActiveAnalysisCommand",
+        "moduleName" : "audit-cli",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultEphemeralPlanRenderer",
+        "moduleName" : "audit-cli",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultCorrectionContextJsonMapper",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "TextReportFormatter",
+        "moduleName" : "audit-cli",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "JsonReportFormatter",
+        "moduleName" : "audit-cli",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "TableReportFormatter",
+        "moduleName" : "audit-cli",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultFormatterRegistry",
+        "moduleName" : "audit-cli",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultReportViewModelTransformer",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "RawJsonReportFormatter",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultDrillDownResolver",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultAnalyzerStatsTransformer",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LemmaAbsenceDetailedFormatter",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "CocaBucketsDetailedFormatter",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultImpactPreviewFormatter",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultConsolidatedViewFormatter",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultWorkdirResolver",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultApprovalModeResolver",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultProposalStrategySelector",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLagenModeResolver",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLagenConfigResolver",
+        "moduleName" : "audit-cli",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "SpacyNlpTokenizerFactory",
+        "moduleName" : "nlp-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "SpacyNlpTokenizer",
+        "moduleName" : "nlp-infrastructure",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "SpacyProcessRunner",
+        "moduleName" : "nlp-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "SpacyResultParser",
+        "moduleName" : "nlp-infrastructure",
+        "cbo" : 0,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "CachedNlpTokenizer",
+        "moduleName" : "nlp-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "FileSystemEvpCatalog",
+        "moduleName" : "vocabulary-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "FileSystemAuditReportStore",
+        "moduleName" : "audit-infrastructure",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "infrastructure",
+        "score" : 1.0
+      }, {
+        "name" : "FileSystemRefinementPlanStore",
+        "moduleName" : "audit-infrastructure",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "infrastructure",
+        "score" : 1.0
+      }, {
+        "name" : "FileSystemRevisionArtifactStore",
+        "moduleName" : "audit-infrastructure",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "infrastructure",
+        "score" : 1.0
+      }, {
+        "name" : "FileSystemImpactPreviewStore",
+        "moduleName" : "audit-infrastructure",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "infrastructure",
+        "score" : 1.0
+      }, {
+        "name" : "FileSystemActiveAnalysisSelectionStore",
+        "moduleName" : "audit-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "infrastructure",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultRevisionEngineFactory",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "IdentityReviser",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "AutoApproveValidator",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultRevisionValidatorResult",
+        "moduleName" : "revision-domain",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DispatchingReviser",
+        "moduleName" : "revision-domain",
+        "cbo" : 5,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.8
+      }, {
+        "name" : "DefaultCourseElementLocator",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultRevisionEngine",
+        "moduleName" : "revision-domain",
+        "cbo" : 12,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.0
+      }, {
+        "name" : "HumanApprovalValidator",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultRevisionValidatorFactory",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultProposalDecisionServiceFactory",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultProposalDecisionService",
+        "moduleName" : "revision-domain",
+        "cbo" : 5,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.8
+      }, {
+        "name" : "DefaultLemmaAbsenceProposalStrategyRegistry",
+        "moduleName" : "revision-domain",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLemmaAbsenceProposalDeriver",
+        "moduleName" : "revision-domain",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultImpactPreviewComputer",
+        "moduleName" : "revision-domain",
+        "cbo" : 5,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.8
+      }, {
+        "name" : "DefaultConsolidatedViewBuilderFactory",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultConsolidatedViewBuilder",
+        "moduleName" : "revision-domain",
+        "cbo" : 10,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.0
+      }, {
+        "name" : "LemmaAbsenceMvpStrategy",
+        "moduleName" : "revision-domain",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "CannedLemmaAbsenceQuizCandidateGenerator",
+        "moduleName" : "revision-domain",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "RecursiveNodeFieldDiffer",
+        "moduleName" : "revision-domain",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultFieldExclusionRegistry",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultListIdentityRegistry",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultNodeFieldDifferFactory",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultCorrectionContextOverrideParser",
+        "moduleName" : "revision-domain",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LemmaAbsenceContextStructuralValidator",
+        "moduleName" : "revision-domain",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "SentenceLengthContextStructuralValidator",
+        "moduleName" : "revision-domain",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLemmaAbsenceLlmGeneratorFactory",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LemmaAbsenceLlmGenerator",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 7,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.3999999999999999
+      }, {
+        "name" : "DefaultLemmaAbsencePromptBuilder",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLemmaAbsenceResponseParser",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultLangChainErrorClassifier",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      } ]
+    },
+    "mode" : "FULL",
+    "compositeScore" : 0.6053946169958263
+  },
+  "aTierComposite" : 0.6053946169958263,
+  "globalComposite" : {
+    "value" : 0.6053946169958263,
+    "raw" : 0.6053946169958263,
+    "capped" : false,
+    "aWeight" : 1.0,
+    "bWeight" : 0.0
+  },
+  "topFindings" : [ ],
+  "timestamp" : "2026-05-16T19:02:01.746171Z"
+}

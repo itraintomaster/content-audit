@@ -75,6 +75,8 @@ The following interfaces are `sealed`. Only the listed classes may implement the
 - `SetActiveAnalysisCommand` permits: (none declared)
 - `LemmaAbsenceProposalStrategyRegistry` permits: (none declared)
 - `LemmaAbsenceProposalDeriver` permits: (none declared)
+- `KnowledgeTitleProposalStrategyRegistry` permits: (none declared)
+- `KnowledgeTitleProposalDeriver` permits: (none declared)
 
 ## Rule C - Dependency Injection
 
@@ -237,19 +239,19 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 ### course-domain
 
-**Models:** NodeKind, SentencePartKind, CourseEntity, RootNodeEntity, MilestoneEntity, TopicEntity, KnowledgeEntity, QuizTemplateEntity, FormEntity, SentencePartEntity, CourseValidationException
+**Models:** NodeKind, SentencePartKind, CourseEntity, RootNodeEntity, MilestoneEntity, TopicEntity, KnowledgeEntity, QuizTemplateEntity, FormEntity, SentencePartEntity, CourseValidationException, SentenceMode
 
 **Interfaces:** CourseRepository, CourseValidator
 
 ### refiner-domain
 
-**Depends on:** audit-domain
+**Depends on:** audit-domain, course-domain
 
-**Models:** DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext, LengthDirection, SuggestedLemmaQueryResult, SuggestedLemmaQueryRejectedException, SuggestedLemmaQueryCriteria
+**Models:** DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext, LengthDirection, SuggestedLemmaQueryResult, SuggestedLemmaQueryRejectedException, SuggestedLemmaQueryCriteria, ScarceContentWord, KnowledgeTitleCorrectionContext
 
 **Interfaces:** RefinerEngine, RefinementPlanStore, CorrectionContextResolver, CorrectionContext, SuggestedLemmaQueryPort, SuggestedLemmaQuerySession, SuggestedLemmaQuerySessionFactory
 
-**Implementations:** SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver, DefaultRefinerEngine
+**Implementations:** SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver, DefaultRefinerEngine, KnowledgeTitleContextResolver
 
 ### audit-application
 
@@ -297,7 +299,7 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 **Models:** RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig, ApprovalMode, ProposalDecisionOutcomeKind, ProposalDecisionOutcome, StrategyId, LemmaAbsenceQuizCandidate, ProposalStrategyFailedException, ProposalDerivationException, ConsolidatedViewBuilderConfig, CorrectionContextSource, CorrectionContextOverride, OverrideRejectedException
 
-**Interfaces:** Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore, CorrectionContextOverrideParser
+**Interfaces:** Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore, CorrectionContextOverrideParser, KnowledgeTitleProposalStrategy, KnowledgeTitleProposalStrategyRegistry, KnowledgeTitleProposalDeriver
 
 ### revision-infrastructure
 
@@ -315,7 +317,7 @@ Features, business rules, and user journeys for this project are defined in `REQ
 |--------|------------|
 | audit-domain | course-domain |
 | course-domain | (none) |
-| refiner-domain | audit-domain |
+| refiner-domain | audit-domain, course-domain |
 | audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain |
 | course-infrastructure | course-domain |
 | audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure |

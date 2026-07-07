@@ -30,6 +30,7 @@ Core business logic
 | id | `String` |
 | label | `String` |
 | code | `String` |
+| sentenceMode | `SentenceMode` |
 
 ### AuditableTopic (`record`)
 
@@ -468,6 +469,8 @@ Methods:
 - should NOT emit a SentenceLengthDiagnosis on knowledge topic milestone or course nodes traversed by the analyzer → FEAT-DSLEN/F-DSLEN-R003
 - should make the emitted SentenceLengthDiagnosis retrievable via QuizDiagnoses getSentenceLengthDiagnosis on the same quiz node → FEAT-DSLEN/F-DSLEN-R004
 - should compute each quiz score using the linguistic token count from the precomputed NLP tokenization of the quiz sentence and never from a whitespace-based string split → FEAT-SLEN/F-SLEN-R013
+- should compute the length score over the mode-determined canonical phrase token count and not over a blind concatenation of all quiz parts → FEAT-SMODE/F-SMODE-R005
+- should score a REWRITE quiz answer Watch the DVD at 100 percent on 4 tokens for A1 instead of 60 percent on the 10-token source-plus-answer concatenation → FEAT-SMODE/F-SMODE-R007
 
 ### IScoreAggregator
 
@@ -564,6 +567,7 @@ The following models and interfaces are available from dependencies. You can use
 | order | `int` |
 | slug | `String` |
 | quizTemplates | `List<QuizTemplateEntity>` |
+| sentenceMode | `SentenceMode` |
 
 ### QuizTemplateEntity (`record`)
 
@@ -619,6 +623,13 @@ The following models and interfaces are available from dependencies. You can use
 |-------|------|
 | path | `String` |
 | detail | `String` |
+
+### SentenceMode (`enum`)
+
+| Field | Type |
+|-------|------|
+| REWRITE | `null` |
+| FILL | `null` |
 
 ### CourseRepository (port)
 

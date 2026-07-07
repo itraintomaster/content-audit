@@ -1,0 +1,16 @@
+code: __proposal__
+description: Add exerciseQuizzes field (List<String>) last on LemmaAbsenceCorrectionContext
+  to carry sibling quizzes' DSL for the lemma-absence agent
+modules:
+- name: refiner-domain
+  models:
+  - name: LemmaAbsenceCorrectionContext
+    type: record
+    fields:
+    - name: exerciseQuizzes
+      type: List<String>
+      description: |
+        Lista de los quizSentence (forma DSL) de los OTROS quizzes del mismo ejercicio (los quizzes hermanos bajo el mismo knowledge), recolectados por LemmaAbsenceContextResolver al recorrer el arbol de auditoria. La consume el agente lemma-absence para evitar proponer un quiz demasiado parecido a uno que ya existe en el ejercicio. Lista vacia cuando el ejercicio no tiene otros quizzes.
+      _change: add
+    _change: modify
+  _change: modify

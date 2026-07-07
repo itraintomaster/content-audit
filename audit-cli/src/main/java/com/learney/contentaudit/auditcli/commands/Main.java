@@ -49,6 +49,7 @@ import com.learney.contentaudit.auditinfrastructure.FileSystemRefinementPlanStor
 import com.learney.contentaudit.auditinfrastructure.FileSystemRevisionArtifactStore;
 import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
 import com.learney.contentaudit.refinerdomain.DispatchingCorrectionContextResolver;
+import com.learney.contentaudit.refinerdomain.KnowledgeTitleContextResolver;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceContextResolver;
 import com.learney.contentaudit.refinerdomain.SentenceLengthContextResolver;
 import com.learney.contentaudit.refinerdomain.DefaultRefinerEngine;
@@ -58,6 +59,8 @@ import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.refinerdomain.lemmasuggestion.LemmaAbsenceContextSuggestedLemmaQueryPort;
 import com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver;
 import com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalStrategyRegistry;
+import com.learney.contentaudit.revisiondomain.KnowledgeTitleProposalDeriver;
+import com.learney.contentaudit.revisiondomain.KnowledgeTitleProposalStrategyRegistry;
 import com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException;
 import com.learney.contentaudit.revisiondomain.RevisionEngine;
 import com.learney.contentaudit.revisiondomain.RevisionEngineConfig;
@@ -65,19 +68,27 @@ import com.learney.contentaudit.revisiondomain.Reviser;
 import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
 import com.learney.contentaudit.revisiondomain.StrategyId;
 import com.learney.contentaudit.revisiondomain.engine.DefaultLemmaAbsenceProposalDeriver;
+import com.learney.contentaudit.revisiondomain.engine.DefaultKnowledgeTitleProposalDeriver;
+import com.learney.contentaudit.revisiondomain.engine.DefaultKnowledgeTitleProposalStrategyRegistry;
 import com.learney.contentaudit.revisiondomain.engine.DefaultLemmaAbsenceProposalStrategyRegistry;
 import com.learney.contentaudit.revisiondomain.contextoverride.DefaultCorrectionContextOverrideParser;
 import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngineFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learney.contentaudit.revisiondomain.engine.DefaultProposalDecisionServiceFactory;
 import com.learney.contentaudit.revisiondomain.engine.DefaultRevisionValidatorFactory;
+import com.learney.contentaudit.revisiondomain.engine.KnowledgeTitleProposalStrategyRegistryConfig;
 import com.learney.contentaudit.revisiondomain.engine.LemmaAbsenceProposalStrategyRegistryConfig;
 import com.learney.contentaudit.revisiondomain.lemmaabsence.CannedLemmaAbsenceQuizCandidateGenerator;
 import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceMvpStrategy;
 import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceQuizCandidateGenerator;
+import com.learney.contentaudit.revisiondomain.knowledgetitle.KnowledgeTitleAgentStrategy;
+import com.learney.contentaudit.revisiondomain.knowledgetitle.KnowledgeTitleCandidateGenerator;
+import com.learney.contentaudit.revisiondomain.knowledgetitle.KnowledgeTitleGeneratorResponse;
 import com.learney.contentaudit.revisioninfrastructure.lagen.LagenConfig;
 import com.learney.contentaudit.revisioninfrastructure.lagen.LemmaAbsenceAgentGeneratorFactory;
 import com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent.DefaultLemmaAbsenceAgentGeneratorFactory;
+import com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent.DefaultKnowledgeTitleAgentGeneratorFactory;
+import com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent.KnowledgeTitleAgentGeneratorFactory;
 import com.learney.contentaudit.auditcli.LagenMode;
 import com.learney.contentaudit.auditcli.bootstrap.DefaultLagenModeResolver;
 import com.learney.contentaudit.auditcli.bootstrap.DefaultLagenConfigResolver;
@@ -314,8 +325,9 @@ class Main {
         RefinerEngine refinerEngine = new DefaultRefinerEngine();
         SentenceLengthContextResolver sentenceLengthContextResolver = new SentenceLengthContextResolver();
         LemmaAbsenceContextResolver lemmaAbsenceContextResolver = new LemmaAbsenceContextResolver();
+        KnowledgeTitleContextResolver knowledgeTitleContextResolver = new KnowledgeTitleContextResolver();
         CorrectionContextResolver correctionContextResolver = new DispatchingCorrectionContextResolver(
-                sentenceLengthContextResolver, lemmaAbsenceContextResolver);
+                sentenceLengthContextResolver, lemmaAbsenceContextResolver, knowledgeTitleContextResolver);
 
         RevisionValidator revisionValidator = new DefaultRevisionValidatorFactory().create(approvalMode);
 
@@ -326,6 +338,8 @@ class Main {
 
         LemmaAbsenceQuizCandidateGenerator generator;
         String providerId;
+        KnowledgeTitleCandidateGenerator knowledgeTitleGenerator;
+        String knowledgeTitleProviderId;
 
         if (lagenMode == LagenMode.CANNED) {
             // Canned mode: deterministic fixture candidate, no LLM contact (F-LAGEN-R012)
@@ -333,6 +347,10 @@ class Main {
                     "She ____ [walks|runs] to school.",
                     "Ella camina a la escuela.");
             providerId = "canned:fixed";
+            knowledgeTitleGenerator = ctx -> new KnowledgeTitleGeneratorResponse(
+                    "Canned Knowledge Title",
+                    "Completa la actividad.");
+            knowledgeTitleProviderId = "canned:fixed";
         } else {
             // LLM mode: sentinel-agent backed by LangChain4j (F-LASAG-R001/R002).
             // F-LAGEN-R014: if config or providerId resolution fails, defer the failure
@@ -360,6 +378,11 @@ class Main {
                 try {
                     providerId = factory.providerIdFor(lagenConfig);
                     generator = factory.create(lagenConfig, sessionFactory);
+
+                    KnowledgeTitleAgentGeneratorFactory knowledgeTitleFactory =
+                            new DefaultKnowledgeTitleAgentGeneratorFactory(baseDir);
+                    knowledgeTitleProviderId = knowledgeTitleFactory.providerIdFor(lagenConfig);
+                    knowledgeTitleGenerator = knowledgeTitleFactory.create(lagenConfig);
                 } catch (com.learney.contentaudit.revisioninfrastructure.lagen.InvalidProviderIdException e) {
                     lagenSetupError = e.getMessage();
                     providerId = "lagen:misconfigured";
@@ -367,6 +390,11 @@ class Main {
                     generator = ctx -> {
                         throw new ProposalStrategyFailedException(
                                 "lemma-absence-llm", ctx.getTaskId(), "INVALID_CONFIG: " + deferredMsg);
+                    };
+                    knowledgeTitleProviderId = "lagen:misconfigured";
+                    knowledgeTitleGenerator = ctx -> {
+                        throw new ProposalStrategyFailedException(
+                                "knowledge-title-agent", ctx.getTaskId(), "INVALID_CONFIG: " + deferredMsg);
                     };
                 }
             } else {
@@ -376,15 +404,26 @@ class Main {
                     throw new ProposalStrategyFailedException(
                             "lemma-absence-llm", ctx.getTaskId(), "INVALID_CONFIG: " + deferredMsg);
                 };
+                knowledgeTitleProviderId = "lagen:misconfigured";
+                knowledgeTitleGenerator = ctx -> {
+                    throw new ProposalStrategyFailedException(
+                            "knowledge-title-agent", ctx.getTaskId(), "INVALID_CONFIG: " + deferredMsg);
+                };
             }
         }
 
         LemmaAbsenceMvpStrategy mvpStrategy = new LemmaAbsenceMvpStrategy(generator, providerId);
+        KnowledgeTitleAgentStrategy knowledgeTitleStrategy =
+                new KnowledgeTitleAgentStrategy(knowledgeTitleGenerator, knowledgeTitleProviderId);
 
         LemmaAbsenceProposalStrategyRegistryConfig registryConfig =
                 new LemmaAbsenceProposalStrategyRegistryConfig(List.of(mvpStrategy), null);
+        KnowledgeTitleProposalStrategyRegistryConfig knowledgeTitleRegistryConfig =
+                new KnowledgeTitleProposalStrategyRegistryConfig(
+                        List.of(knowledgeTitleStrategy), "knowledge-title-agent");
 
         LemmaAbsenceProposalStrategyRegistry strategyRegistry = null;
+        KnowledgeTitleProposalStrategyRegistry knowledgeTitleStrategyRegistry = null;
         if (!lapsDisabled) {
             // Resolve active strategy name via env var (DOUBT-STRATEGY-SELECTION -> Option A)
             String lapsStrategyEnv = System.getenv("CONTENT_AUDIT_LAPS_STRATEGY");
@@ -404,10 +443,14 @@ class Main {
             LemmaAbsenceProposalStrategyRegistryConfig finalRegistryConfig =
                     new LemmaAbsenceProposalStrategyRegistryConfig(List.of(mvpStrategy), activeStrategyName);
             strategyRegistry = new DefaultLemmaAbsenceProposalStrategyRegistry(finalRegistryConfig);
+            knowledgeTitleStrategyRegistry =
+                    new DefaultKnowledgeTitleProposalStrategyRegistry(knowledgeTitleRegistryConfig);
         }
 
         LemmaAbsenceProposalDeriver proposalDeriver =
                 new DefaultLemmaAbsenceProposalDeriver(quizSentenceConverter);
+        KnowledgeTitleProposalDeriver knowledgeTitleProposalDeriver =
+                new DefaultKnowledgeTitleProposalDeriver();
 
         RevisionEngineConfig revisionEngineConfig = new RevisionEngineConfig();
         revisionEngineConfig.setRevisers(new HashMap<DiagnosisKind, Reviser>());
@@ -419,6 +462,8 @@ class Main {
         revisionEngineConfig.setValidator(revisionValidator);
         revisionEngineConfig.setLemmaAbsenceStrategyRegistry(strategyRegistry);
         revisionEngineConfig.setLemmaAbsenceProposalDeriver(proposalDeriver);
+        revisionEngineConfig.setKnowledgeTitleStrategyRegistry(knowledgeTitleStrategyRegistry);
+        revisionEngineConfig.setKnowledgeTitleProposalDeriver(knowledgeTitleProposalDeriver);
         revisionEngineConfig.setCourseMapper(courseToAuditableMapper);
         revisionEngineConfig.setAuditEngine(auditEngine);
         revisionEngineConfig.setImpactPreviewStore(impactPreviewStore);

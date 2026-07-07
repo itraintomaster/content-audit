@@ -1,0 +1,301 @@
+code: FEAT-KTLR
+description: "FEAT-KTLR: puente revise->propuesta->aprobar para KNOWLEDGE_TITLE_LENGTH.\
+  \ Contexto dedicado del knowledge (refiner-domain), SPI de propuesta title (revision-domain.knowledgetitle)\
+  \ enrutada por un Reviser dedicado, snapshot polimorfico quiz|knowledge + locator\
+  \ que reescribe label+instructions del knowledge, y adapter agente (revision-infrastructure.knowledgetitleagent)\
+  \ espejo del puente lemma-absence."
+modules:
+- name: refiner-domain
+  models:
+  - name: KnowledgeTitleCorrectionContext
+    type: record
+    fields:
+    - name: taskId
+      type: String
+      description: Id de la RefinementTask (F-KTLR-R002).
+    - name: knowledgeId
+      type: String
+      description: "Id del knowledge senalado por la tarea; lo consume el adapter\
+        \ agente como input knowledgeId (F-KTLR-R002, R011)."
+    - name: currentTitle
+      type: String
+      description: Titulo actual del knowledge (label). Punto de partida a mejorar
+        (F-KTLR-R002).
+    - name: currentInstructions
+      type: String
+      description: "Instructions actuales del knowledge; se comprimen sin perder la\
+        \ consigna (F-KTLR-R002). Nullable: KnowledgeEntity.instructions puede ser\
+        \ null."
+    - name: topicLabel
+      type: String
+      description: Label del topic contenedor; el titulo no debe repetir lo que ya
+        dice el topic (F-KTLR-R002).
+    - name: titleTargetMax
+      type: Integer
+      description: Techo ponderado del titulo que aplica el audit (knowledge-title-length).
+        Limite objetivo de longitud (F-KTLR-R002). Nullable si no hay diagnostico
+        disponible.
+    - name: instructionsTargetMax
+      type: Integer
+      description: Techo ponderado de las instructions que aplica el audit. Limite
+        objetivo de longitud (F-KTLR-R002). Nullable.
+    - name: expectedTitleLanguage
+      type: String
+      description: Idioma esperado del titulo (ingles) segun convencion del contenido
+        (F-KTLR-R002).
+    - name: expectedInstructionsLanguage
+      type: String
+      description: Idioma esperado de las instructions (espanol) segun convencion
+        del contenido (F-KTLR-R002).
+    _change: add
+    implements:
+    - CorrectionContext
+  implementations:
+  - name: KnowledgeTitleContextResolver
+    visibility: public
+    implements:
+    - CorrectionContextResolver
+    _change: add
+  - name: DispatchingCorrectionContextResolver
+    requiresInject:
+    - name: sentenceLengthResolver
+      type: SentenceLengthContextResolver
+    - name: lemmaAbsenceResolver
+      type: LemmaAbsenceContextResolver
+    - name: knowledgeTitleResolver
+      type: KnowledgeTitleContextResolver
+    implements:
+    - CorrectionContextResolver
+    _change: modify
+  _change: modify
+- name: revision-domain
+  models:
+  - name: CourseElementSnapshot
+    type: record
+    fields:
+    - name: knowledge
+      type: KnowledgeEntity
+      description: "Snapshot completo del knowledge cuando nodeTarget=KNOWLEDGE; null\
+        \ en otro caso. Coexiste con `quiz` (nodeTarget=QUIZ). nodeTarget es el discriminante:\
+        \ el locator enruta la lectura/escritura segun su valor, preservando intacto\
+        \ el camino QUIZ (F-KTLR-R006, R007, R008)."
+      _change: add
+    _change: modify
+  interfaces:
+  - name: RevisionEngineConfig
+    sealed: false
+    _change: modify
+  - name: KnowledgeTitleProposalStrategy
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "id(): StrategyId"
+    - signature: "handles(DiagnosisKind kind): boolean"
+    - signature: "propose(RefinementTask task, KnowledgeTitleCorrectionContext context):\
+        \ KnowledgeTitleCandidate"
+    _change: add
+  - name: KnowledgeTitleProposalStrategyRegistry
+    stereotype: service
+    sealed: true
+    exposes:
+    - signature: "active(): Optional<KnowledgeTitleProposalStrategy>"
+    - signature: "byName(String name): Optional<KnowledgeTitleProposalStrategy>"
+    - signature: "listAll(): List<StrategyId>"
+    _change: add
+  - name: KnowledgeTitleProposalDeriver
+    stereotype: service
+    sealed: true
+    exposes:
+    - signature: "derive(CourseElementSnapshot before, KnowledgeTitleCandidate candidate):\
+        \ CourseElementSnapshot"
+    _change: add
+  packages:
+  - name: knowledgetitle
+    description: "SPI de propuesta para KNOWLEDGE_TITLE_LENGTH. Publica para que el\
+      \ composition root y revision-infrastructure instancien la estrategia y el generador\
+      \ y los pasen al builder del registry. Aloja el puerto del generador de candidatos\
+      \ (KnowledgeTitleCandidateGenerator) mas su carrier de respuesta cruda (KnowledgeTitleGeneratorResponse),\
+      \ el carrier del candidato ({title, instructions}) y la estrategia que delega\
+      \ en el puerto (KnowledgeTitleAgentStrategy) estampando el providerId inyectado\
+      \ sobre cada StrategyId (analoga a LemmaAbsenceMvpStrategy). Espejo del package\
+      \ lemmaabsence."
+    visibility: public
+    models:
+    - name: KnowledgeTitleCandidate
+      type: record
+      fields:
+      - name: title
+        type: String
+        description: "Nuevo titulo propuesto por el agente. Vocabulario del agente\
+          \ (`title`); el deriver lo mapea explicitamente a KnowledgeEntity.label\
+          \ al construir el snapshot despues (F-KTLR-R005, R006)."
+      - name: instructions
+        type: String
+        description: Nuevas instructions propuestas por el agente (F-KTLR-R004). Ambos
+          campos presentes y no vacios por candidato (F-KTLR-R004).
+      _change: add
+    - name: KnowledgeTitleGeneratorResponse
+      type: record
+      fields:
+      - name: title
+        type: String
+        description: Titulo crudo devuelto por el generador (agente).
+      - name: instructions
+        type: String
+        description: Instructions crudas devueltas por el generador (agente).
+      _change: add
+    interfaces:
+    - name: KnowledgeTitleCandidateGenerator
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "generate(KnowledgeTitleCorrectionContext context): KnowledgeTitleGeneratorResponse"
+      visibility: public
+      _change: add
+    implementations:
+    - name: KnowledgeTitleAgentStrategy
+      requiresInject:
+      - name: generator
+        type: KnowledgeTitleCandidateGenerator
+        description: Generador de candidatos al que delega la estrategia; el composition
+          root supple el agente (default) o un generador canned (F-KTLR-R003).
+      - name: providerId
+        type: String
+        description: Identificador de proveedor estampado en cada StrategyId que emite
+          la estrategia (analogo a LemmaAbsenceMvpStrategy).
+      visibility: public
+      implements:
+      - KnowledgeTitleProposalStrategy
+      _change: add
+    _change: add
+  - name: engine
+    models:
+    - name: KnowledgeTitleProposalStrategyRegistryConfig
+      type: record
+      fields:
+      - name: registered
+        type: List<KnowledgeTitleProposalStrategy>
+        description: Estrategias conocidas por el registry.
+      - name: activeName
+        type: String
+        description: Nombre de la estrategia activa; resuelto via byName(). Nullable
+          -> active() vacio -> el reviser reporta sin-estrategia (F-KTLR-R010).
+      _change: add
+    implementations:
+    - name: KnowledgeTitleReviser
+      requiresInject:
+      - name: strategyRegistry
+        type: KnowledgeTitleProposalStrategyRegistry
+        description: Resuelve la KnowledgeTitleProposalStrategy activa; las tareas
+          KNOWLEDGE_TITLE_LENGTH se enrutan aca en vez de caer al IdentityReviser
+          bypass (F-KTLR-R003).
+      - name: deriver
+        type: KnowledgeTitleProposalDeriver
+        description: "Deriva elementAfter de forma determinista desde un KnowledgeTitleCandidate\
+          \ mapeando title->label + instructions sobre una copia del knowledge before\
+          \ (F-KTLR-R005, R006, R007)."
+      implements:
+      - Reviser
+      _change: add
+    - name: DefaultKnowledgeTitleProposalStrategyRegistry
+      requiresInject:
+      - name: config
+        type: KnowledgeTitleProposalStrategyRegistryConfig
+      visibility: public
+      implements:
+      - KnowledgeTitleProposalStrategyRegistry
+      _change: add
+    - name: DefaultKnowledgeTitleProposalDeriver
+      visibility: public
+      implements:
+      - KnowledgeTitleProposalDeriver
+      _change: add
+    - name: DefaultCourseElementLocator
+      implements:
+      - CourseElementLocator
+      _change: modify
+    _change: modify
+  _change: modify
+- name: revision-infrastructure
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultKnowledgeTitleAgentGeneratorFactory
+    suppressed: false
+    interface: KnowledgeTitleAgentGeneratorFactory
+  packages:
+  - name: knowledgetitleagent
+    description: "Adapter agente para KNOWLEDGE_TITLE_LENGTH. Espejo de lemmaabsenceagent/lagen:\
+      \ expone un unico factory seam (KnowledgeTitleAgentGeneratorFactory) que construye\
+      \ el generador respaldado por el agente declarativo knowledge-titles-agent sobre\
+      \ el runtime de sentinel-agent. Solo la factory es publica; el generador, el\
+      \ launcher del runtime, el parser de candidatos y el clasificador de errores\
+      \ son package-private. El generador implementa el puerto revision-domain.knowledgetitle.KnowledgeTitleCandidateGenerator\
+      \ y traduce fallas de runtime (timeout/auth/transporte/otro) en ProposalStrategyFailedException\
+      \ con categoria preservada (F-KTLR-R010). El nombre del agente declarativo es\
+      \ una constante interna del adapter."
+    visibility: public
+    interfaces:
+    - name: KnowledgeTitleAgentGeneratorFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(LagenConfig config): KnowledgeTitleCandidateGenerator"
+      - signature: "providerIdFor(LagenConfig config): String"
+      visibility: public
+      _change: add
+    - name: KnowledgeTitleAgentRuntimeLauncher
+      sealed: false
+      exposes:
+      - signature: "launch(String agentName, Map<String,String> inputs, ChatModel\
+          \ chatModel): RunState"
+      visibility: internal
+      _change: add
+    - name: KnowledgeTitleAgentCandidateParser
+      sealed: false
+      exposes:
+      - signature: "parse(RunState runState, String knowledgeId): KnowledgeTitleGeneratorResponse"
+      visibility: internal
+      _change: add
+    - name: KnowledgeTitleAgentErrorClassifier
+      sealed: false
+      exposes:
+      - signature: "classify(RunState runState): LlmGenerationFailureCategory"
+      - signature: "classify(Throwable cause): LlmGenerationFailureCategory"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultKnowledgeTitleAgentGeneratorFactory
+      visibility: public
+      implements:
+      - KnowledgeTitleAgentGeneratorFactory
+      _change: add
+    - name: KnowledgeTitleAgentGenerator
+      requiresInject:
+      - name: agentRuntimeLauncher
+        type: KnowledgeTitleAgentRuntimeLauncher
+      - name: candidateParser
+        type: KnowledgeTitleAgentCandidateParser
+      - name: errorClassifier
+        type: KnowledgeTitleAgentErrorClassifier
+      - name: chatModel
+        type: ChatModel
+      - name: strategyName
+        type: String
+      implements:
+      - KnowledgeTitleCandidateGenerator
+      _change: add
+    - name: DefaultKnowledgeTitleAgentRuntimeLauncher
+      implements:
+      - KnowledgeTitleAgentRuntimeLauncher
+      _change: add
+    - name: DefaultKnowledgeTitleAgentCandidateParser
+      implements:
+      - KnowledgeTitleAgentCandidateParser
+      _change: add
+    - name: DefaultKnowledgeTitleAgentErrorClassifier
+      implements:
+      - KnowledgeTitleAgentErrorClassifier
+      _change: add
+    _change: add
+  _change: modify

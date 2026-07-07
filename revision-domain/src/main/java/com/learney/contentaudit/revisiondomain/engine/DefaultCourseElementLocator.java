@@ -29,21 +29,21 @@ class DefaultCourseElementLocator implements CourseElementLocator {
         switch (target) {
             case COURSE:
                 if (nodeId.equals(course.getId())) {
-                    return Optional.of(new CourseElementSnapshot(target, nodeId, null));
+                    return Optional.of(new CourseElementSnapshot(target, nodeId, null, null));
                 }
                 return Optional.empty();
             case MILESTONE:
                 return findMilestone(course, nodeId)
-                        .map(m -> new CourseElementSnapshot(target, nodeId, null));
+                        .map(m -> new CourseElementSnapshot(target, nodeId, null, null));
             case TOPIC:
                 return findTopic(course, nodeId)
-                        .map(t -> new CourseElementSnapshot(target, nodeId, null));
+                        .map(t -> new CourseElementSnapshot(target, nodeId, null, null));
             case KNOWLEDGE:
                 return findKnowledge(course, nodeId)
-                        .map(k -> new CourseElementSnapshot(target, nodeId, null));
+                        .map(k -> new CourseElementSnapshot(target, nodeId, null, k));
             case QUIZ:
                 return findQuiz(course, nodeId)
-                        .map(q -> new CourseElementSnapshot(target, nodeId, q));
+                        .map(q -> new CourseElementSnapshot(target, nodeId, q, null));
             default:
                 return Optional.empty();
         }
@@ -51,11 +51,16 @@ class DefaultCourseElementLocator implements CourseElementLocator {
 
     @Override
     public CourseEntity replace(CourseEntity course, CourseElementSnapshot replacement) {
-        if (replacement == null || replacement.getNodeTarget() != AuditTarget.QUIZ
-                || replacement.getQuiz() == null) {
-            // For non-QUIZ targets or identity snapshots (quiz == null), return course unchanged.
+        if (replacement == null || replacement.getNodeTarget() == null) {
             return course;
         }
+        if (replacement.getNodeTarget() == AuditTarget.KNOWLEDGE) {
+            return replaceKnowledge(course, replacement);
+        }
+        if (replacement.getNodeTarget() != AuditTarget.QUIZ || replacement.getQuiz() == null) {
+            return course;
+        }
+
         String nodeId = replacement.getNodeId();
         QuizTemplateEntity updatedQuiz = replacement.getQuiz();
 
@@ -104,6 +109,80 @@ class DefaultCourseElementLocator implements CourseElementLocator {
                                 knowledge.getOrder(), knowledge.getSlug(), updatedQuizzes, knowledge.getSentenceMode());
                         updatedKnowledges.add(updatedKnowledge);
                         knowledgeChanged = true;
+                    } else {
+                        updatedKnowledges.add(knowledge);
+                    }
+                }
+                if (knowledgeChanged) {
+                    TopicEntity updatedTopic = new TopicEntity(
+                            topic.getId(), topic.getCode(), topic.getKind(), topic.getLabel(),
+                            topic.getOldId(), topic.getParentId(), topic.getChildren(),
+                            topic.getRuleIds(), topic.getOrder(), topic.getSlug(),
+                            updatedKnowledges);
+                    updatedTopics.add(updatedTopic);
+                    topicChanged = true;
+                } else {
+                    updatedTopics.add(topic);
+                }
+            }
+            if (topicChanged) {
+                MilestoneEntity updatedMilestone = new MilestoneEntity(
+                        milestone.getId(), milestone.getCode(), milestone.getKind(),
+                        milestone.getLabel(), milestone.getOldId(), milestone.getParentId(),
+                        milestone.getChildren(), milestone.getOrder(), milestone.getSlug(),
+                        updatedTopics);
+                updatedMilestones.add(updatedMilestone);
+            } else {
+                updatedMilestones.add(milestone);
+            }
+        }
+
+        if (!replaced) {
+            return course;
+        }
+
+        RootNodeEntity updatedRoot = new RootNodeEntity(
+                root.getId(), root.getCode(), root.getKind(), root.getLabel(),
+                root.getChildren(), updatedMilestones);
+
+        return new CourseEntity(
+                course.getId(), course.getTitle(), course.getKnowledgeIds(),
+                updatedRoot, course.getSlug());
+    }
+
+    private CourseEntity replaceKnowledge(CourseEntity course, CourseElementSnapshot replacement) {
+        if (replacement.getKnowledge() == null) {
+            return course;
+        }
+        String nodeId = replacement.getNodeId();
+        KnowledgeEntity updatedKnowledge = replacement.getKnowledge();
+
+        RootNodeEntity root = course.getRoot();
+        if (root == null || root.getMilestones() == null) {
+            return course;
+        }
+
+        List<MilestoneEntity> updatedMilestones = new ArrayList<>();
+        boolean replaced = false;
+        for (MilestoneEntity milestone : root.getMilestones()) {
+            if (milestone.getTopics() == null) {
+                updatedMilestones.add(milestone);
+                continue;
+            }
+            List<TopicEntity> updatedTopics = new ArrayList<>();
+            boolean topicChanged = false;
+            for (TopicEntity topic : milestone.getTopics()) {
+                if (topic.getKnowledges() == null) {
+                    updatedTopics.add(topic);
+                    continue;
+                }
+                List<KnowledgeEntity> updatedKnowledges = new ArrayList<>();
+                boolean knowledgeChanged = false;
+                for (KnowledgeEntity knowledge : topic.getKnowledges()) {
+                    if (nodeId.equals(knowledge.getId())) {
+                        updatedKnowledges.add(updatedKnowledge);
+                        knowledgeChanged = true;
+                        replaced = true;
                     } else {
                         updatedKnowledges.add(knowledge);
                     }

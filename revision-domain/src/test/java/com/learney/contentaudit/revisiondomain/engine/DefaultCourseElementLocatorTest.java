@@ -78,7 +78,7 @@ public class DefaultCourseElementLocatorTest {
 
         // elementAfter: snapshot del quiz revisado con el mismo nodeId
         CourseElementSnapshot elementAfter = new CourseElementSnapshot(
-                AuditTarget.QUIZ, "quiz-rewrite-001", revisedQuiz);
+                AuditTarget.QUIZ, "quiz-rewrite-001", revisedQuiz, null);
 
         // Act — replace swaps the quiz inside the knowledge
         CourseElementLocator locator = new DefaultCourseElementLocator();
@@ -93,5 +93,135 @@ public class DefaultCourseElementLocatorTest {
         assertEquals(SentenceMode.REWRITE, resultKnowledge.getSentenceMode(),
                 "La revision que preserva la estructura debe conservar el sentenceMode del knowledge (F-SMODE-R006): " +
                 "el knowledge resultante no debe tener sentenceMode null sino REWRITE");
+    }
+
+    @Test
+    @DisplayName("Given an approved KNOWLEDGE_TITLE_LENGTH snapshot for an existing knowledge, when replace writes to the course, then re-reading the course shows that knowledge with the proposed title and instructions")
+    @Tag("FEAT-KTLR")
+    @Tag("F-KTLR-R006")
+    public void givenAnApprovedKNOWLEDGETITLELENGTHSnapshotForAnExistingKnowledgeWhenReplaceWritesToTheCourseThenRereadingTheCourseShowsThatKnowledgeWithTheProposedTitleAndInstructions() {
+        // Arrange — build a course with one knowledge whose title/instructions are the "before" state
+        KnowledgeEntity originalKnowledge = new KnowledgeEntity();
+        originalKnowledge.setId("knowledge-ktlr-001");
+        originalKnowledge.setKind(NodeKind.KNOWLEDGE);
+        originalKnowledge.setLabel("Present Simple Affirmative Sentences With Third Person Singular Verbs");
+        originalKnowledge.setInstructions("Completa la oracion con la forma correcta del verbo en presente simple.");
+        originalKnowledge.setQuizTemplates(List.of());
+
+        TopicEntity topic = new TopicEntity();
+        topic.setId("topic-ktlr-001");
+        topic.setKind(NodeKind.TOPIC);
+        topic.setLabel("Verb Tenses");
+        topic.setKnowledges(List.of(originalKnowledge));
+
+        MilestoneEntity milestone = new MilestoneEntity();
+        milestone.setId("milestone-ktlr-001");
+        milestone.setKind(NodeKind.MILESTONE);
+        milestone.setLabel("A1");
+        milestone.setTopics(List.of(topic));
+
+        RootNodeEntity root = new RootNodeEntity();
+        root.setId("root-ktlr-001");
+        root.setKind(NodeKind.ROOT);
+        root.setMilestones(List.of(milestone));
+
+        CourseEntity course = new CourseEntity();
+        course.setId("course-ktlr-001");
+        course.setTitle("english-course");
+        course.setRoot(root);
+
+        // The approved (after) knowledge: same id, new title + instructions (F-KTLR-R006)
+        KnowledgeEntity revisedKnowledge = new KnowledgeEntity();
+        revisedKnowledge.setId("knowledge-ktlr-001");
+        revisedKnowledge.setKind(NodeKind.KNOWLEDGE);
+        revisedKnowledge.setLabel("Present Simple Affirmative");
+        revisedKnowledge.setInstructions("Completa la oracion con el verbo en presente simple.");
+        revisedKnowledge.setQuizTemplates(List.of());
+
+        CourseElementSnapshot elementAfter = new CourseElementSnapshot(
+                AuditTarget.KNOWLEDGE, "knowledge-ktlr-001", null, revisedKnowledge);
+
+        // Act — replace writes the approved knowledge correction to the course
+        CourseElementLocator locator = new DefaultCourseElementLocator();
+        CourseEntity result = locator.replace(course, elementAfter);
+
+        // Assert — re-reading the course shows the knowledge with the proposed title/instructions (R006)
+        KnowledgeEntity resultKnowledge = result.getRoot()
+                .getMilestones().get(0)
+                .getTopics().get(0)
+                .getKnowledges().get(0);
+
+        assertEquals("Present Simple Affirmative", resultKnowledge.getLabel(),
+                "Re-reading the course must show the approved title (R006)");
+        assertEquals("Completa la oracion con el verbo en presente simple.", resultKnowledge.getInstructions(),
+                "Re-reading the course must show the approved instructions (R006)");
+    }
+
+    @Test
+    @DisplayName("Given a quiz-target snapshot, when replace writes the corrected quiz to the course, then the quiz is persisted exactly as before this feature with no regression from the knowledge route")
+    @Tag("FEAT-KTLR")
+    @Tag("F-KTLR-R008")
+    public void givenAQuiztargetSnapshotWhenReplaceWritesTheCorrectedQuizToTheCourseThenTheQuizIsPersistedExactlyAsBeforeThisFeatureWithNoRegressionFromTheKnowledgeRoute() {
+        // Arrange — build a course with one knowledge containing one quiz (the pre-existing quiz route)
+        QuizTemplateEntity originalQuiz = new QuizTemplateEntity();
+        originalQuiz.setId("quiz-ktlr-008");
+        originalQuiz.setKnowledgeId("knowledge-ktlr-008");
+        originalQuiz.setTitle("She reads books.");
+        originalQuiz.setSentences(List.of("She reads books."));
+
+        KnowledgeEntity knowledge = new KnowledgeEntity();
+        knowledge.setId("knowledge-ktlr-008");
+        knowledge.setKind(NodeKind.KNOWLEDGE);
+        knowledge.setLabel("Present Simple");
+        knowledge.setQuizTemplates(List.of(originalQuiz));
+
+        TopicEntity topic = new TopicEntity();
+        topic.setId("topic-ktlr-008");
+        topic.setKind(NodeKind.TOPIC);
+        topic.setLabel("Verb Tenses");
+        topic.setKnowledges(List.of(knowledge));
+
+        MilestoneEntity milestone = new MilestoneEntity();
+        milestone.setId("milestone-ktlr-008");
+        milestone.setKind(NodeKind.MILESTONE);
+        milestone.setLabel("A1");
+        milestone.setTopics(List.of(topic));
+
+        RootNodeEntity root = new RootNodeEntity();
+        root.setId("root-ktlr-008");
+        root.setKind(NodeKind.ROOT);
+        root.setMilestones(List.of(milestone));
+
+        CourseEntity course = new CourseEntity();
+        course.setId("course-ktlr-008");
+        course.setTitle("english-course");
+        course.setRoot(root);
+
+        // The corrected quiz (elementAfter): same id, new content — the pre-existing quiz route (F-KTLR-R008)
+        QuizTemplateEntity revisedQuiz = new QuizTemplateEntity();
+        revisedQuiz.setId("quiz-ktlr-008");
+        revisedQuiz.setKnowledgeId("knowledge-ktlr-008");
+        revisedQuiz.setTitle("She studies books.");
+        revisedQuiz.setSentences(List.of("She studies books."));
+
+        CourseElementSnapshot elementAfter = new CourseElementSnapshot(
+                AuditTarget.QUIZ, "quiz-ktlr-008", revisedQuiz, null);
+
+        // Act
+        CourseElementLocator locator = new DefaultCourseElementLocator();
+        CourseEntity result = locator.replace(course, elementAfter);
+
+        // Assert — the quiz is persisted exactly as before this feature (no regression from the
+        // new knowledge route): the same quiz is found in the same knowledge, with the corrected content.
+        QuizTemplateEntity resultQuiz = result.getRoot()
+                .getMilestones().get(0)
+                .getTopics().get(0)
+                .getKnowledges().get(0)
+                .getQuizTemplates().get(0);
+
+        assertEquals("quiz-ktlr-008", resultQuiz.getId(),
+                "The quiz id must be preserved (R008)");
+        assertEquals("She studies books.", resultQuiz.getTitle(),
+                "The corrected quiz content must be persisted exactly as before this feature (R008)");
     }
 }

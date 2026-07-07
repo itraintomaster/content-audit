@@ -329,4 +329,132 @@ public class FSlemJ001JourneyTest {
                     "J001-path-2 gate R013: isUnderexposed must be null when no lemma-count signal (lemma: " + sl.getLemma() + ")");
         }
     }
+
+    @Test
+    @org.junit.jupiter.api.Order(3)
+    @Tag("path-3")
+    @DisplayName("path-3: El cliente ejecuta AuditRunner.runDet... → La auditoría queda disponible para pl... → El cliente ejecuta PlanCommand.plan(a... [La auditoría incluyó diagnósticos LEMMA_ABSENCE pero no incluyó lemma-count] → Las tareas LEMMA_ABSENCE conservan su... → success")
+    public void path3_laAuditoraIncluyDiagnsticosLEMMAABSENCEPeroNoIncluyLemmacount_success() {
+        // Journey J001 — path-3: audit with LEMMA_ABSENCE + lemma-count signal but WITHOUT band analysis
+        //
+        // STEP 1: audit_course — audit result has LEMMA_ABSENCE and lemma-count, but no COCA band data
+        // STEP 2: audit_has_lemma_count [La auditoría incluyó lemma-count sin análisis de bandas]
+        // → plan_with_context_no_bands (gate: R001, R002)
+        // STEP 3: assert_ranked_suggestions_coca_only (gate: R003, R005, R006, R013, R015)
+        // Tiers 1/2/5 are empty (no band data); order degrades to 3 (sub-exposed) → 4 (absent),
+        // COCA ascending within each tier. Sub-exposed triple is informed; absent triple is null.
+
+        // --- Step 1: Build AuditReport with LEMMA_ABSENCE + lemma-count but NO band diagnosis ---
+        AuditableQuiz quiz = new AuditableQuiz(
+                List.of(), "quiz-j001-p3", null, null,
+                "El niño corre.", List.of("The boy runs."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(
+                List.of(), "Animals", "Complete.", true, "know-j001-p3", null, null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-j001-p3", "Nature", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-j001-p3", "A1", null);
+
+        // LEMMA_ABSENCE: "run" APPEARS_TOO_LATE (sub-exposed at A1), "jump" COMPLETELY_ABSENT
+        // cocaRank: "run"=200 (lower = more frequent = should come first within same tier),
+        //            "jump"=500 (absent)
+        // With no bands: tier 3 (sub-exposed "run") should precede tier 4 (absent "jump")
+        AbsentLemma absentRun = new AbsentLemma(
+                new LemmaAndPos("run", "VERB"), CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE, List.of(), PriorityLevel.HIGH, 200, null);
+        AbsentLemma absentJump = new AbsentLemma(
+                new LemmaAndPos("jump", "VERB"), CefrLevel.A1,
+                AbsenceType.COMPLETELY_ABSENT, List.of(), PriorityLevel.HIGH, 500, null);
+
+        LemmaAbsenceLevelDiagnosis absenceDiag = new LemmaAbsenceLevelDiagnosis(
+                CefrLevel.A1, 100, 2, 10.0, 90.0,
+                0.8, 0.7, 0.5, null,
+                List.of(absentRun, absentJump), List.of(), 2, 3, 5);
+
+        // Lemma-count: "run" count=1 < threshold=3 → sub-exposed (tier 3 since no bands)
+        LemmaCountStats runStats = new LemmaCountStats(
+                new LemmaAndPos("run", "VERB"), 1, 0.33, Optional.of(CefrLevel.A1));
+        LevelLemmaCountResult levelResult = new LevelLemmaCountResult(
+                CefrLevel.A1, 0.33, 1, List.of(runStats));
+        LemmaCountLevelDiagnosis lemmaCountDiag = new LemmaCountLevelDiagnosis(levelResult);
+
+        DefaultLevelDiagnoses milestoneDiag = new DefaultLevelDiagnoses();
+        milestoneDiag.setLemmaAbsenceDiagnosis(absenceDiag);
+        milestoneDiag.setLemmaCountDiagnosis(lemmaCountDiag); // lemma-count signal is available
+
+        // NO COCA band analysis on the course node → no CourseDiagnoses → no enrichBands
+        MisplacedLemma ml = new MisplacedLemma(
+                new LemmaAndPos("run", "VERB"), CefrLevel.A2, CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_LATE, 200, null);
+        DefaultQuizDiagnoses quizDiag = new DefaultQuizDiagnoses();
+        quizDiag.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(ml)));
+
+        AuditNode courseNode = buildCourseNode();
+        // No diagnoses set on course node → no CourseDiagnoses → no COCA bands
+        AuditNode milestoneNode = buildMilestoneNode(courseNode, milestone, milestoneDiag);
+        AuditNode topicNode = buildTopicNode(milestoneNode, topic);
+        AuditNode knowledgeNode = buildKnowledgeNode(topicNode, knowledge);
+        buildQuizNode(knowledgeNode, quiz, quizDiag);
+
+        AuditReport report = new AuditReport(courseNode);
+
+        // --- Step 2: plan_with_context_no_bands — resolve correctionContext ---
+        LemmaAbsenceContextResolver resolver = new LemmaAbsenceContextResolver();
+        RefinementTask task = new RefinementTask(
+                "task-j001-p3", AuditTarget.QUIZ, "quiz-j001-p3",
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+
+        Optional<LemmaAbsenceCorrectionContext> ctx = resolver.resolve(report, task);
+
+        // Context must be present (R001, R002: lemma-count signal is available)
+        assertTrue(ctx.isPresent(),
+                "J001-path-3: correctionContext must be resolvable when audit includes lemma-count (even without bands)");
+
+        List<SuggestedLemma> lemmas = ctx.get().getSuggestedLemmas();
+        assertFalse(lemmas.isEmpty(),
+                "J001-path-3 gate R003: suggestedLemmas must not be empty");
+
+        // --- Step 3: assert_ranked_suggestions_coca_only ---
+        // Gate R015: tiers 1/2/5 are empty (no bands); degrades to tier 3 (sub-exposed) → tier 4 (absent)
+        // "run" is APPEARS_TOO_LATE with lemma-count stats → sub-exposed (tier 3) → before "jump" (tier 4)
+        int runIndex = -1, jumpIndex = -1;
+        for (int i = 0; i < lemmas.size(); i++) {
+            if ("run".equals(lemmas.get(i).getLemma())) runIndex = i;
+            if ("jump".equals(lemmas.get(i).getLemma())) jumpIndex = i;
+        }
+        assertTrue(runIndex >= 0, "J001-path-3 gate R015: 'run' (sub-exposed, tier 3) must be in suggestedLemmas");
+        assertTrue(jumpIndex >= 0, "J001-path-3 gate R015: 'jump' (absent, tier 4) must be in suggestedLemmas");
+        assertTrue(runIndex < jumpIndex,
+                "J001-path-3 gate R015: sub-exposed 'run' (tier 3) must precede COMPLETELY_ABSENT 'jump' (tier 4)");
+
+        // Gate R013: "run" is sub-exposed → triple must be informed (all-or-nothing)
+        SuggestedLemma runEntry = lemmas.get(runIndex);
+        assertNotNull(runEntry.getLemmaCount(),
+                "J001-path-3 gate R013: lemmaCount must be informed for sub-exposed 'run'");
+        assertNotNull(runEntry.getLemmaCountThreshold(),
+                "J001-path-3 gate R013: lemmaCountThreshold must be informed for sub-exposed 'run'");
+        assertNotNull(runEntry.getIsUnderexposed(),
+                "J001-path-3 gate R013: isUnderexposed must be informed for sub-exposed 'run'");
+        assertTrue(runEntry.getIsUnderexposed(),
+                "J001-path-3 gate R013: 'run' must be flagged as underexposed (count=1 < threshold=3)");
+
+        // Gate R013: "jump" is COMPLETELY_ABSENT → triple must be null (R007: not applicable)
+        SuggestedLemma jumpEntry = lemmas.get(jumpIndex);
+        assertNull(jumpEntry.getLemmaCount(),
+                "J001-path-3 gate R013: COMPLETELY_ABSENT 'jump' lemmaCount must be null");
+        assertNull(jumpEntry.getLemmaCountThreshold(),
+                "J001-path-3 gate R013: COMPLETELY_ABSENT 'jump' lemmaCountThreshold must be null");
+        assertNull(jumpEntry.getIsUnderexposed(),
+                "J001-path-3 gate R013: COMPLETELY_ABSENT 'jump' isUnderexposed must be null");
+
+        // Gate R013: all-or-nothing invariant for all elements
+        for (SuggestedLemma sl : lemmas) {
+            boolean allInformed = sl.getLemmaCount() != null
+                    && sl.getLemmaCountThreshold() != null
+                    && sl.getIsUnderexposed() != null;
+            boolean allUninformed = sl.getLemmaCount() == null
+                    && sl.getLemmaCountThreshold() == null
+                    && sl.getIsUnderexposed() == null;
+            assertTrue(allInformed || allUninformed,
+                    "J001-path-3 gate R013: all-or-nothing triple violated for lemma: " + sl.getLemma());
+        }
+    }
 }

@@ -1,0 +1,102 @@
+code: FEAT-KTLR
+modules:
+- name: refiner-domain
+  implementations:
+  - name: DispatchingCorrectionContextResolver
+    handwrittenTests:
+    - name: "Given a task whose diagnosis is KNOWLEDGE_TITLE_LENGTH, when resolve\
+        \ is called, then it delegates to the knowledgeTitleResolver and returns a\
+        \ populated context instead of empty"
+      traceability:
+        feature: FEAT-KTLR
+        rule: F-KTLR-R001
+  - name: KnowledgeTitleContextResolver
+    handwrittenTests:
+    - name: "Given a KNOWLEDGE_TITLE_LENGTH task pointing at an existing knowledge,\
+        \ when resolve runs, then the context exposes the current title, current instructions\
+        \ and the containing topic label of that knowledge"
+      traceability:
+        feature: FEAT-KTLR
+        rule: F-KTLR-R002
+    - name: "Given a KNOWLEDGE_TITLE_LENGTH task whose knowledge does not exist in\
+        \ the course, when resolve runs, then it fails explicitly without producing\
+        \ a context and without invoking the agent"
+      traceability:
+        feature: FEAT-KTLR
+        rule: F-KTLR-R011
+- name: revision-domain
+  packages:
+  - name: engine
+    implementations:
+    - name: KnowledgeTitleReviser
+      handwrittenTests:
+      - name: "Given a KNOWLEDGE_TITLE_LENGTH task and an active title strategy, when\
+          \ propose runs, then the title agent is invoked with the knowledge context\
+          \ and its output feeds the proposal, not the identity behavior"
+        traceability:
+          feature: FEAT-KTLR
+          rule: F-KTLR-R003
+      - name: "Given a candidate produced by the strategy, when propose builds the\
+          \ proposal, then the before state carries the knowledge current title and\
+          \ instructions and the after state carries the candidate title and instructions"
+        traceability:
+          feature: FEAT-KTLR
+          rule: F-KTLR-R005
+      - name: "Given a KNOWLEDGE_TITLE_LENGTH task and a strategy that fails to produce\
+          \ a valid candidate, when propose runs, then no proposal is built and the\
+          \ failure is surfaced without touching the course"
+        traceability:
+          feature: FEAT-KTLR
+          rule: F-KTLR-R010
+    - name: DefaultKnowledgeTitleProposalDeriver
+      handwrittenTests:
+      - name: "Given a before snapshot of a knowledge and a candidate, when derive\
+          \ runs, then the resulting knowledge changes only label and instructions\
+          \ and preserves id, quizzes, order and the rest of the hierarchy"
+        traceability:
+          feature: FEAT-KTLR
+          rule: F-KTLR-R007
+    - name: DefaultCourseElementLocator
+      handwrittenTests:
+      - name: "Given an approved KNOWLEDGE_TITLE_LENGTH snapshot for an existing knowledge,\
+          \ when replace writes to the course, then re-reading the course shows that\
+          \ knowledge with the proposed title and instructions"
+        traceability:
+          feature: FEAT-KTLR
+          rule: F-KTLR-R006
+      - name: "Given a quiz-target snapshot, when replace writes the corrected quiz\
+          \ to the course, then the quiz is persisted exactly as before this feature\
+          \ with no regression from the knowledge route"
+        traceability:
+          feature: FEAT-KTLR
+          rule: F-KTLR-R008
+    - name: DefaultRevisionEngine
+      handwrittenTests:
+      - name: "Given a REJECTED KNOWLEDGE_TITLE_LENGTH proposal, when revise runs,\
+          \ then the course is never saved and the knowledge keeps its original title\
+          \ and instructions"
+        traceability:
+          feature: FEAT-KTLR
+          rule: F-KTLR-R009
+- name: revision-infrastructure
+  packages:
+  - name: knowledgetitleagent
+    implementations:
+    - name: KnowledgeTitleAgentGenerator
+      handwrittenTests:
+      - name: "Given a valid knowledge context, when generate runs, then it produces\
+          \ exactly one candidate with non-empty title and non-empty instructions"
+        traceability:
+          feature: FEAT-KTLR
+          rule: F-KTLR-R004
+features:
+- id: FEAT-KTLR
+  journeys:
+  - id: F-KTLR-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-KTLR-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys

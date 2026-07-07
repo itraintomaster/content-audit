@@ -123,5 +123,50 @@ public class SentinelArchitectureTest {
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultAgentCandidateParser - " + e.getMessage());
     }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent.KnowledgeTitleAgentGeneratorFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeTitleAgentGeneratorFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent.KnowledgeTitleAgentRuntimeLauncher");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeTitleAgentRuntimeLauncher - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent.KnowledgeTitleAgentCandidateParser");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeTitleAgentCandidateParser - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent.KnowledgeTitleAgentErrorClassifier");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeTitleAgentErrorClassifier - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent.DefaultKnowledgeTitleAgentGeneratorFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultKnowledgeTitleAgentGeneratorFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent.KnowledgeTitleAgentGenerator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeTitleAgentGenerator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent.DefaultKnowledgeTitleAgentRuntimeLauncher");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultKnowledgeTitleAgentRuntimeLauncher - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent.DefaultKnowledgeTitleAgentCandidateParser");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultKnowledgeTitleAgentCandidateParser - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent.DefaultKnowledgeTitleAgentErrorClassifier");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultKnowledgeTitleAgentErrorClassifier - " + e.getMessage());
+    }
   }
 }

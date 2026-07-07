@@ -103,6 +103,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: SuggestedLemmaQueryCriteria - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.refinerdomain.ScarceContentWord");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ScarceContentWord - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.KnowledgeTitleCorrectionContext");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeTitleCorrectionContext - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.refinerdomain.RefinerEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: RefinerEngine - " + e.getMessage());
@@ -156,6 +166,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.refinerdomain.DefaultRefinerEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultRefinerEngine - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.KnowledgeTitleContextResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeTitleContextResolver - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.refinerdomain.lemmasuggestion.LeveledLemmaInventory");

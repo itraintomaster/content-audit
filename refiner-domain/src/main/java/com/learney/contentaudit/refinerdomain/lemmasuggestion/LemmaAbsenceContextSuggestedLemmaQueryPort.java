@@ -19,6 +19,7 @@ import com.learney.contentaudit.refinerdomain.SuggestedLemma;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryPort;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryRejectedException;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryResult;
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaTierRanker;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -109,7 +110,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPort implements SuggestedLemm
         List<SuggestedLemma> candidates;
 
         if (!includeExposed) {
-            // OFF path: unchanged
+            // OFF path: absent + sub-exposed candidates from the underexposed inventory
             candidates = new ArrayList<>(underexposedLemmaInventory.lemmasFor(
                     report, task, effectiveLevel, partOfSpeech));
         } else {
@@ -134,19 +135,16 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPort implements SuggestedLemm
                 }
             }
 
-            // Sort already-exposed tail by COCA ascending, nulls/zeros last
-            alreadyExposedTail.sort(Comparator.comparingInt(sl ->
-                    sl.getCocaRank() == null || sl.getCocaRank() == 0
-                            ? Integer.MAX_VALUE : sl.getCocaRank()));
-
             candidates = new ArrayList<>(needsExposure.size() + alreadyExposedTail.size());
             candidates.addAll(needsExposure);
             candidates.addAll(alreadyExposedTail);
         }
 
-        // Step 5 (OFF): OFF candidates already come sorted from UnderexposedLemmaInventory.
-        // (ON): needs-exposure block preserves OFF order; already-exposed tail is COCA-sorted above.
-        // No additional sort needed here — the structure is already correct.
+        // Step 5: Apply 6-tier ranking (F-SLEM-R003, R014, R015).
+        // Bands are looked up by effectiveLevel (= explicitLevel if present, else inferred — R014 key).
+        // tierComparator degrades gracefully to COCA-ascending when no bands are available (R015).
+        List<int[]> enrichBands = SuggestedLemmaTierRanker.extractEnrichBands(root, effectiveLevel);
+        candidates.sort(SuggestedLemmaTierRanker.tierComparator(enrichBands));
 
         // Step 5b: Apply regex filter if present (F-SLREGEX-R002, R003, R004, R005, R006, R009).
         // Executed after all other filters (level, pos, exposure) and BEFORE the limit cut (R007).

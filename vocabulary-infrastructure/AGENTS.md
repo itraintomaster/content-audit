@@ -36,6 +36,7 @@ The following models and interfaces are available from dependencies. You can use
 | id | `String` |
 | label | `String` |
 | code | `String` |
+| sentenceMode | `SentenceMode` |
 
 ### AuditableTopic (`record`)
 
@@ -437,6 +438,7 @@ Methods:
 | order | `int` |
 | slug | `String` |
 | quizTemplates | `List<QuizTemplateEntity>` |
+| sentenceMode | `SentenceMode` |
 
 ### QuizTemplateEntity (`record`)
 
@@ -492,6 +494,13 @@ Methods:
 |-------|------|
 | path | `String` |
 | detail | `String` |
+
+### SentenceMode (`enum`)
+
+| Field | Type |
+|-------|------|
+| REWRITE | `null` |
+| FILL | `null` |
 
 ### CourseRepository (port)
 

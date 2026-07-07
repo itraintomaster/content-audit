@@ -45,6 +45,10 @@ public class RevisionEngineConfig {
 
     private CorrectionContextOverrideParser correctionContextOverrideParser;
 
+    private KnowledgeTitleProposalStrategyRegistry knowledgeTitleStrategyRegistry;
+
+    private KnowledgeTitleProposalDeriver knowledgeTitleProposalDeriver;
+
     public RevisionEngineConfig() {
     }
 
@@ -56,7 +60,9 @@ public class RevisionEngineConfig {
             LemmaAbsenceProposalStrategyRegistry lemmaAbsenceStrategyRegistry,
             LemmaAbsenceProposalDeriver lemmaAbsenceProposalDeriver, CourseMapper courseMapper,
             AuditEngine auditEngine, ImpactPreviewStore impactPreviewStore,
-            CorrectionContextOverrideParser correctionContextOverrideParser) {
+            CorrectionContextOverrideParser correctionContextOverrideParser,
+            KnowledgeTitleProposalStrategyRegistry knowledgeTitleStrategyRegistry,
+            KnowledgeTitleProposalDeriver knowledgeTitleProposalDeriver) {
         this.revisers = revisers;
         this.validator = validator;
         this.artifactStore = artifactStore;
@@ -71,6 +77,8 @@ public class RevisionEngineConfig {
         this.auditEngine = auditEngine;
         this.impactPreviewStore = impactPreviewStore;
         this.correctionContextOverrideParser = correctionContextOverrideParser;
+        this.knowledgeTitleStrategyRegistry = knowledgeTitleStrategyRegistry;
+        this.knowledgeTitleProposalDeriver = knowledgeTitleProposalDeriver;
     }
 
     public Map<DiagnosisKind, Reviser> getRevisers() {
@@ -188,6 +196,24 @@ public class RevisionEngineConfig {
         this.correctionContextOverrideParser = correctionContextOverrideParser;
     }
 
+    public KnowledgeTitleProposalStrategyRegistry getKnowledgeTitleStrategyRegistry() {
+        return this.knowledgeTitleStrategyRegistry;
+    }
+
+    public void setKnowledgeTitleStrategyRegistry(
+            KnowledgeTitleProposalStrategyRegistry knowledgeTitleStrategyRegistry) {
+        this.knowledgeTitleStrategyRegistry = knowledgeTitleStrategyRegistry;
+    }
+
+    public KnowledgeTitleProposalDeriver getKnowledgeTitleProposalDeriver() {
+        return this.knowledgeTitleProposalDeriver;
+    }
+
+    public void setKnowledgeTitleProposalDeriver(
+            KnowledgeTitleProposalDeriver knowledgeTitleProposalDeriver) {
+        this.knowledgeTitleProposalDeriver = knowledgeTitleProposalDeriver;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -206,11 +232,13 @@ public class RevisionEngineConfig {
                     && Objects.equals(this.courseMapper, that.courseMapper)
                     && Objects.equals(this.auditEngine, that.auditEngine)
                     && Objects.equals(this.impactPreviewStore, that.impactPreviewStore)
-                    && Objects.equals(this.correctionContextOverrideParser, that.correctionContextOverrideParser);
+                    && Objects.equals(this.correctionContextOverrideParser, that.correctionContextOverrideParser)
+                    && Objects.equals(this.knowledgeTitleStrategyRegistry, that.knowledgeTitleStrategyRegistry)
+                    && Objects.equals(this.knowledgeTitleProposalDeriver, that.knowledgeTitleProposalDeriver);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(revisers, validator, artifactStore, courseRepository, elementLocator, refinementPlanStore, auditReportStore, contextResolver, lemmaAbsenceStrategyRegistry, lemmaAbsenceProposalDeriver, courseMapper, auditEngine, impactPreviewStore, correctionContextOverrideParser);
+        return Objects.hash(revisers, validator, artifactStore, courseRepository, elementLocator, refinementPlanStore, auditReportStore, contextResolver, lemmaAbsenceStrategyRegistry, lemmaAbsenceProposalDeriver, courseMapper, auditEngine, impactPreviewStore, correctionContextOverrideParser, knowledgeTitleStrategyRegistry, knowledgeTitleProposalDeriver);
     }
 }

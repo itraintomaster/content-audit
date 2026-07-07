@@ -44,7 +44,7 @@ public class DefaultCorrectionContextJsonMapperTest {
                 LengthDirection.KEEP_SAME,
                 "audit-001",
                 SentenceMode.REWRITE,
-                List.of(), "quiz-node-001"
+                List.of(), "quiz-node-001", null
         );
 
         DefaultCorrectionContextJsonMapper mapper = new DefaultCorrectionContextJsonMapper();

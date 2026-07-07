@@ -90,6 +90,7 @@ Domain module for course structure. Contains entity models representing the 5-le
 | order | `int` |
 | slug | `String` |
 | quizTemplates | `List<QuizTemplateEntity>` |
+| sentenceMode | `SentenceMode` |
 
 ### QuizTemplateEntity (`record`)
 
@@ -145,6 +146,13 @@ Domain module for course structure. Contains entity models representing the 5-le
 |-------|------|
 | path | `String` |
 | detail | `String` |
+
+### SentenceMode (`enum`)
+
+| Field | Type |
+|-------|------|
+| REWRITE | `null` |
+| FILL | `null` |
 
 ## Interfaces
 

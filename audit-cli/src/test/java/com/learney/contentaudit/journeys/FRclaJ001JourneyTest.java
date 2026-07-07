@@ -393,4 +393,28 @@ public class FRclaJ001JourneyTest {
         assertFalse(result.isPresent(),
                 "Context must be empty when the quiz node does not exist in the audit tree");
     }
+
+    @Test
+    @org.junit.jupiter.api.Order(5)
+    @Tag("path-5")
+    @DisplayName("path-5: El usuario genera un plan de refinami... → El usuario ejecuta 'content-audit get... → El sistema busca el reporte de audito... → El comando muestra la tarea basica co... [El reporte no se encuentra o el nodo quiz no existe en el arbol] → failure")
+    public void path5_elReporteNoSeEncuentraOElNodoQuizNoExisteEnElArbol_failure() {
+        // Step: generar_plan — task references a quiz
+        RefinementTask task = new RefinementTask(
+                "task-rcla-005", AuditTarget.QUIZ, "quiz-null-root-005", "Unknown Quiz 5",
+                DiagnosisKind.LEMMA_ABSENCE, 5, RefinementTaskStatus.PENDING);
+
+        // Step: verificar_auditoria — audit report has a null root (report not found / corrupted)
+        // This exercises the other sub-case of "El reporte no se encuentra":
+        // report.getRoot() == null → resolver cannot navigate the tree (gate F-RCLA-R005)
+        AuditReport reportWithNullRoot = new AuditReport(null);
+
+        // Step: contexto_no_disponible — resolver returns empty because root is null
+        LemmaAbsenceContextResolver resolver = new LemmaAbsenceContextResolver();
+        Optional<LemmaAbsenceCorrectionContext> result = resolver.resolve(reportWithNullRoot, task);
+
+        // Assert: failure path — resolver returns Optional.empty() per R005
+        assertFalse(result.isPresent(),
+                "Context must be empty when the audit report root is null");
+    }
 }

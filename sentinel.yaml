@@ -3501,6 +3501,16 @@ modules:
       type: String
       description: |
         Identificador del nodo quiz auditado al que corresponde este contexto (igual a RefinementTask.nodeId). Lo estampa LemmaAbsenceContextResolver desde la task. Lo consume el camino revise (LemmaAbsenceAgentGenerator) para re-bindear la SuggestedLemmaQuerySession con el nodo real: sin el, la sesion se ata con un task de nodeId null y la tool get_suggested_lemmas devuelve siempre lista vacia (el query port no encuentra el nodo). El nodeTarget asociado es siempre QUIZ para LEMMA_ABSENCE. Nullable cuando el contexto se construye sin task asociada.
+    - name: scarceContentWords
+      type: List<ScarceContentWord>
+      description: "Palabras de contenido de la oracion actual (NOUN/VERB/ADJ/ADV)\
+        \ con exposicion global baja (count < umbral de lemma-count) que el corrector\
+        \ NO debe quitar al reescribir para reemplazar vocabulario fuera de nivel\
+        \ (F-RCLA-R003b). Estampada por LemmaAbsenceContextResolver desde la señal\
+        \ de lemma-count del curso sobre la misma `sentence`. Lista vacia (nunca null)\
+        \ cuando la auditoria no incluyo lemma-count, ninguna palabra esta por debajo\
+        \ del umbral, o la oracion no tiene palabras de contenido (F-RCLA-R003c).\
+        \ Analoga a misplacedLemmas/suggestedLemmas: se serializa a JSON en `get task`."
     implements:
     - CorrectionContext
   - name: LengthDirection
@@ -3594,6 +3604,70 @@ modules:
         \ (F-SLREGEX-R005, F-SLREGEX-R006, F-SLREGEX-R007). Espeja la optionality\
         \ de partOfSpeech."
     visibility: public
+  - name: ScarceContentWord
+    type: record
+    fields:
+    - name: lemma
+      type: String
+      description: Forma base de la palabra de contenido de la oracion actual (e.g.
+        'butter'). F-RCLA-R003b.
+    - name: pos
+      type: String
+      description: "Parte de la oracion: NOUN, VERB, ADJ o ADV (solo palabras de contenido).\
+        \ F-RCLA-R003b."
+    - name: count
+      type: Integer
+      description: "Exposicion global del lema segun la señal de lemma-count: numero\
+        \ de oraciones distintas del curso donde aparece. Siempre estrictamente menor\
+        \ que threshold (F-RCLA-R003b). Reusa la semantica de SuggestedLemma.lemmaCount\
+        \ (F-SLEM)."
+    - name: threshold
+      type: Integer
+      description: Umbral de exposicion de lemma-count usado para decidir baja exposicion;
+        el mismo para todas las entradas de la lista (F-RCLA-R003b). Reusa la semantica
+        de SuggestedLemma.lemmaCountThreshold (F-SLEM).
+  - name: KnowledgeTitleCorrectionContext
+    type: record
+    fields:
+    - name: taskId
+      type: String
+      description: Id de la RefinementTask (F-KTLR-R002).
+    - name: knowledgeId
+      type: String
+      description: "Id del knowledge senalado por la tarea; lo consume el adapter\
+        \ agente como input knowledgeId (F-KTLR-R002, R011)."
+    - name: currentTitle
+      type: String
+      description: Titulo actual del knowledge (label). Punto de partida a mejorar
+        (F-KTLR-R002).
+    - name: currentInstructions
+      type: String
+      description: "Instructions actuales del knowledge; se comprimen sin perder la\
+        \ consigna (F-KTLR-R002). Nullable: KnowledgeEntity.instructions puede ser\
+        \ null."
+    - name: topicLabel
+      type: String
+      description: Label del topic contenedor; el titulo no debe repetir lo que ya
+        dice el topic (F-KTLR-R002).
+    - name: titleTargetMax
+      type: Integer
+      description: Techo ponderado del titulo que aplica el audit (knowledge-title-length).
+        Limite objetivo de longitud (F-KTLR-R002). Nullable si no hay diagnostico
+        disponible.
+    - name: instructionsTargetMax
+      type: Integer
+      description: Techo ponderado de las instructions que aplica el audit. Limite
+        objetivo de longitud (F-KTLR-R002). Nullable.
+    - name: expectedTitleLanguage
+      type: String
+      description: Idioma esperado del titulo (ingles) segun convencion del contenido
+        (F-KTLR-R002).
+    - name: expectedInstructionsLanguage
+      type: String
+      description: Idioma esperado de las instructions (espanol) segun convencion
+        del contenido (F-KTLR-R002).
+    implements:
+    - CorrectionContext
   interfaces:
   - name: RefinerEngine
     stereotype: port
@@ -3949,39 +4023,17 @@ modules:
       traceability:
         feature: FEAT-LEMMA-SUGGESTIONS
         rule: F-SLEM-R002
-    - name: should rank suggestedLemmas in the priority order group1 underexposed
-        APPEARS_TOO_LATE then group2 underexposed APPEARS_TOO_EARLY then group3 underexposed
-        without LEMMA_ABSENCE then group4 underexposed other LEMMA_ABSENCE then group5
-        LEMMA_ABSENCE without underexposure with COMPLETELY_ABSENT last
-      traceability:
-        feature: FEAT-LEMMA-SUGGESTIONS
-        rule: F-SLEM-R003
     - name: should evaluate APPEARS_TOO_EARLY underexposure against the lema's real
         target level not against the level where the lema currently appears
       traceability:
         feature: FEAT-LEMMA-SUGGESTIONS
         rule: F-SLEM-R004
-    - name: should break ties within the same priority group by ordering suggestedLemmas
-        by ascending cocaRank
-      traceability:
-        feature: FEAT-LEMMA-SUGGESTIONS
-        rule: F-SLEM-R005
-    - name: should not use exposure deficit magnitude as tiebreaker within the same
-        priority group leaving COCA ascending as the only intra-group order
-      traceability:
-        feature: FEAT-LEMMA-SUGGESTIONS
-        rule: F-SLEM-R005
     - name: should apply the existing suggestedLemmas size limit only after the lemma-count
         ranking has been computed so the cap never increases the maximum observable
         list size
       traceability:
         feature: FEAT-LEMMA-SUGGESTIONS
         rule: F-SLEM-R006
-    - name: should place every COMPLETELY_ABSENT lemma behind every already-introduced
-        underexposed lemma in suggestedLemmas regardless of cocaRank
-      traceability:
-        feature: FEAT-LEMMA-SUGGESTIONS
-        rule: F-SLEM-R007
     - name: should still return suggestedLemmas for a LEMMA_ABSENCE task when the
         audit report has no lemma-count signal leaving lemmaCount lemmaCountThreshold
         and isUnderexposed marked as unavailable and not throwing
@@ -3999,6 +4051,81 @@ modules:
       traceability:
         feature: FEAT-LEMMA-SUGGESTIONS
         rule: F-SLEM-R013
+    - name: should rank suggestedLemmas into six first-match-wins tiers ordering underexposed-in-deficient-band
+        then absent-in-deficient-band then underexposed then absent then exposed-scarce-in-deficient-band
+        then exposed-scarce
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R003
+    - name: should break ties within the same tier by ordering suggestedLemmas by
+        ascending cocaRank as the final tiebreak
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R005
+    - name: should not use lemma-count exposure deficit magnitude as an intra-tier
+        tiebreaker leaving COCA ascending as the only order within a tier
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R005
+    - name: should place a COMPLETELY_ABSENT lemma behind an already-introduced underexposed
+        lemma only when both share the same deficient-band state so tier2 stays behind
+        tier1 and tier4 stays behind tier3
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R007
+    - name: should place an absent lemma that belongs to a deficient band ahead of
+        an underexposed lemma that belongs to no deficient band so tier2 outranks
+        tier3
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R014
+    - name: should classify a lemma with exposure exactly equal to the threshold N
+        as exposed-but-scarce in the expanded band tiers five or six and never as
+        underexposed
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R014
+    - name: should treat deficient-band membership as a binary key so two lemmas in
+        different deficient bands share the same tier and resolve between themselves
+        by ascending cocaRank
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R014
+    - name: should always place exposed-but-scarce lemmas in tiers five and six after
+        every macro-scarcity lemma in tiers one through four regardless of deficient-band
+        membership
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R014
+    - name: should degrade to tier order three then four then six with COCA ascending
+        as the final tiebreak and without failing when the audit did not analyze COCA
+        frequency bands so the band tiers stay empty
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R015
+    - name: should include in scarceContentWords only the current sentence content
+        words whose lemma-count is strictly below the threshold and exclude those
+        whose count is greater than or equal to the threshold
+      traceability:
+        feature: FEAT-RCLA
+        rule: F-RCLA-R003b
+    - name: should populate each scarceContentWords entry with lemma pos count and
+        threshold where count is the global exposure and threshold is the shared lemma-count
+        threshold
+      traceability:
+        feature: FEAT-RCLA
+        rule: F-RCLA-R003b
+    - name: should return an empty scarceContentWords list when the audit did not
+        include lemma-count so no exposure signal is available
+      traceability:
+        feature: FEAT-RCLA
+        rule: F-RCLA-R003c
+    - name: should return an empty scarceContentWords list when no content word of
+        the current sentence is below the lemma-count threshold or the sentence has
+        no content words
+      traceability:
+        feature: FEAT-RCLA
+        rule: F-RCLA-R003c
     implements:
     - CorrectionContextResolver
   - name: DispatchingCorrectionContextResolver
@@ -4007,6 +4134,8 @@ modules:
       type: SentenceLengthContextResolver
     - name: lemmaAbsenceResolver
       type: LemmaAbsenceContextResolver
+    - name: knowledgeTitleResolver
+      type: KnowledgeTitleContextResolver
     visibility: public
     handwrittenTests:
     - name: should delegate to sentenceLengthResolver when task diagnosis is SENTENCE_LENGTH
@@ -4034,6 +4163,12 @@ modules:
       traceability:
         feature: FEAT-REVCTX
         rule: F-REVCTX-R004
+    - name: "Given a task whose diagnosis is KNOWLEDGE_TITLE_LENGTH, when resolve\
+        \ is called, then it delegates to the knowledgeTitleResolver and returns a\
+        \ populated context instead of empty"
+      traceability:
+        feature: FEAT-KTLR
+        rule: F-KTLR-R001
     implements:
     - CorrectionContextResolver
   - name: DefaultRefinerEngine
@@ -4061,6 +4196,23 @@ modules:
         rule: F-RCLA-R001
     implements:
     - RefinerEngine
+  - name: KnowledgeTitleContextResolver
+    visibility: public
+    handwrittenTests:
+    - name: "Given a KNOWLEDGE_TITLE_LENGTH task pointing at an existing knowledge,\
+        \ when resolve runs, then the context exposes the current title, current instructions\
+        \ and the containing topic label of that knowledge"
+      traceability:
+        feature: FEAT-KTLR
+        rule: F-KTLR-R002
+    - name: "Given a KNOWLEDGE_TITLE_LENGTH task whose knowledge does not exist in\
+        \ the course, when resolve runs, then it fails explicitly without producing\
+        \ a context and without invoking the agent"
+      traceability:
+        feature: FEAT-KTLR
+        rule: F-KTLR-R011
+    implements:
+    - CorrectionContextResolver
   patterns:
   - type: Factory
     implementations:
@@ -6190,6 +6342,22 @@ modules:
         traceability:
           feature: FEAT-SLREGEX
           rule: F-SLREGEX-R010
+      - name: should include scarceContentWords array in JSON correctionContext for
+          LEMMA_ABSENCE task always present and empty when there are no scarce words
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R008
+      - name: should print the Scarce content words do not remove section listing
+          each word with its count over threshold in text format for LEMMA_ABSENCE
+          task
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R009
+      - name: should print none for the Scarce content words section in text format
+          when there are no scarce words for LEMMA_ABSENCE task
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R009
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -8046,6 +8214,12 @@ modules:
     - name: quiz
       type: QuizTemplateEntity
       description: Full quiz snapshot when nodeTarget=QUIZ; null otherwise
+    - name: knowledge
+      type: KnowledgeEntity
+      description: "Snapshot completo del knowledge cuando nodeTarget=KNOWLEDGE; null\
+        \ en otro caso. Coexiste con `quiz` (nodeTarget=QUIZ). nodeTarget es el discriminante:\
+        \ el locator enruta la lectura/escritura segun su valor, preservando intacto\
+        \ el camino QUIZ (F-KTLR-R006, R007, R008)."
   - name: RevisionProposal
     type: record
     fields:
@@ -8196,6 +8370,18 @@ modules:
         parser es traducir el JSON crudo a un CorrectionContextOverride o lanzar OverrideRejectedException;
         el engine sigue siendo el que decide si invocar al parser segun el overload
         usado.
+    - name: knowledgeTitleStrategyRegistry
+      type: KnowledgeTitleProposalStrategyRegistry
+      description: "Registry de estrategias KNOWLEDGE_TITLE_LENGTH registradas. Nullable\
+        \ -> la factory wirea un registry vacio, en cuyo caso toda tarea KNOWLEDGE_TITLE_LENGTH\
+        \ cae al IdentityReviser bypass (sin propuesta). Espejo de lemmaAbsenceStrategyRegistry\
+        \ (F-KTLR-R003)."
+    - name: knowledgeTitleProposalDeriver
+      type: KnowledgeTitleProposalDeriver
+      description: "Deriver determinista que convierte un KnowledgeTitleCandidate\
+        \ en el elementAfter (title->label + instructions sobre copia del knowledge\
+        \ before). Nullable -> la factory wirea DefaultKnowledgeTitleProposalDeriver.\
+        \ Espejo de lemmaAbsenceProposalDeriver (F-KTLR-R005, R006, R007)."
   - name: ApprovalMode
     type: enum
     fields:
@@ -8463,6 +8649,27 @@ modules:
     exposes:
     - signature: "parse(String rawJson, DiagnosisKind expectedDiagnosisKind, String\
         \ expectedNodeId): CorrectionContextOverride"
+  - name: KnowledgeTitleProposalStrategy
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "id(): StrategyId"
+    - signature: "handles(DiagnosisKind kind): boolean"
+    - signature: "propose(RefinementTask task, KnowledgeTitleCorrectionContext context):\
+        \ KnowledgeTitleCandidate"
+  - name: KnowledgeTitleProposalStrategyRegistry
+    stereotype: service
+    sealed: true
+    exposes:
+    - signature: "active(): Optional<KnowledgeTitleProposalStrategy>"
+    - signature: "byName(String name): Optional<KnowledgeTitleProposalStrategy>"
+    - signature: "listAll(): List<StrategyId>"
+  - name: KnowledgeTitleProposalDeriver
+    stereotype: service
+    sealed: true
+    exposes:
+    - signature: "derive(CourseElementSnapshot before, KnowledgeTitleCandidate candidate):\
+        \ CourseElementSnapshot"
   patterns:
   - type: Strategy
     implementations:
@@ -8495,6 +8702,16 @@ modules:
         description: Name of the active strategy; resolved via byName(). Nullable
           -> active() returns empty -> dispatcher returns NO_ACTIVE_STRATEGY for LEMMA_ABSENCE
           (F-LAPS-R006).
+    - name: KnowledgeTitleProposalStrategyRegistryConfig
+      type: record
+      fields:
+      - name: registered
+        type: List<KnowledgeTitleProposalStrategy>
+        description: Estrategias conocidas por el registry.
+      - name: activeName
+        type: String
+        description: Nombre de la estrategia activa; resuelto via byName(). Nullable
+          -> active() vacio -> el reviser reporta sin-estrategia (F-KTLR-R010).
     implementations:
     - name: DefaultRevisionEngineFactory
       types:
@@ -8659,6 +8876,18 @@ modules:
         traceability:
           feature: FEAT-SMODE
           rule: F-SMODE-R006
+      - name: "Given an approved KNOWLEDGE_TITLE_LENGTH snapshot for an existing knowledge,\
+          \ when replace writes to the course, then re-reading the course shows that\
+          \ knowledge with the proposed title and instructions"
+        traceability:
+          feature: FEAT-KTLR
+          rule: F-KTLR-R006
+      - name: "Given a quiz-target snapshot, when replace writes the corrected quiz\
+          \ to the course, then the quiz is persisted exactly as before this feature\
+          \ with no regression from the knowledge route"
+        traceability:
+          feature: FEAT-KTLR
+          rule: F-KTLR-R008
       implements:
       - CourseElementLocator
     - name: DefaultRevisionEngine
@@ -8798,6 +9027,12 @@ modules:
         traceability:
           feature: FEAT-REVCTX
           rule: F-REVCTX-R007
+      - name: "Given a REJECTED KNOWLEDGE_TITLE_LENGTH proposal, when revise runs,\
+          \ then the course is never saved and the knowledge keeps its original title\
+          \ and instructions"
+        traceability:
+          feature: FEAT-KTLR
+          rule: F-KTLR-R009
       implements:
       - RevisionEngine
     - name: HumanApprovalValidator
@@ -9416,6 +9651,57 @@ modules:
           rule: F-CDIFF-R007
       implements:
       - ConsolidatedViewBuilder
+    - name: KnowledgeTitleReviser
+      requiresInject:
+      - name: strategyRegistry
+        type: KnowledgeTitleProposalStrategyRegistry
+        description: Resuelve la KnowledgeTitleProposalStrategy activa; las tareas
+          KNOWLEDGE_TITLE_LENGTH se enrutan aca en vez de caer al IdentityReviser
+          bypass (F-KTLR-R003).
+      - name: deriver
+        type: KnowledgeTitleProposalDeriver
+        description: "Deriva elementAfter de forma determinista desde un KnowledgeTitleCandidate\
+          \ mapeando title->label + instructions sobre una copia del knowledge before\
+          \ (F-KTLR-R005, R006, R007)."
+      handwrittenTests:
+      - name: "Given a KNOWLEDGE_TITLE_LENGTH task and an active title strategy, when\
+          \ propose runs, then the title agent is invoked with the knowledge context\
+          \ and its output feeds the proposal, not the identity behavior"
+        traceability:
+          feature: FEAT-KTLR
+          rule: F-KTLR-R003
+      - name: "Given a candidate produced by the strategy, when propose builds the\
+          \ proposal, then the before state carries the knowledge current title and\
+          \ instructions and the after state carries the candidate title and instructions"
+        traceability:
+          feature: FEAT-KTLR
+          rule: F-KTLR-R005
+      - name: "Given a KNOWLEDGE_TITLE_LENGTH task and a strategy that fails to produce\
+          \ a valid candidate, when propose runs, then no proposal is built and the\
+          \ failure is surfaced without touching the course"
+        traceability:
+          feature: FEAT-KTLR
+          rule: F-KTLR-R010
+      implements:
+      - Reviser
+    - name: DefaultKnowledgeTitleProposalStrategyRegistry
+      requiresInject:
+      - name: config
+        type: KnowledgeTitleProposalStrategyRegistryConfig
+      visibility: public
+      implements:
+      - KnowledgeTitleProposalStrategyRegistry
+    - name: DefaultKnowledgeTitleProposalDeriver
+      visibility: public
+      handwrittenTests:
+      - name: "Given a before snapshot of a knowledge and a candidate, when derive\
+          \ runs, then the resulting knowledge changes only label and instructions\
+          \ and preserves id, quizzes, order and the rest of the hierarchy"
+        traceability:
+          feature: FEAT-KTLR
+          rule: F-KTLR-R007
+      implements:
+      - KnowledgeTitleProposalDeriver
   - name: lemmaabsence
     description: "Proposal-strategy SPI for LEMMA_ABSENCE. Public so the composition\
       \ root and revision-infrastructure can both instantiate strategies and the canned\
@@ -10312,6 +10598,59 @@ modules:
           rule: F-REVCTX-R003
       implements:
       - CorrectionContextStructuralValidator
+  - name: knowledgetitle
+    description: "SPI de propuesta para KNOWLEDGE_TITLE_LENGTH. Publica para que el\
+      \ composition root y revision-infrastructure instancien la estrategia y el generador\
+      \ y los pasen al builder del registry. Aloja el puerto del generador de candidatos\
+      \ (KnowledgeTitleCandidateGenerator) mas su carrier de respuesta cruda (KnowledgeTitleGeneratorResponse),\
+      \ el carrier del candidato ({title, instructions}) y la estrategia que delega\
+      \ en el puerto (KnowledgeTitleAgentStrategy) estampando el providerId inyectado\
+      \ sobre cada StrategyId (analoga a LemmaAbsenceMvpStrategy). Espejo del package\
+      \ lemmaabsence."
+    visibility: public
+    models:
+    - name: KnowledgeTitleCandidate
+      type: record
+      fields:
+      - name: title
+        type: String
+        description: "Nuevo titulo propuesto por el agente. Vocabulario del agente\
+          \ (`title`); el deriver lo mapea explicitamente a KnowledgeEntity.label\
+          \ al construir el snapshot despues (F-KTLR-R005, R006)."
+      - name: instructions
+        type: String
+        description: Nuevas instructions propuestas por el agente (F-KTLR-R004). Ambos
+          campos presentes y no vacios por candidato (F-KTLR-R004).
+    - name: KnowledgeTitleGeneratorResponse
+      type: record
+      fields:
+      - name: title
+        type: String
+        description: Titulo crudo devuelto por el generador (agente).
+      - name: instructions
+        type: String
+        description: Instructions crudas devueltas por el generador (agente).
+    interfaces:
+    - name: KnowledgeTitleCandidateGenerator
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "generate(KnowledgeTitleCorrectionContext context): KnowledgeTitleGeneratorResponse"
+      visibility: public
+    implementations:
+    - name: KnowledgeTitleAgentStrategy
+      requiresInject:
+      - name: generator
+        type: KnowledgeTitleCandidateGenerator
+        description: Generador de candidatos al que delega la estrategia; el composition
+          root supple el agente (default) o un generador canned (F-KTLR-R003).
+      - name: providerId
+        type: String
+        description: Identificador de proveedor estampado en cada StrategyId que emite
+          la estrategia (analogo a LemmaAbsenceMvpStrategy).
+      visibility: public
+      implements:
+      - KnowledgeTitleProposalStrategy
 - name: revision-infrastructure
   description: "Infrastructure adapter for the revision phase. Provides the LLM-backed\
     \ implementation of LemmaAbsenceQuizCandidateGenerator (revision-domain.lemmaabsence\
@@ -10338,9 +10677,9 @@ modules:
   patterns:
   - type: Factory
     implementations:
-    - DefaultLemmaAbsenceAgentGeneratorFactory
+    - DefaultKnowledgeTitleAgentGeneratorFactory
     suppressed: false
-    interface: LemmaAbsenceAgentGeneratorFactory
+    interface: KnowledgeTitleAgentGeneratorFactory
   uses:
   - langchain4j-openai
   - langchain4j-core
@@ -10608,6 +10947,76 @@ modules:
     - name: DefaultAgentCandidateParser
       implements:
       - AgentCandidateParser
+  - name: knowledgetitleagent
+    description: "Adapter agente para KNOWLEDGE_TITLE_LENGTH. Espejo de lemmaabsenceagent/lagen:\
+      \ expone un unico factory seam (KnowledgeTitleAgentGeneratorFactory) que construye\
+      \ el generador respaldado por el agente declarativo knowledge-titles-agent sobre\
+      \ el runtime de sentinel-agent. Solo la factory es publica; el generador, el\
+      \ launcher del runtime, el parser de candidatos y el clasificador de errores\
+      \ son package-private. El generador implementa el puerto revision-domain.knowledgetitle.KnowledgeTitleCandidateGenerator\
+      \ y traduce fallas de runtime (timeout/auth/transporte/otro) en ProposalStrategyFailedException\
+      \ con categoria preservada (F-KTLR-R010). El nombre del agente declarativo es\
+      \ una constante interna del adapter."
+    visibility: public
+    interfaces:
+    - name: KnowledgeTitleAgentGeneratorFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(LagenConfig config): KnowledgeTitleCandidateGenerator"
+      - signature: "providerIdFor(LagenConfig config): String"
+      visibility: public
+    - name: KnowledgeTitleAgentRuntimeLauncher
+      sealed: false
+      exposes:
+      - signature: "launch(String agentName, Map<String,String> inputs, ChatModel\
+          \ chatModel): RunState"
+      visibility: internal
+    - name: KnowledgeTitleAgentCandidateParser
+      sealed: false
+      exposes:
+      - signature: "parse(RunState runState, String knowledgeId): KnowledgeTitleGeneratorResponse"
+      visibility: internal
+    - name: KnowledgeTitleAgentErrorClassifier
+      sealed: false
+      exposes:
+      - signature: "classify(RunState runState): LlmGenerationFailureCategory"
+      - signature: "classify(Throwable cause): LlmGenerationFailureCategory"
+      visibility: internal
+    implementations:
+    - name: DefaultKnowledgeTitleAgentGeneratorFactory
+      visibility: public
+      implements:
+      - KnowledgeTitleAgentGeneratorFactory
+    - name: KnowledgeTitleAgentGenerator
+      requiresInject:
+      - name: agentRuntimeLauncher
+        type: KnowledgeTitleAgentRuntimeLauncher
+      - name: candidateParser
+        type: KnowledgeTitleAgentCandidateParser
+      - name: errorClassifier
+        type: KnowledgeTitleAgentErrorClassifier
+      - name: chatModel
+        type: ChatModel
+      - name: strategyName
+        type: String
+      handwrittenTests:
+      - name: "Given a valid knowledge context, when generate runs, then it produces\
+          \ exactly one candidate with non-empty title and non-empty instructions"
+        traceability:
+          feature: FEAT-KTLR
+          rule: F-KTLR-R004
+      implements:
+      - KnowledgeTitleCandidateGenerator
+    - name: DefaultKnowledgeTitleAgentRuntimeLauncher
+      implements:
+      - KnowledgeTitleAgentRuntimeLauncher
+    - name: DefaultKnowledgeTitleAgentCandidateParser
+      implements:
+      - KnowledgeTitleAgentCandidateParser
+    - name: DefaultKnowledgeTitleAgentErrorClassifier
+      implements:
+      - KnowledgeTitleAgentErrorClassifier
 definitions:
 - requirements/2026-05-15.04_agregar-lemmacount-como-variable-de-suggestedlemmas-en-el-contexto/REQUIREMENT.md
 - requirements/2026-05-21.05_consultar-suggested-lemmas-a-trav-s-del-cli/REQUIREMENT.md
@@ -11067,6 +11476,17 @@ features:
     testModule: audit-cli
     testPackage: com.learney.contentaudit.journeys
   - id: F-SLREGEX-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+- id: FEAT-KTLR
+  code: F-KTLR
+  journeys:
+  - id: F-KTLR-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-KTLR-J002
     validation: AUTO_VALIDATED
     testModule: audit-cli
     testPackage: com.learney.contentaudit.journeys

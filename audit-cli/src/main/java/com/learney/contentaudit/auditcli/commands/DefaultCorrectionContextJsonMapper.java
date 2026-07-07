@@ -1,9 +1,11 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import com.learney.contentaudit.refinerdomain.CorrectionContext;
+import com.learney.contentaudit.refinerdomain.KnowledgeTitleCorrectionContext;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
 import com.learney.contentaudit.refinerdomain.LengthDirection;
 import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
+import com.learney.contentaudit.refinerdomain.ScarceContentWord;
 import com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext;
 import com.learney.contentaudit.refinerdomain.SuggestedLemma;
 import java.util.LinkedHashMap;
@@ -24,9 +26,25 @@ class DefaultCorrectionContextJsonMapper implements CorrectionContextJsonMapper 
             return buildSentenceLengthContextMap((SentenceLengthCorrectionContext) context);
         } else if (context instanceof LemmaAbsenceCorrectionContext) {
             return buildLemmaAbsenceContextMap((LemmaAbsenceCorrectionContext) context);
+        } else if (context instanceof KnowledgeTitleCorrectionContext) {
+            return buildKnowledgeTitleContextMap((KnowledgeTitleCorrectionContext) context);
         }
         throw new IllegalArgumentException(
                 "Unsupported CorrectionContext type: " + context.getClass().getName());
+    }
+
+    private Map<String, Object> buildKnowledgeTitleContextMap(KnowledgeTitleCorrectionContext ctx) {
+        Map<String, Object> map = new LinkedHashMap<>();
+        map.put("taskId", ctx.getTaskId());
+        map.put("knowledgeId", ctx.getKnowledgeId());
+        map.put("currentTitle", ctx.getCurrentTitle());
+        map.put("currentInstructions", ctx.getCurrentInstructions());
+        map.put("topicLabel", ctx.getTopicLabel());
+        map.put("titleTargetMax", ctx.getTitleTargetMax());
+        map.put("instructionsTargetMax", ctx.getInstructionsTargetMax());
+        map.put("expectedTitleLanguage", ctx.getExpectedTitleLanguage());
+        map.put("expectedInstructionsLanguage", ctx.getExpectedInstructionsLanguage());
+        return map;
     }
 
     private Map<String, Object> buildSentenceLengthContextMap(SentenceLengthCorrectionContext ctx) {
@@ -118,6 +136,18 @@ class DefaultCorrectionContextJsonMapper implements CorrectionContextJsonMapper 
         // nodeId: quiz node identity — preserved so the override round-trip can re-bind the
         // suggested-lemmas session to the real node (else get_suggested_lemmas returns []).
         map.put("nodeId", ctx.getNodeId());
+        // F-RCLA-R008 / R003b: scarceContentWords — always present; [] when empty (R003c)
+        List<ScarceContentWord> scarce = ctx.getScarceContentWords();
+        map.put("scarceContentWords", scarce == null ? List.of() : scarce.stream()
+                .map(w -> {
+                    Map<String, Object> wm = new LinkedHashMap<>();
+                    wm.put("lemma", w.getLemma());
+                    wm.put("pos", w.getPos());
+                    wm.put("count", w.getCount());
+                    wm.put("threshold", w.getThreshold());
+                    return wm;
+                })
+                .collect(Collectors.toList()));
         return map;
     }
 }

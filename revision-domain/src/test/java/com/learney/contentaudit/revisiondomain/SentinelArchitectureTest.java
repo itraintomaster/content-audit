@@ -220,9 +220,29 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: CorrectionContextOverrideParser - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.revisiondomain.KnowledgeTitleProposalStrategy");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeTitleProposalStrategy - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.KnowledgeTitleProposalStrategyRegistry");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeTitleProposalStrategyRegistry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.KnowledgeTitleProposalDeriver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeTitleProposalDeriver - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.revisiondomain.engine.LemmaAbsenceProposalStrategyRegistryConfig");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaAbsenceProposalStrategyRegistryConfig - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.engine.KnowledgeTitleProposalStrategyRegistryConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeTitleProposalStrategyRegistryConfig - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.revisiondomain.engine.DefaultRevisionEngineFactory");
@@ -303,6 +323,21 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.revisiondomain.engine.DefaultConsolidatedViewBuilder");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultConsolidatedViewBuilder - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.engine.KnowledgeTitleReviser");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeTitleReviser - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.engine.DefaultKnowledgeTitleProposalStrategyRegistry");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultKnowledgeTitleProposalStrategyRegistry - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.engine.DefaultKnowledgeTitleProposalDeriver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultKnowledgeTitleProposalDeriver - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceGeneratorResponse");
@@ -498,6 +533,26 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.revisiondomain.contextoverride.SentenceLengthContextStructuralValidator");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: SentenceLengthContextStructuralValidator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.knowledgetitle.KnowledgeTitleCandidate");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeTitleCandidate - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.knowledgetitle.KnowledgeTitleGeneratorResponse");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeTitleGeneratorResponse - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.knowledgetitle.KnowledgeTitleCandidateGenerator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeTitleCandidateGenerator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.knowledgetitle.KnowledgeTitleAgentStrategy");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: KnowledgeTitleAgentStrategy - " + e.getMessage());
     }
   }
 }

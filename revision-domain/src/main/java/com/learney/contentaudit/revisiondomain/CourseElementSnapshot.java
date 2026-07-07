@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.coursedomain.KnowledgeEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
@@ -16,13 +17,17 @@ public class CourseElementSnapshot {
 
     private QuizTemplateEntity quiz;
 
+    private KnowledgeEntity knowledge;
+
     public CourseElementSnapshot() {
     }
 
-    public CourseElementSnapshot(AuditTarget nodeTarget, String nodeId, QuizTemplateEntity quiz) {
+    public CourseElementSnapshot(AuditTarget nodeTarget, String nodeId, QuizTemplateEntity quiz,
+            KnowledgeEntity knowledge) {
         this.nodeTarget = nodeTarget;
         this.nodeId = nodeId;
         this.quiz = quiz;
+        this.knowledge = knowledge;
     }
 
     public AuditTarget getNodeTarget() {
@@ -49,6 +54,14 @@ public class CourseElementSnapshot {
         this.quiz = quiz;
     }
 
+    public KnowledgeEntity getKnowledge() {
+        return this.knowledge;
+    }
+
+    public void setKnowledge(KnowledgeEntity knowledge) {
+        this.knowledge = knowledge;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,11 +69,12 @@ public class CourseElementSnapshot {
         CourseElementSnapshot that = (CourseElementSnapshot) o;
         return Objects.equals(this.nodeTarget, that.nodeTarget)
                     && Objects.equals(this.nodeId, that.nodeId)
-                    && Objects.equals(this.quiz, that.quiz);
+                    && Objects.equals(this.quiz, that.quiz)
+                    && Objects.equals(this.knowledge, that.knowledge);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nodeTarget, nodeId, quiz);
+        return Objects.hash(nodeTarget, nodeId, quiz, knowledge);
     }
 }

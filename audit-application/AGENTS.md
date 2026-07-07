@@ -242,6 +242,7 @@ The following models and interfaces are available from dependencies. You can use
 | id | `String` |
 | label | `String` |
 | code | `String` |
+| sentenceMode | `SentenceMode` |
 
 ### AuditableTopic (`record`)
 
@@ -643,6 +644,7 @@ Methods:
 | order | `int` |
 | slug | `String` |
 | quizTemplates | `List<QuizTemplateEntity>` |
+| sentenceMode | `SentenceMode` |
 
 ### QuizTemplateEntity (`record`)
 
@@ -698,6 +700,13 @@ Methods:
 |-------|------|
 | path | `String` |
 | detail | `String` |
+
+### SentenceMode (`enum`)
+
+| Field | Type |
+|-------|------|
+| REWRITE | `null` |
+| FILL | `null` |
 
 ### CourseRepository (port)
 
@@ -814,6 +823,11 @@ Methods:
 | targetMax | `Integer` |
 | delta | `Integer` |
 | lengthDirection | `LengthDirection` |
+| sourceAuditId | `String` |
+| sentenceMode | `SentenceMode` |
+| exerciseQuizzes | `List<String>` |
+| nodeId | `String` |
+| scarceContentWords | `List<ScarceContentWord>` |
 
 ### LengthDirection (`enum`)
 
@@ -851,6 +865,30 @@ Methods:
 | partOfSpeech | `Optional<String>` |
 | explicitLevel | `Optional<CefrLevel>` |
 | includeExposed | `boolean` |
+| regex | `Optional<String>` |
+
+### ScarceContentWord (`record`)
+
+| Field | Type |
+|-------|------|
+| lemma | `String` |
+| pos | `String` |
+| count | `Integer` |
+| threshold | `Integer` |
+
+### KnowledgeTitleCorrectionContext (`record`)
+
+| Field | Type |
+|-------|------|
+| taskId | `String` |
+| knowledgeId | `String` |
+| currentTitle | `String` |
+| currentInstructions | `String` |
+| topicLabel | `String` |
+| titleTargetMax | `Integer` |
+| instructionsTargetMax | `Integer` |
+| expectedTitleLanguage | `String` |
+| expectedInstructionsLanguage | `String` |
 
 ### RefinerEngine (port)
 
@@ -893,7 +931,7 @@ Methods:
 
 Methods:
 
-- `bindForTask(RefinementTask task): SuggestedLemmaQuerySession`
+- `bindForTask(String sourceAuditId, RefinementTask task): SuggestedLemmaQuerySession`
 
 ### From nlp-infrastructure
 
@@ -949,6 +987,7 @@ Methods:
 | nodeTarget | `AuditTarget` |
 | nodeId | `String` |
 | quiz | `QuizTemplateEntity` |
+| knowledge | `KnowledgeEntity` |
 
 ### RevisionProposal (`record`)
 
@@ -1007,6 +1046,8 @@ Methods:
 | auditEngine | `AuditEngine` |
 | impactPreviewStore | `ImpactPreviewStore` |
 | correctionContextOverrideParser | `CorrectionContextOverrideParser` |
+| knowledgeTitleStrategyRegistry | `KnowledgeTitleProposalStrategyRegistry` |
+| knowledgeTitleProposalDeriver | `KnowledgeTitleProposalDeriver` |
 
 ### ApprovalMode (`enum`)
 
@@ -1200,7 +1241,7 @@ Methods:
 
 Methods:
 
-- `derive(CourseElementSnapshot before, LemmaAbsenceQuizCandidate candidate): CourseElementSnapshot`
+- `derive(CourseElementSnapshot before, LemmaAbsenceQuizCandidate candidate, SentenceMode mode): CourseElementSnapshot`
 
 ### ImpactPreviewStore (port)
 
@@ -1214,4 +1255,26 @@ Methods:
 Methods:
 
 - `parse(String rawJson, DiagnosisKind expectedDiagnosisKind, String expectedNodeId): CorrectionContextOverride`
+
+### KnowledgeTitleProposalStrategy (port)
+
+Methods:
+
+- `id(): StrategyId`
+- `handles(DiagnosisKind kind): boolean`
+- `propose(RefinementTask task, KnowledgeTitleCorrectionContext context): KnowledgeTitleCandidate`
+
+### KnowledgeTitleProposalStrategyRegistry (service) [sealed]
+
+Methods:
+
+- `active(): Optional<KnowledgeTitleProposalStrategy>`
+- `byName(String name): Optional<KnowledgeTitleProposalStrategy>`
+- `listAll(): List<StrategyId>`
+
+### KnowledgeTitleProposalDeriver (service) [sealed]
+
+Methods:
+
+- `derive(CourseElementSnapshot before, KnowledgeTitleCandidate candidate): CourseElementSnapshot`
 

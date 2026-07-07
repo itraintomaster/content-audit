@@ -14,13 +14,15 @@ public class DispatchingCorrectionContextResolverTest {
 
     private SentenceLengthContextResolver sentenceLengthResolver;
     private LemmaAbsenceContextResolver lemmaAbsenceResolver;
+    private KnowledgeTitleContextResolver knowledgeTitleResolver;
     private DispatchingCorrectionContextResolver sut;
 
     @BeforeEach
     void setUp() {
         sentenceLengthResolver = new SentenceLengthContextResolver();
         lemmaAbsenceResolver = new LemmaAbsenceContextResolver();
-        sut = new DispatchingCorrectionContextResolver(sentenceLengthResolver, lemmaAbsenceResolver);
+        knowledgeTitleResolver = new KnowledgeTitleContextResolver();
+        sut = new DispatchingCorrectionContextResolver(sentenceLengthResolver, lemmaAbsenceResolver, knowledgeTitleResolver);
     }
 
     /** Builds a minimal AuditReport with an empty root node to satisfy non-null checks. */
@@ -131,5 +133,65 @@ public class DispatchingCorrectionContextResolverTest {
                 "COCA_BUCKETS has no registered resolver — supports() must return false");
         Assertions.assertFalse(sut.supports(DiagnosisKind.LEMMA_RECURRENCE),
                 "LEMMA_RECURRENCE has no registered resolver — supports() must return false");
+    }
+
+    @Test
+    @DisplayName("Given a task whose diagnosis is KNOWLEDGE_TITLE_LENGTH, when resolve is called, then it delegates to the knowledgeTitleResolver and returns a populated context instead of empty")
+    @Tag("FEAT-KTLR")
+    @Tag("F-KTLR-R001")
+    public void givenATaskWhoseDiagnosisIsKNOWLEDGETITLELENGTHWhenResolveIsCalledThenItDelegatesToTheKnowledgeTitleResolverAndReturnsAPopulatedContextInsteadOfEmpty() {
+        // Before this feature, KNOWLEDGE_TITLE_LENGTH had no registered resolver and dispatch
+        // returned empty for it (see the COCA_BUCKETS/LEMMA_RECURRENCE "unsupported" tests above).
+        // R001 requires that it now resolves a populated context instead.
+        com.learney.contentaudit.auditdomain.AuditableKnowledge knowledge =
+                new com.learney.contentaudit.auditdomain.AuditableKnowledge(
+                        java.util.List.of(), "Present Perfect", "Complete the sentence.",
+                        true, "know-d-1", "Present Perfect", "PP1", null);
+        com.learney.contentaudit.auditdomain.AuditableTopic topic =
+                new com.learney.contentaudit.auditdomain.AuditableTopic(
+                        java.util.List.of(knowledge), "topic-d-1", "Verb Tenses", "VT");
+
+        AuditNode courseNode = new AuditNode();
+        courseNode.setTarget(AuditTarget.COURSE);
+        courseNode.setChildren(new java.util.ArrayList<>());
+        courseNode.setScores(new java.util.LinkedHashMap<>());
+        courseNode.setMetadata(new java.util.LinkedHashMap<>());
+
+        AuditNode topicNode = new AuditNode();
+        topicNode.setTarget(AuditTarget.TOPIC);
+        topicNode.setEntity(topic);
+        topicNode.setParent(courseNode);
+        topicNode.setChildren(new java.util.ArrayList<>());
+        topicNode.setScores(new java.util.LinkedHashMap<>());
+        topicNode.setMetadata(new java.util.LinkedHashMap<>());
+        topicNode.setDiagnoses(new com.learney.contentaudit.auditdomain.DefaultTopicDiagnoses());
+        courseNode.getChildren().add(topicNode);
+
+        AuditNode knowledgeNode = new AuditNode();
+        knowledgeNode.setTarget(AuditTarget.KNOWLEDGE);
+        knowledgeNode.setEntity(knowledge);
+        knowledgeNode.setParent(topicNode);
+        knowledgeNode.setChildren(new java.util.ArrayList<>());
+        knowledgeNode.setScores(new java.util.LinkedHashMap<>());
+        knowledgeNode.setMetadata(new java.util.LinkedHashMap<>());
+        knowledgeNode.setDiagnoses(new com.learney.contentaudit.auditdomain.DefaultKnowledgeDiagnoses());
+        topicNode.getChildren().add(knowledgeNode);
+
+        AuditReport report = new AuditReport(courseNode);
+        RefinementTask task = new RefinementTask(
+                "task-d-2",
+                AuditTarget.KNOWLEDGE,
+                "know-d-1",
+                "label",
+                DiagnosisKind.KNOWLEDGE_TITLE_LENGTH,
+                1,
+                RefinementTaskStatus.PENDING);
+
+        Optional<CorrectionContext> result = sut.resolve(report, task);
+
+        Assertions.assertTrue(result.isPresent(),
+                "Dispatcher must delegate KNOWLEDGE_TITLE_LENGTH to knowledgeTitleResolver and return a populated context (R001)");
+        Assertions.assertInstanceOf(KnowledgeTitleCorrectionContext.class, result.get(),
+                "The delegated context must be a KnowledgeTitleCorrectionContext (R001)");
     }
 }

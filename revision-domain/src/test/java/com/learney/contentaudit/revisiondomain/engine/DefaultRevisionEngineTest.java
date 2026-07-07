@@ -118,7 +118,7 @@ public class DefaultRevisionEngineTest {
         AuditReport auditReport = mock(AuditReport.class);
         CorrectionContext context = mock(CorrectionContext.class);
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
 
         RevisionProposal proposal = new RevisionProposal(
                 taskId + "-123456", taskId, planId, auditId,
@@ -172,7 +172,7 @@ public class DefaultRevisionEngineTest {
         AuditReport auditReport = mock(AuditReport.class);
         CorrectionContext context = mock(CorrectionContext.class);
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
 
         RevisionProposal proposal = new RevisionProposal(
                 taskId + "-123456", taskId, planId, auditId,
@@ -226,7 +226,7 @@ public class DefaultRevisionEngineTest {
         AuditReport auditReport = mock(AuditReport.class);
         CorrectionContext context = mock(CorrectionContext.class);
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
 
         RevisionProposal proposal = new RevisionProposal(
                 taskId + "-789012", taskId, planId, auditId,
@@ -290,7 +290,7 @@ public class DefaultRevisionEngineTest {
         AuditReport auditReport = mock(AuditReport.class);
         CorrectionContext context = mock(CorrectionContext.class);
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
 
         RevisionProposal proposal = new RevisionProposal(
                 taskId + "-345678", taskId, planId, auditId,
@@ -345,7 +345,7 @@ public class DefaultRevisionEngineTest {
         AuditReport auditReport = mock(AuditReport.class);
         CorrectionContext context = mock(CorrectionContext.class);
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
 
         RevisionProposal proposal = new RevisionProposal(
                 taskId + "-100800", taskId, planId, auditId,
@@ -403,7 +403,7 @@ public class DefaultRevisionEngineTest {
         AuditReport auditReport = mock(AuditReport.class);
         CorrectionContext context = mock(CorrectionContext.class);
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
 
         RevisionProposal proposal = new RevisionProposal(
                 taskId + "-100900", taskId, planId, auditId,
@@ -506,7 +506,7 @@ public class DefaultRevisionEngineTest {
         AuditReport auditReport = mock(AuditReport.class);
         CorrectionContext context = mock(CorrectionContext.class);
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
 
         RevisionProposal proposal = new RevisionProposal(
                 taskId + "-r001a", taskId, planId, auditId,
@@ -571,7 +571,7 @@ public class DefaultRevisionEngineTest {
         AuditReport auditReport = mock(AuditReport.class);
         CorrectionContext context = mock(CorrectionContext.class);
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
 
         RevisionProposal proposal = new RevisionProposal(
                 taskId + "-r001b", taskId, planId, auditId,
@@ -637,7 +637,7 @@ public class DefaultRevisionEngineTest {
         AuditReport auditReport = mock(AuditReport.class);
         CorrectionContext context = mock(CorrectionContext.class);
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
 
         RevisionProposal proposal = new RevisionProposal(
                 taskId + "-r010", taskId, planId, auditId,
@@ -721,7 +721,7 @@ public class DefaultRevisionEngineTest {
         CorrectionContextOverride override = new CorrectionContextOverride(overrideContext, overridePayload);
 
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
         RevisionProposal proposal = new RevisionProposal(
                 taskId + "-r002a", taskId, planId, auditId,
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
@@ -786,7 +786,7 @@ public class DefaultRevisionEngineTest {
         CorrectionContextOverride override = new CorrectionContextOverride(overrideContext, overridePayload);
 
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
         RevisionProposal proposal = new RevisionProposal(
                 taskId + "-r002b", taskId, planId, auditId,
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
@@ -938,7 +938,7 @@ public class DefaultRevisionEngineTest {
         CorrectionContextOverride override = new CorrectionContextOverride(overrideContext, overridePayload);
 
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
         RevisionProposal proposal = new RevisionProposal(
                 taskId + "-r005", taskId, planId, auditId,
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
@@ -1004,7 +1004,7 @@ public class DefaultRevisionEngineTest {
         CorrectionContextOverride override = new CorrectionContextOverride(overrideContext, overridePayload);
 
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
         RevisionProposal proposal = new RevisionProposal(
                 taskId + "-r006", taskId, planId, auditId,
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
@@ -1073,7 +1073,7 @@ public class DefaultRevisionEngineTest {
         CorrectionContextOverride override = new CorrectionContextOverride(overrideContext, rawJson);
 
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
         RevisionProposal proposal = new RevisionProposal(
                 taskId + "-r007ov", taskId, planId, auditId,
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
@@ -1137,7 +1137,7 @@ public class DefaultRevisionEngineTest {
         AuditReport auditReport = mock(AuditReport.class);
         CorrectionContext context = mock(CorrectionContext.class);
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
         RevisionProposal proposal = new RevisionProposal(
                 taskId + "-r007der", taskId, planId, auditId,
                 DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, nodeId,
@@ -1175,5 +1175,85 @@ public class DefaultRevisionEngineTest {
                 "contextSource must be DERIVED when no override payload is provided");
         assertNull(saved.getContextOverridePayload(),
                 "contextOverridePayload must be null when contextSource is DERIVED");
+    }
+
+    @Test
+    @DisplayName("Given a REJECTED KNOWLEDGE_TITLE_LENGTH proposal, when revise runs, then the course is never saved and the knowledge keeps its original title and instructions")
+    @Tag("FEAT-KTLR")
+    @Tag("F-KTLR-R009")
+    public void givenAREJECTEDKNOWLEDGETITLELENGTHProposalWhenReviseRunsThenTheCourseIsNeverSavedAndTheKnowledgeKeepsItsOriginalTitleAndInstructions() {
+        // Arrange
+        String planId = "plan-ktlr-009";
+        String taskId = "task-ktlr-009";
+        String auditId = "audit-ktlr-009";
+        String nodeId = "knowledge-ktlr-009";
+        Path coursePath = Path.of("./db/english-course");
+
+        RefinementTask task = new RefinementTask(
+                taskId, AuditTarget.KNOWLEDGE, nodeId, "Present Simple knowledge",
+                DiagnosisKind.KNOWLEDGE_TITLE_LENGTH, 1, RefinementTaskStatus.PENDING
+        );
+        RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
+
+        AuditReport auditReport = mock(AuditReport.class);
+        CorrectionContext context = mock(CorrectionContext.class);
+        CourseEntity course = mock(CourseEntity.class);
+
+        com.learney.contentaudit.coursedomain.KnowledgeEntity originalKnowledge =
+                new com.learney.contentaudit.coursedomain.KnowledgeEntity(
+                        nodeId, nodeId, com.learney.contentaudit.coursedomain.NodeKind.KNOWLEDGE,
+                        "Present Simple Affirmative Sentences With Third Person Singular Verbs",
+                        "old-uuid-009", "topic-ktlr-009", true,
+                        "Completa la oracion con la forma correcta del verbo en presente simple.",
+                        1, "present-simple-affirmative", List.of(), null);
+
+        com.learney.contentaudit.coursedomain.KnowledgeEntity revisedKnowledge =
+                new com.learney.contentaudit.coursedomain.KnowledgeEntity(
+                        nodeId, nodeId, com.learney.contentaudit.coursedomain.NodeKind.KNOWLEDGE,
+                        "Present Simple Affirmative",
+                        "old-uuid-009", "topic-ktlr-009", true,
+                        "Completa la oracion con el verbo en presente simple.",
+                        1, "present-simple-affirmative", List.of(), null);
+
+        CourseElementSnapshot before = new CourseElementSnapshot(
+                AuditTarget.KNOWLEDGE, nodeId, null, originalKnowledge);
+        CourseElementSnapshot after = new CourseElementSnapshot(
+                AuditTarget.KNOWLEDGE, nodeId, null, revisedKnowledge);
+
+        RevisionProposal proposal = new RevisionProposal(
+                taskId + "-123456", taskId, planId, auditId,
+                DiagnosisKind.KNOWLEDGE_TITLE_LENGTH, AuditTarget.KNOWLEDGE, nodeId,
+                before, after, "knowledge-title-agent proposal", "knowledge-title-agent", Instant.now()
+        , null);
+
+        RevisionValidatorResult validatorResult = mock(RevisionValidatorResult.class);
+        when(validatorResult.verdict()).thenReturn(RevisionVerdict.REJECTED);
+        when(validatorResult.rejectionReason()).thenReturn(Optional.of("rejected by operator"));
+
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(auditId)).thenReturn(Optional.of(auditReport));
+        when(contextResolver.resolve(eq(auditReport), eq(task))).thenReturn(Optional.of(context));
+        when(courseRepository.load(coursePath)).thenReturn(course);
+        when(elementLocator.snapshot(course, AuditTarget.KNOWLEDGE, nodeId)).thenReturn(Optional.of(before));
+        when(reviser.handles(DiagnosisKind.KNOWLEDGE_TITLE_LENGTH)).thenReturn(true);
+        when(reviser.propose(task, context, before)).thenReturn(proposal);
+        when(validator.validate(proposal)).thenReturn(validatorResult);
+        when(artifactStore.save(any(RevisionArtifact.class))).thenReturn(".content-audit/revisions/" + planId + "/" + proposal.getProposalId());
+
+        DefaultRevisionEngine engine = buildEngine();
+
+        // Act
+        RevisionOutcome outcome = engine.revise(planId, taskId, coursePath, null);
+
+        // Assert — R009: courseRepository.save must NEVER be called; the knowledge keeps its
+        // original title/instructions (never replaced because the course was never saved).
+        verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));
+        assertEquals(RevisionOutcomeKind.REJECTED, outcome.getKind());
+        assertEquals("Present Simple Affirmative Sentences With Third Person Singular Verbs",
+                originalKnowledge.getLabel(),
+                "The original knowledge title must remain unchanged since the course was never saved (R009)");
+        assertEquals("Completa la oracion con la forma correcta del verbo en presente simple.",
+                originalKnowledge.getInstructions(),
+                "The original knowledge instructions must remain unchanged since the course was never saved (R009)");
     }
 }

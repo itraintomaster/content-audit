@@ -1,0 +1,517 @@
+{
+  "scores" : {
+    "a1" : {
+      "a1aPassed" : true,
+      "a1aViolations" : [ ],
+      "a1bScore" : 0.27380952380952384,
+      "a1bDetails" : [ {
+        "elementName" : "KnowledgeTitleReviser",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultCourseElementLocator",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DispatchingCorrectionContextResolver",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "private",
+        "elementScore" : 0.0
+      }, {
+        "elementName" : "RevisionEngineConfig",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "private",
+        "elementScore" : 0.0
+      }, {
+        "elementName" : "DefaultKnowledgeTitleProposalDeriver",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "KnowledgeTitleAgentRuntimeLauncher",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "private",
+        "elementScore" : 0.0
+      }, {
+        "elementName" : "DefaultKnowledgeTitleAgentRuntimeLauncher",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "private",
+        "elementScore" : 0.0
+      }, {
+        "elementName" : "DefaultKnowledgeTitleAgentErrorClassifier",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "private",
+        "elementScore" : 0.0
+      }, {
+        "elementName" : "KnowledgeTitleAgentErrorClassifier",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "private",
+        "elementScore" : 0.0
+      }, {
+        "elementName" : "KnowledgeTitleAgentGeneratorFactory",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "private",
+        "elementScore" : 0.0
+      }, {
+        "elementName" : "KnowledgeTitleContextResolver",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "KnowledgeTitleAgentStrategy",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "private",
+        "elementScore" : 0.0
+      }, {
+        "elementName" : "DefaultKnowledgeTitleAgentGeneratorFactory",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "private",
+        "elementScore" : 0.0
+      }, {
+        "elementName" : "KnowledgeTitleAgentGenerator",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "DefaultKnowledgeTitleProposalStrategyRegistry",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "KnowledgeTitleAgentCandidateParser",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "private",
+        "elementScore" : 0.0
+      }, {
+        "elementName" : "KnowledgeTitleCandidateGenerator",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "KnowledgeTitleProposalStrategy",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "KnowledgeTitleProposalDeriver",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "KnowledgeTitleProposalStrategyRegistry",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "internal",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultKnowledgeTitleAgentCandidateParser",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "public",
+        "optimalLevel" : "private",
+        "elementScore" : 0.0
+      } ],
+      "a1cScore" : 0.5,
+      "a1dScore" : 0.6666666666666666,
+      "compositeScore" : 0.4452380952380952,
+      "a1cViolations" : [ "module 'revision-infrastructure' does not declare a scope", "package 'revision-domain.engine' does not declare visibility (public/internal/private)", "implementation 'DispatchingCorrectionContextResolver' at module root does not declare visibility" ],
+      "a1dViolations" : [ "module 'revision-infrastructure' exposes 9/9 elements (density 1,00) — above the 0,00–0,30 band for its role; tighten visibility (make elements internal/package-private)" ]
+    },
+    "a2" : {
+      "structurallySound" : false,
+      "a2a" : {
+        "id" : "A2a",
+        "name" : "Structural Integrity",
+        "score" : 0.0,
+        "violations" : [ {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DispatchingCorrectionContextResolver requires SentenceLengthContextResolver but no such interface exists in refiner-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DispatchingCorrectionContextResolver requires LemmaAbsenceContextResolver but no such interface exists in refiner-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DispatchingCorrectionContextResolver requires SentenceLengthContextResolver but no such interface exists in refiner-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DispatchingCorrectionContextResolver requires LemmaAbsenceContextResolver but no such interface exists in refiner-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DispatchingCorrectionContextResolver requires KnowledgeTitleContextResolver but no such interface exists in refiner-domain or its dependsOn"
+        }, {
+          "code" : "A2a-IMPL",
+          "severity" : "critical",
+          "message" : "KnowledgeTitleAgentGenerator implements KnowledgeTitleCandidateGenerator but no such interface exists in revision-infrastructure or its dependsOn"
+        } ]
+      },
+      "a2b" : {
+        "id" : "A2b",
+        "name" : "Port Coverage",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2c" : {
+        "id" : "A2c",
+        "name" : "Reachability",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2d" : {
+        "id" : "A2d",
+        "name" : "Contract Utilization",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2e" : {
+        "id" : "A2e",
+        "name" : "Path Traceability",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "composite" : 0.0
+    },
+    "a3" : {
+      "modules" : [ {
+        "name" : "revision-infrastructure",
+        "ca" : 0,
+        "ce" : 0,
+        "instability" : 0.0,
+        "abstractness" : 0.4444444444444444,
+        "distance" : 0.5555555555555556,
+        "zone" : "pain",
+        "score" : 0.4444444444444444
+      }, {
+        "name" : "refiner-domain",
+        "ca" : 0,
+        "ce" : 0,
+        "instability" : 0.0,
+        "abstractness" : 0.0,
+        "distance" : 1.0,
+        "zone" : "pain",
+        "score" : 0.0
+      }, {
+        "name" : "revision-domain",
+        "ca" : 0,
+        "ce" : 0,
+        "instability" : 0.0,
+        "abstractness" : 0.35714285714285715,
+        "distance" : 0.6428571428571428,
+        "zone" : "pain",
+        "score" : 0.3571428571428572
+      } ],
+      "componentCount" : 26,
+      "threshold" : 30,
+      "ramp" : 0.8666666666666667,
+      "rawScore" : 0.2671957671957672,
+      "effectiveScore" : 0.36490299823633154,
+      "warnings" : [ "rawScore 0,27 boosted to effectiveScore 0,36 by ramp (componentCount=26 < threshold=30). Underlying zones: revision-infrastructure=pain, refiner-domain=pain, revision-domain=pain. The boost is appropriate for small patches but the signal would degrade at scale." ]
+    },
+    "a4" : {
+      "dependencyInversionHolds" : true,
+      "acyclic" : true,
+      "a4a" : {
+        "id" : "A4a",
+        "name" : "Dependency Inversion",
+        "score" : 1.0,
+        "violations" : [ {
+          "code" : "A4-NOLAYER",
+          "severity" : "warning",
+          "message" : "No modules declare a layer — A4 cannot be evaluated"
+        } ]
+      },
+      "a4b" : {
+        "id" : "A4b",
+        "name" : "Acyclicity",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4c" : {
+        "id" : "A4c",
+        "name" : "Adapter Polarity",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4d" : {
+        "id" : "A4d",
+        "name" : "Layer Isolation",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4e" : {
+        "id" : "A4e",
+        "name" : "Composition Root Discipline",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "composite" : 1.0
+    },
+    "a5" : {
+      "a5aScore" : 0.625,
+      "a5bScore" : 1.0,
+      "a5cScore" : 0.25,
+      "a5dScore" : 1.0,
+      "a5eScore" : 1.0,
+      "violations" : [ {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'AuditNodeIndexFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'NlpTokenizerFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'KnowledgeTitleAgentGeneratorFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'DefaultAuditNodeIndexFactory' declared in Factory pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'TextReportFormatter' declared in Strategy pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'JsonReportFormatter' declared in Strategy pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'TableReportFormatter' declared in Strategy pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'SpacyNlpTokenizerFactory' declared in Factory pattern but not found in any module"
+      } ],
+      "composite" : 0.7000000000000001
+    },
+    "a6" : {
+      "score" : 0.8888888888888888,
+      "totalInterfaces" : 9,
+      "inflatedCount" : 1,
+      "inflated" : [ {
+        "interfaceName" : "KnowledgeTitleProposalStrategy",
+        "moduleName" : "revision-domain",
+        "implementorName" : "KnowledgeTitleAgentStrategy",
+        "reason" : "1:1 in same module 'revision-domain', no consumers, no pattern"
+      } ]
+    },
+    "c1" : {
+      "score" : 1.0,
+      "maxDepth" : 0,
+      "avgDepth" : 0.0,
+      "entries" : [ {
+        "entryPoint" : "audit-cli.commands.ContentAuditCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.AnalyzeCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.GetCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.DeleteCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.PruneCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.PlanCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.ReviseCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.ConfigAnalyzerCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.StatsAnalyzerCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.ApproveCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.RejectCmd",
+        "depth" : 0
+      } ],
+      "violations" : [ ]
+    },
+    "c3" : {
+      "score" : 0.9714285714285714,
+      "details" : [ {
+        "name" : "DispatchingCorrectionContextResolver",
+        "moduleName" : "refiner-domain",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultCourseElementLocator",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "KnowledgeTitleContextResolver",
+        "moduleName" : "refiner-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DispatchingCorrectionContextResolver",
+        "moduleName" : "refiner-domain",
+        "cbo" : 4,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "KnowledgeTitleAgentStrategy",
+        "moduleName" : "revision-domain",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "KnowledgeTitleReviser",
+        "moduleName" : "revision-domain",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultKnowledgeTitleProposalStrategyRegistry",
+        "moduleName" : "revision-domain",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultKnowledgeTitleProposalDeriver",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultCourseElementLocator",
+        "moduleName" : "revision-domain",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultKnowledgeTitleAgentGeneratorFactory",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "KnowledgeTitleAgentGenerator",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 6,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.6
+      }, {
+        "name" : "DefaultKnowledgeTitleAgentRuntimeLauncher",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultKnowledgeTitleAgentCandidateParser",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultKnowledgeTitleAgentErrorClassifier",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      } ],
+      "violations" : [ "KnowledgeTitleAgentGenerator (module revision-infrastructure): couples to 6 types, over the domain budget of 4 — reduce injected collaborators or split the responsibility" ]
+    },
+    "a1e" : {
+      "totalRules" : 12,
+      "mappedCount" : 6,
+      "unmappedCount" : 6,
+      "score" : 0.5,
+      "mapped" : [ "F-KTLR-R002", "F-KTLR-R003", "F-KTLR-R004", "F-KTLR-R005", "F-KTLR-R006", "F-KTLR-R010" ],
+      "unmapped" : [ "F-KTLR-R001", "F-KTLR-R007", "F-KTLR-R008", "F-KTLR-R009", "F-KTLR-R011", "F-LAPS-R001" ],
+      "violations" : [ {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-KTLR-R001 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-KTLR-R007 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-KTLR-R008 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-KTLR-R009 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-KTLR-R011 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-LAPS-R001 is declared in REQUIREMENT.md but not referenced in the patch."
+      } ]
+    },
+    "mode" : "PATCH_ONLY",
+    "compositeScore" : 0.5373897707231041
+  },
+  "aTierComposite" : 0.5373897707231041,
+  "globalComposite" : {
+    "value" : 0.5373897707231041,
+    "raw" : 0.5373897707231041,
+    "capped" : false,
+    "aWeight" : 1.0,
+    "bWeight" : 0.0,
+    "bAggregate" : "NaN",
+    "aModifier" : 1.0,
+    "perDim" : [ ]
+  },
+  "topFindings" : [ ],
+  "timestamp" : "2026-07-07T00:06:24.744732Z"
+}

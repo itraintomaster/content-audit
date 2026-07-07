@@ -1,10 +1,15 @@
 package com.learney.contentaudit.revisiondomain.engine;
 
+import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.revisiondomain.CourseElementLocator;
+import com.learney.contentaudit.revisiondomain.KnowledgeTitleProposalDeriver;
+import com.learney.contentaudit.revisiondomain.KnowledgeTitleProposalStrategyRegistry;
+import com.learney.contentaudit.revisiondomain.Reviser;
 import com.learney.contentaudit.revisiondomain.RevisionEngine;
 import com.learney.contentaudit.revisiondomain.RevisionEngineConfig;
 import com.learney.contentaudit.revisiondomain.RevisionEngineFactory;
 import com.learney.contentaudit.revisiondomain.RevisionValidator;
+import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.processing.Generated;
 
@@ -17,7 +22,28 @@ public class DefaultRevisionEngineFactory implements RevisionEngineFactory {
     public RevisionEngine create(RevisionEngineConfig config) {
         IdentityReviser identityReviser = new IdentityReviser();
 
-        Map revisers = config.getRevisers() != null ? config.getRevisers() : Map.of();
+        Map<DiagnosisKind, Reviser> revisers = config.getRevisers() != null
+                ? new HashMap<>(config.getRevisers())
+                : new HashMap<>();
+
+        // F-KTLR-R003: register the dedicated KnowledgeTitleReviser in the byKind seam
+        // (FEAT-REVBYP) so KNOWLEDGE_TITLE_LENGTH tasks route here instead of falling
+        // through to the identity bypass. Mirrors lemmaAbsenceStrategyRegistry/Deriver
+        // nullability: an empty registry means active() is always empty, so every task
+        // surfaces a ProposalStrategyFailedException (F-KTLR-R010) instead of silently
+        // bypassing.
+        KnowledgeTitleProposalStrategyRegistry knowledgeTitleStrategyRegistry =
+                config.getKnowledgeTitleStrategyRegistry() != null
+                        ? config.getKnowledgeTitleStrategyRegistry()
+                        : new DefaultKnowledgeTitleProposalStrategyRegistry(
+                                new KnowledgeTitleProposalStrategyRegistryConfig(java.util.List.of(), null));
+        KnowledgeTitleProposalDeriver knowledgeTitleProposalDeriver =
+                config.getKnowledgeTitleProposalDeriver() != null
+                        ? config.getKnowledgeTitleProposalDeriver()
+                        : new DefaultKnowledgeTitleProposalDeriver();
+        revisers.put(DiagnosisKind.KNOWLEDGE_TITLE_LENGTH,
+                new KnowledgeTitleReviser(knowledgeTitleStrategyRegistry, knowledgeTitleProposalDeriver));
+
         DispatchingReviser dispatcher = new DispatchingReviser(
                 revisers,
                 identityReviser,

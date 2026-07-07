@@ -1,0 +1,45 @@
+code: FEAT-RCLA
+description: "FEAT-RCLA R003b/R003c: add ScarceContentWord model and scarceContentWords\
+  \ field to LemmaAbsenceCorrectionContext"
+modules:
+- name: refiner-domain
+  models:
+  - name: ScarceContentWord
+    type: record
+    fields:
+    - name: lemma
+      type: String
+      description: Forma base de la palabra de contenido de la oracion actual (e.g.
+        'butter'). F-RCLA-R003b.
+    - name: pos
+      type: String
+      description: "Parte de la oracion: NOUN, VERB, ADJ o ADV (solo palabras de contenido).\
+        \ F-RCLA-R003b."
+    - name: count
+      type: Integer
+      description: "Exposicion global del lema segun la señal de lemma-count: numero\
+        \ de oraciones distintas del curso donde aparece. Siempre estrictamente menor\
+        \ que threshold (F-RCLA-R003b). Reusa la semantica de SuggestedLemma.lemmaCount\
+        \ (F-SLEM)."
+    - name: threshold
+      type: Integer
+      description: Umbral de exposicion de lemma-count usado para decidir baja exposicion;
+        el mismo para todas las entradas de la lista (F-RCLA-R003b). Reusa la semantica
+        de SuggestedLemma.lemmaCountThreshold (F-SLEM).
+    _change: add
+  - name: LemmaAbsenceCorrectionContext
+    type: record
+    fields:
+    - name: scarceContentWords
+      type: List<ScarceContentWord>
+      description: "Palabras de contenido de la oracion actual (NOUN/VERB/ADJ/ADV)\
+        \ con exposicion global baja (count < umbral de lemma-count) que el corrector\
+        \ NO debe quitar al reescribir para reemplazar vocabulario fuera de nivel\
+        \ (F-RCLA-R003b). Estampada por LemmaAbsenceContextResolver desde la señal\
+        \ de lemma-count del curso sobre la misma `sentence`. Lista vacia (nunca null)\
+        \ cuando la auditoria no incluyo lemma-count, ninguna palabra esta por debajo\
+        \ del umbral, o la oracion no tiene palabras de contenido (F-RCLA-R003c).\
+        \ Analoga a misplacedLemmas/suggestedLemmas: se serializa a JSON en `get task`."
+      _change: add
+    _change: modify
+  _change: modify

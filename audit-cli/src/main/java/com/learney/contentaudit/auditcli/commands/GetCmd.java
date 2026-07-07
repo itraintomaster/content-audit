@@ -7,10 +7,13 @@ import com.learney.contentaudit.revisiondomain.ImpactPreviewStore;
 import com.learney.contentaudit.revisiondomain.RevisionArtifact;
 import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
 import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.refinerdomain.CorrectionContext;
 import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
+import com.learney.contentaudit.refinerdomain.KnowledgeTitleCorrectionContext;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
 import com.learney.contentaudit.refinerdomain.LengthDirection;
 import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
+import com.learney.contentaudit.refinerdomain.ScarceContentWord;
 import com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext;
 import com.learney.contentaudit.refinerdomain.SuggestedLemma;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryCriteria;
@@ -137,6 +140,10 @@ final class GetCmd implements GetCommand, Callable<Integer> {
     @Option(names = {"-d", "--diagnosis"},
             description = "For 'tasks': filter by DiagnosisKind enum: SENTENCE_LENGTH, LEMMA_ABSENCE, COCA_BUCKETS, etc.")
     private String diagnosisArg;
+
+    @Option(names = {"--without-correction-context"},
+            description = "For 'tasks -f json': omit correctionContext resolution from task list output.")
+    private boolean withoutCorrectionContext;
 
     @Option(names = {"--part-of-speech", "--pos"},
             description = "For 'suggested-lemmas': filter by part-of-speech (e.g. NOUN, VERB).")
@@ -654,7 +661,7 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
                 m.put("nodeId", t.getNodeId());
                 m.put("nodeLabel", t.getNodeLabel());
                 m.put("diagnosis", t.getDiagnosisKind() != null ? t.getDiagnosisKind().name() : null);
-                if (needsCorrectionContext(t)) {
+                if (!withoutCorrectionContext && needsCorrectionContext(t)) {
                     CorrectionContextResult ctx = resolveContext(plan, t);
                     addContextToJsonMap(m, ctx);
                 }
@@ -697,7 +704,8 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
     /** True only for diagnoses that have a defined correction context shape. */
     private static boolean needsCorrectionContext(RefinementTask task) {
         return task.getDiagnosisKind() == DiagnosisKind.SENTENCE_LENGTH
-                || task.getDiagnosisKind() == DiagnosisKind.LEMMA_ABSENCE;
+                || task.getDiagnosisKind() == DiagnosisKind.LEMMA_ABSENCE
+                || task.getDiagnosisKind() == DiagnosisKind.KNOWLEDGE_TITLE_LENGTH;
     }
 
     /** Resolves the correction context for a task, capturing any error reason. */
@@ -719,16 +727,16 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
             return CorrectionContextResult.sentenceLength(slCtx);
         } else if (ctx instanceof LemmaAbsenceCorrectionContext laCtx) {
             return CorrectionContextResult.lemmaAbsence(laCtx);
+        } else if (ctx instanceof CorrectionContext genericCtx) {
+            return CorrectionContextResult.generic(genericCtx);
         }
         return CorrectionContextResult.error("unexpected context type for task " + task.getId());
     }
 
     /** Appends correctionContext (or correctionContext=null + correctionContextError) to a task JSON map. */
     private void addContextToJsonMap(Map<String, Object> m, CorrectionContextResult ctx) {
-        if (ctx.slContext != null) {
-            m.put("correctionContext", correctionContextJsonMapper.toJsonMap(ctx.slContext));
-        } else if (ctx.laContext != null) {
-            m.put("correctionContext", correctionContextJsonMapper.toJsonMap(ctx.laContext));
+        if (ctx.context != null) {
+            m.put("correctionContext", correctionContextJsonMapper.toJsonMap(ctx.context));
         } else {
             m.put("correctionContext", null);
             m.put("correctionContextError", ctx.error != null ? ctx.error : "unknown reason");
@@ -741,10 +749,24 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
             printSentenceLengthContextText(ctx.slContext);
         } else if (ctx.laContext != null) {
             printLemmaAbsenceContextText(ctx.laContext);
+        } else if (ctx.context instanceof KnowledgeTitleCorrectionContext ktCtx) {
+            printKnowledgeTitleContextText(ktCtx);
         } else {
             System.out.println("  Correction context: not available ("
                     + (ctx.error != null ? ctx.error : "unknown reason") + ")");
         }
+    }
+
+    private void printKnowledgeTitleContextText(KnowledgeTitleCorrectionContext ctx) {
+        System.out.println("  Correction context:");
+        System.out.println("    Knowledge ID:  " + nullToEmpty(ctx.getKnowledgeId()));
+        System.out.println("    Current title: " + nullToEmpty(ctx.getCurrentTitle()));
+        System.out.println("    Instructions:  " + nullToEmpty(ctx.getCurrentInstructions()));
+        System.out.println("    Topic:         " + nullToEmpty(ctx.getTopicLabel()));
+        System.out.println("    Title target:  " + ctx.getTitleTargetMax());
+        System.out.println("    Instructions target: " + ctx.getInstructionsTargetMax());
+        System.out.println("    Expected title language: " + nullToEmpty(ctx.getExpectedTitleLanguage()));
+        System.out.println("    Expected instructions language: " + nullToEmpty(ctx.getExpectedInstructionsLanguage()));
     }
 
     private void printSentenceLengthContextText(SentenceLengthCorrectionContext ctx) {
@@ -834,31 +856,50 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
                         + cocaPart);
             }
         }
+        // F-RCLA-R009 / R003b: Scarce content words section — always rendered; "(none)" when empty (R003c)
+        System.out.println("    Scarce content words (do not remove):");
+        List<ScarceContentWord> scarce = ctx.getScarceContentWords();
+        if (scarce == null || scarce.isEmpty()) {
+            System.out.println("      (none)");
+        } else {
+            for (int i = 0; i < scarce.size(); i++) {
+                ScarceContentWord w = scarce.get(i);
+                System.out.println("      " + (i + 1) + ". " + nullToEmpty(w.getLemma())
+                        + " (" + nullToEmpty(w.getPos()) + ") - appears in "
+                        + w.getCount() + "/" + w.getThreshold() + " sentences");
+            }
+        }
     }
 
     /** Value object holding the result of a context resolution attempt. */
     private static final class CorrectionContextResult {
+        final CorrectionContext context;
         final SentenceLengthCorrectionContext slContext;
         final LemmaAbsenceCorrectionContext laContext;
         final String error;
 
         private CorrectionContextResult(SentenceLengthCorrectionContext sl,
-                LemmaAbsenceCorrectionContext la, String err) {
+                LemmaAbsenceCorrectionContext la, CorrectionContext generic, String err) {
+            this.context = sl != null ? sl : la != null ? la : generic;
             this.slContext = sl;
             this.laContext = la;
             this.error = err;
         }
 
         static CorrectionContextResult sentenceLength(SentenceLengthCorrectionContext ctx) {
-            return new CorrectionContextResult(ctx, null, null);
+            return new CorrectionContextResult(ctx, null, null, null);
         }
 
         static CorrectionContextResult lemmaAbsence(LemmaAbsenceCorrectionContext ctx) {
-            return new CorrectionContextResult(null, ctx, null);
+            return new CorrectionContextResult(null, ctx, null, null);
+        }
+
+        static CorrectionContextResult generic(CorrectionContext ctx) {
+            return new CorrectionContextResult(null, null, ctx, null);
         }
 
         static CorrectionContextResult error(String reason) {
-            return new CorrectionContextResult(null, null, reason);
+            return new CorrectionContextResult(null, null, null, reason);
         }
     }
 

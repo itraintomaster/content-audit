@@ -98,6 +98,6 @@ public final class DefaultLemmaAbsenceProposalDeriver implements LemmaAbsencePro
                 plainSentences
         );
 
-        return new CourseElementSnapshot(before.getNodeTarget(), before.getNodeId(), afterQuiz);
+        return new CourseElementSnapshot(before.getNodeTarget(), before.getNodeId(), afterQuiz, null);
     }
 }

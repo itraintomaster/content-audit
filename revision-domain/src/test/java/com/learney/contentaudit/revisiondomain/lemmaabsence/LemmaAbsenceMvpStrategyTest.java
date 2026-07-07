@@ -56,7 +56,7 @@ public class LemmaAbsenceMvpStrategyTest {
                 "She ____[runs|walks] every morning.",
                 0, 0, 0, 0,
                 com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN,
-                null, null, List.of(), "quiz-node-001"
+                null, null, List.of(), "quiz-node-001", null
         );
     }
 

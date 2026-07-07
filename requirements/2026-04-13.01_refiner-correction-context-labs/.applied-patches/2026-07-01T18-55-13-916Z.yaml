@@ -1,0 +1,51 @@
+code: FEAT-RCLA
+modules:
+- name: refiner-domain
+  implementations:
+  - name: LemmaAbsenceContextResolver
+    handwrittenTests:
+    - name: should include in scarceContentWords only the current sentence content
+        words whose lemma-count is strictly below the threshold and exclude those
+        whose count is greater than or equal to the threshold
+      traceability:
+        feature: FEAT-RCLA
+        rule: F-RCLA-R003b
+    - name: should populate each scarceContentWords entry with lemma pos count and
+        threshold where count is the global exposure and threshold is the shared lemma-count
+        threshold
+      traceability:
+        feature: FEAT-RCLA
+        rule: F-RCLA-R003b
+    - name: should return an empty scarceContentWords list when the audit did not
+        include lemma-count so no exposure signal is available
+      traceability:
+        feature: FEAT-RCLA
+        rule: F-RCLA-R003c
+    - name: should return an empty scarceContentWords list when no content word of
+        the current sentence is below the lemma-count threshold or the sentence has
+        no content words
+      traceability:
+        feature: FEAT-RCLA
+        rule: F-RCLA-R003c
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: GetCmd
+      handwrittenTests:
+      - name: should include scarceContentWords array in JSON correctionContext for
+          LEMMA_ABSENCE task always present and empty when there are no scarce words
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R008
+      - name: should print the Scarce content words do not remove section listing
+          each word with its count over threshold in text format for LEMMA_ABSENCE
+          task
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R009
+      - name: should print none for the Scarce content words section in text format
+          when there are no scarce words for LEMMA_ABSENCE task
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R009

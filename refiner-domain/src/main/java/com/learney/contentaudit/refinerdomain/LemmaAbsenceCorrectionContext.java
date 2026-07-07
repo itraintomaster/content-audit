@@ -49,6 +49,8 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
 
     private String nodeId;
 
+    private List<ScarceContentWord> scarceContentWords;
+
     public LemmaAbsenceCorrectionContext() {
     }
 
@@ -58,7 +60,7 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
             List<SuggestedLemma> suggestedLemmas, String quizSentence, Integer tokenCount,
             Integer targetMin, Integer targetMax, Integer delta, LengthDirection lengthDirection,
             String sourceAuditId, SentenceMode sentenceMode, List<String> exerciseQuizzes,
-            String nodeId) {
+            String nodeId, List<ScarceContentWord> scarceContentWords) {
         this.taskId = taskId;
         this.sentence = sentence;
         this.translation = translation;
@@ -78,6 +80,7 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
         this.sentenceMode = sentenceMode;
         this.exerciseQuizzes = exerciseQuizzes;
         this.nodeId = nodeId;
+        this.scarceContentWords = scarceContentWords;
     }
 
     public String getTaskId() {
@@ -232,6 +235,14 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
         this.nodeId = nodeId;
     }
 
+    public List<ScarceContentWord> getScarceContentWords() {
+        return this.scarceContentWords;
+    }
+
+    public void setScarceContentWords(List<ScarceContentWord> scarceContentWords) {
+        this.scarceContentWords = scarceContentWords;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -255,11 +266,12 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
                     && Objects.equals(this.sourceAuditId, that.sourceAuditId)
                     && Objects.equals(this.sentenceMode, that.sentenceMode)
                     && Objects.equals(this.exerciseQuizzes, that.exerciseQuizzes)
-                    && Objects.equals(this.nodeId, that.nodeId);
+                    && Objects.equals(this.nodeId, that.nodeId)
+                    && Objects.equals(this.scarceContentWords, that.scarceContentWords);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskId, sentence, translation, knowledgeTitle, knowledgeInstructions, topicLabel, cefrLevel, misplacedLemmas, suggestedLemmas, quizSentence, tokenCount, targetMin, targetMax, delta, lengthDirection, sourceAuditId, sentenceMode, exerciseQuizzes, nodeId);
+        return Objects.hash(taskId, sentence, translation, knowledgeTitle, knowledgeInstructions, topicLabel, cefrLevel, misplacedLemmas, suggestedLemmas, quizSentence, tokenCount, targetMin, targetMax, delta, lengthDirection, sourceAuditId, sentenceMode, exerciseQuizzes, nodeId, scarceContentWords);
     }
 }
