@@ -119,6 +119,8 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should NOT emit a SentenceLengthDiagnosis on knowledge topic milestone or course nodes traversed by the analyzer → FEAT-DSLEN/F-DSLEN-R003
 - should make the emitted SentenceLengthDiagnosis retrievable via QuizDiagnoses getSentenceLengthDiagnosis on the same quiz node → FEAT-DSLEN/F-DSLEN-R004
 - should compute each quiz score using the linguistic token count from the precomputed NLP tokenization of the quiz sentence and never from a whitespace-based string split → FEAT-SLEN/F-SLEN-R013
+- should compute the length score over the mode-determined canonical phrase token count and not over a blind concatenation of all quiz parts → FEAT-SMODE/F-SMODE-R005
+- should score a REWRITE quiz answer Watch the DVD at 100 percent on 4 tokens for A1 instead of 60 percent on the 10-token source-plus-answer concatenation → FEAT-SMODE/F-SMODE-R007
 
 ### SentenceLengthContextResolver (refiner-domain)
 
@@ -185,15 +187,24 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should leave non-length fields of the correction context populated normally when SentenceLengthDiagnosis is absent → FEAT-RCLALEN/F-RCLALEN-R004
 - should populate suggestedLemmas with lemmaCount lemmaCountThreshold and isUnderexposed fields when the audit report carries lemma-count diagnoses for the resolved level → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R002
 - should include in suggestedLemmas a lemma flagged as underexposed by lemma-count even when that lemma has no LEMMA_ABSENCE diagnosis on the quiz node → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R002
-- should rank suggestedLemmas in the priority order group1 underexposed APPEARS_TOO_LATE then group2 underexposed APPEARS_TOO_EARLY then group3 underexposed without LEMMA_ABSENCE then group4 underexposed other LEMMA_ABSENCE then group5 LEMMA_ABSENCE without underexposure with COMPLETELY_ABSENT last → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R003
 - should evaluate APPEARS_TOO_EARLY underexposure against the lema's real target level not against the level where the lema currently appears → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R004
-- should break ties within the same priority group by ordering suggestedLemmas by ascending cocaRank → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R005
-- should not use exposure deficit magnitude as tiebreaker within the same priority group leaving COCA ascending as the only intra-group order → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R005
 - should apply the existing suggestedLemmas size limit only after the lemma-count ranking has been computed so the cap never increases the maximum observable list size → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R006
-- should place every COMPLETELY_ABSENT lemma behind every already-introduced underexposed lemma in suggestedLemmas regardless of cocaRank → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R007
 - should still return suggestedLemmas for a LEMMA_ABSENCE task when the audit report has no lemma-count signal leaving lemmaCount lemmaCountThreshold and isUnderexposed marked as unavailable and not throwing → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R012
 - should emit every suggestedLemmas element with the three lemma-count fields either all informed or all uninformed never in a mixed state → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R013
 - should emit suggestedLemmas elements whose informed lemma-count triple is internally consistent with isUnderexposed equal to lemmaCount less than lemmaCountThreshold and no negative values → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R013
+- should rank suggestedLemmas into six first-match-wins tiers ordering underexposed-in-deficient-band then absent-in-deficient-band then underexposed then absent then exposed-scarce-in-deficient-band then exposed-scarce → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R003
+- should break ties within the same tier by ordering suggestedLemmas by ascending cocaRank as the final tiebreak → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R005
+- should not use lemma-count exposure deficit magnitude as an intra-tier tiebreaker leaving COCA ascending as the only order within a tier → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R005
+- should place a COMPLETELY_ABSENT lemma behind an already-introduced underexposed lemma only when both share the same deficient-band state so tier2 stays behind tier1 and tier4 stays behind tier3 → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R007
+- should place an absent lemma that belongs to a deficient band ahead of an underexposed lemma that belongs to no deficient band so tier2 outranks tier3 → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R014
+- should classify a lemma with exposure exactly equal to the threshold N as exposed-but-scarce in the expanded band tiers five or six and never as underexposed → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R014
+- should treat deficient-band membership as a binary key so two lemmas in different deficient bands share the same tier and resolve between themselves by ascending cocaRank → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R014
+- should always place exposed-but-scarce lemmas in tiers five and six after every macro-scarcity lemma in tiers one through four regardless of deficient-band membership → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R014
+- should degrade to tier order three then four then six with COCA ascending as the final tiebreak and without failing when the audit did not analyze COCA frequency bands so the band tiers stay empty → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R015
+- should include in scarceContentWords only the current sentence content words whose lemma-count is strictly below the threshold and exclude those whose count is greater than or equal to the threshold → FEAT-RCLA/F-RCLA-R003b
+- should populate each scarceContentWords entry with lemma pos count and threshold where count is the global exposure and threshold is the shared lemma-count threshold → FEAT-RCLA/F-RCLA-R003b
+- should return an empty scarceContentWords list when the audit did not include lemma-count so no exposure signal is available → FEAT-RCLA/F-RCLA-R003c
+- should return an empty scarceContentWords list when no content word of the current sentence is below the lemma-count threshold or the sentence has no content words → FEAT-RCLA/F-RCLA-R003c
 
 ### DispatchingCorrectionContextResolver (refiner-domain)
 
@@ -203,6 +214,7 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should return empty for unsupported diagnosis kind LEMMA_RECURRENCE → FEAT-RCLA/F-RCLA-R007
 - should propagate empty from delegate when delegate returns empty → FEAT-RCLA/F-RCLA-R007
 - should report supports=true for diagnosisKinds with a registered resolver and supports=false for kinds without one → FEAT-REVCTX/F-REVCTX-R004
+- Given a task whose diagnosis is KNOWLEDGE_TITLE_LENGTH, when resolve is called, then it delegates to the knowledgeTitleResolver and returns a populated context instead of empty → FEAT-KTLR/F-KTLR-R001
 
 ### DefaultRefinerEngine (refiner-domain)
 
@@ -210,6 +222,11 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should not include LEMMA_ABSENCE tasks targeting MILESTONE or COURSE in the refinement plan → FEAT-RCLA/F-RCLA-R001
 - should not generate LEMMA_ABSENCE task for quiz with lemma-absence score equal to 1.0 → FEAT-RCLA/F-RCLA-R001
 - should still generate COCA_BUCKETS and LEMMA_RECURRENCE tasks at MILESTONE and COURSE level after re-routing → FEAT-RCLA/F-RCLA-R001
+
+### KnowledgeTitleContextResolver (refiner-domain)
+
+- Given a KNOWLEDGE_TITLE_LENGTH task pointing at an existing knowledge, when resolve runs, then the context exposes the current title, current instructions and the containing topic label of that knowledge → FEAT-KTLR/F-KTLR-R002
+- Given a KNOWLEDGE_TITLE_LENGTH task whose knowledge does not exist in the course, when resolve runs, then it fails explicitly without producing a context and without invoking the agent → FEAT-KTLR/F-KTLR-R011
 
 ### CourseToAuditableMapper (audit-application)
 
@@ -352,6 +369,8 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should populate QuizTemplateEntity sentences literally from the quiz JSON without deriving from sentenceParts → FEAT-DBSENT/F-DBSENT-R001
 - should preserve the order of every entry from the JSON sentences list when loading a quiz with multiple variants → FEAT-DBSENT/F-DBSENT-R001
 - should load sentences verbatim for a transformation-pattern quiz even when sentenceParts would yield a different concatenation → FEAT-DBSENT/F-DBSENT-R001
+- should preserve each quiz plain sentences identically after a load save load round-trip → FEAT-DBSENT/F-DBSENT-R004
+- should preserve the plain sentences of every quiz in a multi-quiz course after a whole-course save without dropping or cross-contaminating any list → FEAT-DBSENT/F-DBSENT-R004
 
 ### FileSystemAuditReportStore (audit-infrastructure)
 

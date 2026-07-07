@@ -90,7 +90,7 @@ project-root/
 | Depends On | (none — leaf module) |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
-| Models | 11 (NodeKind, SentencePartKind, CourseEntity, RootNodeEntity, MilestoneEntity, TopicEntity, KnowledgeEntity, QuizTemplateEntity, FormEntity, SentencePartEntity, CourseValidationException) |
+| Models | 12 (NodeKind, SentencePartKind, CourseEntity, RootNodeEntity, MilestoneEntity, TopicEntity, KnowledgeEntity, QuizTemplateEntity, FormEntity, SentencePartEntity, CourseValidationException, SentenceMode) |
 | Interfaces | 2 (CourseRepository, CourseValidator) |
 | Implementations | 0 |
 | Packages | 2 (quizsentence [public], quizsentenceengine [internal]) |
@@ -102,12 +102,12 @@ project-root/
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.refinerdomain` |
-| Depends On | audit-domain |
+| Depends On | audit-domain, course-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
-| Models | 11 (DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext, LengthDirection, SuggestedLemmaQueryResult, SuggestedLemmaQueryRejectedException) |
+| Models | 14 (DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext, LengthDirection, SuggestedLemmaQueryResult, SuggestedLemmaQueryRejectedException, SuggestedLemmaQueryCriteria, ScarceContentWord, KnowledgeTitleCorrectionContext) |
 | Interfaces | 7 (RefinerEngine, RefinementPlanStore, CorrectionContextResolver, CorrectionContext, SuggestedLemmaQueryPort, SuggestedLemmaQuerySession, SuggestedLemmaQuerySessionFactory) |
-| Implementations | 4 (SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver, DefaultRefinerEngine) |
+| Implementations | 5 (SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver, DefaultRefinerEngine, KnowledgeTitleContextResolver) |
 | Packages | 1 (lemmasuggestion [internal]) |
 
 ### audit-application
@@ -209,9 +209,9 @@ project-root/
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 18 (RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig, ApprovalMode, ProposalDecisionOutcomeKind, ProposalDecisionOutcome, StrategyId, LemmaAbsenceQuizCandidate, ProposalStrategyFailedException, ProposalDerivationException, ConsolidatedViewBuilderConfig, CorrectionContextSource, CorrectionContextOverride, OverrideRejectedException) |
-| Interfaces | 15 (Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore, CorrectionContextOverrideParser) |
+| Interfaces | 18 (Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore, CorrectionContextOverrideParser, KnowledgeTitleProposalStrategy, KnowledgeTitleProposalStrategyRegistry, KnowledgeTitleProposalDeriver) |
 | Implementations | 0 |
-| Packages | 6 (engine [internal], lemmaabsence [public], impactpreview [public], consolidatedview [public], fielddiff [internal], contextoverride [internal]) |
+| Packages | 7 (engine [internal], lemmaabsence [public], impactpreview [public], consolidatedview [public], fielddiff [internal], contextoverride [internal], knowledgetitle [public]) |
 
 ### revision-infrastructure
 
@@ -226,7 +226,7 @@ project-root/
 | Models | 0 |
 | Interfaces | 0 |
 | Implementations | 0 |
-| Packages | 3 (lagen [public], lagenopenai [internal], lageninteractive [internal]) |
+| Packages | 3 (lagen [public], lemmaabsenceagent [internal], knowledgetitleagent [public]) |
 
 ## Dependency Graph
 
@@ -234,6 +234,7 @@ project-root/
 audit-domain ──depends──> course-domain
 course-domain (leaf — no dependencies)
 refiner-domain ──depends──> audit-domain
+refiner-domain ──depends──> course-domain
 audit-application ──depends──> audit-domain
 audit-application ──depends──> course-domain
 audit-application ──depends──> refiner-domain
@@ -271,7 +272,7 @@ revision-infrastructure ──depends──> refiner-domain
 |--------|----------------|--------------------|
 | audit-domain | course-domain | (any) |
 | course-domain | (none) | (any) |
-| refiner-domain | audit-domain | (any) |
+| refiner-domain | audit-domain, course-domain | (any) |
 | audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain | (any) |
 | course-infrastructure | course-domain | (any) |
 | audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure | (any) |

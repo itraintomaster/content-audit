@@ -71,10 +71,11 @@ new AuditableCourse(List<AuditableMilestone> milestones)
 | `id` | `String` |  |
 | `label` | `String` |  |
 | `code` | `String` |  |
+| `sentenceMode` | `SentenceMode` |  |
 
 **Generated constructor:**
 ```java
-new AuditableKnowledge(List<AuditableQuiz> quizzes, String title, String instructions, boolean isSentence, String id, String label, String code)
+new AuditableKnowledge(List<AuditableQuiz> quizzes, String title, String instructions, boolean isSentence, String id, String label, String code, SentenceMode sentenceMode)
 ```
 
 #### AuditableTopic
@@ -981,10 +982,11 @@ new TopicEntity(String id, String code, NodeKind kind, String label, String oldI
 | `order` | `int` |  |
 | `slug` | `String` |  |
 | `quizTemplates` | `List<QuizTemplateEntity>` | Import `java.util.List` |
+| `sentenceMode` | `SentenceMode` |  |
 
 **Generated constructor:**
 ```java
-new KnowledgeEntity(String id, String code, NodeKind kind, String label, String oldId, String parentId, boolean isRule, String instructions, int order, String slug, List<QuizTemplateEntity> quizTemplates)
+new KnowledgeEntity(String id, String code, NodeKind kind, String label, String oldId, String parentId, boolean isRule, String instructions, int order, String slug, List<QuizTemplateEntity> quizTemplates, SentenceMode sentenceMode)
 ```
 
 #### QuizTemplateEntity
@@ -1070,6 +1072,21 @@ new SentencePartEntity(SentencePartKind kind, String text, List<String> options)
 **Generated class** extends `RuntimeException` with constructor:
 ```java
 new CourseValidationException(String path, String detail)
+```
+
+#### SentenceMode
+
+**Package:** `com.learney.contentaudit.coursedomain`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `REWRITE` | `null` |  |
+| `FILL` | `null` |  |
+
+**Generated constructor:**
+```java
+new SentenceMode(null REWRITE, null FILL)
 ```
 
 #### QuizSentenceSerializationException (package: quizsentence)
@@ -1255,10 +1272,15 @@ new MisplacedLemmaContext(String lemma, String pos, CefrLevel expectedLevel, Cef
 | `targetMax` | `Integer` |  |
 | `delta` | `Integer` |  |
 | `lengthDirection` | `LengthDirection` |  |
+| `sourceAuditId` | `String` |  |
+| `sentenceMode` | `SentenceMode` |  |
+| `exerciseQuizzes` | `List<String>` | Import `java.util.List` |
+| `nodeId` | `String` |  |
+| `scarceContentWords` | `List<ScarceContentWord>` | Import `java.util.List` |
 
 **Generated constructor:**
 ```java
-new LemmaAbsenceCorrectionContext(String taskId, String sentence, String translation, String knowledgeTitle, String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel, List<MisplacedLemmaContext> misplacedLemmas, List<SuggestedLemma> suggestedLemmas, String quizSentence, Integer tokenCount, Integer targetMin, Integer targetMax, Integer delta, LengthDirection lengthDirection)
+new LemmaAbsenceCorrectionContext(String taskId, String sentence, String translation, String knowledgeTitle, String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel, List<MisplacedLemmaContext> misplacedLemmas, List<SuggestedLemma> suggestedLemmas, String quizSentence, Integer tokenCount, Integer targetMin, Integer targetMax, Integer delta, LengthDirection lengthDirection, String sourceAuditId, SentenceMode sentenceMode, List<String> exerciseQuizzes, String nodeId, List<ScarceContentWord> scarceContentWords)
 ```
 
 #### LengthDirection
@@ -1311,6 +1333,64 @@ new SuggestedLemmaQueryResult(String taskId, CefrLevel cefrLevel, List<Suggested
 new SuggestedLemmaQueryRejectedException(String taskId, String reason)
 ```
 
+#### SuggestedLemmaQueryCriteria
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `limit` | `Optional<Integer>` |  |
+| `partOfSpeech` | `Optional<String>` |  |
+| `explicitLevel` | `Optional<CefrLevel>` |  |
+| `includeExposed` | `boolean` |  |
+| `regex` | `Optional<String>` |  |
+
+**Generated constructor:**
+```java
+new SuggestedLemmaQueryCriteria(Optional<Integer> limit, Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel, boolean includeExposed, Optional<String> regex)
+```
+
+#### ScarceContentWord
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `lemma` | `String` |  |
+| `pos` | `String` |  |
+| `count` | `Integer` |  |
+| `threshold` | `Integer` |  |
+
+**Generated constructor:**
+```java
+new ScarceContentWord(String lemma, String pos, Integer count, Integer threshold)
+```
+
+#### KnowledgeTitleCorrectionContext
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+**Type:** record
+**Implements:** `CorrectionContext`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `taskId` | `String` |  |
+| `knowledgeId` | `String` |  |
+| `currentTitle` | `String` |  |
+| `currentInstructions` | `String` |  |
+| `topicLabel` | `String` |  |
+| `titleTargetMax` | `Integer` |  |
+| `instructionsTargetMax` | `Integer` |  |
+| `expectedTitleLanguage` | `String` |  |
+| `expectedInstructionsLanguage` | `String` |  |
+
+**Generated constructor:**
+```java
+new KnowledgeTitleCorrectionContext(String taskId, String knowledgeId, String currentTitle, String currentInstructions, String topicLabel, Integer titleTargetMax, Integer instructionsTargetMax, String expectedTitleLanguage, String expectedInstructionsLanguage)
+```
+
 ### Module: audit-cli
 
 #### GetTasksFilter
@@ -1341,11 +1421,10 @@ new GetTasksFilter(Optional<String> planId, Optional<String> status, boolean sor
 |-------|------|-------|
 | `LLM` | `null` |  |
 | `CANNED` | `null` |  |
-| `LLM_INTERACTIVE` | `null` |  |
 
 **Generated constructor:**
 ```java
-new LagenMode(null LLM, null CANNED, null LLM_INTERACTIVE)
+new LagenMode(null LLM, null CANNED)
 ```
 
 #### PlanStorageMode
@@ -1387,10 +1466,12 @@ new EphemeralRenderOptions(boolean withCorrectionContext)
 | `limit` | `Optional<Integer>` |  |
 | `partOfSpeech` | `Optional<String>` |  |
 | `level` | `Optional<CefrLevel>` |  |
+| `includeExposed` | `boolean` |  |
+| `regex` | `Optional<String>` |  |
 
 **Generated constructor:**
 ```java
-new SuggestedLemmasFilter(Optional<Integer> limit, Optional<String> partOfSpeech, Optional<CefrLevel> level)
+new SuggestedLemmasFilter(Optional<Integer> limit, Optional<String> partOfSpeech, Optional<CefrLevel> level, boolean includeExposed, Optional<String> regex)
 ```
 
 #### ReportViewModel (package: formatting)
@@ -1703,10 +1784,11 @@ new RevisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null 
 | `nodeTarget` | `AuditTarget` |  |
 | `nodeId` | `String` |  |
 | `quiz` | `QuizTemplateEntity` |  |
+| `knowledge` | `KnowledgeEntity` |  |
 
 **Generated constructor:**
 ```java
-new CourseElementSnapshot(AuditTarget nodeTarget, String nodeId, QuizTemplateEntity quiz)
+new CourseElementSnapshot(AuditTarget nodeTarget, String nodeId, QuizTemplateEntity quiz, KnowledgeEntity knowledge)
 ```
 
 #### RevisionProposal
@@ -1793,10 +1875,12 @@ new RevisionOutcome(RevisionOutcomeKind kind, RevisionArtifact artifact, String 
 | `auditEngine` | `AuditEngine` |  |
 | `impactPreviewStore` | `ImpactPreviewStore` |  |
 | `correctionContextOverrideParser` | `CorrectionContextOverrideParser` |  |
+| `knowledgeTitleStrategyRegistry` | `KnowledgeTitleProposalStrategyRegistry` |  |
+| `knowledgeTitleProposalDeriver` | `KnowledgeTitleProposalDeriver` |  |
 
 **Generated constructor:**
 ```java
-new RevisionEngineConfig(Map<DiagnosisKind,Reviser> revisers, RevisionValidator validator, RevisionArtifactStore artifactStore, CourseRepository courseRepository, CourseElementLocator elementLocator, RefinementPlanStore refinementPlanStore, AuditReportStore auditReportStore, CorrectionContextResolver<CorrectionContext> contextResolver, LemmaAbsenceProposalStrategyRegistry lemmaAbsenceStrategyRegistry, LemmaAbsenceProposalDeriver lemmaAbsenceProposalDeriver, CourseMapper courseMapper, AuditEngine auditEngine, ImpactPreviewStore impactPreviewStore, CorrectionContextOverrideParser correctionContextOverrideParser)
+new RevisionEngineConfig(Map<DiagnosisKind,Reviser> revisers, RevisionValidator validator, RevisionArtifactStore artifactStore, CourseRepository courseRepository, CourseElementLocator elementLocator, RefinementPlanStore refinementPlanStore, AuditReportStore auditReportStore, CorrectionContextResolver<CorrectionContext> contextResolver, LemmaAbsenceProposalStrategyRegistry lemmaAbsenceStrategyRegistry, LemmaAbsenceProposalDeriver lemmaAbsenceProposalDeriver, CourseMapper courseMapper, AuditEngine auditEngine, ImpactPreviewStore impactPreviewStore, CorrectionContextOverrideParser correctionContextOverrideParser, KnowledgeTitleProposalStrategyRegistry knowledgeTitleStrategyRegistry, KnowledgeTitleProposalDeriver knowledgeTitleProposalDeriver)
 ```
 
 #### ApprovalMode
@@ -1992,6 +2076,17 @@ new OverrideRejectedException(String reason)
 | Field | Type |
 |-------|------|
 | `registered` | `List<LemmaAbsenceProposalStrategy>` |
+| `activeName` | `String` |
+
+#### KnowledgeTitleProposalStrategyRegistryConfig (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `registered` | `List<KnowledgeTitleProposalStrategy>` |
 | `activeName` | `String` |
 
 #### LemmaAbsenceGeneratorResponse (package: lemmaabsence)
@@ -2250,6 +2345,28 @@ new OverrideRejectedException(String reason)
 | `fieldName` | `String` |
 | `keySpec` | `ListIdentityKeySpec` |
 
+#### KnowledgeTitleCandidate (package: knowledgetitle)
+
+**Package:** `com.learney.contentaudit.revisiondomain.knowledgetitle`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `title` | `String` |
+| `instructions` | `String` |
+
+#### KnowledgeTitleGeneratorResponse (package: knowledgetitle)
+
+**Package:** `com.learney.contentaudit.revisiondomain.knowledgetitle`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `title` | `String` |
+| `instructions` | `String` |
+
 ### Module: revision-infrastructure
 
 #### LagenConfig (package: lagen)
@@ -2268,6 +2385,7 @@ new OverrideRejectedException(String reason)
 | `maxTokens` | `Integer` |
 | `timeout` | `Duration` |
 | `maxSuggestedLemmaRequests` | `Integer` |
+| `maxEvalRetries` | `Integer` |
 
 #### LlmGenerationFailureCategory (package: lagen)
 
@@ -2308,26 +2426,4 @@ new OverrideRejectedException(String reason)
 |-------|------|
 | `providerName` | `String` |
 | `modelId` | `String` |
-
-#### LemmaAbsenceLlmRawResponse (package: lagenopenai)
-
-**Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
-**Visibility:** internal
-**Type:** record
-
-| Field | Type |
-|-------|------|
-| `rawText` | `String` |
-
-#### SuggestedLemmaRequest (package: lageninteractive)
-
-**Package:** `com.learney.contentaudit.revisioninfrastructure.lageninteractive`
-**Visibility:** internal
-**Type:** record
-
-| Field | Type |
-|-------|------|
-| `limit` | `Optional<Integer>` |
-| `partOfSpeech` | `Optional<String>` |
-| `level` | `Optional<CefrLevel>` |
 

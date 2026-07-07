@@ -389,6 +389,7 @@ Examples:
 | `serialize(FormEntity form): String` | (none) |
 | `parse(String quizSentence): FormEntity` | (none) |
 | `toPlainSentences(FormEntity form): List<String>` | (none) |
+| `toPlainSentences(FormEntity form, SentenceMode mode): List<String>` | (none) |
 
 ### Module: refiner-domain
 
@@ -419,7 +420,7 @@ Examples:
 
 **Package:** `com.learney.contentaudit.refinerdomain`
 
-**Implemented by:** SentenceLengthContextResolver (refiner-domain), LemmaAbsenceContextResolver (refiner-domain), DispatchingCorrectionContextResolver (refiner-domain)
+**Implemented by:** SentenceLengthContextResolver (refiner-domain), LemmaAbsenceContextResolver (refiner-domain), DispatchingCorrectionContextResolver (refiner-domain), KnowledgeTitleContextResolver (refiner-domain)
 
 | Method | Throws |
 |--------|--------|
@@ -437,7 +438,7 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `query(AuditReport report, RefinementTask task, Optional<Integer> limit, Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel): SuggestedLemmaQueryResult` | (none) |
+| `query(AuditReport report, RefinementTask task, SuggestedLemmaQueryCriteria criteria): SuggestedLemmaQueryResult` | (none) |
 
 #### SuggestedLemmaQuerySession (port)
 
@@ -445,7 +446,7 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `requestMore(Optional<Integer> limit, Optional<String> partOfSpeech, Optional<CefrLevel> explicitLevel): SuggestedLemmaQueryResult` | (none) |
+| `requestMore(SuggestedLemmaQueryCriteria criteria): SuggestedLemmaQueryResult` | (none) |
 
 #### SuggestedLemmaQuerySessionFactory (factory)
 
@@ -453,7 +454,16 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `bindForTask(RefinementTask task): SuggestedLemmaQuerySession` | (none) |
+| `bindForTask(String sourceAuditId, RefinementTask task): SuggestedLemmaQuerySession` | (none) |
+
+#### LeveledLemmaInventory (package: lemmasuggestion)
+
+**Package:** `com.learney.contentaudit.refinerdomain.lemmasuggestion`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `lemmasFor(AuditReport report, RefinementTask task, CefrLevel level, Optional<String> partOfSpeech): List<SuggestedLemma>` | (none) |
 
 ### Module: audit-application
 
@@ -873,7 +883,7 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `derive(CourseElementSnapshot before, LemmaAbsenceQuizCandidate candidate): CourseElementSnapshot` | (none) |
+| `derive(CourseElementSnapshot before, LemmaAbsenceQuizCandidate candidate, SentenceMode mode): CourseElementSnapshot` | (none) |
 
 #### ImpactPreviewStore (port)
 
@@ -893,6 +903,34 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `parse(String rawJson, DiagnosisKind expectedDiagnosisKind, String expectedNodeId): CorrectionContextOverride` | (none) |
+
+#### KnowledgeTitleProposalStrategy (port)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `id(): StrategyId` | (none) |
+| `handles(DiagnosisKind kind): boolean` | (none) |
+| `propose(RefinementTask task, KnowledgeTitleCorrectionContext context): KnowledgeTitleCandidate` | (none) |
+
+#### KnowledgeTitleProposalStrategyRegistry [SEALED] (service)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `active(): Optional<KnowledgeTitleProposalStrategy>` | (none) |
+| `byName(String name): Optional<KnowledgeTitleProposalStrategy>` | (none) |
+| `listAll(): List<StrategyId>` | (none) |
+
+#### KnowledgeTitleProposalDeriver [SEALED] (service)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `derive(CourseElementSnapshot before, KnowledgeTitleCandidate candidate): CourseElementSnapshot` | (none) |
 
 #### LemmaAbsenceQuizCandidateGenerator (package: lemmaabsence)
 
@@ -976,72 +1014,99 @@ Examples:
 |--------|--------|
 | `validateAndBuild(JsonNode payload, String expectedNodeId): CorrectionContext` | (none) |
 
+#### KnowledgeTitleCandidateGenerator (package: knowledgetitle)
+
+**Package:** `com.learney.contentaudit.revisiondomain.knowledgetitle`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `generate(KnowledgeTitleCorrectionContext context): KnowledgeTitleGeneratorResponse` | (none) |
+
 ### Module: revision-infrastructure
 
-#### LemmaAbsenceLlmGeneratorFactory (package: lagen)
+#### LemmaAbsenceAgentGeneratorFactory (package: lagen)
 
 **Package:** `com.learney.contentaudit.revisioninfrastructure.lagen`
 **Visibility:** public
 
 | Method | Throws |
 |--------|--------|
-| `create(LagenConfig config): LemmaAbsenceQuizCandidateGenerator` | (none) |
+| `create(LagenConfig config, SuggestedLemmaQuerySessionFactory sessionFactory): LemmaAbsenceQuizCandidateGenerator` | (none) |
 | `providerIdFor(LagenConfig config): String` | (none) |
 
-#### InteractiveLemmaAbsenceGeneratorFactory (package: lagen)
+#### AgentRuntimeLauncher (package: lemmaabsenceagent)
 
-**Package:** `com.learney.contentaudit.revisioninfrastructure.lagen`
-**Visibility:** public
-
-| Method | Throws |
-|--------|--------|
-| `create(LagenConfig config, SuggestedLemmaQuerySession session): LemmaAbsenceQuizCandidateGenerator` | (none) |
-| `providerIdFor(LagenConfig config): String` | (none) |
-
-#### LemmaAbsencePromptBuilder (package: lagenopenai)
-
-**Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent`
 **Visibility:** internal
 
 | Method | Throws |
 |--------|--------|
-| `buildSystemPrompt(): String` | (none) |
-| `buildUserPrompt(LemmaAbsenceCorrectionContext context): String` | (none) |
+| `launch(String agentName, Map<String,String> inputs, ChatModel chatModel, Map<String,Object> tools): RunState` | (none) |
 
-#### LemmaAbsenceResponseParser (package: lagenopenai)
+#### SuggestedLemmaAgentTool (package: lemmaabsenceagent)
 
-**Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent`
 **Visibility:** internal
 
 | Method | Throws |
 |--------|--------|
-| `parse(LemmaAbsenceLlmRawResponse raw, String taskId, String strategyName): LemmaAbsenceGeneratorResponse` | (none) |
+| `fetchSuggestedLemmas(SuggestedLemmaQueryCriteria criteria): SuggestedLemmaQueryResult` | (none) |
 
-#### LangChainErrorClassifier (package: lagenopenai)
+#### AgentRuntimeErrorClassifier (package: lemmaabsenceagent)
 
-**Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent`
 **Visibility:** internal
 
 | Method | Throws |
 |--------|--------|
+| `classify(RunState runState): LlmGenerationFailureCategory` | (none) |
 | `classify(Throwable cause): LlmGenerationFailureCategory` | (none) |
 
-#### InteractiveLemmaAbsencePromptBuilder (package: lageninteractive)
+#### AgentCandidateParser (package: lemmaabsenceagent)
 
-**Package:** `com.learney.contentaudit.revisioninfrastructure.lageninteractive`
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent`
 **Visibility:** internal
 
 | Method | Throws |
 |--------|--------|
-| `buildSystemPrompt(): String` | (none) |
-| `buildSeedUserPrompt(LemmaAbsenceCorrectionContext context): String` | (none) |
+| `parse(RunState runState, String taskId, String strategyName): LemmaAbsenceGeneratorResponse` | (none) |
 
-#### SuggestedLemmaToolExchange (package: lageninteractive)
+#### KnowledgeTitleAgentGeneratorFactory (package: knowledgetitleagent)
 
-**Package:** `com.learney.contentaudit.revisioninfrastructure.lageninteractive`
-**Visibility:** internal
+**Package:** `com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent`
+**Visibility:** public
 
 | Method | Throws |
 |--------|--------|
-| `fetchMore(SuggestedLemmaRequest request): SuggestedLemmaQueryResult` | (none) |
+| `create(LagenConfig config): KnowledgeTitleCandidateGenerator` | (none) |
+| `providerIdFor(LagenConfig config): String` | (none) |
+
+#### KnowledgeTitleAgentRuntimeLauncher (package: knowledgetitleagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `launch(String agentName, Map<String,String> inputs, ChatModel chatModel): RunState` | (none) |
+
+#### KnowledgeTitleAgentCandidateParser (package: knowledgetitleagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `parse(RunState runState, String knowledgeId): KnowledgeTitleGeneratorResponse` | (none) |
+
+#### KnowledgeTitleAgentErrorClassifier (package: knowledgetitleagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `classify(RunState runState): LlmGenerationFailureCategory` | (none) |
+| `classify(Throwable cause): LlmGenerationFailureCategory` | (none) |
 

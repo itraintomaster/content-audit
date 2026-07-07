@@ -593,6 +593,8 @@ Este requerimiento hace dos cosas: (1) re-rutea las tareas LEMMA_ABSENCE para qu
 | F-RCLA-R004 | Estructura de cada lema fuera de nivel | critical | - |
 | F-RCLA-R004b | Obtencion de lemas sugeridos como candidatos de reemplazo | critical | - |
 | F-RCLA-R004c | Contexto sin lemas sugeridos | major | - |
+| F-RCLA-R003b | Palabras de contenido escasas de la oracion actual | major | - |
+| F-RCLA-R003c | Contexto sin palabras escasas | major | - |
 | F-RCLA-R005 | Resolucion del nodo quiz desde una tarea de refinamiento | critical | No se pudo cargar el reporte de auditoria '{sourceAuditId}' necesario para construir el contexto de correccion |
 | F-RCLA-R006 | Contexto cuando el diagnostico de placement no esta disponible | major | No se pudo obtener el diagnostico de placement de lemas para el quiz '{nodeId}' |
 | F-RCLA-R007 | El comando que muestra una tarea individual incluye el contexto de correccion para tareas LEMMA_ABSENCE | critical | - |
@@ -878,20 +880,6 @@ Este micro-requerimiento es un delta aislado: agrega el campo `quizSentence` al 
 | F-LAGEN-R013 | El operador puede elegir el modo de generacion; el default es dinamico y el modo fijo es opt-in explicito | critical | Modo de generacion no reconocido: '{modo}'. Valores admitidos: dinamico, fijo. |
 | F-LAGEN-R014 | La configuracion del operador se valida atomicamente antes de ejecutar cualquier operacion de revision | major | Configuracion invalida en '{perilla}': {detalle}. Corregir antes de re-ejecutar. |
 
-**User Journeys:**
-
-- **F-LAGEN-J001**: El sistema produce un candidato valido en una invocacion
-
-- **F-LAGEN-J002**: El proveedor del modelo no esta accesible
-
-- **F-LAGEN-J003**: La consulta al modelo excede el timeout
-
-- **F-LAGEN-J004**: El proveedor rechaza la consulta por autenticacion
-
-- **F-LAGEN-J005**: El modelo responde sin contenido
-
-- **F-LAGEN-J006**: El modelo responde con contenido que no cumple la estructura exigida
-
 ### FEAT-PIPRE: Preview de impacto de propuestas de revision sobre los scores de auditoria [F-PIPRE]
 
 > **Que**: Al generar una `RevisionProposal`, el sistema computa y deja disponible un "preview de impacto" que describe como cambiarian los scores de auditoria del curso (a nivel del nodo afectado, sus contenedores y el curso completo) si esa propuesta se aprobara, discriminado por dimension de diagnostico, sin modificar el curso real.
@@ -1045,10 +1033,9 @@ Este micro-requerimiento es un delta aislado: agrega el campo `quizSentence` al 
 
 ### FEAT-LEMMA-SUGGESTIONS: LemmaCount como variable de SuggestedLemmas [F-SLEM]
 
-> Agregar la señal de `lemma-count` a `correctionContext.suggestedLemmas` en tareas `LEMMA_ABSENCE`.  
-El cambio prioriza lemas ya introducidos pero sub-expuestos antes que lemas completamente ausentes.  
-La funcionalidad se observa mediante `AuditRunner.runAudit(...)`, `AuditRunner.runDetailedAudit(...)`, `PlanCommand.plan(..., true)`, `GetCommand.get(...)` y `ReviseCommand.revise(...)`.  
-No se introduce un comando público nuevo.
+> Agregar la señal de `lemma-count` a `correctionContext.suggestedLemmas` en tareas `LEMMA_ABSENCE`, ordenando por un esquema de **seis tiers de prioridad** (first-match-wins) donde la pertenencia a una **banda de frecuencia COCA deficitaria del nivel** es clave secundaria fuerte dentro de la macro-escasez, por encima de la distinción sub-expuesto/ausente (F-SLEM-R003, F-SLEM-R014).  
+El estado de exposición se corta con el umbral `N` de `lemma-count` (sub-expuesto = `1..N-1`, ausente = sin exposición, expuesto-pero-escaso = `N..2N-1`), nunca con literales; COCA ascendente es el desempate final dentro de cada tier (F-SLEM-R005). Si la auditoría no analizó bandas, los tiers de banda quedan vacíos y el orden degrada sin fallar (F-SLEM-R015).  
+La funcionalidad se observa mediante `AuditRunner.runAudit(...)`, `AuditRunner.runDetailedAudit(...)`, `PlanCommand.plan(..., true)`, `GetCommand.get(...)` y `ReviseCommand.revise(...)`, sin introducir un comando público nuevo ni nuevos campos observables por lema.
 
 **Business Rules:**
 
@@ -1056,17 +1043,19 @@ No se introduce un comando público nuevo.
 |----|------|----------|---------------|
 | F-SLEM-R001 | La auditoría con lemma-count provee la señal funcional para suggestedLemmas | critical | No se pudo usar la señal de lemma-count disponible en la auditoría para enriquecer suggestedLemmas |
 | F-SLEM-R002 | Plan con correctionContext enriquece suggestedLemmas para LEMMA_ABSENCE | critical | Las sugerencias de lemas no incorporan la señal disponible de lemma-count |
-| F-SLEM-R003 | Ranking principal prioriza lemas sub-expuestos ya introducidos | critical | El ranking de suggestedLemmas no respeta la prioridad acordada con lemma-count |
+| F-SLEM-R003 | Ranking por seis tiers de prioridad con banda deficitaria como clave secundaria fuerte | critical | El ranking de suggestedLemmas no respeta los seis tiers de prioridad acordados con lemma-count |
 | F-SLEM-R004 | APPEARS_TOO_EARLY se evalúa en el nivel target real | critical | APPEARS_TOO_EARLY fue evaluado fuera de su nivel target real |
-| F-SLEM-R005 | COCA ascendente desempata dentro de cada grupo de prioridad | major | El desempate de suggestedLemmas no respeta COCA ascendente |
+| F-SLEM-R005 | COCA ascendente es el desempate final dentro de un mismo tier | major | El desempate de suggestedLemmas no respeta COCA ascendente como desempate final dentro del tier |
 | F-SLEM-R006 | El límite existente de suggestedLemmas se aplica después del nuevo ranking | major | El límite de suggestedLemmas no se aplicó después del ranking con lemma-count |
-| F-SLEM-R007 | COMPLETELY_ABSENT queda detrás de lemas ya introducidos | critical | COMPLETELY_ABSENT fue priorizado antes que un lema ya introducido y sub-expuesto |
+| F-SLEM-R007 | COMPLETELY_ABSENT queda detrás del sub-expuesto solo dentro del mismo estado de banda | critical | COMPLETELY_ABSENT fue ordenado incorrectamente respecto de un lema sub-expuesto dado su estado de banda deficitaria |
 | F-SLEM-R008 | Plan proyectado y consulta de tareas muestran el mismo correctionContext enriquecido | major | El correctionContext observado en el plan no coincide con el observado en la consulta de tareas |
 | F-SLEM-R009 | Revise consume el correctionContext enriquecido derivado por el sistema | major | La revisión no recibió el correctionContext enriquecido con lemma-count |
 | F-SLEM-R010 | Revise acepta override externo válido con la forma observable enriquecida | major | El correctionContext externo no coincide con la forma válida de suggestedLemmas enriquecido |
 | F-SLEM-R011 | Revise rechaza override externo con señal de lemma-count inconsistente | major | El correctionContext es inválido por inconsistencia en la señal de lemma-count dentro de suggestedLemmas |
 | F-SLEM-R012 | Auditoría sin lemma-count conserva suggestedLemmas sin fallar | major | La ausencia de lemma-count impidió generar o consultar suggestedLemmas |
 | F-SLEM-R013 | Forma observable de la señal de lemma-count dentro de suggestedLemmas | critical | La forma observable de lemma-count dentro de suggestedLemmas no respeta el contrato acordado |
+| F-SLEM-R014 | Definición formal de los seis tiers: estado de exposición, banda deficitaria y COCA ascendente | major | El cómputo de tiers no aplicó el estado de exposición por N, la pertenencia binaria a banda deficitaria y COCA ascendente en el orden acordado |
+| F-SLEM-R015 | Degradación elegante: los tiers de banda quedan vacíos, sin branch condicional | major | La ausencia del análisis de bandas de frecuencia COCA impidió construir suggestedLemmas con la función de prioridad degradada a 3-4-6 |
 
 **User Journeys:**
 
@@ -1091,6 +1080,7 @@ No se introduce un comando público nuevo.
 | F-DBSENT-R001 | QuizTemplateEntity persiste la lista de plain sentences | critical | - |
 | F-DBSENT-R002 | El audit consume las plain sentences pre-computadas | critical | - |
 | F-DBSENT-R003 | El converter sigue siendo contrato disponible pero no consumido por el audit | medium | - |
+| F-DBSENT-R004 | Persistir un curso preserva las plain sentences de cada quiz (round-trip idempotente) | critical | - |
 
 ### FEAT-CSLATDC: Consulta de Suggested Lemmas a través del CLI [F-CSLATDC]
 
@@ -1115,6 +1105,7 @@ El cambio complementa los `suggestedLemmas` estáticos del `correctionContext` s
 | F-CSLATDC-R011 | Consulta no limitada al top estático del correctionContext | major | No aplica. |
 | F-CSLATDC-R012 | Tasks sin suggested lemmas aplicables | major | No hay lemas sugeridos disponibles para esta task. |
 | F-CSLATDC-R014 | Resultado mínimo observable | major | No aplica. |
+| F-CSLATDC-R015 | La consulta dinámica opera sobre el MISMO análisis fuente del que se derivó el contexto de la task | critical | No aplica. |
 
 **User Journeys:**
 
@@ -1123,6 +1114,8 @@ El cambio complementa los `suggestedLemmas` estáticos del `correctionContext` s
 - **F-CSLATDC-J002**: El agente informa level explícito cuando no puede inferirse
 
 - **F-CSLATDC-J004**: La consulta dinámica supera el conjunto estático del correctionContext
+
+- **F-CSLATDC-J005**: La consulta dinámica refleja el análisis fuente de la task, no el más reciente
 
 ### FEAT-LAGAG: Generación interactiva con consulta de suggested lemmas [F-LAGAG]
 
@@ -1147,11 +1140,165 @@ trazable.
 | F-LAGAG-R005 | Proveedor incapaz de sostener el intercambio | medium | El proveedor activo no puede sostener la consulta interactiva de suggested lemmas |
 | F-LAGAG-R006 | Candidato final con la forma heredada | high | - |
 
+### FEAT-INCEXP: Incluir lemas ya expuestos en la consulta de Suggested Lemmas [F-INCEXP]
+
+> **Qué**: Agrega una opción booleana al filtro de `GetCommand.get("suggested-lemmas", <taskId>, ...)` que, cuando se activa, amplía el universo de candidatos para incluir también los lemas del `Level` y `Part of Speech` pedidos que ya alcanzaron su umbral de exposición.
+
+**Por qué**: Con la consulta por defecto, pedir un `Part of Speech` específico en un `Level` puede traer muy pocos resultados porque sólo se recomiendan lemas que todavía necesitan exposición; la opción permite al agente revisor disponer de más candidatos cuando los pocos sub-expuestos no alcanzan.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-INCEXP-R001 | Comportamiento por defecto inalterado | critical | No aplica. |
+| F-INCEXP-R002 | La opción amplía el universo a los lemas ya expuestos | critical | No aplica. |
+| F-INCEXP-R003 | El orden se mantiene por prioridad de recomendación | critical | No aplica. |
+| F-INCEXP-R004 | El desempate sigue siendo frecuencia COCA ascendente | major | No aplica. |
+| F-INCEXP-R005 | El filtro obligatorio por level sigue aplicando | critical | No se pueden sugerir lemas sin un nivel aplicable para filtrar. |
+| F-INCEXP-R006 | El filtro por partOfSpeech sigue aplicando | major | No aplica. |
+| F-INCEXP-R007 | El limit sigue recortando el resultado final | major | No aplica. |
+| F-INCEXP-R008 | La inferencia y el level explícito siguen funcionando con la opción activada | major | No se pueden sugerir lemas porque falta el nivel necesario para filtrar. |
+| F-INCEXP-R009 | Respuesta vacía sin error cuando no hay lemas del tipo y nivel pedidos | major | No hay lemas sugeridos disponibles para esta task. |
+| F-INCEXP-R010 | Lista parcial sin error sigue valiendo | major | No aplica. |
+| F-INCEXP-R011 | La forma observable de cada lema sugerido se mantiene | major | No aplica. |
+
 **User Journeys:**
 
-- **F-LAGAG-J001**: El modelo solicita más lemmas y entrega un candidato
+- **F-INCEXP-J001**: El agente amplía la consulta para incluir lemas ya expuestos
 
-- **F-LAGAG-J002**: Se agota el presupuesto de solicitudes sin candidato
+- **F-INCEXP-J002**: Contraste entre la consulta por defecto y la consulta con la opción
 
-- **F-LAGAG-J003**: El proveedor activo no puede sostener la consulta interactiva
+### FEAT-LASAG: Agente sentinel-agent para generación de candidatos de lemma-absence [F-LASAG]
+
+> Reemplazar la ruta LLM por defecto de *lemma-absence* (single-shot FEAT-LAGEN + interactivo FEAT-LAGAG) por un **único agente sobre sentinel-agent**, que pasa a ser la única ruta LLM. Contrato externo idéntico: entra el `CorrectionContext` de FEAT-RCLA, sale **un único** `QuizCandidate {quizSentence, translation}`. El agente ejecuta un **react corto con UNA sola tool** (la consulta read-only de suggested-lemmas) para filtrar `suggestedWords`. Timeouts/errores del framework se mapean a falla de estrategia preservando categoría, **sin reintentos**.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-LASAG-R001 | El filtrado de suggestedWords pasa por la tool de suggested-lemmas | high | - |
+| F-LASAG-R002 | Ningún otro verbo CLI durante la generación | high | - |
+| F-LASAG-R003 | Contrato externo idéntico: un único QuizCandidate | high | - |
+| F-LASAG-R004 | Presupuesto de tool por run; agotarlo no es falla | medium | - |
+| F-LASAG-R005 | Error de runtime en generación → ProposalStrategyFailedException con categoría preservada | high | - |
+| F-LASAG-R006 | Un único intento de generación ante falla de runtime | high | - |
+| F-LASAG-R007 | Catálogo y clasificación de evals de calidad sobre el candidato emitido | high | - |
+| F-LASAG-R008 | Reintento de generación por veredicto bloqueante, acotado por maxEvalRetries | high | - |
+| F-LASAG-R009 | Exhaustion de reintentos de eval: best-effort, no es falla | high | - |
+| F-LASAG-R010 | Carry-forward de contexto de fallo e historial de tool entre reintentos | medium | - |
+| F-LASAG-R011 | Perilla maxEvalRetries con default 3, ignorada por CANNED | medium | - |
+| F-LASAG-R012 | Error de runtime en cualquier fase = falla inmediata fuera del lazo de retry | high | - |
+
+**User Journeys:**
+
+- **F-LASAG-J001**: Generación exitosa de QuizCandidate por la ruta LLM (agente sentinel-agent)
+
+- **F-LASAG-J002**: Agotar el presupuesto de tool no es falla
+
+- **F-LASAG-J003**: Error de runtime en generación falla con categoría preservada e intento único
+
+- **F-LASAG-J004**: Veredicto bloqueante negativo dispara reintento con carry-forward, acotado por maxEvalRetries
+
+- **F-LASAG-J005**: Exhaustion de reintentos de eval es best-effort, no falla
+
+- **F-LASAG-J006**: Veredicto deseable negativo no bloquea la emisión
+
+- **F-LASAG-J007**: Error de runtime en la fase de evals falla de inmediato fuera del lazo de retry
+
+- **F-LASAG-J009**: Perilla maxEvalRetries con default 3, ignorada por CANNED
+
+### FEAT-SMODE: Modo de frase del knowledge y frase canonica puntuable [F-SMODE]
+
+> **Que**: Cada knowledge basado en sentencias declara un **modo de frase**
+(`REWRITE` o `FILL`) que determina cual es la **frase canonica puntuable** de
+sus quizzes: en `FILL` es la oracion completa con el hueco relleno; en
+`REWRITE` es solo la oracion respuesta, sin la oracion fuente/prompt.
+
+**Por que**: Hoy la frase canonica se arma concatenando todas las partes del
+quiz, lo que en ejercicios de reescritura incluye erroneamente la oracion
+fuente, duplica contenido, infla el conteo de tokens y degrada el score de
+longitud de frase (F-SLEN-R002). El modo de frase desambigua que se
+puntua y mantiene el score estable a traves de las revisiones.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-SMODE-R001 | Todo knowledge basado en sentencias tiene un modo de frase | critical | El knowledge basado en sentencias '{knowledgeId}' no declara un modo de frase valido (REWRITE o FILL) |
+| F-SMODE-R002 | El modo de frase es uniforme dentro del knowledge | major | - |
+| F-SMODE-R003 | La frase canonica puntuable se determina segun el modo del knowledge | critical | No se pudo determinar la frase canonica puntuable del quiz '{quizId}' para el modo {modo} de su knowledge '{knowledgeId}' |
+| F-SMODE-R004 | En REWRITE la oracion fuente nunca se incluye ni se puntua | critical | La frase canonica del quiz '{quizId}' (modo REWRITE) incluyo la oracion fuente; debe contener solo la respuesta |
+| F-SMODE-R005 | El score de longitud de frase se calcula sobre la frase canonica determinada por el modo | critical | - |
+| F-SMODE-R006 | La revision que preserva la estructura conserva el modo del knowledge | critical | El quiz revisado '{quizId}' se evaluo con un modo de frase distinto al de su knowledge '{knowledgeId}' |
+| F-SMODE-R007 | Una revision REWRITE que conserva la longitud de la respuesta no degrada el score de longitud | critical | La revision REWRITE del quiz '{quizId}' degrado el score de longitud sin cambiar la longitud de la respuesta |
+
+**User Journeys:**
+
+- **F-SMODE-J001**: Puntuar la longitud de frase de un quiz segun el modo de su knowledge
+
+- **F-SMODE-J002**: Revisar un quiz REWRITE sin degradar el score de longitud
+
+### FEAT-SLREGEX: Filtrar Suggested Lemmas por expresión regular [F-SLREGEX]
+
+> **Qué**: Agrega un filtro `--regex` a `GetCommand.get("suggested-lemmas", <taskId>, ...)` que, cuando se informa, conserva únicamente los lemas candidatos cuyo texto coincide con el patrón, manteniendo el resto de los filtros y el orden por prioridad intactos.
+
+**Por qué**: En varios casos el agente revisor necesita buscar tipos de palabra específicos por su forma superficial (terminaciones, prefijos, secuencias de letras) y hoy no hay forma de filtrar por el texto del lema; el filtro textual permite acotar la lista a esos casos sin pedir un tipo gramatical entero.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-SLREGEX-R001 | Comportamiento por defecto inalterado | critical | No aplica. |
+| F-SLREGEX-R002 | El patrón matchea contra el texto del lema | critical | No aplica. |
+| F-SLREGEX-R003 | Coincidencia parcial estilo grep | critical | No aplica. |
+| F-SLREGEX-R004 | Coincidencia insensible a mayúsculas y minúsculas | major | No aplica. |
+| F-SLREGEX-R005 | El filtro es aditivo y no relaja los demás filtros | critical | No aplica. |
+| F-SLREGEX-R006 | El orden por prioridad se preserva | critical | No aplica. |
+| F-SLREGEX-R007 | El limit recorta después de aplicar el regex | major | No aplica. |
+| F-SLREGEX-R008 | Patrón inválido rechaza la consulta con validación clara | critical | El patrón de búsqueda informado en --regex no es válido. |
+| F-SLREGEX-R009 | Sin coincidencias devuelve lista vacía sin error | major | Ningún lema sugerido coincide con el patrón informado en --regex. |
+| F-SLREGEX-R010 | La ayuda del comando documenta la semántica del filtro | major | No aplica. |
+
+**User Journeys:**
+
+- **F-SLREGEX-J001**: El agente filtra los lemas sugeridos por patrón de texto
+
+- **F-SLREGEX-J002**: Contraste entre la consulta por defecto y la consulta con --regex
+
+### FEAT-KTLR: Revision de longitud de titulo de knowledge con propuesta del agente [F-KTLR]
+
+> **Que**: Cierra el puente revise→propuesta→aprobar para tareas de diagnostico
+`KNOWLEDGE_TITLE_LENGTH`: el sistema resuelve el contexto del knowledge, invoca
+al agente de titulos, transforma su salida (nuevo titulo + instructions) en una
+propuesta revisable y, al aprobarla, **persiste el nuevo titulo e instructions
+en el knowledge** del curso.
+
+**Por que**: Hoy `plan` ya emite estas tareas y el agente ya existe, pero al
+aprobar una propuesta el sistema solo sabe escribir cambios sobre quizzes; una
+correccion de titulo de knowledge nunca llega al curso. Esta feature elimina ese
+bloqueo sin tocar el flujo de revision de quizzes ya existente.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-KTLR-R001 | Las tareas KNOWLEDGE_TITLE_LENGTH resuelven el contexto del knowledge | high | - |
+| F-KTLR-R002 | El contexto expone los datos que el agente necesita | high | - |
+| F-KTLR-R003 | La revision de KNOWLEDGE_TITLE_LENGTH invoca al agente de titulos | high | - |
+| F-KTLR-R004 | La salida del agente es un unico candidato de titulo por revision | high | - |
+| F-KTLR-R005 | El candidato se transforma en una propuesta revisable | high | - |
+| F-KTLR-R006 | Aprobar una correccion de titulo escribe el knowledge en el curso | critical | - |
+| F-KTLR-R007 | Solo cambian titulo e instructions del knowledge senalado | critical | - |
+| F-KTLR-R008 | El flujo de revision de quizzes queda intacto | critical | - |
+| F-KTLR-R009 | Rechazar deja el knowledge sin cambios | high | - |
+| F-KTLR-R010 | Si el agente no produce un candidato valido, la revision aborta sin tocar el curso | high | El agente de titulos no pudo generar una correccion para el
+knowledge '{knowledgeId}' |
+| F-KTLR-R011 | Si el knowledge senalado no existe, la revision falla explicitamente | medium | El knowledge '{knowledgeId}' referido por la tarea no existe en el
+curso |
+
+**User Journeys:**
+
+- **F-KTLR-J001**: Revisar y aprobar una correccion de titulo de knowledge
+
+- **F-KTLR-J002**: La revision de quizzes sigue intacta
 

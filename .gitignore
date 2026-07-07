@@ -31,3 +31,6 @@ sentinel.yaml.pre-compact.bak
 
 # Sentinel eval run outputs (ephemeral)
 .eval-runs/
+
+# Claude Code scheduled-tasks lock (ephemeral)
+.claude/scheduled_tasks.lock

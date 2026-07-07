@@ -1,0 +1,97 @@
+name: analyst-interactive-v2
+description: |
+  Rewrite of InteractiveAnalystGraph on top of the Sentinel agent framework.
+
+  Flow:
+
+      gather_context (react: list_public_api FIRST, then requirements /
+              glossary / memory; ask_user for clarifications while investigating)
+        ──▶ check_context (gate)
+              │ failed ▶ gather_context (retry with missing-section detail)
+        ──▶ analysis_draft (llm_call, short alignment doc framed as a delta
+              over the current API surface)
+        ──▶ align_analysis (react + ask_user: confirm/correct loop with the
+              user — up to 10 questions — until both understand the request
+              the same way; outputs the agreed analysis_final)
+        ──▶ route_folder (conditional) ── have_source ──▶ create_folder (script)
+              │ need_proposal ▶ propose_folder (llm_call) ──▶ create_folder
+        ──▶ draft_text (llm_call: prose skeleton — TL;DR, Recorrido de uso,
+              Context, Scope — with RULES/JOURNEYS markers)
+        ──▶ draft_rules (llm_call: ONLY the rule entries; the rule-authoring
+              treatise lives here, isolated from the other phases)
+        ──▶ gate_rules (gate: deterministic testability linter)
+              │ failed ▶ draft_rules (retry with offending rule IDs)
+        ──▶ draft_journeys (llm_call: ONLY journey entries, citing real rule IDs)
+        ──▶ assemble (script: deterministic splice of the three partials into
+              staging/REQUIREMENT.md — never re-touches the validated rules)
+        ──▶ route_refine (conditional)
+              │ refine ▶ grill (react + ask_user: align the HOW in detail —
+              │   walk the design tree the draft surfaced, one question at a time
+              │   with a recommendation, adapting to each answer; outputs
+              │   design_decisions)
+              │     ──▶ gate_grilled (gate: the grill MUST ask the user at least
+              │         once — a react node can self-answer and emit the artifact
+              │         with zero ask_user calls; this bounces it back to grill if
+              │         it did, otherwise ──▶ draft_text re-draft folding them in)
+              │ proceed ▶ soft_check   (grill is skipped on non-interactive runs,
+              │   and not re-run once design_decisions exists)
+        ──▶ soft_check (gate) ──▶ glossary_sync (llm_call)
+        ──▶ gate_glossary (gate) ──▶ gate_requirement (gate)
+        ──▶ promote (script) ──▶ END
+        (the draft partials live in {run_dir}/draft-parts, OUTSIDE staging, so
+         promote never ships them. The glossary syncs BEFORE gate_requirement:
+         the draft links new terms and the validator requires them to exist.
+         assemble + glossary_sync write into {run_dir}/staging; the gates
+         validate an overlay; promote moves everything into the project AT THE
+         END — a failed run never touches the project. soft_check and
+         gate_requirement failures re-run from draft_text.)
+
+  The requirement_folder input is OPTIONAL: without it, once the analysis
+  is agreed, route_folder decides whether a name is needed,
+  propose_folder names the requirement and create_folder creates
+  requirements/<slug>/ and publishes requirement_folder to the data bus. Gate failures loop back to draft (requirement) or glossary_sync
+  (glossary); each redraft re-syncs the glossary before re-validating. Internal phase budgets bound the
+  retry attempts.
+kind: agent
+strategy: graph
+initial_node: gather_context
+budgets:
+  # Circuit breaker for the whole graph: bounds the retry loops
+  # (draft_rules ↔ gate_rules, grill ↔ gate_grilled, soft_check/gate_requirement
+  # → draft_text full re-run, the grill → re-draft pass, glossary_sync ↔
+  # gate_glossary, propose_folder ↔ create_folder).
+  max_iterations: 80
+nodes:
+  - ./nodes/gather_context.md
+  - ./nodes/check_context.md
+  - ./nodes/analysis_draft.md
+  - ./nodes/align_analysis.md
+  - ./nodes/route_folder.md
+  - ./nodes/propose_folder.md
+  - ./nodes/create_folder.md
+  - ./nodes/draft_text.md
+  - ./nodes/draft_rules.md
+  - ./nodes/gate_rules.md
+  - ./nodes/draft_journeys.md
+  - ./nodes/assemble.md
+  - ./nodes/route_refine.md
+  - ./nodes/grill.md
+  - ./nodes/gate_grilled.md
+  - ./nodes/soft_check.md
+  - ./nodes/gate_requirement.md
+  - ./nodes/glossary_sync.md
+  - ./nodes/gate_glossary.md
+  - ./nodes/promote.md
+goal:
+  required_artifacts:
+    - requirement_md
+    - domain_glossary
+  required_nodes_done:
+    - gate_rules
+    - assemble
+    - gate_requirement
+    - gate_glossary
+    - promote
+dependencies:
+  - request
+  - root

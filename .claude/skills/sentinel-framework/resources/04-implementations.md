@@ -317,12 +317,14 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 |------|------|
 | `sentenceLengthResolver` | `SentenceLengthContextResolver` |
 | `lemmaAbsenceResolver` | `LemmaAbsenceContextResolver` |
+| `knowledgeTitleResolver` | `KnowledgeTitleContextResolver` |
 
 **Generated constructor:**
 ```java
-public DispatchingCorrectionContextResolver(SentenceLengthContextResolver sentenceLengthResolver, LemmaAbsenceContextResolver lemmaAbsenceResolver) {
+public DispatchingCorrectionContextResolver(SentenceLengthContextResolver sentenceLengthResolver, LemmaAbsenceContextResolver lemmaAbsenceResolver, KnowledgeTitleContextResolver knowledgeTitleResolver) {
     this.sentenceLengthResolver = sentenceLengthResolver;
     this.lemmaAbsenceResolver = lemmaAbsenceResolver;
+    this.knowledgeTitleResolver = knowledgeTitleResolver;
 }
 ```
 
@@ -331,6 +333,12 @@ public DispatchingCorrectionContextResolver(SentenceLengthContextResolver senten
 **Package:** `com.learney.contentaudit.refinerdomain`
 
 **Implements:** RefinerEngine
+
+#### KnowledgeTitleContextResolver
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+
+**Implements:** CorrectionContextResolver
 
 #### LemmaAbsenceContextSuggestedLemmaQueryPort (package: lemmasuggestion)
 
@@ -343,6 +351,8 @@ public DispatchingCorrectionContextResolver(SentenceLengthContextResolver senten
 | Name | Type |
 |------|------|
 | `lemmaAbsenceContextResolver` | `CorrectionContextResolver<LemmaAbsenceCorrectionContext>` |
+| `underexposedLemmaInventory` | `LeveledLemmaInventory` |
+| `levelWideLemmaInventory` | `LeveledLemmaInventory` |
 
 #### BoundSuggestedLemmaQuerySession (package: lemmasuggestion)
 
@@ -369,8 +379,32 @@ public DispatchingCorrectionContextResolver(SentenceLengthContextResolver senten
 | Name | Type |
 |------|------|
 | `queryPort` | `SuggestedLemmaQueryPort` |
-| `refinementPlanStore` | `RefinementPlanStore` |
 | `auditReportStore` | `AuditReportStore` |
+
+#### UnderexposedLemmaInventory (package: lemmasuggestion)
+
+**Package:** `com.learney.contentaudit.refinerdomain.lemmasuggestion`
+**Visibility:** internal
+**Implements:** LeveledLemmaInventory
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `lemmaAbsenceContextResolver` | `CorrectionContextResolver<LemmaAbsenceCorrectionContext>` |
+
+#### LevelWideLemmaInventory (package: lemmasuggestion)
+
+**Package:** `com.learney.contentaudit.refinerdomain.lemmasuggestion`
+**Visibility:** internal
+**Implements:** LeveledLemmaInventory
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `evpCatalogPort` | `EvpCatalogPort` |
+| `lemmaCountConfig` | `LemmaCountConfig` |
 
 ### Module: audit-application
 
@@ -1230,6 +1264,37 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 | `auditEngine` | `AuditEngine` |
 | `nodeFieldDiffer` | `NodeFieldDiffer` |
 
+#### KnowledgeTitleReviser (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Implements:** Reviser
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `strategyRegistry` | `KnowledgeTitleProposalStrategyRegistry` |
+| `deriver` | `KnowledgeTitleProposalDeriver` |
+
+#### DefaultKnowledgeTitleProposalStrategyRegistry (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Implements:** KnowledgeTitleProposalStrategyRegistry
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `config` | `KnowledgeTitleProposalStrategyRegistryConfig` |
+
+#### DefaultKnowledgeTitleProposalDeriver (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Implements:** KnowledgeTitleProposalDeriver
+
 #### LemmaAbsenceMvpStrategy (package: lemmaabsence)
 
 **Package:** `com.learney.contentaudit.revisiondomain.lemmaabsence`
@@ -1324,58 +1389,30 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 |------|------|
 | `objectMapper` | `ObjectMapper` |
 
+#### KnowledgeTitleAgentStrategy (package: knowledgetitle)
+
+**Package:** `com.learney.contentaudit.revisiondomain.knowledgetitle`
+**Visibility:** public
+**Implements:** KnowledgeTitleProposalStrategy
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `generator` | `KnowledgeTitleCandidateGenerator` |
+| `providerId` | `String` |
+
 ### Module: revision-infrastructure
 
-#### DefaultLemmaAbsenceLlmGeneratorFactory (package: lagenopenai)
+#### DefaultLemmaAbsenceAgentGeneratorFactory (package: lemmaabsenceagent)
 
-**Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent`
 **Visibility:** internal
-**Implements:** LemmaAbsenceLlmGeneratorFactory
+**Implements:** LemmaAbsenceAgentGeneratorFactory
 
-#### LemmaAbsenceLlmGenerator (package: lagenopenai)
+#### LemmaAbsenceAgentGenerator (package: lemmaabsenceagent)
 
-**Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
-**Visibility:** internal
-**Implements:** LemmaAbsenceQuizCandidateGenerator
-
-**Constructor dependencies:**
-
-| Name | Type |
-|------|------|
-| `config` | `LagenConfig` |
-| `promptBuilder` | `LemmaAbsencePromptBuilder` |
-| `responseParser` | `LemmaAbsenceResponseParser` |
-| `errorClassifier` | `LangChainErrorClassifier` |
-| `strategyName` | `String` |
-| `chatModel` | `ChatLanguageModel` |
-
-#### DefaultLemmaAbsencePromptBuilder (package: lagenopenai)
-
-**Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
-**Visibility:** internal
-**Implements:** LemmaAbsencePromptBuilder
-
-#### DefaultLemmaAbsenceResponseParser (package: lagenopenai)
-
-**Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
-**Visibility:** internal
-**Implements:** LemmaAbsenceResponseParser
-
-#### DefaultLangChainErrorClassifier (package: lagenopenai)
-
-**Package:** `com.learney.contentaudit.revisioninfrastructure.lagenopenai`
-**Visibility:** internal
-**Implements:** LangChainErrorClassifier
-
-#### DefaultInteractiveLemmaAbsenceGeneratorFactory (package: lageninteractive)
-
-**Package:** `com.learney.contentaudit.revisioninfrastructure.lageninteractive`
-**Visibility:** internal
-**Implements:** InteractiveLemmaAbsenceGeneratorFactory
-
-#### InteractiveLemmaAbsenceLlmGenerator (package: lageninteractive)
-
-**Package:** `com.learney.contentaudit.revisioninfrastructure.lageninteractive`
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent`
 **Visibility:** internal
 **Implements:** LemmaAbsenceQuizCandidateGenerator
 
@@ -1384,30 +1421,80 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 | Name | Type |
 |------|------|
 | `config` | `LagenConfig` |
-| `session` | `SuggestedLemmaQuerySession` |
-| `seedPromptBuilder` | `InteractiveLemmaAbsencePromptBuilder` |
-| `lemmaRequestExchange` | `SuggestedLemmaToolExchange` |
-| `responseParser` | `LemmaAbsenceResponseParser` |
-| `errorClassifier` | `LangChainErrorClassifier` |
-| `strategyName` | `String` |
-| `chatModel` | `ChatLanguageModel` |
+| `agentRuntimeLauncher` | `AgentRuntimeLauncher` |
 | `sessionFactory` | `SuggestedLemmaQuerySessionFactory` |
+| `errorClassifier` | `AgentRuntimeErrorClassifier` |
+| `candidateParser` | `AgentCandidateParser` |
+| `chatModel` | `ChatModel` |
+| `strategyName` | `String` |
 
-#### DefaultInteractiveLemmaAbsencePromptBuilder (package: lageninteractive)
+#### DefaultAgentRuntimeLauncher (package: lemmaabsenceagent)
 
-**Package:** `com.learney.contentaudit.revisioninfrastructure.lageninteractive`
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent`
 **Visibility:** internal
-**Implements:** InteractiveLemmaAbsencePromptBuilder
+**Implements:** AgentRuntimeLauncher
 
-#### DefaultSuggestedLemmaToolExchange (package: lageninteractive)
+#### DefaultSuggestedLemmaAgentTool (package: lemmaabsenceagent)
 
-**Package:** `com.learney.contentaudit.revisioninfrastructure.lageninteractive`
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent`
 **Visibility:** internal
-**Implements:** SuggestedLemmaToolExchange
+**Implements:** SuggestedLemmaAgentTool
 
 **Constructor dependencies:**
 
 | Name | Type |
 |------|------|
 | `session` | `SuggestedLemmaQuerySession` |
+
+#### DefaultAgentRuntimeErrorClassifier (package: lemmaabsenceagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent`
+**Visibility:** internal
+**Implements:** AgentRuntimeErrorClassifier
+
+#### DefaultAgentCandidateParser (package: lemmaabsenceagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent`
+**Visibility:** internal
+**Implements:** AgentCandidateParser
+
+#### DefaultKnowledgeTitleAgentGeneratorFactory (package: knowledgetitleagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent`
+**Visibility:** public
+**Implements:** KnowledgeTitleAgentGeneratorFactory
+
+#### KnowledgeTitleAgentGenerator (package: knowledgetitleagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent`
+**Visibility:** public
+**Implements:** KnowledgeTitleCandidateGenerator
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `agentRuntimeLauncher` | `KnowledgeTitleAgentRuntimeLauncher` |
+| `candidateParser` | `KnowledgeTitleAgentCandidateParser` |
+| `errorClassifier` | `KnowledgeTitleAgentErrorClassifier` |
+| `chatModel` | `ChatModel` |
+| `strategyName` | `String` |
+
+#### DefaultKnowledgeTitleAgentRuntimeLauncher (package: knowledgetitleagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent`
+**Visibility:** public
+**Implements:** KnowledgeTitleAgentRuntimeLauncher
+
+#### DefaultKnowledgeTitleAgentCandidateParser (package: knowledgetitleagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent`
+**Visibility:** public
+**Implements:** KnowledgeTitleAgentCandidateParser
+
+#### DefaultKnowledgeTitleAgentErrorClassifier (package: knowledgetitleagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent`
+**Visibility:** public
+**Implements:** KnowledgeTitleAgentErrorClassifier
 

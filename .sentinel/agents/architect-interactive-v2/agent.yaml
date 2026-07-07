@@ -1,0 +1,77 @@
+name: architect-interactive-v2
+description: |
+  Architect agent on the Sentinel agent framework: turns an analyst
+  requirement into a validated architectural_patch.yaml + TECH_SPEC.md.
+
+  Flow:
+
+      route_inputs (conditional)
+        │ need_folder ▶ list_candidates (script) ▶ suggest_folder
+        │   (react + ask_user: the LLM matches the request against the
+        │   candidates, suggests one and confirms with the user)
+        │                ▶ confirm_folder (script, failed ▶ suggest_folder)
+        ──▶ understand (react: explore requirement + architecture)
+        ──▶ align_plan (react + ask_user: agree the architectural plan
+              with the user BEFORE any YAML — prose corrections are 10x
+              cheaper than patch corrections)
+        ──▶ propose (llm_call ▶ staged architectural_patch.yaml)
+        ──▶ soft_check_patch (gate) ──▶ gate_patch (gate: CLI patch
+              propose against the validation overlay)
+        ──▶ tech_spec (llm_call ▶ staged TECH_SPEC.md)
+        ──▶ gate_tech_spec (gate: CLI tech-spec write against overlay)
+        ──▶ eval_patch (script: sentinel eval on the staged patch)
+        ──▶ route_eval (conditional)
+              │ needs_refine ▶ refine (react: improve the patch with the
+              │   eval findings, exploring the existing architecture +
+              │   glossary via tools to pull only the context each finding
+              │   needs) ▶ soft_check_patch (full re-check)
+        ──▶ promote (script) ──▶ END
+
+  Inputs: requirement_folder (optional), request (optional),
+  eval_threshold (default 0.8), eval_llm_judge (default off — when on,
+  B-tier judges with the agent's own model).
+
+  Gates guarantee VALIDITY; the eval measures QUALITY — refinement is
+  bounded (2 passes), and eval-results.json ships with the patch either
+  way. Everything is staged in {run_dir}/staging until promote: a failed
+  run leaves the project untouched.
+kind: agent
+strategy: graph
+initial_node: route_inputs
+budgets:
+  # Circuit breaker for the whole graph (propose ↔ gates retries, the
+  # refine loop, and the ask_folder ↔ confirm_folder cycle).
+  max_iterations: 60
+nodes:
+  - ./nodes/route_inputs.md
+  - ./nodes/list_candidates.md
+  - ./nodes/suggest_folder.md
+  - ./nodes/confirm_folder.md
+  - ./nodes/understand.md
+  - ./nodes/align_plan.md
+  - ./nodes/propose.md
+  - ./nodes/soft_check_patch.md
+  - ./nodes/gate_patch.md
+  - ./nodes/tech_spec.md
+  - ./nodes/gate_tech_spec.md
+  - ./nodes/eval_patch.md
+  - ./nodes/route_eval.md
+  - ./nodes/refine.md
+  - ./nodes/promote.md
+goal:
+  required_artifacts:
+    - architectural_patch
+    - tech_spec
+  required_nodes_done:
+    - gate_patch
+    - gate_tech_spec
+    - eval_patch
+    - promote
+dependencies:
+  - request
+  - root
+  # Optional tuning knobs — surfaced as inputs (shown in the run form),
+  # but the run works without them: eval_patch/route_eval default to
+  # A-tier only and a 0.8 threshold when they are absent or blank.
+  - eval_llm_judge   # "true" → also run the B-tier LLM judge (agent's own model)
+  - eval_threshold   # composite bar to clear before promoting (default 0.8)
