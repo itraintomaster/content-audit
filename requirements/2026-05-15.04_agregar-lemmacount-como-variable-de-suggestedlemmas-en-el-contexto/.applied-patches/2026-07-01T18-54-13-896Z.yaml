@@ -1,0 +1,72 @@
+code: FEAT-LEMMA-SUGGESTIONS
+modules:
+- name: refiner-domain
+  implementations:
+  - name: LemmaAbsenceContextResolver
+    handwrittenTests:
+    - name: should rank suggestedLemmas in the priority order group1 underexposed
+        APPEARS_TOO_LATE then group2 underexposed APPEARS_TOO_EARLY then group3 underexposed
+        without LEMMA_ABSENCE then group4 underexposed other LEMMA_ABSENCE then group5
+        LEMMA_ABSENCE without underexposure with COMPLETELY_ABSENT last
+      _change: delete
+    - name: should place every COMPLETELY_ABSENT lemma behind every already-introduced
+        underexposed lemma in suggestedLemmas regardless of cocaRank
+      _change: delete
+    - name: should break ties within the same priority group by ordering suggestedLemmas
+        by ascending cocaRank
+      _change: delete
+    - name: should not use exposure deficit magnitude as tiebreaker within the same
+        priority group leaving COCA ascending as the only intra-group order
+      _change: delete
+    - name: should rank suggestedLemmas into six first-match-wins tiers ordering underexposed-in-deficient-band
+        then absent-in-deficient-band then underexposed then absent then exposed-scarce-in-deficient-band
+        then exposed-scarce
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R003
+    - name: should break ties within the same tier by ordering suggestedLemmas by
+        ascending cocaRank as the final tiebreak
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R005
+    - name: should not use lemma-count exposure deficit magnitude as an intra-tier
+        tiebreaker leaving COCA ascending as the only order within a tier
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R005
+    - name: should place a COMPLETELY_ABSENT lemma behind an already-introduced underexposed
+        lemma only when both share the same deficient-band state so tier2 stays behind
+        tier1 and tier4 stays behind tier3
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R007
+    - name: should place an absent lemma that belongs to a deficient band ahead of
+        an underexposed lemma that belongs to no deficient band so tier2 outranks
+        tier3
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R014
+    - name: should classify a lemma with exposure exactly equal to the threshold N
+        as exposed-but-scarce in the expanded band tiers five or six and never as
+        underexposed
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R014
+    - name: should treat deficient-band membership as a binary key so two lemmas in
+        different deficient bands share the same tier and resolve between themselves
+        by ascending cocaRank
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R014
+    - name: should always place exposed-but-scarce lemmas in tiers five and six after
+        every macro-scarcity lemma in tiers one through four regardless of deficient-band
+        membership
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R014
+    - name: should degrade to tier order three then four then six with COCA ascending
+        as the final tiebreak and without failing when the audit did not analyze COCA
+        frequency bands so the band tiers stay empty
+      traceability:
+        feature: FEAT-LEMMA-SUGGESTIONS
+        rule: F-SLEM-R015

@@ -1,0 +1,424 @@
+{
+  "scores" : {
+    "a1" : {
+      "a1aPassed" : true,
+      "a1aViolations" : [ ],
+      "a1bScore" : 0.6153846153846154,
+      "a1bDetails" : [ {
+        "elementName" : "InteractiveLemmaAbsenceGeneratorFactory",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "AgentRuntimeErrorClassifier",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultSuggestedLemmaAgentTool",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultLemmaAbsenceAgentGeneratorFactory",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultAgentRuntimeErrorClassifier",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultAgentRuntimeLauncher",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "LemmaAbsenceAgentGenerator",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "AgentCandidateParser",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "DefaultAgentCandidateParser",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "AgentRuntimeLauncher",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "LemmaAbsenceLlmGeneratorFactory",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "LemmaAbsenceAgentGeneratorFactory",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "internal",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "SuggestedLemmaAgentTool",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      } ],
+      "a1cScore" : 0.16666666666666666,
+      "a1dScore" : 0.5,
+      "compositeScore" : 0.5076923076923077,
+      "a1cViolations" : [ "module 'revision-infrastructure' does not declare a scope", "package 'revision-infrastructure.lagen' does not declare visibility (public/internal/private)", "package 'revision-infrastructure.lagenopenai' does not declare visibility (public/internal/private)", "package 'revision-infrastructure.lageninteractive' does not declare visibility (public/internal/private)", "module 'audit-cli' does not declare a scope" ],
+      "a1dViolations" : [ "module 'audit-cli' exposes 1/1 elements (density 1,00) — above the 0,00–0,30 band for its role; tighten visibility (make elements internal/package-private)" ]
+    },
+    "a2" : {
+      "structurallySound" : false,
+      "a2a" : {
+        "id" : "A2a",
+        "name" : "Structural Integrity",
+        "score" : 0.0,
+        "violations" : [ {
+          "code" : "A2a-IMPL",
+          "severity" : "critical",
+          "message" : "LemmaAbsenceAgentGenerator implements LemmaAbsenceQuizCandidateGenerator but no such interface exists in revision-infrastructure or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "LemmaAbsenceAgentGenerator requires SuggestedLemmaQuerySessionFactory but no such interface exists in revision-infrastructure or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "DefaultSuggestedLemmaAgentTool requires SuggestedLemmaQuerySession but no such interface exists in revision-infrastructure or its dependsOn"
+        } ]
+      },
+      "a2b" : {
+        "id" : "A2b",
+        "name" : "Port Coverage",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2c" : {
+        "id" : "A2c",
+        "name" : "Reachability",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2d" : {
+        "id" : "A2d",
+        "name" : "Contract Utilization",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2e" : {
+        "id" : "A2e",
+        "name" : "Path Traceability",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "composite" : 0.0
+    },
+    "a3" : {
+      "modules" : [ {
+        "name" : "revision-infrastructure",
+        "ca" : 0,
+        "ce" : 0,
+        "instability" : 0.0,
+        "abstractness" : 0.5,
+        "distance" : 0.5,
+        "zone" : "off_sequence",
+        "score" : 0.5
+      }, {
+        "name" : "audit-cli",
+        "ca" : 0,
+        "ce" : 0,
+        "instability" : 0.0,
+        "abstractness" : 0.0,
+        "distance" : 1.0,
+        "zone" : "pain",
+        "score" : 0.0
+      } ],
+      "componentCount" : 15,
+      "threshold" : 30,
+      "ramp" : 0.5,
+      "rawScore" : 0.25,
+      "effectiveScore" : 0.625,
+      "warnings" : [ "rawScore 0,25 boosted to effectiveScore 0,63 by ramp (componentCount=15 < threshold=30). Underlying zones: revision-infrastructure=off_sequence, audit-cli=pain. The boost is appropriate for small patches but the signal would degrade at scale." ]
+    },
+    "a4" : {
+      "dependencyInversionHolds" : true,
+      "acyclic" : true,
+      "a4a" : {
+        "id" : "A4a",
+        "name" : "Dependency Inversion",
+        "score" : 1.0,
+        "violations" : [ {
+          "code" : "A4-NOLAYER",
+          "severity" : "warning",
+          "message" : "No modules declare a layer — A4 cannot be evaluated"
+        } ]
+      },
+      "a4b" : {
+        "id" : "A4b",
+        "name" : "Acyclicity",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4c" : {
+        "id" : "A4c",
+        "name" : "Adapter Polarity",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4d" : {
+        "id" : "A4d",
+        "name" : "Layer Isolation",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4e" : {
+        "id" : "A4e",
+        "name" : "Composition Root Discipline",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "composite" : 1.0
+    },
+    "a5" : {
+      "a5aScore" : 0.4666666666666666,
+      "a5bScore" : 1.0,
+      "a5cScore" : 0.16666666666666666,
+      "a5dScore" : 1.0,
+      "a5eScore" : 1.0,
+      "violations" : [ {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'AuditNodeIndexFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'SuggestedLemmaQuerySessionFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'NlpTokenizerFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Strategy pattern 'LemmaAbsenceProposalStrategy' has 1 implementation(s) — needs ≥2 for polymorphism"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'InteractiveLemmaAbsenceGeneratorFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'LemmaAbsenceAgentGeneratorFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'DefaultAuditNodeIndexFactory' declared in Factory pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'DefaultSuggestedLemmaQuerySessionFactory' declared in Factory pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'SpacyNlpTokenizerFactory' declared in Factory pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'LemmaAbsenceMvpStrategy' declared in Strategy pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'DefaultInteractiveLemmaAbsenceGeneratorFactory' declared in Factory pattern but not found in any module"
+      } ],
+      "composite" : 0.6316666666666667
+    },
+    "a6" : {
+      "score" : 0.8888888888888888,
+      "totalInterfaces" : 9,
+      "inflatedCount" : 1,
+      "inflated" : [ {
+        "interfaceName" : "SuggestedLemmaAgentTool",
+        "moduleName" : "revision-infrastructure",
+        "implementorName" : "DefaultSuggestedLemmaAgentTool",
+        "reason" : "1:1 in same module 'revision-infrastructure', no consumers, no pattern"
+      } ]
+    },
+    "c1" : {
+      "score" : 1.0,
+      "maxDepth" : 0,
+      "avgDepth" : 0.0,
+      "entries" : [ {
+        "entryPoint" : "audit-cli.commands.ContentAuditCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.AnalyzeCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.GetCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.DeleteCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.PruneCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.PlanCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.ReviseCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.ConfigAnalyzerCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.StatsAnalyzerCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.ApproveCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.RejectCmd",
+        "depth" : 0
+      } ],
+      "violations" : [ ]
+    },
+    "c3" : {
+      "score" : 0.8666666666666667,
+      "details" : [ {
+        "name" : "DefaultLemmaAbsenceAgentGeneratorFactory",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LemmaAbsenceAgentGenerator",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 8,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 0.19999999999999996
+      }, {
+        "name" : "DefaultAgentRuntimeLauncher",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultSuggestedLemmaAgentTool",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultAgentRuntimeErrorClassifier",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "DefaultAgentCandidateParser",
+        "moduleName" : "revision-infrastructure",
+        "cbo" : 1,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      } ],
+      "violations" : [ "LemmaAbsenceAgentGenerator (module revision-infrastructure): couples to 8 types, over the domain budget of 4 — reduce injected collaborators or split the responsibility" ]
+    },
+    "a1e" : {
+      "totalRules" : 12,
+      "mappedCount" : 1,
+      "unmappedCount" : 11,
+      "score" : 0.08333333333333333,
+      "mapped" : [ "F-LASAG-R008" ],
+      "unmapped" : [ "F-LASAG-R001", "F-LASAG-R002", "F-LASAG-R003", "F-LASAG-R004", "F-LASAG-R005", "F-LASAG-R006", "F-LASAG-R007", "F-LASAG-R009", "F-LASAG-R010", "F-LASAG-R011", "F-LASAG-R012" ],
+      "violations" : [ {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-LASAG-R001 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-LASAG-R002 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-LASAG-R003 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-LASAG-R004 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-LASAG-R005 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-LASAG-R006 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-LASAG-R007 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-LASAG-R009 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-LASAG-R010 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-LASAG-R011 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-LASAG-R012 is declared in REQUIREMENT.md but not referenced in the patch."
+      } ]
+    },
+    "mode" : "PATCH_ONLY",
+    "compositeScore" : 0.5211687105165366
+  },
+  "aTierComposite" : 0.5211687105165366,
+  "globalComposite" : {
+    "value" : 0.5211687105165366,
+    "raw" : 0.5211687105165366,
+    "capped" : false,
+    "aWeight" : 1.0,
+    "bWeight" : 0.0,
+    "bAggregate" : "NaN",
+    "aModifier" : 1.0,
+    "perDim" : [ ]
+  },
+  "topFindings" : [ ],
+  "timestamp" : "2026-06-19T14:43:29.801780Z"
+}

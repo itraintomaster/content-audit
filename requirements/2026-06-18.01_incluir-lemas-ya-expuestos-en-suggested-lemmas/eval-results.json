@@ -1,0 +1,413 @@
+{
+  "scores" : {
+    "a1" : {
+      "a1aPassed" : true,
+      "a1aViolations" : [ ],
+      "a1bScore" : 0.625,
+      "a1bDetails" : [ {
+        "elementName" : "SuggestedLemmaQueryPort",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "public",
+        "elementScore" : 1.0
+      }, {
+        "elementName" : "SuggestedLemmaQuerySession",
+        "kind" : "INTERFACE",
+        "actualLevel" : "public",
+        "optimalLevel" : "public+allowedClients",
+        "elementScore" : 0.75
+      }, {
+        "elementName" : "LemmaAbsenceContextSuggestedLemmaQueryPort",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "UnderexposedLemmaInventory",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "LevelWideLemmaInventory",
+        "kind" : "IMPLEMENTATION",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      }, {
+        "elementName" : "LeveledLemmaInventory",
+        "kind" : "INTERFACE",
+        "actualLevel" : "internal",
+        "optimalLevel" : "private",
+        "elementScore" : 0.5
+      } ],
+      "a1cScore" : 0.0,
+      "a1dScore" : 1.0,
+      "compositeScore" : 0.6625,
+      "a1cViolations" : [ "package 'refiner-domain.lemmasuggestion' does not declare visibility (public/internal/private)" ],
+      "a1dViolations" : [ ]
+    },
+    "a2" : {
+      "structurallySound" : false,
+      "a2a" : {
+        "id" : "A2a",
+        "name" : "Structural Integrity",
+        "score" : 0.0,
+        "violations" : [ {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "LevelWideLemmaInventory requires EvpCatalogPort but no such interface exists in refiner-domain or its dependsOn"
+        }, {
+          "code" : "A2a-DEP",
+          "severity" : "critical",
+          "message" : "LevelWideLemmaInventory requires LemmaCountConfig but no such interface exists in refiner-domain or its dependsOn"
+        } ]
+      },
+      "a2b" : {
+        "id" : "A2b",
+        "name" : "Port Coverage",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2c" : {
+        "id" : "A2c",
+        "name" : "Reachability",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2d" : {
+        "id" : "A2d",
+        "name" : "Contract Utilization",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "a2e" : {
+        "id" : "A2e",
+        "name" : "Path Traceability",
+        "score" : 0.0,
+        "violations" : [ ]
+      },
+      "composite" : 0.0
+    },
+    "a3" : {
+      "modules" : [ {
+        "name" : "refiner-domain",
+        "ca" : 0,
+        "ce" : 0,
+        "instability" : 0.0,
+        "abstractness" : 0.42857142857142855,
+        "distance" : 0.5714285714285714,
+        "zone" : "pain",
+        "score" : 0.4285714285714286
+      } ],
+      "componentCount" : 7,
+      "threshold" : 30,
+      "ramp" : 0.23333333333333334,
+      "rawScore" : 0.4285714285714286,
+      "effectiveScore" : 0.8666666666666666,
+      "warnings" : [ "rawScore 0,43 boosted to effectiveScore 0,87 by ramp (componentCount=7 < threshold=30). Underlying zones: refiner-domain=pain. The boost is appropriate for small patches but the signal would degrade at scale." ]
+    },
+    "a4" : {
+      "dependencyInversionHolds" : true,
+      "acyclic" : true,
+      "a4a" : {
+        "id" : "A4a",
+        "name" : "Dependency Inversion",
+        "score" : 1.0,
+        "violations" : [ {
+          "code" : "A4-NOLAYER",
+          "severity" : "warning",
+          "message" : "No modules declare a layer — A4 cannot be evaluated"
+        } ]
+      },
+      "a4b" : {
+        "id" : "A4b",
+        "name" : "Acyclicity",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4c" : {
+        "id" : "A4c",
+        "name" : "Adapter Polarity",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4d" : {
+        "id" : "A4d",
+        "name" : "Layer Isolation",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "a4e" : {
+        "id" : "A4e",
+        "name" : "Composition Root Discipline",
+        "score" : 1.0,
+        "violations" : [ ]
+      },
+      "composite" : 1.0
+    },
+    "a5" : {
+      "a5aScore" : 0.5599999999999999,
+      "a5bScore" : 1.0,
+      "a5cScore" : 0.0,
+      "a5dScore" : 1.0,
+      "a5eScore" : 1.0,
+      "violations" : [ {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'AuditNodeIndexFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'NlpTokenizerFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Strategy pattern 'LemmaAbsenceProposalStrategy' has 1 implementation(s) — needs ≥2 for polymorphism"
+      }, {
+        "code" : "A5a",
+        "severity" : "warning",
+        "message" : "Factory pattern 'InteractiveLemmaAbsenceGeneratorFactory' has 1 implementation(s) — needs ≥2 to justify"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'DefaultAuditNodeIndexFactory' declared in Factory pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'TextReportFormatter' declared in Strategy pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'JsonReportFormatter' declared in Strategy pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'TableReportFormatter' declared in Strategy pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'SpacyNlpTokenizerFactory' declared in Factory pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'LemmaAbsenceMvpStrategy' declared in Strategy pattern but not found in any module"
+      }, {
+        "code" : "A5c",
+        "severity" : "critical",
+        "message" : "Phantom: 'DefaultInteractiveLemmaAbsenceGeneratorFactory' declared in Factory pattern but not found in any module"
+      } ],
+      "composite" : 0.618
+    },
+    "a6" : {
+      "score" : 1.0,
+      "totalInterfaces" : 5,
+      "inflatedCount" : 0,
+      "inflated" : [ ]
+    },
+    "c1" : {
+      "score" : 1.0,
+      "maxDepth" : 0,
+      "avgDepth" : 0.0,
+      "entries" : [ {
+        "entryPoint" : "audit-cli.commands.ContentAuditCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.AnalyzeCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.GetCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.DeleteCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.PruneCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.PlanCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.ReviseCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.ConfigAnalyzerCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.StatsAnalyzerCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.ApproveCmd",
+        "depth" : 0
+      }, {
+        "entryPoint" : "audit-cli.commands.RejectCmd",
+        "depth" : 0
+      } ],
+      "violations" : [ ]
+    },
+    "c3" : {
+      "score" : 1.0,
+      "details" : [ {
+        "name" : "LemmaAbsenceContextSuggestedLemmaQueryPort",
+        "moduleName" : "refiner-domain",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "UnderexposedLemmaInventory",
+        "moduleName" : "refiner-domain",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LevelWideLemmaInventory",
+        "moduleName" : "refiner-domain",
+        "cbo" : 3,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      }, {
+        "name" : "LemmaAbsenceContextSuggestedLemmaQueryPort",
+        "moduleName" : "refiner-domain",
+        "cbo" : 2,
+        "threshold" : 4,
+        "layer" : "domain",
+        "score" : 1.0
+      } ],
+      "violations" : [ ]
+    },
+    "a1e" : {
+      "totalRules" : 12,
+      "mappedCount" : 9,
+      "unmappedCount" : 3,
+      "score" : 0.75,
+      "mapped" : [ "F-INCEXP-R001", "F-INCEXP-R002", "F-INCEXP-R004", "F-INCEXP-R003", "F-INCEXP-R005", "F-INCEXP-R008", "F-INCEXP-R006", "F-INCEXP-R007", "F-INCEXP-R010" ],
+      "unmapped" : [ "F-INCEXP-R009", "F-INCEXP-R011", "F-SLEM-R013" ],
+      "violations" : [ {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-INCEXP-R009 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-INCEXP-R011 is declared in REQUIREMENT.md but not referenced in the patch."
+      }, {
+        "code" : "RULE_NOT_MAPPED",
+        "severity" : "error",
+        "message" : "Rule F-SLEM-R013 is declared in REQUIREMENT.md but not referenced in the patch."
+      } ]
+    },
+    "mode" : "PATCH_ONLY",
+    "compositeScore" : 0.6407536231884058
+  },
+  "aTierComposite" : 0.6407536231884058,
+  "b1" : {
+    "score" : 0.9,
+    "justification" : "The patch aligns strongly with the requirement's ubiquitous language: the `includeExposed` boolean, the `SuggestedLemmaQueryCriteria` carrier, and `UnderexposedLemmaInventory` vs `LevelWideLemmaInventory` faithfully encode the requirement's OFF/ON contrast (sub-expuestos vs universo ampliado) and were deliberately named after domain concepts rather than GoF patterns. Stereotypes (port, record) are accurate and consistent with the existing codebase conventions; only minor naming-metaphor concerns remain.",
+    "findings" : [ {
+      "element" : "LeveledLemmaInventory / LevelWideLemmaInventory / UnderexposedLemmaInventory",
+      "issue" : "The 'Inventory' metaphor is an introduced term; the requirement consistently speaks of 'universo de candidatos' (candidate universe) rather than an inventory. The names are domain-flavored and reasonable, but slightly diverge from the requirement's chosen vocabulary, weakening ubiquitous-language parity.",
+      "severity" : "warning"
+    }, {
+      "element" : "LemmaAbsenceContextSuggestedLemmaQueryPort",
+      "issue" : "After this patch the query port selects between two inventories and the ON path sources candidates via EvpCatalogPort rather than the lemma-absence correction context, yet the implementation name still asserts 'LemmaAbsenceContext'. The name now under-describes (and partly misdescribes) its responsibility for the widened-universe flow.",
+      "severity" : "warning"
+    } ]
+  },
+  "b2" : {
+    "score" : 0.9,
+    "justification" : "The patch confines all changes to the cohesive refiner-domain module and its existing lemmasuggestion package (following the established sibling layout), and the new LeveledLemmaInventory abstraction cleanly separates 'which universe of candidates' from 'how to order/filter/limit', giving each new element a single responsibility. Only the query port retains a slightly broad coordinating-plus-transforming role.",
+    "findings" : [ {
+      "element" : "LemmaAbsenceContextSuggestedLemmaQueryPort",
+      "issue" : "Acts as both a selector/coordinator (choosing the inventory by includeExposed) and a transformer (level resolution, POS filtering, priority ordering with COCA tiebreak, and limit truncation); this mixes orchestration with computation, though it inherits this scope from the baseline and the inventory extraction actually narrows it.",
+      "severity" : "warning"
+    } ]
+  },
+  "b3" : {
+    "score" : 0.5,
+    "direction" : "under",
+    "justification" : "The domain plumbing (criteria carrier + dual inventory) is mostly reasonable, but the patch never exposes the new boolean at the CLI filter boundary that the requirement explicitly targets, while simultaneously introducing a somewhat heavier-than-needed inventory abstraction for what is fundamentally a single toggle.",
+    "findings" : [ {
+      "element" : "audit-cli SuggestedLemmasFilter / GetCommand / GetCmd",
+      "issue" : "The requirement's TL;DR and Scope IN both state the option is a boolean added to the filter of GetCommand.get(\"suggested-lemmas\", ...). The patch only touches refiner-domain and never adds an includeExposed field to SuggestedLemmasFilter nor wires GetCmd to build the new SuggestedLemmaQueryCriteria, so the option cannot actually be activated by the agent — the most user-visible part of the feature is architecturally absent.",
+      "severity" : "error"
+    }, {
+      "element" : "LeveledLemmaInventory + UnderexposedLemmaInventory + LevelWideLemmaInventory",
+      "issue" : "Introducing a new internal port plus two implementations to model an ON/OFF universe toggle is borderline over-abstraction; the contrast is a single boolean and could plausibly be handled with one conditional in the existing query port, so the 3-element strategy carries more indirection than the requirement's complexity strictly demands.",
+      "severity" : "warning"
+    }, {
+      "element" : "SuggestedLemmaQuerySession.requestMore signature migration",
+      "issue" : "Changing requestMore to the criteria carrier ripples into BoundSuggestedLemmaQuerySession and the interactive-generator chain (SuggestedLemmaRequest/SuggestedLemmaToolExchange in revision-infrastructure), none of which are addressed, leaving the consuming surfaces of the migrated signature unaccounted for at the architecture level.",
+      "severity" : "warning"
+    } ]
+  },
+  "b4" : {
+    "score" : 0.9,
+    "justification" : "Nearly every new element maps cleanly onto the requirement: SuggestedLemmaQueryCriteria.includeExposed is the booleana option mandated by Scope/F-INCEXP-R001/R002, and the LeveledLemmaInventory port with its two implementations (UnderexposedLemmaInventory for the OFF flow, LevelWideLemmaInventory for the widened ON flow) directly models the feature's central OFF-vs-ON contrast. The only stretch is propagating the new carrier into SuggestedLemmaQuerySession, which the requirement does not scope.",
+    "findings" : [ {
+      "element" : "SuggestedLemmaQuerySession.requestMore(SuggestedLemmaQueryCriteria criteria)",
+      "issue" : "The requirement is explicitly scoped to GetCommand.get(\"suggested-lemmas\", ...). SuggestedLemmaQuerySession is the task-bound session used by the FEAT-LAGAG interactive LLM generation flow, which the requirement neither mentions nor implies should receive the includeExposed option. Extending this contract is a consistency/refactor choice driven by the tech spec, not by the requirement.",
+      "severity" : "warning"
+    } ]
+  },
+  "globalComposite" : {
+    "value" : 0.5260085035329555,
+    "raw" : 0.6932650400822852,
+    "capped" : true,
+    "reason" : "b3 penalized -0,31 (1 error, 2 warnings, dir=under)",
+    "aWeight" : 0.4,
+    "bWeight" : 0.6,
+    "bAggregate" : 0.5895462049615995,
+    "aModifier" : 0.8922260869565217,
+    "perDim" : [ {
+      "name" : "b1",
+      "score" : 0.9,
+      "effective" : 0.8400000000000001,
+      "errors" : 0,
+      "warnings" : 2,
+      "penalty" : 0.06
+    }, {
+      "name" : "b2",
+      "score" : 0.9,
+      "effective" : 0.87,
+      "errors" : 0,
+      "warnings" : 1,
+      "penalty" : 0.03
+    }, {
+      "name" : "b3",
+      "score" : 0.5,
+      "effective" : 0.19,
+      "errors" : 1,
+      "warnings" : 2,
+      "direction" : "under",
+      "penalty" : 0.31
+    }, {
+      "name" : "b4",
+      "score" : 0.9,
+      "effective" : 0.87,
+      "errors" : 0,
+      "warnings" : 1,
+      "penalty" : 0.03
+    } ]
+  },
+  "topFindings" : [ {
+    "dim" : "b3",
+    "severity" : "error",
+    "element" : "audit-cli SuggestedLemmasFilter / GetCommand / GetCmd",
+    "issue" : "The requirement's TL;DR and Scope IN both state the option is a boolean added to the filter of GetCommand.get(\"suggested-lemmas\", ...). The patch only touches refiner-domain and never adds an includeExposed field to SuggestedLemmasFilter nor wires GetCmd to build the new SuggestedLemmaQueryCriteria, so the option cannot actually be activated by the agent — the most user-visible part of the feature is architecturally absent."
+  }, {
+    "dim" : "b3",
+    "severity" : "warning",
+    "element" : "LeveledLemmaInventory + UnderexposedLemmaInventory + LevelWideLemmaInventory",
+    "issue" : "Introducing a new internal port plus two implementations to model an ON/OFF universe toggle is borderline over-abstraction; the contrast is a single boolean and could plausibly be handled with one conditional in the existing query port, so the 3-element strategy carries more indirection than the requirement's complexity strictly demands."
+  }, {
+    "dim" : "b3",
+    "severity" : "warning",
+    "element" : "SuggestedLemmaQuerySession.requestMore signature migration",
+    "issue" : "Changing requestMore to the criteria carrier ripples into BoundSuggestedLemmaQuerySession and the interactive-generator chain (SuggestedLemmaRequest/SuggestedLemmaToolExchange in revision-infrastructure), none of which are addressed, leaving the consuming surfaces of the migrated signature unaccounted for at the architecture level."
+  } ],
+  "judgeProfile" : "claude",
+  "timestamp" : "2026-06-18T18:42:56.981619Z"
+}
