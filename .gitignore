@@ -20,3 +20,14 @@ target/
 
 # Audit data (local persistence)
 .content-audit/
+
+# Sentinel runtime (ephemeral — not versioned), incl. nested requirement overlays
+**/.sentinel/runs/
+**/.sentinel/agent-runs/
+.sentinel/server.log
+.sentinel/server.pid
+.sentinel/sentinel-jar.path
+sentinel.yaml.pre-compact.bak
+
+# Sentinel eval run outputs (ephemeral)
+.eval-runs/
