@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d391"
   },
-  "title" : "Using the present simple to describe the present",
+  "title" : "I don't like butter.",
   "instructions" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible.",
-  "translation" : "R: ¿Cómo funciona esta computadora? B: No hagas clic en este icono.",
+  "translation" : "No me gusta la mantequilla.",
   "theoryId" : "a1.01.Present_Simple_Uses_For_the_Present",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: How does this computer function? B: You",
+      "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "don't click" ]
+      "text" : null,
+      "options" : [ "don't like" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / click) this icon.",
+      "text" : "(not / like) butter.",
       "options" : null
     } ],
-    "sentences" : [ "A: How does this computer function? B: You don't click this icon." ]
+    "sentences" : [ "I don't like butter." ]
   }
 }, {
   "_id" : {

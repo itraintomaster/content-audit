@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
-  "title" : "Choosing Between A and An",
+  "title" : "An old house",
   "instructions" : "Elige 'a' o 'an'.",
-  "translation" : "Un número impar",
+  "translation" : "Una casa vieja",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -393,26 +393,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "An" ]
     }, {
       "kind" : "TEXT",
-      "text" : "odd number",
+      "text" : "old house",
       "options" : null
     } ],
-    "sentences" : [ "An odd number" ]
+    "sentences" : [ "An old house" ]
   }
 }, {
   "_id" : {
@@ -943,9 +939,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
-  "title" : "Choosing Between A and An",
+  "title" : "A quick picnic",
   "instructions" : "Elige 'a' o 'an'.",
-  "translation" : "Una oportunidad única",
+  "translation" : "Un picnic rápido",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -965,26 +961,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "A" ]
     }, {
       "kind" : "TEXT",
-      "text" : "unique opportunity",
+      "text" : "quick picnic",
       "options" : null
     } ],
-    "sentences" : [ "A unique opportunity" ]
+    "sentences" : [ "A quick picnic" ]
   }
 }, {
   "_id" : {
@@ -995,9 +987,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
-  "title" : "Choosing Between A and An",
+  "title" : "An old DVD",
   "instructions" : "Elige 'a' o 'an'.",
-  "translation" : "Una tarea fácil",
+  "translation" : "Un DVD viejo",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -1017,25 +1009,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "An" ]
     }, {
       "kind" : "TEXT",
-      "text" : "easy task",
+      "text" : "old DVD",
       "options" : null
     } ],
-    "sentences" : [ "An easy task" ]
+    "sentences" : [ "An old DVD" ]
   }
 } ]

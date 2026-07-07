@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
-  "title" : "Using A, An, or No Article",
+  "title" : "Sara has a new flat.",
   "instructions" : "Completa con 'a', 'an' o (-).",
-  "translation" : "Michael es farmacéutico.",
+  "translation" : "Sara tiene un departamento nuevo.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Michael is",
+      "text" : "Sara has",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "pharmacist.",
+      "text" : "new flat.",
       "options" : null
     } ],
-    "sentences" : [ "Michael is a pharmacist." ]
+    "sentences" : [ "Sara has a new flat." ]
   }
 }, {
   "_id" : {

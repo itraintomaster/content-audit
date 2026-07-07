@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c7"
   },
-  "title" : "Uncountable Nouns and Quantity Words",
+  "title" : "Can I have a quick look?",
   "instructions" : "Elige 'a' o 'some'.",
-  "translation" : "¿Puedo comer una porción de carne?",
+  "translation" : "¿Puedo echar un vistazo rápido?",
   "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Can I have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "portion of meat?",
+      "text" : "quick look?",
       "options" : null
     } ],
-    "sentences" : [ "Can I have a portion of meat?" ]
+    "sentences" : [ "Can I have a quick look?" ]
   }
 }, {
   "_id" : {

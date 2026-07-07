@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d388"
   },
-  "title" : "Mixed practice with 'be' in the present simple",
+  "title" : "Is he up?",
   "instructions" : "Escribe oraciones en presente simple con el verbo 'be'.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "¿Está despierto?",
+  "translation" : "¿Está levantado?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -341,26 +341,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Is he" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / be) awake?",
+      "text" : "(he / be) up?",
       "options" : null
     } ],
-    "sentences" : [ "Is he awake?" ]
+    "sentences" : [ "Is he up?" ]
   }
 }, {
   "_id" : {

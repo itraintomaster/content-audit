@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
-  "title" : "Using Some and Any Correctly",
+  "title" : "Do you have any DVDs at home?",
   "instructions" : "Completa los espacios en blanco con 'some' o 'any'.",
-  "translation" : "¿Necesitarás ayuda?",
+  "translation" : "¿Tienes algún DVD en casa?",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Will you require",
+      "text" : "Do you have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "any" ]
     }, {
       "kind" : "TEXT",
-      "text" : "assistance?",
+      "text" : "DVDs at home?",
       "options" : null
     } ],
-    "sentences" : [ "Will you require any assistance?" ]
+    "sentences" : [ "Do you have any DVDs at home?" ]
   }
 }, {
   "_id" : {

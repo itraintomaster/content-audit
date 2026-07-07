@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d9"
   },
-  "title" : "Time Prepositions Quiz",
+  "title" : "In winter, the days are cold.",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "En verano, los días son más largos.",
+  "translation" : "En invierno, los días son fríos.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -653,26 +653,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "In" ]
     }, {
       "kind" : "TEXT",
-      "text" : "summer, the days are longer.",
+      "text" : "winter, the days are cold.",
       "options" : null
     } ],
-    "sentences" : [ "In summer, the days are longer." ]
+    "sentences" : [ "In winter, the days are cold." ]
   }
 }, {
   "_id" : {

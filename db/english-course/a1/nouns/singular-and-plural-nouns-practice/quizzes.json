@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c4"
   },
-  "title" : "Singular and Plural Nouns Practice",
+  "title" : "The country is full of farms.",
   "instructions" : "Escribe los sustantivos en plural.",
-  "translation" : "El bosque está lleno de lobos.",
+  "translation" : "El país está lleno de granjas.",
   "theoryId" : "a1.06.Singular_and_Plural_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The forest is full of",
+      "text" : "The country is full of",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "wolves" ]
+      "text" : null,
+      "options" : [ "farms" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(wolf).",
+      "text" : "(farm).",
       "options" : null
     } ],
-    "sentences" : [ "The forest is full of wolves." ]
+    "sentences" : [ "The country is full of farms." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c4"
   },
-  "title" : "Singular and Plural Nouns Practice",
+  "title" : "She needs some dvds.",
   "instructions" : "Escribe los sustantivos en plural.",
-  "translation" : "Ella necesita algunos paquetes.",
+  "translation" : "Ella necesita algunos DVD.",
   "theoryId" : "a1.06.Singular_and_Plural_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She needs some",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "packages" ]
+      "text" : null,
+      "options" : [ "dvds" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(package).",
+      "text" : "(dvd).",
       "options" : null
     } ],
-    "sentences" : [ "She needs some packages." ]
+    "sentences" : [ "She needs some dvds." ]
   }
 }, {
   "_id" : {

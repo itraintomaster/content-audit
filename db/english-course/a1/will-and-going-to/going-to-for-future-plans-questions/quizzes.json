@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ad"
   },
-  "title" : "'Going to' for Future Plans: Questions",
+  "title" : "Are we going to say goodbye?",
   "instructions" : "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
-  "translation" : "¿Vamos a terminar esta tarea?",
+  "translation" : "¿Vamos a decir adiós?",
   "theoryId" : "",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -601,26 +601,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Are we going to finish" ]
+      "text" : null,
+      "options" : [ "Are we going to say" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(we / finish) this task?",
+      "text" : "(we / say) goodbye?",
       "options" : null
     } ],
-    "sentences" : [ "Are we going to finish this task?" ]
+    "sentences" : [ "Are we going to say goodbye?" ]
   }
 }, {
   "_id" : {

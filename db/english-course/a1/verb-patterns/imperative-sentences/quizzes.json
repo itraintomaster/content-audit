@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c0"
   },
-  "title" : "Imperative sentences",
+  "title" : "Clean the knife.",
   "instructions" : "Transforma estas oraciones a imperativo.",
-  "translation" : "Completa tus tareas.",
+  "translation" : "Limpia el cuchillo.",
   "theoryId" : "a1.05.Verb_Patterns_with_Infinitives_Without_To",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -601,26 +601,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You should complete your tasks.",
+      "text" : "You should clean the knife.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Complete your tasks." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Clean the knife." ]
     } ],
-    "sentences" : [ "Complete your tasks." ]
+    "sentences" : [ "Clean the knife." ]
   }
 }, {
   "_id" : {

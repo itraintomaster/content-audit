@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39b"
   },
-  "title" : "Yes/No questions in the present continuous",
+  "title" : "Are we going to the zoo?",
   "instructions" : "Formula preguntas de sí/no en 'present continuous'.",
-  "translation" : "¿Estamos causando problemas?",
+  "translation" : "¿Estamos yendo al zoológico?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -757,26 +757,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Are we causing" ]
+      "text" : null,
+      "options" : [ "Are we going" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(we / cause) trouble?",
+      "text" : "(we / go) to the zoo?",
       "options" : null
     } ],
-    "sentences" : [ "Are we causing trouble?" ]
+    "sentences" : [ "Are we going to the zoo?" ]
   }
 }, {
   "_id" : {

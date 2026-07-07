@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39a"
   },
-  "title" : "Negative sentences in the present continuous",
+  "title" : "We are not working tomorrow.",
   "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "No nos reuniremos mañana.",
+  "translation" : "No vamos a trabajar mañana.",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are not gathering" ]
+      "text" : null,
+      "options" : [ "are not working" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(gather) tomorrow.",
+      "text" : "(work) tomorrow.",
       "options" : null
     } ],
-    "sentences" : [ "We are not gathering tomorrow." ]
+    "sentences" : [ "We are not working tomorrow." ]
   }
 }, {
   "_id" : {

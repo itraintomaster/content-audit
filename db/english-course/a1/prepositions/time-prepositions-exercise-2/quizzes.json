@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d8"
   },
-  "title" : "Time Prepositions Exercise 2",
+  "title" : "In 2015, I bought a new flat.",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "En 1998, se estableció la empresa.",
+  "translation" : "En 2015, compré un piso nuevo.",
   "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -601,26 +601,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "In" ]
     }, {
       "kind" : "TEXT",
-      "text" : "1998, the company was established.",
+      "text" : "2015, I bought a new flat.",
       "options" : null
     } ],
-    "sentences" : [ "In 1998, the company was established." ]
+    "sentences" : [ "In 2015, I bought a new flat." ]
   }
 }, {
   "_id" : {

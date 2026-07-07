@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
-  "title" : "Deciding When to Use Many or Many Of",
+  "title" : "I read many of the pages.",
   "instructions" : "Completa los espacios en blanco con 'many' o 'many of'.",
-  "translation" : "No requieren muchos recursos.",
+  "translation" : "Leí muchas de las páginas.",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They don't require",
+      "text" : "I read",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "many of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "resources.",
+      "text" : "the pages.",
       "options" : null
     } ],
-    "sentences" : [ "They don't require many of resources." ]
+    "sentences" : [ "I read many of the pages." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
-  "title" : "Deciding When to Use Many or Many Of",
+  "title" : "She has many of the DVDs.",
   "instructions" : "Completa los espacios en blanco con 'many' o 'many of'.",
-  "translation" : "Ella tiene muchas tareas.",
+  "translation" : "Ella tiene muchos de los DVD.",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She has",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "many of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "tasks.",
+      "text" : "the DVDs.",
       "options" : null
     } ],
-    "sentences" : [ "She has many of tasks." ]
+    "sentences" : [ "She has many of the DVDs." ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
-  "title" : "Deciding When to Use Many or Many Of",
+  "title" : "many of these mobiles are new.",
   "instructions" : "Completa los espacios en blanco con 'many' o 'many of'.",
-  "translation" : "Él consume muchos huevos.",
+  "translation" : "Muchos de estos móviles son nuevos.",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -445,26 +445,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "He consumes",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "many of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "eggs.",
+      "text" : "these mobiles are new.",
       "options" : null
     } ],
-    "sentences" : [ "He consumes many of eggs." ]
+    "sentences" : [ "many of these mobiles are new." ]
   }
 }, {
   "_id" : {

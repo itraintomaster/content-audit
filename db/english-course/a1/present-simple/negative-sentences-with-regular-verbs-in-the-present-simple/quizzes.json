@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38a"
   },
-  "title" : "Negative sentences with regular verbs in the present simple",
+  "title" : "It does not rain often.",
   "instructions" : "Escribe la forma negativa en presente simple. No uses contracciones (short forms).",
-  "translation" : "No brilla a menudo.",
+  "translation" : "No llueve a menudo.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does not shine" ]
+      "text" : null,
+      "options" : [ "does not rain" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / shine) often.",
+      "text" : "(not / rain) often.",
       "options" : null
     } ],
-    "sentences" : [ "It does not shine often." ]
+    "sentences" : [ "It does not rain often." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38a"
   },
-  "title" : "Negative sentences with regular verbs in the present simple",
+  "title" : "We do not live in flats.",
   "instructions" : "Escribe la forma negativa en presente simple. No uses contracciones (short forms).",
-  "translation" : "No dormimos en hostales.",
+  "translation" : "No vivimos en pisos.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do not sleep" ]
+      "text" : null,
+      "options" : [ "do not live" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / sleep) in hostels.",
+      "text" : "(not / live) in flats.",
       "options" : null
     } ],
-    "sentences" : [ "We do not sleep in hostels." ]
+    "sentences" : [ "We do not live in flats." ]
   }
 }, {
   "_id" : {

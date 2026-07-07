@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d392"
   },
-  "title" : "'Be' or 'do'? Activity 1",
+  "title" : "Sheep eat grass. Verb in infinitive = eat",
   "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-  "translation" : "Los adultos consumen mucho azúcar. Verbo en infinitivo = comer",
+  "translation" : "Las ovejas comen pasto. Verbo en infinitivo = comer",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -601,26 +601,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The adults consume a lot of sugar. Verb in infinitive =",
+      "text" : "Sheep eat grass. Verb in infinitive =",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "eat" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "The adults consume a lot of sugar. Verb in infinitive = eat" ]
+    "sentences" : [ "Sheep eat grass. Verb in infinitive = eat" ]
   }
 }, {
   "_id" : {
@@ -891,9 +887,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d392"
   },
-  "title" : "'Be' or 'do'? Activity 1",
+  "title" : "Sheep run. Verb in infinitive = run",
   "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-  "translation" : "Ellos invierten mucho dinero en acciones. Verbo en infinitivo = gastar/invertir",
+  "translation" : "Las ovejas corren. Verbo en infinitivo = correr",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -913,26 +909,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They invest a lot of money in stocks. Verb in infinitive =",
+      "text" : "Sheep run. Verb in infinitive =",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "spend" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "run" ]
     } ],
-    "sentences" : [ "They invest a lot of money in stocks. Verb in infinitive = spend" ]
+    "sentences" : [ "Sheep run. Verb in infinitive = run" ]
   }
 }, {
   "_id" : {

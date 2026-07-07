@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "Mixed practice with the present simple forms 1",
+  "title" : "I don't want a new doll.",
   "instructions" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible.",
-  "translation" : "No necesito ayuda.",
+  "translation" : "No quiero una muñeca nueva.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "don't require" ]
+      "text" : null,
+      "options" : [ "don't want" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / require) any assistance.",
+      "text" : "(not / want) a new doll.",
       "options" : null
     } ],
-    "sentences" : [ "I don't require any assistance." ]
+    "sentences" : [ "I don't want a new doll." ]
   }
 }, {
   "_id" : {

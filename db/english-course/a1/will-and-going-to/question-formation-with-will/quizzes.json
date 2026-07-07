@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3aa"
   },
-  "title" : "Question Formation with 'Will'",
+  "title" : "Will they visit the factory?",
   "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-  "translation" : "¿Se quedarán mucho tiempo?",
+  "translation" : "¿Visitarán la fábrica?",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -81,26 +81,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Will they stay" ]
+      "text" : null,
+      "options" : [ "Will they visit" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / stay) long?",
+      "text" : "(they / visit) the factory?",
       "options" : null
     } ],
-    "sentences" : [ "Will they stay long?" ]
+    "sentences" : [ "Will they visit the factory?" ]
   }
 }, {
   "_id" : {

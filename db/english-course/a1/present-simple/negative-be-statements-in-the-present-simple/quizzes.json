@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d385"
   },
-  "title" : "Negative 'be' statements in the present simple",
+  "title" : "It is not possible.",
   "instructions" : "Escribe una oración negativa usando el verbo 'be'. No uses contracciones (short forms).",
-  "translation" : "No está lluvioso.",
+  "translation" : "No es posible.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is not" ]
     }, {
       "kind" : "TEXT",
-      "text" : "rainy.",
+      "text" : "possible.",
       "options" : null
     } ],
-    "sentences" : [ "It is not rainy." ]
+    "sentences" : [ "It is not possible." ]
   }
 }, {
   "_id" : {

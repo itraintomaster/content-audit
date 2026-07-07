@@ -631,7 +631,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d2"
   },
-  "title" : "Pronoun Selection: Subject vs. Object",
+  "title" : "Could you help she / her her?",
   "instructions" : "Selecciona el pronombre correcto.",
   "translation" : "¿Podrías ayudarla?",
   "theoryId" : "a1.08.1_Subject_and_object_pronouns",
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Could you assist she / her",
+      "text" : "Could you help she / her",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "her" ]
     }, {
       "kind" : "TEXT",
       "text" : "?",
       "options" : null
     } ],
-    "sentences" : [ "Could you assist she / her her?" ]
+    "sentences" : [ "Could you help she / her her?" ]
   }
 }, {
   "_id" : {

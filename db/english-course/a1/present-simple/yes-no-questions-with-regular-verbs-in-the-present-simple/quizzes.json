@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38b"
   },
-  "title" : "'Yes / No' questions with regular verbs in the present simple",
+  "title" : "Does it rain a lot?",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Brilla mucho?",
+  "translation" : "¿Llueve mucho?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -289,26 +289,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Does it shine" ]
+      "text" : null,
+      "options" : [ "Does it rain" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(it / shine) a lot?",
+      "text" : "(it / rain) a lot?",
       "options" : null
     } ],
-    "sentences" : [ "Does it shine a lot?" ]
+    "sentences" : [ "Does it rain a lot?" ]
   }
 }, {
   "_id" : {
@@ -319,9 +315,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38b"
   },
-  "title" : "'Yes / No' questions with regular verbs in the present simple",
+  "title" : "Do we live in a flat?",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Dormimos en tiendas de campaña?",
+  "translation" : "¿Vivimos en un apartamento?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -341,26 +337,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Do we sleep" ]
+      "text" : null,
+      "options" : [ "Do we live" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(we / sleep) in tents?",
+      "text" : "(we / live) in a flat?",
       "options" : null
     } ],
-    "sentences" : [ "Do we sleep in tents?" ]
+    "sentences" : [ "Do we live in a flat?" ]
   }
 }, {
   "_id" : {
@@ -839,9 +831,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38b"
   },
-  "title" : "'Yes / No' questions with regular verbs in the present simple",
+  "title" : "Do I need a mobile?",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Odio el brócoli?",
+  "translation" : "¿Necesito un móvil?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -861,26 +853,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Do I hate" ]
+      "text" : null,
+      "options" : [ "Do I need" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(I / hate) broccoli?",
+      "text" : "(I / need) a mobile?",
       "options" : null
     } ],
-    "sentences" : [ "Do I hate broccoli?" ]
+    "sentences" : [ "Do I need a mobile?" ]
   }
 }, {
   "_id" : {

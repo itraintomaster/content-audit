@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ea"
   },
-  "title" : "Adjective vs Adverb",
+  "title" : "You have a beautiful face.",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ella pinta hermosos retratos.",
+  "translation" : "Tienes una cara hermosa.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She paints",
+      "text" : "You have a",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "beautiful" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(beautiful / beautifully) portraits.",
+      "text" : "(beautiful / beautifully) face.",
       "options" : null
     } ],
-    "sentences" : [ "She paints beautiful portraits." ]
+    "sentences" : [ "You have a beautiful face." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ea"
   },
-  "title" : "Adjective vs Adverb",
+  "title" : "She sings slowly.",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Él sonrió ampliamente.",
+  "translation" : "Ella canta lentamente.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He smiled",
+      "text" : "She sings",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "widely" ]
+      "text" : null,
+      "options" : [ "slowly" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(wide / widely).",
+      "text" : "(slow / slowly).",
       "options" : null
     } ],
-    "sentences" : [ "He smiled widely." ]
+    "sentences" : [ "She sings slowly." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ea"
   },
-  "title" : "Adjective vs Adverb",
+  "title" : "He plays football well.",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Él tocó la estatua bruscamente.",
+  "translation" : "Él juega bien al fútbol.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He touched the statue",
+      "text" : "He plays football",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "roughly" ]
+      "text" : null,
+      "options" : [ "well" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(rough / roughly).",
+      "text" : "(good / well).",
       "options" : null
     } ],
-    "sentences" : [ "He touched the statue roughly." ]
+    "sentences" : [ "He plays football well." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ea"
   },
-  "title" : "Adjective vs Adverb",
+  "title" : "Please speak slowly.",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Por favor, explica de forma sencilla.",
+  "translation" : "Por favor, habla despacio.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Please explain",
+      "text" : "Please speak",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "simply" ]
+      "text" : null,
+      "options" : [ "slowly" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(simple / simply).",
+      "text" : "(slow / slowly).",
       "options" : null
     } ],
-    "sentences" : [ "Please explain simply." ]
+    "sentences" : [ "Please speak slowly." ]
   }
 } ]

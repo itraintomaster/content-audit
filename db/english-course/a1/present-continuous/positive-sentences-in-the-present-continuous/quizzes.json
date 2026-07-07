@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d399"
   },
-  "title" : "Positive sentences in the present continuous",
+  "title" : "She is drinking tea.",
   "instructions" : "Escribe oraciones afirmativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "Ella está consumiendo té.",
+  "translation" : "Ella está bebiendo té.",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is consuming" ]
+      "text" : null,
+      "options" : [ "is drinking" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(consume) tea.",
+      "text" : "(drink) tea.",
       "options" : null
     } ],
-    "sentences" : [ "She is consuming tea." ]
+    "sentences" : [ "She is drinking tea." ]
   }
 }, {
   "_id" : {

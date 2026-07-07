@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e0"
   },
-  "title" : "Prepositions Following Adjectives",
+  "title" : "This is easy for me.",
   "instructions" : "Completa con la preposición correcta.",
-  "translation" : "El arte es fácil para él. Es naturalmente bueno en eso.",
+  "translation" : "Esto es fácil para mí.",
   "theoryId" : "a1.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Art is easy",
+      "text" : "This is easy",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
-      "text" : "him. He's naturally good at it.",
+      "text" : "me.",
       "options" : null
     } ],
-    "sentences" : [ "Art is easy for him. He's naturally good at it." ]
+    "sentences" : [ "This is easy for me." ]
   }
 }, {
   "_id" : {

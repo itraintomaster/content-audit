@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38c"
   },
-  "title" : "'Wh' questions with regular verbs in the present simple",
+  "title" : "Where does she wash her face?",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Dónde practica ella yoga?",
+  "translation" : "¿Dónde se lava ella la cara?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Where",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does she practice" ]
+      "text" : null,
+      "options" : [ "does she wash" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / practice) yoga?",
+      "text" : "(she / wash) her face?",
       "options" : null
     } ],
-    "sentences" : [ "Where does she practice yoga?" ]
+    "sentences" : [ "Where does she wash her face?" ]
   }
 }, {
   "_id" : {
@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38c"
   },
-  "title" : "'Wh' questions with regular verbs in the present simple",
+  "title" : "When does she clean her flat?",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Cuándo viaja ella al extranjero?",
+  "translation" : "¿Cuándo limpia ella su departamento?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "When",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does she travel" ]
+      "text" : null,
+      "options" : [ "does she clean" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / travel) abroad?",
+      "text" : "(she / clean) her flat?",
       "options" : null
     } ],
-    "sentences" : [ "When does she travel abroad?" ]
+    "sentences" : [ "When does she clean her flat?" ]
   }
 }, {
   "_id" : {
@@ -735,7 +735,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38c"
   },
-  "title" : "'Wh' questions with regular verbs in the present simple",
+  "title" : "How often do we travel?",
   "instructions" : "Formula preguntas en presente simple.",
   "translation" : "¿Con qué frecuencia viajamos?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "How frequently",
+      "text" : "How often",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "do we travel" ]
     }, {
       "kind" : "TEXT",
       "text" : "(we / travel)?",
       "options" : null
     } ],
-    "sentences" : [ "How frequently do we travel?" ]
+    "sentences" : [ "How often do we travel?" ]
   }
 }, {
   "_id" : {

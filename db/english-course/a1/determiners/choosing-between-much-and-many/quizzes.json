@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cf"
   },
-  "title" : "Choosing Between Much and Many",
+  "title" : "David doesn't have much money.",
   "instructions" : "Completa los espacios en blanco con 'much' o 'many'.",
-  "translation" : "David no tiene mucha responsabilidad hoy en día.",
+  "translation" : "David no tiene mucho dinero.",
   "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "David doesn't have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
-      "text" : "responsibility nowadays.",
+      "text" : "money.",
       "options" : null
     } ],
-    "sentences" : [ "David doesn't have much responsibility nowadays." ]
+    "sentences" : [ "David doesn't have much money." ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cf"
   },
-  "title" : "Choosing Between Much and Many",
+  "title" : "She doesn't have much money.",
   "instructions" : "Completa los espacios en blanco con 'much' o 'many'.",
-  "translation" : "Ella no tiene mucha paciencia.",
+  "translation" : "Ella no tiene mucho dinero.",
   "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She doesn't have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
-      "text" : "patience.",
+      "text" : "money.",
       "options" : null
     } ],
-    "sentences" : [ "She doesn't have much patience." ]
+    "sentences" : [ "She doesn't have much money." ]
   }
 }, {
   "_id" : {

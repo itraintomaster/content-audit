@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bc"
   },
-  "title" : "Past Simple: Irregular Verbs 1",
+  "title" : "We bought a farm.",
   "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Los actores impresionaron al público.",
+  "translation" : "Nosotros compramos una granja.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The actors",
+      "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "impressed" ]
+      "text" : null,
+      "options" : [ "bought" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(impress) the audience.",
+      "text" : "(buy) a farm.",
       "options" : null
     } ],
-    "sentences" : [ "The actors impressed the audience." ]
+    "sentences" : [ "We bought a farm." ]
   }
 }, {
   "_id" : {

@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c2"
   },
-  "title" : "Gerund or Infinitive after verbs",
+  "title" : "I enjoyed talking with you.",
   "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o 'to + infinitive'.",
-  "translation" : "Aprecié hablar contigo.",
+  "translation" : "Disfruté hablar contigo.",
   "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I appreciated",
+      "text" : "I enjoyed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "talking" ]
     }, {
       "kind" : "TEXT",
       "text" : "(talk) with you.",
       "options" : null
     } ],
-    "sentences" : [ "I appreciated talking with you." ]
+    "sentences" : [ "I enjoyed talking with you." ]
   }
 }, {
   "_id" : {

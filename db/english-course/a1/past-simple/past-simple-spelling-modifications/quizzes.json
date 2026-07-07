@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b7"
   },
-  "title" : "Past Simple: Spelling Modifications",
+  "title" : "We studied the same book.",
   "instructions" : "Escribe oraciones afirmativas en 'past simple'.",
-  "translation" : "Envidíabamos su éxito.",
+  "translation" : "Estudiamos el mismo libro.",
   "theoryId" : "a1.04.Past_Simple_Spelling_Changes",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "envied" ]
+      "text" : null,
+      "options" : [ "studied" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(envy) their success.",
+      "text" : "(study) the same book.",
       "options" : null
     } ],
-    "sentences" : [ "We envied their success." ]
+    "sentences" : [ "We studied the same book." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b7"
   },
-  "title" : "Past Simple: Spelling Modifications",
+  "title" : "We carried the sheep home.",
   "instructions" : "Escribe oraciones afirmativas en 'past simple'.",
-  "translation" : "Nos opusimos a la propuesta.",
+  "translation" : "Llevamos la oveja a casa.",
   "theoryId" : "a1.04.Past_Simple_Spelling_Changes",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "objected" ]
+      "text" : null,
+      "options" : [ "carried" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(object) to the proposal.",
+      "text" : "(carry) the sheep home.",
       "options" : null
     } ],
-    "sentences" : [ "We objected to the proposal." ]
+    "sentences" : [ "We carried the sheep home." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b7"
   },
-  "title" : "Past Simple: Spelling Modifications",
+  "title" : "She studied for the test.",
   "instructions" : "Escribe oraciones afirmativas en 'past simple'.",
-  "translation" : "Él asumió que estaba equivocado.",
+  "translation" : "Ella estudió para el examen.",
   "theoryId" : "a1.04.Past_Simple_Spelling_Changes",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He",
+      "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "assumed" ]
+      "text" : null,
+      "options" : [ "studied" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(assume) that he was wrong.",
+      "text" : "(study) for the test.",
       "options" : null
     } ],
-    "sentences" : [ "He assumed that he was wrong." ]
+    "sentences" : [ "She studied for the test." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b7"
   },
-  "title" : "Past Simple: Spelling Modifications",
+  "title" : "We tried different food.",
   "instructions" : "Escribe oraciones afirmativas en 'past simple'.",
-  "translation" : "Nosotros presentamos el formulario.",
+  "translation" : "Nosotros probamos comida diferente.",
   "theoryId" : "a1.04.Past_Simple_Spelling_Changes",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "submitted" ]
+      "text" : null,
+      "options" : [ "tried" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(submit) the form.",
+      "text" : "(try) different food.",
       "options" : null
     } ],
-    "sentences" : [ "We submitted the form." ]
+    "sentences" : [ "We tried different food." ]
   }
 } ]
