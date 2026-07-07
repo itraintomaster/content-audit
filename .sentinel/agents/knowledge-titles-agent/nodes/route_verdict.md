@@ -1,0 +1,18 @@
+---
+name: route_verdict
+kind: conditional
+label: Route Verdict
+description: |
+  Si el candidato pasa TODOS los evals bloqueantes, se emite. Si algún
+  bloqueante reprobó, se dispara una nueva vuelta de generación — el budget
+  max_attempts de `generate` acota los reintentos a maxEvalRetries; al
+  agotarse, el edge `exhausted` de generate emite el champion (best-effort).
+cases:
+  - { when: "data.all_blocking_pass == true", route: emit_now }
+default: retry
+edges:
+  - { to: emit, when: emit_now }
+  # Retry vuelve a load_context (no a generate) para recargar el carry-forward
+  # que tally acaba de escribir → la regeneración ve el fallo previo.
+  - { to: load_context, when: retry }
+---

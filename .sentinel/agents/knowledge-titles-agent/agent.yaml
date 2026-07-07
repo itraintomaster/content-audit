@@ -1,0 +1,82 @@
+name: knowledge-titles-agent
+description: |
+  Mejora el título (label) y las instructions de UN knowledge (ejercicio) del
+  curso, respetando los límites de los analyzers del audit
+  (knowledge-title-length: longitud ponderada ≤ 28; knowledge-instructions-length:
+  soft ≤ 70 / hard ≤ 100) y las convenciones de idioma del contenido
+  (título e instructions en ESPAÑOL; los términos gramaticales ingleses van
+  citados entre comillas simples: 'be', 'short forms').
+
+  Principio rector: el alumno ve topic + título + instructions JUNTOS. El título
+  NO debe repetir información que ya está en el nombre del topic ni en las
+  instructions — cada palabra del título debe aportar lo que distingue a ESTE
+  ejercicio de sus hermanos. Las instructions se comprimen sin perder la
+  consigna (tarea, restricciones y términos técnicos originales).
+
+  Flujo:
+
+      load_context (script: lee db/knowledges.json + db/quiz-templates.json;
+            publica originalTitle/originalInstructions/topicLabel/levelLabel/
+            siblingTitles/sampleQuizzes + carryForward del intento previo)
+        ──▶ generate (react SIN tools: propone {title, instructions};
+              produce candidate.json)
+        ──▶ gate_candidate (gate: FORMA del candidato — JSON canónico
+              {title, instructions}; failed ▶ load_context con carry-forward)
+        ──▶ eval_length     (script: #1 título ponderado ≤ 28 y #2 instructions
+              ponderadas ≤ 70 — misma función de pesos que los analyzers;
+              bloqueantes, deterministas)
+        ──▶ eval_redundancy (script: #3 el título no repite content-words del
+              topic ni términos citados de las instructions; bloqueante)
+        ──▶ eval_language   (script: #4 guardia de idioma — título sin
+              inglés fuera de comillas, instructions con señales de
+              español; bloqueante)
+        ──▶ eval_distinct   (script: #5 título distinto de los hermanos del
+              topic — difflib + Jaccard, umbral 0.85; bloqueante)
+        ──▶ eval_quality (llm_call juez: #6 fidelidad de la consigna,
+              #7 idioma natural, #8 no-redundancia semántica — bloqueantes;
+              #9 estilo [score 0..1, deseable])
+        ──▶ gate_verdicts (gate: valida la FORMA del verdicts.json del juez;
+              malformado ▶ eval_quality re-emite; agotado ▶ degrada a tally)
+        ──▶ tally (script: combina veredictos, mantiene el champion,
+              escribe carry_forward en fallo)
+        ──▶ route_verdict (conditional)
+              │ all_blocking_pass ▶ emit
+              │ retry             ▶ load_context (recarga carry-forward)
+        ──▶ emit (script: artifact `titleCandidate` — el champion
+              {knowledgeId, title, instructions})
+
+  Notas de alcance:
+    - Los hermanos se comparan contra los labels ACTUALES de la db: la
+      de-duplicación entre renombres de un batch (varios runs seguidos sobre el
+      mismo topic) NO se orquesta acá — mismo criterio que lemma-absence-agent.
+    - Best-effort: al agotar los reintentos (maxEvalRetries) se emite el mejor
+      candidato visto (champion), sin falla.
+kind: agent
+strategy: graph
+initial_node: load_context
+budgets:
+  # Circuit breaker del grafo: pase completo ~11 nodos; con maxEvalRetries=3
+  # son ~4 vueltas (~44 visitas) + emit. 80 deja margen para valores mayores.
+  max_iterations: 80
+nodes:
+  - ./nodes/load_context.md
+  - ./nodes/generate.md
+  - ./nodes/gate_candidate.md
+  - ./nodes/eval_length.md
+  - ./nodes/eval_redundancy.md
+  - ./nodes/eval_language.md
+  - ./nodes/eval_distinct.md
+  - ./nodes/eval_quality.md
+  - ./nodes/gate_verdicts.md
+  - ./nodes/tally.md
+  - ./nodes/route_verdict.md
+  - ./nodes/emit.md
+goal:
+  required_artifacts:
+    - titleCandidate
+  required_nodes_done:
+    - emit
+dependencies:
+  - knowledgeId       # _id ($oid) del knowledge a mejorar en db/knowledges.json
+  - project_root      # raíz del repo (para resolver db/)
+  - maxEvalRetries    # reintentos de generación ante evals reprobados (default efectivo 3)
