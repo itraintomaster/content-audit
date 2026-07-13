@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3eb"
   },
-  "title" : "Good or Well?",
+  "title" : "His life is very good.",
   "instructions" : "Elige entre 'well' o 'good'.",
-  "translation" : "Su presentación es muy buena.",
+  "translation" : "Su vida es muy buena.",
   "theoryId" : "a1.11.Well_or_Good_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "His presentation is very",
+      "text" : "His life is very",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "good" ]
     }, {
       "kind" : "TEXT",
       "text" : "(good / well).",
       "options" : null
     } ],
-    "sentences" : [ "His presentation is very good." ]
+    "sentences" : [ "His life is very good." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3eb"
   },
-  "title" : "Good or Well?",
+  "title" : "The students work well.",
   "instructions" : "Elige entre 'well' o 'good'.",
-  "translation" : "Los estudiantes se portan bien.",
+  "translation" : "Los estudiantes trabajan bien.",
   "theoryId" : "a1.11.Well_or_Good_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -497,25 +497,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The students behave",
+      "text" : "The students work",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "well" ]
     }, {
       "kind" : "TEXT",
       "text" : "(good / well).",
       "options" : null
     } ],
-    "sentences" : [ "The students behave well." ]
+    "sentences" : [ "The students work well." ]
   }
 } ]

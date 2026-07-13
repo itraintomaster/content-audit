@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27a"
   },
-  "title" : "The Difference Between 'Somewhere' and 'Anywhere'",
+  "title" : "She would like to travel somewhere foreign.",
   "instructions" : "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
-  "translation" : "A ella le gustaría viajar a algún lugar tropical.",
+  "translation" : "A ella le gustaría viajar a algún lugar extranjero.",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She would like to travel",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "somewhere" ]
     }, {
       "kind" : "TEXT",
-      "text" : "tropical.",
+      "text" : "foreign.",
       "options" : null
     } ],
-    "sentences" : [ "She would like to travel somewhere tropical." ]
+    "sentences" : [ "She would like to travel somewhere foreign." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27a"
   },
-  "title" : "The Difference Between 'Somewhere' and 'Anywhere'",
+  "title" : "She doesn't want to go anywhere that is expensive.",
   "instructions" : "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
-  "translation" : "Ella se niega a ir a cualquier lugar que sea caro.",
+  "translation" : "Ella no quiere ir a ningún lugar que sea caro.",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She refuses to go",
+      "text" : "She doesn't want to go",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "anywhere" ]
     }, {
       "kind" : "TEXT",
       "text" : "that is expensive.",
       "options" : null
     } ],
-    "sentences" : [ "She refuses to go anywhere that is expensive." ]
+    "sentences" : [ "She doesn't want to go anywhere that is expensive." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27a"
   },
-  "title" : "The Difference Between 'Somewhere' and 'Anywhere'",
+  "title" : "Let's hang out somewhere nice.",
   "instructions" : "Completa los espacios en blanco con 'somewhere' o 'anywhere'.",
-  "translation" : "Vamos a pasar el rato en un lugar privado.",
+  "translation" : "Vamos a pasar el rato en un lugar agradable.",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -497,25 +497,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Let's hang out",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "somewhere" ]
     }, {
       "kind" : "TEXT",
-      "text" : "private.",
+      "text" : "nice.",
       "options" : null
     } ],
-    "sentences" : [ "Let's hang out somewhere private." ]
+    "sentences" : [ "Let's hang out somewhere nice." ]
   }
 } ]

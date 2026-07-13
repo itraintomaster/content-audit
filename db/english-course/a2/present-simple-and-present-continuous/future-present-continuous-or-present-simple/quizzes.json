@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d227"
   },
-  "title" : "Future: Present Continuous or Present Simple?",
+  "title" : "The term begins in August.",
   "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "El festival comienza en agosto.",
+  "translation" : "El trimestre comienza en agosto.",
   "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -653,26 +653,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The festival / begin / in August.",
+      "text" : "The term / begin / in August.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The festival begins in August." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The term begins in August." ]
     } ],
-    "sentences" : [ "The festival begins in August." ]
+    "sentences" : [ "The term begins in August." ]
   }
 }, {
   "_id" : {
@@ -891,9 +887,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d227"
   },
-  "title" : "Future: Present Continuous or Present Simple?",
+  "title" : "I'm coming this weekend.",
   "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "Me relajo este fin de semana.",
+  "translation" : "Vengo este fin de semana.",
   "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -913,26 +909,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I / relax / this weekend.",
+      "text" : "I / come / this weekend.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I'm relaxing this weekend.|I am relaxing this weekend." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "I'm coming this weekend.|I am coming this weekend." ]
     } ],
-    "sentences" : [ "I'm relaxing this weekend.", "I am relaxing this weekend." ]
+    "sentences" : [ "I'm coming this weekend.", "I am coming this weekend." ]
   }
 }, {
   "_id" : {
@@ -943,9 +935,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d227"
   },
-  "title" : "Future: Present Continuous or Present Simple?",
+  "title" : "When is your baseball game?",
   "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "¿Cuándo es tu entrevista?",
+  "translation" : "¿Cuándo es tu partido de béisbol?",
   "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -965,26 +957,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "When / be / your interview?",
+      "text" : "When / be / your baseball game?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "When is your interview?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "When is your baseball game?" ]
     } ],
-    "sentences" : [ "When is your interview?" ]
+    "sentences" : [ "When is your baseball game?" ]
   }
 }, {
   "_id" : {
@@ -995,9 +983,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d227"
   },
-  "title" : "Future: Present Continuous or Present Simple?",
+  "title" : "The surprise is at 3 pm on Sunday.",
   "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "El servicio es a las 3 pm el domingo.",
+  "translation" : "La sorpresa es a las 3 pm el domingo.",
   "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -1017,25 +1005,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The service / be / at 3 pm on Sunday.",
+      "text" : "The surprise / be / at 3 pm on Sunday.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The service is at 3 pm on Sunday." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The surprise is at 3 pm on Sunday." ]
     } ],
-    "sentences" : [ "The service is at 3 pm on Sunday." ]
+    "sentences" : [ "The surprise is at 3 pm on Sunday." ]
   }
 } ]

@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36d"
   },
-  "title" : "Using 'So' and 'Therefore'",
+  "title" : "The film was very boring. Therefore, we left early.",
   "instructions" : "Modifica las oraciones para que incluyan 'so' o 'therefore' y no 'because'.",
-  "translation" : "La película era increíblemente larga. Por lo tanto, nos fuimos temprano.",
+  "translation" : "La película era muy aburrida. Por lo tanto, nos fuimos temprano.",
   "theoryId" : "b1.16.Adverbs_for_Linking_So_Therefore",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -185,26 +185,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Because the film was incredibly long, we left early.",
+      "text" : "Because the film was very boring, we left early.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The film was incredibly long. Therefore, we left early." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The film was very boring. Therefore, we left early." ]
     } ],
-    "sentences" : [ "The film was incredibly long. Therefore, we left early." ]
+    "sentences" : [ "The film was very boring. Therefore, we left early." ]
   }
 }, {
   "_id" : {

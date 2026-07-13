@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d21a"
   },
-  "title" : "Reviewing Present Simple with 'be'",
+  "title" : "Are you naturally blonde?",
   "instructions" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
-  "translation" : "¿Tienes sueño?\n",
+  "translation" : "¿Eres rubia natural?",
   "theoryId" : "a2.01.Stative_Verbs",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -861,26 +861,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Are you" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / be) sleepy?",
+      "text" : "(you / be) naturally blonde?",
       "options" : null
     } ],
-    "sentences" : [ "Are you sleepy?" ]
+    "sentences" : [ "Are you naturally blonde?" ]
   }
 }, {
   "_id" : {
@@ -995,9 +991,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d21a"
   },
-  "title" : "Reviewing Present Simple with 'be'",
+  "title" : "We aren't real.",
   "instructions" : "Conjuga el verbo 'ser/estar' en presente simple. Utiliza las formas cortas cuando sea posible.",
-  "translation" : "No estamos despiertos.\n",
+  "translation" : "No somos reales.",
   "theoryId" : "a2.01.Stative_Verbs",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -1017,25 +1013,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "aren't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / be) awake.",
+      "text" : "(not / be) real.",
       "options" : null
     } ],
-    "sentences" : [ "We aren't awake." ]
+    "sentences" : [ "We aren't real." ]
   }
 } ]

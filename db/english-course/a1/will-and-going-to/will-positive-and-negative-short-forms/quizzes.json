@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a9"
   },
-  "title" : "'Will' Positive and Negative Short Forms",
+  "title" : "He 'll visit the school tomorrow.",
   "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. Utiliza contracciones ('short forms') cuando sea posible.",
-  "translation" : "Él visitará a la abuela mañana.",
+  "translation" : "Él visitará la escuela mañana.",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'ll visit" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(visit) grandma tomorrow.",
+      "text" : "(visit) the school tomorrow.",
       "options" : null
     } ],
-    "sentences" : [ "He'll visit grandma tomorrow." ]
+    "sentences" : [ "He 'll visit the school tomorrow." ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a9"
   },
-  "title" : "'Will' Positive and Negative Short Forms",
+  "title" : "She 'll make cookies.",
   "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. Utiliza contracciones ('short forms') cuando sea posible.",
-  "translation" : "Ella horneará galletas.",
+  "translation" : "Ella hará galletas.",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll bake" ]
+      "text" : null,
+      "options" : [ "'ll make" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(bake) cookies.",
+      "text" : "(make) cookies.",
       "options" : null
     } ],
-    "sentences" : [ "She'll bake cookies." ]
+    "sentences" : [ "She 'll make cookies." ]
   }
 }, {
   "_id" : {
@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a9"
   },
-  "title" : "'Will' Positive and Negative Short Forms",
+  "title" : "They 'll come here before us.",
   "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. Utiliza contracciones ('short forms') cuando sea posible.",
-  "translation" : "Llegarán aquí antes que nosotros.",
+  "translation" : "Vendrán aquí antes que nosotros.",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll arrive" ]
+      "text" : null,
+      "options" : [ "'ll come" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(arrive) here before us.",
+      "text" : "(come) here before us.",
       "options" : null
     } ],
-    "sentences" : [ "They'll arrive here before us." ]
+    "sentences" : [ "They 'll come here before us." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a9"
   },
-  "title" : "'Will' Positive and Negative Short Forms",
+  "title" : "You won't see the world.",
   "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. Utiliza contracciones ('short forms') cuando sea posible.",
-  "translation" : "No verás el amanecer.",
+  "translation" : "No verás el mundo.",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "won't see" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / see) the sunrise.",
+      "text" : "(not / see) the world.",
       "options" : null
     } ],
-    "sentences" : [ "You won't see the sunrise." ]
+    "sentences" : [ "You won't see the world." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a9"
   },
-  "title" : "'Will' Positive and Negative Short Forms",
+  "title" : "She 'll have lunch tomorrow.",
   "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. Utiliza contracciones ('short forms') cuando sea posible.",
-  "translation" : "Ella llegará al concierto.",
+  "translation" : "Ella almorzará mañana.",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll arrive" ]
+      "text" : null,
+      "options" : [ "'ll have" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(arrive) at the concert.",
+      "text" : "(have) lunch tomorrow.",
       "options" : null
     } ],
-    "sentences" : [ "She'll arrive at the concert." ]
+    "sentences" : [ "She 'll have lunch tomorrow." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a9"
   },
-  "title" : "'Will' Positive and Negative Short Forms",
+  "title" : "He won't see the game.",
   "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. Utiliza contracciones ('short forms') cuando sea posible.",
-  "translation" : "Él no verá el teatro.",
+  "translation" : "Él no verá el partido.",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "won't see" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / see) the theatre.",
+      "text" : "(not / see) the game.",
       "options" : null
     } ],
-    "sentences" : [ "He won't see the theatre." ]
+    "sentences" : [ "He won't see the game." ]
   }
 }, {
   "_id" : {

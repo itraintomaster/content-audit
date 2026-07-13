@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d287"
   },
-  "title" : "Movement Verbs and Prepositions",
+  "title" : "We'll skate in London around 8 am.",
   "instructions" : "Elige 'in' o 'to'.",
-  "translation" : "Aterrizaremos en Londres alrededor de las 8 de la mañana.",
+  "translation" : "Patinaremos en Londres alrededor de las 8 de la mañana.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We'll land",
+      "text" : "We'll skate",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "London around 8 am.",
       "options" : null
     } ],
-    "sentences" : [ "We'll land in London around 8 am." ]
+    "sentences" : [ "We'll skate in London around 8 am." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d287"
   },
-  "title" : "Movement Verbs and Prepositions",
+  "title" : "I arrived in Rome last night.",
   "instructions" : "Elige 'in' o 'to'.",
-  "translation" : "Aterricé en Roma anoche.",
+  "translation" : "Llegué a Roma anoche.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I landed",
+      "text" : "I arrived",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "Rome last night.",
       "options" : null
     } ],
-    "sentences" : [ "I landed in Rome last night." ]
+    "sentences" : [ "I arrived in Rome last night." ]
   }
 }, {
   "_id" : {

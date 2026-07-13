@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d3"
   },
-  "title" : "Choosing the Right Possessive Form",
+  "title" : "What's his house number?",
   "instructions" : "Selecciona el posesivo correcto.",
-  "translation" : "¿Cuál es su número de teléfono?",
+  "translation" : "¿Cuál es el número de su casa?",
   "theoryId" : "a1.08.2_Possessives_determiners_adjectives",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "What's (his / his)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "his" ]
     }, {
       "kind" : "TEXT",
-      "text" : "telephone number?",
+      "text" : "house number?",
       "options" : null
     } ],
-    "sentences" : [ "What's his telephone number?" ]
+    "sentences" : [ "What's his house number?" ]
   }
 }, {
   "_id" : {
@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d3"
   },
-  "title" : "Choosing the Right Possessive Form",
+  "title" : "The house is his.",
   "instructions" : "Selecciona el posesivo correcto.",
-  "translation" : "El paraguas es suyo.",
+  "translation" : "La casa es suya.",
   "theoryId" : "a1.08.2_Possessives_determiners_adjectives",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The umbrella is (his / his)",
+      "text" : "The house is (his / his)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "his" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "The umbrella is his." ]
+    "sentences" : [ "The house is his." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d3"
   },
-  "title" : "Choosing the Right Possessive Form",
+  "title" : "Our / ours Ours is the hospital.",
   "instructions" : "Selecciona el posesivo correcto.",
-  "translation" : "La nuestra es la mejor solución.",
+  "translation" : "El nuestro es el hospital.",
   "theoryId" : "a1.08.2_Possessives_determiners_adjectives",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Our / ours",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Ours" ]
     }, {
       "kind" : "TEXT",
-      "text" : "is the better solution.",
+      "text" : "is the hospital.",
       "options" : null
     } ],
-    "sentences" : [ "Our / ours Ours is the better solution." ]
+    "sentences" : [ "Our / ours Ours is the hospital." ]
   }
 }, {
   "_id" : {
@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d3"
   },
-  "title" : "Choosing the Right Possessive Form",
+  "title" : "I can't find her child.",
   "instructions" : "Selecciona el posesivo correcto.",
-  "translation" : "No encuentro su cartera. ¿La has visto?",
+  "translation" : "No encuentro a su hijo.",
   "theoryId" : "a1.08.2_Possessives_determiners_adjectives",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I can't find (her / hers)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "her" ]
     }, {
       "kind" : "TEXT",
-      "text" : "wallet. Have you seen it?",
+      "text" : "child.",
       "options" : null
     } ],
-    "sentences" : [ "I can't find her wallet. Have you seen it?" ]
+    "sentences" : [ "I can't find her child." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d3"
   },
-  "title" : "Choosing the Right Possessive Form",
+  "title" : "The children showed me their legs.",
   "instructions" : "Selecciona el posesivo correcto.",
-  "translation" : "Los jugadores me mostraron sus habilidades.",
+  "translation" : "Los niños me mostraron sus piernas.",
   "theoryId" : "a1.08.2_Possessives_determiners_adjectives",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The players showed me (their / theirs)",
+      "text" : "The children showed me (their / theirs)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "their" ]
     }, {
       "kind" : "TEXT",
-      "text" : "skills.",
+      "text" : "legs.",
       "options" : null
     } ],
-    "sentences" : [ "The players showed me their skills." ]
+    "sentences" : [ "The children showed me their legs." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d3"
   },
-  "title" : "Choosing the Right Possessive Form",
+  "title" : "Yours is an important homework.",
   "instructions" : "Selecciona el posesivo correcto.",
-  "translation" : "El tuyo es un excelente deber.",
+  "translation" : "El tuyo es un deber importante.",
   "theoryId" : "a1.08.2_Possessives_determiners_adjectives",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "(Your / Yours)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Yours" ]
     }, {
       "kind" : "TEXT",
-      "text" : "is an excellent homework.",
+      "text" : "is an important homework.",
       "options" : null
     } ],
-    "sentences" : [ "Yours is an excellent homework." ]
+    "sentences" : [ "Yours is an important homework." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d3"
   },
-  "title" : "Choosing the Right Possessive Form",
+  "title" : "This book isn't hers.",
   "instructions" : "Selecciona el posesivo correcto.",
-  "translation" : "¿Has visto una cartera? No encuentro la de ella.",
+  "translation" : "Este libro no es de ella.",
   "theoryId" : "a1.08.2_Possessives_determiners_adjectives",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Have you seen a wallet? I can't find (her / hers)",
+      "text" : "This book isn't (her / hers)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "hers" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "Have you seen a wallet? I can't find hers." ]
+    "sentences" : [ "This book isn't hers." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d3"
   },
-  "title" : "Choosing the Right Possessive Form",
+  "title" : "Their body is the better.",
   "instructions" : "Selecciona el posesivo correcto.",
-  "translation" : "Su solución es la mejor.",
+  "translation" : "Su cuerpo es el mejor.",
   "theoryId" : "a1.08.2_Possessives_determiners_adjectives",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "(Their / theirs)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Their" ]
     }, {
       "kind" : "TEXT",
-      "text" : "solution is the better.",
+      "text" : "body is the better.",
       "options" : null
     } ],
-    "sentences" : [ "Their solution is the better." ]
+    "sentences" : [ "Their body is the better." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d3"
   },
-  "title" : "Choosing the Right Possessive Form",
+  "title" : "That is his school.",
   "instructions" : "Selecciona el posesivo correcto.",
-  "translation" : "Ese es su paraguas.",
+  "translation" : "Esa es su escuela.",
   "theoryId" : "a1.08.2_Possessives_determiners_adjectives",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "That is (his / his)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "his" ]
     }, {
       "kind" : "TEXT",
-      "text" : "umbrella.",
+      "text" : "school.",
       "options" : null
     } ],
-    "sentences" : [ "That is his umbrella." ]
+    "sentences" : [ "That is his school." ]
   }
 } ]

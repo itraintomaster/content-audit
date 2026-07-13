@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d262"
   },
-  "title" : "Articles Practice Exercise 2",
+  "title" : "I drank milk and a glass of juice.",
   "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-  "translation" : "Bebí un vaso de leche y un vaso de jugo. La leche estaba deliciosa.",
+  "translation" : "Bebí leche y un vaso de jugo.",
   "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I drank a glass of milk and",
+      "text" : "I drank milk and",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "glass of juice. The milk was delicious.",
+      "text" : "glass of juice.",
       "options" : null
     } ],
-    "sentences" : [ "I drank a glass of milk and a glass of juice. The milk was delicious." ]
+    "sentences" : [ "I drank milk and a glass of juice." ]
   }
 }, {
   "_id" : {
@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d262"
   },
-  "title" : "Articles Practice Exercise 2",
+  "title" : "We ate - bread and butter. The butter was rich.",
   "instructions" : "Completa con 'the' o 'a / an' o '-' si no necesitamos un artículo.",
-  "translation" : "Comimos pan y mantequilla. Sin embargo, la mantequilla estaba demasiado salada.",
+  "translation" : "Comimos pan y mantequilla. La mantequilla era muy rica.",
   "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We ate",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "bread and butter. The butter was too salty though.",
+      "text" : "bread and butter. The butter was rich.",
       "options" : null
     } ],
-    "sentences" : [ "We ate - bread and butter. The butter was too salty though." ]
+    "sentences" : [ "We ate - bread and butter. The butter was rich." ]
   }
 }, {
   "_id" : {

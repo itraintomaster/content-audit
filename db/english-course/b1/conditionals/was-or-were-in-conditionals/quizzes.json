@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d352"
   },
-  "title" : "'Was' or 'Were' in Conditionals",
+  "title" : "If I was richer, I would buy a cycle.",
   "instructions" : "Elige la palabra correcta: 'was' o 'were' para completar las oraciones.",
-  "translation" : "Si fuera más rico, compraría un yate.",
+  "translation" : "Si fuera más rico, compraría una bicicleta.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "If I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "was" ]
     }, {
       "kind" : "TEXT",
-      "text" : "richer, I would buy a yacht.",
+      "text" : "richer, I would buy a cycle.",
       "options" : null
     } ],
-    "sentences" : [ "If I was richer, I would buy a yacht." ]
+    "sentences" : [ "If I was richer, I would buy a cycle." ]
   }
 }, {
   "_id" : {

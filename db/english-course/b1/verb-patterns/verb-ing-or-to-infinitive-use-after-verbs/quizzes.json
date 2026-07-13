@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2fb"
   },
-  "title" : "Verb+ing or to + infinitive: Use after verbs",
+  "title" : "We agreed to remove the old report.",
   "instructions" : "¿Necesitamos 'to + infinitive' o 'verb+ing'?",
-  "translation" : "Acordamos editar el informe.",
+  "translation" : "Acordamos eliminar el informe viejo.",
   "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We agreed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "to edit" ]
+      "text" : null,
+      "options" : [ "to remove" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(edit) the report.",
+      "text" : "(remove) the old report.",
       "options" : null
     } ],
-    "sentences" : [ "We agreed to edit the report." ]
+    "sentences" : [ "We agreed to remove the old report." ]
   }
 }, {
   "_id" : {

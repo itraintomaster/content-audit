@@ -7,7 +7,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24d"
   },
-  "title" : "Using Gerunds as Subjects",
+  "title" : "Singing is not allowed in class.",
   "instructions" : "Crea oraciones que tengan un gerundio como sujeto.",
   "translation" : "Cantar no está permitido en clase.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Singing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(sing) is not permitted in class.",
+      "text" : "(sing) is not allowed in class.",
       "options" : null
     } ],
-    "sentences" : [ "Singing is not permitted in class." ]
+    "sentences" : [ "Singing is not allowed in class." ]
   }
 }, {
   "_id" : {
@@ -111,9 +107,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24d"
   },
-  "title" : "Using Gerunds as Subjects",
+  "title" : "Cooking is very easy.",
   "instructions" : "Crea oraciones que tengan un gerundio como sujeto.",
-  "translation" : "Cocinar es muy agradable.",
+  "translation" : "Cocinar es muy fácil.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -133,26 +129,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Cooking" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(cook) is very enjoyable.",
+      "text" : "(cook) is very easy.",
       "options" : null
     } ],
-    "sentences" : [ "Cooking is very enjoyable." ]
+    "sentences" : [ "Cooking is very easy." ]
   }
 }, {
   "_id" : {
@@ -319,9 +311,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24d"
   },
-  "title" : "Using Gerunds as Subjects",
+  "title" : "Resting is very important.",
   "instructions" : "Crea oraciones que tengan un gerundio como sujeto.",
-  "translation" : "Descansar es muy beneficioso.",
+  "translation" : "Descansar es muy importante.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -341,26 +333,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Resting" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(rest) is very beneficial.",
+      "text" : "(rest) is very important.",
       "options" : null
     } ],
-    "sentences" : [ "Resting is very beneficial." ]
+    "sentences" : [ "Resting is very important." ]
   }
 }, {
   "_id" : {

@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
-  "title" : "Deciding When to Use Many or Many Of",
+  "title" : "He likes watches and he buys many.",
   "instructions" : "Completa los espacios en blanco con 'many' o 'many of'.",
-  "translation" : "Le gustan los relojes y colecciona muchos.",
+  "translation" : "Le gustan los relojes y compra muchos.",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He likes watches and he collects",
+      "text" : "He likes watches and he buys",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "He likes watches and he collects many." ]
+    "sentences" : [ "He likes watches and he buys many." ]
   }
 }, {
   "_id" : {
@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
-  "title" : "Deciding When to Use Many or Many Of",
+  "title" : "Do you attend many of games?",
   "instructions" : "Completa los espacios en blanco con 'many' o 'many of'.",
-  "translation" : "¿Asistes a muchos conciertos?",
+  "translation" : "¿Asistes a muchos partidos?",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do you attend",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "many of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "concerts?",
+      "text" : "games?",
       "options" : null
     } ],
-    "sentences" : [ "Do you attend many of concerts?" ]
+    "sentences" : [ "Do you attend many of games?" ]
   }
 }, {
   "_id" : {
@@ -939,9 +939,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
-  "title" : "Deciding When to Use Many or Many Of",
+  "title" : "They don't keep many things.",
   "instructions" : "Completa los espacios en blanco con 'many' o 'many of'.",
-  "translation" : "Les gustan los juguetes, pero no tienen muchos.",
+  "translation" : "No guardan muchas cosas.",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -961,26 +961,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They enjoy toys but they don't keep",
+      "text" : "They don't keep",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
-      "text" : ".",
+      "text" : "things.",
       "options" : null
     } ],
-    "sentences" : [ "They enjoy toys but they don't keep many." ]
+    "sentences" : [ "They don't keep many things." ]
   }
 }, {
   "_id" : {
@@ -991,9 +991,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
-  "title" : "Deciding When to Use Many or Many Of",
+  "title" : "I don't take many holidays.",
   "instructions" : "Completa los espacios en blanco con 'many' o 'many of'.",
-  "translation" : "No desperdicio muchas oportunidades.",
+  "translation" : "No tomo muchas vacaciones.",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -1013,25 +1013,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I don't waste",
+      "text" : "I don't take",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "many of" ]
+      "text" : null,
+      "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
-      "text" : "opportunities.",
+      "text" : "holidays.",
       "options" : null
     } ],
-    "sentences" : [ "I don't waste many of opportunities." ]
+    "sentences" : [ "I don't take many holidays." ]
   }
 } ]

@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39e"
   },
-  "title" : "Short forms in the present continuous",
+  "title" : "We're making cookies.",
   "instructions" : "Escribe la 'short form'. Hay dos posibilidades para la forma negativa.",
-  "translation" : "Estamos horneando galletas.",
+  "translation" : "Estamos haciendo galletas.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -1017,25 +1017,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We are baking cookies.",
+      "text" : "We are making cookies.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We're baking cookies." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "We're making cookies." ]
     } ],
-    "sentences" : [ "We're baking cookies." ]
+    "sentences" : [ "We're making cookies." ]
   }
 } ]

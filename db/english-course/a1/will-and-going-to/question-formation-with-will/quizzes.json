@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3aa"
   },
-  "title" : "Question Formation with 'Will'",
+  "title" : "Will you complete the work?",
   "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-  "translation" : "¿Completarás el proyecto?",
+  "translation" : "¿Completarás el trabajo?",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Will you complete" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / complete) the project?",
+      "text" : "(you / complete) the work?",
       "options" : null
     } ],
-    "sentences" : [ "Will you complete the project?" ]
+    "sentences" : [ "Will you complete the work?" ]
   }
 }, {
   "_id" : {
@@ -159,9 +155,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3aa"
   },
-  "title" : "Question Formation with 'Will'",
+  "title" : "Where will they go next summer?",
   "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-  "translation" : "¿Qué cocinará?",
+  "translation" : "¿A dónde irán el próximo verano?",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -181,26 +177,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "What",
+      "text" : "Where",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will he cook" ]
+      "text" : null,
+      "options" : [ "will they go" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / cook)?",
+      "text" : "(they / go) next summer?",
       "options" : null
     } ],
-    "sentences" : [ "What will he cook?" ]
+    "sentences" : [ "Where will they go next summer?" ]
   }
 }, {
   "_id" : {
@@ -783,9 +779,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3aa"
   },
-  "title" : "Question Formation with 'Will'",
+  "title" : "How much will it make?",
   "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'will'.",
-  "translation" : "¿Cuánto costará?",
+  "translation" : "¿Cuánto ganará?",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -805,26 +801,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "How much",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will it cost" ]
+      "text" : null,
+      "options" : [ "will it make" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(it / cost)?",
+      "text" : "(it / make)?",
       "options" : null
     } ],
-    "sentences" : [ "How much will it cost?" ]
+    "sentences" : [ "How much will it make?" ]
   }
 }, {
   "_id" : {

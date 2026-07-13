@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d272"
   },
-  "title" : "A Review of Subject and Object Pronouns",
+  "title" : "The cookies? We singed them!",
   "instructions" : "Elige el pronombre correcto.",
-  "translation" : "¿Las galletas? ¡Las consumimos!",
+  "translation" : "¿Las galletas? ¡Las chamuscamos!",
   "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The cookies? We consumed",
+      "text" : "The cookies? We singed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "them" ]
     }, {
       "kind" : "TEXT",
       "text" : "(they / them)!",
       "options" : null
     } ],
-    "sentences" : [ "The cookies? We consumed them!" ]
+    "sentences" : [ "The cookies? We singed them!" ]
   }
 }, {
   "_id" : {

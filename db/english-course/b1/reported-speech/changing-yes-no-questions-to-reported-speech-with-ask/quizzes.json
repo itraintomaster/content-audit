@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d326"
   },
-  "title" : "Changing Yes/No Questions to Reported Speech with 'Ask'",
+  "title" : "He asked me if they were painting the edge.",
   "instructions" : "Transforma las preguntas a estilo indirecto (reported questions). Siempre comienza con '[He asked me'.",
-  "translation" : "Me preguntó si ellos estaban pintando la valla.",
+  "translation" : "Me preguntó si ellos estaban pintando el borde.",
   "theoryId" : "b1.10.Reported_Questions_with_Ask",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -757,26 +757,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Are they painting the fence?",
+      "text" : "Are they painting the edge?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He asked me if they were painting the fence." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He asked me if they were painting the edge." ]
     } ],
-    "sentences" : [ "He asked me if they were painting the fence." ]
+    "sentences" : [ "He asked me if they were painting the edge." ]
   }
 }, {
   "_id" : {

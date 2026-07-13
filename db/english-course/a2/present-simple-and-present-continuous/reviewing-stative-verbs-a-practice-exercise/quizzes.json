@@ -163,7 +163,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d222"
   },
-  "title" : "Reviewing Stative Verbs: A Practice Exercise",
+  "title" : "I really need a new pair of shoes.",
   "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
   "translation" : "Realmente necesito un nuevo par de zapatos.",
   "theoryId" : "a2.01.Stative_Verbs",
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I truly",
+      "text" : "I really",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "need" ]
     }, {
       "kind" : "TEXT",
       "text" : "(need) a new pair of shoes.",
       "options" : null
     } ],
-    "sentences" : [ "I truly need a new pair of shoes." ]
+    "sentences" : [ "I really need a new pair of shoes." ]
   }
 }, {
   "_id" : {

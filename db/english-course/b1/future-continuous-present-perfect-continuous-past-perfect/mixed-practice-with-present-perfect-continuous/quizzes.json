@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2db"
   },
-  "title" : "Mixed Practice with Present Perfect Continuous",
+  "title" : "He hasn't been living here for a year.",
   "instructions" : "Escribe oraciones en 'present perfect continuous'.",
-  "translation" : "Él no ha estado viviendo aquí por mucho tiempo.",
+  "translation" : "Él no ha estado viviendo aquí durante un año.",
   "theoryId" : "b1.04.Present_Perfect_Continuous_Forms_3_Mixed",
   "topicName" : "Future continuous / present perfect continuous / past perfect",
   "difficulty" : {
@@ -133,26 +133,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "he / not / live here for long.",
+      "text" : "he / not / live here for a year.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He hasn't been living here for long." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He hasn't been living here for a year." ]
     } ],
-    "sentences" : [ "He hasn't been living here for long." ]
+    "sentences" : [ "He hasn't been living here for a year." ]
   }
 }, {
   "_id" : {
@@ -475,9 +471,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2db"
   },
-  "title" : "Mixed Practice with Present Perfect Continuous",
+  "title" : "Has she been speaking German for years?",
   "instructions" : "Escribe oraciones en 'present perfect continuous'.",
-  "translation" : "¿Ella ha estado hablando alemán por mucho tiempo?",
+  "translation" : "¿Ella ha estado hablando alemán durante años?",
   "theoryId" : "b1.04.Present_Perfect_Continuous_Forms_3_Mixed",
   "topicName" : "Future continuous / present perfect continuous / past perfect",
   "difficulty" : {
@@ -497,26 +493,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "she / speak German for long?",
+      "text" : "she / speak German for years?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Has she been speaking German for long?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Has she been speaking German for years?" ]
     } ],
-    "sentences" : [ "Has she been speaking German for long?" ]
+    "sentences" : [ "Has she been speaking German for years?" ]
   }
 }, {
   "_id" : {

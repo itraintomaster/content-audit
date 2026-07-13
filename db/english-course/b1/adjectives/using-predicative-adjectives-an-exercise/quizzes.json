@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d362"
   },
-  "title" : "Using Predicative Adjectives: An Exercise",
+  "title" : "They passed the guilty man in the street.",
   "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Pasaron junto al hombre inconsciente en la calle.",
+  "translation" : "Pasaron junto al hombre culpable en la calle.",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They passed the",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "unconscious" ]
+      "text" : null,
+      "options" : [ "guilty" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(unconscious / asleep) man in the street.",
+      "text" : "(guilty / asleep) man in the street.",
       "options" : null
     } ],
-    "sentences" : [ "They passed the unconscious man in the street." ]
+    "sentences" : [ "They passed the guilty man in the street." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d362"
   },
-  "title" : "Using Predicative Adjectives: An Exercise",
+  "title" : "We tiptoed past the weak woman in the hallway.",
   "instructions" : "Si es posible, usa un adjetivo predicativo. De lo contrario, usa un adjetivo normal.",
-  "translation" : "Pasamos de puntillas junto a la mujer inconsciente.",
+  "translation" : "Pasamos de puntillas junto a la mujer débil en el pasillo.",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We tiptoed past the",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "unconscious" ]
+      "text" : null,
+      "options" : [ "weak" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(unconscious / asleep) woman.",
+      "text" : "(weak / frail) woman in the hallway.",
       "options" : null
     } ],
-    "sentences" : [ "We tiptoed past the unconscious woman." ]
+    "sentences" : [ "We tiptoed past the weak woman in the hallway." ]
   }
 }, {
   "_id" : {

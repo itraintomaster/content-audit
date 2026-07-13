@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d360"
   },
-  "title" : "Using Gerunds After 'than' in Comparisons",
+  "title" : "A holiday is cheaper than owning a car.",
   "instructions" : "Completa con 'comparative + than + gerund'.",
-  "translation" : "Unas vacaciones son más baratas que tener un yate.",
+  "translation" : "Unas vacaciones son más baratas que tener un coche.",
   "theoryId" : "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "A holiday is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "cheaper than owning" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(cheap / own) a yacht.",
+      "text" : "(cheap / own) a car.",
       "options" : null
     } ],
-    "sentences" : [ "A holiday is cheaper than owning a yacht." ]
+    "sentences" : [ "A holiday is cheaper than owning a car." ]
   }
 }, {
   "_id" : {

@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2ea"
   },
-  "title" : "Present Perfect: Question Tag Practice",
+  "title" : "She's used a lot of water, hasn't she?",
   "instructions" : "Añade un 'question tag' a la oración.",
-  "translation" : "Ella ha bebido mucha agua, ¿no?",
+  "translation" : "Ella ha usado mucha agua, ¿no?",
   "theoryId" : "b1.05.Question_Tags",
   "topicName" : "Questions and short answers",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She's drunk a lot of water,",
+      "text" : "She's used a lot of water,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "hasn't she" ]
     }, {
       "kind" : "TEXT",
       "text" : "?",
       "options" : null
     } ],
-    "sentences" : [ "She's drunk a lot of water, hasn't she?" ]
+    "sentences" : [ "She's used a lot of water, hasn't she?" ]
   }
 }, {
   "_id" : {

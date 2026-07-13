@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Quiz: Using Prepositions After Nouns",
+  "title" : "A group of people worked outside the building.",
   "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
-  "translation" : "Un grupo de personas se reunió fuera del edificio.",
+  "translation" : "Un grupo de personas trabajó fuera del edificio.",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "A group",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "people gathered outside the building.",
+      "text" : "people worked outside the building.",
       "options" : null
     } ],
-    "sentences" : [ "A group of people gathered outside the building." ]
+    "sentences" : [ "A group of people worked outside the building." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Quiz: Using Prepositions After Nouns",
+  "title" : "I need a fee for the transaction.",
   "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
-  "translation" : "Necesito una prueba de la transacción.",
+  "translation" : "Necesito una tarifa por la transacción.",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I need proof",
+      "text" : "I need a fee",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
       "text" : "the transaction.",
       "options" : null
     } ],
-    "sentences" : [ "I need proof for the transaction." ]
+    "sentences" : [ "I need a fee for the transaction." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Quiz: Using Prepositions After Nouns",
+  "title" : "They learned a new phrase about adverbs.",
   "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
-  "translation" : "Completaron una tarea sobre adverbios.",
+  "translation" : "Aprendieron una nueva frase sobre los adverbios.",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They completed a task",
+      "text" : "They learned a new phrase",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
       "text" : "adverbs.",
       "options" : null
     } ],
-    "sentences" : [ "They completed a task about adverbs." ]
+    "sentences" : [ "They learned a new phrase about adverbs." ]
   }
 }, {
   "_id" : {
@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Quiz: Using Prepositions After Nouns",
+  "title" : "This is a photo of my grandfather.",
   "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
-  "translation" : "Este es un retrato de mi abuelo.",
+  "translation" : "Esta es una foto de mi abuelo.",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "This is a portrait",
+      "text" : "This is a photo",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
       "text" : "my grandfather.",
       "options" : null
     } ],
-    "sentences" : [ "This is a portrait of my grandfather." ]
+    "sentences" : [ "This is a photo of my grandfather." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Quiz: Using Prepositions After Nouns",
+  "title" : "Do you have respect for traditional dancing?",
   "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
-  "translation" : "¿Tienes pasión por el baile?",
+  "translation" : "¿Tienes respeto por el baile tradicional?",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Do you have passion",
+      "text" : "Do you have respect",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
-      "text" : "dancing?",
+      "text" : "traditional dancing?",
       "options" : null
     } ],
-    "sentences" : [ "Do you have passion for dancing?" ]
+    "sentences" : [ "Do you have respect for traditional dancing?" ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d377"
   },
-  "title" : "Quiz: Using Prepositions After Nouns",
+  "title" : "Where is the control for my telephone?",
   "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
-  "translation" : "¿Dónde está el manual de mi teléfono?",
+  "translation" : "¿Dónde está el control de mi teléfono?",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Where is the manual",
+      "text" : "Where is the control",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
       "text" : "my telephone?",
       "options" : null
     } ],
-    "sentences" : [ "Where is the manual for my telephone?" ]
+    "sentences" : [ "Where is the control for my telephone?" ]
   }
 } ]

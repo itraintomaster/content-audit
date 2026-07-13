@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a2"
   },
-  "title" : "Comparative Form Creation",
+  "title" : "This exercise is too hard. Do you have anything easier?",
   "instructions" : "Escribe la forma comparativa.",
-  "translation" : "Esta tarea es demasiado compleja. ¿Tienes algo más fácil?",
+  "translation" : "Este ejercicio es demasiado difícil. ¿Tienes algo más fácil?",
   "theoryId" : "a2.11.Form_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "This task is too complex. Do you have anything",
+      "text" : "This exercise is too hard. Do you have anything",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "easier" ]
     }, {
       "kind" : "TEXT",
       "text" : "(easy)?",
       "options" : null
     } ],
-    "sentences" : [ "This task is too complex. Do you have anything easier?" ]
+    "sentences" : [ "This exercise is too hard. Do you have anything easier?" ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a2"
   },
-  "title" : "Comparative Form Creation",
+  "title" : "The soup is wetter than the bread.",
   "instructions" : "Escribe la forma comparativa.",
-  "translation" : "La sopa está más salada que el pan.",
+  "translation" : "La sopa está más húmeda que el pan.",
   "theoryId" : "a2.11.Form_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The soup is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "saltier" ]
+      "text" : null,
+      "options" : [ "wetter" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(salty) than the bread.",
+      "text" : "(wet) than the bread.",
       "options" : null
     } ],
-    "sentences" : [ "The soup is saltier than the bread." ]
+    "sentences" : [ "The soup is wetter than the bread." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a2"
   },
-  "title" : "Comparative Form Creation",
+  "title" : "The theatre is nearer than the motorway.",
   "instructions" : "Escribe la forma comparativa.",
-  "translation" : "El teatro está más cerca que el gimnasio.",
+  "translation" : "El teatro está más cerca que la autopista.",
   "theoryId" : "a2.11.Form_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The theatre is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "nearer" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(near) than the gym.",
+      "text" : "(near) than the motorway.",
       "options" : null
     } ],
-    "sentences" : [ "The theatre is nearer than the gym." ]
+    "sentences" : [ "The theatre is nearer than the motorway." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a2"
   },
-  "title" : "Comparative Form Creation",
+  "title" : "Your idea is more comic than mine!",
   "instructions" : "Escribe la forma comparativa.",
-  "translation" : "¡Tu idea es más original que la mía!",
+  "translation" : "¡Tu idea es más cómica que la mía!",
   "theoryId" : "a2.11.Form_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Your idea is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more original" ]
+      "text" : null,
+      "options" : [ "more comic" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(original) than mine!",
+      "text" : "(comic) than mine!",
       "options" : null
     } ],
-    "sentences" : [ "Your idea is more original than mine!" ]
+    "sentences" : [ "Your idea is more comic than mine!" ]
   }
 }, {
   "_id" : {
@@ -1151,9 +1151,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a2"
   },
-  "title" : "Comparative Form Creation",
+  "title" : "This kitchen is dirtier.",
   "instructions" : "Escribe la forma comparativa.",
-  "translation" : "Esta respuesta es más precisa.",
+  "translation" : "Esta cocina está más sucia.",
   "theoryId" : "a2.11.Form_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -1173,26 +1173,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "This response is",
+      "text" : "This kitchen is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more accurate" ]
+      "text" : null,
+      "options" : [ "dirtier" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(accurate).",
+      "text" : "(dirty).",
       "options" : null
     } ],
-    "sentences" : [ "This response is more accurate." ]
+    "sentences" : [ "This kitchen is dirtier." ]
   }
 }, {
   "_id" : {
@@ -1411,9 +1411,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a2"
   },
-  "title" : "Comparative Form Creation",
+  "title" : "This cake is much better than that cake.",
   "instructions" : "Escribe la forma comparativa.",
-  "translation" : "Este pastel es definitivamente mejor que aquel pastel.",
+  "translation" : "Este pastel es mucho mejor que aquel pastel.",
   "theoryId" : "a2.11.Form_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -1433,26 +1433,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "This cake is definitely",
+      "text" : "This cake is much",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "better" ]
     }, {
       "kind" : "TEXT",
       "text" : "(good) than that cake.",
       "options" : null
     } ],
-    "sentences" : [ "This cake is definitely better than that cake." ]
+    "sentences" : [ "This cake is much better than that cake." ]
   }
 }, {
   "_id" : {
@@ -1463,9 +1463,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a2"
   },
-  "title" : "Comparative Form Creation",
+  "title" : "The nightmare seemed more scary than a snake!",
   "instructions" : "Escribe la forma comparativa.",
-  "translation" : "¡La pesadilla parecía más aterradora que la realidad!",
+  "translation" : "¡La pesadilla parecía más aterradora que una serpiente!",
   "theoryId" : "a2.11.Form_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -1485,26 +1485,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The nightmare seemed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "more scary" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(scary) than reality!",
+      "text" : "(scary) than a snake!",
       "options" : null
     } ],
-    "sentences" : [ "The nightmare seemed more scary than reality!" ]
+    "sentences" : [ "The nightmare seemed more scary than a snake!" ]
   }
 }, {
   "_id" : {

@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d296"
   },
-  "title" : "Reviewing Requests: Using Can and Could",
+  "title" : "Normal request: Lower the radio. Polite request: Could you lower the radio, please?",
   "instructions" : "Transforma las oraciones para que incluyan 'could' o 'can'.",
-  "translation" : "¿Puedes subir el volumen?",
+  "translation" : "Petición normal: Baja la radio. Petición amable: ¿Podrías bajar la radio, por favor?",
   "theoryId" : "a2.10.Would_for_Imaginary_Situations",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -341,26 +341,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Normal request: I want you to lower the volume.",
+      "text" : "Normal request: Lower the radio. Polite request:",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Can you turn the volume up?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Could you lower the radio, please?" ]
     } ],
-    "sentences" : [ "Can you turn the volume up?" ]
+    "sentences" : [ "Normal request: Lower the radio. Polite request: Could you lower the radio, please?" ]
   }
 }, {
   "_id" : {

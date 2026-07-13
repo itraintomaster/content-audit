@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d234"
   },
-  "title" : "Past simple with 'be' and regular verbs - Review 1",
+  "title" : "Did we pray at the church?",
   "instructions" : "Escribe la forma en 'past simple'.",
-  "translation" : "¿Asistimos?",
+  "translation" : "¿Rezamos en la iglesia?",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -861,26 +861,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Did we assist" ]
+      "text" : null,
+      "options" : [ "Did we pray" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(we / help)?",
+      "text" : "(we / pray) at the church?",
       "options" : null
     } ],
-    "sentences" : [ "Did we assist?" ]
+    "sentences" : [ "Did we pray at the church?" ]
   }
 }, {
   "_id" : {

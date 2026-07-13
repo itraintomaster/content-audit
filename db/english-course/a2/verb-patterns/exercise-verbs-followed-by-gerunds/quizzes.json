@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24f"
   },
-  "title" : "Exercise: Verbs Followed by Gerunds",
+  "title" : "She suggested making the appointment on Wednesday.",
   "instructions" : "Crea oraciones con el gerundio.",
-  "translation" : "Ella mencionó programar la cita para el miércoles.",
+  "translation" : "Ella sugirió concertar la cita para el miércoles.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She mentioned",
+      "text" : "She suggested",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "scheduling" ]
+      "text" : null,
+      "options" : [ "making" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(schedule) the appointment on Wednesday.",
+      "text" : "(make) the appointment on Wednesday.",
       "options" : null
     } ],
-    "sentences" : [ "She mentioned scheduling the appointment on Wednesday." ]
+    "sentences" : [ "She suggested making the appointment on Wednesday." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24f"
   },
-  "title" : "Exercise: Verbs Followed by Gerunds",
+  "title" : "I don't mind snowboarding in winter.",
   "instructions" : "Crea oraciones con el gerundio.",
-  "translation" : "No me importa ayudarte.",
+  "translation" : "No me importa hacer snowboard en invierno.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I don't mind",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "assisting" ]
+      "text" : null,
+      "options" : [ "snowboarding" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(assist) you.",
+      "text" : "(snowboard) in winter.",
       "options" : null
     } ],
-    "sentences" : [ "I don't mind assisting you." ]
+    "sentences" : [ "I don't mind snowboarding in winter." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24f"
   },
-  "title" : "Exercise: Verbs Followed by Gerunds",
+  "title" : "She keeps visiting the art museum.",
   "instructions" : "Crea oraciones con el gerundio.",
-  "translation" : "Ella recomienda visitar la galería de arte.",
+  "translation" : "Ella sigue visitando el museo de arte.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She recommends",
+      "text" : "She keeps",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "visiting" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(visit) the art gallery.",
+      "text" : "(visit) the art museum.",
       "options" : null
     } ],
-    "sentences" : [ "She recommends visiting the art gallery." ]
+    "sentences" : [ "She keeps visiting the art museum." ]
   }
 }, {
   "_id" : {

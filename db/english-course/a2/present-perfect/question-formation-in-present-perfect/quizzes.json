@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d23d"
   },
-  "title" : "Question Formation in Present Perfect",
+  "title" : "Why has she mailed the envelope?",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Por qué ella ha enviado el paquete?",
+  "translation" : "¿Por qué ella ha enviado el sobre?",
   "theoryId" : "a2.04.Present_Perfect_for_Life_Experience_With_Ever_and_Never_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "has she mailed" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / mail) the package?",
+      "text" : "(she / mail) the envelope?",
       "options" : null
     } ],
-    "sentences" : [ "Why has she mailed the package?" ]
+    "sentences" : [ "Why has she mailed the envelope?" ]
   }
 }, {
   "_id" : {

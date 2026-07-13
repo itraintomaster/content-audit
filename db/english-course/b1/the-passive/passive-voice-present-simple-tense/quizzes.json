@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d312"
   },
-  "title" : "Passive Voice: Present Simple Tense",
+  "title" : "The bull is attacked (by the lion).",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice).",
-  "translation" : "La cebra es cazada.",
+  "translation" : "El toro es atacado por el león.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -185,26 +185,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The lion hunts the zebra.",
+      "text" : "The lion attacks the bull.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The zebra is hunted (by the lion)." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The bull is attacked (by the lion)." ]
     } ],
-    "sentences" : [ "The zebra is hunted (by the lion)." ]
+    "sentences" : [ "The bull is attacked (by the lion)." ]
   }
 }, {
   "_id" : {
@@ -475,9 +471,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d312"
   },
-  "title" : "Passive Voice: Present Simple Tense",
+  "title" : "The patient is examined by the doctor.",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice).",
-  "translation" : "El paciente es examinado.",
+  "translation" : "El doctor examina al paciente. El paciente es examinado por el doctor.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -497,26 +493,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The doctor examines the patient.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The patient is examined (by the doctor)." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The patient is examined by the doctor." ]
     } ],
-    "sentences" : [ "The patient is examined (by the doctor)." ]
+    "sentences" : [ "The patient is examined by the doctor." ]
   }
 }, {
   "_id" : {
@@ -631,9 +623,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d312"
   },
-  "title" : "Passive Voice: Present Simple Tense",
+  "title" : "The rules are followed (by the experts).",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice).",
-  "translation" : "Se siguen las reglas.",
+  "translation" : "Los expertos siguen las reglas. Las reglas son seguidas por los expertos.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -653,26 +645,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The citizens follow the rules.",
+      "text" : "The experts follow the rules.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The rules are followed (by the citizens)." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The rules are followed (by the experts)." ]
     } ],
-    "sentences" : [ "The rules are followed (by the citizens)." ]
+    "sentences" : [ "The rules are followed (by the experts)." ]
   }
 }, {
   "_id" : {

@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37b"
   },
-  "title" : "Expressing Purpose: 'For' + Gerund",
+  "title" : "The powder is for cleaning dirty things.",
   "instructions" : "Cambiar las oraciones para incluir 'for + verb+ing'.",
-  "translation" : "Las herramientas son para arreglar cosas.",
+  "translation" : "El polvo es para limpiar cosas sucias.",
   "theoryId" : "b1.17.For_To_Show_Purpose",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The tools are",
+      "text" : "The powder is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "for fixing" ]
+      "text" : null,
+      "options" : [ "for cleaning" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(fix) things.",
+      "text" : "(clean) dirty things.",
       "options" : null
     } ],
-    "sentences" : [ "The tools are for fixing things." ]
+    "sentences" : [ "The powder is for cleaning dirty things." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37b"
   },
-  "title" : "Expressing Purpose: 'For' + Gerund",
+  "title" : "That thick paper is for drawing angels.",
   "instructions" : "Cambiar las oraciones para incluir 'for + verb+ing'.",
-  "translation" : "Ese papel es para dibujar retratos.",
+  "translation" : "Ese papel grueso es para dibujar ángeles.",
   "theoryId" : "b1.17.For_To_Show_Purpose",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "That paper is",
+      "text" : "That thick paper is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for drawing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(draw) portraits.",
+      "text" : "(draw) angels.",
       "options" : null
     } ],
-    "sentences" : [ "That paper is for drawing portraits." ]
+    "sentences" : [ "That thick paper is for drawing angels." ]
   }
 } ]

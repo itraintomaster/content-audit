@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d32c"
   },
-  "title" : "'Must' and 'Have (got) to' for Obligation: A Review",
+  "title" : "She must paint the small clinic today.",
   "instructions" : "Crea oraciones utilizando 'must', 'have to' o 'have got to'. Si es posible, utiliza la forma corta.",
-  "translation" : "Ella debe pintar la valla.",
+  "translation" : "Ella debe pintar la clínica pequeña hoy.",
   "theoryId" : "b1.11.Must_for_Recommendations_and_Offers",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -601,26 +601,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She / paint the fence. (must)",
+      "text" : "She / paint the small clinic today. (must)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She must paint the fence." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She must paint the small clinic today." ]
     } ],
-    "sentences" : [ "She must paint the fence." ]
+    "sentences" : [ "She must paint the small clinic today." ]
   }
 }, {
   "_id" : {

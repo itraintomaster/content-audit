@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28a"
   },
-  "title" : "Choosing Between By and Until",
+  "title" : "He'll remain in the office until 6 pm.",
   "instructions" : "Elige 'by' o 'until'.",
-  "translation" : "Él permanecerá en la oficina hasta las 6 pm, luego se marchará.",
+  "translation" : "Él permanecerá en la oficina hasta las 6 pm.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He'll remain in the office",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "until" ]
     }, {
       "kind" : "TEXT",
-      "text" : "6 pm, then he'll depart.",
+      "text" : "6 pm.",
       "options" : null
     } ],
-    "sentences" : [ "He'll remain in the office until 6 pm, then he'll depart." ]
+    "sentences" : [ "He'll remain in the office until 6 pm." ]
   }
 }, {
   "_id" : {
@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28a"
   },
-  "title" : "Choosing Between By and Until",
+  "title" : "I'll be helping you until noon.",
   "instructions" : "Elige 'by' o 'until'.",
-  "translation" : "Te estaré esperando hasta el mediodía.",
+  "translation" : "Te estaré ayudando hasta el mediodía.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I'll be expecting you",
+      "text" : "I'll be helping you",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "until" ]
     }, {
       "kind" : "TEXT",
       "text" : "noon.",
       "options" : null
     } ],
-    "sentences" : [ "I'll be expecting you until noon." ]
+    "sentences" : [ "I'll be helping you until noon." ]
   }
 }, {
   "_id" : {
@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28a"
   },
-  "title" : "Choosing Between By and Until",
+  "title" : "We'll travel to London by August.",
   "instructions" : "Elige 'by' o 'until'.",
-  "translation" : "Aterrizaremos en Londres para agosto.",
+  "translation" : "Viajaremos a Londres para agosto.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We'll land in London",
+      "text" : "We'll travel to London",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "by" ]
     }, {
       "kind" : "TEXT",
       "text" : "August.",
       "options" : null
     } ],
-    "sentences" : [ "We'll land in London by August." ]
+    "sentences" : [ "We'll travel to London by August." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28a"
   },
-  "title" : "Choosing Between By and Until",
+  "title" : "The guests need to arrive by 7 pm.",
   "instructions" : "Elige 'by' o 'until'.",
-  "translation" : "Los invitados deben llegar para las 7 pm. La recepción comienza a las 7.",
+  "translation" : "Los invitados deben llegar para las 7 pm.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -497,25 +497,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The guests need to arrive",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "by" ]
     }, {
       "kind" : "TEXT",
-      "text" : "7 pm. The reception starts at 7.",
+      "text" : "7 pm.",
       "options" : null
     } ],
-    "sentences" : [ "The guests need to arrive by 7 pm. The reception starts at 7." ]
+    "sentences" : [ "The guests need to arrive by 7 pm." ]
   }
 } ]

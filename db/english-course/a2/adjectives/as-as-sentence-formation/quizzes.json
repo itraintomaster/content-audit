@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a5"
   },
-  "title" : "'as ... as' Sentence Formation",
+  "title" : "This soup is not as hot as that soup.",
   "instructions" : "Crea oraciones usando 'as ... as' o 'not as ... as'.",
-  "translation" : "Esta sopa no es tan picante como aquella sopa.",
+  "translation" : "Esta sopa no está tan caliente como aquella sopa.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This soup is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "not as spicy as" ]
+      "text" : null,
+      "options" : [ "not as hot as" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / spicy) that soup.",
+      "text" : "(not / hot) that soup.",
       "options" : null
     } ],
-    "sentences" : [ "This soup is not as spicy as that soup." ]
+    "sentences" : [ "This soup is not as hot as that soup." ]
   }
 }, {
   "_id" : {
@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a5"
   },
-  "title" : "'as ... as' Sentence Formation",
+  "title" : "Paris is as dead as Rome.",
   "instructions" : "Crea oraciones usando 'as ... as' o 'not as ... as'.",
-  "translation" : "París es tan romántico como Roma.",
+  "translation" : "París está tan muerto como Roma.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Paris is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "as romantic as" ]
+      "text" : null,
+      "options" : [ "as dead as" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(romantic) Rome.",
+      "text" : "(dead) Rome.",
       "options" : null
     } ],
-    "sentences" : [ "Paris is as romantic as Rome." ]
+    "sentences" : [ "Paris is as dead as Rome." ]
   }
 }, {
   "_id" : {

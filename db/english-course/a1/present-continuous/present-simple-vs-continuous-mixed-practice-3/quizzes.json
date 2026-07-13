@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a1"
   },
-  "title" : "Present simple vs. continuous: mixed practice 3",
+  "title" : "Is it cold outside?",
   "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'.",
-  "translation" : "¿Hace frío dentro?",
+  "translation" : "¿Hace frío afuera?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -757,26 +757,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Is it" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(it / be) cold indoors? (present simple)",
+      "text" : "(it / be) cold outside? (present simple)",
       "options" : null
     } ],
-    "sentences" : [ "Is it cold indoors?" ]
+    "sentences" : [ "Is it cold outside?" ]
   }
 }, {
   "_id" : {
@@ -891,9 +887,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a1"
   },
-  "title" : "Present simple vs. continuous: mixed practice 3",
+  "title" : "It isn't safe.",
   "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'.",
-  "translation" : "No está lluvioso.",
+  "translation" : "No es seguro.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -913,26 +909,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "isn't|is not" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / be) rainy. (present simple)",
+      "text" : "(not / be) safe. (present simple)",
       "options" : null
     } ],
-    "sentences" : [ "It isn't rainy.", "It is not rainy." ]
+    "sentences" : [ "It isn't safe.", "It is not safe." ]
   }
 }, {
   "_id" : {
@@ -943,9 +939,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a1"
   },
-  "title" : "Present simple vs. continuous: mixed practice 3",
+  "title" : "Why is she happy?",
   "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'.",
-  "translation" : "¿Por qué está ella enfadada?",
+  "translation" : "¿Por qué está ella contenta?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -965,26 +961,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is she" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / be) angry? (present simple)",
+      "text" : "(she / be) happy? (present simple)",
       "options" : null
     } ],
-    "sentences" : [ "Why is she angry?" ]
+    "sentences" : [ "Why is she happy?" ]
   }
 }, {
   "_id" : {

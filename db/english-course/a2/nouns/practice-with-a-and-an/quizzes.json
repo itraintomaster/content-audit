@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d259"
   },
-  "title" : "Practice with 'A' and 'An'",
+  "title" : "I have an idea for you.",
   "instructions" : "Completa con 'a' o 'an'.",
-  "translation" : "Estaré allí en un instante.",
+  "translation" : "Tengo una idea para ti.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I will be there in",
+      "text" : "I have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "an" ]
     }, {
       "kind" : "TEXT",
-      "text" : "instant.",
+      "text" : "idea for you.",
       "options" : null
     } ],
-    "sentences" : [ "I will be there in an instant." ]
+    "sentences" : [ "I have an idea for you." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d259"
   },
-  "title" : "Practice with 'A' and 'An'",
+  "title" : "Do they need a reason?",
   "instructions" : "Completa con 'a' o 'an'.",
-  "translation" : "¿Necesitan una herramienta?",
+  "translation" : "¿Necesitan una razón?",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -497,25 +497,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do they need",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "tool?",
+      "text" : "reason?",
       "options" : null
     } ],
-    "sentences" : [ "Do they need a tool?" ]
+    "sentences" : [ "Do they need a reason?" ]
   }
 } ]

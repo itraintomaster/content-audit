@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38c"
   },
-  "title" : "'Wh' questions with regular verbs in the present simple",
+  "title" : "What genre does he like?",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Qué género prefiere él?",
+  "translation" : "¿Qué género le gusta a él?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "What genre",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does he prefer" ]
+      "text" : null,
+      "options" : [ "does he like" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / prefer)?",
+      "text" : "(he / like)?",
       "options" : null
     } ],
-    "sentences" : [ "What genre does he prefer?" ]
+    "sentences" : [ "What genre does he like?" ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38c"
   },
-  "title" : "'Wh' questions with regular verbs in the present simple",
+  "title" : "Why does she think about that?",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Por qué se preocupa ella tanto por eso?",
+  "translation" : "¿Por qué piensa ella en eso?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does she worry" ]
+      "text" : null,
+      "options" : [ "does she think" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / worry) so much about that?",
+      "text" : "(she / think) about that?",
       "options" : null
     } ],
-    "sentences" : [ "Why does she worry so much about that?" ]
+    "sentences" : [ "Why does she think about that?" ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38c"
   },
-  "title" : "'Wh' questions with regular verbs in the present simple",
+  "title" : "What time do we shower?",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿A qué hora partimos?",
+  "translation" : "¿A qué hora nos duchamos?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "What time",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do we depart" ]
+      "text" : null,
+      "options" : [ "do we shower" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(we / depart)?",
+      "text" : "(we / shower)?",
       "options" : null
     } ],
-    "sentences" : [ "What time do we depart?" ]
+    "sentences" : [ "What time do we shower?" ]
   }
 }, {
   "_id" : {

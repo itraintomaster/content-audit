@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
-  "title" : "Omitting Articles for General Statements",
+  "title" : "- pizza is popular everywhere.",
   "instructions" : "Completa el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
-  "translation" : "La pizza es popular en todo el mundo.",
+  "translation" : "La pizza es popular en todas partes.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -237,26 +237,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "pizza is popular worldwide.",
+      "text" : "pizza is popular everywhere.",
       "options" : null
     } ],
-    "sentences" : [ "- pizza is popular worldwide." ]
+    "sentences" : [ "- pizza is popular everywhere." ]
   }
 }, {
   "_id" : {
@@ -267,9 +263,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
-  "title" : "Omitting Articles for General Statements",
+  "title" : "Can you get the pizza?.",
   "instructions" : "Completa el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
-  "translation" : "¿Puedes tomar la pizza?",
+  "translation" : "¿Puedes traer la pizza? (se está enfriando).",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -289,26 +285,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Can you grab",
+      "text" : "Can you get",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
       "text" : "pizza? (it's getting cold).",
       "options" : null
     } ],
-    "sentences" : [ "Can you grab the pizza? ." ]
+    "sentences" : [ "Can you get the pizza?." ]
   }
 }, {
   "_id" : {
@@ -371,9 +367,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
-  "title" : "Omitting Articles for General Statements",
+  "title" : "The dogs that my neighbor owns run a lot.",
   "instructions" : "Completa el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
-  "translation" : "Los perros que tiene mi vecino ladran mucho.",
+  "translation" : "Los perros que tiene mi vecino corren mucho.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -393,26 +389,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
-      "text" : "dogs that my neighbor owns bark a lot.",
+      "text" : "dogs that my neighbor owns run a lot.",
       "options" : null
     } ],
-    "sentences" : [ "The dogs that my neighbor owns bark a lot." ]
+    "sentences" : [ "The dogs that my neighbor owns run a lot." ]
   }
 }, {
   "_id" : {
@@ -423,9 +415,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
-  "title" : "Omitting Articles for General Statements",
+  "title" : "- ice cream is excellent.",
   "instructions" : "Completa el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
-  "translation" : "El helado es delicioso.",
+  "translation" : "El helado es excelente.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -445,26 +437,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "ice cream is delightful.",
+      "text" : "ice cream is excellent.",
       "options" : null
     } ],
-    "sentences" : [ "- ice cream is delightful." ]
+    "sentences" : [ "- ice cream is excellent." ]
   }
 }, {
   "_id" : {
@@ -527,9 +515,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
-  "title" : "Omitting Articles for General Statements",
+  "title" : "- air is good for people.",
   "instructions" : "Completa el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
-  "translation" : "El aire es esencial para respirar.",
+  "translation" : "El aire es bueno para las personas.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -549,26 +537,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "air is essential for breathing.",
+      "text" : "air is good for people.",
       "options" : null
     } ],
-    "sentences" : [ "- air is essential for breathing." ]
+    "sentences" : [ "- air is good for people." ]
   }
 }, {
   "_id" : {
@@ -631,9 +615,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
-  "title" : "Omitting Articles for General Statements",
+  "title" : "- time is unusual.",
   "instructions" : "Completa el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
-  "translation" : "El tiempo es muy valioso.",
+  "translation" : "El tiempo es inusual.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -653,26 +637,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "time is very valuable.",
+      "text" : "time is unusual.",
       "options" : null
     } ],
-    "sentences" : [ "- time is very valuable." ]
+    "sentences" : [ "- time is unusual." ]
   }
 }, {
   "_id" : {
@@ -839,9 +819,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
-  "title" : "Omitting Articles for General Statements",
+  "title" : "- children are usually wild.",
   "instructions" : "Completa el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
-  "translation" : "Los niños suelen portarse bien.",
+  "translation" : "Los niños suelen ser alborotados.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -861,26 +841,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "children are usually well-behaved.",
+      "text" : "children are usually wild.",
       "options" : null
     } ],
-    "sentences" : [ "- children are usually well-behaved." ]
+    "sentences" : [ "- children are usually wild." ]
   }
 }, {
   "_id" : {
@@ -891,9 +867,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
-  "title" : "Omitting Articles for General Statements",
+  "title" : "The children that came to my party danced very well.",
   "instructions" : "Completa el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
-  "translation" : "Los niños que vinieron a mi fiesta se portaron muy bien.",
+  "translation" : "Los niños que vinieron a mi fiesta bailaron muy bien.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -913,26 +889,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
-      "text" : "children that came to my party behaved very well.",
+      "text" : "children that came to my party danced very well.",
       "options" : null
     } ],
-    "sentences" : [ "The children that came to my party behaved very well." ]
+    "sentences" : [ "The children that came to my party danced very well." ]
   }
 }, {
   "_id" : {
@@ -995,9 +967,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25f"
   },
-  "title" : "Omitting Articles for General Statements",
+  "title" : "Did you attend the meetings that were planned?",
   "instructions" : "Completa el espacio con 'the' (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o 'no article' (-) (si estamos hablando en general).",
-  "translation" : "¿Asististe a las reuniones que estaban programadas?",
+  "translation" : "¿Asististe a las reuniones que estaban planificadas?",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -1017,25 +989,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Did you attend",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
-      "text" : "meetings that were scheduled?",
+      "text" : "meetings that were planned?",
       "options" : null
     } ],
-    "sentences" : [ "Did you attend the meetings that were scheduled?" ]
+    "sentences" : [ "Did you attend the meetings that were planned?" ]
   }
 } ]

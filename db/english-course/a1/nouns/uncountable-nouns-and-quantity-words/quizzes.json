@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c7"
   },
-  "title" : "Uncountable Nouns and Quantity Words",
+  "title" : "There's a clock on the counter.",
   "instructions" : "Elige 'a' o 'some'.",
-  "translation" : "Hay una rebanada de pastel en el mostrador para ti.",
+  "translation" : "Hay un reloj en el mostrador.",
   "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "There's",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "slice of pie on the counter for you.",
+      "text" : "clock on the counter.",
       "options" : null
     } ],
-    "sentences" : [ "There's a slice of pie on the counter for you." ]
+    "sentences" : [ "There's a clock on the counter." ]
   }
 }, {
   "_id" : {
@@ -215,7 +215,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c7"
   },
-  "title" : "Uncountable Nouns and Quantity Words",
+  "title" : "He requested a piece of paper.",
   "instructions" : "Elige 'a' o 'some'.",
   "translation" : "Él solicitó una hoja de papel.",
   "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He requested",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "sheet of paper.",
+      "text" : "piece of paper.",
       "options" : null
     } ],
-    "sentences" : [ "He requested a sheet of paper." ]
+    "sentences" : [ "He requested a piece of paper." ]
   }
 }, {
   "_id" : {
@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c7"
   },
-  "title" : "Uncountable Nouns and Quantity Words",
+  "title" : "He ate some spaghetti.",
   "instructions" : "Elige 'a' o 'some'.",
-  "translation" : "Él cocinó un poco de espagueti.",
+  "translation" : "Él comió un poco de espagueti.",
   "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He cooked",
+      "text" : "He ate",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
       "text" : "spaghetti.",
       "options" : null
     } ],
-    "sentences" : [ "He cooked some spaghetti." ]
+    "sentences" : [ "He ate some spaghetti." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c7"
   },
-  "title" : "Uncountable Nouns and Quantity Words",
+  "title" : "He requested some time.",
   "instructions" : "Elige 'a' o 'some'.",
-  "translation" : "Él solicitó algo de información.",
+  "translation" : "Él solicitó algo de tiempo.",
   "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He requested",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
-      "text" : "information.",
+      "text" : "time.",
       "options" : null
     } ],
-    "sentences" : [ "He requested some information." ]
+    "sentences" : [ "He requested some time." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c7"
   },
-  "title" : "Uncountable Nouns and Quantity Words",
+  "title" : "There's some money for you.",
   "instructions" : "Elige 'a' o 'some'.",
-  "translation" : "Hay un poco de pastel en el mostrador para ti.",
+  "translation" : "Hay algo de dinero para ti.",
   "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "There's",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
-      "text" : "pie on the counter for you.",
+      "text" : "money for you.",
       "options" : null
     } ],
-    "sentences" : [ "There's some pie on the counter for you." ]
+    "sentences" : [ "There's some money for you." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c7"
   },
-  "title" : "Uncountable Nouns and Quantity Words",
+  "title" : "He joined a group of friends.",
   "instructions" : "Elige 'a' o 'some'.",
-  "translation" : "Él cocinó una olla de espagueti.",
+  "translation" : "Él se unió a un grupo de amigos.",
   "theoryId" : "a1.06.Quantity_Words_with_Uncountable_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He cooked",
+      "text" : "He joined",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "pot of spaghetti.",
+      "text" : "group of friends.",
       "options" : null
     } ],
-    "sentences" : [ "He cooked a pot of spaghetti." ]
+    "sentences" : [ "He joined a group of friends." ]
   }
 }, {
   "_id" : {

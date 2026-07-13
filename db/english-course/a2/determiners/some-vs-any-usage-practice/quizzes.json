@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d265"
   },
-  "title" : "'Some' vs 'Any': Usage Practice",
+  "title" : "Do you have any goals?",
   "instructions" : "Completa con 'some' o 'any'.",
-  "translation" : "¿Tienes alguna inquietud?",
+  "translation" : "¿Tienes algún objetivo?",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do you have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "any" ]
     }, {
       "kind" : "TEXT",
-      "text" : "concerns?",
+      "text" : "goals?",
       "options" : null
     } ],
-    "sentences" : [ "Do you have any concerns?" ]
+    "sentences" : [ "Do you have any goals?" ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d265"
   },
-  "title" : "'Some' vs 'Any': Usage Practice",
+  "title" : "We want some staff.",
   "instructions" : "Completa con 'some' o 'any'.",
-  "translation" : "Queremos ayuda.",
+  "translation" : "Queremos algo de personal.",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We want",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
-      "text" : "assistance.",
+      "text" : "staff.",
       "options" : null
     } ],
-    "sentences" : [ "We want some assistance." ]
+    "sentences" : [ "We want some staff." ]
   }
 }, {
   "_id" : {
@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d265"
   },
-  "title" : "'Some' vs 'Any': Usage Practice",
+  "title" : "They require some direction.",
   "instructions" : "Completa con 'some' o 'any'.",
-  "translation" : "Ellos requieren ayuda.",
+  "translation" : "Ellos requieren algo de orientación.",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They require",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
-      "text" : "assistance.",
+      "text" : "direction.",
       "options" : null
     } ],
-    "sentences" : [ "They require some assistance." ]
+    "sentences" : [ "They require some direction." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d265"
   },
-  "title" : "'Some' vs 'Any': Usage Practice",
+  "title" : "Do they feel any pain?",
   "instructions" : "Completa con 'some' o 'any'.",
-  "translation" : "¿Necesitan ayuda?",
+  "translation" : "¿Sienten algún dolor?",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Do they require",
+      "text" : "Do they feel",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "any" ]
     }, {
       "kind" : "TEXT",
-      "text" : "assistance?",
+      "text" : "pain?",
       "options" : null
     } ],
-    "sentences" : [ "Do they require any assistance?" ]
+    "sentences" : [ "Do they feel any pain?" ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d265"
   },
-  "title" : "'Some' vs 'Any': Usage Practice",
+  "title" : "She has some shares.",
   "instructions" : "Completa con 'some' o 'any'.",
-  "translation" : "Ella tiene algunos parientes.",
+  "translation" : "Ella tiene algunas acciones.",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She has",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
-      "text" : "relatives.",
+      "text" : "shares.",
       "options" : null
     } ],
-    "sentences" : [ "She has some relatives." ]
+    "sentences" : [ "She has some shares." ]
   }
 }, {
   "_id" : {

@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a2"
   },
-  "title" : "Present simple vs. continuous: mixed practice 4",
+  "title" : "You are great.",
   "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'.",
-  "translation" : "Estás ocupado.",
+  "translation" : "Eres genial.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "are|'re" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) busy. (present simple)",
+      "text" : "(be) great. (present simple)",
       "options" : null
     } ],
-    "sentences" : [ "You are busy.", "You're busy." ]
+    "sentences" : [ "You are great.", "You 're great." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a2"
   },
-  "title" : "Present simple vs. continuous: mixed practice 4",
+  "title" : "He is holding her arm.",
   "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'.",
-  "translation" : "¿Cómo están llegando?",
+  "translation" : "Él le está sosteniendo el brazo.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "How",
+      "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are they arriving" ]
+      "text" : null,
+      "options" : [ "is holding" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / arrive)? (present continuous)",
+      "text" : "(he / hold) her arm.",
       "options" : null
     } ],
-    "sentences" : [ "How are they arriving?" ]
+    "sentences" : [ "He is holding her arm." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a2"
   },
-  "title" : "Present simple vs. continuous: mixed practice 4",
+  "title" : "I eat pasta every day.",
   "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'.",
-  "translation" : "Normalmente como pasta.",
+  "translation" : "Como pasta todos los días.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I usually",
+      "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "eat" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(eat) pasta. (present simple)",
+      "text" : "(eat) pasta every day. (present simple)",
       "options" : null
     } ],
-    "sentences" : [ "I usually eat pasta." ]
+    "sentences" : [ "I eat pasta every day." ]
   }
 }, {
   "_id" : {

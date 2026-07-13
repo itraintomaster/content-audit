@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d279"
   },
-  "title" : "Using 'Somebody' and 'Anybody'",
+  "title" : "She didn't tell anybody the dream.",
   "instructions" : "Escribe 'somebody' o 'anybody'.",
-  "translation" : "Ella no le dijo la verdad a nadie.",
+  "translation" : "Ella no le contó el sueño a nadie.",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She didn't tell",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "anybody" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the truth.",
+      "text" : "the dream.",
       "options" : null
     } ],
-    "sentences" : [ "She didn't tell anybody the truth." ]
+    "sentences" : [ "She didn't tell anybody the dream." ]
   }
 }, {
   "_id" : {
@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d279"
   },
-  "title" : "Using 'Somebody' and 'Anybody'",
+  "title" : "Is anybody present that knows about sightseeing?",
   "instructions" : "Escribe 'somebody' o 'anybody'.",
-  "translation" : "¿Hay alguien presente que sepa de ingeniería?",
+  "translation" : "¿Hay alguien presente que sepa de turismo?",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "anybody" ]
     }, {
       "kind" : "TEXT",
-      "text" : "present that knows about engineering?",
+      "text" : "present that knows about sightseeing?",
       "options" : null
     } ],
-    "sentences" : [ "Is anybody present that knows about engineering?" ]
+    "sentences" : [ "Is anybody present that knows about sightseeing?" ]
   }
 }, {
   "_id" : {

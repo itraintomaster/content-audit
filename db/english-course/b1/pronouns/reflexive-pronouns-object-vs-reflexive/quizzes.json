@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d347"
   },
-  "title" : "Reflexive Pronouns: Object vs. Reflexive",
+  "title" : "Mark saw himself him / himself in the mirror.",
   "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Mark se observó a sí mismo.",
+  "translation" : "Mark se vio a sí mismo en el espejo.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Mark observed",
+      "text" : "Mark saw",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "himself" ]
     }, {
       "kind" : "TEXT",
-      "text" : "him / himself. (Mark observed Mark.)",
+      "text" : "him / himself in the mirror. (Mark saw Mark.)",
       "options" : null
     } ],
-    "sentences" : [ "Mark observed himself him / himself." ]
+    "sentences" : [ "Mark saw himself him / himself in the mirror." ]
   }
 }, {
   "_id" : {

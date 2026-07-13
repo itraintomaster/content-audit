@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d31f"
   },
-  "title" : "Converting to Reported Speech: The Past Simple Tense",
+  "title" : "Robert said that the teachers had had tea.",
   "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con 'Robert said that'. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-  "translation" : "Robert dijo que los profesores habían bebido té.",
+  "translation" : "Robert dijo que los profesores habían tomado té.",
   "theoryId" : "b1.10.How_to_Make_Reported_Speech",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -497,26 +497,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The teachers drank tea.",
+      "text" : "The teachers had tea.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Robert said that the teachers had drunk tea." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Robert said that the teachers had had tea." ]
     } ],
-    "sentences" : [ "Robert said that the teachers had drunk tea." ]
+    "sentences" : [ "Robert said that the teachers had had tea." ]
   }
 }, {
   "_id" : {

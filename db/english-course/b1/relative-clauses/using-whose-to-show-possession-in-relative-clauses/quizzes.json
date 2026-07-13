@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33f"
   },
-  "title" : "Using 'Whose' to Show Possession in Relative Clauses",
+  "title" : "He comforted the cat whose paw was bleeding.",
   "instructions" : "Crea una oración que incluya 'whose'.",
-  "translation" : "Consoló al gato cuya pata estaba herida.",
+  "translation" : "Consoló al gato cuya pata estaba sangrando.",
   "theoryId" : "b1.12.Whose_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -341,26 +341,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He comforted the cat. The cat's paw was injured.",
+      "text" : "He comforted the cat. The cat's paw was bleeding.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He comforted the cat whose paw was injured." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He comforted the cat whose paw was bleeding." ]
     } ],
-    "sentences" : [ "He comforted the cat whose paw was injured." ]
+    "sentences" : [ "He comforted the cat whose paw was bleeding." ]
   }
 }, {
   "_id" : {

@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39d"
   },
-  "title" : "Mixed practice with the present continuous",
+  "title" : "Robert and Susan are coming soon.",
   "instructions" : "Escribe la forma correcta del 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "Robert y Susan llegarán pronto.",
+  "translation" : "Robert y Susan vienen pronto.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Robert and Susan",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are arriving" ]
+      "text" : null,
+      "options" : [ "are coming" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(arrive) soon.",
+      "text" : "(come) soon.",
       "options" : null
     } ],
-    "sentences" : [ "Robert and Susan are arriving soon." ]
+    "sentences" : [ "Robert and Susan are coming soon." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39d"
   },
-  "title" : "Mixed practice with the present continuous",
+  "title" : "He is looking at the camera.",
   "instructions" : "Escribe la forma correcta del 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "Él está sonriendo a la cámara.",
+  "translation" : "Él está mirando a la cámara.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is smiling" ]
+      "text" : null,
+      "options" : [ "is looking" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(smile) at the camera.",
+      "text" : "(look) at the camera.",
       "options" : null
     } ],
-    "sentences" : [ "He is smiling at the camera." ]
+    "sentences" : [ "He is looking at the camera." ]
   }
 }, {
   "_id" : {

@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d373"
   },
-  "title" : "Preposition Usage After Adjectives Part 1",
+  "title" : "The book is very important for society.",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "El libro es muy importante para los investigadores.",
+  "translation" : "El libro es muy importante para la sociedad.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The book is very important",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
-      "text" : "researchers.",
+      "text" : "society.",
       "options" : null
     } ],
-    "sentences" : [ "The book is very important for researchers." ]
+    "sentences" : [ "The book is very important for society." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d373"
   },
-  "title" : "Preposition Usage After Adjectives Part 1",
+  "title" : "The same thing is true of most adults.",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Esa acción es característica de los adultos.",
+  "translation" : "Lo mismo es cierto para la mayoría de los adultos.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "That action is characteristic",
+      "text" : "The same thing is true",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "adults.",
+      "text" : "most adults.",
       "options" : null
     } ],
-    "sentences" : [ "That action is characteristic of adults." ]
+    "sentences" : [ "The same thing is true of most adults." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d373"
   },
-  "title" : "Preposition Usage After Adjectives Part 1",
+  "title" : "He was nasty to the new officer at work.",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Fue desagradable con sus clientes.",
+  "translation" : "Fue desagradable con el nuevo oficial en el trabajo.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He was nasty",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "his clients.",
+      "text" : "the new officer at work.",
       "options" : null
     } ],
-    "sentences" : [ "He was nasty to his clients." ]
+    "sentences" : [ "He was nasty to the new officer at work." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d373"
   },
-  "title" : "Preposition Usage After Adjectives Part 1",
+  "title" : "She is very sorry for the behaviour.",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Ella lamenta mucho el error.",
+  "translation" : "Ella lamenta mucho el comportamiento.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She is very sorry",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for|about" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the error.",
+      "text" : "the behaviour.",
       "options" : null
     } ],
-    "sentences" : [ "She is very sorry for the error.", "She is very sorry about the error." ]
+    "sentences" : [ "She is very sorry for the behaviour.", "She is very sorry about the behaviour." ]
   }
 } ]

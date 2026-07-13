@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d313"
   },
-  "title" : "Passive Voice: Past Simple Tense",
+  "title" : "The patient was helped (by the doctor).",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice).",
-  "translation" : "El paciente fue examinado.",
+  "translation" : "El paciente fue ayudado.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -913,26 +913,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The doctor examined the patient.",
+      "text" : "The doctor helped the patient.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The patient was examined (by the doctor)." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The patient was helped (by the doctor)." ]
     } ],
-    "sentences" : [ "The patient was examined (by the doctor)." ]
+    "sentences" : [ "The patient was helped (by the doctor)." ]
   }
 }, {
   "_id" : {
@@ -995,9 +991,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d313"
   },
-  "title" : "Passive Voice: Past Simple Tense",
+  "title" : "The water was contained (by them).",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice).",
-  "translation" : "El agua fue bebida.",
+  "translation" : "El agua fue contenida.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -1017,25 +1013,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They drank the water.",
+      "text" : "They contained the water.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The water was drunk (by them)." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The water was contained (by them)." ]
     } ],
-    "sentences" : [ "The water was drunk (by them)." ]
+    "sentences" : [ "The water was contained (by them)." ]
   }
 } ]

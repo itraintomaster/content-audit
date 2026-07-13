@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2ca"
   },
-  "title" : "Using 'Already' and 'Yet' with Present Perfect",
+  "title" : "Have they watched the last season yet?",
   "instructions" : "Escribe una oración en present perfect usando 'yet' o 'already'.",
-  "translation" : "¿Ya han visto el último episodio?",
+  "translation" : "¿Ya han visto la última temporada?",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -237,26 +237,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Have they watched the last episode yet" ]
+      "text" : null,
+      "options" : [ "Have they watched the last season yet" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / watch / the last episode)?",
+      "text" : "(they / watch / the last season)?",
       "options" : null
     } ],
-    "sentences" : [ "Have they watched the last episode yet?" ]
+    "sentences" : [ "Have they watched the last season yet?" ]
   }
 }, {
   "_id" : {

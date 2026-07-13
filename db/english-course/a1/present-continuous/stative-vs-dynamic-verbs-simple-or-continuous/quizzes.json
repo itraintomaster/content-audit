@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
-  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "title" : "My sister is going home now.",
   "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-  "translation" : "Mi hermana está cocinando en este momento.",
+  "translation" : "Mi hermana está yendo a casa ahora.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "My sister",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is cooking" ]
+      "text" : null,
+      "options" : [ "is going" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(cook) at the moment.",
+      "text" : "(go) home now.",
       "options" : null
     } ],
-    "sentences" : [ "My sister is cooking at the moment." ]
+    "sentences" : [ "My sister is going home now." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
-  "title" : "Stative vs. dynamic verbs: simple or continuous",
+  "title" : "He needs a new life right now.",
   "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'. Todas las oraciones hablan sobre el presente. No uses contracciones ('short forms').",
-  "translation" : "Él necesita una bicicleta nueva ahora mismo.",
+  "translation" : "Él necesita una nueva vida ahora mismo.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "needs" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(need) a new bicycle right now.",
+      "text" : "(need) a new life right now.",
       "options" : null
     } ],
-    "sentences" : [ "He needs a new bicycle right now." ]
+    "sentences" : [ "He needs a new life right now." ]
   }
 }, {
   "_id" : {

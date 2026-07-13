@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a8"
   },
-  "title" : "Positive and Negative 'Will' Forms",
+  "title" : "He will teach you a game.",
   "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "Él te enseñará matemáticas.",
+  "translation" : "Él te enseñará un juego.",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "will teach" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(teach) you maths.",
+      "text" : "(teach) you a game.",
       "options" : null
     } ],
-    "sentences" : [ "He will teach you maths." ]
+    "sentences" : [ "He will teach you a game." ]
   }
 }, {
   "_id" : {
@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a8"
   },
-  "title" : "Positive and Negative 'Will' Forms",
+  "title" : "They will not go to school.",
   "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "Ellos no nadarán en la piscina.",
+  "translation" : "Ellos no irán a la escuela.",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will not swim" ]
+      "text" : null,
+      "options" : [ "will not go" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / swim) in the pool.",
+      "text" : "(not / go) to school.",
       "options" : null
     } ],
-    "sentences" : [ "They will not swim in the pool." ]
+    "sentences" : [ "They will not go to school." ]
   }
 }, {
   "_id" : {
@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a8"
   },
-  "title" : "Positive and Negative 'Will' Forms",
+  "title" : "I will find shells on the beach.",
   "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "Encontraré leche camino a casa.",
+  "translation" : "Encontraré caracoles en la playa.",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "will find" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(find) some milk on the way home.",
+      "text" : "(find) shells on the beach.",
       "options" : null
     } ],
-    "sentences" : [ "I will find some milk on the way home." ]
+    "sentences" : [ "I will find shells on the beach." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a8"
   },
-  "title" : "Positive and Negative 'Will' Forms",
+  "title" : "She will come to our house later.",
   "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "Ella llegará a nuestra casa más tarde.",
+  "translation" : "Ella vendrá a nuestra casa más tarde.",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will arrive" ]
+      "text" : null,
+      "options" : [ "will come" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(arrive) to our house later.",
+      "text" : "(come) to our house later.",
       "options" : null
     } ],
-    "sentences" : [ "She will arrive to our house later." ]
+    "sentences" : [ "She will come to our house later." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a8"
   },
-  "title" : "Positive and Negative 'Will' Forms",
+  "title" : "You will know soon!",
   "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de 'will'. No uses contracciones.",
-  "translation" : "¡Tendrás éxito pronto!",
+  "translation" : "¡Lo sabrás pronto!",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will succeed" ]
+      "text" : null,
+      "options" : [ "will know" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(succeed) soon!",
+      "text" : "(know) soon!",
       "options" : null
     } ],
-    "sentences" : [ "You will succeed soon!" ]
+    "sentences" : [ "You will know soon!" ]
   }
 }, {
   "_id" : {

@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27d"
   },
-  "title" : "When to use 'Nowhere' and 'Anywhere'",
+  "title" : "She didn't see anywhere interesting on TV.",
   "instructions" : "Escribe 'nowhere' o 'anywhere'.",
-  "translation" : "No vio nada interesante en la televisión.",
+  "translation" : "No vio ningún lugar interesante en la televisión.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She saw",
+      "text" : "She didn't see",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "nowhere" ]
+      "text" : null,
+      "options" : [ "anywhere" ]
     }, {
       "kind" : "TEXT",
       "text" : "interesting on TV.",
       "options" : null
     } ],
-    "sentences" : [ "She saw nowhere interesting on TV." ]
+    "sentences" : [ "She didn't see anywhere interesting on TV." ]
   }
 }, {
   "_id" : {
@@ -111,7 +111,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27d"
   },
-  "title" : "When to use 'Nowhere' and 'Anywhere'",
+  "title" : "There isn't anywhere to park the car around here.",
   "instructions" : "Escribe 'nowhere' o 'anywhere'.",
   "translation" : "No hay dónde aparcar el coche por aquí.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "There is",
+      "text" : "There isn't",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "nowhere" ]
+      "text" : null,
+      "options" : [ "anywhere" ]
     }, {
       "kind" : "TEXT",
       "text" : "to park the car around here.",
       "options" : null
     } ],
-    "sentences" : [ "There is nowhere to park the car around here." ]
+    "sentences" : [ "There isn't anywhere to park the car around here." ]
   }
 }, {
   "_id" : {
@@ -267,7 +267,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27d"
   },
-  "title" : "When to use 'Nowhere' and 'Anywhere'",
+  "title" : "There isn't anywhere he wants to travel.",
   "instructions" : "Escribe 'nowhere' o 'anywhere'.",
   "translation" : "No hay ningún lugar al que quiera viajar.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "There is",
+      "text" : "There isn't",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "nowhere" ]
+      "text" : null,
+      "options" : [ "anywhere" ]
     }, {
       "kind" : "TEXT",
       "text" : "he wants to travel.",
       "options" : null
     } ],
-    "sentences" : [ "There is nowhere he wants to travel." ]
+    "sentences" : [ "There isn't anywhere he wants to travel." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27d"
   },
-  "title" : "When to use 'Nowhere' and 'Anywhere'",
+  "title" : "The cats run anywhere after dinner.",
   "instructions" : "Escribe 'nowhere' o 'anywhere'.",
-  "translation" : "Los gatos no corren a ninguna parte después de cenar.",
+  "translation" : "Los gatos corren a cualquier parte después de cenar.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The cats run",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "nowhere" ]
+      "text" : null,
+      "options" : [ "anywhere" ]
     }, {
       "kind" : "TEXT",
       "text" : "after dinner.",
       "options" : null
     } ],
-    "sentences" : [ "The cats run nowhere after dinner." ]
+    "sentences" : [ "The cats run anywhere after dinner." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d27d"
   },
-  "title" : "When to use 'Nowhere' and 'Anywhere'",
+  "title" : "We didn't travel anywhere long ago.",
   "instructions" : "Escribe 'nowhere' o 'anywhere'.",
-  "translation" : "No hemos viajado a ningún sitio recientemente.",
+  "translation" : "No viajamos a ningún sitio hace mucho tiempo.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -497,25 +497,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We traveled",
+      "text" : "We didn't travel",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "nowhere" ]
+      "text" : null,
+      "options" : [ "anywhere" ]
     }, {
       "kind" : "TEXT",
-      "text" : "recently.",
+      "text" : "long ago.",
       "options" : null
     } ],
-    "sentences" : [ "We traveled nowhere recently." ]
+    "sentences" : [ "We didn't travel anywhere long ago." ]
   }
 } ]

@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d316"
   },
-  "title" : "Passive Voice in Past Continuous Form",
+  "title" : "The new president was being considered today.",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice). No agregues la persona que realizó la acción.",
-  "translation" : "La propuesta estaba siendo considerada.",
+  "translation" : "El nuevo presidente estaba siendo considerado hoy.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -601,26 +601,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We were considering the proposal.",
+      "text" : "We were considering the new president today.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The proposal was being considered." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The new president was being considered today." ]
     } ],
-    "sentences" : [ "The proposal was being considered." ]
+    "sentences" : [ "The new president was being considered today." ]
   }
 }, {
   "_id" : {
@@ -735,9 +731,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d316"
   },
-  "title" : "Passive Voice in Past Continuous Form",
+  "title" : "They were being harboured near the station.",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice). No agregues la persona que realizó la acción.",
-  "translation" : "Ellos estaban siendo observados.",
+  "translation" : "Ellos estaban siendo albergados cerca de la estación.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -757,26 +753,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We were observing them.",
+      "text" : "We were harbouring them near the station.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They were being observed." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "They were being harboured near the station." ]
     } ],
-    "sentences" : [ "They were being observed." ]
+    "sentences" : [ "They were being harboured near the station." ]
   }
 }, {
   "_id" : {
@@ -995,9 +987,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d316"
   },
-  "title" : "Passive Voice in Past Continuous Form",
+  "title" : "She was being checked at the hospital.",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice). No agregues la persona que realizó la acción.",
-  "translation" : "Ella estaba siendo examinada.",
+  "translation" : "Ella estaba siendo revisada en el hospital.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -1017,25 +1009,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The doctor was examining her.",
+      "text" : "The doctor was checking her at the hospital.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She was being examined." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She was being checked at the hospital." ]
     } ],
-    "sentences" : [ "She was being examined." ]
+    "sentences" : [ "She was being checked at the hospital." ]
   }
 } ]

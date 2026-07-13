@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
-  "title" : "Making Requests: Using 'Can' and 'Could'",
+  "title" : "Can you show me your car?",
   "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
-  "translation" : "¿Me puedes prestar tu coche?",
+  "translation" : "¿Me puedes mostrar tu coche?",
   "theoryId" : "a1.10.Can_and_Could_For_Ability",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -341,26 +341,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Informal request: I want you to lend me your car.",
+      "text" : "Informal request: I want you to show me your car.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Can you lend me your car?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Can you show me your car?" ]
     } ],
-    "sentences" : [ "Can you lend me your car?" ]
+    "sentences" : [ "Can you show me your car?" ]
   }
 }, {
   "_id" : {
@@ -527,9 +523,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
-  "title" : "Making Requests: Using 'Can' and 'Could'",
+  "title" : "Informal request : Can I use your phone?",
   "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
-  "translation" : "¿Puedo tomar prestados algunos libros?",
+  "translation" : "¿Puedo usar tu teléfono?",
   "theoryId" : "a1.10.Can_and_Could_For_Ability",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -549,26 +545,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Informal request: I want to borrow some books.",
+      "text" : "Informal request (use / your phone):",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Can I borrow some books?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Can I use your phone?" ]
     } ],
-    "sentences" : [ "Can I borrow some books?" ]
+    "sentences" : [ "Informal request : Can I use your phone?" ]
   }
 }, {
   "_id" : {
@@ -579,9 +571,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
-  "title" : "Making Requests: Using 'Can' and 'Could'",
+  "title" : "Could you give me your car?",
   "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
-  "translation" : "¿Podrías prestarme tu coche?",
+  "translation" : "¿Podrías darme tu coche?",
   "theoryId" : "a1.10.Can_and_Could_For_Ability",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -601,26 +593,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Polite request: I want you to lend me your car.",
+      "text" : "Polite request: I want you to give me your car.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Could you lend me your car?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Could you give me your car?" ]
     } ],
-    "sentences" : [ "Could you lend me your car?" ]
+    "sentences" : [ "Could you give me your car?" ]
   }
 }, {
   "_id" : {
@@ -995,9 +983,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
-  "title" : "Making Requests: Using 'Can' and 'Could'",
+  "title" : "Could I try on this skirt?",
   "instructions" : "Transforma las oraciones para que incluyan 'can' o 'could'.",
-  "translation" : "¿Podría tomar prestados algunos libros?",
+  "translation" : "¿Podría probarme esta pollera?",
   "theoryId" : "a1.10.Can_and_Could_For_Ability",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -1017,25 +1005,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Polite request: I want to borrow some books.",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Could I borrow some books?" ]
+      "text" : null,
+      "options" : [ "Could" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "I try on this skirt?",
       "options" : null
     } ],
-    "sentences" : [ "Could I borrow some books?" ]
+    "sentences" : [ "Could I try on this skirt?" ]
   }
 } ]

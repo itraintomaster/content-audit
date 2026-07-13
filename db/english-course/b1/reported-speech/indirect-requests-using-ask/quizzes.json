@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d327"
   },
-  "title" : "Indirect Requests using 'Ask'",
+  "title" : "She asked me to help her that day.",
   "instructions" : "Transforma el discurso directo a 'reported requests'. Siempre comienza con 'she asked me'.",
-  "translation" : "Me pidió que me ayudara.",
+  "translation" : "Me pidió que la ayudara ese día.",
   "theoryId" : "b1.10.Reported_Requests_with_Ask",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -81,26 +81,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Could you please assist me?",
+      "text" : "Could you please help me today?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She asked me to assist me." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She asked me to help her that day." ]
     } ],
-    "sentences" : [ "She asked me to assist me." ]
+    "sentences" : [ "She asked me to help her that day." ]
   }
 }, {
   "_id" : {

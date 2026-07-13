@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d343"
   },
-  "title" : "Possessive 'of' Rephrasing Practice",
+  "title" : "He is a loyal champion of theirs.",
   "instructions" : "Reescribe la oración para que incluya la preposición 'of'. Necesitas añadir la palabra 'a'. Por ejemplo: Lucy is my friend -> Lucy is a friend of mine.",
-  "translation" : "Él es un casero de ellos.",
+  "translation" : "Él es un fiel campeón de ellos.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -445,26 +445,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He is their landlord.",
+      "text" : "He is their loyal champion.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He is a landlord of theirs." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He is a loyal champion of theirs." ]
     } ],
-    "sentences" : [ "He is a landlord of theirs." ]
+    "sentences" : [ "He is a loyal champion of theirs." ]
   }
 }, {
   "_id" : {

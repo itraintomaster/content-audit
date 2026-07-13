@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2f9"
   },
-  "title" : "Gerund verb patterns: Practice time",
+  "title" : "Painting is his greatest joy in life.",
   "instructions" : "Agrega un gerundio ('verb+ing') a la oración.",
-  "translation" : "Pintar es su mayor pasión.",
+  "translation" : "Pintar es su mayor alegría en la vida.",
   "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -133,26 +133,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Painting" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(paint) is his greatest passion.",
+      "text" : "(paint) is his greatest joy in life.",
       "options" : null
     } ],
-    "sentences" : [ "Painting is his greatest passion." ]
+    "sentences" : [ "Painting is his greatest joy in life." ]
   }
 }, {
   "_id" : {
@@ -735,9 +731,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2f9"
   },
-  "title" : "Gerund verb patterns: Practice time",
+  "title" : "She's good at drawing wild animals and birds.",
   "instructions" : "Agrega un gerundio ('verb+ing') a la oración.",
-  "translation" : "Ella es hábil para dibujar retratos.",
+  "translation" : "Ella es buena dibujando animales salvajes y pájaros.",
   "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -757,26 +753,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She's skilled at",
+      "text" : "She's good at",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "drawing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(draw) portraits.",
+      "text" : "(draw) wild animals and birds.",
       "options" : null
     } ],
-    "sentences" : [ "She's skilled at drawing portraits." ]
+    "sentences" : [ "She's good at drawing wild animals and birds." ]
   }
 }, {
   "_id" : {

@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d225"
   },
-  "title" : "Present Continuous for Temporary Situations",
+  "title" : "The businessmen are working hard this month.",
   "instructions" : "Escribe oraciones con el presente continuo que hablen de situaciones temporales.",
-  "translation" : "Los empleados están trabajando duro este mes.",
+  "translation" : "Los hombres de negocios están trabajando duro este mes.",
   "theoryId" : "a2.01.Present_Continuous_Use_Temporary_Meaning",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -81,26 +81,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The employees / work hard / this month.",
+      "text" : "The businessmen / work hard / this month.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The employees are working hard this month." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The businessmen are working hard this month." ]
     } ],
-    "sentences" : [ "The employees are working hard this month." ]
+    "sentences" : [ "The businessmen are working hard this month." ]
   }
 }, {
   "_id" : {

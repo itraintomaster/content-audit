@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c5"
   },
-  "title" : "Past Participles Irregular - Review 3",
+  "title" : "His religion has implied that he can't do sport.",
   "instructions" : "Escribe la oración en present perfect.",
-  "translation" : "Su ausencia ha implicado que no puede hacer deporte.",
+  "translation" : "Su religión ha implicado que no puede hacer deporte.",
   "theoryId" : "b1.02.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "His absence",
+      "text" : "His religion",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "has implied" ]
     }, {
       "kind" : "TEXT",
       "text" : "(imply) that he can't do sport.",
       "options" : null
     } ],
-    "sentences" : [ "His absence has implied that he can't do sport." ]
+    "sentences" : [ "His religion has implied that he can't do sport." ]
   }
 }, {
   "_id" : {

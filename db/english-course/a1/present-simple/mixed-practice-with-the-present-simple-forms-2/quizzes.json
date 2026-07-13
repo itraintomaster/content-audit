@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d395"
   },
-  "title" : "Mixed practice with the present simple forms 2",
+  "title" : "Are we ready for school now?",
   "instructions" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible.",
-  "translation" : "¿Llegamos tarde a la escuela ahora?",
+  "translation" : "¿Estamos listos para la escuela ahora?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Are we" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(we / be) late for school now?",
+      "text" : "(we / be) ready for school now?",
       "options" : null
     } ],
-    "sentences" : [ "Are we late for school now?" ]
+    "sentences" : [ "Are we ready for school now?" ]
   }
 }, {
   "_id" : {
@@ -735,9 +731,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d395"
   },
-  "title" : "Mixed practice with the present simple forms 2",
+  "title" : "She 's really great.",
   "instructions" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible.",
-  "translation" : "Ella tiene mucha sed.",
+  "translation" : "Ella es realmente genial.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -757,26 +753,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'s" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) really thirsty.",
+      "text" : "(be) really great.",
       "options" : null
     } ],
-    "sentences" : [ "She's really thirsty." ]
+    "sentences" : [ "She 's really great." ]
   }
 }, {
   "_id" : {

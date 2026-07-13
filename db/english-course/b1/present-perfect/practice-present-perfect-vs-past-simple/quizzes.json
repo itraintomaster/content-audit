@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c8"
   },
-  "title" : "Practice: Present Perfect vs. Past Simple",
+  "title" : "Have you ever made lemonade at home?",
   "instructions" : "Escribe la oración en present perfect o past simple. Si no hay una palabra que indique tiempo, la oración se trata de una experiencia de vida.",
-  "translation" : "¿Alguna vez has bebido limonada?",
+  "translation" : "¿Alguna vez has hecho limonada en casa?",
   "theoryId" : "b1.02.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -497,26 +497,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Have you ever drunk" ]
+      "text" : null,
+      "options" : [ "Have you ever made" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / ever / drink) lemonade?",
+      "text" : "(you / ever / make) lemonade at home?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever drunk lemonade?" ]
+    "sentences" : [ "Have you ever made lemonade at home?" ]
   }
 }, {
   "_id" : {

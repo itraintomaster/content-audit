@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
-  "title" : "Using 'was/were going to' to express future in the past",
+  "title" : "The dogs were going to play outside but the yard was too wet.",
   "instructions" : "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
-  "translation" : "Los perros iban a jugar afuera, pero el patio estaba demasiado embarrado.",
+  "translation" : "Los perros iban a jugar afuera, pero el patio estaba demasiado mojado.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The dogs",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "were going to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "play outside but the yard was too muddy.",
+      "text" : "play outside but the yard was too wet.",
       "options" : null
     } ],
-    "sentences" : [ "The dogs were going to play outside but the yard was too muddy." ]
+    "sentences" : [ "The dogs were going to play outside but the yard was too wet." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d3"
   },
-  "title" : "Using 'was/were going to' to express future in the past",
+  "title" : "I was going to attend the union meeting, but it was cancelled.",
   "instructions" : "Crea oraciones utilizando '[was going to]' o '[were going to]'.",
-  "translation" : "Iba a asistir al seminario de historia, pero fue cancelado.",
+  "translation" : "Iba a asistir a la reunión del sindicato, pero fue cancelada.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "was going to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "attend the history seminar, but it was cancelled.",
+      "text" : "attend the union meeting, but it was cancelled.",
       "options" : null
     } ],
-    "sentences" : [ "I was going to attend the history seminar, but it was cancelled." ]
+    "sentences" : [ "I was going to attend the union meeting, but it was cancelled." ]
   }
 }, {
   "_id" : {

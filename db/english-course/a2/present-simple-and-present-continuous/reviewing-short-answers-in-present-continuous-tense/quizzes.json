@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d220"
   },
-  "title" : "Reviewing Short Answers in Present Continuous Tense",
+  "title" : "A: Is spring coming? B: No, it isn't.",
   "instructions" : "Escribe la respuesta corta.",
-  "translation" : "No, no lo es.",
+  "translation" : "A: ¿Está llegando la primavera? B: No, no lo está.",
   "theoryId" : "a2.01.Present_Continuous_Use_Temporary_Meaning",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Is he worrying about the situation? B: No, he",
+      "text" : "A: Is spring coming? B: No, it",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "isn't" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Is he worrying about the situation? B: No, he isn't." ]
+    "sentences" : [ "A: Is spring coming? B: No, it isn't." ]
   }
 }, {
   "_id" : {

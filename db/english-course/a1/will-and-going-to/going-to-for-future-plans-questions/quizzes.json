@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ad"
   },
-  "title" : "'Going to' for Future Plans: Questions",
+  "title" : "What is he going to do tonight?",
   "instructions" : "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
-  "translation" : "¿Qué va a cocinar él?",
+  "translation" : "¿Qué va a hacer él esta noche?",
   "theoryId" : "",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "What",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is he going to cook" ]
+      "text" : null,
+      "options" : [ "is he going to do" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / cook)?",
+      "text" : "(he / do) tonight?",
       "options" : null
     } ],
-    "sentences" : [ "What is he going to cook?" ]
+    "sentences" : [ "What is he going to do tonight?" ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ad"
   },
-  "title" : "'Going to' for Future Plans: Questions",
+  "title" : "Am I going to come?",
   "instructions" : "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
-  "translation" : "¿Voy a ganar?",
+  "translation" : "¿Voy a venir?",
   "theoryId" : "",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -445,26 +445,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Am I going to win" ]
+      "text" : null,
+      "options" : [ "Am I going to come" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(I / win)?",
+      "text" : "(I / come)?",
       "options" : null
     } ],
-    "sentences" : [ "Am I going to win?" ]
+    "sentences" : [ "Am I going to come?" ]
   }
 }, {
   "_id" : {
@@ -627,9 +623,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ad"
   },
-  "title" : "'Going to' for Future Plans: Questions",
+  "title" : "Is she going to find a house?",
   "instructions" : "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
-  "translation" : "¿Va a encontrar ella un nuevo apartamento?",
+  "translation" : "¿Va a encontrar ella una casa?",
   "theoryId" : "",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -649,26 +645,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Is she going to find" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / find) a new apartment?",
+      "text" : "(she / find) a house?",
       "options" : null
     } ],
-    "sentences" : [ "Is she going to find a new apartment?" ]
+    "sentences" : [ "Is she going to find a house?" ]
   }
 }, {
   "_id" : {
@@ -783,9 +775,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ad"
   },
-  "title" : "'Going to' for Future Plans: Questions",
+  "title" : "Why is the beach going to close?",
   "instructions" : "Crea preguntas cerradas (yes/no) y preguntas abiertas ('wh' questions) utilizando 'going to'.",
-  "translation" : "¿Por qué va a costar tanto?",
+  "translation" : "¿Por qué va a cerrar la playa?",
   "theoryId" : "",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -805,26 +797,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is it going to cost" ]
+      "text" : null,
+      "options" : [ "is" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(it / cost) so much?",
+      "text" : "the beach going to close?",
       "options" : null
     } ],
-    "sentences" : [ "Why is it going to cost so much?" ]
+    "sentences" : [ "Why is the beach going to close?" ]
   }
 }, {
   "_id" : {

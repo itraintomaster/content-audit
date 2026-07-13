@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a7"
   },
-  "title" : "Using 'the' with Superlatives",
+  "title" : "You are my - dearest nurse.",
   "instructions" : "Inserta 'the' o '-' si el artículo no es necesario.",
-  "translation" : "Eres mi más querido compañero.",
+  "translation" : "Eres mi más querida enfermera.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You are my",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "dearest companion.",
+      "text" : "dearest nurse.",
       "options" : null
     } ],
-    "sentences" : [ "You are my - dearest companion." ]
+    "sentences" : [ "You are my - dearest nurse." ]
   }
 }, {
   "_id" : {
@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a7"
   },
-  "title" : "Using 'the' with Superlatives",
+  "title" : "Sarah got the lowest score in the test.",
   "instructions" : "Inserta 'the' o '-' si el artículo no es necesario.",
-  "translation" : "Sarah obtuvo la calificación más baja en el examen.",
+  "translation" : "Sarah obtuvo el puntaje más bajo en el examen.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Sarah got",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
-      "text" : "lowest grade in the test.",
+      "text" : "lowest score in the test.",
       "options" : null
     } ],
-    "sentences" : [ "Sarah got the lowest grade in the test." ]
+    "sentences" : [ "Sarah got the lowest score in the test." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a7"
   },
-  "title" : "Using 'the' with Superlatives",
+  "title" : "That is the largest car in the garage.",
   "instructions" : "Inserta 'the' o '-' si el artículo no es necesario.",
-  "translation" : "Ese es el coche más grande del estacionamiento.",
+  "translation" : "Ese es el coche más grande del garaje.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -497,25 +497,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "That is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
-      "text" : "largest car in the parking.",
+      "text" : "largest car in the garage.",
       "options" : null
     } ],
-    "sentences" : [ "That is the largest car in the parking." ]
+    "sentences" : [ "That is the largest car in the garage." ]
   }
 } ]

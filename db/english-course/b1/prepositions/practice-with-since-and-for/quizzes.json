@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d371"
   },
-  "title" : "Practice with 'Since' and 'For'",
+  "title" : "He has been working at that company for a certain time.",
   "instructions" : "Elegir entre 'since' o 'for'.",
-  "translation" : "Él ha estado trabajando en esa compañía por mucho tiempo.",
+  "translation" : "Él ha estado trabajando en esa compañía por cierto tiempo.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He has been working at that company",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
-      "text" : "a long time.",
+      "text" : "a certain time.",
       "options" : null
     } ],
-    "sentences" : [ "He has been working at that company for a long time." ]
+    "sentences" : [ "He has been working at that company for a certain time." ]
   }
 }, {
   "_id" : {

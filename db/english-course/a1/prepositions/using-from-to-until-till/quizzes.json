@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3da"
   },
-  "title" : "Using From ... To / Until / Till",
+  "title" : "We talked from 9am to.",
   "instructions" : "Crea oraciones usando 'from' ... 'to / until / till'.",
-  "translation" : "Cocinamos de 9 a 11 de la mañana.",
+  "translation" : "Hablamos de 9 a 11 de la mañana.",
   "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We began cooking at 9am and we stopped at 11am.We cooked",
+      "text" : "We talked",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "from 9am to|until|till 11am" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "We began cooking at 9am and we stopped at 11am.We cooked from 9am to.", "We began cooking at 9am and we stopped at 11am.We cooked until.", "We began cooking at 9am and we stopped at 11am.We cooked till 11am." ]
+    "sentences" : [ "We talked from 9am to.", "We talked until.", "We talked till 11am." ]
   }
 }, {
   "_id" : {

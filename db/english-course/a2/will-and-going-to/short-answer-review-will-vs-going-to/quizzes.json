@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22b"
   },
-  "title" : "Short Answer Review: 'Will' vs. 'Going to'",
+  "title" : "A: Will the fans cheer? B: Yes, they will.",
   "instructions" : "Escribe la respuesta corta.",
-  "translation" : "Sí, lo harán .",
+  "translation" : "A: ¿Los fans aplaudirán? B: Sí, lo harán.",
   "theoryId" : "a2.02.Going_to_Use_Prediction",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Will the employees be early? B: Yes, they",
+      "text" : "A: Will the fans cheer? B: Yes, they",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "will" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Will the employees be early? B: Yes, they will." ]
+    "sentences" : [ "A: Will the fans cheer? B: Yes, they will." ]
   }
 }, {
   "_id" : {

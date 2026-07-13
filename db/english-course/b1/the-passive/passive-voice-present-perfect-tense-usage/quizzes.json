@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d317"
   },
-  "title" : "Passive Voice: Present Perfect Tense Usage",
+  "title" : "The juice has been made this morning.",
   "instructions" : "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
-  "translation" : "El zumo ha sido bebido.",
+  "translation" : "El zumo ha sido hecho esta mañana.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -185,26 +185,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We have drunk the juice.",
+      "text" : "We have made the juice this morning.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The juice has been drunk." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The juice has been made this morning." ]
     } ],
-    "sentences" : [ "The juice has been drunk." ]
+    "sentences" : [ "The juice has been made this morning." ]
   }
 }, {
   "_id" : {
@@ -215,9 +211,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d317"
   },
-  "title" : "Passive Voice: Present Perfect Tense Usage",
+  "title" : "The research for the class has been finished.",
   "instructions" : "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
-  "translation" : "La tarea ha sido terminada.",
+  "translation" : "Mary ha terminado la investigación para la clase. La investigación para la clase ha sido terminada.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -237,26 +233,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Mary has finished the task.",
+      "text" : "Mary has finished the research for the class.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The task has been finished." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The research for the class has been finished." ]
     } ],
-    "sentences" : [ "The task has been finished." ]
+    "sentences" : [ "The research for the class has been finished." ]
   }
 }, {
   "_id" : {
@@ -995,9 +987,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d317"
   },
-  "title" : "Passive Voice: Present Perfect Tense Usage",
+  "title" : "She has been bitten in the garden.",
   "instructions" : "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
-  "translation" : "Ella ha sido arañada.",
+  "translation" : "Ella ha sido mordida en el jardín.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -1017,25 +1009,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A cat has scratched her.",
+      "text" : "A cat has bitten her in the garden.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She has been scratched." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She has been bitten in the garden." ]
     } ],
-    "sentences" : [ "She has been scratched." ]
+    "sentences" : [ "She has been bitten in the garden." ]
   }
 } ]

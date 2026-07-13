@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Irregular Past Participles - Part 4",
+  "title" : "Have you travelled far before?",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Has viajado al extranjero antes?",
+  "translation" : "¿Has viajado lejos antes?",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -445,26 +445,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Have you travelled" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / travel) abroad before?",
+      "text" : "(you / travel) far before?",
       "options" : null
     } ],
-    "sentences" : [ "Have you travelled abroad before?" ]
+    "sentences" : [ "Have you travelled far before?" ]
   }
 }, {
   "_id" : {
@@ -475,9 +471,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Irregular Past Participles - Part 4",
+  "title" : "Has this required a lot of plastic?",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Ha requerido esto mucho esfuerzo?",
+  "translation" : "¿Ha requerido esto mucho plástico?",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -497,26 +493,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Has this required" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(this / require) a lot of effort?",
+      "text" : "(this / require) a lot of plastic?",
       "options" : null
     } ],
-    "sentences" : [ "Has this required a lot of effort?" ]
+    "sentences" : [ "Has this required a lot of plastic?" ]
   }
 }, {
   "_id" : {
@@ -1099,9 +1091,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d242"
   },
-  "title" : "Irregular Past Participles - Part 4",
+  "title" : "She has not held/hasn't held a full glass.",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "Ella no se ha bebido un vaso lleno.",
+  "translation" : "Ella no ha sostenido un vaso lleno.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -1121,26 +1113,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "has not drunk/hasn't drunk" ]
+      "text" : null,
+      "options" : [ "has not held/hasn't held" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / drink) a full glass.",
+      "text" : "(not / hold) a full glass.",
       "options" : null
     } ],
-    "sentences" : [ "She has not drunk/hasn't drunk a full glass." ]
+    "sentences" : [ "She has not held/hasn't held a full glass." ]
   }
 }, {
   "_id" : {

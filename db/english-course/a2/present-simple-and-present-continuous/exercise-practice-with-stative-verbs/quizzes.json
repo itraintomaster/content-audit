@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d223"
   },
-  "title" : "Exercise: Practice with Stative Verbs",
+  "title" : "He is thinking about his health.",
   "instructions" : "Si es posible, escribe la oración en presente continuo. Si no, usa el presente simple.",
-  "translation" : "Él está pensando en su futuro.",
+  "translation" : "Él está pensando en su salud.",
   "theoryId" : "a2.01.Stative_Verbs",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is thinking" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(think) about his future.",
+      "text" : "(think) about his health.",
       "options" : null
     } ],
-    "sentences" : [ "He is thinking about his future." ]
+    "sentences" : [ "He is thinking about his health." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d223"
   },
-  "title" : "Exercise: Practice with Stative Verbs",
+  "title" : "The cost relies on the team.",
   "instructions" : "Si es posible, escribe la oración en presente continuo. Si no, usa el presente simple.",
-  "translation" : "El costo depende del material.",
+  "translation" : "El costo depende del equipo.",
   "theoryId" : "a2.01.Stative_Verbs",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The cost",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "relies" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(rely) on the material.",
+      "text" : "(rely) on the team.",
       "options" : null
     } ],
-    "sentences" : [ "The cost relies on the material." ]
+    "sentences" : [ "The cost relies on the team." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d223"
   },
-  "title" : "Exercise: Practice with Stative Verbs",
+  "title" : "She knows me well.",
   "instructions" : "Si es posible, escribe la oración en presente continuo. Si no, usa el presente simple.",
-  "translation" : "Ella no está de acuerdo conmigo.",
+  "translation" : "Ella me conoce bien.",
   "theoryId" : "a2.01.Stative_Verbs",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "disagrees" ]
+      "text" : null,
+      "options" : [ "knows" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(disagree) with me.",
+      "text" : "(know) me well.",
       "options" : null
     } ],
-    "sentences" : [ "She disagrees with me." ]
+    "sentences" : [ "She knows me well." ]
   }
 }, {
   "_id" : {

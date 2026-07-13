@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26e"
   },
-  "title" : "Rewrite Sentences with 'No' or 'None'",
+  "title" : "She needs no identification.",
   "instructions" : "Transforma la oración para que incluya 'no' o 'none'. Por ejemplo: She doesn't drink any water -> She drinks no water.",
-  "translation" : "Ella no necesita ayuda.",
+  "translation" : "Ella no necesita identificación.",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -133,26 +133,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She doesn't need any assistance.",
+      "text" : "She doesn't need any identification.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She needs no assistance." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She needs no identification." ]
     } ],
-    "sentences" : [ "She needs no assistance." ]
+    "sentences" : [ "She needs no identification." ]
   }
 }, {
   "_id" : {
@@ -163,9 +159,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26e"
   },
-  "title" : "Rewrite Sentences with 'No' or 'None'",
+  "title" : "They eat no cake.",
   "instructions" : "Transforma la oración para que incluya 'no' o 'none'. Por ejemplo: She doesn't drink any water -> She drinks no water.",
-  "translation" : "Ellos no comen nada del pastel.",
+  "translation" : "Ellos no comen ningún pastel.",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -185,26 +181,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They don't eat any of the cake.",
+      "text" : "They don't eat any cake.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They eat none of the cake." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "They eat no cake." ]
     } ],
-    "sentences" : [ "They eat none of the cake." ]
+    "sentences" : [ "They eat no cake." ]
   }
 }, {
   "_id" : {
@@ -319,9 +311,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26e"
   },
-  "title" : "Rewrite Sentences with 'No' or 'None'",
+  "title" : "She likes no beans.",
   "instructions" : "Transforma la oración para que incluya 'no' o 'none'. Por ejemplo: She doesn't drink any water -> She drinks no water.",
-  "translation" : "A ella no le gusta ninguno de esos.",
+  "translation" : "A ella no le gustan los frijoles.",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -341,26 +333,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She doesn't like any of those.",
+      "text" : "She doesn't like any beans.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She likes none of those." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She likes no beans." ]
     } ],
-    "sentences" : [ "She likes none of those." ]
+    "sentences" : [ "She likes no beans." ]
   }
 }, {
   "_id" : {
@@ -475,9 +463,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26e"
   },
-  "title" : "Rewrite Sentences with 'No' or 'None'",
+  "title" : "She plays no songs of ours.",
   "instructions" : "Transforma la oración para que incluya 'no' o 'none'. Por ejemplo: She doesn't drink any water -> She drinks no water.",
-  "translation" : "Ella no toca ninguna de nuestras canciones.",
+  "translation" : "Ella no toca ninguna canción nuestra.",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -497,26 +485,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She doesn't play any of our songs.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She plays none of our songs." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She plays no songs of ours." ]
     } ],
-    "sentences" : [ "She plays none of our songs." ]
+    "sentences" : [ "She plays no songs of ours." ]
   }
 }, {
   "_id" : {
@@ -527,9 +511,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26e"
   },
-  "title" : "Rewrite Sentences with 'No' or 'None'",
+  "title" : "We see no roofs.",
   "instructions" : "Transforma la oración para que incluya 'no' o 'none'. Por ejemplo: She doesn't drink any water -> She drinks no water.",
-  "translation" : "No vemos a ninguno de ellos.",
+  "translation" : "No vemos ningún techo.",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -549,26 +533,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We don't see any of them.",
+      "text" : "We don't see any roofs.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We see none of them." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "We see no roofs." ]
     } ],
-    "sentences" : [ "We see none of them." ]
+    "sentences" : [ "We see no roofs." ]
   }
 }, {
   "_id" : {
@@ -579,9 +559,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26e"
   },
-  "title" : "Rewrite Sentences with 'No' or 'None'",
+  "title" : "We spell no words.",
   "instructions" : "Transforma la oración para que incluya 'no' o 'none'. Por ejemplo: She doesn't drink any water -> She drinks no water.",
-  "translation" : "No saludamos a ninguno de esos colegas.",
+  "translation" : "No deletreamos ninguna palabra.",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -601,26 +581,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We don't greet any of those colleagues.",
+      "text" : "We don't spell any words.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We greet none of those colleagues." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "We spell no words." ]
     } ],
-    "sentences" : [ "We greet none of those colleagues." ]
+    "sentences" : [ "We spell no words." ]
   }
 }, {
   "_id" : {
@@ -631,7 +607,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26e"
   },
-  "title" : "Rewrite Sentences with 'No' or 'None'",
+  "title" : "I require no time of his.",
   "instructions" : "Transforma la oración para que incluya 'no' o 'none'. Por ejemplo: She doesn't drink any water -> She drinks no water.",
   "translation" : "No requiero nada de su tiempo.",
   "theoryId" : "a2.07.Not_Any_No_None",
@@ -653,26 +629,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I don't require any of his time.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I require none of his time." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "I require no time of his." ]
     } ],
-    "sentences" : [ "I require none of his time." ]
+    "sentences" : [ "I require no time of his." ]
   }
 }, {
   "_id" : {
@@ -735,9 +707,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26e"
   },
-  "title" : "Rewrite Sentences with 'No' or 'None'",
+  "title" : "I understand none of the national rules.",
   "instructions" : "Transforma la oración para que incluya 'no' o 'none'. Por ejemplo: She doesn't drink any water -> She drinks no water.",
-  "translation" : "No entiendo nada de eso.",
+  "translation" : "No entiendo ninguna de las reglas nacionales.",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -757,26 +729,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I don't understand any of it.",
+      "text" : "I don't understand any of the national rules.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I understand none of it." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "I understand none of the national rules." ]
     } ],
-    "sentences" : [ "I understand none of it." ]
+    "sentences" : [ "I understand none of the national rules." ]
   }
 }, {
   "_id" : {
@@ -787,9 +755,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26e"
   },
-  "title" : "Rewrite Sentences with 'No' or 'None'",
+  "title" : "I desire no necklace.",
   "instructions" : "Transforma la oración para que incluya 'no' o 'none'. Por ejemplo: She doesn't drink any water -> She drinks no water.",
-  "translation" : "No deseo nada de eso.",
+  "translation" : "No deseo ningún collar.",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -809,26 +777,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I don't desire any of that.",
+      "text" : "I don't desire any necklace.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I desire none of that." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "I desire no necklace." ]
     } ],
-    "sentences" : [ "I desire none of that." ]
+    "sentences" : [ "I desire no necklace." ]
   }
 }, {
   "_id" : {
@@ -839,7 +803,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26e"
   },
-  "title" : "Rewrite Sentences with 'No' or 'None'",
+  "title" : "He enjoys no stories of ours.",
   "instructions" : "Transforma la oración para que incluya 'no' o 'none'. Por ejemplo: She doesn't drink any water -> She drinks no water.",
   "translation" : "Él no disfruta ninguna de nuestras historias.",
   "theoryId" : "a2.07.Not_Any_No_None",
@@ -861,26 +825,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He doesn't enjoy any of our stories.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He enjoys none of our stories." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He enjoys no stories of ours." ]
     } ],
-    "sentences" : [ "He enjoys none of our stories." ]
+    "sentences" : [ "He enjoys no stories of ours." ]
   }
 }, {
   "_id" : {
@@ -891,9 +851,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26e"
   },
-  "title" : "Rewrite Sentences with 'No' or 'None'",
+  "title" : "We require no belt of yours.",
   "instructions" : "Transforma la oración para que incluya 'no' o 'none'. Por ejemplo: She doesn't drink any water -> She drinks no water.",
-  "translation" : "No necesitamos nada de lo tuyo.",
+  "translation" : "No necesitamos ningún cinturón tuyo.",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -913,26 +873,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We don't require any of yours.",
+      "text" : "We don't require any belt of yours.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We require none of yours." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "We require no belt of yours." ]
     } ],
-    "sentences" : [ "We require none of yours." ]
+    "sentences" : [ "We require no belt of yours." ]
   }
 }, {
   "_id" : {

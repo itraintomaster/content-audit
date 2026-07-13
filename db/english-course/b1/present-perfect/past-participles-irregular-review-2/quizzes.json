@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c4"
   },
-  "title" : "Past Participles Irregular - Review 2",
+  "title" : "He 's refunded all of my money.",
   "instructions" : "Escribe la oración en present perfect.",
-  "translation" : "Él ha donado su dinero.",
+  "translation" : "Él me ha reembolsado todo mi dinero.",
   "theoryId" : "b1.02.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s donated|has donated" ]
+      "text" : null,
+      "options" : [ "'s refunded|has refunded" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(donate) his money away.",
+      "text" : "(refund) all of my money.",
       "options" : null
     } ],
-    "sentences" : [ "He's donated his money away.", "He has donated his money away." ]
+    "sentences" : [ "He 's refunded all of my money.", "He has refunded all of my money." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c4"
   },
-  "title" : "Past Participles Irregular - Review 2",
+  "title" : "They 've embarrassed themselves in front of everyone.",
   "instructions" : "Escribe la oración en present perfect.",
-  "translation" : "Ellos se han lastimado.",
+  "translation" : "Ellos se han avergonzado delante de todos.",
   "theoryId" : "b1.02.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ve injured|have injured" ]
+      "text" : null,
+      "options" : [ "'ve embarrassed|have embarrassed" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(hurt) themselves.",
+      "text" : "(embarrass) themselves in front of everyone.",
       "options" : null
     } ],
-    "sentences" : [ "They've injured themselves.", "They have injured themselves." ]
+    "sentences" : [ "They 've embarrassed themselves in front of everyone.", "They have embarrassed themselves in front of everyone." ]
   }
 }, {
   "_id" : {

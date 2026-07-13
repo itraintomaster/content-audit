@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d23a"
   },
-  "title" : "Past simple irregular verbs - Exercise 4",
+  "title" : "The dog found a cap.",
   "instructions" : "Escribe la forma en 'past simple'.",
-  "translation" : "El perro encontró un hueso.",
+  "translation" : "El perro encontró una gorra.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The dog",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "found" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(find) a bone.",
+      "text" : "(find) a cap.",
       "options" : null
     } ],
-    "sentences" : [ "The dog found a bone." ]
+    "sentences" : [ "The dog found a cap." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d23a"
   },
-  "title" : "Past simple irregular verbs - Exercise 4",
+  "title" : "She wrote a timetable at the library.",
   "instructions" : "Escribe la forma en 'past simple'.",
-  "translation" : "Ella escribió un poema en la biblioteca.",
+  "translation" : "Ella escribió un horario en la biblioteca.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "wrote" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(write) a poem at the library.",
+      "text" : "(write) a timetable at the library.",
       "options" : null
     } ],
-    "sentences" : [ "She wrote a poem at the library." ]
+    "sentences" : [ "She wrote a timetable at the library." ]
   }
 }, {
   "_id" : {

@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d340"
   },
-  "title" : "Relative Clauses with 'When': Expressing Time",
+  "title" : "day / he received the title That was the day when he received the title.",
   "instructions" : "Crea relative clauses con 'when'. Empieza con 'that was the …'.",
-  "translation" : "Ese fue el día en que recibió el premio.",
+  "translation" : "Ese fue el día en que recibió el título.",
   "theoryId" : "b1.12.When_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -445,26 +445,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "day / he received the award",
+      "text" : "day / he received the title",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "That was the day when he received the award." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "That was the day when he received the title." ]
     } ],
-    "sentences" : [ "That was the day when he received the award." ]
+    "sentences" : [ "day / he received the title That was the day when he received the title." ]
   }
 }, {
   "_id" : {

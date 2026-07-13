@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35e"
   },
-  "title" : "Expressing Continuous Change with Comparatives",
+  "title" : "The rope is getting tighter and tighter now.",
   "instructions" : "Crea oraciones usando el tiempo presente continuo de 'get' combinado con un adjetivo comparativo repetido para mostrar énfasis en un cambio continuo.",
-  "translation" : "Esta explicación se está volviendo cada vez más compleja.",
+  "translation" : "La cuerda se está poniendo cada vez más tensa ahora.",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "This explanation",
+      "text" : "The rope",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is getting more and more complex" ]
+      "text" : null,
+      "options" : [ "is getting tighter and tighter" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(complex).",
+      "text" : "(tight) now.",
       "options" : null
     } ],
-    "sentences" : [ "This explanation is getting more and more complex." ]
+    "sentences" : [ "The rope is getting tighter and tighter now." ]
   }
 }, {
   "_id" : {

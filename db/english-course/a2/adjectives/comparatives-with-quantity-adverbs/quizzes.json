@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a4"
   },
-  "title" : "Comparatives with Quantity Adverbs",
+  "title" : "My grandpa is a lot happier than his grandsons.",
   "instructions" : "Crea oraciones usando 'much / a lot / a little / a bit' y un comparativo.",
-  "translation" : "Mi abuelo es mucho más sabio que sus nietos.",
+  "translation" : "Mi abuelo es mucho más feliz que sus nietos.",
   "theoryId" : "a2.11.Use_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "My grandpa is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a lot wiser" ]
+      "text" : null,
+      "options" : [ "a lot happier" ]
     }, {
       "kind" : "TEXT",
-      "text" : "than his grandsons. (a lot / wise)",
+      "text" : "than his grandsons. (a lot / happy)",
       "options" : null
     } ],
-    "sentences" : [ "My grandpa is a lot wiser than his grandsons." ]
+    "sentences" : [ "My grandpa is a lot happier than his grandsons." ]
   }
 }, {
   "_id" : {

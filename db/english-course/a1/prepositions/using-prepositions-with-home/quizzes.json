@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3de"
   },
-  "title" : "Using Prepositions with 'Home'",
+  "title" : "Do you go - home about six?",
   "instructions" : "Completa con: at / -",
-  "translation" : "¿A qué hora vas a casa normalmente?",
+  "translation" : "¿Vas a casa alrededor de las seis?",
   "theoryId" : "a1.09.Prepositions_with_Home",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "What time do you go",
+      "text" : "Do you go",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "home usually?",
+      "text" : "home about six?",
       "options" : null
     } ],
-    "sentences" : [ "What time do you go - home usually?" ]
+    "sentences" : [ "Do you go - home about six?" ]
   }
 }, {
   "_id" : {

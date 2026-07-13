@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2b1"
   },
-  "title" : "Viewpoint and Sequencing Adverbs in Sentences",
+  "title" : "Actually, that plan didn't work.",
   "instructions" : "Agregá los adverbios a las oraciones.",
-  "translation" : "En realidad, ese plan no tuvo éxito.",
+  "translation" : "En realidad, ese plan no funcionó.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -705,26 +705,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "That plan didn't succeed. (actually)",
+      "text" : "That plan didn't work. (actually)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Actually, that plan didn't succeed." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Actually, that plan didn't work." ]
     } ],
-    "sentences" : [ "Actually, that plan didn't succeed." ]
+    "sentences" : [ "Actually, that plan didn't work." ]
   }
 }, {
   "_id" : {
@@ -787,9 +783,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2b1"
   },
-  "title" : "Viewpoint and Sequencing Adverbs in Sentences",
+  "title" : "Of course, we hate purple.",
   "instructions" : "Agregá los adverbios a las oraciones.",
-  "translation" : "Por supuesto, odiamos el brócoli.",
+  "translation" : "Por supuesto, odiamos el morado.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -809,26 +805,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We hate broccoli. (of course)",
+      "text" : "We hate purple. (of course)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Of course, we hate broccoli." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Of course, we hate purple." ]
     } ],
-    "sentences" : [ "Of course, we hate broccoli." ]
+    "sentences" : [ "Of course, we hate purple." ]
   }
 }, {
   "_id" : {

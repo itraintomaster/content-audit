@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d365"
   },
-  "title" : "Adverb Placement Review",
+  "title" : "You possibly took the books to school.",
   "instructions" : "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición 'mid'.",
-  "translation" : "Finalmente llevaste los libros a la escuela.",
+  "translation" : "Posiblemente llevaste los libros a la escuela.",
   "theoryId" : "b1.16.Adverbs_of_Focus_Even",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -133,26 +133,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You took the books to school. (eventually)",
+      "text" : "You took the books to school. (possibly)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You eventually took the books to school." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You possibly took the books to school." ]
     } ],
-    "sentences" : [ "You eventually took the books to school." ]
+    "sentences" : [ "You possibly took the books to school." ]
   }
 }, {
   "_id" : {

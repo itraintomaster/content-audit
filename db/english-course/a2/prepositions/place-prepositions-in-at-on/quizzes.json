@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
-  "title" : "Place Prepositions: In, At, On",
+  "title" : "We searched for the discount on the website.",
   "instructions" : "Escribe 'in', 'at' u 'on'.",
-  "translation" : "Buscamos la receta en el sitio web.",
+  "translation" : "Buscamos el descuento en el sitio web.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We searched for the recipe",
+      "text" : "We searched for the discount",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
       "text" : "the website.",
       "options" : null
     } ],
-    "sentences" : [ "We searched for the recipe on the website." ]
+    "sentences" : [ "We searched for the discount on the website." ]
   }
 }, {
   "_id" : {

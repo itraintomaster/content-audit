@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d320"
   },
-  "title" : "Using the Present Perfect in Reported Speech",
+  "title" : "Robert said that the doctors had finished the operation.",
   "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con 'Robert said that'.",
-  "translation" : "Robert dijo que los médicos habían terminado la cirugía.",
+  "translation" : "Robert dijo que los médicos habían terminado la operación.",
   "theoryId" : "b1.10.How_to_Make_Reported_Speech",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -497,26 +497,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The doctors have finished the surgery.",
+      "text" : "The doctors have finished the operation.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Robert said that the doctors had finished the surgery." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Robert said that the doctors had finished the operation." ]
     } ],
-    "sentences" : [ "Robert said that the doctors had finished the surgery." ]
+    "sentences" : [ "Robert said that the doctors had finished the operation." ]
   }
 }, {
   "_id" : {

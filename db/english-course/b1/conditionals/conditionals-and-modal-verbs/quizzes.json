@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d350"
   },
-  "title" : "Conditionals and Modal Verbs",
+  "title" : "If the post is delayed, we might miss the chance.",
   "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Si el correo se retrasa, podríamos perder la fecha límite.",
+  "translation" : "Si el correo se retrasa, podríamos perder la oportunidad.",
   "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -29,19 +29,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "If the post",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is" ]
     }, {
       "kind" : "TEXT",
@@ -49,14 +49,14 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "might miss" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the deadline. (be / might miss)",
+      "text" : "the chance. (be / might miss)",
       "options" : null
     } ],
-    "sentences" : [ "If the post is delayed, we might miss the deadline." ]
+    "sentences" : [ "If the post is delayed, we might miss the chance." ]
   }
 }, {
   "_id" : {
@@ -607,9 +607,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d350"
   },
-  "title" : "Conditionals and Modal Verbs",
+  "title" : "If they work in this region, they might earn more money.",
   "instructions" : "Crea oraciones condicionales reales futuras usando verbos modales. Recuerda que el verbo modal va en la cláusula principal y que necesitamos el 'present simple' después de 'if'.",
-  "translation" : "Si trabajan horas extras, podrían ganar más dinero.",
+  "translation" : "Si trabajan en esta región, podrían ganar más dinero.",
   "theoryId" : "b1.14.Future_Real_Conditionals_With_Moda_l_Verbs_Might_Can_Must_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -629,34 +629,34 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "If they",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "work" ]
     }, {
       "kind" : "TEXT",
-      "text" : "overtime, they",
+      "text" : "in this region, they",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "might earn" ]
     }, {
       "kind" : "TEXT",
       "text" : "more money. (work / might earn)",
       "options" : null
     } ],
-    "sentences" : [ "If they work overtime, they might earn more money." ]
+    "sentences" : [ "If they work in this region, they might earn more money." ]
   }
 }, {
   "_id" : {

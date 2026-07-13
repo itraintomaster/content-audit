@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d32b"
   },
-  "title" : "Hypothetical Scenarios with 'Would' Review",
+  "title" : "The cat wouldn't bite anyone today.",
   "instructions" : "Utiliza 'would' o 'wouldn't' para hablar sobre escenarios hipotéticos. Si es posible, utiliza la forma abreviada: 'd.",
-  "translation" : "El gato no arañaría a nadie.",
+  "translation" : "El gato no mordería a nadie hoy.",
   "theoryId" : "b1.11.Must_and_Cant_for_Logical_Necessity",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -289,26 +289,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The cat / not / scratch anyone.",
+      "text" : "The cat / not / bite anyone today.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The cat wouldn't scratch anyone." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The cat wouldn't bite anyone today." ]
     } ],
-    "sentences" : [ "The cat wouldn't scratch anyone." ]
+    "sentences" : [ "The cat wouldn't bite anyone today." ]
   }
 }, {
   "_id" : {

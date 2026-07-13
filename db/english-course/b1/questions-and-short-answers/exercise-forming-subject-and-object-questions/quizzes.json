@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2e2"
   },
-  "title" : "Exercise: Forming Subject and Object Questions",
+  "title" : "Who did the doctors at the hospital shock?",
   "instructions" : "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
-  "translation" : "¿A quién examinaron los médicos?",
+  "translation" : "¿A quién conmocionaron los médicos del hospital?",
   "theoryId" : "b1.05.Subject_and_Object_Questions",
   "topicName" : "Questions and short answers",
   "difficulty" : {
@@ -653,26 +653,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The doctors examined the patient. (the patient)",
+      "text" : "The doctors at the hospital shocked the patient. (the patient)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Who did the doctors examine?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Who did the doctors at the hospital shock?" ]
     } ],
-    "sentences" : [ "Who did the doctors examine?" ]
+    "sentences" : [ "Who did the doctors at the hospital shock?" ]
   }
 }, {
   "_id" : {

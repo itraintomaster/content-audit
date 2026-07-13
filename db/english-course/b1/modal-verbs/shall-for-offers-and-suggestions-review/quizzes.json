@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d32e"
   },
-  "title" : "'Shall' for Offers and Suggestions Review",
+  "title" : "Shall I introduce you to my teacher?",
   "instructions" : "Transforma las oraciones en preguntas que incluyan la palabra 'shall'.",
-  "translation" : "¿Te ayudo?",
+  "translation" : "¿Te presento a mi profesor?",
   "theoryId" : "b1.11.Modals_for_Politeness",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -497,26 +497,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Would you like me to assist you?",
+      "text" : "Would you like me to introduce you to my teacher?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Shall I assist you?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Shall I introduce you to my teacher?" ]
     } ],
-    "sentences" : [ "Shall I assist you?" ]
+    "sentences" : [ "Shall I introduce you to my teacher?" ]
   }
 }, {
   "_id" : {
@@ -787,9 +783,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d32e"
   },
-  "title" : "'Shall' for Offers and Suggestions Review",
+  "title" : "Shall we invent something new at the library?",
   "instructions" : "Transforma las oraciones en preguntas que incluyan la palabra 'shall'.",
-  "translation" : "¿Nos reunimos en la biblioteca?",
+  "translation" : "Inventemos algo nuevo en la biblioteca.",
   "theoryId" : "b1.11.Modals_for_Politeness",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -809,26 +805,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Let's gather at the library.",
+      "text" : "Let's invent something new at the library.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Shall we gather at the library?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Shall we invent something new at the library?" ]
     } ],
-    "sentences" : [ "Shall we gather at the library?" ]
+    "sentences" : [ "Shall we invent something new at the library?" ]
   }
 }, {
   "_id" : {

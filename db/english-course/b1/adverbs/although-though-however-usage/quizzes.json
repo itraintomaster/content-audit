@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36c"
   },
-  "title" : "'Although', 'Though', 'However' Usage",
+  "title" : "She read the book. However , she didn't understand the argument.",
   "instructions" : "Crea oraciones utilizando 'though' o 'however'.",
-  "translation" : "Ella leyó el libro. Sin embargo, no entendió la trama.",
+  "translation" : "Ella leyó el libro. Sin embargo, no entendió el argumento.",
   "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She read the book.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "However" ]
     }, {
       "kind" : "TEXT",
-      "text" : ", she didn't understand the plot.",
+      "text" : ", she didn't understand the argument.",
       "options" : null
     } ],
-    "sentences" : [ "She read the book. However, she didn't understand the plot." ]
+    "sentences" : [ "She read the book. However , she didn't understand the argument." ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d36c"
   },
-  "title" : "'Although', 'Though', 'However' Usage",
+  "title" : "The guy worked all week. However , the garden still looked messy.",
   "instructions" : "Crea oraciones utilizando 'though' o 'however'.",
-  "translation" : "El jardinero trabajó toda la semana. Sin embargo, el jardín todavía se veía desordenado.",
+  "translation" : "El tipo trabajó toda la semana. Sin embargo, el jardín todavía se veía desordenado.",
   "theoryId" : "b1.16.Adverbs_for_Linking_Although_Though_However",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The gardener worked all week.",
+      "text" : "The guy worked all week.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "However" ]
     }, {
       "kind" : "TEXT",
       "text" : ", the garden still looked messy.",
       "options" : null
     } ],
-    "sentences" : [ "The gardener worked all week. However, the garden still looked messy." ]
+    "sentences" : [ "The guy worked all week. However , the garden still looked messy." ]
   }
 }, {
   "_id" : {

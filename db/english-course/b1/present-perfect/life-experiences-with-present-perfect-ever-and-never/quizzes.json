@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c6"
   },
-  "title" : "Life Experiences with Present Perfect: 'Ever' and 'Never'",
+  "title" : "I 've never escaped from a wild bear.",
   "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa 'ever' en preguntas y 'never' en oraciones negativas.",
-  "translation" : "Nunca me he encontrado con un oso.",
+  "translation" : "Nunca me he escapado de un oso salvaje.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ve never encountered|have never encountered" ]
+      "text" : null,
+      "options" : [ "'ve never escaped|have never escaped" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(never / encounter) a bear.",
+      "text" : "(never / escape) from a wild bear.",
       "options" : null
     } ],
-    "sentences" : [ "I've never encountered a bear.", "I have never encountered a bear." ]
+    "sentences" : [ "I 've never escaped from a wild bear.", "I have never escaped from a wild bear." ]
   }
 } ]

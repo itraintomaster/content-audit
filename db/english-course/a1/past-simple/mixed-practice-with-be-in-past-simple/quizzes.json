@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b4"
   },
-  "title" : "Mixed Practice with 'be' in Past Simple",
+  "title" : "He was an adult.",
   "instructions" : "Escribe oraciones en pasado simple con el verbo 'be'.",
-  "translation" : "Él era ingeniero.",
+  "translation" : "Él era un adulto.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "was" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) an engineer.",
+      "text" : "(be) an adult.",
       "options" : null
     } ],
-    "sentences" : [ "He was an engineer." ]
+    "sentences" : [ "He was an adult." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b4"
   },
-  "title" : "Mixed Practice with 'be' in Past Simple",
+  "title" : "Was she a good student?",
   "instructions" : "Escribe oraciones en pasado simple con el verbo 'be'.",
-  "translation" : "¿Era ella una buena bailarina?",
+  "translation" : "¿Era ella una buena estudiante?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -341,26 +341,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Was she" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / be) a good dancer?",
+      "text" : "(she / be) a good student?",
       "options" : null
     } ],
-    "sentences" : [ "Was she a good dancer?" ]
+    "sentences" : [ "Was she a good student?" ]
   }
 }, {
   "_id" : {
@@ -527,9 +523,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b4"
   },
-  "title" : "Mixed Practice with 'be' in Past Simple",
+  "title" : "It was a cold night.",
   "instructions" : "Escribe oraciones en pasado simple con el verbo 'be'.",
-  "translation" : "Fue una noche terrible.",
+  "translation" : "Fue una noche fría.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -549,26 +545,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "was" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) a terrible night.",
+      "text" : "(be) a cold night.",
       "options" : null
     } ],
-    "sentences" : [ "It was a terrible night." ]
+    "sentences" : [ "It was a cold night." ]
   }
 }, {
   "_id" : {
@@ -683,9 +679,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b4"
   },
-  "title" : "Mixed Practice with 'be' in Past Simple",
+  "title" : "We weren't at the game.",
   "instructions" : "Escribe oraciones en pasado simple con el verbo 'be'.",
-  "translation" : "Nosotros no estábamos en el aeropuerto.",
+  "translation" : "Nosotros no estábamos en el partido.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -705,26 +701,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "weren't|were not" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / be) at the airport.",
+      "text" : "(not / be) at the game.",
       "options" : null
     } ],
-    "sentences" : [ "We weren't at the airport.", "We were not at the airport." ]
+    "sentences" : [ "We weren't at the game.", "We were not at the game." ]
   }
 }, {
   "_id" : {
@@ -943,9 +939,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b4"
   },
-  "title" : "Mixed Practice with 'be' in Past Simple",
+  "title" : "You weren't a child then.",
   "instructions" : "Escribe oraciones en pasado simple con el verbo 'be'.",
-  "translation" : "Tú no eras enfermera/o entonces.",
+  "translation" : "Tú no eras un niño/una niña entonces.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -965,26 +961,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "weren't|were not" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / be) a nurse then.",
+      "text" : "(not / be) a child then.",
       "options" : null
     } ],
-    "sentences" : [ "You weren't a nurse then.", "You were not a nurse then." ]
+    "sentences" : [ "You weren't a child then.", "You were not a child then." ]
   }
 }, {
   "_id" : {

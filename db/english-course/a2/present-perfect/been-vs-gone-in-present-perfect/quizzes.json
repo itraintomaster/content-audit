@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
-  "title" : "Been vs. Gone in Present Perfect",
+  "title" : "Has Peter gone to volleyball? His bottle isn't here.",
   "instructions" : "Elige entre 'been' o 'gone'.",
-  "translation" : "¿Peter se ha ido al gimnasio? Su botella de agua no está aquí.",
+  "translation" : "¿Peter se ha ido al vóleibol? Su botella no está aquí.",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Has Peter",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "gone" ]
     }, {
       "kind" : "TEXT",
-      "text" : "to the gym? His water bottle isn't here.",
+      "text" : "to volleyball? His bottle isn't here.",
       "options" : null
     } ],
-    "sentences" : [ "Has Peter gone to the gym? His water bottle isn't here." ]
+    "sentences" : [ "Has Peter gone to volleyball? His bottle isn't here." ]
   }
 }, {
   "_id" : {
@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d247"
   },
-  "title" : "Been vs. Gone in Present Perfect",
+  "title" : "The office is empty. The printers have gone.",
   "instructions" : "Elige entre 'been' o 'gone'.",
-  "translation" : "La oficina está vacía. Los empleados se han ido.",
+  "translation" : "La oficina está vacía. Las impresoras ya no están.",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The office is empty. The employees have",
+      "text" : "The office is empty. The printers have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "gone" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "The office is empty. The employees have gone." ]
+    "sentences" : [ "The office is empty. The printers have gone." ]
   }
 }, {
   "_id" : {

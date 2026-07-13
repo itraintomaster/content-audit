@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
-  "title" : "Using Some and Any Correctly",
+  "title" : "They ate some rice.",
   "instructions" : "Completa los espacios en blanco con 'some' o 'any'.",
-  "translation" : "Ellos cocinaron arroz.",
+  "translation" : "Ellos comieron arroz.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They cooked",
+      "text" : "They ate",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
       "text" : "rice.",
       "options" : null
     } ],
-    "sentences" : [ "They cooked some rice." ]
+    "sentences" : [ "They ate some rice." ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
-  "title" : "Using Some and Any Correctly",
+  "title" : "Do they have any problems?",
   "instructions" : "Completa los espacios en blanco con 'some' o 'any'.",
-  "translation" : "¿Tienen tarjetas de crédito?",
+  "translation" : "¿Tienen algún problema?",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do they have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "any" ]
     }, {
       "kind" : "TEXT",
-      "text" : "credit cards?",
+      "text" : "problems?",
       "options" : null
     } ],
-    "sentences" : [ "Do they have any credit cards?" ]
+    "sentences" : [ "Do they have any problems?" ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
-  "title" : "Using Some and Any Correctly",
+  "title" : "We planted some trees.",
   "instructions" : "Completa los espacios en blanco con 'some' o 'any'.",
-  "translation" : "Horneamos pasteles.",
+  "translation" : "Plantamos algunos árboles.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We baked",
+      "text" : "We planted",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
-      "text" : "pies.",
+      "text" : "trees.",
       "options" : null
     } ],
-    "sentences" : [ "We baked some pies." ]
+    "sentences" : [ "We planted some trees." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
-  "title" : "Using Some and Any Correctly",
+  "title" : "They didn't have any time.",
   "instructions" : "Completa los espacios en blanco con 'some' o 'any'.",
-  "translation" : "No recibieron noticias.",
+  "translation" : "No tuvieron tiempo.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They didn't receive",
+      "text" : "They didn't have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "any" ]
     }, {
       "kind" : "TEXT",
-      "text" : "news.",
+      "text" : "time.",
       "options" : null
     } ],
-    "sentences" : [ "They didn't receive any news." ]
+    "sentences" : [ "They didn't have any time." ]
   }
 } ]

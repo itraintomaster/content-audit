@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2fd"
   },
-  "title" : "Direct object identification: A practice exercise",
+  "title" : "We wanted to compete in the event.",
   "instructions" : "Usa 'us + to + infinitive' si se requiere un objeto directo. De lo contrario, usa 'to + infinitive'.",
-  "translation" : "Queríamos participar en el evento.",
+  "translation" : "Queríamos competir en el evento.",
   "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We wanted",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "to participate" ]
+      "text" : null,
+      "options" : [ "to compete" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(participate) in the event.",
+      "text" : "(compete) in the event.",
       "options" : null
     } ],
-    "sentences" : [ "We wanted to participate in the event." ]
+    "sentences" : [ "We wanted to compete in the event." ]
   }
 }, {
   "_id" : {

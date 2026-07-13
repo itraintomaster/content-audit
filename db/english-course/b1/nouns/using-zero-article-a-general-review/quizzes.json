@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d302"
   },
-  "title" : "Using Zero Article: A General Review",
+  "title" : "- old buses produce pollution in large cities.",
   "instructions" : "Escribe 'the' o usa – si no necesitamos ningún artículo.",
-  "translation" : "Los autobuses causan contaminación.",
+  "translation" : "Los autobuses viejos producen contaminación en las grandes ciudades.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -393,26 +393,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "buses cause pollution.",
+      "text" : "old buses produce pollution in large cities.",
       "options" : null
     } ],
-    "sentences" : [ "- buses cause pollution." ]
+    "sentences" : [ "- old buses produce pollution in large cities." ]
   }
 }, {
   "_id" : {
@@ -631,9 +627,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d302"
   },
-  "title" : "Using Zero Article: A General Review",
+  "title" : "Let's analyze the language of conditional sentences.",
   "instructions" : "Escribe 'the' o usa – si no necesitamos ningún artículo.",
-  "translation" : "Analicemos la estructura de las oraciones condicionales.",
+  "translation" : "Analicemos el lenguaje de las oraciones condicionales.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -653,26 +649,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Let's analyze",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
-      "text" : "structure of conditional sentences.",
+      "text" : "language of conditional sentences.",
       "options" : null
     } ],
-    "sentences" : [ "Let's analyze the structure of conditional sentences." ]
+    "sentences" : [ "Let's analyze the language of conditional sentences." ]
   }
 }, {
   "_id" : {

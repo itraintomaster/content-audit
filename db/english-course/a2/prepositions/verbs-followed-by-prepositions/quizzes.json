@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
-  "title" : "Verbs Followed by Prepositions",
+  "title" : "He worried about work.",
   "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
-  "translation" : "Él se estresó por el trabajo.",
+  "translation" : "Él se preocupó por el trabajo.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He stressed",
+      "text" : "He worried",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
       "text" : "work.",
       "options" : null
     } ],
-    "sentences" : [ "He stressed about work." ]
+    "sentences" : [ "He worried about work." ]
   }
 }, {
   "_id" : {

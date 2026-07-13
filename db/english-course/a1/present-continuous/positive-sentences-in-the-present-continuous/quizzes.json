@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d399"
   },
-  "title" : "Positive sentences in the present continuous",
+  "title" : "You are making cookies.",
   "instructions" : "Escribe oraciones afirmativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "Estás horneando galletas.",
+  "translation" : "Estás haciendo galletas.",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are baking" ]
+      "text" : null,
+      "options" : [ "are making" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(bake) cookies.",
+      "text" : "(make) cookies.",
       "options" : null
     } ],
-    "sentences" : [ "You are baking cookies." ]
+    "sentences" : [ "You are making cookies." ]
   }
 }, {
   "_id" : {
@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d399"
   },
-  "title" : "Positive sentences in the present continuous",
+  "title" : "They are going outside.",
   "instructions" : "Escribe oraciones afirmativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "Ellos se están relajando afuera.",
+  "translation" : "Ellos están saliendo afuera.",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are relaxing" ]
+      "text" : null,
+      "options" : [ "are going" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(relax) outside.",
+      "text" : "(go) outside.",
       "options" : null
     } ],
-    "sentences" : [ "They are relaxing outside." ]
+    "sentences" : [ "They are going outside." ]
   }
 }, {
   "_id" : {
@@ -735,7 +735,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d399"
   },
-  "title" : "Positive sentences in the present continuous",
+  "title" : "I am coming late.",
   "instructions" : "Escribe oraciones afirmativas en 'present continuous'. No uses contracciones ('short forms').",
   "translation" : "Estoy llegando tarde.",
   "theoryId" : "a1.02.Present_Continuous_Forms",
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "am arriving" ]
+      "text" : null,
+      "options" : [ "am coming" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(arrive) late.",
+      "text" : "(come) late.",
       "options" : null
     } ],
-    "sentences" : [ "I am arriving late." ]
+    "sentences" : [ "I am coming late." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d399"
   },
-  "title" : "Positive sentences in the present continuous",
+  "title" : "He is getting the newspaper.",
   "instructions" : "Escribe oraciones afirmativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "Él está trayendo el periódico.",
+  "translation" : "Él está buscando el periódico.",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is fetching" ]
+      "text" : null,
+      "options" : [ "is getting" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(fetch) the newspaper.",
+      "text" : "(get) the newspaper.",
       "options" : null
     } ],
-    "sentences" : [ "He is fetching the newspaper." ]
+    "sentences" : [ "He is getting the newspaper." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d399"
   },
-  "title" : "Positive sentences in the present continuous",
+  "title" : "I am making a nice meal.",
   "instructions" : "Escribe oraciones afirmativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "Estoy cocinando una buena comida.",
+  "translation" : "Estoy haciendo una buena comida.",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "am cooking" ]
+      "text" : null,
+      "options" : [ "am making" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(cook) a nice meal.",
+      "text" : "(make) a nice meal.",
       "options" : null
     } ],
-    "sentences" : [ "I am cooking a nice meal." ]
+    "sentences" : [ "I am making a nice meal." ]
   }
 }, {
   "_id" : {

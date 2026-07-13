@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
-  "title" : "Demonstratives: This, That, These, Those",
+  "title" : "He kicked that ball at school!",
   "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "¡Pateó esa pelota muy lejos!",
+  "translation" : "¡Pateó esa pelota en la escuela!",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He kicked",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "that" ]
     }, {
       "kind" : "TEXT",
-      "text" : "ball very far! (The ball is next to the other person.)",
+      "text" : "ball at school! (The ball is next to the other person.)",
       "options" : null
     } ],
-    "sentences" : [ "He kicked that ball very far!" ]
+    "sentences" : [ "He kicked that ball at school!" ]
   }
 }, {
   "_id" : {
@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
-  "title" : "Demonstratives: This, That, These, Those",
+  "title" : "Whose is this book?",
   "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "¿De quién es esta bicicleta?",
+  "translation" : "¿De quién es este libro?",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Whose is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "this" ]
     }, {
       "kind" : "TEXT",
-      "text" : "bike? (The bike is near me.)",
+      "text" : "book? (The book is near me.)",
       "options" : null
     } ],
-    "sentences" : [ "Whose is this bike?" ]
+    "sentences" : [ "Whose is this book?" ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
-  "title" : "Demonstratives: This, That, These, Those",
+  "title" : "That film was great.",
   "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Esa película fue fantástica.",
+  "translation" : "Esa película fue genial.",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -185,26 +185,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "That" ]
     }, {
       "kind" : "TEXT",
-      "text" : "film was fantastic. (we watched the film last night.)",
+      "text" : "film was great. (we watched the film last night.)",
       "options" : null
     } ],
-    "sentences" : [ "That film was fantastic." ]
+    "sentences" : [ "That film was great." ]
   }
 }, {
   "_id" : {
@@ -371,9 +367,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
-  "title" : "Demonstratives: This, That, These, Those",
+  "title" : "These are the best things.",
   "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Estos son los mejores dulces.",
+  "translation" : "Estas son las mejores cosas.",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -393,26 +389,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "These" ]
     }, {
       "kind" : "TEXT",
-      "text" : "are the best sweets. (I'm eating the sweets.)",
+      "text" : "are the best things. (I'm holding the things.)",
       "options" : null
     } ],
-    "sentences" : [ "These are the best sweets." ]
+    "sentences" : [ "These are the best things." ]
   }
 }, {
   "_id" : {
@@ -579,9 +571,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
-  "title" : "Demonstratives: This, That, These, Those",
+  "title" : "This house is very new.",
   "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Esta billetera es muy nueva.",
+  "translation" : "Esta casa es muy nueva.",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -601,26 +593,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "This" ]
     }, {
       "kind" : "TEXT",
-      "text" : "wallet is very new. (I'm holding the wallet.)",
+      "text" : "house is very new. (I'm pointing at the house near me.)",
       "options" : null
     } ],
-    "sentences" : [ "This wallet is very new." ]
+    "sentences" : [ "This house is very new." ]
   }
 }, {
   "_id" : {
@@ -683,9 +671,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
-  "title" : "Demonstratives: This, That, These, Those",
+  "title" : "These books need a new name.",
   "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Estos libros necesitan un nuevo dueño.",
+  "translation" : "Estos libros necesitan un nombre nuevo.",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -705,26 +693,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "These" ]
     }, {
       "kind" : "TEXT",
-      "text" : "books need a new owner. (I'm beside the books.)",
+      "text" : "books need a new name. (I'm beside the books.)",
       "options" : null
     } ],
-    "sentences" : [ "These books need a new owner." ]
+    "sentences" : [ "These books need a new name." ]
   }
 }, {
   "_id" : {
@@ -735,9 +719,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cc"
   },
-  "title" : "Demonstratives: This, That, These, Those",
+  "title" : "Do you know what this colour is?",
   "instructions" : "Completa los espacios en blanco con 'this', 'that', 'these' o 'those'.",
-  "translation" : "¿Sabes qué es este objeto?",
+  "translation" : "¿Sabes qué color es este?",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -757,26 +741,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do you know what",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "this" ]
     }, {
       "kind" : "TEXT",
-      "text" : "object is? (I'm holding the object.)",
+      "text" : "colour is? (I'm pointing at the colour.)",
       "options" : null
     } ],
-    "sentences" : [ "Do you know what this object is?" ]
+    "sentences" : [ "Do you know what this colour is?" ]
   }
 }, {
   "_id" : {

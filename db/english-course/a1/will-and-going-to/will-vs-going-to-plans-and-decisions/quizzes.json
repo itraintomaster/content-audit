@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3af"
   },
-  "title" : "'Will' vs. 'Going to': Plans and Decisions",
+  "title" : "The show? I 'll join too.",
   "instructions" : "¿Es más natural usar 'will' o 'going to'? Escribe oraciones.",
-  "translation" : "¿Vas al concierto? Yo también me apunto entonces.",
+  "translation" : "¿El espectáculo? Yo también me apunto.",
   "theoryId" : "a1.03.Will_or_Going_to_",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You're going to the concert? I",
+      "text" : "The show? I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'ll join|will join" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(join) too then.",
+      "text" : "(join) too.",
       "options" : null
     } ],
-    "sentences" : [ "You're going to the concert? I'll join too then.", "You're going to the concert? I will join too then." ]
+    "sentences" : [ "The show? I 'll join too.", "The show? I will join too." ]
   }
 }, {
   "_id" : {
@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3af"
   },
-  "title" : "'Will' vs. 'Going to': Plans and Decisions",
+  "title" : "I 'll have a coffee, please.",
   "instructions" : "¿Es más natural usar 'will' o 'going to'? Escribe oraciones.",
-  "translation" : "Hmmmm. Tomaré un helado de vainilla, por favor.",
+  "translation" : "Tomaré un café, por favor.",
   "theoryId" : "a1.03.Will_or_Going_to_",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Hmmmm. I",
+      "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'ll have|will have" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(have) a vanilla ice cream, please.",
+      "text" : "(have) a coffee, please.",
       "options" : null
     } ],
-    "sentences" : [ "Hmmmm. I'll have a vanilla ice cream, please.", "Hmmmm. I will have a vanilla ice cream, please." ]
+    "sentences" : [ "I 'll have a coffee, please.", "I will have a coffee, please." ]
   }
 }, {
   "_id" : {
@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3af"
   },
-  "title" : "'Will' vs. 'Going to': Plans and Decisions",
+  "title" : "What are you going to study today?",
   "instructions" : "¿Es más natural usar 'will' o 'going to'? Escribe oraciones.",
-  "translation" : "¿Qué vas a estudiar después de la secundaria?",
+  "translation" : "¿Qué vas a estudiar hoy?",
   "theoryId" : "a1.03.Will_or_Going_to_",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "What",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "are you going to study" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(study) after high school? (I think you have a plan.)",
+      "text" : "(study) today? (I think you have a plan.)",
       "options" : null
     } ],
-    "sentences" : [ "What are you going to study after high school?" ]
+    "sentences" : [ "What are you going to study today?" ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3af"
   },
-  "title" : "'Will' vs. 'Going to': Plans and Decisions",
+  "title" : "Are you going to wear that skirt?",
   "instructions" : "¿Es más natural usar 'will' o 'going to'? Escribe oraciones.",
-  "translation" : "¿Vas a solicitar ese puesto?",
+  "translation" : "¿Vas a usar esa falda?",
   "theoryId" : "a1.03.Will_or_Going_to_",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -393,26 +393,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Are you going to apply" ]
+      "text" : null,
+      "options" : [ "Are you going to wear" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / apply) for that position?",
+      "text" : "(you / wear) that skirt?",
       "options" : null
     } ],
-    "sentences" : [ "Are you going to apply for that position?" ]
+    "sentences" : [ "Are you going to wear that skirt?" ]
   }
 }, {
   "_id" : {
@@ -527,9 +523,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3af"
   },
-  "title" : "'Will' vs. 'Going to': Plans and Decisions",
+  "title" : "She isn't going to attend the party.",
   "instructions" : "¿Es más natural usar 'will' o 'going to'? Escribe oraciones.",
-  "translation" : "Ella no va a asistir a la fiesta. Ya había hecho otros planes.",
+  "translation" : "Ella no va a asistir a la fiesta.",
   "theoryId" : "a1.03.Will_or_Going_to_",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -549,26 +545,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "isn't going to attend|is not going to attend|'s not going to attend" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / attend) the party. She had already made other plans.",
+      "text" : "(not / attend) the party.",
       "options" : null
     } ],
-    "sentences" : [ "She isn't going to attend the party. She had already made other plans.", "She is not going to attend the party. She had already made other plans.", "She's not going to attend the party. She had already made other plans." ]
+    "sentences" : [ "She isn't going to attend the party.", "She is not going to attend the party.", "She 's not going to attend the party." ]
   }
 }, {
   "_id" : {
@@ -579,9 +575,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3af"
   },
-  "title" : "'Will' vs. 'Going to': Plans and Decisions",
+  "title" : "We aren't going to walk home.",
   "instructions" : "¿Es más natural usar 'will' o 'going to'? Escribe oraciones.",
-  "translation" : "No vamos a caminar al parque hoy. Lo decidí antes.",
+  "translation" : "No vamos a ir caminando a casa.",
   "theoryId" : "a1.03.Will_or_Going_to_",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -601,26 +597,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "aren't going to walk|are not going to walk|'re not going to walk" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / walk) to the park today. I decided earlier.",
+      "text" : "(not / walk) home.",
       "options" : null
     } ],
-    "sentences" : [ "We aren't going to walk to the park today. I decided earlier.", "We are not going to walk to the park today. I decided earlier.", "We're not going to walk to the park today. I decided earlier." ]
+    "sentences" : [ "We aren't going to walk home.", "We are not going to walk home.", "We 're not going to walk home." ]
   }
 }, {
   "_id" : {
@@ -683,9 +679,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3af"
   },
-  "title" : "'Will' vs. 'Going to': Plans and Decisions",
+  "title" : "I 'm going to see a movie tonight.",
   "instructions" : "¿Es más natural usar 'will' o 'going to'? Escribe oraciones.",
-  "translation" : "Voy a ver una película en el cine esta noche. Ya he comprado las entradas.",
+  "translation" : "Voy a ver una película esta noche.",
   "theoryId" : "a1.03.Will_or_Going_to_",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -705,26 +701,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'m going to watch|am going to watch" ]
+      "text" : null,
+      "options" : [ "'m going to see|am going to see" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(watch) a movie at the cinema tonight. I've already purchased tickets.",
+      "text" : "(see) a movie tonight.",
       "options" : null
     } ],
-    "sentences" : [ "I'm going to watch a movie at the cinema tonight. I've already purchased tickets.", "I am going to watch a movie at the cinema tonight. I've already purchased tickets." ]
+    "sentences" : [ "I 'm going to see a movie tonight.", "I am going to see a movie tonight." ]
   }
 }, {
   "_id" : {
@@ -735,9 +731,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3af"
   },
-  "title" : "'Will' vs. 'Going to': Plans and Decisions",
+  "title" : "The teachers are going to help students.",
   "instructions" : "¿Es más natural usar 'will' o 'going to'? Escribe oraciones.",
-  "translation" : "Los profesores van a discutir el examen más tarde.",
+  "translation" : "Los profesores van a ayudar a los alumnos.",
   "theoryId" : "a1.03.Will_or_Going_to_",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -757,26 +753,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The teachers",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are going to discuss|'re going to discuss" ]
+      "text" : null,
+      "options" : [ "are going to help|'re going to help" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(discuss) the exam later.",
+      "text" : "(help) students.",
       "options" : null
     } ],
-    "sentences" : [ "The teachers are going to discuss the exam later.", "The teachers're going to discuss the exam later." ]
+    "sentences" : [ "The teachers are going to help students.", "The teachers 're going to help students." ]
   }
 }, {
   "_id" : {
@@ -891,9 +887,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3af"
   },
-  "title" : "'Will' vs. 'Going to': Plans and Decisions",
+  "title" : "The phone is ringing. I 'll answer it.",
   "instructions" : "¿Es más natural usar 'will' o 'going to'? Escribe oraciones.",
-  "translation" : "¡Oh, la obra que quería ver está en el teatro! La veré esta noche.",
+  "translation" : "El teléfono está sonando. Lo contestaré.",
   "theoryId" : "a1.03.Will_or_Going_to_",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -913,26 +909,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Oh, the play I wanted to see is at the theatre! I",
+      "text" : "The phone is ringing. I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll watch|will watch" ]
+      "text" : null,
+      "options" : [ "'ll answer|will answer" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(watch) tonight.",
+      "text" : "(answer) it.",
       "options" : null
     } ],
-    "sentences" : [ "Oh, the play I wanted to see is at the theatre! I'll watch tonight.", "Oh, the play I wanted to see is at the theatre! I will watch tonight." ]
+    "sentences" : [ "The phone is ringing. I 'll answer it.", "The phone is ringing. I will answer it." ]
   }
 }, {
   "_id" : {
@@ -995,9 +991,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3af"
   },
-  "title" : "'Will' vs. 'Going to': Plans and Decisions",
+  "title" : "We 'll eat Chinese food tonight.",
   "instructions" : "¿Es más natural usar 'will' o 'going to'? Escribe oraciones.",
-  "translation" : "Vale, decidamos - comeremos comida china esta noche.",
+  "translation" : "Comeremos comida china esta noche.",
   "theoryId" : "a1.03.Will_or_Going_to_",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -1017,25 +1013,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Okay, let's decide - we",
+      "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'ll eat|will eat" ]
     }, {
       "kind" : "TEXT",
       "text" : "(eat) Chinese food tonight.",
       "options" : null
     } ],
-    "sentences" : [ "Okay, let's decide - we'll eat Chinese food tonight.", "Okay, let's decide - we will eat Chinese food tonight." ]
+    "sentences" : [ "We 'll eat Chinese food tonight.", "We will eat Chinese food tonight." ]
   }
 } ]

@@ -847,9 +847,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d301"
   },
-  "title" : "Article Practice: 'a', 'the', and Zero Article",
+  "title" : "I shattered a vase and cups. The cups matched.",
   "instructions" : "Inserta 'a', 'the' o usa – si no se necesita ningún artículo.",
-  "translation" : "Las tazas se agrietaron.",
+  "translation" : "Las tazas hacían juego.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -869,26 +869,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I shattered a vase and cups.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
-      "text" : "cups cracked.",
+      "text" : "cups matched.",
       "options" : null
     } ],
-    "sentences" : [ "I shattered a vase and cups. The cups cracked." ]
+    "sentences" : [ "I shattered a vase and cups. The cups matched." ]
   }
 }, {
   "_id" : {

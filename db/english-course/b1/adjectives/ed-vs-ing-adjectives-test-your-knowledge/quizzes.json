@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35c"
   },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
+  "title" : "Are you amazed by the wonders of modern science?",
   "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "¿Te fascina la ciencia?",
+  "translation" : "¿Te asombran las maravillas de la ciencia moderna?",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Are you",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "fascinated" ]
+      "text" : null,
+      "options" : [ "amazed" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(fascinated / fascinating) by science?",
+      "text" : "(amazed / amazing) by the wonders of modern science?",
       "options" : null
     } ],
-    "sentences" : [ "Are you fascinated by science?" ]
+    "sentences" : [ "Are you amazed by the wonders of modern science?" ]
   }
 }, {
   "_id" : {
@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35c"
   },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
+  "title" : "She was annoyed by the loud noise.",
   "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "A ella le irritaba el ruido constante.",
+  "translation" : "A ella le molestaba el ruido fuerte.",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She was",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "irritated" ]
+      "text" : null,
+      "options" : [ "annoyed" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(irritated / irritating) by the constant noise.",
+      "text" : "(annoyed / annoying) by the loud noise.",
       "options" : null
     } ],
-    "sentences" : [ "She was irritated by the constant noise." ]
+    "sentences" : [ "She was annoyed by the loud noise." ]
   }
 }, {
   "_id" : {
@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35c"
   },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
+  "title" : "That job is really amazing and demanding.",
   "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "Ese trabajo es realmente agotador y exigente.",
+  "translation" : "Ese trabajo es realmente increíble y exigente.",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "That job is really",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "exhausting" ]
+      "text" : null,
+      "options" : [ "amazing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(exhausted / exhausting) and demanding.",
+      "text" : "(amazed / amazing) and demanding.",
       "options" : null
     } ],
-    "sentences" : [ "That job is really exhausting and demanding." ]
+    "sentences" : [ "That job is really amazing and demanding." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35c"
   },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
+  "title" : "We are excited about the outdoor concert.",
   "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "Estamos emocionados por el concierto.",
+  "translation" : "Estamos emocionados por el concierto al aire libre.",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "thrilled" ]
+      "text" : null,
+      "options" : [ "excited" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(thrilled / thrilling) about the concert.",
+      "text" : "(excited / exciting) about the outdoor concert.",
       "options" : null
     } ],
-    "sentences" : [ "We are thrilled about the concert." ]
+    "sentences" : [ "We are excited about the outdoor concert." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35c"
   },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
+  "title" : "The game was really surprising at the end.",
   "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "El juego fue realmente emocionante.",
+  "translation" : "El juego fue realmente sorprendente al final.",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The game was really",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "thrilling" ]
+      "text" : null,
+      "options" : [ "surprising" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(thrilled / thrilling).",
+      "text" : "(surprised / surprising) at the end.",
       "options" : null
     } ],
-    "sentences" : [ "The game was really thrilling." ]
+    "sentences" : [ "The game was really surprising at the end." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35c"
   },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
+  "title" : "She seems really exhausted today. She had a historic day.",
   "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "Ella parece realmente agotada hoy. Tuvo un día largo.",
+  "translation" : "Ella parece realmente agotada hoy. Tuvo un día histórico.",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She seems really",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "exhausted" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(exhausted / exhausting) today. She had a long day.",
+      "text" : "(exhausted / exhausting) today. She had a historic day.",
       "options" : null
     } ],
-    "sentences" : [ "She seems really exhausted today. She had a long day." ]
+    "sentences" : [ "She seems really exhausted today. She had a historic day." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35c"
   },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
+  "title" : "Are they shocked by the expensive gift?",
   "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "¿Están asombrados por el regalo?",
+  "translation" : "¿Están impactados por el regalo caro?",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Are they",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "astonished" ]
+      "text" : null,
+      "options" : [ "shocked" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(astonished / astonishing) by the gift?",
+      "text" : "(shocked / shocking) by the expensive gift?",
       "options" : null
     } ],
-    "sentences" : [ "Are they astonished by the gift?" ]
+    "sentences" : [ "Are they shocked by the expensive gift?" ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35c"
   },
-  "title" : "-ed vs. -ing Adjectives: Test Your Knowledge",
+  "title" : "What a terrifying nightmare! It's so real!",
   "instructions" : "Selecciona la forma correcta del adjetivo.",
-  "translation" : "¡Qué pesadilla tan aterradora! ¡Es tan vívida!",
+  "translation" : "¡Qué pesadilla tan aterradora! ¡Es tan real!",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "What a",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "terrifying" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(terrified / terrifying) nightmare! It's so vivid!",
+      "text" : "(terrified / terrifying) nightmare! It's so real!",
       "options" : null
     } ],
-    "sentences" : [ "What a terrifying nightmare! It's so vivid!" ]
+    "sentences" : [ "What a terrifying nightmare! It's so real!" ]
   }
 }, {
   "_id" : {

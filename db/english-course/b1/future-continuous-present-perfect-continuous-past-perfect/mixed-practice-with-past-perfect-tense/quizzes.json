@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2df"
   },
-  "title" : "Mixed Practice with Past Perfect Tense",
+  "title" : "They hadn't communicated with each other for ages.",
   "instructions" : "Escribe oraciones en 'past perfect'.",
-  "translation" : "Ellos no habían bebido durante años.",
+  "translation" : "No se habían comunicado entre ellos durante mucho tiempo.",
   "theoryId" : "b1.04.Past_Perfect_Forms_3_Mixed",
   "topicName" : "Future continuous / present perfect continuous / past perfect",
   "difficulty" : {
@@ -653,26 +653,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "they / not / drink for ages.",
+      "text" : "they / not / communicate with each other for ages.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They hadn't drunk for ages." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "They hadn't communicated with each other for ages." ]
     } ],
-    "sentences" : [ "They hadn't drunk for ages." ]
+    "sentences" : [ "They hadn't communicated with each other for ages." ]
   }
 }, {
   "_id" : {
@@ -683,9 +679,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2df"
   },
-  "title" : "Mixed Practice with Past Perfect Tense",
+  "title" : "Had she liked Tom for personal reasons?",
   "instructions" : "Escribe oraciones en 'past perfect'.",
-  "translation" : "¿Le había gustado Tom a ella durante mucho tiempo?",
+  "translation" : "¿Le había gustado Tom a ella por razones personales?",
   "theoryId" : "b1.04.Past_Perfect_Forms_3_Mixed",
   "topicName" : "Future continuous / present perfect continuous / past perfect",
   "difficulty" : {
@@ -705,26 +701,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "she / like Tom for long?",
+      "text" : "she / like Tom for personal reasons?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Had she liked Tom for long?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Had she liked Tom for personal reasons?" ]
     } ],
-    "sentences" : [ "Had she liked Tom for long?" ]
+    "sentences" : [ "Had she liked Tom for personal reasons?" ]
   }
 }, {
   "_id" : {

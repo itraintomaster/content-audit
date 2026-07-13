@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25c"
   },
-  "title" : "Practice with Possessive 's'",
+  "title" : "She found their painters' files.",
   "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Ella encontró los archivos de sus clientes.",
+  "translation" : "Ella encontró los archivos de sus pintores.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She found their",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "clients' files" ]
+      "text" : null,
+      "options" : [ "painters' files" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(files that belong to their clients).",
+      "text" : "(files that belong to their painters).",
       "options" : null
     } ],
-    "sentences" : [ "She found their clients' files." ]
+    "sentences" : [ "She found their painters' files." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25c"
   },
-  "title" : "Practice with Possessive 's'",
+  "title" : "Those are the kings' hats.",
   "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Esos son los sombreros de los caballeros.",
+  "translation" : "Esos son los sombreros de los reyes.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Those are the",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "gentlemen's hats" ]
+      "text" : null,
+      "options" : [ "kings' hats" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(hats that belong to the gentlemen).",
+      "text" : "(hats that belong to the kings).",
       "options" : null
     } ],
-    "sentences" : [ "Those are the gentlemen's hats." ]
+    "sentences" : [ "Those are the kings' hats." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25c"
   },
-  "title" : "Practice with Possessive 's'",
+  "title" : "We read the shop's advertisement.",
   "instructions" : "Cambia la oración para que incluya 's o s'. Por ejemplo: Pregunta: Those are the (shoes that belong to the boys). Respuesta: Those are the boys' shoes.",
-  "translation" : "Leímos los poemas del autor.",
+  "translation" : "Leímos el anuncio de la tienda.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We read the",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "author's poems" ]
+      "text" : null,
+      "options" : [ "shop's advertisement" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(poems that belong to the author).",
+      "text" : "(advertisement that belongs to the shop).",
       "options" : null
     } ],
-    "sentences" : [ "We read the author's poems." ]
+    "sentences" : [ "We read the shop's advertisement." ]
   }
 }, {
   "_id" : {

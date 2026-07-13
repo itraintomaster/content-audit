@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d336"
   },
-  "title" : "Making Polite Requests with Modals",
+  "title" : "Would you arrive quietly at school today?",
   "instructions" : "Haz que las oraciones sean más educadas utilizando 'you' y la palabra entre paréntesis.",
-  "translation" : "¿Llegarías puntualmente?",
+  "translation" : "¿Llegarías en silencio a la escuela hoy?",
   "theoryId" : "b1.11.Modals_for_Politeness",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -185,26 +185,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Arrive promptly! (would)",
+      "text" : "Arrive quietly at school today! (would)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Would you arrive promptly?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Would you arrive quietly at school today?" ]
     } ],
-    "sentences" : [ "Would you arrive promptly?" ]
+    "sentences" : [ "Would you arrive quietly at school today?" ]
   }
 }, {
   "_id" : {
@@ -319,9 +315,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d336"
   },
-  "title" : "Making Polite Requests with Modals",
+  "title" : "Would you help me with this exercise?",
   "instructions" : "Haz que las oraciones sean más educadas utilizando 'you' y la palabra entre paréntesis.",
-  "translation" : "¿Me ayudarías?",
+  "translation" : "¿Me ayudarías con este ejercicio?",
   "theoryId" : "b1.11.Modals_for_Politeness",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -341,26 +337,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Assist me! (would)",
+      "text" : "Help me with this exercise! (would)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Would you assist me?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Would you help me with this exercise?" ]
     } ],
-    "sentences" : [ "Would you assist me?" ]
+    "sentences" : [ "Would you help me with this exercise?" ]
   }
 }, {
   "_id" : {
@@ -371,9 +363,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d336"
   },
-  "title" : "Making Polite Requests with Modals",
+  "title" : "Would you offer me some oil today?",
   "instructions" : "Haz que las oraciones sean más educadas utilizando 'you' y la palabra entre paréntesis.",
-  "translation" : "¿Me ofrecerías algo de ayuda?",
+  "translation" : "¿Me ofrecerías algo de aceite hoy?",
   "theoryId" : "b1.11.Modals_for_Politeness",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -393,26 +385,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Offer me some assistance! (would)",
+      "text" : "Offer me some oil today! (would)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Would you offer me some assistance?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Would you offer me some oil today?" ]
     } ],
-    "sentences" : [ "Would you offer me some assistance?" ]
+    "sentences" : [ "Would you offer me some oil today?" ]
   }
 }, {
   "_id" : {
@@ -631,9 +619,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d336"
   },
-  "title" : "Making Polite Requests with Modals",
+  "title" : "Could you get some snacks for us today?",
   "instructions" : "Haz que las oraciones sean más educadas utilizando 'you' y la palabra entre paréntesis.",
-  "translation" : "¿Podrías conseguir algunos bocadillos?",
+  "translation" : "¿Podrías conseguirnos algunos bocadillos hoy?",
   "theoryId" : "b1.11.Modals_for_Politeness",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -653,26 +641,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Acquire some snacks! (could)",
+      "text" : "Get some snacks for us today! (could)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Could you acquire some snacks?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Could you get some snacks for us today?" ]
     } ],
-    "sentences" : [ "Could you acquire some snacks?" ]
+    "sentences" : [ "Could you get some snacks for us today?" ]
   }
 }, {
   "_id" : {
@@ -943,9 +927,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d336"
   },
-  "title" : "Making Polite Requests with Modals",
+  "title" : "Could you open the gate for us now?",
   "instructions" : "Haz que las oraciones sean más educadas utilizando 'you' y la palabra entre paréntesis.",
-  "translation" : "¿Podrías abrir la puerta?",
+  "translation" : "¿Podrías abrirnos la puerta ahora?",
   "theoryId" : "b1.11.Modals_for_Politeness",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -965,26 +949,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Unlock the gate! (could)",
+      "text" : "Open the gate for us now! (could)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Could you unlock the gate?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Could you open the gate for us now?" ]
     } ],
-    "sentences" : [ "Could you unlock the gate?" ]
+    "sentences" : [ "Could you open the gate for us now?" ]
   }
 }, {
   "_id" : {

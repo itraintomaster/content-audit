@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d244"
   },
-  "title" : "Irregular Past Participles - The Last Set",
+  "title" : "She has felt complete.",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "Ella se ha sentido mal.",
+  "translation" : "Ella se ha sentido plena.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "has felt" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(feel) unwell.",
+      "text" : "(feel) complete.",
       "options" : null
     } ],
-    "sentences" : [ "She has felt unwell." ]
+    "sentences" : [ "She has felt complete." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d244"
   },
-  "title" : "Irregular Past Participles - The Last Set",
+  "title" : "They have liked him since midday.",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "Les ha gustado él desde la infancia.",
+  "translation" : "Les ha gustado él desde el mediodía.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -1017,26 +1017,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "have liked" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(like) him since childhood.",
+      "text" : "(like) him since midday.",
       "options" : null
     } ],
-    "sentences" : [ "They have liked him since childhood." ]
+    "sentences" : [ "They have liked him since midday." ]
   }
 }, {
   "_id" : {
@@ -1047,9 +1047,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d244"
   },
-  "title" : "Irregular Past Participles - The Last Set",
+  "title" : "Has he read the guidebook?",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Ha leído él la novela?",
+  "translation" : "¿Ha leído él la guía turística?",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -1069,26 +1069,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Has he read" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / read) the novel?",
+      "text" : "(he / read) the guidebook?",
       "options" : null
     } ],
-    "sentences" : [ "Has he read the novel?" ]
+    "sentences" : [ "Has he read the guidebook?" ]
   }
 }, {
   "_id" : {

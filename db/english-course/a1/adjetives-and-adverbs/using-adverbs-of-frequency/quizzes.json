@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ec"
   },
-  "title" : "Using adverbs of frequency",
+  "title" : "We always eat eggs every morning.",
   "instructions" : "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
-  "translation" : "Normalmente comemos tostadas y mermelada para el desayuno.",
+  "translation" : "Siempre comemos huevos todas las mañanas.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We eat toast and jam for breakfast. (usually)",
+      "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We usually eat toast and jam for breakfast." ]
+      "text" : null,
+      "options" : [ "always" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "eat eggs every morning.",
       "options" : null
     } ],
-    "sentences" : [ "We usually eat toast and jam for breakfast." ]
+    "sentences" : [ "We always eat eggs every morning." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ec"
   },
-  "title" : "Using adverbs of frequency",
+  "title" : "He never drinks juice in the morning.",
   "instructions" : "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
-  "translation" : "Normalmente bebe jugo por la mañana.",
+  "translation" : "Él nunca bebe jugo por la mañana.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He drinks juice in the morning. (usually)",
+      "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He usually drinks juice in the morning." ]
+      "text" : null,
+      "options" : [ "never" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "drinks juice in the morning.",
       "options" : null
     } ],
-    "sentences" : [ "He usually drinks juice in the morning." ]
+    "sentences" : [ "He never drinks juice in the morning." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ec"
   },
-  "title" : "Using adverbs of frequency",
+  "title" : "She drinks coffee in the morning. She sometimes drinks coffee in the morning.",
   "instructions" : "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
-  "translation" : "Normalmente toman el autobús a la escuela.",
+  "translation" : "A veces ella bebe café por la mañana.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -497,26 +497,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They take the bus to school. (usually)",
+      "text" : "She drinks coffee in the morning. (sometimes)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They usually take the bus to school." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She sometimes drinks coffee in the morning." ]
     } ],
-    "sentences" : [ "They usually take the bus to school." ]
+    "sentences" : [ "She drinks coffee in the morning. She sometimes drinks coffee in the morning." ]
   }
 }, {
   "_id" : {
@@ -683,9 +679,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ec"
   },
-  "title" : "Using adverbs of frequency",
+  "title" : "Mary is at home. Mary is always at home.",
   "instructions" : "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
-  "translation" : "Mary normalmente está en el gimnasio.",
+  "translation" : "Mary siempre está en casa.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -705,26 +701,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Mary is at the gym. (usually)",
+      "text" : "Mary is at home. (always)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Mary is usually at the gym." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Mary is always at home." ]
     } ],
-    "sentences" : [ "Mary is usually at the gym." ]
+    "sentences" : [ "Mary is at home. Mary is always at home." ]
   }
 }, {
   "_id" : {
@@ -735,9 +727,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ec"
   },
-  "title" : "Using adverbs of frequency",
+  "title" : "The students often read books after school.",
   "instructions" : "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
-  "translation" : "Siempre comemos cereal por la mañana.",
+  "translation" : "Los estudiantes a menudo leen libros después de la escuela.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -757,26 +749,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We eat cereal in the morning. (always)",
+      "text" : "The students",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We always eat cereal in the morning." ]
+      "text" : null,
+      "options" : [ "often" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "read books after school.",
       "options" : null
     } ],
-    "sentences" : [ "We always eat cereal in the morning." ]
+    "sentences" : [ "The students often read books after school." ]
   }
 }, {
   "_id" : {
@@ -839,9 +831,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ec"
   },
-  "title" : "Using adverbs of frequency",
+  "title" : "They go to the park. They sometimes go to the park.",
   "instructions" : "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
-  "translation" : "A veces van en bicicleta al parque.",
+  "translation" : "A veces van al parque.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -861,26 +853,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They cycle to the park. (sometimes)",
+      "text" : "They go to the park. (sometimes)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They sometimes cycle to the park." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "They sometimes go to the park." ]
     } ],
-    "sentences" : [ "They sometimes cycle to the park." ]
+    "sentences" : [ "They go to the park. They sometimes go to the park." ]
   }
 }, {
   "_id" : {
@@ -891,9 +879,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ec"
   },
-  "title" : "Using adverbs of frequency",
+  "title" : "I am always in the kitchen.",
   "instructions" : "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo 'be'.",
-  "translation" : "Normalmente estoy en la oficina.",
+  "translation" : "Siempre estoy en la cocina.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -913,26 +901,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I am in the office. (usually)",
+      "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I am usually in the office." ]
+      "text" : null,
+      "options" : [ "am always" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "in the kitchen. (always)",
       "options" : null
     } ],
-    "sentences" : [ "I am usually in the office." ]
+    "sentences" : [ "I am always in the kitchen." ]
   }
 }, {
   "_id" : {

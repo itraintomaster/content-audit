@@ -267,7 +267,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d363"
   },
-  "title" : "Compound Adjectives: Complete the Sentences",
+  "title" : "The train was slow-moving. It hardly went forward.",
   "instructions" : "Elige un adjetivo compuesto de la lista para completar la oración. (English-speaking / well-known / well-educated / part-time / middle-aged / good-looking / last-minute / never-ending / slow-moving / old-fashioned)",
   "translation" : "El tren se movía lentamente. Apenas avanzaba.",
   "theoryId" : "b1.15.Compound_Adjectives",
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The train was",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "slow-moving" ]
     }, {
       "kind" : "TEXT",
-      "text" : ". It barely went forward.",
+      "text" : ". It hardly went forward.",
       "options" : null
     } ],
-    "sentences" : [ "The train was slow-moving. It barely went forward." ]
+    "sentences" : [ "The train was slow-moving. It hardly went forward." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d363"
   },
-  "title" : "Compound Adjectives: Complete the Sentences",
+  "title" : "All the teachers are well-qualified. They all hold doctorate degrees.",
   "instructions" : "Elige un adjetivo compuesto de la lista para completar la oración. (English-speaking / well-known / well-educated / part-time / middle-aged / good-looking / last-minute / never-ending / slow-moving / old-fashioned)",
-  "translation" : "Todos los profesores están bien educados. Todos tienen doctorados.",
+  "translation" : "Todos los profesores están bien cualificados. Todos tienen doctorados.",
   "theoryId" : "b1.15.Compound_Adjectives",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "All the teachers are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "well-educated" ]
+      "text" : null,
+      "options" : [ "well-qualified" ]
     }, {
       "kind" : "TEXT",
       "text" : ". They all hold doctorate degrees.",
       "options" : null
     } ],
-    "sentences" : [ "All the teachers are well-educated. They all hold doctorate degrees." ]
+    "sentences" : [ "All the teachers are well-qualified. They all hold doctorate degrees." ]
   }
 }, {
   "_id" : {

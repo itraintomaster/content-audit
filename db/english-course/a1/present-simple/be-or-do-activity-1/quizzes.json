@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d392"
   },
-  "title" : "'Be' or 'do'? Activity 1",
+  "title" : "He moves his arm.",
   "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-  "translation" : "Él hornea galletas cada mañana. Verbo en infinitivo = hornear",
+  "translation" : "Él mueve su brazo.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He bakes cookies every morning. Verb in infinitive =",
+      "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "bake" ]
+      "text" : null,
+      "options" : [ "moves" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "(move) his arm.",
       "options" : null
     } ],
-    "sentences" : [ "He bakes cookies every morning. Verb in infinitive = bake" ]
+    "sentences" : [ "He moves his arm." ]
   }
 }, {
   "_id" : {
@@ -627,9 +627,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d392"
   },
-  "title" : "'Be' or 'do'? Activity 1",
+  "title" : "He's at school. Verb in infinitive = be",
   "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-  "translation" : "Él está en la biblioteca. Verbo en infinitivo = ser/estar",
+  "translation" : "Él está en la escuela. Verbo en infinitivo = ser/estar",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -649,26 +649,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He's at the library. Verb in infinitive =",
+      "text" : "He's at school. Verb in infinitive =",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "be" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "He's at the library. Verb in infinitive = be" ]
+    "sentences" : [ "He's at school. Verb in infinitive = be" ]
   }
 }, {
   "_id" : {
@@ -731,9 +727,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d392"
   },
-  "title" : "'Be' or 'do'? Activity 1",
+  "title" : "The animals are in the village. Verb in infinitive = be",
   "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-  "translation" : "Los animales están en la jaula correcta. Verbo en infinitivo = ser/estar",
+  "translation" : "Los animales están en el pueblo. Verbo en infinitivo = ser/estar",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -753,26 +749,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The animals are in the correct cage. Verb in infinitive =",
+      "text" : "The animals are in the village. Verb in infinitive =",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "be" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "The animals are in the correct cage. Verb in infinitive = be" ]
+    "sentences" : [ "The animals are in the village. Verb in infinitive = be" ]
   }
 }, {
   "_id" : {
@@ -935,9 +927,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d392"
   },
-  "title" : "'Be' or 'do'? Activity 1",
+  "title" : "We go. Verb in infinitive = go",
   "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: 'be', 'do', 'have', etc.",
-  "translation" : "Nosotros visitamos regularmente las montañas en invierno. Verbo en infinitivo = ir",
+  "translation" : "Nosotros vamos. Verbo en infinitivo = ir",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -957,26 +949,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We regularly visit the mountains in winter. Verb in infinitive =",
+      "text" : "We go. Verb in infinitive =",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "go" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "We regularly visit the mountains in winter. Verb in infinitive = go" ]
+    "sentences" : [ "We go. Verb in infinitive = go" ]
   }
 }, {
   "_id" : {

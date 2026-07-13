@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d321"
   },
-  "title" : "Past Continuous in Reported Statements",
+  "title" : "Robert said that they had been competing in a contest.",
   "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con 'Robert said that'.",
-  "translation" : "Robert dijo que ellos habían estado participando en un concurso.",
+  "translation" : "Robert dijo que ellos habían estado compitiendo en un concurso.",
   "theoryId" : "b1.10.How_to_Make_Reported_Speech",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -913,26 +913,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They were participating in a contest.",
+      "text" : "They were competing in a contest.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Robert said that they had been participating in a contest." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Robert said that they had been competing in a contest." ]
     } ],
-    "sentences" : [ "Robert said that they had been participating in a contest." ]
+    "sentences" : [ "Robert said that they had been competing in a contest." ]
   }
 }, {
   "_id" : {

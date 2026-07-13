@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d300"
   },
-  "title" : "Article Use: A Practice Review",
+  "title" : "She noticed a dog near the busy street.",
   "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Ella adoptó un perro.",
+  "translation" : "Ella notó un perro cerca de la calle concurrida.",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She adopted",
+      "text" : "She noticed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "dog. (The listener doesn't know which dog.)",
+      "text" : "dog near the busy street. (The listener doesn't know which dog.)",
       "options" : null
     } ],
-    "sentences" : [ "She adopted a dog." ]
+    "sentences" : [ "She noticed a dog near the busy street." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d300"
   },
-  "title" : "Article Use: A Practice Review",
+  "title" : "She took the dog that was left near the park.",
   "instructions" : "Completa los espacios en blanco con 'a', 'the', o '-' (sin artículo si no es necesario).",
-  "translation" : "Ella adoptó el perro que fue abandonado cerca del parque.",
+  "translation" : "Ella se llevó el perro que fue dejado cerca del parque.",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She adopted",
+      "text" : "She took",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
-      "text" : "dog that was abandoned near the park.",
+      "text" : "dog that was left near the park.",
       "options" : null
     } ],
-    "sentences" : [ "She adopted the dog that was abandoned near the park." ]
+    "sentences" : [ "She took the dog that was left near the park." ]
   }
 }, {
   "_id" : {

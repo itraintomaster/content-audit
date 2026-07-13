@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d384"
   },
-  "title" : "Affirmative sentences with 'be' in the present simple",
+  "title" : "We are great.",
   "instructions" : "Escribe la forma afirmativa en presente simple del verbo 'be'. No uses contracciones (short forms).",
-  "translation" : "Estamos muy lejos.",
+  "translation" : "Somos geniales.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "are" ]
     }, {
       "kind" : "TEXT",
-      "text" : "far away.",
+      "text" : "great.",
       "options" : null
     } ],
-    "sentences" : [ "We are far away." ]
+    "sentences" : [ "We are great." ]
   }
 }, {
   "_id" : {

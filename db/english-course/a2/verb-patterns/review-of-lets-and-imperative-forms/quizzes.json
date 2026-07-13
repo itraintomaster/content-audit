@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24b"
   },
-  "title" : "Review of 'Let's' and Imperative Forms",
+  "title" : "Don't click that icon all the time.",
   "instructions" : "Transforma las oraciones para que usen 'let's' o el imperativo.",
-  "translation" : "No me aconsejes todo el tiempo.",
+  "translation" : "No hagas clic en ese ícono todo el tiempo.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -913,26 +913,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You shouldn't advise me all the time.",
+      "text" : "You shouldn't click that icon all the time.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Don't advise me all the time." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Don't click that icon all the time." ]
     } ],
-    "sentences" : [ "Don't advise me all the time." ]
+    "sentences" : [ "Don't click that icon all the time." ]
   }
 }, {
   "_id" : {
@@ -943,9 +939,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24b"
   },
-  "title" : "Review of 'Let's' and Imperative Forms",
+  "title" : "Improve your English every day.",
   "instructions" : "Transforma las oraciones para que usen 'let's' o el imperativo.",
-  "translation" : "Confirma la reserva para el lunes.",
+  "translation" : "Mejora tu inglés todos los días.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -965,26 +961,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You should confirm the reservation for Monday.",
+      "text" : "You should improve your English every day.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Confirm the reservation for Monday." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Improve your English every day." ]
     } ],
-    "sentences" : [ "Confirm the reservation for Monday." ]
+    "sentences" : [ "Improve your English every day." ]
   }
 }, {
   "_id" : {

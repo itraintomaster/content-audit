@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a0"
   },
-  "title" : "Present simple vs. continuous: mixed practice 2",
+  "title" : "He is leaving soon.",
   "instructions" : "Escribe las oraciones en 'present simple' o 'present continuous'.",
-  "translation" : "Él llega pronto.",
+  "translation" : "Él se va pronto.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is arriving|'s arriving" ]
+      "text" : null,
+      "options" : [ "is leaving|'s leaving" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(arrive) soon. (present continuous)",
+      "text" : "(leave) soon. (present continuous)",
       "options" : null
     } ],
-    "sentences" : [ "He is arriving soon.", "He's arriving soon." ]
+    "sentences" : [ "He is leaving soon.", "He 's leaving soon." ]
   }
 }, {
   "_id" : {

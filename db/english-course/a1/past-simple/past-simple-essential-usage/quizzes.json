@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3be"
   },
-  "title" : "Past Simple: Essential Usage",
+  "title" : "I came here before 8 am.",
   "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "Llegué aquí antes de las 8 am.",
+  "translation" : "Vine aquí antes de las 8 am.",
   "theoryId" : "a1.04.Past_Simple_Basic_Use",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "arrived" ]
+      "text" : null,
+      "options" : [ "came" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(arrive) here before 8 am.",
+      "text" : "(come) here before 8 am.",
       "options" : null
     } ],
-    "sentences" : [ "I arrived here before 8 am." ]
+    "sentences" : [ "I came here before 8 am." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3be"
   },
-  "title" : "Past Simple: Essential Usage",
+  "title" : "Did she break her arm?",
   "instructions" : "Escribe oraciones usando el 'past simple'.",
-  "translation" : "¿Ella llegó antes del mediodía?",
+  "translation" : "¿Ella se rompió el brazo?",
   "theoryId" : "a1.04.Past_Simple_Basic_Use",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -341,26 +341,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Did she arrive" ]
+      "text" : null,
+      "options" : [ "Did she break" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / arrive) before midday?",
+      "text" : "(she / break) her arm?",
       "options" : null
     } ],
-    "sentences" : [ "Did she arrive before midday?" ]
+    "sentences" : [ "Did she break her arm?" ]
   }
 }, {
   "_id" : {

@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d268"
   },
-  "title" : "'Any' versus 'Any Of': A Practice Exercise",
+  "title" : "We didn't receive any of their congratulations.",
   "instructions" : "Completa con 'any' o 'any of'.",
-  "translation" : "No recibimos nada de su apoyo.",
+  "translation" : "No recibimos ninguna de sus felicitaciones.",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We didn't receive",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "any of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "their support.",
+      "text" : "their congratulations.",
       "options" : null
     } ],
-    "sentences" : [ "We didn't receive any of their support." ]
+    "sentences" : [ "We didn't receive any of their congratulations." ]
   }
 }, {
   "_id" : {

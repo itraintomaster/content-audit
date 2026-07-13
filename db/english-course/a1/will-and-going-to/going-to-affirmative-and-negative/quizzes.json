@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ac"
   },
-  "title" : "'Going to': Affirmative and Negative",
+  "title" : "We aren't going to leave home.",
   "instructions" : "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
-  "translation" : "No vamos a pintar la casa.",
+  "translation" : "No vamos a irnos de casa.",
   "theoryId" : "a1.03.Going_to_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "aren't going to paint|'re not going to paint|are not going to paint" ]
+      "text" : null,
+      "options" : [ "aren't going to leave|'re not going to leave|are not going to leave" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / paint) the house.",
+      "text" : "(not / leave) home.",
       "options" : null
     } ],
-    "sentences" : [ "We aren't going to paint the house.", "We're not going to paint the house.", "We are not going to paint the house." ]
+    "sentences" : [ "We aren't going to leave home.", "We 're not going to leave home.", "We are not going to leave home." ]
   }
 }, {
   "_id" : {
@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ac"
   },
-  "title" : "'Going to': Affirmative and Negative",
+  "title" : "We 're going to see the city.",
   "instructions" : "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
-  "translation" : "Vamos a explorar la ciudad.",
+  "translation" : "Vamos a ver la ciudad.",
   "theoryId" : "a1.03.Going_to_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'re going to explore|are going to explore" ]
+      "text" : null,
+      "options" : [ "'re going to see|are going to see" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(explore) the city.",
+      "text" : "(see) the city.",
       "options" : null
     } ],
-    "sentences" : [ "We're going to explore the city.", "We are going to explore the city." ]
+    "sentences" : [ "We 're going to see the city.", "We are going to see the city." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ac"
   },
-  "title" : "'Going to': Affirmative and Negative",
+  "title" : "He 's going to come tomorrow.",
   "instructions" : "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
-  "translation" : "Él va a llegar al mediodía.",
+  "translation" : "Él va a venir mañana.",
   "theoryId" : "a1.03.Going_to_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s going to arrive|is going to arrive" ]
+      "text" : null,
+      "options" : [ "'s going to come|is going to come" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(arrive) at noon.",
+      "text" : "(come) tomorrow.",
       "options" : null
     } ],
-    "sentences" : [ "He's going to arrive at noon.", "He is going to arrive at noon." ]
+    "sentences" : [ "He 's going to come tomorrow.", "He is going to come tomorrow." ]
   }
 }, {
   "_id" : {
@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ac"
   },
-  "title" : "'Going to': Affirmative and Negative",
+  "title" : "They 're going to buy fruits today.",
   "instructions" : "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
-  "translation" : "Ellos van a comprar algunas frutas en el mercado.",
+  "translation" : "Ellos van a comprar frutas hoy.",
   "theoryId" : "a1.03.Going_to_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'re going to buy|are going to buy" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(buy) some fruits from the market.",
+      "text" : "(buy) fruits today.",
       "options" : null
     } ],
-    "sentences" : [ "They're going to buy some fruits from the market.", "They are going to buy some fruits from the market." ]
+    "sentences" : [ "They 're going to buy fruits today.", "They are going to buy fruits today." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ac"
   },
-  "title" : "'Going to': Affirmative and Negative",
+  "title" : "They 're not going to answer questions.",
   "instructions" : "Escribe oraciones usando las formas afirmativas y negativas de 'be going to'.",
-  "translation" : "Ellos no van a cantar ninguna canción.",
+  "translation" : "Ellos no van a responder preguntas.",
   "theoryId" : "a1.03.Going_to_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'re not going to sing|are not going to sing|aren't going to sing" ]
+      "text" : null,
+      "options" : [ "'re not going to answer|are not going to answer|aren't going to answer" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / take) any song.",
+      "text" : "(not / answer) questions.",
       "options" : null
     } ],
-    "sentences" : [ "They're not going to sing any song.", "They are not going to sing any song.", "They aren't going to sing any song." ]
+    "sentences" : [ "They 're not going to answer questions.", "They are not going to answer questions.", "They aren't going to answer questions." ]
   }
 }, {
   "_id" : {

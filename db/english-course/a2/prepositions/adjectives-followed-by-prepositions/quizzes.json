@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjectives Followed by Prepositions",
+  "title" : "She's brilliant at playing the piano.",
   "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
-  "translation" : "Ella es hábil tocando el piano.",
+  "translation" : "Ella es brillante tocando el piano.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She's skilled",
+      "text" : "She's brilliant",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
       "text" : "playing the piano.",
       "options" : null
     } ],
-    "sentences" : [ "She's skilled at playing the piano." ]
+    "sentences" : [ "She's brilliant at playing the piano." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjectives Followed by Prepositions",
+  "title" : "They are really glad about the concert.",
   "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
-  "translation" : "Están muy entusiasmados con el concierto.",
+  "translation" : "Están muy contentos con el concierto.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They are really enthusiastic",
+      "text" : "They are really glad",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
       "text" : "the concert.",
       "options" : null
     } ],
-    "sentences" : [ "They are really enthusiastic about the concert." ]
+    "sentences" : [ "They are really glad about the concert." ]
   }
 }, {
   "_id" : {
@@ -319,7 +319,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjectives Followed by Prepositions",
+  "title" : "Are you interested in science?",
   "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
   "translation" : "¿Te interesa la ciencia?",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Are you keen",
+      "text" : "Are you interested",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "science?",
       "options" : null
     } ],
-    "sentences" : [ "Are you keen in science?" ]
+    "sentences" : [ "Are you interested in science?" ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjectives Followed by Prepositions",
+  "title" : "Her opinion is opposite to mine.",
   "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
-  "translation" : "Robert está comprometido con Susan.",
+  "translation" : "Su opinión es opuesta a la mía.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Robert is engaged",
+      "text" : "Her opinion is opposite",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "Susan.",
+      "text" : "mine.",
       "options" : null
     } ],
-    "sentences" : [ "Robert is engaged to Susan." ]
+    "sentences" : [ "Her opinion is opposite to mine." ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjectives Followed by Prepositions",
+  "title" : "Were you interested in the news?",
   "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
-  "translation" : "¿Estaban asombrados por las noticias?",
+  "translation" : "¿Estabas interesado en las noticias?",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Were you astonished",
+      "text" : "Were you interested",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "about" ]
+      "text" : null,
+      "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "the news?",
       "options" : null
     } ],
-    "sentences" : [ "Were you astonished about the news?" ]
+    "sentences" : [ "Were you interested in the news?" ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjectives Followed by Prepositions",
+  "title" : "She was negative about her exam.",
   "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
-  "translation" : "Ella estaba ansiosa por su examen.",
+  "translation" : "Ella estaba negativa respecto a su examen.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She was anxious",
+      "text" : "She was negative",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
       "text" : "her exam.",
       "options" : null
     } ],
-    "sentences" : [ "She was anxious about her exam." ]
+    "sentences" : [ "She was negative about her exam." ]
   }
 }, {
   "_id" : {
@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjectives Followed by Prepositions",
+  "title" : "This water is safe for her!",
   "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
-  "translation" : "¡Esta tarea es compleja para ella!",
+  "translation" : "¡Esta agua es segura para ella!",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "This task is complex",
+      "text" : "This water is safe",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
       "text" : "her!",
       "options" : null
     } ],
-    "sentences" : [ "This task is complex for her!" ]
+    "sentences" : [ "This water is safe for her!" ]
   }
 }, {
   "_id" : {
@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjectives Followed by Prepositions",
+  "title" : "He's afraid of bats.",
   "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
-  "translation" : "Le tiene terror a las alturas.",
+  "translation" : "Le tiene miedo a los murciélagos.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He's terrified",
+      "text" : "He's afraid",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "heights.",
+      "text" : "bats.",
       "options" : null
     } ],
-    "sentences" : [ "He's terrified of heights." ]
+    "sentences" : [ "He's afraid of bats." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjectives Followed by Prepositions",
+  "title" : "We were excited about the result!",
   "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
-  "translation" : "¡Estábamos asombrados por el resultado!",
+  "translation" : "¡Estábamos entusiasmados con el resultado!",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We were astonished",
+      "text" : "We were excited",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
       "text" : "the result!",
       "options" : null
     } ],
-    "sentences" : [ "We were astonished about the result!" ]
+    "sentences" : [ "We were excited about the result!" ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjectives Followed by Prepositions",
+  "title" : "He was happy about the party.",
   "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
-  "translation" : "Estaba ansioso por el futuro.",
+  "translation" : "Estaba contento por la fiesta.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He was anxious",
+      "text" : "He was happy",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the future.",
+      "text" : "the party.",
       "options" : null
     } ],
-    "sentences" : [ "He was anxious about the future." ]
+    "sentences" : [ "He was happy about the party." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjectives Followed by Prepositions",
+  "title" : "She's awesome at dancing.",
   "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
-  "translation" : "Ella es hábil bailando.",
+  "translation" : "Ella es genial bailando.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She's skilled",
+      "text" : "She's awesome",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
       "text" : "dancing.",
       "options" : null
     } ],
-    "sentences" : [ "She's skilled at dancing." ]
+    "sentences" : [ "She's awesome at dancing." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d288"
   },
-  "title" : "Adjectives Followed by Prepositions",
+  "title" : "This fruit is rich in vitamins!",
   "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
-  "translation" : "¡Me interesa la literatura!",
+  "translation" : "¡Esta fruta es rica en vitaminas!",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I'm keen",
+      "text" : "This fruit is rich",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
-      "text" : "literature!",
+      "text" : "vitamins!",
       "options" : null
     } ],
-    "sentences" : [ "I'm keen in literature!" ]
+    "sentences" : [ "This fruit is rich in vitamins!" ]
   }
 } ]

@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d374"
   },
-  "title" : "Preposition Usage After Adjectives Part 2",
+  "title" : "She is really great at painting portraits.",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Ella es hábil en la pintura.",
+  "translation" : "Ella es realmente muy buena pintando retratos.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She is skilled",
+      "text" : "She is really great",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
-      "text" : "painting.",
+      "text" : "painting portraits.",
       "options" : null
     } ],
-    "sentences" : [ "She is skilled at painting." ]
+    "sentences" : [ "She is really great at painting portraits." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d374"
   },
-  "title" : "Preposition Usage After Adjectives Part 2",
+  "title" : "This problem is obvious to our team.",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Este proyecto es crucial para nuestro equipo.",
+  "translation" : "Este problema es obvio para nuestro equipo.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "This project is crucial",
+      "text" : "This problem is obvious",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "our team.",
       "options" : null
     } ],
-    "sentences" : [ "This project is crucial to our team." ]
+    "sentences" : [ "This problem is obvious to our team." ]
   }
 }, {
   "_id" : {
@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d374"
   },
-  "title" : "Preposition Usage After Adjectives Part 2",
+  "title" : "These new shoes are fine for running!",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "¡Estos zapatos son ideales para correr!",
+  "translation" : "¡Estos zapatos nuevos están bien para correr!",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "These shoes are ideal",
+      "text" : "These new shoes are fine",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
       "text" : "running!",
       "options" : null
     } ],
-    "sentences" : [ "These shoes are ideal for running!" ]
+    "sentences" : [ "These new shoes are fine for running!" ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d374"
   },
-  "title" : "Preposition Usage After Adjectives Part 2",
+  "title" : "This toy is really bad for toddlers.",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Este juguete es dañino para los niños pequeños.",
+  "translation" : "Este juguete es realmente malo para los niños pequeños.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "This toy is harmful",
+      "text" : "This toy is really bad",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
       "text" : "toddlers.",
       "options" : null
     } ],
-    "sentences" : [ "This toy is harmful for toddlers." ]
+    "sentences" : [ "This toy is really bad for toddlers." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d374"
   },
-  "title" : "Preposition Usage After Adjectives Part 2",
+  "title" : "She really is terrible at acting on stage.",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Ella es realmente terrible actuando.",
+  "translation" : "Ella es realmente terrible actuando en el escenario.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She really is dreadful",
+      "text" : "She really is terrible",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
-      "text" : "acting.",
+      "text" : "acting on stage.",
       "options" : null
     } ],
-    "sentences" : [ "She really is dreadful at acting." ]
+    "sentences" : [ "She really is terrible at acting on stage." ]
   }
 }, {
   "_id" : {

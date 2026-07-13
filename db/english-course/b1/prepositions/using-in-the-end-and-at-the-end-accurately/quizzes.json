@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
-  "title" : "Using 'In the End' and 'At the End' Accurately",
+  "title" : "He developed his plan for a while but, in the end, he flew to Berlin.",
   "instructions" : "Completar con 'in' o 'at'.",
-  "translation" : "Dudó por un tiempo pero, al final, voló a Berlín.",
+  "translation" : "Desarrolló su plan por un tiempo pero, al final, voló a Berlín.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He hesitated for a while but,",
+      "text" : "He developed his plan for a while but,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "the end, he flew to Berlin.",
       "options" : null
     } ],
-    "sentences" : [ "He hesitated for a while but, in the end, he flew to Berlin." ]
+    "sentences" : [ "He developed his plan for a while but, in the end, he flew to Berlin." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37e"
   },
-  "title" : "Using 'In the End' and 'At the End' Accurately",
+  "title" : "At the end of the program, he decided to pursue a role in theatre.",
   "instructions" : "Completar con 'in' o 'at'.",
-  "translation" : "Al final del programa, decidió hacer una maestría.",
+  "translation" : "Al final del programa, decidió buscar un papel en el teatro.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -913,26 +913,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "At" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the end of the program, he determined to pursue a master's degree.",
+      "text" : "the end of the program, he decided to pursue a role in theatre.",
       "options" : null
     } ],
-    "sentences" : [ "At the end of the program, he determined to pursue a master's degree." ]
+    "sentences" : [ "At the end of the program, he decided to pursue a role in theatre." ]
   }
 }, {
   "_id" : {

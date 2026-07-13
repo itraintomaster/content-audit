@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d30e"
   },
-  "title" : "Practice with 'Such' and 'Such a'",
+  "title" : "He reads such simple books at night.",
   "instructions" : "¡Practiquemos! Modifica la oración para que incluya 'such' o 'such a / an'.",
-  "translation" : "Él lee libros tan largos.",
+  "translation" : "Él lee libros tan simples por la noche.",
   "theoryId" : "b1.08.Such_and_Such_a",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -133,26 +133,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He reads / long books.",
+      "text" : "He reads / simple books at night.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He reads such long books." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He reads such simple books at night." ]
     } ],
-    "sentences" : [ "He reads such long books." ]
+    "sentences" : [ "He reads such simple books at night." ]
   }
 }, {
   "_id" : {

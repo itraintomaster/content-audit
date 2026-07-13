@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d231"
   },
-  "title" : "Review of the past simple of 'be'",
+  "title" : "I was fourth yesterday.",
   "instructions" : "Escribe la forma en 'past simple' del verbo 'be'. Utiliza 'short forms' si es posible.",
-  "translation" : "Tenía sueño ayer.",
+  "translation" : "Ayer quedé cuarto.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "was" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) sleepy yesterday.",
+      "text" : "(be) fourth yesterday.",
       "options" : null
     } ],
-    "sentences" : [ "I was sleepy yesterday." ]
+    "sentences" : [ "I was fourth yesterday." ]
   }
 }, {
   "_id" : {

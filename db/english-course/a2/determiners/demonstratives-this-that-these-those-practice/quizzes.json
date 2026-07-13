@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d264"
   },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
+  "title" : "I shattered this chain.",
   "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Rompí este jarrón.",
+  "translation" : "Rompí esta cadena.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I shattered",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "this" ]
     }, {
       "kind" : "TEXT",
-      "text" : "vase (I have the vase).",
+      "text" : "chain (I have the chain).",
       "options" : null
     } ],
-    "sentences" : [ "I shattered this vase ." ]
+    "sentences" : [ "I shattered this chain." ]
   }
 }, {
   "_id" : {
@@ -631,7 +631,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d264"
   },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
+  "title" : "Could you help me with these boxes?.",
   "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
   "translation" : "¿Podrías ayudarme con estas cajas?",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Could you assist me with",
+      "text" : "Could you help me with",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "these" ]
     }, {
       "kind" : "TEXT",
       "text" : "boxes? (I'm holding the boxes).",
       "options" : null
     } ],
-    "sentences" : [ "Could you assist me with these boxes? ." ]
+    "sentences" : [ "Could you help me with these boxes?." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d264"
   },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
+  "title" : "She studied this map.",
   "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Ella estudió este gráfico.",
+  "translation" : "Ella estudió este mapa.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She studied",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "this" ]
     }, {
       "kind" : "TEXT",
-      "text" : "chart (we have the chart).",
+      "text" : "map (we have the map).",
       "options" : null
     } ],
-    "sentences" : [ "She studied this chart ." ]
+    "sentences" : [ "She studied this map." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d264"
   },
-  "title" : "Demonstratives: This, That, These, Those - Practice",
+  "title" : "Those copies belong to Samuel.",
   "instructions" : "Completa con 'this', 'that', 'these' o 'those'.",
-  "translation" : "Esos robots pertenecen a Samuel.",
+  "translation" : "Esas copias pertenecen a Samuel.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -913,26 +913,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Those" ]
     }, {
       "kind" : "TEXT",
-      "text" : "robots belong to Samuel (the robots are near you).",
+      "text" : "copies belong to Samuel (the copies are near you).",
       "options" : null
     } ],
-    "sentences" : [ "Those robots belong to Samuel ." ]
+    "sentences" : [ "Those copies belong to Samuel." ]
   }
 }, {
   "_id" : {

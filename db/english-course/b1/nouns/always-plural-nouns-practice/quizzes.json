@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d304"
   },
-  "title" : "Always Plural Nouns: Practice",
+  "title" : "Where are his casual clothes today? correct",
   "instructions" : "Escribe 'correct' o 'not correct'.",
-  "translation" : "¿Dónde está su ropa formal?",
+  "translation" : "¿Dónde está su ropa informal hoy?",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -341,26 +341,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Where are his formal clothes?",
+      "text" : "Where are his casual clothes today?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "correct" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "Where are his formal clothes? correct" ]
+    "sentences" : [ "Where are his casual clothes today? correct" ]
   }
 }, {
   "_id" : {

@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d235"
   },
-  "title" : "Past simple using 'be' and regular verbs - Review 2",
+  "title" : "Were you still careful?",
   "instructions" : "Escribe la forma en 'past simple'.",
-  "translation" : "¿Seguías despierto?",
+  "translation" : "¿Seguías siendo cuidadoso?",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -913,26 +913,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Were you" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / be) still awake?",
+      "text" : "(you / be) still careful?",
       "options" : null
     } ],
-    "sentences" : [ "Were you still awake?" ]
+    "sentences" : [ "Were you still careful?" ]
   }
 }, {
   "_id" : {

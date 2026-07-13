@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d315"
   },
-  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "title" : "Peter is being helped by the trainer.",
   "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-  "translation" : "Peter está siendo entrenado por el entrenador.",
+  "translation" : "Peter está siendo ayudado por el entrenador.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -445,26 +445,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The trainer is coaching Peter.",
+      "text" : "The trainer is helping Peter.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter is being coached by the trainer." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Peter is being helped by the trainer." ]
     } ],
-    "sentences" : [ "Peter is being coached by the trainer." ]
+    "sentences" : [ "Peter is being helped by the trainer." ]
   }
 }, {
   "_id" : {
@@ -839,9 +835,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d315"
   },
-  "title" : "Passive Voice Review: Simple Tenses Practice",
+  "title" : "The patients are being visited by the doctor.",
   "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa 'by'.",
-  "translation" : "Los pacientes están siendo examinados por el médico.",
+  "translation" : "El médico está visitando a los pacientes. Los pacientes están siendo visitados por el médico.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -861,26 +857,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The doctor is examining the patients.",
+      "text" : "The doctor is visiting the patients.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The patients are being examined by the doctor." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The patients are being visited by the doctor." ]
     } ],
-    "sentences" : [ "The patients are being examined by the doctor." ]
+    "sentences" : [ "The patients are being visited by the doctor." ]
   }
 }, {
   "_id" : {

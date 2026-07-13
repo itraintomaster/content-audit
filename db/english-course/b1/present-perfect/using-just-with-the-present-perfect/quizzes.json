@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2cb"
   },
-  "title" : "Using 'Just' with the Present Perfect",
+  "title" : "I have just realized my mistake / I've just realized my mistake.",
   "instructions" : "Escribe oraciones usando 'just'.",
-  "translation" : "Acabo de beber agua.",
+  "translation" : "Acabo de darme cuenta de mi error.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -341,26 +341,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I have just drunk water / I've just drunk water" ]
+      "text" : null,
+      "options" : [ "I have just realized my mistake / I've just realized my mistake" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(I / drink water).",
+      "text" : "(I / realize / my mistake).",
       "options" : null
     } ],
-    "sentences" : [ "I have just drunk water / I've just drunk water." ]
+    "sentences" : [ "I have just realized my mistake / I've just realized my mistake." ]
   }
 }, {
   "_id" : {

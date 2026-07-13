@@ -59,7 +59,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d291"
   },
-  "title" : "Verbs and Their Prepositions 2",
+  "title" : "Can you forgive me for my mistake?",
   "instructions" : "Coloca las preposiciones correctas.",
   "translation" : "¿Puedes perdonarme por mi error?",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Can you forgive me",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
-      "text" : "my error?",
+      "text" : "my mistake?",
       "options" : null
     } ],
-    "sentences" : [ "Can you forgive me for my error?" ]
+    "sentences" : [ "Can you forgive me for my mistake?" ]
   }
 }, {
   "_id" : {
@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d291"
   },
-  "title" : "Verbs and Their Prepositions 2",
+  "title" : "I must check the surname with my manager.",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Debo revisar el informe con mi gerente.",
+  "translation" : "Debo revisar el apellido con mi gerente.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I must check the report",
+      "text" : "I must check the surname",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
       "text" : "my manager.",
       "options" : null
     } ],
-    "sentences" : [ "I must check the report with my manager." ]
+    "sentences" : [ "I must check the surname with my manager." ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d291"
   },
-  "title" : "Verbs and Their Prepositions 2",
+  "title" : "Please leave the snacks with your brother.",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Por favor, divide los bocadillos con tu hermano.",
+  "translation" : "Por favor, deja los bocadillos con tu hermano.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Please divide the snacks",
+      "text" : "Please leave the snacks",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
       "text" : "your brother.",
       "options" : null
     } ],
-    "sentences" : [ "Please divide the snacks with your brother." ]
+    "sentences" : [ "Please leave the snacks with your brother." ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d291"
   },
-  "title" : "Verbs and Their Prepositions 2",
+  "title" : "We complained to the manager about the poor raincoat.",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Nos quejamos al gerente por el mal servicio.",
+  "translation" : "Nos quejamos al gerente por el impermeable malo.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We complained to the manager",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the poor service.",
+      "text" : "the poor raincoat.",
       "options" : null
     } ],
-    "sentences" : [ "We complained to the manager about the poor service." ]
+    "sentences" : [ "We complained to the manager about the poor raincoat." ]
   }
 }, {
   "_id" : {
@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d291"
   },
-  "title" : "Verbs and Their Prepositions 2",
+  "title" : "They looked at the cute puppy.",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Ellos sonrieron al lindo cachorro.",
+  "translation" : "Ellos miraron al lindo cachorro.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They smiled",
+      "text" : "They looked",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
       "text" : "the cute puppy.",
       "options" : null
     } ],
-    "sentences" : [ "They smiled at the cute puppy." ]
+    "sentences" : [ "They looked at the cute puppy." ]
   }
 }, {
   "_id" : {
@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d291"
   },
-  "title" : "Verbs and Their Prepositions 2",
+  "title" : "He loaded the car with boxes.",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Él cargó el camión con cajas.",
+  "translation" : "Él cargó el auto con cajas.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He loaded the truck",
+      "text" : "He loaded the car",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
       "text" : "boxes.",
       "options" : null
     } ],
-    "sentences" : [ "He loaded the truck with boxes." ]
+    "sentences" : [ "He loaded the car with boxes." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d291"
   },
-  "title" : "Verbs and Their Prepositions 2",
+  "title" : "She texted the address to me.",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Ella me envió el chiste por mensaje de texto.",
+  "translation" : "Ella me envió la dirección por mensaje de texto.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She texted the joke",
+      "text" : "She texted the address",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "me.",
       "options" : null
     } ],
-    "sentences" : [ "She texted the joke to me." ]
+    "sentences" : [ "She texted the address to me." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d291"
   },
-  "title" : "Verbs and Their Prepositions 2",
+  "title" : "What did she say to you?",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "¿Qué te mencionó ella?",
+  "translation" : "¿Qué te dijo ella?",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "What did she mention",
+      "text" : "What did she say",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "you?",
       "options" : null
     } ],
-    "sentences" : [ "What did she mention to you?" ]
+    "sentences" : [ "What did she say to you?" ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d291"
   },
-  "title" : "Verbs and Their Prepositions 2",
+  "title" : "Could you give the suit to your father?",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "¿Podrías saludar a tu padre de mi parte?",
+  "translation" : "¿Podrías darle el traje a tu padre?",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Could you give regards",
+      "text" : "Could you give the suit",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "your father?",
       "options" : null
     } ],
-    "sentences" : [ "Could you give regards to your father?" ]
+    "sentences" : [ "Could you give the suit to your father?" ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d291"
   },
-  "title" : "Verbs and Their Prepositions 2",
+  "title" : "She goes with me.",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Ella se escribe conmigo.",
+  "translation" : "Ella va conmigo.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She corresponds",
+      "text" : "She goes",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
       "text" : "me.",
       "options" : null
     } ],
-    "sentences" : [ "She corresponds with me." ]
+    "sentences" : [ "She goes with me." ]
   }
 }, {
   "_id" : {

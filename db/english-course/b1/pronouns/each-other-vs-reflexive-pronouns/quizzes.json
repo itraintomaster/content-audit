@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d349"
   },
-  "title" : "'Each Other' vs. Reflexive Pronouns",
+  "title" : "They disagreed with each other at the cinema.",
   "instructions" : "Elige 'each other' u 'ourselves / yourselves / themselves'. Cuando escribo 'you', me refiero a más de una persona.",
-  "translation" : "Se encontraron el uno al otro en el cine.",
+  "translation" : "No estuvieron de acuerdo el uno con el otro en el cine.",
   "theoryId" : "b1.13.Each_Other",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They encountered",
+      "text" : "They disagreed with",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "each other" ]
     }, {
       "kind" : "TEXT",
       "text" : "at the cinema.",
       "options" : null
     } ],
-    "sentences" : [ "They encountered each other at the cinema." ]
+    "sentences" : [ "They disagreed with each other at the cinema." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d349"
   },
-  "title" : "'Each Other' vs. Reflexive Pronouns",
+  "title" : "We hurt ourselves. We both bumped into a table at the same time!",
   "instructions" : "Elige 'each other' u 'ourselves / yourselves / themselves'. Cuando escribo 'you', me refiero a más de una persona.",
-  "translation" : "Nos rascamos a nosotros mismos. ¡Ambos chocamos contra una mesa al mismo tiempo!",
+  "translation" : "Nos lastimamos a nosotros mismos. ¡Ambos chocamos contra una mesa al mismo tiempo!",
   "theoryId" : "b1.13.Each_Other",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We scratched",
+      "text" : "We hurt",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "ourselves" ]
     }, {
       "kind" : "TEXT",
       "text" : ". We both bumped into a table at the same time!",
       "options" : null
     } ],
-    "sentences" : [ "We scratched ourselves. We both bumped into a table at the same time!" ]
+    "sentences" : [ "We hurt ourselves. We both bumped into a table at the same time!" ]
   }
 }, {
   "_id" : {

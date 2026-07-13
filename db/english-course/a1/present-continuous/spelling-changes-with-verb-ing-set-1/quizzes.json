@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d397"
   },
-  "title" : "Spelling changes with verb-ing: set 1",
+  "title" : "have - having",
   "instructions" : "¿Cuál es la forma 'verb-ing'?",
-  "translation" : "creando",
+  "translation" : "teniendo",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -81,26 +81,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "create -",
+      "text" : "have -",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "creating" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "having" ]
     } ],
-    "sentences" : [ "create - creating" ]
+    "sentences" : [ "have - having" ]
   }
 }, {
   "_id" : {
@@ -631,9 +627,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d397"
   },
-  "title" : "Spelling changes with verb-ing: set 1",
+  "title" : "use - using",
   "instructions" : "¿Cuál es la forma 'verb-ing'?",
-  "translation" : "notando",
+  "translation" : "usando",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -653,26 +649,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "notice -",
+      "text" : "use -",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "noticing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "using" ]
     } ],
-    "sentences" : [ "notice - noticing" ]
+    "sentences" : [ "use - using" ]
   }
 }, {
   "_id" : {
@@ -683,9 +675,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d397"
   },
-  "title" : "Spelling changes with verb-ing: set 1",
+  "title" : "The children are making a cake.",
   "instructions" : "¿Cuál es la forma 'verb-ing'?",
-  "translation" : "ejercitando",
+  "translation" : "Los niños están haciendo una torta.",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -705,26 +697,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "exercise -",
+      "text" : "The children are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "exercising" ]
+      "text" : null,
+      "options" : [ "making" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "(make) a cake.",
       "options" : null
     } ],
-    "sentences" : [ "exercise - exercising" ]
+    "sentences" : [ "The children are making a cake." ]
   }
 }, {
   "_id" : {
@@ -839,9 +831,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d397"
   },
-  "title" : "Spelling changes with verb-ing: set 1",
+  "title" : "come - coming",
   "instructions" : "¿Cuál es la forma 'verb-ing'?",
-  "translation" : "admirando",
+  "translation" : "viniendo",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -861,26 +853,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "admire -",
+      "text" : "come -",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "admiring" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "coming" ]
     } ],
-    "sentences" : [ "admire - admiring" ]
+    "sentences" : [ "come - coming" ]
   }
 }, {
   "_id" : {

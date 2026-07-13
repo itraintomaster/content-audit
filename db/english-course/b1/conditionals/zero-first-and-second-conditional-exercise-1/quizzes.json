@@ -187,9 +187,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d354"
   },
-  "title" : "Zero, First, and Second Conditional Exercise 1",
+  "title" : "First: If he needs help, I will support him.",
   "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si necesita ayuda, le ayudaré.",
+  "translation" : "Si necesita ayuda, lo apoyaré.",
   "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -209,19 +209,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "First: If he",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "needs" ]
     }, {
       "kind" : "TEXT",
@@ -229,14 +229,14 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will assist" ]
+      "text" : null,
+      "options" : [ "will support" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(assist) him.",
+      "text" : "(support) him.",
       "options" : null
     } ],
-    "sentences" : [ "First: If he needs help, I will assist him." ]
+    "sentences" : [ "First: If he needs help, I will support him." ]
   }
 }, {
   "_id" : {

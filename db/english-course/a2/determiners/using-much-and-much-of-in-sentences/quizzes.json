@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26d"
   },
-  "title" : "Using 'Much' and 'Much Of' in Sentences",
+  "title" : "Much of the level was completed.",
   "instructions" : "Completa con 'much' o 'much of'.",
-  "translation" : "Gran parte de la tierra fue destruida.",
+  "translation" : "Gran parte del nivel fue completado.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -289,26 +289,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Much of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the land was destroyed.",
+      "text" : "the level was completed.",
       "options" : null
     } ],
-    "sentences" : [ "Much of the land was destroyed." ]
+    "sentences" : [ "Much of the level was completed." ]
   }
 }, {
   "_id" : {
@@ -735,9 +731,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26d"
   },
-  "title" : "Using 'Much' and 'Much Of' in Sentences",
+  "title" : "She doesn't have much magic.",
   "instructions" : "Completa con 'much' o 'much of'.",
-  "translation" : "Ella no tiene mucha paciencia.",
+  "translation" : "Ella no tiene mucha magia.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -757,26 +753,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She doesn't have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
-      "text" : "patience.",
+      "text" : "magic.",
       "options" : null
     } ],
-    "sentences" : [ "She doesn't have much patience." ]
+    "sentences" : [ "She doesn't have much magic." ]
   }
 }, {
   "_id" : {
@@ -787,9 +783,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26d"
   },
-  "title" : "Using 'Much' and 'Much Of' in Sentences",
+  "title" : "She doesn't want much delay.",
   "instructions" : "Completa con 'much' o 'much of'.",
-  "translation" : "Ella no quiere muchos problemas.",
+  "translation" : "Ella no quiere mucha demora.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -809,26 +805,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She doesn't want",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
-      "text" : "trouble.",
+      "text" : "delay.",
       "options" : null
     } ],
-    "sentences" : [ "She doesn't want much trouble." ]
+    "sentences" : [ "She doesn't want much delay." ]
   }
 }, {
   "_id" : {

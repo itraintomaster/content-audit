@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d361"
   },
-  "title" : "Present Perfect with Superlatives: Practice",
+  "title" : "That's the hottest coffee I've ever tasted.",
   "instructions" : "Crea oraciones usando el superlativo y el tiempo presente perfecto con 'ever'. No uses 'that'.",
-  "translation" : "Ese es el café más caliente que he bebido.",
+  "translation" : "Ese es el café más caliente que he probado.",
   "theoryId" : "b1.15.Superlatives_with_the_Present_Perfect_Tense",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -913,26 +913,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "That's / hot coffee / I / drink.",
+      "text" : "That's / hot coffee / I / taste.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "That's the hottest coffee I've ever drunk." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "That's the hottest coffee I've ever tasted." ]
     } ],
-    "sentences" : [ "That's the hottest coffee I've ever drunk." ]
+    "sentences" : [ "That's the hottest coffee I've ever tasted." ]
   }
 }, {
   "_id" : {

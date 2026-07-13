@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a5"
   },
-  "title" : "Habits or now? Present simple vs. continuous",
+  "title" : "Is Mary reading a book today?",
   "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "¿Está María leyendo un libro en este momento?",
+  "translation" : "¿Está María leyendo un libro hoy?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Is Mary reading" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(Mary / read) a book at the moment?",
+      "text" : "(Mary / read) a book today?",
       "options" : null
     } ],
-    "sentences" : [ "Is Mary reading a book at the moment?" ]
+    "sentences" : [ "Is Mary reading a book today?" ]
   }
 }, {
   "_id" : {
@@ -59,9 +55,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a5"
   },
-  "title" : "Habits or now? Present simple vs. continuous",
+  "title" : "Is the doctor talking to the cook?",
   "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "¿Está el médico hablando con el paciente ahora?",
+  "translation" : "¿Está el médico hablando con el cocinero?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -81,26 +77,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Is the doctor talking" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(the doctor / talk) to the patient now?",
+      "text" : "(the doctor / talk) to the cook?",
       "options" : null
     } ],
-    "sentences" : [ "Is the doctor talking to the patient now?" ]
+    "sentences" : [ "Is the doctor talking to the cook?" ]
   }
 }, {
   "_id" : {
@@ -163,9 +155,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a5"
   },
-  "title" : "Habits or now? Present simple vs. continuous",
+  "title" : "We often have dinner at home.",
   "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "Normalmente cenamos en casa.",
+  "translation" : "A menudo cenamos en casa.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -185,26 +177,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We normally",
+      "text" : "We often",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "have" ]
     }, {
       "kind" : "TEXT",
       "text" : "(have) dinner at home.",
       "options" : null
     } ],
-    "sentences" : [ "We normally have dinner at home." ]
+    "sentences" : [ "We often have dinner at home." ]
   }
 }, {
   "_id" : {
@@ -319,9 +311,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a5"
   },
-  "title" : "Habits or now? Present simple vs. continuous",
+  "title" : "What are they doing today?",
   "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "¿Qué están haciendo ellos en este momento?",
+  "translation" : "¿Qué están haciendo ellos hoy?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -341,26 +333,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "What",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "are they doing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / do) at the moment?",
+      "text" : "(they / do) today?",
       "options" : null
     } ],
-    "sentences" : [ "What are they doing at the moment?" ]
+    "sentences" : [ "What are they doing today?" ]
   }
 }, {
   "_id" : {
@@ -423,9 +415,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a5"
   },
-  "title" : "Habits or now? Present simple vs. continuous",
+  "title" : "He 's cleaning the car today.",
   "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "Él está limpiando el coche en este momento.",
+  "translation" : "Él está limpiando el coche hoy.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -445,26 +437,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'s cleaning|is cleaning" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(clean) the car at the moment.",
+      "text" : "(clean) the car today.",
       "options" : null
     } ],
-    "sentences" : [ "He's cleaning the car at the moment.", "He is cleaning the car at the moment." ]
+    "sentences" : [ "He 's cleaning the car today.", "He is cleaning the car today." ]
   }
 }, {
   "_id" : {
@@ -631,9 +623,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a5"
   },
-  "title" : "Habits or now? Present simple vs. continuous",
+  "title" : "What do they do in the afternoon?",
   "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "¿Qué hacen ellos por la tarde normalmente?",
+  "translation" : "¿Qué hacen ellos por la tarde?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -653,26 +645,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "What",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "do they do" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / do) in the afternoon usually?",
+      "text" : "(they / do) in the afternoon?",
       "options" : null
     } ],
-    "sentences" : [ "What do they do in the afternoon usually?" ]
+    "sentences" : [ "What do they do in the afternoon?" ]
   }
 }, {
   "_id" : {
@@ -683,9 +675,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a5"
   },
-  "title" : "Habits or now? Present simple vs. continuous",
+  "title" : "I eat food every morning.",
   "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "Yo como cereales todas las mañanas.",
+  "translation" : "Yo como comida todas las mañanas.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -705,26 +697,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "eat" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(eat) cereal every morning.",
+      "text" : "(eat) food every morning.",
       "options" : null
     } ],
-    "sentences" : [ "I eat cereal every morning." ]
+    "sentences" : [ "I eat food every morning." ]
   }
 }, {
   "_id" : {
@@ -839,9 +831,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a5"
   },
-  "title" : "Habits or now? Present simple vs. continuous",
+  "title" : "He visits the beach twice a week.",
   "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "Él practica piano tres veces a la semana.",
+  "translation" : "Él visita la playa dos veces a la semana.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -861,26 +853,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "practices" ]
+      "text" : null,
+      "options" : [ "visits" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(practice) piano three times a week.",
+      "text" : "(visit) the beach twice a week.",
       "options" : null
     } ],
-    "sentences" : [ "He practices piano three times a week." ]
+    "sentences" : [ "He visits the beach twice a week." ]
   }
 }, {
   "_id" : {
@@ -943,9 +935,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a5"
   },
-  "title" : "Habits or now? Present simple vs. continuous",
+  "title" : "My friends are watching TV today.",
   "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "Mis amigos están viendo la televisión en este momento.",
+  "translation" : "Mis amigos están viendo la televisión hoy.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -965,26 +957,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "My friends",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "are watching" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(watch) TV at the moment.",
+      "text" : "(watch) TV today.",
       "options" : null
     } ],
-    "sentences" : [ "My friends are watching TV at the moment." ]
+    "sentences" : [ "My friends are watching TV today." ]
   }
 }, {
   "_id" : {
@@ -995,9 +987,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a5"
   },
-  "title" : "Habits or now? Present simple vs. continuous",
+  "title" : "Susan 's walking on the beach now.",
   "instructions" : "Elige entre 'present simple' o 'present continuous'.",
-  "translation" : "Susan está practicando piano ahora.",
+  "translation" : "Susan está caminando en la playa ahora.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -1017,25 +1009,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Susan",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s practicing|is practicing" ]
+      "text" : null,
+      "options" : [ "'s walking|is walking" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(practice) piano now.",
+      "text" : "(walk) on the beach now.",
       "options" : null
     } ],
-    "sentences" : [ "Susan's practicing piano now.", "Susan is practicing piano now." ]
+    "sentences" : [ "Susan 's walking on the beach now.", "Susan is walking on the beach now." ]
   }
 } ]

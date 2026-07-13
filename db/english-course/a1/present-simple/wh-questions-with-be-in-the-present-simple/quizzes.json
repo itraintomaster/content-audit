@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d387"
   },
-  "title" : "'Wh' questions with 'be' in the present simple",
+  "title" : "Why is he important?",
   "instructions" : "Formula una pregunta 'wh' en presente simple usando el verbo 'be'.",
-  "translation" : "¿Por qué tiene sed?",
+  "translation" : "¿Por qué es importante?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is he" ]
     }, {
       "kind" : "TEXT",
-      "text" : "thirsty? (He)",
+      "text" : "important? (He)",
       "options" : null
     } ],
-    "sentences" : [ "Why is he thirsty?" ]
+    "sentences" : [ "Why is he important?" ]
   }
 }, {
   "_id" : {

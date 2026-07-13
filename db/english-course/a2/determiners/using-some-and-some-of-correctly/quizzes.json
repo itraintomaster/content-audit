@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d267"
   },
-  "title" : "Using 'Some' and 'Some Of' Correctly",
+  "title" : "There are some apples in the helicopter.",
   "instructions" : "Completa con 'some' o 'some of'.",
-  "translation" : "Hay algunas manzanas en la canasta.",
+  "translation" : "Hay algunas manzanas en el helicóptero.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "There are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
-      "text" : "apples in the basket.",
+      "text" : "apples in the helicopter.",
       "options" : null
     } ],
-    "sentences" : [ "There are some apples in the basket." ]
+    "sentences" : [ "There are some apples in the helicopter." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d267"
   },
-  "title" : "Using 'Some' and 'Some Of' Correctly",
+  "title" : "Some of his footballers live in town.",
   "instructions" : "Completa con 'some' o 'some of'.",
-  "translation" : "Algunos de sus parientes viven en la ciudad.",
+  "translation" : "Algunos de sus futbolistas viven en la ciudad.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -705,26 +705,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Some of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "his relatives live in town.",
+      "text" : "his footballers live in town.",
       "options" : null
     } ],
-    "sentences" : [ "Some of his relatives live in town." ]
+    "sentences" : [ "Some of his footballers live in town." ]
   }
 }, {
   "_id" : {

@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37f"
   },
-  "title" : "Mastering Prepositions After Adjectives",
+  "title" : "He's very happy about his future.",
   "instructions" : "Escribir la preposición correcta.",
-  "translation" : "Está muy contento con su ascenso.",
+  "translation" : "Está muy contento con su futuro.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He's very happy",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
-      "text" : "his promotion.",
+      "text" : "his future.",
       "options" : null
     } ],
-    "sentences" : [ "He's very happy about his promotion." ]
+    "sentences" : [ "He's very happy about his future." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37f"
   },
-  "title" : "Mastering Prepositions After Adjectives",
+  "title" : "I believe there's an ingredient missing from this cake.",
   "instructions" : "Escribir la preposición correcta.",
-  "translation" : "Creo que falta un elemento en este pastel.",
+  "translation" : "Creo que falta un ingrediente en este pastel.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I believe there's an element missing",
+      "text" : "I believe there's an ingredient missing",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "from" ]
     }, {
       "kind" : "TEXT",
       "text" : "this cake.",
       "options" : null
     } ],
-    "sentences" : [ "I believe there's an element missing from this cake." ]
+    "sentences" : [ "I believe there's an ingredient missing from this cake." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37f"
   },
-  "title" : "Mastering Prepositions After Adjectives",
+  "title" : "I'm happy about finishing my preparation.",
   "instructions" : "Escribir la preposición correcta.",
-  "translation" : "Estoy feliz por terminar mi tarea.",
+  "translation" : "Estoy feliz por terminar mi preparación.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I'm happy",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
-      "text" : "finishing my task.",
+      "text" : "finishing my preparation.",
       "options" : null
     } ],
-    "sentences" : [ "I'm happy about finishing my task." ]
+    "sentences" : [ "I'm happy about finishing my preparation." ]
   }
 }, {
   "_id" : {

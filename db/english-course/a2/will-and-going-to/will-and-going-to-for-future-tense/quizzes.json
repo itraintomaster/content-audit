@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22c"
   },
-  "title" : "'Will' and 'Going to' for Future Tense",
+  "title" : "Susan is going to bake a cake. She arranged it earlier.",
   "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-  "translation" : "Susan va a hornear un pastel. Lo programó antes.",
+  "translation" : "Susan va a hornear un pastel. Lo organizó antes.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Susan",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is going to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "bake a cake. She scheduled it earlier.",
+      "text" : "bake a cake. She arranged it earlier.",
       "options" : null
     } ],
-    "sentences" : [ "Susan is going to bake a cake. She scheduled it earlier." ]
+    "sentences" : [ "Susan is going to bake a cake. She arranged it earlier." ]
   }
 }, {
   "_id" : {
@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22c"
   },
-  "title" : "'Will' and 'Going to' for Future Tense",
+  "title" : "The students are going to have a chemistry test tomorrow.",
   "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-  "translation" : "Los estudiantes van a tener un examen mañana. Está en el horario.",
+  "translation" : "Los estudiantes van a tener un examen de química mañana.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The students",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "are going to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "have a test tomorrow. It's on the schedule.",
+      "text" : "have a chemistry test tomorrow.",
       "options" : null
     } ],
-    "sentences" : [ "The students are going to have a test tomorrow. It's on the schedule." ]
+    "sentences" : [ "The students are going to have a chemistry test tomorrow." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22c"
   },
-  "title" : "'Will' and 'Going to' for Future Tense",
+  "title" : "She 's going to text later. She told me earlier.",
   "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-  "translation" : "Ella va a enviar un mensaje de texto cuando se vaya. Lo confirmó antes.",
+  "translation" : "Ella va a enviar un mensaje de texto más tarde. Me lo dijo antes.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'s going to|is going to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "text when she leaves. She confirmed it earlier.",
+      "text" : "text later. She told me earlier.",
       "options" : null
     } ],
-    "sentences" : [ "She's going to text when she leaves. She confirmed it earlier.", "She is going to text when she leaves. She confirmed it earlier." ]
+    "sentences" : [ "She 's going to text later. She told me earlier.", "She is going to text later. She told me earlier." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22c"
   },
-  "title" : "'Will' and 'Going to' for Future Tense",
+  "title" : "You look thirsty. I 'll get you a soda.",
   "instructions" : "Elige 'will' para decisiones espontáneas o 'be going to' para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-  "translation" : "A: Me vendría bien un refresco. B: Te traeré uno.",
+  "translation" : "Pareces sediento. Te traeré un refresco.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: I could do with a soda. B: I",
+      "text" : "You look thirsty. I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'ll|will" ]
     }, {
       "kind" : "TEXT",
-      "text" : "grab you one.",
+      "text" : "get you a soda.",
       "options" : null
     } ],
-    "sentences" : [ "A: I could do with a soda. B: I'll grab you one.", "A: I could do with a soda. B: I will grab you one." ]
+    "sentences" : [ "You look thirsty. I 'll get you a soda.", "You look thirsty. I will get you a soda." ]
   }
 } ]

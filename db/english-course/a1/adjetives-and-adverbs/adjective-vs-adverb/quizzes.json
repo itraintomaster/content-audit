@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ea"
   },
-  "title" : "Adjective vs Adverb",
+  "title" : "She sang quietly.",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ella cantó fuerte.",
+  "translation" : "Ella cantó en voz baja.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She sang",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "loudly" ]
+      "text" : null,
+      "options" : [ "quietly" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(loud / loudly).",
+      "text" : "(quiet / quietly).",
       "options" : null
     } ],
-    "sentences" : [ "She sang loudly." ]
+    "sentences" : [ "She sang quietly." ]
   }
 }, {
   "_id" : {
@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ea"
   },
-  "title" : "Adjective vs Adverb",
+  "title" : "She is a great student.",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ella es una cantante terrible.",
+  "translation" : "Ella es una excelente estudiante.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She is a",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "terrible" ]
+      "text" : null,
+      "options" : [ "great" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(terrible / terribly) singer.",
+      "text" : "(great / greatly) student.",
       "options" : null
     } ],
-    "sentences" : [ "She is a terrible singer." ]
+    "sentences" : [ "She is a great student." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ea"
   },
-  "title" : "Adjective vs Adverb",
+  "title" : "That was a good time.",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ese fue un buen concierto.",
+  "translation" : "Ese fue un buen momento.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "That was a",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "good" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(good / well) concert.",
+      "text" : "(good / well) time.",
       "options" : null
     } ],
-    "sentences" : [ "That was a good concert." ]
+    "sentences" : [ "That was a good time." ]
   }
 }, {
   "_id" : {
@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ea"
   },
-  "title" : "Adjective vs Adverb",
+  "title" : "They whispered happily.",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ellos susurraron suavemente.",
+  "translation" : "Ellos susurraron alegremente.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They whispered",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "softly" ]
+      "text" : null,
+      "options" : [ "happily" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(soft / softly).",
+      "text" : "(happy / happily).",
       "options" : null
     } ],
-    "sentences" : [ "They whispered softly." ]
+    "sentences" : [ "They whispered happily." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ea"
   },
-  "title" : "She sings slowly.",
+  "title" : "She sings really well.",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ella canta lentamente.",
+  "translation" : "Ella canta realmente bien.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -354,13 +354,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "slowly" ]
+      "options" : [ "really" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(slow / slowly).",
+      "text" : "well (real / really).",
       "options" : null
     } ],
-    "sentences" : [ "She sings slowly." ]
+    "sentences" : [ "She sings really well." ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ea"
   },
-  "title" : "Adjective vs Adverb",
+  "title" : "She was excited about the pet.",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ella estaba emocionada por el viaje.",
+  "translation" : "Ella estaba emocionada por la mascota.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She was",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "excited" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(excited / excitedly) about the trip.",
+      "text" : "(excited / excitedly) about the pet.",
       "options" : null
     } ],
-    "sentences" : [ "She was excited about the trip." ]
+    "sentences" : [ "She was excited about the pet." ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ea"
   },
-  "title" : "Adjective vs Adverb",
+  "title" : "Mary was very sad.",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Mary tenía mucha sed.",
+  "translation" : "Mary estaba muy triste.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Mary was very",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "thirsty" ]
+      "text" : null,
+      "options" : [ "sad" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(thirsty / thirstily).",
+      "text" : "(sad / sadly).",
       "options" : null
     } ],
-    "sentences" : [ "Mary was very thirsty." ]
+    "sentences" : [ "Mary was very sad." ]
   }
 }, {
   "_id" : {
@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ea"
   },
-  "title" : "Adjective vs Adverb",
+  "title" : "That was an expensive car.",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Esa fue una pregunta tonta.",
+  "translation" : "Ese fue un auto caro.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "That was a",
+      "text" : "That was an",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "silly" ]
+      "text" : null,
+      "options" : [ "expensive" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(silly / sillily) question.",
+      "text" : "(expensive / expensively) car.",
       "options" : null
     } ],
-    "sentences" : [ "That was a silly question." ]
+    "sentences" : [ "That was an expensive car." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ea"
   },
-  "title" : "Adjective vs Adverb",
+  "title" : "He draws skillful houses.",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Él dibuja caricaturas habilidosas.",
+  "translation" : "Él dibuja casas habilidosas.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He draws",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "skillful" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(skillful / skillfully) cartoons.",
+      "text" : "(skillful / skillfully) houses.",
       "options" : null
     } ],
-    "sentences" : [ "He draws skillful cartoons." ]
+    "sentences" : [ "He draws skillful houses." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ea"
   },
-  "title" : "Adjective vs Adverb",
+  "title" : "I'm new.",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Tengo sueño.",
+  "translation" : "Soy nuevo.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I'm",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sleepy" ]
+      "text" : null,
+      "options" : [ "new" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(sleepy / sleepily).",
+      "text" : "(new / newly).",
       "options" : null
     } ],
-    "sentences" : [ "I'm sleepy." ]
+    "sentences" : [ "I'm new." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ea"
   },
-  "title" : "Adjective vs Adverb",
+  "title" : "She walked home quickly.",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ella se alejó enojada.",
+  "translation" : "Ella caminó rápidamente a casa.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She walked away",
+      "text" : "She walked home",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "angrily" ]
+      "text" : null,
+      "options" : [ "quickly" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(angry / angrily).",
+      "text" : "(quick / quickly).",
       "options" : null
     } ],
-    "sentences" : [ "She walked away angrily." ]
+    "sentences" : [ "She walked home quickly." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ea"
   },
-  "title" : "Please speak slowly.",
+  "title" : "Please speak clearly.",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Por favor, habla despacio.",
+  "translation" : "Por favor, habla claramente.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -1030,12 +1030,12 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "slowly" ]
+      "options" : [ "clearly" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(slow / slowly).",
+      "text" : "(clear / clearly).",
       "options" : null
     } ],
-    "sentences" : [ "Please speak slowly." ]
+    "sentences" : [ "Please speak clearly." ]
   }
 } ]

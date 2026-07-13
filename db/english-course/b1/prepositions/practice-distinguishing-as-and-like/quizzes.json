@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
-  "title" : "Practice Distinguishing 'As' and 'Like'",
+  "title" : "He volunteers as a designer at the local museum.",
   "instructions" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
-  "translation" : "Él es voluntario como tutor.",
+  "translation" : "Él es voluntario como diseñador en el museo local.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He volunteers",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "as" ]
     }, {
       "kind" : "TEXT",
-      "text" : "a tutor.",
+      "text" : "a designer at the local museum.",
       "options" : null
     } ],
-    "sentences" : [ "He volunteers as a tutor." ]
+    "sentences" : [ "He volunteers as a designer at the local museum." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
-  "title" : "Practice Distinguishing 'As' and 'Like'",
+  "title" : "Mary collaborated with the company as a celebrity.",
   "instructions" : "Elegir 'as' si estamos hablando del trabajo de alguien. Elegir 'like' si estamos hablando de algo que es similar a otra cosa.",
-  "translation" : "Mary colaboró con la empresa como consultora.",
+  "translation" : "Mary colaboró con la empresa como celebridad.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Mary collaborated with the company",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "as" ]
     }, {
       "kind" : "TEXT",
-      "text" : "a consultant.",
+      "text" : "a celebrity.",
       "options" : null
     } ],
-    "sentences" : [ "Mary collaborated with the company as a consultant." ]
+    "sentences" : [ "Mary collaborated with the company as a celebrity." ]
   }
 } ]

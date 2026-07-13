@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ae"
   },
-  "title" : "'Going to' for Intentions and Plans",
+  "title" : "We 're going to have a party.",
   "instructions" : "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
-  "translation" : "Nosotros vamos a organizar una fiesta.",
+  "translation" : "Nosotros vamos a hacer una fiesta.",
   "theoryId" : "a1.03.Going_to_Use_Plans_and_Intentions",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'re going to organize|are going to organize" ]
+      "text" : null,
+      "options" : [ "'re going to have|are going to have" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(organize) a party.",
+      "text" : "(have) a party.",
       "options" : null
     } ],
-    "sentences" : [ "We're going to organize a party.", "We are going to organize a party." ]
+    "sentences" : [ "We 're going to have a party.", "We are going to have a party." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ae"
   },
-  "title" : "'Going to' for Intentions and Plans",
+  "title" : "She 's going to study business.",
   "instructions" : "Escribe oraciones con 'going to' (estos son ejemplos del uso de 'going to' para planes e intenciones).",
-  "translation" : "Ella va a estudiar medicina.",
+  "translation" : "Ella va a estudiar negocios.",
   "theoryId" : "a1.03.Going_to_Use_Plans_and_Intentions",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -497,25 +497,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'s going to study|is going to study" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(study) medicine.",
+      "text" : "(study) business.",
       "options" : null
     } ],
-    "sentences" : [ "She's going to study medicine.", "She is going to study medicine." ]
+    "sentences" : [ "She 's going to study business.", "She is going to study business." ]
   }
 } ]

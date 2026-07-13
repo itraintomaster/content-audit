@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d30b"
   },
-  "title" : "Quantifiers and 'of' - Practice Quiz",
+  "title" : "We ate a bit of that pizza.",
   "instructions" : "Inserta la palabra 'of' donde sea necesario. Si no se requiere, escribe '-'.",
-  "translation" : "Consumimos un poco de esa pizza.",
+  "translation" : "Comimos un poco de esa pizza.",
   "theoryId" : "b1.08.Such_and_Such_a",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We consumed a bit",
+      "text" : "We ate a bit",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
       "text" : "that pizza.",
       "options" : null
     } ],
-    "sentences" : [ "We consumed a bit of that pizza." ]
+    "sentences" : [ "We ate a bit of that pizza." ]
   }
 }, {
   "_id" : {
@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d30b"
   },
-  "title" : "Quantifiers and 'of' - Practice Quiz",
+  "title" : "There are numerous different toys but I don't want any of them.",
   "instructions" : "Inserta la palabra 'of' donde sea necesario. Si no se requiere, escribe '-'.",
-  "translation" : "Hay numerosos juguetes únicos, pero no quiero ninguno de ellos.",
+  "translation" : "Hay numerosos juguetes diferentes, pero no quiero ninguno de ellos.",
   "theoryId" : "b1.08.Such_and_Such_a",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "There are numerous unique toys but I don't want any",
+      "text" : "There are numerous different toys but I don't want any",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
       "text" : "them.",
       "options" : null
     } ],
-    "sentences" : [ "There are numerous unique toys but I don't want any of them." ]
+    "sentences" : [ "There are numerous different toys but I don't want any of them." ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d30b"
   },
-  "title" : "Quantifiers and 'of' - Practice Quiz",
+  "title" : "Did you translate much of this text?",
   "instructions" : "Inserta la palabra 'of' donde sea necesario. Si no se requiere, escribe '-'.",
-  "translation" : "¿Consumiste mucho de esto?",
+  "translation" : "¿Tradujiste mucho de este texto?",
   "theoryId" : "b1.08.Such_and_Such_a",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Did you consume much",
+      "text" : "Did you translate much",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "this?",
+      "text" : "this text?",
       "options" : null
     } ],
-    "sentences" : [ "Did you consume much of this?" ]
+    "sentences" : [ "Did you translate much of this text?" ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d30b"
   },
-  "title" : "Quantifiers and 'of' - Practice Quiz",
+  "title" : "Several of you have to remain and help me.",
   "instructions" : "Inserta la palabra 'of' donde sea necesario. Si no se requiere, escribe '-'.",
-  "translation" : "Varios de ustedes tienen que quedarse y asistirme.",
+  "translation" : "Varios de ustedes tienen que quedarse y ayudarme.",
   "theoryId" : "b1.08.Such_and_Such_a",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Several",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "you have to remain and assist me.",
+      "text" : "you have to remain and help me.",
       "options" : null
     } ],
-    "sentences" : [ "Several of you have to remain and assist me." ]
+    "sentences" : [ "Several of you have to remain and help me." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d30b"
   },
-  "title" : "Quantifiers and 'of' - Practice Quiz",
+  "title" : "I don't drink much - juice.",
   "instructions" : "Inserta la palabra 'of' donde sea necesario. Si no se requiere, escribe '-'.",
-  "translation" : "No consumo mucho jugo.",
+  "translation" : "No bebo mucho jugo.",
   "theoryId" : "b1.08.Such_and_Such_a",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I don't consume much",
+      "text" : "I don't drink much",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "juice.",
       "options" : null
     } ],
-    "sentences" : [ "I don't consume much - juice." ]
+    "sentences" : [ "I don't drink much - juice." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d30b"
   },
-  "title" : "Quantifiers and 'of' - Practice Quiz",
+  "title" : "Several of the candies decreased in size!",
   "instructions" : "Inserta la palabra 'of' donde sea necesario. Si no se requiere, escribe '-'.",
-  "translation" : "¡Varios de los caramelos desaparecieron!",
+  "translation" : "¡Varios de los caramelos disminuyeron de tamaño!",
   "theoryId" : "b1.08.Such_and_Such_a",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Several",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the candies vanished!",
+      "text" : "the candies decreased in size!",
       "options" : null
     } ],
-    "sentences" : [ "Several of the candies vanished!" ]
+    "sentences" : [ "Several of the candies decreased in size!" ]
   }
 }, {
   "_id" : {

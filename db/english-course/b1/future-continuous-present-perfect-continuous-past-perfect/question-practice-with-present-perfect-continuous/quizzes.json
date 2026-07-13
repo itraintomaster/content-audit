@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2da"
   },
-  "title" : "Question Practice with Present Perfect Continuous",
+  "title" : "Have you been achieving your fitness goals?",
   "instructions" : "Escribe preguntas en 'present perfect continuous'.",
-  "translation" : "¿Has estado estirando?",
+  "translation" : "¿Has estado alcanzando tus objetivos físicos?",
   "theoryId" : "b1.04.Present_Perfect_Continuous_Forms_2_Questions",
   "topicName" : "Future continuous / present perfect continuous / past perfect",
   "difficulty" : {
@@ -653,26 +653,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Have you been stretching" ]
+      "text" : null,
+      "options" : [ "Have you been achieving" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / stretch)?",
+      "text" : "(you / achieve) your fitness goals?",
       "options" : null
     } ],
-    "sentences" : [ "Have you been stretching?" ]
+    "sentences" : [ "Have you been achieving your fitness goals?" ]
   }
 }, {
   "_id" : {

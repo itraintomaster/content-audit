@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d274"
   },
-  "title" : "Review: Using 'It' and 'There'",
+  "title" : "There are toes in my socks.",
   "instructions" : "Escribe 'it' o 'there'.",
-  "translation" : "Hay agujeros en mis calcetines.",
+  "translation" : "Hay dedos de los pies en mis calcetines.",
   "theoryId" : "a2.08.One_and_Ones",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -861,26 +861,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "There" ]
     }, {
       "kind" : "TEXT",
-      "text" : "are holes in my socks.",
+      "text" : "are toes in my socks.",
       "options" : null
     } ],
-    "sentences" : [ "There are holes in my socks." ]
+    "sentences" : [ "There are toes in my socks." ]
   }
 }, {
   "_id" : {

@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Articles Practice Exercise 1",
+  "title" : "The family had a bird. The bird sang well.",
   "instructions" : "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
-  "translation" : "La familia tenía un pájaro y un hámster. El pájaro cantaba hermosamente.",
+  "translation" : "La familia tenía un pájaro. El pájaro cantaba bien.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The family had a bird and a hamster.",
+      "text" : "The family had a bird.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
-      "text" : "bird sang beautifully.",
+      "text" : "bird sang well.",
       "options" : null
     } ],
-    "sentences" : [ "The family had a bird and a hamster. The bird sang beautifully." ]
+    "sentences" : [ "The family had a bird. The bird sang well." ]
   }
 }, {
   "_id" : {
@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Articles Practice Exercise 1",
+  "title" : "He sure drinks - milk.",
   "instructions" : "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
-  "translation" : "Él rara vez bebe leche.",
+  "translation" : "Él sí bebe leche.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He rarely drinks",
+      "text" : "He sure drinks",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "milk (in general).",
       "options" : null
     } ],
-    "sentences" : [ "He rarely drinks - milk ." ]
+    "sentences" : [ "He sure drinks - milk." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Articles Practice Exercise 1",
+  "title" : "She offered me a pen. The pen wrote badly.",
   "instructions" : "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
-  "translation" : "Ella me ofreció un bolígrafo y papel. El bolígrafo escribía suavemente.",
+  "translation" : "Ella me ofreció un bolígrafo. El bolígrafo escribía mal.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She offered me",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "pen and some paper. The pen wrote smoothly.",
+      "text" : "pen. The pen wrote badly.",
       "options" : null
     } ],
-    "sentences" : [ "She offered me a pen and some paper. The pen wrote smoothly." ]
+    "sentences" : [ "She offered me a pen. The pen wrote badly." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Articles Practice Exercise 1",
+  "title" : "We visited the USA.",
   "instructions" : "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
-  "translation" : "Exploramos los Estados Unidos.",
+  "translation" : "Visitamos los Estados Unidos.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We explored",
+      "text" : "We visited",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
       "text" : "USA.",
       "options" : null
     } ],
-    "sentences" : [ "We explored the USA." ]
+    "sentences" : [ "We visited the USA." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Articles Practice Exercise 1",
+  "title" : "We see - concerts.",
   "instructions" : "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
-  "translation" : "Apreciamos los conciertos.",
+  "translation" : "Vemos conciertos.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We appreciate",
+      "text" : "We see",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "concerts (in general).",
       "options" : null
     } ],
-    "sentences" : [ "We appreciate - concerts ." ]
+    "sentences" : [ "We see - concerts." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d261"
   },
-  "title" : "Articles Practice Exercise 1",
+  "title" : "I saw a man.",
   "instructions" : "Completa con 'the' o 'a' o 'an' o '-' si no necesitamos un artículo.",
-  "translation" : "Me encontré con un hombre.",
+  "translation" : "Vi a un hombre.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I encountered",
+      "text" : "I saw",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
       "text" : "man (the listener doesn't know which man).",
       "options" : null
     } ],
-    "sentences" : [ "I encountered a man ." ]
+    "sentences" : [ "I saw a man." ]
   }
 }, {
   "_id" : {

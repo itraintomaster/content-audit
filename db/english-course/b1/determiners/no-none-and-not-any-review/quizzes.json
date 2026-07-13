@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d30c"
   },
-  "title" : "'No', 'None', and 'Not Any' - Review",
+  "title" : "I will make no trouble at school!",
   "instructions" : "Reescribe las oraciones para que incluyan 'no' o 'none'. Por ejemplo: She doesn't eat any cheese -> she eats no cheese.",
-  "translation" : "¡No causaré ningún problema!",
+  "translation" : "¡No causaré ningún problema en la escuela!",
   "theoryId" : "b1.08.Either",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -393,26 +393,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I won't cause any trouble!",
+      "text" : "I won't make any trouble at school!",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I will cause no trouble!" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "I will make no trouble at school!" ]
     } ],
-    "sentences" : [ "I will cause no trouble!" ]
+    "sentences" : [ "I will make no trouble at school!" ]
   }
 }, {
   "_id" : {

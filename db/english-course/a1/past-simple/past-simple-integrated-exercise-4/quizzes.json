@@ -111,7 +111,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bb"
   },
-  "title" : "Past Simple: Integrated Exercise 4",
+  "title" : "When did you get home?",
   "instructions" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible.",
   "translation" : "¿Cuándo llegaste a casa?",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "When",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "did you arrive" ]
+      "text" : null,
+      "options" : [ "did you get" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / arrive) at home?",
+      "text" : "(you / get) home?",
       "options" : null
     } ],
-    "sentences" : [ "When did you arrive at home?" ]
+    "sentences" : [ "When did you get home?" ]
   }
 }, {
   "_id" : {
@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bb"
   },
-  "title" : "Past Simple: Integrated Exercise 4",
+  "title" : "I worked at the school all day.",
   "instructions" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible.",
-  "translation" : "Trabajé en la oficina todo el día.",
+  "translation" : "Trabajé en la escuela todo el día.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "worked" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(work) at the office all day.",
+      "text" : "(work) at the school all day.",
       "options" : null
     } ],
-    "sentences" : [ "I worked at the office all day." ]
+    "sentences" : [ "I worked at the school all day." ]
   }
 }, {
   "_id" : {
@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bb"
   },
-  "title" : "Past Simple: Integrated Exercise 4",
+  "title" : "She was very sweet.",
   "instructions" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible.",
-  "translation" : "Ella era muy generosa.",
+  "translation" : "Ella era muy dulce.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "was" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) very generous.",
+      "text" : "(be) very sweet.",
       "options" : null
     } ],
-    "sentences" : [ "She was very generous." ]
+    "sentences" : [ "She was very sweet." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bb"
   },
-  "title" : "Past Simple: Integrated Exercise 4",
+  "title" : "Was she happy at 5 pm?",
   "instructions" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible.",
-  "translation" : "¿Estaba ella enfadada a las 5 pm?",
+  "translation" : "¿Estaba ella feliz a las 5 pm?",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -705,26 +705,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Was she" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / be) angry at 5 pm?",
+      "text" : "(she / be) happy at 5 pm?",
       "options" : null
     } ],
-    "sentences" : [ "Was she angry at 5 pm?" ]
+    "sentences" : [ "Was she happy at 5 pm?" ]
   }
 }, {
   "_id" : {
@@ -839,9 +835,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bb"
   },
-  "title" : "Past Simple: Integrated Exercise 4",
+  "title" : "My old car was black.",
   "instructions" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible.",
-  "translation" : "Yo estaba muy satisfecho con mi viejo coche.",
+  "translation" : "Mi viejo coche era negro.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -861,26 +857,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I",
+      "text" : "My old car",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "was" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) very satisfied with my old car.",
+      "text" : "(be) black.",
       "options" : null
     } ],
-    "sentences" : [ "I was very satisfied with my old car." ]
+    "sentences" : [ "My old car was black." ]
   }
 }, {
   "_id" : {
@@ -891,9 +887,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bb"
   },
-  "title" : "Past Simple: Integrated Exercise 4",
+  "title" : "She didn't train with her brother.",
   "instructions" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible.",
-  "translation" : "Ella no discutió con su hermano.",
+  "translation" : "Ella no entrenó con su hermano.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -913,26 +909,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "didn't argue" ]
+      "text" : null,
+      "options" : [ "didn't train" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / argue) with her brother.",
+      "text" : "(not / train) with her brother.",
       "options" : null
     } ],
-    "sentences" : [ "She didn't argue with her brother." ]
+    "sentences" : [ "She didn't train with her brother." ]
   }
 }, {
   "_id" : {
@@ -943,9 +939,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bb"
   },
-  "title" : "Past Simple: Integrated Exercise 4",
+  "title" : "How late were they at the game?",
   "instructions" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible.",
-  "translation" : "¿Qué tan tarde estuvieron ellos en el concierto?",
+  "translation" : "¿Qué tan tarde estuvieron ellos en el partido?",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -965,26 +961,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "How late",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "were they" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / be) at the concert?",
+      "text" : "(they / be) at the game?",
       "options" : null
     } ],
-    "sentences" : [ "How late were they at the concert?" ]
+    "sentences" : [ "How late were they at the game?" ]
   }
 }, {
   "_id" : {
@@ -995,9 +991,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bb"
   },
-  "title" : "Past Simple: Integrated Exercise 4",
+  "title" : "Why did you trust that man?",
   "instructions" : "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo 'be'. Usa las 'short forms' si es posible.",
-  "translation" : "¿Por qué confiaste en ese tipo?",
+  "translation" : "¿Por qué confiaste en ese hombre?",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -1017,25 +1013,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "did you trust" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / trust) that guy?",
+      "text" : "(you / trust) that man?",
       "options" : null
     } ],
-    "sentences" : [ "Why did you trust that guy?" ]
+    "sentences" : [ "Why did you trust that man?" ]
   }
 } ]

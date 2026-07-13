@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
-  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "title" : "The professors met the other famous authors.",
   "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-  "translation" : "Los profesores se saltaron los otros seminarios.",
+  "translation" : "Los profesores conocieron a los otros autores famosos.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The professors skipped",
+      "text" : "The professors met",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the other" ]
     }, {
       "kind" : "TEXT",
-      "text" : "seminars.",
+      "text" : "famous authors.",
       "options" : null
     } ],
-    "sentences" : [ "The professors skipped the other seminars." ]
+    "sentences" : [ "The professors met the other famous authors." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d307"
   },
-  "title" : "'Another' vs. 'The Other': Which to Use?",
+  "title" : "She covered the other periods in history class.",
   "instructions" : "Si es posible, escribe 'another'. De lo contrario, escribe 'the other'.",
-  "translation" : "Ella cubrió los otros gastos.",
+  "translation" : "Ella cubrió los otros períodos en la clase de historia.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She covered",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the other" ]
     }, {
       "kind" : "TEXT",
-      "text" : "expenses.",
+      "text" : "periods in history class.",
       "options" : null
     } ],
-    "sentences" : [ "She covered the other expenses." ]
+    "sentences" : [ "She covered the other periods in history class." ]
   }
 } ]

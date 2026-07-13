@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a8"
   },
-  "title" : "'in' vs 'of' with Superlatives",
+  "title" : "The ice cream was the least sweet part of the menu.",
   "instructions" : "Elige 'in' o 'of'.",
-  "translation" : "El helado era el artículo menos dulce del menú.",
+  "translation" : "El helado era la parte menos dulce del menú.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The ice cream was the least sweet item",
+      "text" : "The ice cream was the least sweet part",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
       "text" : "the menu.",
       "options" : null
     } ],
-    "sentences" : [ "The ice cream was the least sweet item of the menu." ]
+    "sentences" : [ "The ice cream was the least sweet part of the menu." ]
   }
 }, {
   "_id" : {

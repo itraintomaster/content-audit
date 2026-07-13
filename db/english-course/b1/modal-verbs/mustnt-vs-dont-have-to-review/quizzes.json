@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d32d"
   },
-  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "title" : "The guests mustn't record the concert. It's not allowed.",
   "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "Los invitados no deben grabar el concierto. Está prohibido.",
+  "translation" : "Los invitados no deben grabar el concierto. No está permitido.",
   "theoryId" : "b1.11.Modals_for_Politeness",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The guests",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "mustn't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "record the concert. It's prohibited.",
+      "text" : "record the concert. It's not allowed.",
       "options" : null
     } ],
-    "sentences" : [ "The guests mustn't record the concert. It's prohibited." ]
+    "sentences" : [ "The guests mustn't record the concert. It's not allowed." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d32d"
   },
-  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "title" : "She mustn't eat coconuts. She's allergic to them.",
   "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "Ella no debe comer nueces. Es alérgica a ellas.",
+  "translation" : "Ella no debe comer cocos. Es alérgica a ellos.",
   "theoryId" : "b1.11.Modals_for_Politeness",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "mustn't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "eat nuts. She's allergic to them.",
+      "text" : "eat coconuts. She's allergic to them.",
       "options" : null
     } ],
-    "sentences" : [ "She mustn't eat nuts. She's allergic to them." ]
+    "sentences" : [ "She mustn't eat coconuts. She's allergic to them." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d32d"
   },
-  "title" : "'Mustn't' vs. 'Don't Have To' Review",
+  "title" : "You don't have to play in the game. It's your choice.",
   "instructions" : "Completa los espacios en blanco con 'mustn't' o 'don't / doesn't have to'.",
-  "translation" : "No tienes que participar en el juego. Es tu elección.",
+  "translation" : "No tienes que jugar en el juego. Es tu elección.",
   "theoryId" : "b1.11.Modals_for_Politeness",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "don't have to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "participate in the game. It's your choice.",
+      "text" : "play in the game. It's your choice.",
       "options" : null
     } ],
-    "sentences" : [ "You don't have to participate in the game. It's your choice." ]
+    "sentences" : [ "You don't have to play in the game. It's your choice." ]
   }
 }, {
   "_id" : {

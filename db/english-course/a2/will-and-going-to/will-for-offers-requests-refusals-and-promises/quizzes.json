@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22d"
   },
-  "title" : "'Will' for Offers, Requests, Refusals, and Promises",
+  "title" : "I 'll complete the list today.",
   "instructions" : "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
-  "translation" : "Completaré las tareas hoy.",
+  "translation" : "Completaré la lista hoy.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'ll complete" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(complete) the tasks today.",
+      "text" : "(complete) the list today.",
       "options" : null
     } ],
-    "sentences" : [ "I'll complete the tasks today." ]
+    "sentences" : [ "I 'll complete the list today." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22d"
   },
-  "title" : "'Will' for Offers, Requests, Refusals, and Promises",
+  "title" : "Will you arrive soon and include me?",
   "instructions" : "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
-  "translation" : "¿Llegarás pronto y me ayudarás?",
+  "translation" : "¿Llegarás pronto y me incluirás?",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -965,26 +965,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Will you arrive" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / arrive) soon and assist me?",
+      "text" : "(you / arrive) soon and include me?",
       "options" : null
     } ],
-    "sentences" : [ "Will you arrive soon and assist me?" ]
+    "sentences" : [ "Will you arrive soon and include me?" ]
   }
 }, {
   "_id" : {
@@ -995,7 +991,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22d"
   },
-  "title" : "'Will' for Offers, Requests, Refusals, and Promises",
+  "title" : "I won't help with lunch!",
   "instructions" : "Crea una oración con 'will / won't' que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
   "translation" : "¡No ayudaré con el almuerzo!",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
@@ -1017,25 +1013,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "won't assist" ]
+      "text" : null,
+      "options" : [ "won't help" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / assist) with lunch!",
+      "text" : "(not / help) with lunch!",
       "options" : null
     } ],
-    "sentences" : [ "I won't assist with lunch!" ]
+    "sentences" : [ "I won't help with lunch!" ]
   }
 } ]

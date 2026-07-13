@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25b"
   },
-  "title" : "Using A / An to Define Things",
+  "title" : "This is a seat for the passenger.",
   "instructions" : "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
-  "translation" : "Este es un aparato para lavar la ropa.",
+  "translation" : "Este es un asiento para el pasajero.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "device for washing clothes.",
+      "text" : "seat for the passenger.",
       "options" : null
     } ],
-    "sentences" : [ "This is a device for washing clothes." ]
+    "sentences" : [ "This is a seat for the passenger." ]
   }
 }, {
   "_id" : {
@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25b"
   },
-  "title" : "Using A / An to Define Things",
+  "title" : "That's a pot for my flowers.",
   "instructions" : "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
-  "translation" : "Ese es un jarrón para mis flores.",
+  "translation" : "Esa es una maceta para mis flores.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "That's",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "vase for my flowers.",
+      "text" : "pot for my flowers.",
       "options" : null
     } ],
-    "sentences" : [ "That's a vase for my flowers." ]
+    "sentences" : [ "That's a pot for my flowers." ]
   }
 }, {
   "_id" : {
@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25b"
   },
-  "title" : "Using A / An to Define Things",
+  "title" : "That's an email from the PC.",
   "instructions" : "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
-  "translation" : "Ese es un correo electrónico del director.",
+  "translation" : "Ese es un correo electrónico de la PC.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "That's",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "an" ]
     }, {
       "kind" : "TEXT",
-      "text" : "email from the director.",
+      "text" : "email from the PC.",
       "options" : null
     } ],
-    "sentences" : [ "That's an email from the director." ]
+    "sentences" : [ "That's an email from the PC." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25b"
   },
-  "title" : "Using A / An to Define Things",
+  "title" : "This is a model for the class.",
   "instructions" : "Completa con 'a' / 'an' si es necesario. Si no necesitas un artículo, escribe '-'.",
-  "translation" : "Este es un recipiente para arroz.",
+  "translation" : "Este es un modelo para la clase.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "container for rice.",
+      "text" : "model for the class.",
       "options" : null
     } ],
-    "sentences" : [ "This is a container for rice." ]
+    "sentences" : [ "This is a model for the class." ]
   }
 }, {
   "_id" : {

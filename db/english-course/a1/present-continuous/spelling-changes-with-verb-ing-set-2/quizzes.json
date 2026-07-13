@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d398"
   },
-  "title" : "Spelling changes with verb+ing: set 2",
+  "title" : "The girl is making a cake now.",
   "instructions" : "¿Cuál es la forma 'verb+ing'?",
-  "translation" : "horneando",
+  "translation" : "La niña está haciendo un pastel ahora.",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "bake -",
+      "text" : "The girl is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "baking" ]
+      "text" : null,
+      "options" : [ "making" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "(make) a cake now.",
       "options" : null
     } ],
-    "sentences" : [ "bake - baking" ]
+    "sentences" : [ "The girl is making a cake now." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d398"
   },
-  "title" : "Spelling changes with verb+ing: set 2",
+  "title" : "practise - practising",
   "instructions" : "¿Cuál es la forma 'verb+ing'?",
-  "translation" : "navegando",
+  "translation" : "practicando",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -185,26 +185,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "browse -",
+      "text" : "practise -",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "browsing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "practising" ]
     } ],
-    "sentences" : [ "browse - browsing" ]
+    "sentences" : [ "practise - practising" ]
   }
 }, {
   "_id" : {
@@ -475,9 +471,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d398"
   },
-  "title" : "Spelling changes with verb+ing: set 2",
+  "title" : "come - coming",
   "instructions" : "¿Cuál es la forma 'verb+ing'?",
-  "translation" : "saludando",
+  "translation" : "viniendo",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -497,26 +493,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "wave -",
+      "text" : "come -",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "waving" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "coming" ]
     } ],
-    "sentences" : [ "wave - waving" ]
+    "sentences" : [ "come - coming" ]
   }
 }, {
   "_id" : {
@@ -995,9 +987,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d398"
   },
-  "title" : "Spelling changes with verb+ing: set 2",
+  "title" : "make - making",
   "instructions" : "¿Cuál es la forma 'verb+ing'?",
-  "translation" : "escapando",
+  "translation" : "haciendo",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -1017,25 +1009,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "escape -",
+      "text" : "make -",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "escaping" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "making" ]
     } ],
-    "sentences" : [ "escape - escaping" ]
+    "sentences" : [ "make - making" ]
   }
 } ]

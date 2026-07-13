@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c2"
   },
-  "title" : "Review of Present Perfect Forms with Regular Verbs",
+  "title" : "They 've painted the section of the wall.",
   "instructions" : "",
-  "translation" : "Han pintado la valla.",
+  "translation" : "Han pintado la sección de la pared.",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'ve painted|have painted" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(paint) the fence.",
+      "text" : "(paint) the section of the wall.",
       "options" : null
     } ],
-    "sentences" : [ "They've painted the fence.", "They have painted the fence." ]
+    "sentences" : [ "They 've painted the section of the wall.", "They have painted the section of the wall." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c2"
   },
-  "title" : "Review of Present Perfect Forms with Regular Verbs",
+  "title" : "Have we agreed to form a team?",
   "instructions" : "",
-  "translation" : "¿Hemos acordado participar?",
+  "translation" : "¿Hemos acordado formar un equipo?",
   "theoryId" : "b1.02.Present_Perfect_Use_How_Long_with_For_and_Since",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -861,26 +861,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Have we agreed" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(we / agree) to participate?",
+      "text" : "(we / agree) to form a team?",
       "options" : null
     } ],
-    "sentences" : [ "Have we agreed to participate?" ]
+    "sentences" : [ "Have we agreed to form a team?" ]
   }
 }, {
   "_id" : {

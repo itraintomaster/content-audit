@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38e"
   },
-  "title" : "Spelling transformations in the present simple",
+  "title" : "The student studies hard.",
   "instructions" : "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
-  "translation" : "El bebé responde cortésmente.",
+  "translation" : "El estudiante estudia mucho.",
   "theoryId" : "a1.01.Present_Simple_Spelling_Changes",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The baby",
+      "text" : "The student",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "replies" ]
+      "text" : null,
+      "options" : [ "studies" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(reply) politely.",
+      "text" : "(study) hard.",
       "options" : null
     } ],
-    "sentences" : [ "The baby replies politely." ]
+    "sentences" : [ "The student studies hard." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38e"
   },
-  "title" : "Spelling transformations in the present simple",
+  "title" : "My mom stretches her arm.",
   "instructions" : "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
-  "translation" : "Mi mamá cree en fantasmas.",
+  "translation" : "Mi mamá estira su brazo.",
   "theoryId" : "a1.01.Present_Simple_Spelling_Changes",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "My mom",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "believes" ]
+      "text" : null,
+      "options" : [ "stretches" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(believe) in ghosts.",
+      "text" : "(stretch) her arm.",
       "options" : null
     } ],
-    "sentences" : [ "My mom believes in ghosts." ]
+    "sentences" : [ "My mom stretches her arm." ]
   }
 }, {
   "_id" : {
@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38e"
   },
-  "title" : "Spelling transformations in the present simple",
+  "title" : "He teaches his wife.",
   "instructions" : "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
-  "translation" : "Él besa a su esposa.",
+  "translation" : "Él le enseña a su esposa.",
   "theoryId" : "a1.01.Present_Simple_Spelling_Changes",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "kisses" ]
+      "text" : null,
+      "options" : [ "teaches" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(kiss) his wife.",
+      "text" : "(teach) his wife.",
       "options" : null
     } ],
-    "sentences" : [ "He kisses his wife." ]
+    "sentences" : [ "He teaches his wife." ]
   }
 }, {
   "_id" : {
@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38e"
   },
-  "title" : "Spelling transformations in the present simple",
+  "title" : "She eats dinner at the beach.",
   "instructions" : "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
-  "translation" : "Ella cena rápidamente.",
+  "translation" : "Ella cena en la playa.",
   "theoryId" : "a1.01.Present_Simple_Spelling_Changes",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "eats" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(eat) dinner quickly.",
+      "text" : "(eat) dinner at the beach.",
       "options" : null
     } ],
-    "sentences" : [ "She eats dinner quickly." ]
+    "sentences" : [ "She eats dinner at the beach." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38e"
   },
-  "title" : "Spelling transformations in the present simple",
+  "title" : "The woman flies too much.",
   "instructions" : "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
-  "translation" : "La mujer se preocupa demasiado.",
+  "translation" : "La mujer vuela demasiado.",
   "theoryId" : "a1.01.Present_Simple_Spelling_Changes",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The woman",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "worries" ]
+      "text" : null,
+      "options" : [ "flies" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(worry) too much.",
+      "text" : "(fly) too much.",
       "options" : null
     } ],
-    "sentences" : [ "The woman worries too much." ]
+    "sentences" : [ "The woman flies too much." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38e"
   },
-  "title" : "Spelling transformations in the present simple",
+  "title" : "He does his homework.",
   "instructions" : "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
-  "translation" : "Él empareja los calcetines.",
+  "translation" : "Él hace su tarea.",
   "theoryId" : "a1.01.Present_Simple_Spelling_Changes",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "matches" ]
+      "text" : null,
+      "options" : [ "does" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(match) the socks.",
+      "text" : "(do) his homework.",
       "options" : null
     } ],
-    "sentences" : [ "He matches the socks." ]
+    "sentences" : [ "He does his homework." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38e"
   },
-  "title" : "Spelling transformations in the present simple",
+  "title" : "He goes to school.",
   "instructions" : "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
-  "translation" : "Él besa a su novia.",
+  "translation" : "Él va a la escuela.",
   "theoryId" : "a1.01.Present_Simple_Spelling_Changes",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "kisses" ]
+      "text" : null,
+      "options" : [ "goes" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(kiss) his girlfriend.",
+      "text" : "(go) to school.",
       "options" : null
     } ],
-    "sentences" : [ "He kisses his girlfriend." ]
+    "sentences" : [ "He goes to school." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38e"
   },
-  "title" : "Spelling transformations in the present simple",
+  "title" : "My friend buys a pair of shoes.",
   "instructions" : "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
-  "translation" : "Mi amigo paga la cuenta.",
+  "translation" : "Mi amigo compra un par de zapatos.",
   "theoryId" : "a1.01.Present_Simple_Spelling_Changes",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "My friend",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "pays" ]
+      "text" : null,
+      "options" : [ "buys" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(pay) the bill.",
+      "text" : "(buy) a pair of shoes.",
       "options" : null
     } ],
-    "sentences" : [ "My friend pays the bill." ]
+    "sentences" : [ "My friend buys a pair of shoes." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38e"
   },
-  "title" : "Spelling transformations in the present simple",
+  "title" : "The baker mixes the wine.",
   "instructions" : "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
-  "translation" : "El panadero mezcla los ingredientes.",
+  "translation" : "El panadero mezcla el vino.",
   "theoryId" : "a1.01.Present_Simple_Spelling_Changes",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The baker",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "mixes" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(mix) the ingredients.",
+      "text" : "(mix) the wine.",
       "options" : null
     } ],
-    "sentences" : [ "The baker mixes the ingredients." ]
+    "sentences" : [ "The baker mixes the wine." ]
   }
 }, {
   "_id" : {

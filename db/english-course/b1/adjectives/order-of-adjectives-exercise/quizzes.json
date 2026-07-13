@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35d"
   },
-  "title" : "Order of Adjectives Exercise",
+  "title" : "We made a small metal box yesterday.",
   "instructions" : "Reordena los adjetivos en el orden correcto.",
-  "translation" : "Construimos una pequeña caja de metal.",
+  "translation" : "Ayer hicimos una pequeña caja de metal.",
   "theoryId" : "b1.15.Order_of_Adjectives",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We constructed a",
+      "text" : "We made a",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "small metal" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(metal / small) box.",
+      "text" : "(metal / small) box yesterday.",
       "options" : null
     } ],
-    "sentences" : [ "We constructed a small metal box." ]
+    "sentences" : [ "We made a small metal box yesterday." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35d"
   },
-  "title" : "Order of Adjectives Exercise",
+  "title" : "She designed an original square glass table.",
   "instructions" : "Reordena los adjetivos en el orden correcto.",
-  "translation" : "Ella diseñó una mesa de vidrio cuadrada única.",
+  "translation" : "Ella diseñó una mesa de vidrio cuadrada original.",
   "theoryId" : "b1.15.Order_of_Adjectives",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She designed an",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "unique square glass" ]
+      "text" : null,
+      "options" : [ "original square glass" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(square / glass / unique) table.",
+      "text" : "(square / glass / original) table.",
       "options" : null
     } ],
-    "sentences" : [ "She designed an unique square glass table." ]
+    "sentences" : [ "She designed an original square glass table." ]
   }
 }, {
   "_id" : {

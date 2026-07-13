@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28b"
   },
-  "title" : "Selecting For or During",
+  "title" : "She saw Peter many times during the Christmas holidays.",
   "instructions" : "Coloca 'for' o 'during'.",
-  "translation" : "Ella vio a Peter muchas veces durante el período navideño.",
+  "translation" : "Ella vio a Peter muchas veces durante las vacaciones de Navidad.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She saw Peter many times",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "during" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the Christmas period.",
+      "text" : "the Christmas holidays.",
       "options" : null
     } ],
-    "sentences" : [ "She saw Peter many times during the Christmas period." ]
+    "sentences" : [ "She saw Peter many times during the Christmas holidays." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28b"
   },
-  "title" : "Selecting For or During",
+  "title" : "They noticed the temperature during the afternoon.",
   "instructions" : "Coloca 'for' o 'during'.",
-  "translation" : "Notaron movimiento durante la tarde.",
+  "translation" : "Notaron la temperatura durante la tarde.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They noticed movement",
+      "text" : "They noticed the temperature",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "during" ]
     }, {
       "kind" : "TEXT",
       "text" : "the afternoon.",
       "options" : null
     } ],
-    "sentences" : [ "They noticed movement during the afternoon." ]
+    "sentences" : [ "They noticed the temperature during the afternoon." ]
   }
 }, {
   "_id" : {

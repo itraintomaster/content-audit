@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d221"
   },
-  "title" : "Present Simple vs Present Continuous (Habits or In Progress)",
+  "title" : "He doesn't travel far very often.",
   "instructions" : "Escribe las oraciones en presente simple o en presente continuo.",
-  "translation" : "Él no viaja al extranjero muy a menudo.",
+  "translation" : "Él no viaja lejos muy a menudo.",
   "theoryId" : "a2.01.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "doesn't travel" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / travel) abroad very often.",
+      "text" : "(not / travel) far very often.",
       "options" : null
     } ],
-    "sentences" : [ "He doesn't travel abroad very often." ]
+    "sentences" : [ "He doesn't travel far very often." ]
   }
 }, {
   "_id" : {

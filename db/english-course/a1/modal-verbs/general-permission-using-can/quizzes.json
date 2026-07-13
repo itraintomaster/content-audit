@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
-  "title" : "General Permission: Using 'Can'",
+  "title" : "You can't eat in the school.",
   "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
-  "translation" : "No se puede comer en la biblioteca.",
+  "translation" : "No se puede comer en la escuela.",
   "theoryId" : "",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -81,26 +81,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's not okay to eat in the library.",
+      "text" : "It's not okay to eat in the school.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You can't eat in the library." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You can't eat in the school." ]
     } ],
-    "sentences" : [ "You can't eat in the library." ]
+    "sentences" : [ "You can't eat in the school." ]
   }
 }, {
   "_id" : {
@@ -163,9 +159,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
-  "title" : "General Permission: Using 'Can'",
+  "title" : "Can you swim in the sea?",
   "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
-  "translation" : "¿Se puede nadar en el lago?",
+  "translation" : "¿Se puede nadar en el mar?",
   "theoryId" : "",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -185,26 +181,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Is it okay to swim in the lake?",
+      "text" : "Is it okay to swim in the sea?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Can you swim in the lake?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Can you swim in the sea?" ]
     } ],
-    "sentences" : [ "Can you swim in the lake?" ]
+    "sentences" : [ "Can you swim in the sea?" ]
   }
 }, {
   "_id" : {
@@ -215,9 +207,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
-  "title" : "General Permission: Using 'Can'",
+  "title" : "You can't talk during the lesson.",
   "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
-  "translation" : "No se puede gritar durante la clase.",
+  "translation" : "No se puede hablar durante la clase.",
   "theoryId" : "",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -237,26 +229,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's not okay to shout during the lesson.",
+      "text" : "It's not okay to talk during the lesson.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You can't shout during the lesson." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You can't talk during the lesson." ]
     } ],
-    "sentences" : [ "You can't shout during the lesson." ]
+    "sentences" : [ "You can't talk during the lesson." ]
   }
 }, {
   "_id" : {
@@ -423,9 +411,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
-  "title" : "General Permission: Using 'Can'",
+  "title" : "Can you use a room here?",
   "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
-  "translation" : "¿Se puede usar una computadora portátil aquí?",
+  "translation" : "¿Se puede usar una habitación aquí?",
   "theoryId" : "",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -445,26 +433,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Is it okay to use a laptop here?",
+      "text" : "Is it okay to use a room here?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Can you use a laptop here?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Can you use a room here?" ]
     } ],
-    "sentences" : [ "Can you use a laptop here?" ]
+    "sentences" : [ "Can you use a room here?" ]
   }
 }, {
   "_id" : {
@@ -475,9 +459,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
-  "title" : "General Permission: Using 'Can'",
+  "title" : "You can sit down.",
   "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
-  "translation" : "Te puedes sentar en cualquier lugar.",
+  "translation" : "Te puedes sentar.",
   "theoryId" : "",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -497,26 +481,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's okay to sit anywhere.",
+      "text" : "It's okay to sit down.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You can sit anywhere." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You can sit down." ]
     } ],
-    "sentences" : [ "You can sit anywhere." ]
+    "sentences" : [ "You can sit down." ]
   }
 }, {
   "_id" : {
@@ -527,9 +507,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
-  "title" : "General Permission: Using 'Can'",
+  "title" : "You can't run inside.",
   "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
-  "translation" : "No se puede andar en bicicleta adentro.",
+  "translation" : "No se puede correr adentro.",
   "theoryId" : "",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -549,26 +529,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's not okay to cycle inside.",
+      "text" : "It's not okay to run inside.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You can't cycle inside." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You can't run inside." ]
     } ],
-    "sentences" : [ "You can't cycle inside." ]
+    "sentences" : [ "You can't run inside." ]
   }
 }, {
   "_id" : {
@@ -683,9 +659,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
-  "title" : "General Permission: Using 'Can'",
+  "title" : "You can't sing during the show.",
   "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
-  "translation" : "No se puede cantar en voz alta durante el espectáculo.",
+  "translation" : "No se puede cantar durante el espectáculo.",
   "theoryId" : "",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -705,26 +681,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's not okay to sing loudly during the show.",
+      "text" : "It's not okay to sing during the show.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You can't sing loudly during the show." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You can't sing during the show." ]
     } ],
-    "sentences" : [ "You can't sing loudly during the show." ]
+    "sentences" : [ "You can't sing during the show." ]
   }
 }, {
   "_id" : {
@@ -787,9 +759,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
-  "title" : "General Permission: Using 'Can'",
+  "title" : "You can dance in the house.",
   "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
-  "translation" : "Se puede bailar en el club.",
+  "translation" : "Se puede bailar en la casa.",
   "theoryId" : "",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -809,26 +781,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's okay to dance in the club.",
+      "text" : "It's okay to dance in the house.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You can dance in the club." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You can dance in the house." ]
     } ],
-    "sentences" : [ "You can dance in the club." ]
+    "sentences" : [ "You can dance in the house." ]
   }
 }, {
   "_id" : {
@@ -891,9 +859,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
-  "title" : "General Permission: Using 'Can'",
+  "title" : "You can't cook in the classroom.",
   "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
-  "translation" : "No se puede entrar al estadio sin mascarilla.",
+  "translation" : "No se puede cocinar en el aula.",
   "theoryId" : "",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -913,26 +881,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's not okay to enter the stadium without a mask.",
+      "text" : "It's not okay to cook in the classroom.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You can't enter the stadium without a mask." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You can't cook in the classroom." ]
     } ],
-    "sentences" : [ "You can't enter the stadium without a mask." ]
+    "sentences" : [ "You can't cook in the classroom." ]
   }
 }, {
   "_id" : {
@@ -995,9 +959,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e6"
   },
-  "title" : "General Permission: Using 'Can'",
+  "title" : "You can bring children into the cinema.",
   "instructions" : "Transforma las oraciones para que incluyan 'can' y 'you'. Este es el uso general de 'you'.",
-  "translation" : "Puedes traer bocadillos al cine.",
+  "translation" : "Puedes traer niños al cine.",
   "theoryId" : "",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -1017,25 +981,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's okay to bring snacks into the cinema.",
+      "text" : "It's okay to bring children into the cinema.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You can bring snacks into the cinema." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You can bring children into the cinema." ]
     } ],
-    "sentences" : [ "You can bring snacks into the cinema." ]
+    "sentences" : [ "You can bring children into the cinema." ]
   }
 } ]

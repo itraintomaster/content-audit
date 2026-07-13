@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d249"
   },
-  "title" : "Present Perfect and Past Simple Comparison 2",
+  "title" : "She 's skated on the ice.",
   "instructions" : "Forma oraciones en Present Perfect o Past Simple. Utiliza 'short forms' si es posible.",
-  "translation" : "Ella ha bebido café.",
+  "translation" : "Ella ha patinado sobre el hielo.",
   "theoryId" : "a2.04.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s drunk" ]
+      "text" : null,
+      "options" : [ "'s skated" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(drink) coffee.",
+      "text" : "(skate) on the ice.",
       "options" : null
     } ],
-    "sentences" : [ "She's drunk coffee." ]
+    "sentences" : [ "She 's skated on the ice." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d249"
   },
-  "title" : "Present Perfect and Past Simple Comparison 2",
+  "title" : "Have you ever climbed a mountain?",
   "instructions" : "Forma oraciones en Present Perfect o Past Simple. Utiliza 'short forms' si es posible.",
-  "translation" : "¿Alguna vez has escalado un volcán?",
+  "translation" : "¿Alguna vez has escalado una montaña?",
   "theoryId" : "a2.04.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -341,26 +341,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Have you ever climbed" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / ever / climb) a volcano?",
+      "text" : "(you / ever / climb) a mountain?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever climbed a volcano?" ]
+    "sentences" : [ "Have you ever climbed a mountain?" ]
   }
 }, {
   "_id" : {

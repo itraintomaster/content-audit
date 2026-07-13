@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25e"
   },
-  "title" : "Using A/An and The for Known Items",
+  "title" : "I read - magazines all month. The magazines were comics.",
   "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Leí revistas todo el mes. Las revistas eran en su mayoría cómics.",
+  "translation" : "Leí revistas todo el mes. Las revistas eran cómics.",
   "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I read",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "magazines all month. The magazines were mostly comics.",
+      "text" : "magazines all month. The magazines were comics.",
       "options" : null
     } ],
-    "sentences" : [ "I read - magazines all month. The magazines were mostly comics." ]
+    "sentences" : [ "I read - magazines all month. The magazines were comics." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25e"
   },
-  "title" : "Using A/An and The for Known Items",
+  "title" : "I saw - blood. The blood was disgusting.",
   "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Vi basura en la playa. La basura era asquerosa.",
+  "translation" : "Vi sangre. La sangre era asquerosa.",
   "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I saw",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "litter on the beach. The litter was disgusting.",
+      "text" : "blood. The blood was disgusting.",
       "options" : null
     } ],
-    "sentences" : [ "I saw - litter on the beach. The litter was disgusting." ]
+    "sentences" : [ "I saw - blood. The blood was disgusting." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25e"
   },
-  "title" : "Using A/An and The for Known Items",
+  "title" : "She made - ice cream. The ice cream had chocolate.",
   "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Ella siempre solía hacernos helado. El helado siempre tenía nueces.",
+  "translation" : "Ella hacía helado. El helado tenía chocolate.",
   "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She always used to make",
+      "text" : "She made",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "ice cream for us. The ice cream always had nuts.",
+      "text" : "ice cream. The ice cream had chocolate.",
       "options" : null
     } ],
-    "sentences" : [ "She always used to make - ice cream for us. The ice cream always had nuts." ]
+    "sentences" : [ "She made - ice cream. The ice cream had chocolate." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25e"
   },
-  "title" : "Using A/An and The for Known Items",
+  "title" : "He wrote letters and sent postcards. The letters were fine.",
   "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Él escribió cartas y envió postales. Las cartas eran largas.",
+  "translation" : "Él escribió cartas y envió postales. Las cartas estaban bien.",
   "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He wrote letters and sent postcards.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
-      "text" : "letters were long.",
+      "text" : "letters were fine.",
       "options" : null
     } ],
-    "sentences" : [ "He wrote letters and sent postcards. The letters were long." ]
+    "sentences" : [ "He wrote letters and sent postcards. The letters were fine." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25e"
   },
-  "title" : "Using A/An and The for Known Items",
+  "title" : "There were leaves. The leaves came from oak trees.",
   "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Había ramas en el suelo. Las ramas provenían de los robles.",
+  "translation" : "Había hojas. Las hojas provenían de robles.",
   "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "There were branches on the ground.",
+      "text" : "There were leaves.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
-      "text" : "branches came from the oak trees.",
+      "text" : "leaves came from oak trees.",
       "options" : null
     } ],
-    "sentences" : [ "There were branches on the ground. The branches came from the oak trees." ]
+    "sentences" : [ "There were leaves. The leaves came from oak trees." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25e"
   },
-  "title" : "Using A/An and The for Known Items",
+  "title" : "She helped an aged man. The man was over eighty.",
   "instructions" : "Completa con 'a', 'an', 'the' o 'no article' (-).",
-  "translation" : "Ella ayudó a un anciano a cruzar la calle. El hombre tenía más de ochenta años.",
+  "translation" : "Ella ayudó a un anciano. El hombre tenía más de ochenta años.",
   "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She assisted an elderly man cross the street.",
+      "text" : "She helped an aged man.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
       "text" : "man was over eighty.",
       "options" : null
     } ],
-    "sentences" : [ "She assisted an elderly man cross the street. The man was over eighty." ]
+    "sentences" : [ "She helped an aged man. The man was over eighty." ]
   }
 } ]

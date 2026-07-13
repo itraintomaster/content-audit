@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d34e"
   },
-  "title" : "Using 'Unless' in Sentences",
+  "title" : "We don't eat meat unless it's fresh.",
   "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
-  "translation" : "No comemos carne a menos que sea orgánica.",
+  "translation" : "No comemos carne a menos que sea fresca.",
   "theoryId" : "b1.14.Unless",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -653,26 +653,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We don't eat meat except if it's organic.",
+      "text" : "We don't eat meat except if it's fresh.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We don't eat meat unless it's organic." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "We don't eat meat unless it's fresh." ]
     } ],
-    "sentences" : [ "We don't eat meat unless it's organic." ]
+    "sentences" : [ "We don't eat meat unless it's fresh." ]
   }
 }, {
   "_id" : {
@@ -787,9 +783,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d34e"
   },
-  "title" : "Using 'Unless' in Sentences",
+  "title" : "We'll go to the movies unless you have to work on your article.",
   "instructions" : "Transforma las oraciones para que incluyan la palabra 'unless'.",
-  "translation" : "Iremos al cine a menos que tengas que trabajar horas extras.",
+  "translation" : "Iremos al cine a menos que tengas que trabajar en tu artículo.",
   "theoryId" : "b1.14.Unless",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -809,26 +805,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We'll go to the movies except if you have to work overtime.",
+      "text" : "We'll go to the movies except if you have to work on your article.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We'll go to the movies unless you have to work overtime." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "We'll go to the movies unless you have to work on your article." ]
     } ],
-    "sentences" : [ "We'll go to the movies unless you have to work overtime." ]
+    "sentences" : [ "We'll go to the movies unless you have to work on your article." ]
   }
 }, {
   "_id" : {

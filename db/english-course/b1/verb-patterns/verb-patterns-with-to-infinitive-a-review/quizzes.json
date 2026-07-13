@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2f8"
   },
-  "title" : "Verb patterns with to + infinitive: A review",
+  "title" : "I offered to guard you at the entrance.",
   "instructions" : "Agrega 'to + infinitive' a las oraciones.",
-  "translation" : "Me ofrecí a ayudarte.",
+  "translation" : "Me ofrecí a protegerte en la entrada.",
   "theoryId" : "b1.06.Make_and_Let_+_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I offered",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "to assist" ]
+      "text" : null,
+      "options" : [ "to guard" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(assist) you.",
+      "text" : "(guard) you at the entrance.",
       "options" : null
     } ],
-    "sentences" : [ "I offered to assist you." ]
+    "sentences" : [ "I offered to guard you at the entrance." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2f8"
   },
-  "title" : "Verb patterns with to + infinitive: A review",
+  "title" : "We met to discuss the new car.",
   "instructions" : "Agrega 'to + infinitive' a las oraciones.",
-  "translation" : "Nos reunimos para discutir sobre el auto.",
+  "translation" : "Nos reunimos para discutir el auto nuevo.",
   "theoryId" : "b1.06.Make_and_Let_+_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We gathered",
+      "text" : "We met",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to discuss" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(discuss) about the car.",
+      "text" : "(discuss) the new car.",
       "options" : null
     } ],
-    "sentences" : [ "We gathered to discuss about the car." ]
+    "sentences" : [ "We met to discuss the new car." ]
   }
 }, {
   "_id" : {

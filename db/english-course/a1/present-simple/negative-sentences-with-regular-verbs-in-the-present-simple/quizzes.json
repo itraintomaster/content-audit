@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38a"
   },
-  "title" : "Negative sentences with regular verbs in the present simple",
+  "title" : "We do not sing songs.",
   "instructions" : "Escribe la forma negativa en presente simple. No uses contracciones (short forms).",
-  "translation" : "No cantamos ópera.",
+  "translation" : "No cantamos canciones.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "do not sing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / sing) opera.",
+      "text" : "(not / sing) songs.",
       "options" : null
     } ],
-    "sentences" : [ "We do not sing opera." ]
+    "sentences" : [ "We do not sing songs." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38a"
   },
-  "title" : "Negative sentences with regular verbs in the present simple",
+  "title" : "He does not use money.",
   "instructions" : "Escribe la forma negativa en presente simple. No uses contracciones (short forms).",
-  "translation" : "Él no usa perfume.",
+  "translation" : "Él no usa dinero.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "does not use" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / use) perfume.",
+      "text" : "(not / use) money.",
       "options" : null
     } ],
-    "sentences" : [ "He does not use perfume." ]
+    "sentences" : [ "He does not use money." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38a"
   },
-  "title" : "Negative sentences with regular verbs in the present simple",
+  "title" : "She does not want many potatoes.",
   "instructions" : "Escribe la forma negativa en presente simple. No uses contracciones (short forms).",
-  "translation" : "Ella no cocina muchas patatas.",
+  "translation" : "Ella no quiere muchas patatas.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does not cook" ]
+      "text" : null,
+      "options" : [ "does not want" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / cook) many potatoes.",
+      "text" : "(not / want) many potatoes.",
       "options" : null
     } ],
-    "sentences" : [ "She does not cook many potatoes." ]
+    "sentences" : [ "She does not want many potatoes." ]
   }
 }, {
   "_id" : {

@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d278"
   },
-  "title" : "Choosing Between 'Something' and 'Anything'",
+  "title" : "Do you have anything to bottle?",
   "instructions" : "Escribe 'something' o 'anything'.",
-  "translation" : "¿Tiene algo que declarar?",
+  "translation" : "¿Tiene algo que embotellar?",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do you have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "anything" ]
     }, {
       "kind" : "TEXT",
-      "text" : "to declare?",
+      "text" : "to bottle?",
       "options" : null
     } ],
-    "sentences" : [ "Do you have anything to declare?" ]
+    "sentences" : [ "Do you have anything to bottle?" ]
   }
 }, {
   "_id" : {
@@ -267,7 +267,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d278"
   },
-  "title" : "Choosing Between 'Something' and 'Anything'",
+  "title" : "I require help with something , thanks.",
   "instructions" : "Escribe 'something' o 'anything'.",
   "translation" : "Necesito ayuda con algo, gracias.",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I require assistance with",
+      "text" : "I require help with",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "something" ]
     }, {
       "kind" : "TEXT",
       "text" : ", thanks.",
       "options" : null
     } ],
-    "sentences" : [ "I require assistance with something, thanks." ]
+    "sentences" : [ "I require help with something , thanks." ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d278"
   },
-  "title" : "Choosing Between 'Something' and 'Anything'",
+  "title" : "This is something for the race.",
   "instructions" : "Escribe 'something' o 'anything'.",
-  "translation" : "Esto es algo para considerar.",
+  "translation" : "Esto es algo para la carrera.",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "something" ]
     }, {
       "kind" : "TEXT",
-      "text" : "for consideration.",
+      "text" : "for the race.",
       "options" : null
     } ],
-    "sentences" : [ "This is something for consideration." ]
+    "sentences" : [ "This is something for the race." ]
   }
 }, {
   "_id" : {

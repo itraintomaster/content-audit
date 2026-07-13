@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39b"
   },
-  "title" : "Yes/No questions in the present continuous",
+  "title" : "Am I writing this down?",
   "instructions" : "Formula preguntas de sí/no en 'present continuous'.",
-  "translation" : "¿Estoy escribiendo correctamente?",
+  "translation" : "¿Estoy anotando esto?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Am I writing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(I / write) correctly?",
+      "text" : "(I / write) this down?",
       "options" : null
     } ],
-    "sentences" : [ "Am I writing correctly?" ]
+    "sentences" : [ "Am I writing this down?" ]
   }
 }, {
   "_id" : {
@@ -111,9 +107,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39b"
   },
-  "title" : "Yes/No questions in the present continuous",
+  "title" : "Are you only listening to music?",
   "instructions" : "Formula preguntas de sí/no en 'present continuous'.",
-  "translation" : "¿Estás escuchando atentamente?",
+  "translation" : "¿Solo estás escuchando música?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -133,26 +129,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Are you listening" ]
+      "text" : null,
+      "options" : [ "Are you only listening" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / listen) carefully?",
+      "text" : "(you / only / listen) to music?",
       "options" : null
     } ],
-    "sentences" : [ "Are you listening carefully?" ]
+    "sentences" : [ "Are you only listening to music?" ]
   }
 }, {
   "_id" : {
@@ -215,9 +207,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39b"
   },
-  "title" : "Yes/No questions in the present continuous",
+  "title" : "Is she traveling again?",
   "instructions" : "Formula preguntas de sí/no en 'present continuous'.",
-  "translation" : "¿Ella está viajando al extranjero?",
+  "translation" : "¿Ella está viajando otra vez?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -237,26 +229,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Is she traveling" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / travel) abroad?",
+      "text" : "(she / travel) again?",
       "options" : null
     } ],
-    "sentences" : [ "Is she traveling abroad?" ]
+    "sentences" : [ "Is she traveling again?" ]
   }
 }, {
   "_id" : {
@@ -475,9 +463,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39b"
   },
-  "title" : "Yes/No questions in the present continuous",
+  "title" : "Is he building a wall?",
   "instructions" : "Formula preguntas de sí/no en 'present continuous'.",
-  "translation" : "¿Él está pintando una pared?",
+  "translation" : "¿Él está construyendo una pared?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -497,26 +485,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Is he painting" ]
+      "text" : null,
+      "options" : [ "Is he building" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / paint) a wall?",
+      "text" : "(he / build) a wall?",
       "options" : null
     } ],
-    "sentences" : [ "Is he painting a wall?" ]
+    "sentences" : [ "Is he building a wall?" ]
   }
 }, {
   "_id" : {
@@ -579,9 +563,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39b"
   },
-  "title" : "Yes/No questions in the present continuous",
+  "title" : "Are they asking a question?",
   "instructions" : "Formula preguntas de sí/no en 'present continuous'.",
-  "translation" : "¿Están cantando una canción?",
+  "translation" : "¿Están haciendo una pregunta?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -601,26 +585,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Are they singing" ]
+      "text" : null,
+      "options" : [ "Are they asking" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / sing) a song?",
+      "text" : "(they / ask) a question?",
       "options" : null
     } ],
-    "sentences" : [ "Are they singing a song?" ]
+    "sentences" : [ "Are they asking a question?" ]
   }
 }, {
   "_id" : {
@@ -683,9 +663,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39b"
   },
-  "title" : "Yes/No questions in the present continuous",
+  "title" : "Are you making dinner?",
   "instructions" : "Formula preguntas de sí/no en 'present continuous'.",
-  "translation" : "¿Te estás relajando?",
+  "translation" : "¿Estás haciendo la cena?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -705,26 +685,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Are you relaxing" ]
+      "text" : null,
+      "options" : [ "Are you making" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / relax)?",
+      "text" : "(you / make) dinner?",
       "options" : null
     } ],
-    "sentences" : [ "Are you relaxing?" ]
+    "sentences" : [ "Are you making dinner?" ]
   }
 }, {
   "_id" : {
@@ -783,9 +759,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39b"
   },
-  "title" : "Yes/No questions in the present continuous",
+  "title" : "Are they running a business?",
   "instructions" : "Formula preguntas de sí/no en 'present continuous'.",
-  "translation" : "¿Están corriendo una carrera?",
+  "translation" : "¿Están dirigiendo un negocio?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -805,26 +781,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Are they running" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / run) a race?",
+      "text" : "(they / run) a business?",
       "options" : null
     } ],
-    "sentences" : [ "Are they running a race?" ]
+    "sentences" : [ "Are they running a business?" ]
   }
 }, {
   "_id" : {
@@ -887,9 +859,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39b"
   },
-  "title" : "Yes/No questions in the present continuous",
+  "title" : "Are we playing today?",
   "instructions" : "Formula preguntas de sí/no en 'present continuous'.",
-  "translation" : "¿Estamos ganando hoy?",
+  "translation" : "¿Estamos jugando hoy?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -909,26 +881,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Are we winning" ]
+      "text" : null,
+      "options" : [ "Are we playing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(we / win) today?",
+      "text" : "(we / play) today?",
       "options" : null
     } ],
-    "sentences" : [ "Are we winning today?" ]
+    "sentences" : [ "Are we playing today?" ]
   }
 }, {
   "_id" : {

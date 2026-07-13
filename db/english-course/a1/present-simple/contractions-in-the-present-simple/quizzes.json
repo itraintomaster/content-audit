@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38f"
   },
-  "title" : "Contractions in the present simple",
+  "title" : "It's hot today.",
   "instructions" : "Escribe oraciones usando 'short forms' (también llamadas contracciones).",
-  "translation" : "Hoy está soleado.",
+  "translation" : "Hoy hace calor.",
   "theoryId" : "a1.01.Present_Simple_Short_Forms",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -549,26 +549,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "It's" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(It is) sunny today.",
+      "text" : "(It is) hot today.",
       "options" : null
     } ],
-    "sentences" : [ "It's sunny today." ]
+    "sentences" : [ "It's hot today." ]
   }
 }, {
   "_id" : {
@@ -787,9 +783,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38f"
   },
-  "title" : "Contractions in the present simple",
+  "title" : "They don't like people.",
   "instructions" : "Escribe oraciones usando 'short forms' (también llamadas contracciones).",
-  "translation" : "A ellos no les gustan las cebollas.",
+  "translation" : "A ellos no les gusta la gente.",
   "theoryId" : "a1.01.Present_Simple_Short_Forms",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -809,26 +805,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "don't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(do not) like onions.",
+      "text" : "(do not) like people.",
       "options" : null
     } ],
-    "sentences" : [ "They don't like onions." ]
+    "sentences" : [ "They don't like people." ]
   }
 }, {
   "_id" : {

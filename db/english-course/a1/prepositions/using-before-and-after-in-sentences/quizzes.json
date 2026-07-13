@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3db"
   },
-  "title" : "Using Before and After in Sentences",
+  "title" : "We asked a question before going home.",
   "instructions" : "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
-  "translation" : "Nosotros cantamos una canción antes de irnos a casa.",
+  "translation" : "Nosotros hicimos una pregunta antes de irnos a casa.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -341,26 +341,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We sang a song before we went home.",
+      "text" : "We asked a question before we went home.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We sang a song before going home." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "We asked a question before going home." ]
     } ],
-    "sentences" : [ "We sang a song before going home." ]
+    "sentences" : [ "We asked a question before going home." ]
   }
 }, {
   "_id" : {
@@ -371,9 +367,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3db"
   },
-  "title" : "Using Before and After in Sentences",
+  "title" : "I felt better after taking time off.",
   "instructions" : "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
-  "translation" : "Me sentí mucho mejor después de tomar la medicina.",
+  "translation" : "Me sentí mejor después de tomarme un tiempo libre.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -393,26 +389,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I felt much better after I took the medicine.",
+      "text" : "I felt better after I took time off.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I felt much better after taking the medicine." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "I felt better after taking time off." ]
     } ],
-    "sentences" : [ "I felt much better after taking the medicine." ]
+    "sentences" : [ "I felt better after taking time off." ]
   }
 }, {
   "_id" : {
@@ -423,9 +415,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3db"
   },
-  "title" : "Using Before and After in Sentences",
+  "title" : "Sarah did her homework after leaving school.",
   "instructions" : "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
-  "translation" : "Sarah hizo su tarea después de comer un bocadillo.",
+  "translation" : "Sarah hizo su tarea después de salir de la escuela.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -445,26 +437,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Sarah did her homework after she ate a snack.",
+      "text" : "Sarah did her homework after she left school.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Sarah did her homework after eating a snack." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Sarah did her homework after leaving school." ]
     } ],
-    "sentences" : [ "Sarah did her homework after eating a snack." ]
+    "sentences" : [ "Sarah did her homework after leaving school." ]
   }
 }, {
   "_id" : {

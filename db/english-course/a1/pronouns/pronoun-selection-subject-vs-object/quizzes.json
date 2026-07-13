@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d2"
   },
-  "title" : "Pronoun Selection: Subject vs. Object",
+  "title" : "She / her She stayed home today.",
   "instructions" : "Selecciona el pronombre correcto.",
-  "translation" : "Ella debería haberse quedado en casa.",
+  "translation" : "Ella se quedó en casa hoy.",
   "theoryId" : "a1.08.1_Subject_and_object_pronouns",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She / her",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "She" ]
     }, {
       "kind" : "TEXT",
-      "text" : "should have stayed home.",
+      "text" : "stayed home today.",
       "options" : null
     } ],
-    "sentences" : [ "She / her She should have stayed home." ]
+    "sentences" : [ "She / her She stayed home today." ]
   }
 }, {
   "_id" : {
@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d2"
   },
-  "title" : "Pronoun Selection: Subject vs. Object",
+  "title" : "They / them They are coming tonight.",
   "instructions" : "Selecciona el pronombre correcto.",
-  "translation" : "Llegan a las nueve.",
+  "translation" : "Vienen esta noche.",
   "theoryId" : "a1.08.1_Subject_and_object_pronouns",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They / them",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "They" ]
     }, {
       "kind" : "TEXT",
-      "text" : "are arriving at nine.",
+      "text" : "are coming tonight.",
       "options" : null
     } ],
-    "sentences" : [ "They / them They are arriving at nine." ]
+    "sentences" : [ "They / them They are coming tonight." ]
   }
 }, {
   "_id" : {

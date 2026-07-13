@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d236"
   },
-  "title" : "Irregular verbs in the past simple: Revision",
+  "title" : "The children found a pound in the street.",
   "instructions" : "Escribe el verbo en 'past simple'.",
-  "translation" : "Los niños encontraron una moneda en la calle.",
+  "translation" : "Los niños encontraron una libra en la calle.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The children",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "found" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(find) a coin in the street.",
+      "text" : "(find) a pound in the street.",
       "options" : null
     } ],
-    "sentences" : [ "The children found a coin in the street." ]
+    "sentences" : [ "The children found a pound in the street." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d236"
   },
-  "title" : "Irregular verbs in the past simple: Revision",
+  "title" : "He understood the fact.",
   "instructions" : "Escribe el verbo en 'past simple'.",
-  "translation" : "Él entendió la explicación.",
+  "translation" : "Él entendió el hecho.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "understood" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(understand) the explanation.",
+      "text" : "(understand) the fact.",
       "options" : null
     } ],
-    "sentences" : [ "He understood the explanation." ]
+    "sentences" : [ "He understood the fact." ]
   }
 }, {
   "_id" : {

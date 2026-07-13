@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3dd"
   },
-  "title" : "More Place Prepositions: In and On",
+  "title" : "Their trousers are on the bottom floor.",
   "instructions" : "Completa con: in / on.",
-  "translation" : "Su oficina está en el segundo piso.",
+  "translation" : "Sus pantalones están en la planta baja.",
   "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Their office is",
+      "text" : "Their trousers are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the second floor.",
+      "text" : "the bottom floor.",
       "options" : null
     } ],
-    "sentences" : [ "Their office is on the second floor." ]
+    "sentences" : [ "Their trousers are on the bottom floor." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3dd"
   },
-  "title" : "More Place Prepositions: In and On",
+  "title" : "He puts the bag on his table!",
   "instructions" : "Completa con: in / on.",
-  "translation" : "¡Pone la bolsa en su scooter!",
+  "translation" : "¡Pone la bolsa en su mesa!",
   "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He puts the bag",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
-      "text" : "his scooter!",
+      "text" : "his table!",
       "options" : null
     } ],
-    "sentences" : [ "He puts the bag on his scooter!" ]
+    "sentences" : [ "He puts the bag on his table!" ]
   }
 }, {
   "_id" : {
@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3dd"
   },
-  "title" : "More Place Prepositions: In and On",
+  "title" : "Mark looked for people on the website.",
   "instructions" : "Completa con: in / on.",
-  "translation" : "Mark buscó detalles en el sitio web.",
+  "translation" : "Mark buscó gente en el sitio web.",
   "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Mark looked for details",
+      "text" : "Mark looked for people",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
       "text" : "the website.",
       "options" : null
     } ],
-    "sentences" : [ "Mark looked for details on the website." ]
+    "sentences" : [ "Mark looked for people on the website." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3dd"
   },
-  "title" : "More Place Prepositions: In and On",
+  "title" : "He waited in his house.",
   "instructions" : "Completa con: in / on.",
-  "translation" : "Esperó en su oficina porque era tarde.",
+  "translation" : "Esperó en su casa.",
   "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He waited",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
-      "text" : "his office because it was late.",
+      "text" : "his house.",
       "options" : null
     } ],
-    "sentences" : [ "He waited in his office because it was late." ]
+    "sentences" : [ "He waited in his house." ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3dd"
   },
-  "title" : "More Place Prepositions: In and On",
+  "title" : "He placed the book on the desk.",
   "instructions" : "Completa con: in / on.",
-  "translation" : "Colocó el libro en el estante.",
+  "translation" : "Colocó el libro en el escritorio.",
   "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He placed the book",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the shelf.",
+      "text" : "the desk.",
       "options" : null
     } ],
-    "sentences" : [ "He placed the book on the shelf." ]
+    "sentences" : [ "He placed the book on the desk." ]
   }
 }, {
   "_id" : {
@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3dd"
   },
-  "title" : "More Place Prepositions: In and On",
+  "title" : "She hates staying in the house.",
   "instructions" : "Completa con: in / on.",
-  "translation" : "Odia quedarse en la oficina.",
+  "translation" : "Odia quedarse en la casa.",
   "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She hates staying",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the office.",
+      "text" : "the house.",
       "options" : null
     } ],
-    "sentences" : [ "She hates staying in the office." ]
+    "sentences" : [ "She hates staying in the house." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3dd"
   },
-  "title" : "More Place Prepositions: In and On",
+  "title" : "We hung some pictures on the door.",
   "instructions" : "Completa con: in / on.",
-  "translation" : "Colgamos algunos carteles en la puerta.",
+  "translation" : "Colgamos algunos cuadros en la puerta.",
   "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We hung some posters",
+      "text" : "We hung some pictures",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
       "text" : "the door.",
       "options" : null
     } ],
-    "sentences" : [ "We hung some posters on the door." ]
+    "sentences" : [ "We hung some pictures on the door." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3dd"
   },
-  "title" : "More Place Prepositions: In and On",
+  "title" : "Did she come on time?",
   "instructions" : "Completa con: in / on.",
-  "translation" : "¿Llegó a tiempo?",
+  "translation" : "¿Vino a tiempo?",
   "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Did she arrive",
+      "text" : "Did she come",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
       "text" : "time?",
       "options" : null
     } ],
-    "sentences" : [ "Did she arrive on time?" ]
+    "sentences" : [ "Did she come on time?" ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3dd"
   },
-  "title" : "More Place Prepositions: In and On",
+  "title" : "Her skirt is in his jeep.",
   "instructions" : "Completa con: in / on.",
-  "translation" : "Llegó en su jeep.",
+  "translation" : "La falda de ella está en el jeep de él.",
   "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He arrived",
+      "text" : "Her skirt is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "his jeep.",
       "options" : null
     } ],
-    "sentences" : [ "He arrived in his jeep." ]
+    "sentences" : [ "Her skirt is in his jeep." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3dd"
   },
-  "title" : "More Place Prepositions: In and On",
+  "title" : "We talk on Instagram.",
   "instructions" : "Completa con: in / on.",
-  "translation" : "Estamos conectados en Instagram.",
+  "translation" : "Hablamos en Instagram.",
   "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We are connected",
+      "text" : "We talk",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
       "text" : "Instagram.",
       "options" : null
     } ],
-    "sentences" : [ "We are connected on Instagram." ]
+    "sentences" : [ "We talk on Instagram." ]
   }
 }, {
   "_id" : {

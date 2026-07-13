@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d376"
   },
-  "title" : "Verb-Preposition Combinations Practice",
+  "title" : "He uses a lot of money on clothes.",
   "instructions" : "Completar las oraciones con la preposición correcta. Puede haber varias respuestas correctas.",
-  "translation" : "Él invierte mucho dinero en ropa.",
+  "translation" : "Él usa mucho dinero en ropa.",
   "theoryId" : "b1.17.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He invests a lot of money",
+      "text" : "He uses a lot of money",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
       "text" : "clothes.",
       "options" : null
     } ],
-    "sentences" : [ "He invests a lot of money on clothes." ]
+    "sentences" : [ "He uses a lot of money on clothes." ]
   }
 } ]

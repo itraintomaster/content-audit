@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d34f"
   },
-  "title" : "'If' versus 'Unless'",
+  "title" : "The dogs jump a lot if someone is at the door.",
   "instructions" : "Completa con 'if' o 'unless'.",
-  "translation" : "Los perros ladran mucho si alguien está en la puerta.",
+  "translation" : "Los perros saltan mucho si alguien está en la puerta.",
   "theoryId" : "b1.14.Unless",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The dogs bark a lot",
+      "text" : "The dogs jump a lot",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "if" ]
     }, {
       "kind" : "TEXT",
       "text" : "someone is at the door.",
       "options" : null
     } ],
-    "sentences" : [ "The dogs bark a lot if someone is at the door." ]
+    "sentences" : [ "The dogs jump a lot if someone is at the door." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d34f"
   },
-  "title" : "'If' versus 'Unless'",
+  "title" : "The flowers bloom beautifully if it gets enough energy.",
   "instructions" : "Completa con 'if' o 'unless'.",
-  "translation" : "Las flores florecen hermosamente si reciben suficiente luz solar.",
+  "translation" : "Las flores florecen hermosamente si reciben suficiente energía.",
   "theoryId" : "b1.14.Unless",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The flowers bloom beautifully",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "if" ]
     }, {
       "kind" : "TEXT",
-      "text" : "it gets enough sunlight.",
+      "text" : "it gets enough energy.",
       "options" : null
     } ],
-    "sentences" : [ "The flowers bloom beautifully if it gets enough sunlight." ]
+    "sentences" : [ "The flowers bloom beautifully if it gets enough energy." ]
   }
 }, {
   "_id" : {
@@ -839,7 +839,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d34f"
   },
-  "title" : "'If' versus 'Unless'",
+  "title" : "I'll help you if you require help.",
   "instructions" : "Completa con 'if' o 'unless'.",
   "translation" : "Te ayudaré si necesitas ayuda.",
   "theoryId" : "b1.14.Unless",
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I'll assist you",
+      "text" : "I'll help you",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "if" ]
     }, {
       "kind" : "TEXT",
-      "text" : "you require assistance.",
+      "text" : "you require help.",
       "options" : null
     } ],
-    "sentences" : [ "I'll assist you if you require assistance." ]
+    "sentences" : [ "I'll help you if you require help." ]
   }
 }, {
   "_id" : {

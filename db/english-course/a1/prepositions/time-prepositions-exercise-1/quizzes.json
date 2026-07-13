@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Time Prepositions Exercise 1",
+  "title" : "They're coming in May.",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "Llegan en mayo.",
+  "translation" : "Vienen en mayo.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They're arriving",
+      "text" : "They're coming",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "May.",
       "options" : null
     } ],
-    "sentences" : [ "They're arriving in May." ]
+    "sentences" : [ "They're coming in May." ]
   }
 }, {
   "_id" : {
@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Time Prepositions Exercise 1",
+  "title" : "I wrote a sentence - today.",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "Hoy practiqué piano.",
+  "translation" : "Hoy escribí una oración.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I practiced piano",
+      "text" : "I wrote a sentence",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "today.",
       "options" : null
     } ],
-    "sentences" : [ "I practiced piano - today." ]
+    "sentences" : [ "I wrote a sentence - today." ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Time Prepositions Exercise 1",
+  "title" : "I travel to France - every year.",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "Viajo a Francia cada primavera.",
+  "translation" : "Viajo a Francia cada año.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I travel to France",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "every spring.",
+      "text" : "every year.",
       "options" : null
     } ],
-    "sentences" : [ "I travel to France - every spring." ]
+    "sentences" : [ "I travel to France - every year." ]
   }
 }, {
   "_id" : {
@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Time Prepositions Exercise 1",
+  "title" : "In the morning this garden is beautiful.",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "En primavera, este jardín es hermoso.",
+  "translation" : "Por la mañana este jardín es hermoso.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -653,26 +653,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "In" ]
     }, {
       "kind" : "TEXT",
-      "text" : "spring, this garden is beautiful.",
+      "text" : "the morning this garden is beautiful.",
       "options" : null
     } ],
-    "sentences" : [ "In spring, this garden is beautiful." ]
+    "sentences" : [ "In the morning this garden is beautiful." ]
   }
 }, {
   "_id" : {
@@ -683,9 +679,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Time Prepositions Exercise 1",
+  "title" : "Let's travel home in December.",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "Viajemos al extranjero en diciembre.",
+  "translation" : "Viajemos a casa en diciembre.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -705,26 +701,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Let's travel abroad",
+      "text" : "Let's travel home",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "December.",
       "options" : null
     } ],
-    "sentences" : [ "Let's travel abroad in December." ]
+    "sentences" : [ "Let's travel home in December." ]
   }
 }, {
   "_id" : {
@@ -735,9 +731,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Time Prepositions Exercise 1",
+  "title" : "Are you at school - this week?",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "¿Vas a ir a la escuela este otoño?",
+  "translation" : "¿Estás en la escuela esta semana?",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -757,26 +753,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Are you going to school",
+      "text" : "Are you at school",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "this autumn?",
+      "text" : "this week?",
       "options" : null
     } ],
-    "sentences" : [ "Are you going to school - this autumn?" ]
+    "sentences" : [ "Are you at school - this week?" ]
   }
 }, {
   "_id" : {
@@ -891,9 +887,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Time Prepositions Exercise 1",
+  "title" : "She'll draw a picture - tonight.",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "Ella quiere pintar un cuadro el próximo otoño.",
+  "translation" : "Ella dibujará un cuadro esta noche.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -913,26 +909,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She wants to paint a picture",
+      "text" : "She'll draw a picture",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "next autumn.",
+      "text" : "tonight.",
       "options" : null
     } ],
-    "sentences" : [ "She wants to paint a picture - next autumn." ]
+    "sentences" : [ "She'll draw a picture - tonight." ]
   }
 }, {
   "_id" : {
@@ -943,9 +939,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Time Prepositions Exercise 1",
+  "title" : "- every January we visit my family.",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "Cada enero visitamos a mi abuelo.",
+  "translation" : "Cada enero visitamos a mi familia.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -965,26 +961,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "every January we visit my grandfather.",
+      "text" : "every January we visit my family.",
       "options" : null
     } ],
-    "sentences" : [ "- every January we visit my grandfather." ]
+    "sentences" : [ "- every January we visit my family." ]
   }
 }, {
   "_id" : {
@@ -995,9 +987,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Time Prepositions Exercise 1",
+  "title" : "He got to the house at night.",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "Llegó a la oficina al mediodía.",
+  "translation" : "Llegó a la casa por la noche.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1017,25 +1009,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He got to the office",
+      "text" : "He got to the house",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
-      "text" : "noon.",
+      "text" : "night.",
       "options" : null
     } ],
-    "sentences" : [ "He got to the office at noon." ]
+    "sentences" : [ "He got to the house at night." ]
   }
 } ]

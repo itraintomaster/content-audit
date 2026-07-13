@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39a"
   },
-  "title" : "Negative sentences in the present continuous",
+  "title" : "She is not coming sooner.",
   "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "Ella no se va antes.",
+  "translation" : "Ella no viene antes.",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is not departing" ]
+      "text" : null,
+      "options" : [ "is not coming" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(depart) sooner.",
+      "text" : "(come) sooner.",
       "options" : null
     } ],
-    "sentences" : [ "She is not departing sooner." ]
+    "sentences" : [ "She is not coming sooner." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39a"
   },
-  "title" : "Negative sentences in the present continuous",
+  "title" : "You are not driving to the school.",
   "instructions" : "Escribe oraciones negativas en 'present continuous'. No uses contracciones ('short forms').",
-  "translation" : "No estás conduciendo a la oficina.",
+  "translation" : "No estás conduciendo a la escuela.",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "are not driving" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(drive) to the office.",
+      "text" : "(drive) to the school.",
       "options" : null
     } ],
-    "sentences" : [ "You are not driving to the office." ]
+    "sentences" : [ "You are not driving to the school." ]
   }
 }, {
   "_id" : {

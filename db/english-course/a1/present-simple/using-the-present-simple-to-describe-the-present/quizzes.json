@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d391"
   },
-  "title" : "Using the present simple to describe the present",
+  "title" : "The sun goes round the world.",
   "instructions" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible.",
-  "translation" : "El sol gira alrededor del cielo.",
+  "translation" : "El sol gira alrededor del mundo.",
   "theoryId" : "a1.01.Present_Simple_Uses_For_the_Present",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The sun",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "goes" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(go) round the sky.",
+      "text" : "(go) round the world.",
       "options" : null
     } ],
-    "sentences" : [ "The sun goes round the sky." ]
+    "sentences" : [ "The sun goes round the world." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d391"
   },
-  "title" : "Using the present simple to describe the present",
+  "title" : "He plays a game every week.",
   "instructions" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible.",
-  "translation" : "Él juega al golf dos veces por semana.",
+  "translation" : "Él juega un juego cada semana.",
   "theoryId" : "a1.01.Present_Simple_Uses_For_the_Present",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "plays" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(play) golf twice a week.",
+      "text" : "(play) a game every week.",
       "options" : null
     } ],
-    "sentences" : [ "He plays golf twice a week." ]
+    "sentences" : [ "He plays a game every week." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d391"
   },
-  "title" : "Using the present simple to describe the present",
+  "title" : "How often does she help?",
   "instructions" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible.",
-  "translation" : "¿Con qué frecuencia hornea ella?",
+  "translation" : "¿Con qué frecuencia ayuda ella?",
   "theoryId" : "a1.01.Present_Simple_Uses_For_the_Present",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "How often",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does she bake" ]
+      "text" : null,
+      "options" : [ "does she help" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / bake)?",
+      "text" : "(she / help)?",
       "options" : null
     } ],
-    "sentences" : [ "How often does she bake?" ]
+    "sentences" : [ "How often does she help?" ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d391"
   },
-  "title" : "Using the present simple to describe the present",
+  "title" : "You go along this road.",
   "instructions" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible.",
-  "translation" : "R: ¿Cómo llego a la playa? B: Sigue este camino hasta el final.",
+  "translation" : "Vas por esta calle.",
   "theoryId" : "a1.01.Present_Simple_Uses_For_the_Present",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: How do I get to the beach? B: You",
+      "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "go" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(go) along this path to the end.",
+      "text" : "(go) along this road.",
       "options" : null
     } ],
-    "sentences" : [ "A: How do I get to the beach? B: You go along this path to the end." ]
+    "sentences" : [ "You go along this road." ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d391"
   },
-  "title" : "Using the present simple to describe the present",
+  "title" : "Children play a lot at the beach.",
   "instructions" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible.",
-  "translation" : "Los niños suelen jugar mucho.",
+  "translation" : "Los niños juegan mucho en la playa.",
   "theoryId" : "a1.01.Present_Simple_Uses_For_the_Present",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Children usually",
+      "text" : "Children",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "play" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(play) a lot.",
+      "text" : "(play) a lot at the beach.",
       "options" : null
     } ],
-    "sentences" : [ "Children usually play a lot." ]
+    "sentences" : [ "Children play a lot at the beach." ]
   }
 }, {
   "_id" : {
@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d391"
   },
-  "title" : "Using the present simple to describe the present",
+  "title" : "It snows a lot in the country.",
   "instructions" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible.",
-  "translation" : "Nieva mucho en las montañas.",
+  "translation" : "Nieva mucho en el campo.",
   "theoryId" : "a1.01.Present_Simple_Uses_For_the_Present",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "snows" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(snow) a lot in the mountains.",
+      "text" : "(snow) a lot in the country.",
       "options" : null
     } ],
-    "sentences" : [ "It snows a lot in the mountains." ]
+    "sentences" : [ "It snows a lot in the country." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d391"
   },
-  "title" : "Using the present simple to describe the present",
+  "title" : "You put your money in here.",
   "instructions" : "Escribe oraciones en presente simple. Utiliza 'short forms' si es posible.",
-  "translation" : "R: ¿Cómo obtengo mi billete de tren? B: Introduces tu tarjeta aquí.",
+  "translation" : "Metes tu dinero aquí.",
   "theoryId" : "a1.01.Present_Simple_Uses_For_the_Present",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: How do I get my train ticket? B: You",
+      "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "enter" ]
+      "text" : null,
+      "options" : [ "put" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(put) your card in here.",
+      "text" : "(put) your money in here.",
       "options" : null
     } ],
-    "sentences" : [ "A: How do I get my train ticket? B: You enter your card in here." ]
+    "sentences" : [ "You put your money in here." ]
   }
 }, {
   "_id" : {

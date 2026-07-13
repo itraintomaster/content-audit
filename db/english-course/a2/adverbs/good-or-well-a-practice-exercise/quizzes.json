@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2ac"
   },
-  "title" : "Good or Well? A Practice Exercise",
+  "title" : "They make good leather.",
   "instructions" : "Elegí entre 'well' o 'good'.",
-  "translation" : "Ellos producen buenos productos.",
+  "translation" : "Ellos hacen buen cuero.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They produce",
+      "text" : "They make",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "good" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(good / well) products.",
+      "text" : "(good / well) leather.",
       "options" : null
     } ],
-    "sentences" : [ "They produce good products." ]
+    "sentences" : [ "They make good leather." ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2ac"
   },
-  "title" : "Good or Well? A Practice Exercise",
+  "title" : "They describe the case well.",
   "instructions" : "Elegí entre 'well' o 'good'.",
-  "translation" : "Ellos realizaron bien la tarea.",
+  "translation" : "Ellos describen bien el caso.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They performed the task",
+      "text" : "They describe the case",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "well" ]
     }, {
       "kind" : "TEXT",
       "text" : "(good / well).",
       "options" : null
     } ],
-    "sentences" : [ "They performed the task well." ]
+    "sentences" : [ "They describe the case well." ]
   }
 }, {
   "_id" : {

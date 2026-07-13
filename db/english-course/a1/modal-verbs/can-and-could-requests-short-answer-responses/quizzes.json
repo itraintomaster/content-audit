@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
-  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "title" : "A: Can your brother drive a car? B: No, he can't.",
   "instructions" : "Escribe la 'short answer' (respuesta corta).",
-  "translation" : "No, no puedo",
+  "translation" : "A: ¿Tu hermano sabe conducir un auto? B: No, no sabe.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Can you grab me a bottle of water? B: No,",
+      "text" : "A: Can your brother drive a car? B: No,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I can't" ]
+      "text" : null,
+      "options" : [ "he can't" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Can you grab me a bottle of water? B: No, I can't." ]
+    "sentences" : [ "A: Can your brother drive a car? B: No, he can't." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
-  "title" : "'Can' and 'Could' Requests: Short Answer Responses",
+  "title" : "A: Can Tom ask the teacher a question in class? B: Yes, he can.",
   "instructions" : "Escribe la 'short answer' (respuesta corta).",
-  "translation" : "Sí, puedo",
+  "translation" : "Sí, puede.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Could you grab me a bottle of water? B: Yes,",
+      "text" : "A: Can Tom ask the teacher a question in class? B: Yes,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I can" ]
+      "text" : null,
+      "options" : [ "he can" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Could you grab me a bottle of water? B: Yes, I can." ]
+    "sentences" : [ "A: Can Tom ask the teacher a question in class? B: Yes, he can." ]
   }
 }, {
   "_id" : {

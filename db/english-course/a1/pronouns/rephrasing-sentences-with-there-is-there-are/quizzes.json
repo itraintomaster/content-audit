@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d4"
   },
-  "title" : "Rephrasing Sentences with 'There is / There are'",
+  "title" : "There is a house near the school.",
   "instructions" : "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
-  "translation" : "Hay una oficina de correos cerca de la escuela.",
+  "translation" : "Hay una casa cerca de la escuela.",
   "theoryId" : "a1.08.5_There_is_and_there_are",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A post office is near the school.",
+      "text" : "A house is near the school.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "There is a post office near the school." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "There is a house near the school." ]
     } ],
-    "sentences" : [ "There is a post office near the school." ]
+    "sentences" : [ "There is a house near the school." ]
   }
 }, {
   "_id" : {
@@ -163,9 +159,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d4"
   },
-  "title" : "Rephrasing Sentences with 'There is / There are'",
+  "title" : "There are some cookies in the box.",
   "instructions" : "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
-  "translation" : "Hay algunas galletas en el frasco.",
+  "translation" : "Hay algunas galletas en la caja.",
   "theoryId" : "a1.08.5_There_is_and_there_are",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -185,26 +181,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Some cookies are in the jar.",
+      "text" : "Some cookies are in the box.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "There are some cookies in the jar." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "There are some cookies in the box." ]
     } ],
-    "sentences" : [ "There are some cookies in the jar." ]
+    "sentences" : [ "There are some cookies in the box." ]
   }
 }, {
   "_id" : {
@@ -215,9 +207,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d4"
   },
-  "title" : "Rephrasing Sentences with 'There is / There are'",
+  "title" : "There are three glasses in the room.",
   "instructions" : "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
-  "translation" : "Hay tres vasos en el armario.",
+  "translation" : "Hay tres vasos en la habitación.",
   "theoryId" : "a1.08.5_There_is_and_there_are",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -237,26 +229,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Three glasses are in the cupboard.",
+      "text" : "Three glasses are in the room.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "There are three glasses in the cupboard." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "There are three glasses in the room." ]
     } ],
-    "sentences" : [ "There are three glasses in the cupboard." ]
+    "sentences" : [ "There are three glasses in the room." ]
   }
 }, {
   "_id" : {
@@ -319,9 +307,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d4"
   },
-  "title" : "Rephrasing Sentences with 'There is / There are'",
+  "title" : "There is a new bakery around here.",
   "instructions" : "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
-  "translation" : "Hay una panadería fantástica a la vuelta de la esquina.",
+  "translation" : "Hay una panadería nueva por aquí.",
   "theoryId" : "a1.08.5_There_is_and_there_are",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -341,26 +329,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A fantastic bakery is around the corner.",
+      "text" : "A new bakery is around here.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "There is a fantastic bakery around the corner." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "There is a new bakery around here." ]
     } ],
-    "sentences" : [ "There is a fantastic bakery around the corner." ]
+    "sentences" : [ "There is a new bakery around here." ]
   }
 }, {
   "_id" : {
@@ -683,9 +667,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d4"
   },
-  "title" : "Rephrasing Sentences with 'There is / There are'",
+  "title" : "Are there any people in the room?",
   "instructions" : "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
-  "translation" : "¿Hay dulces en la sala de estar?",
+  "translation" : "¿Hay gente en la habitación?",
   "theoryId" : "a1.08.5_There_is_and_there_are",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -705,26 +689,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Are any sweets in the living room?",
+      "text" : "Are any people in the room?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Are there any sweets in the living room?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Are there any people in the room?" ]
     } ],
-    "sentences" : [ "Are there any sweets in the living room?" ]
+    "sentences" : [ "Are there any people in the room?" ]
   }
 }, {
   "_id" : {
@@ -735,9 +715,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d4"
   },
-  "title" : "Rephrasing Sentences with 'There is / There are'",
+  "title" : "There is some tea in the river.",
   "instructions" : "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
-  "translation" : "Hay té en la tetera.",
+  "translation" : "Hay té en el río.",
   "theoryId" : "a1.08.5_There_is_and_there_are",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -757,26 +737,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Some tea is in the pot.",
+      "text" : "Some tea is in the river.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "There is some tea in the pot." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "There is some tea in the river." ]
     } ],
-    "sentences" : [ "There is some tea in the pot." ]
+    "sentences" : [ "There is some tea in the river." ]
   }
 }, {
   "_id" : {
@@ -839,9 +815,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d4"
   },
-  "title" : "Rephrasing Sentences with 'There is / There are'",
+  "title" : "There is a school near my flat.",
   "instructions" : "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
-  "translation" : "Hay una piscina cerca de mi piso.",
+  "translation" : "Hay una escuela cerca de mi piso.",
   "theoryId" : "a1.08.5_There_is_and_there_are",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -861,26 +837,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A pool is near my flat.",
+      "text" : "A school is near my flat.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "There is a pool near my flat." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "There is a school near my flat." ]
     } ],
-    "sentences" : [ "There is a pool near my flat." ]
+    "sentences" : [ "There is a school near my flat." ]
   }
 }, {
   "_id" : {
@@ -995,9 +967,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d4"
   },
-  "title" : "Rephrasing Sentences with 'There is / There are'",
+  "title" : "There is a bath near the window.",
   "instructions" : "Cambia estas oraciones (¡inusuales!) para que incluyan 'there'.",
-  "translation" : "Hay una barbería cerca del mercado.",
+  "translation" : "Hay una bañera cerca de la ventana.",
   "theoryId" : "a1.08.5_There_is_and_there_are",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -1017,25 +989,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A barber shop is near the market.",
+      "text" : "A bath is near the window.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "There is a barber shop near the market." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "There is a bath near the window." ]
     } ],
-    "sentences" : [ "There is a barber shop near the market." ]
+    "sentences" : [ "There is a bath near the window." ]
   }
 } ]

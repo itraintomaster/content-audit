@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
-  "title" : "'Who' vs. 'Whom': Choosing the Correct Relative Pronoun",
+  "title" : "Did you see the ladies whom Martin engages?",
   "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
-  "translation" : "¿Viste a las señoras a las que asiste Martin?",
+  "translation" : "¿Viste a las señoras a las que Martin contrata?",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Did you see the ladies",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "whom" ]
     }, {
       "kind" : "TEXT",
-      "text" : "Martin assists?",
+      "text" : "Martin engages?",
       "options" : null
     } ],
-    "sentences" : [ "Did you see the ladies whom Martin assists?" ]
+    "sentences" : [ "Did you see the ladies whom Martin engages?" ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33e"
   },
-  "title" : "'Who' vs. 'Whom': Choosing the Correct Relative Pronoun",
+  "title" : "That's the boy who washed the car.",
   "instructions" : "¿Necesitamos 'who' o 'whom' en la gramática tradicional?",
-  "translation" : "Ese es el chico que rayó el coche.",
+  "translation" : "Ese es el chico que lavó el coche.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "That's the boy",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "who" ]
     }, {
       "kind" : "TEXT",
-      "text" : "scratched the car.",
+      "text" : "washed the car.",
       "options" : null
     } ],
-    "sentences" : [ "That's the boy who scratched the car." ]
+    "sentences" : [ "That's the boy who washed the car." ]
   }
 }, {
   "_id" : {

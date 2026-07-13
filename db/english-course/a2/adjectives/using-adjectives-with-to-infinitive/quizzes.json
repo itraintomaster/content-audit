@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a1"
   },
-  "title" : "Using Adjectives with 'to + infinitive'",
+  "title" : "You are crazy to own such a fast car.",
   "instructions" : "Transforma las oraciones para que incluyan 'adjective + to + infinitive'.",
-  "translation" : "Eres afortunado de poseer un coche tan rápido.",
+  "translation" : "Estás loco por poseer un coche tan rápido.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -133,26 +133,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You own such a fast car. You are fortunate.",
+      "text" : "You own such a fast car. You are crazy.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You are fortunate to own such a fast car." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You are crazy to own such a fast car." ]
     } ],
-    "sentences" : [ "You are fortunate to own such a fast car." ]
+    "sentences" : [ "You are crazy to own such a fast car." ]
   }
 }, {
   "_id" : {
@@ -319,9 +315,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a1"
   },
-  "title" : "Using Adjectives with 'to + infinitive'",
+  "title" : "She was delighted to see the penny.",
   "instructions" : "Transforma las oraciones para que incluyan 'adjective + to + infinitive'.",
-  "translation" : "Ella estaba encantada de ver la puesta de sol.",
+  "translation" : "Ella estaba encantada de ver la moneda.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -341,26 +337,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She saw the sunset and she was delighted.",
+      "text" : "She saw the penny and she was delighted.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She was delighted to see the sunset." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She was delighted to see the penny." ]
     } ],
-    "sentences" : [ "She was delighted to see the sunset." ]
+    "sentences" : [ "She was delighted to see the penny." ]
   }
 }, {
   "_id" : {
@@ -371,9 +363,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a1"
   },
-  "title" : "Using Adjectives with 'to + infinitive'",
+  "title" : "I was sorry to be incorrect.",
   "instructions" : "Transforma las oraciones para que incluyan 'adjective + to + infinitive'.",
-  "translation" : "Estaba avergonzado de estar equivocado.",
+  "translation" : "Lamentaba estar equivocado.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -393,26 +385,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I was incorrect and I was ashamed.",
+      "text" : "I was incorrect and I was sorry.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I was ashamed to be incorrect." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "I was sorry to be incorrect." ]
     } ],
-    "sentences" : [ "I was ashamed to be incorrect." ]
+    "sentences" : [ "I was sorry to be incorrect." ]
   }
 }, {
   "_id" : {
@@ -475,9 +463,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a1"
   },
-  "title" : "Using Adjectives with 'to + infinitive'",
+  "title" : "He was surprised to win the game.",
   "instructions" : "Transforma las oraciones para que incluyan 'adjective + to + infinitive'.",
-  "translation" : "Estaba emocionado de ganar la lotería.",
+  "translation" : "Estaba sorprendido de ganar el partido.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -497,25 +485,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He won the lottery. He was thrilled.",
+      "text" : "He won the game. He was surprised.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He was thrilled to win the lottery." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He was surprised to win the game." ]
     } ],
-    "sentences" : [ "He was thrilled to win the lottery." ]
+    "sentences" : [ "He was surprised to win the game." ]
   }
 } ]

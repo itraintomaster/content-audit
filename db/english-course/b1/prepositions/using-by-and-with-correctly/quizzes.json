@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
-  "title" : "Using 'By' and 'With' Correctly",
+  "title" : "She damaged the vase by knocking it.",
   "instructions" : "Insertar 'by' o 'with'.",
-  "translation" : "Ella rompió el jarrón al golpearlo.",
+  "translation" : "Ella dañó el jarrón al golpearlo.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She cracked the vase",
+      "text" : "She damaged the vase",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "by" ]
     }, {
       "kind" : "TEXT",
       "text" : "knocking it.",
       "options" : null
     } ],
-    "sentences" : [ "She cracked the vase by knocking it." ]
+    "sentences" : [ "She damaged the vase by knocking it." ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
-  "title" : "Using 'By' and 'With' Correctly",
+  "title" : "I annoyed everyone in the room by shouting.",
   "instructions" : "Insertar 'by' o 'with'.",
-  "translation" : "Ofendí a todos gritando.",
+  "translation" : "Molesté a todos en la habitación gritando.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I offended everyone",
+      "text" : "I annoyed everyone in the room",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "by" ]
     }, {
       "kind" : "TEXT",
       "text" : "shouting.",
       "options" : null
     } ],
-    "sentences" : [ "I offended everyone by shouting." ]
+    "sentences" : [ "I annoyed everyone in the room by shouting." ]
   }
 }, {
   "_id" : {
@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
-  "title" : "Using 'By' and 'With' Correctly",
+  "title" : "She secured the safe with a cable.",
   "instructions" : "Insertar 'by' o 'with'.",
-  "translation" : "Ella abrió la caja fuerte con el código.",
+  "translation" : "Ella aseguró la caja fuerte con un cable.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She unlocked the safe",
+      "text" : "She secured the safe",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the code.",
+      "text" : "a cable.",
       "options" : null
     } ],
-    "sentences" : [ "She unlocked the safe with the code." ]
+    "sentences" : [ "She secured the safe with a cable." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
-  "title" : "Using 'By' and 'With' Correctly",
+  "title" : "We turned the screw with a wrench.",
   "instructions" : "Insertar 'by' o 'with'.",
-  "translation" : "Apretamos el tornillo con una llave.",
+  "translation" : "Giramos el tornillo con una llave.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We tightened the screw",
+      "text" : "We turned the screw",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
       "text" : "a wrench.",
       "options" : null
     } ],
-    "sentences" : [ "We tightened the screw with a wrench." ]
+    "sentences" : [ "We turned the screw with a wrench." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37a"
   },
-  "title" : "Using 'By' and 'With' Correctly",
+  "title" : "The man attacked his wife with a gun.",
   "instructions" : "Insertar 'by' o 'with'.",
-  "translation" : "El hombre amenazó a su esposa con una pistola.",
+  "translation" : "El hombre atacó a su esposa con una pistola.",
   "theoryId" : "b1.17.By_and_With_To_Show_How_We_Do_Something",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The man threatened his wife",
+      "text" : "The man attacked his wife",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
       "text" : "a gun.",
       "options" : null
     } ],
-    "sentences" : [ "The man threatened his wife with a gun." ]
+    "sentences" : [ "The man attacked his wife with a gun." ]
   }
 }, {
   "_id" : {

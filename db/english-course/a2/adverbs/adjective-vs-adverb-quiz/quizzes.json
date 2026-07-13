@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2ab"
   },
-  "title" : "Adjective vs. Adverb Quiz",
+  "title" : "This is a great calendar.",
   "instructions" : "Elegí la palabra correcta.",
-  "translation" : "Esta es una gran oportunidad.",
+  "translation" : "Este es un gran calendario.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This is a",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "great" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(great / greatly) opportunity.",
+      "text" : "(great / greatly) calendar.",
       "options" : null
     } ],
-    "sentences" : [ "This is a great opportunity." ]
+    "sentences" : [ "This is a great calendar." ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2ab"
   },
-  "title" : "Adjective vs. Adverb Quiz",
+  "title" : "She carried the books slowly.",
   "instructions" : "Elegí la palabra correcta.",
-  "translation" : "Ella llevó los libros a salvo.",
+  "translation" : "Ella llevó los libros despacio.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She carried the books",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "safely" ]
+      "text" : null,
+      "options" : [ "slowly" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(safe / safely).",
+      "text" : "(slow / slowly).",
       "options" : null
     } ],
-    "sentences" : [ "She carried the books safely." ]
+    "sentences" : [ "She carried the books slowly." ]
   }
 }, {
   "_id" : {
@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2ab"
   },
-  "title" : "Adjective vs. Adverb Quiz",
+  "title" : "He explained it carefully.",
   "instructions" : "Elegí la palabra correcta.",
-  "translation" : "Él lo explicó simplemente.",
+  "translation" : "Él lo explicó cuidadosamente.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He explained it",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "simply" ]
+      "text" : null,
+      "options" : [ "carefully" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(simple / simply).",
+      "text" : "(careful / carefully).",
       "options" : null
     } ],
-    "sentences" : [ "He explained it simply." ]
+    "sentences" : [ "He explained it carefully." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2ab"
   },
-  "title" : "Adjective vs. Adverb Quiz",
+  "title" : "They shouted noisily outside.",
   "instructions" : "Elegí la palabra correcta.",
-  "translation" : "Gritaron fuerte.",
+  "translation" : "Gritaron ruidosamente afuera.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They shouted",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "loudly" ]
+      "text" : null,
+      "options" : [ "noisily" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(loud / loudly).",
+      "text" : "(noisy / noisily) outside.",
       "options" : null
     } ],
-    "sentences" : [ "They shouted loudly." ]
+    "sentences" : [ "They shouted noisily outside." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2ab"
   },
-  "title" : "Adjective vs. Adverb Quiz",
+  "title" : "The ceiling was simple.",
   "instructions" : "Elegí la palabra correcta.",
-  "translation" : "La explicación fue simple.",
+  "translation" : "El techo era simple.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The explanation was",
+      "text" : "The ceiling was",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "simple" ]
     }, {
       "kind" : "TEXT",
       "text" : "(simple / simply).",
       "options" : null
     } ],
-    "sentences" : [ "The explanation was simple." ]
+    "sentences" : [ "The ceiling was simple." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2ab"
   },
-  "title" : "Adjective vs. Adverb Quiz",
+  "title" : "She finished it quickly.",
   "instructions" : "Elegí la palabra correcta.",
-  "translation" : "Ella lo manejó con éxito.",
+  "translation" : "Ella lo terminó rápidamente.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She managed it",
+      "text" : "She finished it",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "successfully" ]
+      "text" : null,
+      "options" : [ "quickly" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(successful / successfully).",
+      "text" : "(quick / quickly).",
       "options" : null
     } ],
-    "sentences" : [ "She managed it successfully." ]
+    "sentences" : [ "She finished it quickly." ]
   }
 }, {
   "_id" : {

@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d277"
   },
-  "title" : "Using 'One' and 'Ones' Correctly",
+  "title" : "Where are the rulers? She needs a black one.",
   "instructions" : "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
-  "translation" : "Ella necesita uno largo.",
+  "translation" : "Ella necesita uno negro.",
   "theoryId" : "a2.08.One_and_Ones",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Where are the rulers? She needs",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a long one" ]
+      "text" : null,
+      "options" : [ "a black one" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(long).",
+      "text" : "(black).",
       "options" : null
     } ],
-    "sentences" : [ "Where are the rulers? She needs a long one." ]
+    "sentences" : [ "Where are the rulers? She needs a black one." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d277"
   },
-  "title" : "Using 'One' and 'Ones' Correctly",
+  "title" : "He needs a piece of paper. Could you pass one?",
   "instructions" : "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
-  "translation" : "¿Podrías pasarle uno?",
+  "translation" : "Él necesita una hoja de papel. ¿Podrías pasar una?",
   "theoryId" : "a2.08.One_and_Ones",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He needs a sheet of paper. Could you pass him",
+      "text" : "He needs a piece of paper. Could you pass",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "one" ]
     }, {
       "kind" : "TEXT",
       "text" : "?",
       "options" : null
     } ],
-    "sentences" : [ "He needs a sheet of paper. Could you pass him one?" ]
+    "sentences" : [ "He needs a piece of paper. Could you pass one?" ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d277"
   },
-  "title" : "Using 'One' and 'Ones' Correctly",
+  "title" : "I had crisps, so I gave you two golden ones.",
   "instructions" : "Escribe one / ones. Agrega el adjetivo (y 'a / an' si es necesario).",
-  "translation" : "Tenía algunos paquetes extra de patatas fritas, así que le di dos salados a mi amigo.",
+  "translation" : "Tenía patatas fritas, así que te di dos doradas.",
   "theoryId" : "a2.08.One_and_Ones",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I had some extra packs of crisps, so I gave",
+      "text" : "I had crisps, so I gave you",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "two salty ones" ]
+      "text" : null,
+      "options" : [ "two golden ones" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(two salty) to my friend.",
+      "text" : "(two golden).",
       "options" : null
     } ],
-    "sentences" : [ "I had some extra packs of crisps, so I gave two salty ones to my friend." ]
+    "sentences" : [ "I had crisps, so I gave you two golden ones." ]
   }
 }, {
   "_id" : {

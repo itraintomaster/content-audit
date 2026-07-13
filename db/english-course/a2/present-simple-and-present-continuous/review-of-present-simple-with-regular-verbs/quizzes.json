@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d21b"
   },
-  "title" : "Review of Present Simple with Regular Verbs",
+  "title" : "Does he know the guy?",
   "instructions" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
-  "translation" : "¿Conduce él un camión?\n",
+  "translation" : "¿Conoce él al chico?",
   "theoryId" : "a2.01.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Does he drive" ]
+      "text" : null,
+      "options" : [ "Does he know" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / drive) a truck?",
+      "text" : "(he / know) the guy?",
       "options" : null
     } ],
-    "sentences" : [ "Does he drive a truck?" ]
+    "sentences" : [ "Does he know the guy?" ]
   }
 }, {
   "_id" : {

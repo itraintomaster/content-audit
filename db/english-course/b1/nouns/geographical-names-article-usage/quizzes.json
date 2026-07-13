@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d308"
   },
-  "title" : "Geographical Names: Article Usage",
+  "title" : "He hiked in the Pyrenees last summer.",
   "instructions" : "Escribe 'the' o usa – si necesitamos 'no article'.",
-  "translation" : "Él caminó por los Pirineos.",
+  "translation" : "Él hizo senderismo por los Pirineos el verano pasado.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He trekked in",
+      "text" : "He hiked in",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
-      "text" : "Pyrenees.",
+      "text" : "Pyrenees last summer.",
       "options" : null
     } ],
-    "sentences" : [ "He trekked in the Pyrenees." ]
+    "sentences" : [ "He hiked in the Pyrenees last summer." ]
   }
 }, {
   "_id" : {

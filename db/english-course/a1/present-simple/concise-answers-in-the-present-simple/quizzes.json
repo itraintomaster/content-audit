@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d390"
   },
-  "title" : "Concise answers in the present simple",
+  "title" : "The students don't have a book.",
   "instructions" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible.",
-  "translation" : "No, no lo hacemos.",
+  "translation" : "Los estudiantes no tienen un libro.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Do we need umbrellas? B: No, we",
+      "text" : "The students",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "don't" ]
     }, {
       "kind" : "TEXT",
-      "text" : ".",
+      "text" : "have a book.",
       "options" : null
     } ],
-    "sentences" : [ "A: Do we need umbrellas? B: No, we don't." ]
+    "sentences" : [ "The students don't have a book." ]
   }
 }, {
   "_id" : {
@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d390"
   },
-  "title" : "Concise answers in the present simple",
+  "title" : "A: Are we happy? B: Yes, we are.",
   "instructions" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible.",
-  "translation" : "Sí, lo somos/estamos.",
+  "translation" : "A: ¿Estamos contentos? B: Sí, lo estamos.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Are we on the correct bus? B: Yes, we",
+      "text" : "A: Are we happy? B: Yes, we",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "are" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Are we on the correct bus? B: Yes, we are." ]
+    "sentences" : [ "A: Are we happy? B: Yes, we are." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d390"
   },
-  "title" : "Concise answers in the present simple",
+  "title" : "A: Are you at home? B: Yes, I am.",
   "instructions" : "Escribe la respuesta corta. Utiliza 'short forms' si es posible.",
-  "translation" : "Sí, lo soy/estoy.",
+  "translation" : "A: ¿Estás en casa? B: Sí, lo estoy.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Are you at the office? B: Yes, I",
+      "text" : "A: Are you at home? B: Yes, I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "am" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Are you at the office? B: Yes, I am." ]
+    "sentences" : [ "A: Are you at home? B: Yes, I am." ]
   }
 }, {
   "_id" : {

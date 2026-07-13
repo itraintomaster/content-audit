@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d380"
   },
-  "title" : "Understanding Prepositions That Follow Verbs",
+  "title" : "Please proceed with the marriage as planned.",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Por favor, proceda con el pago.",
+  "translation" : "Por favor, proceda con el matrimonio como estaba planeado.",
   "theoryId" : "b1.17.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Please proceed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the payment.",
+      "text" : "the marriage as planned.",
       "options" : null
     } ],
-    "sentences" : [ "Please proceed with the payment." ]
+    "sentences" : [ "Please proceed with the marriage as planned." ]
   }
 }, {
   "_id" : {

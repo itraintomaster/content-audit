@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d21f"
   },
-  "title" : "Reviewing the Form of Present Continuous",
+  "title" : "Why are you boiling water?",
   "instructions" : "Escribe las oraciones en presente continuo. Utiliza las formas cortas cuando sea posible.",
-  "translation" : "¿Por qué estás sonriendo?",
+  "translation" : "¿Por qué estás hirviendo agua?",
   "theoryId" : "a2.01.Present_Continuous_Use_Temporary_Meaning",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -965,25 +965,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are you smiling" ]
+      "text" : null,
+      "options" : [ "are you boiling" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / smile)?",
+      "text" : "(you / boil) water?",
       "options" : null
     } ],
-    "sentences" : [ "Why are you smiling?" ]
+    "sentences" : [ "Why are you boiling water?" ]
   }
 } ]

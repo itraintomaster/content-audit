@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "How things are done: Adverbs of manner",
+  "title" : "She writes beautifully.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Ella escribe rápidamente.",
+  "translation" : "Ella escribe maravillosamente.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She writes (quick).",
+      "text" : "She writes (beautiful).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She writes quickly." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She writes beautifully." ]
     } ],
-    "sentences" : [ "She writes quickly." ]
+    "sentences" : [ "She writes beautifully." ]
   }
 }, {
   "_id" : {
@@ -59,9 +55,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "How things are done: Adverbs of manner",
+  "title" : "He writes words nicely.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Él grita palabras en voz alta.",
+  "translation" : "Él escribe las palabras con esmero.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -81,26 +77,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He shouts words (loud).",
+      "text" : "He writes words (nice).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He shouts words loudly." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He writes words nicely." ]
     } ],
-    "sentences" : [ "He shouts words loudly." ]
+    "sentences" : [ "He writes words nicely." ]
   }
 }, {
   "_id" : {
@@ -111,9 +103,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "She walks home slowly.",
+  "title" : "She walks home quickly.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Ella camina a casa despacio.",
+  "translation" : "Ella camina a casa rápidamente.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -141,14 +133,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She walks home (slow).",
+      "text" : "She walks home (quick).",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "She walks home slowly." ]
+      "options" : [ "She walks home quickly." ]
     } ],
-    "sentences" : [ "She walks home slowly." ]
+    "sentences" : [ "She walks home quickly." ]
   }
 }, {
   "_id" : {
@@ -159,9 +151,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "The man spoke slowly.",
+  "title" : "The man spoke nicely.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "El hombre habló lentamente.",
+  "translation" : "El hombre habló amablemente.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -189,14 +181,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The man spoke (slow).",
+      "text" : "The man spoke (nice).",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "The man spoke slowly." ]
+      "options" : [ "The man spoke nicely." ]
     } ],
-    "sentences" : [ "The man spoke slowly." ]
+    "sentences" : [ "The man spoke nicely." ]
   }
 }, {
   "_id" : {
@@ -207,9 +199,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "How things are done: Adverbs of manner",
+  "title" : "She plays tennis easily.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Ella juega al tenis mal.",
+  "translation" : "Ella juega al tenis fácilmente.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -229,26 +221,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She plays tennis (bad).",
+      "text" : "She plays tennis (easy).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She plays tennis badly." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She plays tennis easily." ]
     } ],
-    "sentences" : [ "She plays tennis badly." ]
+    "sentences" : [ "She plays tennis easily." ]
   }
 }, {
   "_id" : {
@@ -259,9 +247,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "How things are done: Adverbs of manner",
+  "title" : "He travelled to the city fast.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Él viajó al aeropuerto rápido.",
+  "translation" : "Él viajó a la ciudad rápido.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -281,26 +269,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He travelled to the airport (fast).",
+      "text" : "He travelled to the city (fast).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He travelled to the airport fast." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He travelled to the city fast." ]
     } ],
-    "sentences" : [ "He travelled to the airport fast." ]
+    "sentences" : [ "He travelled to the city fast." ]
   }
 }, {
   "_id" : {
@@ -311,9 +295,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "How things are done: Adverbs of manner",
+  "title" : "They came late.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Ellos partieron tarde.",
+  "translation" : "Ellos vinieron tarde.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -333,26 +317,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They departed (late).",
+      "text" : "They came (late).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They departed late." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "They came late." ]
     } ],
-    "sentences" : [ "They departed late." ]
+    "sentences" : [ "They came late." ]
   }
 }, {
   "_id" : {
@@ -363,9 +343,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "How things are done: Adverbs of manner",
+  "title" : "He sang poorly.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Ella sonrió felizmente.",
+  "translation" : "Él cantó mal.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -385,26 +365,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She smiled (happy).",
+      "text" : "He sang (poor).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She smiled happily." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He sang poorly." ]
     } ],
-    "sentences" : [ "She smiled happily." ]
+    "sentences" : [ "He sang poorly." ]
   }
 }, {
   "_id" : {
@@ -467,9 +443,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "How things are done: Adverbs of manner",
+  "title" : "She closed the door happily.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Ella cerró la puerta de repente.",
+  "translation" : "Ella cerró la puerta alegremente.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -489,26 +465,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She closed the door (sudden).",
+      "text" : "She closed the door (happy).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She closed the door suddenly." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She closed the door happily." ]
     } ],
-    "sentences" : [ "She closed the door suddenly." ]
+    "sentences" : [ "She closed the door happily." ]
   }
 }, {
   "_id" : {
@@ -519,9 +491,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "How things are done: Adverbs of manner",
+  "title" : "He knew the answers easily.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Él sabía las respuestas correctamente.",
+  "translation" : "Él sabía las respuestas fácilmente.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -541,26 +513,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He knew the answers (correct).",
+      "text" : "He knew the answers (easy).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He knew the answers correctly." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He knew the answers easily." ]
     } ],
-    "sentences" : [ "He knew the answers correctly." ]
+    "sentences" : [ "He knew the answers easily." ]
   }
 }, {
   "_id" : {
@@ -571,9 +539,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "How things are done: Adverbs of manner",
+  "title" : "She enunciated sweetly.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Ella pronunció claramente.",
+  "translation" : "Ella pronunció dulcemente.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -593,26 +561,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She enunciated (clear).",
+      "text" : "She enunciated (sweet).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She enunciated clearly." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She enunciated sweetly." ]
     } ],
-    "sentences" : [ "She enunciated clearly." ]
+    "sentences" : [ "She enunciated sweetly." ]
   }
 }, {
   "_id" : {
@@ -623,9 +587,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "How things are done: Adverbs of manner",
+  "title" : "The adults were driving badly.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Los adultos conducían lentamente.",
+  "translation" : "Los adultos conducían mal.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -645,26 +609,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The adults were driving (slow).",
+      "text" : "The adults were driving (bad).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The adults were driving slowly." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The adults were driving badly." ]
     } ],
-    "sentences" : [ "The adults were driving slowly." ]
+    "sentences" : [ "The adults were driving badly." ]
   }
 }, {
   "_id" : {
@@ -675,9 +635,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "How things are done: Adverbs of manner",
+  "title" : "He whispered coldly.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Él susurró en voz baja.",
+  "translation" : "Él susurró con frialdad.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -697,26 +657,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He whispered (quiet).",
+      "text" : "He whispered (cold).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He whispered quietly." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He whispered coldly." ]
     } ],
-    "sentences" : [ "He whispered quietly." ]
+    "sentences" : [ "He whispered coldly." ]
   }
 }, {
   "_id" : {
@@ -727,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "How things are done: Adverbs of manner",
+  "title" : "She found the house quickly.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Ella encontró la casa fácilmente.",
+  "translation" : "Ella encontró la casa rápidamente.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -749,26 +705,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She found the house (easy).",
+      "text" : "She found the house (quick).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She found the house easily." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She found the house quickly." ]
     } ],
-    "sentences" : [ "She found the house easily." ]
+    "sentences" : [ "She found the house quickly." ]
   }
 }, {
   "_id" : {
@@ -779,9 +731,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "How things are done: Adverbs of manner",
+  "title" : "Peter speaks English badly.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Peter habla inglés perfectamente.",
+  "translation" : "Peter habla inglés mal.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -801,26 +753,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Peter speaks English (perfect).",
+      "text" : "Peter speaks English (bad).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter speaks English perfectly." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Peter speaks English badly." ]
     } ],
-    "sentences" : [ "Peter speaks English perfectly." ]
+    "sentences" : [ "Peter speaks English badly." ]
   }
 }, {
   "_id" : {
@@ -831,9 +779,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "How things are done: Adverbs of manner",
+  "title" : "He drove the car safely.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Él condujo el vehículo con cuidado.",
+  "translation" : "Él condujo el auto de forma segura.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -853,26 +801,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He drove the vehicle (careful).",
+      "text" : "He drove the car (safe).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He drove the vehicle carefully." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He drove the car safely." ]
     } ],
-    "sentences" : [ "He drove the vehicle carefully." ]
+    "sentences" : [ "He drove the car safely." ]
   }
 }, {
   "_id" : {
@@ -883,9 +827,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "How things are done: Adverbs of manner",
+  "title" : "He draws lightly.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Él dibuja hermosamente.",
+  "translation" : "Él dibuja suavemente.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -905,26 +849,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He draws (beautiful).",
+      "text" : "He draws (light).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He draws beautifully." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He draws lightly." ]
     } ],
-    "sentences" : [ "He draws beautifully." ]
+    "sentences" : [ "He draws lightly." ]
   }
 }, {
   "_id" : {
@@ -935,9 +875,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "The student answered every question correctly.",
+  "title" : "The student answered every question wrongly.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "El estudiante respondió cada pregunta correctamente.",
+  "translation" : "El estudiante respondió cada pregunta incorrectamente.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -970,13 +910,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "correctly" ]
+      "options" : [ "wrongly" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(correct).",
+      "text" : "(wrong).",
       "options" : null
     } ],
-    "sentences" : [ "The student answered every question correctly." ]
+    "sentences" : [ "The student answered every question wrongly." ]
   }
 }, {
   "_id" : {
@@ -987,9 +927,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "Anna spoke slowly.",
+  "title" : "Anna spoke warmly.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Anna habló lentamente.",
+  "translation" : "Anna habló cálidamente.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -1017,13 +957,13 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Anna spoke (slow).",
+      "text" : "Anna spoke (warm).",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "Anna spoke slowly." ]
+      "options" : [ "Anna spoke warmly." ]
     } ],
-    "sentences" : [ "Anna spoke slowly." ]
+    "sentences" : [ "Anna spoke warmly." ]
   }
 } ]

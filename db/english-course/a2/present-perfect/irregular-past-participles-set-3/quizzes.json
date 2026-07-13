@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d241"
   },
-  "title" : "Irregular Past Participles Set 3",
+  "title" : "Have you broken your mirror?",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Te has roto la uña?",
+  "translation" : "¿Has roto tu espejo?",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -549,26 +549,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Have you broken" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / break) your nail?",
+      "text" : "(you / break) your mirror?",
       "options" : null
     } ],
-    "sentences" : [ "Have you broken your nail?" ]
+    "sentences" : [ "Have you broken your mirror?" ]
   }
 }, {
   "_id" : {
@@ -891,9 +887,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d241"
   },
-  "title" : "Irregular Past Participles Set 3",
+  "title" : "I have not eaten pizza for a whole year.",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "No me ha gustado la pizza por mucho tiempo.",
+  "translation" : "No he comido pizza durante todo un año.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -913,26 +909,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "have not liked/haven't liked" ]
+      "text" : null,
+      "options" : [ "have not eaten|haven't eaten" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / like) pizza for long.",
+      "text" : "(not / eat) pizza for a whole year.",
       "options" : null
     } ],
-    "sentences" : [ "I have not liked/haven't liked pizza for long." ]
+    "sentences" : [ "I have not eaten pizza for a whole year.", "I haven't eaten pizza for a whole year." ]
   }
 }, {
   "_id" : {
@@ -1047,9 +1043,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d241"
   },
-  "title" : "Irregular Past Participles Set 3",
+  "title" : "She has watched cricket.",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "Ella ha visto esa serie.",
+  "translation" : "Ella ha visto cricket.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -1069,26 +1065,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "has watched" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(watch) that series.",
+      "text" : "(watch) cricket.",
       "options" : null
     } ],
-    "sentences" : [ "She has watched that series." ]
+    "sentences" : [ "She has watched cricket." ]
   }
 }, {
   "_id" : {
@@ -1203,7 +1199,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d241"
   },
-  "title" : "Irregular Past Participles Set 3",
+  "title" : "I have beaten my sister at tennis.",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "He vencido a mi hermana en el tenis.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -1225,25 +1221,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "have defeated" ]
+      "text" : null,
+      "options" : [ "have beaten" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(defeat) my sister at tennis.",
+      "text" : "(beat) my sister at tennis.",
       "options" : null
     } ],
-    "sentences" : [ "I have defeated my sister at tennis." ]
+    "sentences" : [ "I have beaten my sister at tennis." ]
   }
 } ]

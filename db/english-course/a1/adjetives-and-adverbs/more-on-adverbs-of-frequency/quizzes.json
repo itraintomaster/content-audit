@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ed"
   },
-  "title" : "More on adverbs of frequency",
+  "title" : "I visit my friend. I visit my friend every week.",
   "instructions" : "Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.",
-  "translation" : "Visito a mi abuela un par de veces al mes.",
+  "translation" : "Visito a mi amigo cada semana.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -81,26 +81,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I visit my grandma. (a couple of times a month)",
+      "text" : "I visit my friend. (every week)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I visit my grandma a couple of times a month." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "I visit my friend every week." ]
     } ],
-    "sentences" : [ "I visit my grandma a couple of times a month." ]
+    "sentences" : [ "I visit my friend. I visit my friend every week." ]
   }
 }, {
   "_id" : {
@@ -267,9 +263,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ed"
   },
-  "title" : "More on adverbs of frequency",
+  "title" : "We say goodbye. We always say goodbye.",
   "instructions" : "Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.",
-  "translation" : "Normalmente comemos helado.",
+  "translation" : "Siempre decimos adiós.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -289,26 +285,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We eat ice cream. (usually)",
+      "text" : "We say goodbye. (always)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We usually eat ice cream." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "We always say goodbye." ]
     } ],
-    "sentences" : [ "We usually eat ice cream." ]
+    "sentences" : [ "We say goodbye. We always say goodbye." ]
   }
 }, {
   "_id" : {
@@ -319,9 +311,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ed"
   },
-  "title" : "More on adverbs of frequency",
+  "title" : "Peter always has breakfast at home.",
   "instructions" : "Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.",
-  "translation" : "Peter siempre llega tarde.",
+  "translation" : "Peter siempre desayuna en casa.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -341,26 +333,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Peter arrives late. (always)",
+      "text" : "Peter",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter always arrives late." ]
+      "text" : null,
+      "options" : [ "always" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "has breakfast at home.",
       "options" : null
     } ],
-    "sentences" : [ "Peter always arrives late." ]
+    "sentences" : [ "Peter always has breakfast at home." ]
   }
 }, {
   "_id" : {
@@ -527,9 +519,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ed"
   },
-  "title" : "More on adverbs of frequency",
+  "title" : "He visits his friends. He often visits his friends.",
   "instructions" : "Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.",
-  "translation" : "Él lee las noticias varias veces al día.",
+  "translation" : "Él a menudo visita a sus amigos.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -549,26 +541,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He reads the news. (a few times a day)",
+      "text" : "He visits his friends. (often)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He reads the news a few times a day." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He often visits his friends." ]
     } ],
-    "sentences" : [ "He reads the news a few times a day." ]
+    "sentences" : [ "He visits his friends. He often visits his friends." ]
   }
 }, {
   "_id" : {
@@ -631,9 +619,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ed"
   },
-  "title" : "More on adverbs of frequency",
+  "title" : "We eat cake. We eat cake every Friday.",
   "instructions" : "Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.",
-  "translation" : "Comemos hamburguesas todos los viernes.",
+  "translation" : "Comemos pastel todos los viernes.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -653,26 +641,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We eat burgers. (every Friday)",
+      "text" : "We eat cake. (every Friday)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We eat burgers every Friday." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "We eat cake every Friday." ]
     } ],
-    "sentences" : [ "We eat burgers every Friday." ]
+    "sentences" : [ "We eat cake. We eat cake every Friday." ]
   }
 }, {
   "_id" : {
@@ -735,9 +719,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ed"
   },
-  "title" : "More on adverbs of frequency",
+  "title" : "We sometimes visit museums.",
   "instructions" : "Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.",
-  "translation" : "Normalmente como sushi.",
+  "translation" : "A veces visitamos museos.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -757,26 +741,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I eat sushi. (usually)",
+      "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I usually eat sushi." ]
+      "text" : null,
+      "options" : [ "sometimes" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "visit museums.",
       "options" : null
     } ],
-    "sentences" : [ "I usually eat sushi." ]
+    "sentences" : [ "We sometimes visit museums." ]
   }
 }, {
   "_id" : {
@@ -839,9 +823,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ed"
   },
-  "title" : "More on adverbs of frequency",
+  "title" : "The kids have fun at the beach. The kids have fun at the beach every summer.",
   "instructions" : "Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.",
-  "translation" : "Ellos se relajan en la playa todas las tardes.",
+  "translation" : "Los niños se divierten en la playa cada verano.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -861,26 +845,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They relax at the beach. (every afternoon)",
+      "text" : "The kids have fun at the beach. (every summer)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They relax at the beach every afternoon." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The kids have fun at the beach every summer." ]
     } ],
-    "sentences" : [ "They relax at the beach every afternoon." ]
+    "sentences" : [ "The kids have fun at the beach. The kids have fun at the beach every summer." ]
   }
 }, {
   "_id" : {
@@ -995,9 +975,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ed"
   },
-  "title" : "More on adverbs of frequency",
+  "title" : "I always drink tea in the morning.",
   "instructions" : "Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.",
-  "translation" : "Normalmente tomo té.",
+  "translation" : "Siempre tomo té por la mañana.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -1017,25 +997,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I drink tea. (usually)",
+      "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I usually drink tea." ]
+      "text" : null,
+      "options" : [ "always" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "drink tea in the morning. (100%)",
       "options" : null
     } ],
-    "sentences" : [ "I usually drink tea." ]
+    "sentences" : [ "I always drink tea in the morning." ]
   }
 } ]

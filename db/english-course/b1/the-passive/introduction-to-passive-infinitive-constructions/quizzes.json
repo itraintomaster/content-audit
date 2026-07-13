@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d31b"
   },
-  "title" : "Introduction to Passive Infinitive Constructions",
+  "title" : "The order has to be completed today.",
   "instructions" : "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
-  "translation" : "La tarea tiene que ser completada.",
+  "translation" : "El pedido tiene que ser completado hoy.",
   "theoryId" : "b1.09.Passive_Infinitive_Introduction",
   "topicName" : "The passive",
   "difficulty" : {
@@ -393,26 +393,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Someone has to complete the task.",
+      "text" : "Someone has to complete the order today.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The task has to be completed." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The order has to be completed today." ]
     } ],
-    "sentences" : [ "The task has to be completed." ]
+    "sentences" : [ "The order has to be completed today." ]
   }
 }, {
   "_id" : {
@@ -475,9 +471,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d31b"
   },
-  "title" : "Introduction to Passive Infinitive Constructions",
+  "title" : "Mary is going to be invited today.",
   "instructions" : "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
-  "translation" : "Mary va a ser elegida.",
+  "translation" : "Alguien va a invitar a Mary hoy. Mary va a ser invitada hoy.",
   "theoryId" : "b1.09.Passive_Infinitive_Introduction",
   "topicName" : "The passive",
   "difficulty" : {
@@ -497,26 +493,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Someone is going to elect Mary.",
+      "text" : "Someone is going to invite Mary today.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Mary is going to be elected." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Mary is going to be invited today." ]
     } ],
-    "sentences" : [ "Mary is going to be elected." ]
+    "sentences" : [ "Mary is going to be invited today." ]
   }
 }, {
   "_id" : {
@@ -631,9 +623,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d31b"
   },
-  "title" : "Introduction to Passive Infinitive Constructions",
+  "title" : "The floor is going to be cleaned.",
   "instructions" : "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
-  "translation" : "El piso va a ser barrido.",
+  "translation" : "El piso va a ser limpiado.",
   "theoryId" : "b1.09.Passive_Infinitive_Introduction",
   "topicName" : "The passive",
   "difficulty" : {
@@ -653,26 +645,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Someone is going to sweep the floor.",
+      "text" : "Someone is going to clean the floor.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The floor is going to be swept." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The floor is going to be cleaned." ]
     } ],
-    "sentences" : [ "The floor is going to be swept." ]
+    "sentences" : [ "The floor is going to be cleaned." ]
   }
 }, {
   "_id" : {
@@ -995,9 +983,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d31b"
   },
-  "title" : "Introduction to Passive Infinitive Constructions",
+  "title" : "The content is going to be translated.",
   "instructions" : "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar 'by'.",
-  "translation" : "El paquete va a ser enviado.",
+  "translation" : "El contenido va a ser traducido.",
   "theoryId" : "b1.09.Passive_Infinitive_Introduction",
   "topicName" : "The passive",
   "difficulty" : {
@@ -1017,25 +1005,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Someone is going to ship the package.",
+      "text" : "Someone is going to translate the content.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The package is going to be shipped." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The content is going to be translated." ]
     } ],
-    "sentences" : [ "The package is going to be shipped." ]
+    "sentences" : [ "The content is going to be translated." ]
   }
 } ]

@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d8"
   },
-  "title" : "Future Continuous for Ongoing Actions",
+  "title" : "David will be painting the jail when the workers arrive. He will start before they come.",
   "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "David estará pintando la valla cuando lleguen los trabajadores. Él comenzará antes de que ellos lleguen.",
+  "translation" : "David estará pintando la cárcel cuando lleguen los trabajadores. Él comenzará antes de que ellos lleguen.",
   "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
   "topicName" : "Future continuous / present perfect continuous / past perfect",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "David",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "will be painting" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(paint) the fence when the workers arrive. He will start before they come.",
+      "text" : "(paint) the jail when the workers arrive. He will start before they come.",
       "options" : null
     } ],
-    "sentences" : [ "David will be painting the fence when the workers arrive. He will start before they come." ]
+    "sentences" : [ "David will be painting the jail when the workers arrive. He will start before they come." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d8"
   },
-  "title" : "Future Continuous for Ongoing Actions",
+  "title" : "David will paint the pharmacy at 9 am.",
   "instructions" : "Completa con 'future simple' o 'future continuous'.",
-  "translation" : "David pintará la valla cuando lleguen los trabajadores. Antes de que lleguen, pintará la puerta.",
+  "translation" : "David pintará la farmacia a las 9 am (empezará a las 9 am).",
   "theoryId" : "b1.04.Future_Continuous_for_Things_in_Progress_at_a_Point",
   "topicName" : "Future continuous / present perfect continuous / past perfect",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "David",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "will paint" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(paint) the fence when the workers arrive. Before they arrive, he will paint the door.",
+      "text" : "(paint) the pharmacy at 9 am (he will start at 9 am).",
       "options" : null
     } ],
-    "sentences" : [ "David will paint the fence when the workers arrive. Before they arrive, he will paint the door." ]
+    "sentences" : [ "David will paint the pharmacy at 9 am." ]
   }
 }, {
   "_id" : {

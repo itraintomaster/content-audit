@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c4"
   },
-  "title" : "Singular and Plural Nouns Practice",
+  "title" : "I found five books in her bag.",
   "instructions" : "Escribe los sustantivos en plural.",
-  "translation" : "Encontré cinco peines en su bolso.",
+  "translation" : "Encontré cinco libros en su bolso.",
   "theoryId" : "a1.06.Singular_and_Plural_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I found five",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "combs" ]
+      "text" : null,
+      "options" : [ "books" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(comb) in her bag.",
+      "text" : "(book) in her bag.",
       "options" : null
     } ],
-    "sentences" : [ "I found five combs in her bag." ]
+    "sentences" : [ "I found five books in her bag." ]
   }
 }, {
   "_id" : {
@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c4"
   },
-  "title" : "Singular and Plural Nouns Practice",
+  "title" : "What about those things?",
   "instructions" : "Escribe los sustantivos en plural.",
-  "translation" : "¿Qué hay de esos bolsos?",
+  "translation" : "¿Qué hay de esas cosas?",
   "theoryId" : "a1.06.Singular_and_Plural_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "What about those",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "purses" ]
+      "text" : null,
+      "options" : [ "things" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(purse)?",
+      "text" : "(thing)?",
       "options" : null
     } ],
-    "sentences" : [ "What about those purses?" ]
+    "sentences" : [ "What about those things?" ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c4"
   },
-  "title" : "Singular and Plural Nouns Practice",
+  "title" : "How many houses do they own?",
   "instructions" : "Escribe los sustantivos en plural.",
-  "translation" : "¿Cuántas bicicletas tienen?",
+  "translation" : "¿Cuántas casas tienen?",
   "theoryId" : "a1.06.Singular_and_Plural_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "How many",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "bikes" ]
+      "text" : null,
+      "options" : [ "houses" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(bike) do they own?",
+      "text" : "(house) do they own?",
       "options" : null
     } ],
-    "sentences" : [ "How many bikes do they own?" ]
+    "sentences" : [ "How many houses do they own?" ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c4"
   },
-  "title" : "Singular and Plural Nouns Practice",
+  "title" : "There are five schools in the city.",
   "instructions" : "Escribe los sustantivos en plural.",
-  "translation" : "Hay cinco mezquitas en la ciudad.",
+  "translation" : "Hay cinco escuelas en la ciudad.",
   "theoryId" : "a1.06.Singular_and_Plural_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "There are five",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "mosques" ]
+      "text" : null,
+      "options" : [ "schools" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(mosque) in the city.",
+      "text" : "(school) in the city.",
       "options" : null
     } ],
-    "sentences" : [ "There are five mosques in the city." ]
+    "sentences" : [ "There are five schools in the city." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c4"
   },
-  "title" : "Singular and Plural Nouns Practice",
+  "title" : "He wrote two questions to the newspaper.",
   "instructions" : "Escribe los sustantivos en plural.",
-  "translation" : "Escribió dos historias para el periódico.",
+  "translation" : "Escribió dos preguntas para el periódico.",
   "theoryId" : "a1.06.Singular_and_Plural_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He wrote two",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "stories" ]
+      "text" : null,
+      "options" : [ "questions" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(story) to the newspaper.",
+      "text" : "(question) to the newspaper.",
       "options" : null
     } ],
-    "sentences" : [ "He wrote two stories to the newspaper." ]
+    "sentences" : [ "He wrote two questions to the newspaper." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c4"
   },
-  "title" : "Singular and Plural Nouns Practice",
+  "title" : "The school had lots of computers.",
   "instructions" : "Escribe los sustantivos en plural.",
-  "translation" : "La oficina tenía muchas computadoras.",
+  "translation" : "La escuela tenía muchas computadoras.",
   "theoryId" : "a1.06.Singular_and_Plural_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The office had lots of",
+      "text" : "The school had lots of",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "computers" ]
     }, {
       "kind" : "TEXT",
       "text" : "(computer).",
       "options" : null
     } ],
-    "sentences" : [ "The office had lots of computers." ]
+    "sentences" : [ "The school had lots of computers." ]
   }
 } ]

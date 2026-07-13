@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25a"
   },
-  "title" : "Using A / An with Job Titles",
+  "title" : "My sister is a trainer.",
   "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
-  "translation" : "Ella es profesora.",
+  "translation" : "Mi hermana es entrenadora.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She's",
+      "text" : "My sister is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "professor.",
+      "text" : "trainer.",
       "options" : null
     } ],
-    "sentences" : [ "She's a professor." ]
+    "sentences" : [ "My sister is a trainer." ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25a"
   },
-  "title" : "Using A / An with Job Titles",
+  "title" : "We're - photographers.",
   "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
-  "translation" : "Somos consultores.",
+  "translation" : "Somos fotógrafos.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We're",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "consultants.",
+      "text" : "photographers.",
       "options" : null
     } ],
-    "sentences" : [ "We're - consultants." ]
+    "sentences" : [ "We're - photographers." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25a"
   },
-  "title" : "Using A / An with Job Titles",
+  "title" : "The students are - cooks.",
   "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
-  "translation" : "Ellos son constructores.",
+  "translation" : "Los estudiantes son cocineros.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They're",
+      "text" : "The students are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "builders.",
+      "text" : "cooks.",
       "options" : null
     } ],
-    "sentences" : [ "They're - builders." ]
+    "sentences" : [ "The students are - cooks." ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25a"
   },
-  "title" : "Using A / An with Job Titles",
+  "title" : "The men are - ambulance drivers.",
   "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
-  "translation" : "Somos diseñadores.",
+  "translation" : "Los hombres son conductores de ambulancia.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We're",
+      "text" : "The men are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "designers.",
+      "text" : "ambulance drivers.",
       "options" : null
     } ],
-    "sentences" : [ "We're - designers." ]
+    "sentences" : [ "The men are - ambulance drivers." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25a"
   },
-  "title" : "Using A / An with Job Titles",
+  "title" : "They're - secretaries.",
   "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
-  "translation" : "Ellos son farmacéuticos.",
+  "translation" : "Ellos son secretarios.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They're",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "pharmacists.",
+      "text" : "secretaries.",
       "options" : null
     } ],
-    "sentences" : [ "They're - pharmacists." ]
+    "sentences" : [ "They're - secretaries." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25a"
   },
-  "title" : "Using A / An with Job Titles",
+  "title" : "The new students are - beginners.",
   "instructions" : "Elige 'a' / 'an' si es necesario. Si no, usa '-'.",
-  "translation" : "Ellos son profesores.",
+  "translation" : "Los estudiantes nuevos son principiantes.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They're",
+      "text" : "The new students are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "professors.",
+      "text" : "beginners.",
       "options" : null
     } ],
-    "sentences" : [ "They're - professors." ]
+    "sentences" : [ "The new students are - beginners." ]
   }
 }, {
   "_id" : {

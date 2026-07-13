@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d21d"
   },
-  "title" : "Another Mixed Review of the Present Simple",
+  "title" : "I 'm especially happy about the news.",
   "instructions" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
-  "translation" : "Estoy extremadamente feliz por la noticia.",
+  "translation" : "Estoy especialmente feliz por la noticia.",
   "theoryId" : "a2.01.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'m" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) extremely happy about the news.",
+      "text" : "(be) especially happy about the news.",
       "options" : null
     } ],
-    "sentences" : [ "I'm extremely happy about the news." ]
+    "sentences" : [ "I 'm especially happy about the news." ]
   }
 }, {
   "_id" : {

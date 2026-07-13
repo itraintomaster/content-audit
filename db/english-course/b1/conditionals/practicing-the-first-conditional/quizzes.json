@@ -127,9 +127,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d34d"
   },
-  "title" : "Practicing the First Conditional",
+  "title" : "If he does not pay the fine somehow, he will have more problems.",
   "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-  "translation" : "Si él no paga la multa puntualmente, tendrá más problemas.",
+  "translation" : "Si él no paga la multa de algún modo, tendrá más problemas.",
   "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -149,34 +149,34 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "If he",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "does not pay" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / pay) the fine promptly, he",
+      "text" : "(not / pay) the fine somehow, he",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "will have" ]
     }, {
       "kind" : "TEXT",
       "text" : "(have) more problems.",
       "options" : null
     } ],
-    "sentences" : [ "If he does not pay the fine promptly, he will have more problems." ]
+    "sentences" : [ "If he does not pay the fine somehow, he will have more problems." ]
   }
 }, {
   "_id" : {
@@ -487,9 +487,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d34d"
   },
-  "title" : "Practicing the First Conditional",
+  "title" : "The birds will sing if they find the material.",
   "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-  "translation" : "Los pájaros cantarán si encuentran las semillas.",
+  "translation" : "Los pájaros cantarán si encuentran el material.",
   "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -509,19 +509,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The birds",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "will sing" ]
     }, {
       "kind" : "TEXT",
@@ -529,14 +529,14 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "find" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(find) the seeds.",
+      "text" : "(find) the material.",
       "options" : null
     } ],
-    "sentences" : [ "The birds will sing if they find the seeds." ]
+    "sentences" : [ "The birds will sing if they find the material." ]
   }
 }, {
   "_id" : {

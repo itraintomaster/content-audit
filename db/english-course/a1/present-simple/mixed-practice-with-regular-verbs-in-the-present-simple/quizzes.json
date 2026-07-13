@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38d"
   },
-  "title" : "Mixed practice with regular verbs in the present simple",
+  "title" : "When does she come here?",
   "instructions" : "Escribe oraciones en presente simple. No uses contracciones (short forms).",
-  "translation" : "¿Cuándo llega ella aquí?",
+  "translation" : "¿Cuándo viene ella aquí?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "When",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does she arrive" ]
+      "text" : null,
+      "options" : [ "does she come" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / arrive) here?",
+      "text" : "(she / come) here?",
       "options" : null
     } ],
-    "sentences" : [ "When does she arrive here?" ]
+    "sentences" : [ "When does she come here?" ]
   }
 }, {
   "_id" : {
@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38d"
   },
-  "title" : "Mixed practice with regular verbs in the present simple",
+  "title" : "How do they travel so long?",
   "instructions" : "Escribe oraciones en presente simple. No uses contracciones (short forms).",
-  "translation" : "¿Cómo viajan ellos tan lejos?",
+  "translation" : "¿Cómo viajan ellos tanto tiempo?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "How",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "do they travel" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / travel) so far?",
+      "text" : "(they / travel) so long?",
       "options" : null
     } ],
-    "sentences" : [ "How do they travel so far?" ]
+    "sentences" : [ "How do they travel so long?" ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38d"
   },
-  "title" : "Mixed practice with regular verbs in the present simple",
+  "title" : "We check the time.",
   "instructions" : "Escribe oraciones en presente simple. No uses contracciones (short forms).",
-  "translation" : "Nosotros revisamos las noticias.",
+  "translation" : "Nosotros revisamos la hora.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "check" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(check) the news.",
+      "text" : "(check) the time.",
       "options" : null
     } ],
-    "sentences" : [ "We check the news." ]
+    "sentences" : [ "We check the time." ]
   }
 }, {
   "_id" : {
@@ -943,7 +943,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38d"
   },
-  "title" : "Mixed practice with regular verbs in the present simple",
+  "title" : "What sport do you play?",
   "instructions" : "Escribe oraciones en presente simple. No uses contracciones (short forms).",
   "translation" : "¿Qué deporte practicas?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "What sport",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do you practice" ]
+      "text" : null,
+      "options" : [ "do you play" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / practice)?",
+      "text" : "(you / play)?",
       "options" : null
     } ],
-    "sentences" : [ "What sport do you practice?" ]
+    "sentences" : [ "What sport do you play?" ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38d"
   },
-  "title" : "Mixed practice with regular verbs in the present simple",
+  "title" : "You do not eat meat.",
   "instructions" : "Escribe oraciones en presente simple. No uses contracciones (short forms).",
-  "translation" : "Tú no cocinas carne.",
+  "translation" : "Tú no comes carne.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do not cook" ]
+      "text" : null,
+      "options" : [ "do not eat" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / cook) meat.",
+      "text" : "(not / eat) meat.",
       "options" : null
     } ],
-    "sentences" : [ "You do not cook meat." ]
+    "sentences" : [ "You do not eat meat." ]
   }
 } ]

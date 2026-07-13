@@ -127,9 +127,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d34c"
   },
-  "title" : "Zero Conditional Practice 1",
+  "title" : "If the river rises , it flows over the banks.",
   "instructions" : "Crea oraciones condicionales de tipo cero (condicionales reales presentes).",
-  "translation" : "Si combinas rojo y blanco, obtienes rosa.",
+  "translation" : "Si el río crece, fluye por encima de las orillas.",
   "theoryId" : "b1.14.Zero_Conditionals_Present_Real_Conditionals_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -149,34 +149,34 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "If you",
+      "text" : "If the river",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "combine" ]
+      "text" : null,
+      "options" : [ "rises" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(combine) red and white, you",
+      "text" : "(rise), it",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "obtain" ]
+      "text" : null,
+      "options" : [ "flows" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(obtain) pink.",
+      "text" : "(flow) over the banks.",
       "options" : null
     } ],
-    "sentences" : [ "If you combine red and white, you obtain pink." ]
+    "sentences" : [ "If the river rises , it flows over the banks." ]
   }
 }, {
   "_id" : {
@@ -607,9 +607,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d34c"
   },
-  "title" : "Zero Conditional Practice 1",
+  "title" : "She isn't lively if she doesn't drink tea.",
   "instructions" : "Crea oraciones condicionales de tipo cero (condicionales reales presentes).",
-  "translation" : "Ella no es productiva si no bebe té.",
+  "translation" : "Ella no está animada si no toma té.",
   "theoryId" : "b1.14.Zero_Conditionals_Present_Real_Conditionals_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -629,34 +629,34 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "isn't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / be) productive if she",
+      "text" : "(not / be) lively if she",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "doesn't drink" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / drink) tea.",
       "options" : null
     } ],
-    "sentences" : [ "She isn't productive if she doesn't drink tea." ]
+    "sentences" : [ "She isn't lively if she doesn't drink tea." ]
   }
 }, {
   "_id" : {

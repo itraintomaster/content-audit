@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2e7"
   },
-  "title" : "Past Simple: More Question Tags",
+  "title" : "The doctor favoured him, didn't she?",
   "instructions" : "Añade 'question tags' a las oraciones.",
-  "translation" : "La doctora lo examinó, ¿no?",
+  "translation" : "La doctora lo favoreció, ¿no?",
   "theoryId" : "b1.05.Question_Tags",
   "topicName" : "Questions and short answers",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The doctor examined him,",
+      "text" : "The doctor favoured him,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "didn't she" ]
     }, {
       "kind" : "TEXT",
       "text" : "?",
       "options" : null
     } ],
-    "sentences" : [ "The doctor examined him, didn't she?" ]
+    "sentences" : [ "The doctor favoured him, didn't she?" ]
   }
 }, {
   "_id" : {

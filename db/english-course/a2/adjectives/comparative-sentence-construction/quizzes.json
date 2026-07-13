@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a3"
   },
-  "title" : "Comparative Sentence Construction",
+  "title" : "My house / old / your house My house is older than your house.",
   "instructions" : "Escribe una oración. Usa el 'present simple' del verbo 'be', un comparativo y la palabra 'than'.",
-  "translation" : "Mi casa está más lejos que tu casa.",
+  "translation" : "Mi casa es más vieja que tu casa.",
   "theoryId" : "a2.11.Use_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "My house / far / your house",
+      "text" : "My house / old / your house",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "My house is further than your house." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "My house is older than your house." ]
     } ],
-    "sentences" : [ "My house is further than your house." ]
+    "sentences" : [ "My house / old / your house My house is older than your house." ]
   }
 }, {
   "_id" : {

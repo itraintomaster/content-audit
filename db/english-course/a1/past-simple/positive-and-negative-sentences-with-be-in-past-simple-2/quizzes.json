@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positive and Negative Sentences with 'be' in Past Simple 2",
+  "title" : "We were friends then.",
   "instructions" : "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
-  "translation" : "Éramos colegas entonces.",
+  "translation" : "Éramos amigos entonces.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "were" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) colleagues then.",
+      "text" : "(be) friends then.",
       "options" : null
     } ],
-    "sentences" : [ "We were colleagues then." ]
+    "sentences" : [ "We were friends then." ]
   }
 }, {
   "_id" : {
@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positive and Negative Sentences with 'be' in Past Simple 2",
+  "title" : "They weren't very young.",
   "instructions" : "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
-  "translation" : "Ellos no eran muy silenciosos.",
+  "translation" : "Ellos no eran muy jóvenes.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "weren't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / be) very quiet.",
+      "text" : "(not / be) very young.",
       "options" : null
     } ],
-    "sentences" : [ "They weren't very quiet." ]
+    "sentences" : [ "They weren't very young." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positive and Negative Sentences with 'be' in Past Simple 2",
+  "title" : "We weren't wrong.",
   "instructions" : "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
-  "translation" : "Nosotros no estábamos preocupados.",
+  "translation" : "Nosotros no estábamos equivocados.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "weren't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / be) worried.",
+      "text" : "(not / be) wrong.",
       "options" : null
     } ],
-    "sentences" : [ "We weren't worried." ]
+    "sentences" : [ "We weren't wrong." ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positive and Negative Sentences with 'be' in Past Simple 2",
+  "title" : "The man wasn't in the cockpit.",
   "instructions" : "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
-  "translation" : "El piloto no estaba en la cabina.",
+  "translation" : "El hombre no estaba en la cabina.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The pilot",
+      "text" : "The man",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "wasn't" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / be) in the cockpit.",
       "options" : null
     } ],
-    "sentences" : [ "The pilot wasn't in the cockpit." ]
+    "sentences" : [ "The man wasn't in the cockpit." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positive and Negative Sentences with 'be' in Past Simple 2",
+  "title" : "He was also tired.",
   "instructions" : "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
-  "translation" : "Él estaba extremadamente cansado.",
+  "translation" : "Él también estaba cansado.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "was" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) extremely tired.",
+      "text" : "(be) also tired.",
       "options" : null
     } ],
-    "sentences" : [ "He was extremely tired." ]
+    "sentences" : [ "He was also tired." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positive and Negative Sentences with 'be' in Past Simple 2",
+  "title" : "You were at the shopping centre.",
   "instructions" : "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
-  "translation" : "Tú estabas en la oficina.",
+  "translation" : "Tú estabas en el centro comercial.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "were" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) at the office.",
+      "text" : "(be) at the shopping centre.",
       "options" : null
     } ],
-    "sentences" : [ "You were at the office." ]
+    "sentences" : [ "You were at the shopping centre." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positive and Negative Sentences with 'be' in Past Simple 2",
+  "title" : "You weren't fine last night.",
   "instructions" : "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
-  "translation" : "Tú no estabas satisfecho con el servicio.",
+  "translation" : "Tú no estabas bien anoche.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "weren't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / be) satisfied with the service.",
+      "text" : "(not / be) fine last night.",
       "options" : null
     } ],
-    "sentences" : [ "You weren't satisfied with the service." ]
+    "sentences" : [ "You weren't fine last night." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "Positive and Negative Sentences with 'be' in Past Simple 2",
+  "title" : "You were very poor.",
   "instructions" : "Escribe oraciones en pasado simple con el verbo 'be', tanto en forma positiva como negativa. Utiliza 'short forms' si es posible.",
-  "translation" : "Tuviste mucha suerte.",
+  "translation" : "Eras muy pobre.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "were" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) extremely lucky.",
+      "text" : "(be) very poor.",
       "options" : null
     } ],
-    "sentences" : [ "You were extremely lucky." ]
+    "sentences" : [ "You were very poor." ]
   }
 } ]

@@ -667,9 +667,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d351"
   },
-  "title" : "Second Conditional Practice",
+  "title" : "If she liked the gift, she would smile pleasantly.",
   "instructions" : "Crea oraciones condicionales de tipo dos. Todas las oraciones son positivas.",
-  "translation" : "Si a ella le gustara el regalo, sonreiría genuinamente.",
+  "translation" : "Si a ella le gustara el regalo, sonreiría agradablemente.",
   "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -689,19 +689,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "If she",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "liked" ]
     }, {
       "kind" : "TEXT",
@@ -709,14 +709,14 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "would smile" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(smile) genuinely.",
+      "text" : "(smile) pleasantly.",
       "options" : null
     } ],
-    "sentences" : [ "If she liked the gift, she would smile genuinely." ]
+    "sentences" : [ "If she liked the gift, she would smile pleasantly." ]
   }
 }, {
   "_id" : {

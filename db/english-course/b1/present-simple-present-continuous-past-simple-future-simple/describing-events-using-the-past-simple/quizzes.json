@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
-  "title" : "Describing Events: Using the Past Simple",
+  "title" : "He painted the star and she mowed the lawn. simultaneous",
   "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe '_sequence_' o '_simultaneous_'.",
-  "translation" : "Él pintó la cerca y ella cortó el césped.",
+  "translation" : "Él pintó la estrella y ella cortó el césped.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -185,26 +185,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He painted the fence and she mowed the lawn.",
+      "text" : "He painted the star and she mowed the lawn.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "simultaneous" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "He painted the fence and she mowed the lawn. simultaneous" ]
+    "sentences" : [ "He painted the star and she mowed the lawn. simultaneous" ]
   }
 }, {
   "_id" : {

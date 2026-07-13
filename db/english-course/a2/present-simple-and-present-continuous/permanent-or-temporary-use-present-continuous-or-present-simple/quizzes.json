@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d228"
   },
-  "title" : "Permanent or Temporary: Use Present Continuous or Present Simple?",
+  "title" : "The dogs are sleeping in the garden for several hours.",
   "instructions" : "Elige entre el presente simple o el presente continuo.",
-  "translation" : "Los perros están durmiendo en el jardín por unas horas.",
+  "translation" : "Los perros están durmiendo en el jardín durante varias horas.",
   "theoryId" : "a2.01.Present_Continuous_Use_Temporary_Meaning",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The dogs",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "are sleeping" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(sleep) in the garden for a few hours.",
+      "text" : "(sleep) in the garden for several hours.",
       "options" : null
     } ],
-    "sentences" : [ "The dogs are sleeping in the garden for a few hours." ]
+    "sentences" : [ "The dogs are sleeping in the garden for several hours." ]
   }
 }, {
   "_id" : {
@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d228"
   },
-  "title" : "Permanent or Temporary: Use Present Continuous or Present Simple?",
+  "title" : "We are getting a car for a week.",
   "instructions" : "Elige entre el presente simple o el presente continuo.",
-  "translation" : "Estamos alquilando un coche por unos días.",
+  "translation" : "Estamos consiguiendo un coche por una semana.",
   "theoryId" : "a2.01.Present_Continuous_Use_Temporary_Meaning",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are hiring" ]
+      "text" : null,
+      "options" : [ "are getting" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(hire) a car for a few days.",
+      "text" : "(get) a car for a week.",
       "options" : null
     } ],
-    "sentences" : [ "We are hiring a car for a few days." ]
+    "sentences" : [ "We are getting a car for a week." ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d228"
   },
-  "title" : "Permanent or Temporary: Use Present Continuous or Present Simple?",
+  "title" : "They eat too much sugar.",
   "instructions" : "Elige entre el presente simple o el presente continuo.",
-  "translation" : "Ellos consumen demasiado azúcar.",
+  "translation" : "Ellos comen demasiado azúcar.",
   "theoryId" : "a2.01.Present_Continuous_Use_Temporary_Meaning",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "consume" ]
+      "text" : null,
+      "options" : [ "eat" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(consume) too much sugar.",
+      "text" : "(eat) too much sugar.",
       "options" : null
     } ],
-    "sentences" : [ "They consume too much sugar." ]
+    "sentences" : [ "They eat too much sugar." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d228"
   },
-  "title" : "Permanent or Temporary: Use Present Continuous or Present Simple?",
+  "title" : "He writes a lot of tunes.",
   "instructions" : "Elige entre el presente simple o el presente continuo.",
-  "translation" : "Él escribe muchos poemas.",
+  "translation" : "Él escribe muchas melodías.",
   "theoryId" : "a2.01.Present_Continuous_Use_Temporary_Meaning",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "writes" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(write) a lot of poems.",
+      "text" : "(write) a lot of tunes.",
       "options" : null
     } ],
-    "sentences" : [ "He writes a lot of poems." ]
+    "sentences" : [ "He writes a lot of tunes." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d228"
   },
-  "title" : "Permanent or Temporary: Use Present Continuous or Present Simple?",
+  "title" : "She is vacationing in Sidney for two months.",
   "instructions" : "Elige entre el presente simple o el presente continuo.",
-  "translation" : "Ella está de vacaciones en Sidney por unos meses.",
+  "translation" : "Ella está de vacaciones en Sidney por dos meses.",
   "theoryId" : "a2.01.Present_Continuous_Use_Temporary_Meaning",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is vacationing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(vacation) in Sidney for a few months.",
+      "text" : "(vacation) in Sidney for two months.",
       "options" : null
     } ],
-    "sentences" : [ "She is vacationing in Sidney for a few months." ]
+    "sentences" : [ "She is vacationing in Sidney for two months." ]
   }
 } ]

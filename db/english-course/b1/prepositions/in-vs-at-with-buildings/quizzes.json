@@ -215,7 +215,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d37c"
   },
-  "title" : "'In' vs 'At' with Buildings",
+  "title" : "They met each other at the station.",
   "instructions" : "Elegir 'in' si realmente queremos enfatizar el interior. De lo contrario, elegir 'at'.",
   "translation" : "Se encontraron en la estación.",
   "theoryId" : "b1.17.At_or_In_with_Buildings",
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They encountered each other",
+      "text" : "They met each other",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
       "text" : "the station.",
       "options" : null
     } ],
-    "sentences" : [ "They encountered each other at the station." ]
+    "sentences" : [ "They met each other at the station." ]
   }
 }, {
   "_id" : {

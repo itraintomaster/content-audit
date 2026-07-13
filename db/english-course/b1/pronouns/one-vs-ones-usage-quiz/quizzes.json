@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d344"
   },
-  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "title" : "He's already finished four glasses of wine! Now he's having a fifth one.",
   "instructions" : "Inserta 'one' o 'ones' según corresponda.",
-  "translation" : "¡Ya se ha bebido cuatro copas de vino! Ahora se está tomando una quinta.",
+  "translation" : "¡Ya se ha terminado cuatro copas de vino! Ahora se está tomando una quinta.",
   "theoryId" : "b1.13.Each_Other",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He's already drunk four glasses of wine! Now he's having a fifth",
+      "text" : "He's already finished four glasses of wine! Now he's having a fifth",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "one" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "He's already drunk four glasses of wine! Now he's having a fifth one." ]
+    "sentences" : [ "He's already finished four glasses of wine! Now he's having a fifth one." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d344"
   },
-  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "title" : "They don't want those broken ones.",
   "instructions" : "Inserta 'one' o 'ones' según corresponda.",
-  "translation" : "No aprecian esos rotos.",
+  "translation" : "No quieren esos rotos.",
   "theoryId" : "b1.13.Each_Other",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They don't appreciate those broken",
+      "text" : "They don't want those broken",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "ones" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "They don't appreciate those broken ones." ]
+    "sentences" : [ "They don't want those broken ones." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d344"
   },
-  "title" : "'One' vs. 'Ones' Usage Quiz",
+  "title" : "Are those peaches? I'd like some sweet ones.",
   "instructions" : "Inserta 'one' o 'ones' según corresponda.",
-  "translation" : "¿Son esos melocotones? Apreciaría algunos dulces.",
+  "translation" : "¿Son esos melocotones? Me gustarían algunos dulces.",
   "theoryId" : "b1.13.Each_Other",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Are those peaches? I'd appreciate some sweet",
+      "text" : "Are those peaches? I'd like some sweet",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "ones" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "Are those peaches? I'd appreciate some sweet ones." ]
+    "sentences" : [ "Are those peaches? I'd like some sweet ones." ]
   }
 }, {
   "_id" : {

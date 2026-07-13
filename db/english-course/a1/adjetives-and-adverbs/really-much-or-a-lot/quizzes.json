@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
-  "title" : "Really, much, or a lot?",
+  "title" : "We enjoyed the day a lot.",
   "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "Disfrutamos mucho el concierto.",
+  "translation" : "Disfrutamos mucho el día.",
   "theoryId" : "a1.11.Adverbs_of_Manner",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We enjoyed the concert",
+      "text" : "We enjoyed the day",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a lot" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "We enjoyed the concert a lot." ]
+    "sentences" : [ "We enjoyed the day a lot." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
-  "title" : "Really, much, or a lot?",
+  "title" : "We don't enjoy work much.",
   "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "No disfrutamos mucho los clubes.",
+  "translation" : "No disfrutamos mucho el trabajo.",
   "theoryId" : "a1.11.Adverbs_of_Manner",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We don't enjoy clubs",
+      "text" : "We don't enjoy work",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "We don't enjoy clubs much." ]
+    "sentences" : [ "We don't enjoy work much." ]
   }
 }, {
   "_id" : {
@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
-  "title" : "Really, much, or a lot?",
+  "title" : "She doesn't enjoy school much.",
   "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "Ella no disfruta mucho las bodas.",
+  "translation" : "Ella no disfruta mucho la escuela.",
   "theoryId" : "a1.11.Adverbs_of_Manner",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She doesn't enjoy weddings",
+      "text" : "She doesn't enjoy school",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "She doesn't enjoy weddings much." ]
+    "sentences" : [ "She doesn't enjoy school much." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
-  "title" : "Really, much, or a lot?",
+  "title" : "Students won't enjoy the book much.",
   "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "Los estudiantes no disfrutarán mucho el examen.",
+  "translation" : "Los estudiantes no disfrutarán mucho el libro.",
   "theoryId" : "a1.11.Adverbs_of_Manner",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The students won't enjoy the exam",
+      "text" : "Students won't enjoy the book",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "The students won't enjoy the exam much." ]
+    "sentences" : [ "Students won't enjoy the book much." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ee"
   },
-  "title" : "Really, much, or a lot?",
+  "title" : "She will really like the people.",
   "instructions" : "Completa con 'really', 'much' o 'a lot'.",
-  "translation" : "A ella le gustará mucho el viaje.",
+  "translation" : "A ella le gustará mucho la gente.",
   "theoryId" : "a1.11.Adverbs_of_Manner",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She will",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "really" ]
     }, {
       "kind" : "TEXT",
-      "text" : "like the trip.",
+      "text" : "like the people.",
       "options" : null
     } ],
-    "sentences" : [ "She will really like the trip." ]
+    "sentences" : [ "She will really like the people." ]
   }
 } ]

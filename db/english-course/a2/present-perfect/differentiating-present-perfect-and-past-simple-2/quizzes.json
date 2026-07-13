@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d248"
   },
-  "title" : "Differentiating Present Perfect and Past Simple 2",
+  "title" : "She 's never lived upstairs.",
   "instructions" : "Forma oraciones en Present Perfect o Past Simple. Utiliza 'short forms' si es posible.",
-  "translation" : "Ella nunca ha vivido en el extranjero.",
+  "translation" : "Ella nunca ha vivido en el piso de arriba.",
   "theoryId" : "a2.04.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'s never lived" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(never / live) abroad.",
+      "text" : "(never / live) upstairs.",
       "options" : null
     } ],
-    "sentences" : [ "She's never lived abroad." ]
+    "sentences" : [ "She 's never lived upstairs." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d248"
   },
-  "title" : "Differentiating Present Perfect and Past Simple 2",
+  "title" : "Have you ever tried wine?",
   "instructions" : "Forma oraciones en Present Perfect o Past Simple. Utiliza 'short forms' si es posible.",
-  "translation" : "¿Alguna vez has bebido vino?",
+  "translation" : "¿Alguna vez has probado vino?",
   "theoryId" : "a2.04.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -757,26 +757,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Have you ever drunk" ]
+      "text" : null,
+      "options" : [ "Have you ever tried" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / ever / drink) wine?",
+      "text" : "(you / ever / try) wine?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever drunk wine?" ]
+    "sentences" : [ "Have you ever tried wine?" ]
   }
 }, {
   "_id" : {

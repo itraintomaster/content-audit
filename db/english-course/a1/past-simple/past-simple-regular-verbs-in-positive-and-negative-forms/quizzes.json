@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b5"
   },
-  "title" : "Past Simple: Regular Verbs in Positive and Negative Forms",
+  "title" : "We visited our family.",
   "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Visitamos a nuestro tío.",
+  "translation" : "Visitamos a nuestra familia.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "visited" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(visit) our uncle.",
+      "text" : "(visit) our family.",
       "options" : null
     } ],
-    "sentences" : [ "We visited our uncle." ]
+    "sentences" : [ "We visited our family." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b5"
   },
-  "title" : "Past Simple: Regular Verbs in Positive and Negative Forms",
+  "title" : "We didn't enjoy the beach.",
   "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "No odiamos el concierto.",
+  "translation" : "No disfrutamos la playa.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "didn't hate|did not hate" ]
+      "text" : null,
+      "options" : [ "didn't enjoy|did not enjoy" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / hate) the concert.",
+      "text" : "(not / enjoy) the beach.",
       "options" : null
     } ],
-    "sentences" : [ "We didn't hate the concert.", "We did not hate the concert." ]
+    "sentences" : [ "We didn't enjoy the beach.", "We did not enjoy the beach." ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b5"
   },
-  "title" : "Past Simple: Regular Verbs in Positive and Negative Forms",
+  "title" : "They didn't look great.",
   "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "Ellos no parecían preocupados.",
+  "translation" : "Ellos no se veían geniales.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "didn't look|did not look" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / look) worried.",
+      "text" : "(not / look) great.",
       "options" : null
     } ],
-    "sentences" : [ "They didn't look worried.", "They did not look worried." ]
+    "sentences" : [ "They didn't look great.", "They did not look great." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b5"
   },
-  "title" : "Past Simple: Regular Verbs in Positive and Negative Forms",
+  "title" : "You didn't visit your school.",
   "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "No visitaste a tu tía.",
+  "translation" : "No visitaste tu escuela.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "didn't visit" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / visit) your aunt.",
+      "text" : "(not / visit) your school.",
       "options" : null
     } ],
-    "sentences" : [ "You didn't visit your aunt." ]
+    "sentences" : [ "You didn't visit your school." ]
   }
 }, {
   "_id" : {

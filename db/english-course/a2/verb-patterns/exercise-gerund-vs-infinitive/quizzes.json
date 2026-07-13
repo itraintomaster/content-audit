@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24c"
   },
-  "title" : "Exercise: Gerund vs. Infinitive",
+  "title" : "We have to eat soon.",
   "instructions" : "Escribe el verbo en gerundio o en infinitivo. Aquí, usaremos el gerundio después de 'like', 'love' y 'hate'.",
-  "translation" : "Tenemos la intención de comer pronto.",
+  "translation" : "Tenemos que comer pronto.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We intend",
+      "text" : "We have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to eat" ]
     }, {
       "kind" : "TEXT",
       "text" : "(eat) soon.",
       "options" : null
     } ],
-    "sentences" : [ "We intend to eat soon." ]
+    "sentences" : [ "We have to eat soon." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24c"
   },
-  "title" : "Exercise: Gerund vs. Infinitive",
+  "title" : "We plan to visit you soon.",
   "instructions" : "Escribe el verbo en gerundio o en infinitivo. Aquí, usaremos el gerundio después de 'like', 'love' y 'hate'.",
-  "translation" : "Esperamos visitarte pronto.",
+  "translation" : "Planeamos visitarte pronto.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We expect",
+      "text" : "We plan",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to visit" ]
     }, {
       "kind" : "TEXT",
       "text" : "(visit) you soon.",
       "options" : null
     } ],
-    "sentences" : [ "We expect to visit you soon." ]
+    "sentences" : [ "We plan to visit you soon." ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24c"
   },
-  "title" : "Exercise: Gerund vs. Infinitive",
+  "title" : "The children keep flying on planes.",
   "instructions" : "Escribe el verbo en gerundio o en infinitivo. Aquí, usaremos el gerundio después de 'like', 'love' y 'hate'.",
-  "translation" : "A los niños no les gusta volar en avión.",
+  "translation" : "Los niños siguen volando en avión.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The children dislike",
+      "text" : "The children keep",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "flying" ]
     }, {
       "kind" : "TEXT",
       "text" : "(fly) on planes.",
       "options" : null
     } ],
-    "sentences" : [ "The children dislike flying on planes." ]
+    "sentences" : [ "The children keep flying on planes." ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24c"
   },
-  "title" : "Exercise: Gerund vs. Infinitive",
+  "title" : "She enjoys reading books online.",
   "instructions" : "Escribe el verbo en gerundio o en infinitivo. Aquí, usaremos el gerundio después de 'like', 'love' y 'hate'.",
-  "translation" : "Ella disfruta leyendo novelas.",
+  "translation" : "Ella disfruta leyendo libros en línea.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She enjoys",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "reading" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(read) novels books.",
+      "text" : "(read) books online.",
       "options" : null
     } ],
-    "sentences" : [ "She enjoys reading novels books." ]
+    "sentences" : [ "She enjoys reading books online." ]
   }
 }, {
   "_id" : {
@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24c"
   },
-  "title" : "Exercise: Gerund vs. Infinitive",
+  "title" : "They decide to eat a burger.",
   "instructions" : "Escribe el verbo en gerundio o en infinitivo. Aquí, usaremos el gerundio después de 'like', 'love' y 'hate'.",
-  "translation" : "Esperan comer una hamburguesa.",
+  "translation" : "Deciden comer una hamburguesa.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They expect",
+      "text" : "They decide",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to eat" ]
     }, {
       "kind" : "TEXT",
       "text" : "(eat) a burger.",
       "options" : null
     } ],
-    "sentences" : [ "They expect to eat a burger." ]
+    "sentences" : [ "They decide to eat a burger." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24c"
   },
-  "title" : "Exercise: Gerund vs. Infinitive",
+  "title" : "He will learn to drive a bus.",
   "instructions" : "Escribe el verbo en gerundio o en infinitivo. Aquí, usaremos el gerundio después de 'like', 'love' y 'hate'.",
-  "translation" : "Aprenderá a conducir camiones.",
+  "translation" : "Aprenderá a conducir un autobús.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He will learn",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to drive" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(drive) trucks.",
+      "text" : "(drive) a bus.",
       "options" : null
     } ],
-    "sentences" : [ "He will learn to drive trucks." ]
+    "sentences" : [ "He will learn to drive a bus." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24c"
   },
-  "title" : "Exercise: Gerund vs. Infinitive",
+  "title" : "They will complete using the room tomorrow.",
   "instructions" : "Escribe el verbo en gerundio o en infinitivo. Aquí, usaremos el gerundio después de 'like', 'love' y 'hate'.",
-  "translation" : "Completarán la organización de la habitación mañana.",
+  "translation" : "Terminarán de usar la habitación mañana.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They will complete",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "organizing" ]
+      "text" : null,
+      "options" : [ "using" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(organize) the room tomorrow.",
+      "text" : "(use) the room tomorrow.",
       "options" : null
     } ],
-    "sentences" : [ "They will complete organizing the room tomorrow." ]
+    "sentences" : [ "They will complete using the room tomorrow." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24c"
   },
-  "title" : "Exercise: Gerund vs. Infinitive",
+  "title" : "We enjoy making friends.",
   "instructions" : "Escribe el verbo en gerundio o en infinitivo. Aquí, usaremos el gerundio después de 'like', 'love' y 'hate'.",
-  "translation" : "Disfrutamos organizando eventos.",
+  "translation" : "Disfrutamos haciendo amigos.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We enjoy",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "organizing" ]
+      "text" : null,
+      "options" : [ "making" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(organize) events.",
+      "text" : "(make) friends.",
       "options" : null
     } ],
-    "sentences" : [ "We enjoy organizing events." ]
+    "sentences" : [ "We enjoy making friends." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24c"
   },
-  "title" : "Exercise: Gerund vs. Infinitive",
+  "title" : "She tries to find a house.",
   "instructions" : "Escribe el verbo en gerundio o en infinitivo. Aquí, usaremos el gerundio después de 'like', 'love' y 'hate'.",
-  "translation" : "Ella espera encontrar una casa.",
+  "translation" : "Ella intenta encontrar una casa.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She expects",
+      "text" : "She tries",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to find" ]
     }, {
       "kind" : "TEXT",
       "text" : "(find) a house.",
       "options" : null
     } ],
-    "sentences" : [ "She expects to find a house." ]
+    "sentences" : [ "She tries to find a house." ]
   }
 }, {
   "_id" : {

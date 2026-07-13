@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b6"
   },
-  "title" : "Past Simple Questions with Regular Verbs",
+  "title" : "What did you make?",
   "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "¿Qué horneaste?",
+  "translation" : "¿Qué hiciste?",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "What",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "did you bake" ]
+      "text" : null,
+      "options" : [ "did you make" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / bake)?",
+      "text" : "(you / make)?",
       "options" : null
     } ],
-    "sentences" : [ "What did you bake?" ]
+    "sentences" : [ "What did you make?" ]
   }
 }, {
   "_id" : {
@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b6"
   },
-  "title" : "Past Simple Questions with Regular Verbs",
+  "title" : "Did they have breakfast?",
   "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "¿Fueron en bicicleta a la escuela?",
+  "translation" : "¿Ellos desayunaron?",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -237,26 +237,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Did they cycle" ]
+      "text" : null,
+      "options" : [ "Did they have" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / cycle) to school?",
+      "text" : "(they / have) breakfast?",
       "options" : null
     } ],
-    "sentences" : [ "Did they cycle to school?" ]
+    "sentences" : [ "Did they have breakfast?" ]
   }
 }, {
   "_id" : {
@@ -319,9 +315,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b6"
   },
-  "title" : "Past Simple Questions with Regular Verbs",
+  "title" : "How did they use the new computer?",
   "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "¿Cómo llegaron?",
+  "translation" : "¿Cómo usaron la computadora nueva?",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -341,26 +337,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "How",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "did they arrive" ]
+      "text" : null,
+      "options" : [ "did they use" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / arrive)?",
+      "text" : "(they / use) the new computer?",
       "options" : null
     } ],
-    "sentences" : [ "How did they arrive?" ]
+    "sentences" : [ "How did they use the new computer?" ]
   }
 }, {
   "_id" : {
@@ -371,9 +367,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b6"
   },
-  "title" : "Past Simple Questions with Regular Verbs",
+  "title" : "Did I look funny?",
   "instructions" : "Escribe oraciones en 'past simple'.",
-  "translation" : "¿Parecía nervioso?",
+  "translation" : "¿Parecía gracioso?",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -393,26 +389,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Did I look" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(I / look) nervous?",
+      "text" : "(I / look) funny?",
       "options" : null
     } ],
-    "sentences" : [ "Did I look nervous?" ]
+    "sentences" : [ "Did I look funny?" ]
   }
 }, {
   "_id" : {

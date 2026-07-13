@@ -7,7 +7,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39c"
   },
-  "title" : "WH- questions in the present continuous",
+  "title" : "When are you getting here?",
   "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
   "translation" : "¿Cuándo llegas?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "When",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are you arriving" ]
+      "text" : null,
+      "options" : [ "are you getting" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / arrive)?",
+      "text" : "here (you / get)?",
       "options" : null
     } ],
-    "sentences" : [ "When are you arriving?" ]
+    "sentences" : [ "When are you getting here?" ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39c"
   },
-  "title" : "WH- questions in the present continuous",
+  "title" : "What is she doing now?",
   "instructions" : "Formula preguntas 'wh' en 'present continuous'.",
-  "translation" : "¿Qué está cocinando ella?",
+  "translation" : "¿Qué está haciendo ella ahora?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "What",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is she cooking" ]
+      "text" : null,
+      "options" : [ "is she doing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / cook)?",
+      "text" : "(she / do) now?",
       "options" : null
     } ],
-    "sentences" : [ "What is she cooking?" ]
+    "sentences" : [ "What is she doing now?" ]
   }
 }, {
   "_id" : {

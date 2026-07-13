@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
-  "title" : "Time Prepositions: Correct Choice",
+  "title" : "She thought before beginning.",
   "instructions" : "Elige la preposición correcta.",
-  "translation" : "Ella se relajó antes de comenzar.",
+  "translation" : "Ella pensó antes de comenzar.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She relaxed",
+      "text" : "She thought",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "before" ]
     }, {
       "kind" : "TEXT",
       "text" : "(from / before / to) beginning.",
       "options" : null
     } ],
-    "sentences" : [ "She relaxed before beginning." ]
+    "sentences" : [ "She thought before beginning." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
-  "title" : "Time Prepositions: Correct Choice",
+  "title" : "The concert hall is photographed from 9pm to 1am.",
   "instructions" : "Elige la preposición correcta.",
-  "translation" : "La sala de conciertos está ocupada de 9 p. m. a 1 a. m.",
+  "translation" : "La sala de conciertos es fotografiada de 9 p. m. a 1 a. m.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The concert hall is occupied",
+      "text" : "The concert hall is photographed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "from" ]
     }, {
       "kind" : "TEXT",
       "text" : "(to / from / after) 9pm to 1am.",
       "options" : null
     } ],
-    "sentences" : [ "The concert hall is occupied from 9pm to 1am." ]
+    "sentences" : [ "The concert hall is photographed from 9pm to 1am." ]
   }
 }, {
   "_id" : {

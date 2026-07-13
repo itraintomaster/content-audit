@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d258"
   },
-  "title" : "Using Quantity Words with Uncountable Nouns",
+  "title" : "Can you spread a quarter of butter?",
   "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
-  "translation" : "¿Puedes untar una capa de mantequilla?",
+  "translation" : "¿Puedes untar un cuarto de mantequilla?",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Can you spread",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a layer of butter" ]
+      "text" : null,
+      "options" : [ "a quarter of butter" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(layer / butter)?",
+      "text" : "(quarter / butter)?",
       "options" : null
     } ],
-    "sentences" : [ "Can you spread a layer of butter?" ]
+    "sentences" : [ "Can you spread a quarter of butter?" ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d258"
   },
-  "title" : "Using Quantity Words with Uncountable Nouns",
+  "title" : "She put a spoon of sugar in her tea.",
   "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
-  "translation" : "¡Ella consumió un rollo de masa!",
+  "translation" : "Ella puso una cucharada de azúcar en su té.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She consumed",
+      "text" : "She put a",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a roll of dough" ]
+      "text" : null,
+      "options" : [ "spoon" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(roll / dough)!",
+      "text" : "of sugar in her tea.",
       "options" : null
     } ],
-    "sentences" : [ "She consumed a roll of dough!" ]
+    "sentences" : [ "She put a spoon of sugar in her tea." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d258"
   },
-  "title" : "Using Quantity Words with Uncountable Nouns",
+  "title" : "They shared a bottle of beer.",
   "instructions" : "Crea oraciones usando 'a' + palabra de cantidad + 'of' + sustantivo incontable.",
-  "translation" : "Compartieron una jarra de cerveza.",
+  "translation" : "Compartieron una botella de cerveza.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They shared",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a jug of beer" ]
+      "text" : null,
+      "options" : [ "a bottle of beer" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(jug / beer).",
+      "text" : "(bottle / beer).",
       "options" : null
     } ],
-    "sentences" : [ "They shared a jug of beer." ]
+    "sentences" : [ "They shared a bottle of beer." ]
   }
 }, {
   "_id" : {

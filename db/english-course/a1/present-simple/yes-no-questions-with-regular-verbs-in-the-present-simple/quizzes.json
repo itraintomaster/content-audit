@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38b"
   },
-  "title" : "'Yes / No' questions with regular verbs in the present simple",
+  "title" : "Do you like people?",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Te gusta el helado?",
+  "translation" : "¿Te gusta la gente?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Do you like" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / like) ice cream?",
+      "text" : "(you / like) people?",
       "options" : null
     } ],
-    "sentences" : [ "Do you like ice cream?" ]
+    "sentences" : [ "Do you like people?" ]
   }
 }, {
   "_id" : {
@@ -59,9 +55,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38b"
   },
-  "title" : "'Yes / No' questions with regular verbs in the present simple",
+  "title" : "Does he have a child?",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Él tiene una bicicleta?",
+  "translation" : "¿Él tiene un hijo?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -81,26 +77,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Does he have" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / have) a bike?",
+      "text" : "(he / have) a child?",
       "options" : null
     } ],
-    "sentences" : [ "Does he have a bike?" ]
+    "sentences" : [ "Does he have a child?" ]
   }
 }, {
   "_id" : {
@@ -163,9 +155,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38b"
   },
-  "title" : "'Yes / No' questions with regular verbs in the present simple",
+  "title" : "Do you eat lunch every day?",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Cocinas el almuerzo todos los días?",
+  "translation" : "¿Comes el almuerzo todos los días?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -185,26 +177,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Do you cook" ]
+      "text" : null,
+      "options" : [ "Do you eat" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / cook) lunch every day?",
+      "text" : "(you / eat) lunch every day?",
       "options" : null
     } ],
-    "sentences" : [ "Do you cook lunch every day?" ]
+    "sentences" : [ "Do you eat lunch every day?" ]
   }
 }, {
   "_id" : {
@@ -467,9 +455,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38b"
   },
-  "title" : "'Yes / No' questions with regular verbs in the present simple",
+  "title" : "Does he know the man?",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Él canta la canción?",
+  "translation" : "¿Él conoce al hombre?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -489,26 +477,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Does he sing" ]
+      "text" : null,
+      "options" : [ "Does he know" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / sing) the song?",
+      "text" : "(he / know) the man?",
       "options" : null
     } ],
-    "sentences" : [ "Does he sing the song?" ]
+    "sentences" : [ "Does he know the man?" ]
   }
 }, {
   "_id" : {
@@ -623,9 +607,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38b"
   },
-  "title" : "'Yes / No' questions with regular verbs in the present simple",
+  "title" : "Do you buy a lot of bread?",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Horneas mucho pan?",
+  "translation" : "¿Compras mucho pan?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -645,26 +629,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Do you bake" ]
+      "text" : null,
+      "options" : [ "Do you buy" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / bake) a lot of bread?",
+      "text" : "(you / buy) a lot of bread?",
       "options" : null
     } ],
-    "sentences" : [ "Do you bake a lot of bread?" ]
+    "sentences" : [ "Do you buy a lot of bread?" ]
   }
 }, {
   "_id" : {

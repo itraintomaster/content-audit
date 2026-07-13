@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d5"
   },
-  "title" : "Sentences with 'It is' as a Subject",
+  "title" : "It's a quarter past ten.",
   "instructions" : "Crea oraciones utilizando 'it's'. Utiliza la forma corta si es posible.",
-  "translation" : "Está a cinco millas de distancia.",
+  "translation" : "Son las diez y cuarto.",
   "theoryId" : "a1.08.6_It_as_dummy_subject",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "(five miles away)",
+      "text" : "(a quarter past ten)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "It's five miles away." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "It's a quarter past ten." ]
     } ],
-    "sentences" : [ "It's five miles away." ]
+    "sentences" : [ "It's a quarter past ten." ]
   }
 }, {
   "_id" : {
@@ -111,9 +107,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d5"
   },
-  "title" : "Sentences with 'It is' as a Subject",
+  "title" : "It's hot today.",
   "instructions" : "Crea oraciones utilizando 'it's'. Utiliza la forma corta si es posible.",
-  "translation" : "Ayer hace viento.",
+  "translation" : "Hoy hace calor.",
   "theoryId" : "a1.08.6_It_as_dummy_subject",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -133,26 +129,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "(windy / yesterday)",
+      "text" : "(hot / today)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "It's windy yesterday." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "It's hot today." ]
     } ],
-    "sentences" : [ "It's windy yesterday." ]
+    "sentences" : [ "It's hot today." ]
   }
 }, {
   "_id" : {
@@ -319,9 +311,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d5"
   },
-  "title" : "Sentences with 'It is' as a Subject",
+  "title" : "It's a good example.",
   "instructions" : "Crea oraciones utilizando 'it's'. Utiliza la forma corta si es posible.",
-  "translation" : "Ya casi es mi cumpleaños.",
+  "translation" : "Es un buen ejemplo.",
   "theoryId" : "a1.08.6_It_as_dummy_subject",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -341,26 +333,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "(almost / my birthday)",
+      "text" : "(good / example)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "It's almost my birthday." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "It's a good example." ]
     } ],
-    "sentences" : [ "It's almost my birthday." ]
+    "sentences" : [ "It's a good example." ]
   }
 }, {
   "_id" : {

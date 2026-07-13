@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d303"
   },
-  "title" : "Countries: 'The' or Zero Article? - Quick Quiz",
+  "title" : "He is just back from the Maldives.",
   "instructions" : "Inserta 'the' o usa – si no se necesita ningún artículo.",
-  "translation" : "Es originario de las Maldivas.",
+  "translation" : "Acaba de volver de las Maldivas.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He is originally from",
+      "text" : "He is just back from",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
       "text" : "Maldives.",
       "options" : null
     } ],
-    "sentences" : [ "He is originally from the Maldives." ]
+    "sentences" : [ "He is just back from the Maldives." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d303"
   },
-  "title" : "Countries: 'The' or Zero Article? - Quick Quiz",
+  "title" : "Surprisingly, she is from - Thailand.",
   "instructions" : "Inserta 'the' o usa – si no se necesita ningún artículo.",
-  "translation" : "Ella es originaria de Tailandia.",
+  "translation" : "Sorprendentemente, ella es de Tailandia.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She is originally from",
+      "text" : "Surprisingly, she is from",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "Thailand.",
       "options" : null
     } ],
-    "sentences" : [ "She is originally from - Thailand." ]
+    "sentences" : [ "Surprisingly, she is from - Thailand." ]
   }
 }, {
   "_id" : {

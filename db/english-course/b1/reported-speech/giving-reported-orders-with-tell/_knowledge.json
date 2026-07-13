@@ -5,11 +5,11 @@
   "code" : "6814dafa7d73e7209a13d328",
   "isRule" : true,
   "kind" : "KNOWLEDGE",
-  "label" : "Giving Reported Orders with 'Tell'",
+  "label" : "Órdenes con 'tell'",
   "oldId" : "783d408e-edd4-454f-a80e-e7a683968bdd",
   "parentId" : {
     "$oid" : "6814dafa7d73e7209a13d31c"
   },
-  "instructions" : "Transforma las oraciones a 'reported orders'. Comienza con 'he told me'.",
+  "instructions" : "Transforma las oraciones en órdenes indirectas. Empieza con $He told me$.",
   "sentenceMode" : "REWRITE"
 }

@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28d"
   },
-  "title" : "When to Use For or Since",
+  "title" : "He has had tea since he moved to England.",
   "instructions" : "Coloca 'for' o 'since'.",
-  "translation" : "Él ha bebido té desde que se mudó a Inglaterra.",
+  "translation" : "Él ha tomado té desde que se mudó a Inglaterra.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He has drunk tea",
+      "text" : "He has had tea",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "since" ]
     }, {
       "kind" : "TEXT",
       "text" : "he moved to England.",
       "options" : null
     } ],
-    "sentences" : [ "He has drunk tea since he moved to England." ]
+    "sentences" : [ "He has had tea since he moved to England." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28d"
   },
-  "title" : "When to Use For or Since",
+  "title" : "He has played at that club for many months.",
   "instructions" : "Coloca 'for' o 'since'.",
-  "translation" : "Él ha jugado en ese club durante unos meses.",
+  "translation" : "Él ha jugado en ese club durante muchos meses.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He has played at that club",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
-      "text" : "a few months.",
+      "text" : "many months.",
       "options" : null
     } ],
-    "sentences" : [ "He has played at that club for a few months." ]
+    "sentences" : [ "He has played at that club for many months." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28d"
   },
-  "title" : "When to Use For or Since",
+  "title" : "He has sold tea for years.",
   "instructions" : "Coloca 'for' o 'since'.",
-  "translation" : "Él ha bebido té durante años.",
+  "translation" : "Él ha vendido té durante años.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He has drunk tea",
+      "text" : "He has sold tea",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
       "text" : "years.",
       "options" : null
     } ],
-    "sentences" : [ "He has drunk tea for years." ]
+    "sentences" : [ "He has sold tea for years." ]
   }
 }, {
   "_id" : {

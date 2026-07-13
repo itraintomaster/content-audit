@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d23e"
   },
-  "title" : "Spelling Variations in Past Participles",
+  "title" : "They have travelled less.",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "Han viajado al extranjero.",
+  "translation" : "Han viajado menos.",
   "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "have travelled" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(travel) abroad.",
+      "text" : "(travel) less.",
       "options" : null
     } ],
-    "sentences" : [ "They have travelled abroad." ]
+    "sentences" : [ "They have travelled less." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d23e"
   },
-  "title" : "Spelling Variations in Past Participles",
+  "title" : "Have we welcomed Peter?",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Hemos estado en desacuerdo con Peter?",
+  "translation" : "¿Le hemos dado la bienvenida a Peter?",
   "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -185,26 +185,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Have we disagreed" ]
+      "text" : null,
+      "options" : [ "Have we welcomed" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(we / disagree) with Peter?",
+      "text" : "(we / welcome) Peter?",
       "options" : null
     } ],
-    "sentences" : [ "Have we disagreed with Peter?" ]
+    "sentences" : [ "Have we welcomed Peter?" ]
   }
 }, {
   "_id" : {
@@ -215,9 +211,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d23e"
   },
-  "title" : "Spelling Variations in Past Participles",
+  "title" : "Have you married a grandmother?",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Te has casado con un extranjero?",
+  "translation" : "¿Te has casado con una abuela?",
   "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -237,26 +233,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Have you married" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / marry) a foreigner?",
+      "text" : "(you / marry) a grandmother?",
       "options" : null
     } ],
-    "sentences" : [ "Have you married a foreigner?" ]
+    "sentences" : [ "Have you married a grandmother?" ]
   }
 }, {
   "_id" : {
@@ -839,9 +831,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d23e"
   },
-  "title" : "Spelling Variations in Past Participles",
+  "title" : "They have not matched the words with the pictures.",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "No han obedecido las reglas.",
+  "translation" : "No han emparejado las palabras con las imágenes.",
   "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -861,26 +853,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "have not obeyed|haven't obeyed" ]
+      "text" : null,
+      "options" : [ "have not matched|haven't matched" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / obey) the rules.",
+      "text" : "(not / match) the words with the pictures.",
       "options" : null
     } ],
-    "sentences" : [ "They have not obeyed the rules.", "They haven't obeyed the rules." ]
+    "sentences" : [ "They have not matched the words with the pictures.", "They haven't matched the words with the pictures." ]
   }
 }, {
   "_id" : {
@@ -891,9 +883,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d23e"
   },
-  "title" : "Spelling Variations in Past Participles",
+  "title" : "Luke has travelled to the stadium.",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "Luke ha viajado al extranjero.",
+  "translation" : "Luke ha viajado al estadio.",
   "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -913,26 +905,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Luke",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "has travelled" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(travel) abroad.",
+      "text" : "(travel) to the stadium.",
       "options" : null
     } ],
-    "sentences" : [ "Luke has travelled abroad." ]
+    "sentences" : [ "Luke has travelled to the stadium." ]
   }
 }, {
   "_id" : {
@@ -943,9 +935,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d23e"
   },
-  "title" : "Spelling Variations in Past Participles",
+  "title" : "We have not preferred the old bridge.",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "No hemos preferido el estilo antiguo.",
+  "translation" : "No hemos preferido el puente antiguo.",
   "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -965,26 +957,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "have not preferred|haven't preferred" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / prefer) the old style.",
+      "text" : "(not / prefer) the old bridge.",
       "options" : null
     } ],
-    "sentences" : [ "We have not preferred the old style.", "We haven't preferred the old style." ]
+    "sentences" : [ "We have not preferred the old bridge.", "We haven't preferred the old bridge." ]
   }
 }, {
   "_id" : {

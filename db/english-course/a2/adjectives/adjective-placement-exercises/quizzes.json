@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a0"
   },
-  "title" : "Adjective Placement Exercises",
+  "title" : "A large brown dog barked outside.",
   "instructions" : "Coloca los adjetivos en la oración.",
-  "translation" : "Un gran perro marrón ladró fuerte.",
+  "translation" : "Un gran perro marrón ladró afuera.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "A",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "large brown" ]
     }, {
       "kind" : "TEXT",
-      "text" : "dog barked loudly. (brown / large)",
+      "text" : "dog barked outside. (brown / large)",
       "options" : null
     } ],
-    "sentences" : [ "A large brown dog barked loudly." ]
+    "sentences" : [ "A large brown dog barked outside." ]
   }
 }, {
   "_id" : {
@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a0"
   },
-  "title" : "Adjective Placement Exercises",
+  "title" : "The fifth young girl was reading a book.",
   "instructions" : "Coloca los adjetivos en la oración.",
-  "translation" : "La joven inteligente estaba leyendo un libro.",
+  "translation" : "La quinta chica joven estaba leyendo un libro.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "smart young" ]
+      "text" : null,
+      "options" : [ "fifth young" ]
     }, {
       "kind" : "TEXT",
-      "text" : "girl was reading a book. (smart / young)",
+      "text" : "girl was reading a book. (fifth / young)",
       "options" : null
     } ],
-    "sentences" : [ "The smart young girl was reading a book." ]
+    "sentences" : [ "The fifth young girl was reading a book." ]
   }
 }, {
   "_id" : {
@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a0"
   },
-  "title" : "Adjective Placement Exercises",
+  "title" : "The calm cloudy sky looked beautiful.",
   "instructions" : "Coloca los adjetivos en la oración.",
-  "translation" : "El cielo tranquilo y nublado se veía pacífico.",
+  "translation" : "El cielo tranquilo y nublado se veía hermoso.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "calm cloudy" ]
     }, {
       "kind" : "TEXT",
-      "text" : "sky looked peaceful. (cloudy / calm)",
+      "text" : "sky looked beautiful. (cloudy / calm)",
       "options" : null
     } ],
-    "sentences" : [ "The calm cloudy sky looked peaceful." ]
+    "sentences" : [ "The calm cloudy sky looked beautiful." ]
   }
 }, {
   "_id" : {

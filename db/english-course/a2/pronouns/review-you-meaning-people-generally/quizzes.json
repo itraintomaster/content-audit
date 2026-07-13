@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d275"
   },
-  "title" : "Review: 'You' Meaning People Generally",
+  "title" : "You don't have to pay to enter the zoo.",
   "instructions" : "Cambia las oraciones para que incluyan 'you'. No cambies el significado.",
-  "translation" : "No tienes que hacer una reserva para visitar el zoológico.",
+  "translation" : "No tienes que pagar para entrar al zoológico.",
   "theoryId" : "a2.08.One_and_Ones",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -497,25 +497,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "People don't have to make a reservation to visit the zoo.",
+      "text" : "People don't have to pay to enter the zoo.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You don't have to make a reservation to visit the zoo." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You don't have to pay to enter the zoo." ]
     } ],
-    "sentences" : [ "You don't have to make a reservation to visit the zoo." ]
+    "sentences" : [ "You don't have to pay to enter the zoo." ]
   }
 } ]

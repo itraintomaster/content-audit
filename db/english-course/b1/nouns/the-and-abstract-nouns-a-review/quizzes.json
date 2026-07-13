@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
-  "title" : "'The' and Abstract Nouns: A Review",
+  "title" : "Do you believe - innovation will change our lives?",
   "instructions" : "Escribe 'the' o usa – para 'no article'.",
-  "translation" : "¿Crees que la innovación transformará nuestras vidas?",
+  "translation" : "¿Crees que la innovación cambiará nuestras vidas?",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do you believe",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "innovation will transform our lives?",
+      "text" : "innovation will change our lives?",
       "options" : null
     } ],
-    "sentences" : [ "Do you believe - innovation will transform our lives?" ]
+    "sentences" : [ "Do you believe - innovation will change our lives?" ]
   }
 }, {
   "_id" : {
@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
-  "title" : "'The' and Abstract Nouns: A Review",
+  "title" : "She analyzes how - public transport operates.",
   "instructions" : "Escribe 'the' o usa – para 'no article'.",
-  "translation" : "Ella analiza cómo funciona la comunidad.",
+  "translation" : "Ella analiza cómo funciona el transporte público.",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She analyzes how",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "community operates.",
+      "text" : "public transport operates.",
       "options" : null
     } ],
-    "sentences" : [ "She analyzes how - community operates." ]
+    "sentences" : [ "She analyzes how - public transport operates." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
-  "title" : "'The' and Abstract Nouns: A Review",
+  "title" : "We usually ride the bus to school.",
   "instructions" : "Escribe 'the' o usa – para 'no article'.",
-  "translation" : "Normalmente viajamos en metro.",
+  "translation" : "Normalmente viajamos en autobús a la escuela.",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We usually ride",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
-      "text" : "subway.",
+      "text" : "bus to school.",
       "options" : null
     } ],
-    "sentences" : [ "We usually ride the subway." ]
+    "sentences" : [ "We usually ride the bus to school." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
-  "title" : "'The' and Abstract Nouns: A Review",
+  "title" : "- quality can be challenging to measure!",
   "instructions" : "Escribe 'the' o usa – para 'no article'.",
-  "translation" : "¡La existencia puede ser desafiante!",
+  "translation" : "¡La calidad puede ser difícil de medir!",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -497,26 +497,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "existence can be challenging!",
+      "text" : "quality can be challenging to measure!",
       "options" : null
     } ],
-    "sentences" : [ "- existence can be challenging!" ]
+    "sentences" : [ "- quality can be challenging to measure!" ]
   }
 }, {
   "_id" : {
@@ -579,9 +575,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
-  "title" : "'The' and Abstract Nouns: A Review",
+  "title" : "Efficient panels are good for the planet.",
   "instructions" : "Escribe 'the' o usa – para 'no article'.",
-  "translation" : "Los paneles solares son beneficiosos para el planeta.",
+  "translation" : "Los paneles eficientes son buenos para el planeta.",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -601,26 +597,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Solar panels are beneficial for",
+      "text" : "Efficient panels are good for",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
       "text" : "planet.",
       "options" : null
     } ],
-    "sentences" : [ "Solar panels are beneficial for the planet." ]
+    "sentences" : [ "Efficient panels are good for the planet." ]
   }
 }, {
   "_id" : {
@@ -891,9 +887,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
-  "title" : "'The' and Abstract Nouns: A Review",
+  "title" : "I really defend - poetry in class.",
   "instructions" : "Escribe 'the' o usa – para 'no article'.",
-  "translation" : "Realmente aprecio la poesía.",
+  "translation" : "Realmente defiendo la poesía en clase.",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -913,26 +909,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I really appreciate",
+      "text" : "I really defend",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "poetry.",
+      "text" : "poetry in class.",
       "options" : null
     } ],
-    "sentences" : [ "I really appreciate - poetry." ]
+    "sentences" : [ "I really defend - poetry in class." ]
   }
 }, {
   "_id" : {
@@ -943,9 +939,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d309"
   },
-  "title" : "'The' and Abstract Nouns: A Review",
+  "title" : "- hunger is a big issue around the world.",
   "instructions" : "Escribe 'the' o usa – para 'no article'.",
-  "translation" : "La pobreza es un problema importante a nivel mundial.",
+  "translation" : "El hambre es un gran problema en todo el mundo.",
   "theoryId" : "b1.07.The_with_Abstract_Nouns",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -965,26 +961,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "poverty is a significant issue globally.",
+      "text" : "hunger is a big issue around the world.",
       "options" : null
     } ],
-    "sentences" : [ "- poverty is a significant issue globally." ]
+    "sentences" : [ "- hunger is a big issue around the world." ]
   }
 }, {
   "_id" : {

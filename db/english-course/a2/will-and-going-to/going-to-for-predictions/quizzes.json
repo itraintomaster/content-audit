@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22e"
   },
-  "title" : "'Going to' for Predictions",
+  "title" : "It's so cloudy that a storm is going to form.",
   "instructions" : "Crea oraciones con 'going to' (estos son ejemplos de 'going to' para predicciones basadas en evidencia).",
-  "translation" : "Hace tanto calor que el helado se va a derretir.",
+  "translation" : "Está tan nublado que se va a formar una tormenta.",
   "theoryId" : "a2.02.Going_to_Use_Prediction",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's so hot that the ice cream",
+      "text" : "It's so cloudy that a storm",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is going to melt|'s going to melt" ]
+      "text" : null,
+      "options" : [ "is going to form|'s going to form" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(melt).",
+      "text" : "(form).",
       "options" : null
     } ],
-    "sentences" : [ "It's so hot that the ice cream is going to melt.", "It's so hot that the ice cream's going to melt." ]
+    "sentences" : [ "It's so cloudy that a storm is going to form.", "It's so cloudy that a storm 's going to form." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22e"
   },
-  "title" : "'Going to' for Predictions",
+  "title" : "Look at the sun! It 's going to singe everything.",
   "instructions" : "Crea oraciones con 'going to' (estos son ejemplos de 'going to' para predicciones basadas en evidencia).",
-  "translation" : "¡Mira el sol! Va a brillar.",
+  "translation" : "¡Mira el sol! Va a chamuscar todo.",
   "theoryId" : "a2.02.Going_to_Use_Prediction",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Look at the sun! It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s going to shine|is going to shine" ]
+      "text" : null,
+      "options" : [ "'s going to singe|is going to singe" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(shine).",
+      "text" : "(singe) everything.",
       "options" : null
     } ],
-    "sentences" : [ "Look at the sun! It's going to shine.", "Look at the sun! It is going to shine." ]
+    "sentences" : [ "Look at the sun! It 's going to singe everything.", "Look at the sun! It is going to singe everything." ]
   }
 }, {
   "_id" : {

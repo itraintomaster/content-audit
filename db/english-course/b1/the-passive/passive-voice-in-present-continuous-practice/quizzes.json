@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d314"
   },
-  "title" : "Passive Voice in Present Continuous Practice",
+  "title" : "The fruits are being ferried to market.",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice). No uses 'by'.",
-  "translation" : "Se están recolectando las frutas.",
+  "translation" : "Se están transportando las frutas al mercado.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -549,26 +549,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Someone is gathering the fruits.",
+      "text" : "Someone is ferrying the fruits to market.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The fruits are being gathered." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The fruits are being ferried to market." ]
     } ],
-    "sentences" : [ "The fruits are being gathered." ]
+    "sentences" : [ "The fruits are being ferried to market." ]
   }
 }, {
   "_id" : {
@@ -891,9 +887,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d314"
   },
-  "title" : "Passive Voice in Present Continuous Practice",
+  "title" : "They are being blocked near the harbour.",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice). No uses 'by'.",
-  "translation" : "Están siendo asistidos.",
+  "translation" : "Están siendo bloqueados cerca del puerto.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -913,26 +909,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Someone is assisting them.",
+      "text" : "Someone is blocking them near the harbour.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They are being assisted." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "They are being blocked near the harbour." ]
     } ],
-    "sentences" : [ "They are being assisted." ]
+    "sentences" : [ "They are being blocked near the harbour." ]
   }
 }, {
   "_id" : {

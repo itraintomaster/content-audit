@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a9"
   },
-  "title" : "Adjectives Vocabulary Quiz",
+  "title" : "He was very bored during the biology class.",
   "instructions" : "Selecciona el adjetivo apropiado para completar cada oración.",
-  "translation" : "Estaba extremadamente aburrido durante la conferencia.",
+  "translation" : "Estaba muy aburrido durante la clase de biología.",
   "theoryId" : "a2.11.Bored_and_Boring",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He was extremely",
+      "text" : "He was very",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "bored" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(bored / boring) during the lecture.",
+      "text" : "(bored / boring) during the biology class.",
       "options" : null
     } ],
-    "sentences" : [ "He was extremely bored during the lecture." ]
+    "sentences" : [ "He was very bored during the biology class." ]
   }
 }, {
   "_id" : {
@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a9"
   },
-  "title" : "Adjectives Vocabulary Quiz",
+  "title" : "Are they thrilled for their trip?",
   "instructions" : "Selecciona el adjetivo apropiado para completar cada oración.",
-  "translation" : "¿Están emocionados por su boda?",
+  "translation" : "¿Están emocionados por su viaje?",
   "theoryId" : "a2.11.Bored_and_Boring",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Are they",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "thrilled" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(thrilled / thrilling) for their wedding?",
+      "text" : "(thrilled / thrilling) for their trip?",
       "options" : null
     } ],
-    "sentences" : [ "Are they thrilled for their wedding?" ]
+    "sentences" : [ "Are they thrilled for their trip?" ]
   }
 }, {
   "_id" : {
@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a9"
   },
-  "title" : "Adjectives Vocabulary Quiz",
+  "title" : "Is Mary interested in science?",
   "instructions" : "Selecciona el adjetivo apropiado para completar cada oración.",
-  "translation" : "¿Está Mary fascinada por la ciencia?",
+  "translation" : "¿Está Mary interesada en la ciencia?",
   "theoryId" : "a2.11.Bored_and_Boring",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Is Mary",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "fascinated" ]
+      "text" : null,
+      "options" : [ "interested" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(fascinated / fascinating) by science?",
+      "text" : "(interested / interesting) in science?",
       "options" : null
     } ],
-    "sentences" : [ "Is Mary fascinated by science?" ]
+    "sentences" : [ "Is Mary interested in science?" ]
   }
 }, {
   "_id" : {
@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a9"
   },
-  "title" : "Adjectives Vocabulary Quiz",
+  "title" : "I became really annoyed as the customer complained endlessly.",
   "instructions" : "Selecciona el adjetivo apropiado para completar cada oración.",
-  "translation" : "Me sentí cada vez más molesto mientras el cliente se quejaba sin cesar.",
+  "translation" : "Me sentí realmente molesto mientras el cliente se quejaba sin cesar.",
   "theoryId" : "a2.11.Bored_and_Boring",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I became increasingly",
+      "text" : "I became really",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "annoyed" ]
     }, {
       "kind" : "TEXT",
       "text" : "(annoyed / annoying) as the customer complained endlessly.",
       "options" : null
     } ],
-    "sentences" : [ "I became increasingly annoyed as the customer complained endlessly." ]
+    "sentences" : [ "I became really annoyed as the customer complained endlessly." ]
   }
 }, {
   "_id" : {
@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a9"
   },
-  "title" : "Adjectives Vocabulary Quiz",
+  "title" : "That was a very captivating story.",
   "instructions" : "Selecciona el adjetivo apropiado para completar cada oración.",
-  "translation" : "Esa fue una historia verdaderamente cautivadora.",
+  "translation" : "Esa fue una historia muy cautivadora.",
   "theoryId" : "a2.11.Bored_and_Boring",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "That was a truly",
+      "text" : "That was a very",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "captivating" ]
     }, {
       "kind" : "TEXT",
       "text" : "(captivated / captivating) story.",
       "options" : null
     } ],
-    "sentences" : [ "That was a truly captivating story." ]
+    "sentences" : [ "That was a very captivating story." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a9"
   },
-  "title" : "Adjectives Vocabulary Quiz",
+  "title" : "I am so delighted! I received the best news today!",
   "instructions" : "Selecciona el adjetivo apropiado para completar cada oración.",
-  "translation" : "¡Estoy increíblemente encantado! ¡Recibí las mejores noticias hoy!",
+  "translation" : "¡Estoy tan encantado! ¡Recibí las mejores noticias hoy!",
   "theoryId" : "a2.11.Bored_and_Boring",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I am incredibly",
+      "text" : "I am so",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "delighted" ]
     }, {
       "kind" : "TEXT",
       "text" : "(delighted / delighting)! I received the best news today!",
       "options" : null
     } ],
-    "sentences" : [ "I am incredibly delighted! I received the best news today!" ]
+    "sentences" : [ "I am so delighted! I received the best news today!" ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a9"
   },
-  "title" : "Adjectives Vocabulary Quiz",
+  "title" : "This is a tedious job! I can't stand it!",
   "instructions" : "Selecciona el adjetivo apropiado para completar cada oración.",
-  "translation" : "¡Esta es una tarea muy tediosa! ¡No lo soporto!",
+  "translation" : "¡Este es un trabajo tedioso! ¡No lo soporto!",
   "theoryId" : "a2.11.Bored_and_Boring",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "This is such a",
+      "text" : "This is a",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "tedious" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(tedious / tedded) task! I can't stand it!",
+      "text" : "(tedious / tedded) job! I can't stand it!",
       "options" : null
     } ],
-    "sentences" : [ "This is such a tedious task! I can't stand it!" ]
+    "sentences" : [ "This is a tedious job! I can't stand it!" ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a9"
   },
-  "title" : "Adjectives Vocabulary Quiz",
+  "title" : "He is passionate about music, so he becomes a singer.",
   "instructions" : "Selecciona el adjetivo apropiado para completar cada oración.",
-  "translation" : "Le apasiona la música, por lo que sueña con convertirse en músico.",
+  "translation" : "Le apasiona la música, por eso se convierte en cantante.",
   "theoryId" : "a2.11.Bored_and_Boring",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "passionate" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(passionate / passioning) about music, so he dreams of becoming a musician.",
+      "text" : "(passionate / passioning) about music, so he becomes a singer.",
       "options" : null
     } ],
-    "sentences" : [ "He is passionate about music, so he dreams of becoming a musician." ]
+    "sentences" : [ "He is passionate about music, so he becomes a singer." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a9"
   },
-  "title" : "Adjectives Vocabulary Quiz",
+  "title" : "They had never witnessed such wooden acting!",
   "instructions" : "Selecciona el adjetivo apropiado para completar cada oración.",
-  "translation" : "¡Nunca habían presenciado una actuación tan aburrida!",
+  "translation" : "¡Nunca habían presenciado una actuación tan rígida!",
   "theoryId" : "a2.11.Bored_and_Boring",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -497,25 +497,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They had never witnessed such a",
+      "text" : "They had never witnessed such",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "dull" ]
+      "text" : null,
+      "options" : [ "wooden" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(dull / dulling) performance!",
+      "text" : "(wooden / wooding) acting!",
       "options" : null
     } ],
-    "sentences" : [ "They had never witnessed such a dull performance!" ]
+    "sentences" : [ "They had never witnessed such wooden acting!" ]
   }
 } ]

@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d280"
   },
-  "title" : "Distinguishing 'Somewhere' and 'Nowhere'",
+  "title" : "They went somewhere last week.",
   "instructions" : "Escribe 'somewhere' o 'nowhere'.",
-  "translation" : "No fueron a ninguna parte la semana pasada. No tenían ganas de salir.",
+  "translation" : "Fueron a algún lugar la semana pasada.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They went",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "nowhere" ]
+      "text" : null,
+      "options" : [ "somewhere" ]
     }, {
       "kind" : "TEXT",
-      "text" : "last week. They didn't feel like going out.",
+      "text" : "last week.",
       "options" : null
     } ],
-    "sentences" : [ "They went nowhere last week. They didn't feel like going out." ]
+    "sentences" : [ "They went somewhere last week." ]
   }
 }, {
   "_id" : {
@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d280"
   },
-  "title" : "Distinguishing 'Somewhere' and 'Nowhere'",
+  "title" : "Somewhere in Spain is cold during summer.",
   "instructions" : "Escribe 'somewhere' o 'nowhere'.",
-  "translation" : "En ningún lugar de España hace frío durante el verano. ¡Siempre hace calor!",
+  "translation" : "En algún lugar de España hace frío durante el verano.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -133,26 +133,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Nowhere" ]
+      "text" : null,
+      "options" : [ "Somewhere" ]
     }, {
       "kind" : "TEXT",
-      "text" : "in Spain is cold during summer. It's always hot!",
+      "text" : "in Spain is cold during summer.",
       "options" : null
     } ],
-    "sentences" : [ "Nowhere in Spain is cold during summer. It's always hot!" ]
+    "sentences" : [ "Somewhere in Spain is cold during summer." ]
   }
 }, {
   "_id" : {
@@ -215,9 +211,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d280"
   },
-  "title" : "Distinguishing 'Somewhere' and 'Nowhere'",
+  "title" : "She has been everywhere! She has seen all the cathedrals!",
   "instructions" : "Escribe 'somewhere' o 'nowhere'.",
-  "translation" : "¡Ella ha estado en todas partes! ¡Ha visto todos los continentes!",
+  "translation" : "¡Ella ha estado en todas partes! ¡Ha visto todas las catedrales!",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -237,26 +233,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She has been",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "everywhere" ]
     }, {
       "kind" : "TEXT",
-      "text" : "! She has seen all the continents!",
+      "text" : "! She has seen all the cathedrals!",
       "options" : null
     } ],
-    "sentences" : [ "She has been everywhere! She has seen all the continents!" ]
+    "sentences" : [ "She has been everywhere! She has seen all the cathedrals!" ]
   }
 }, {
   "_id" : {
@@ -267,9 +263,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d280"
   },
-  "title" : "Distinguishing 'Somewhere' and 'Nowhere'",
+  "title" : "There is somewhere I want to be with you.",
   "instructions" : "Escribe 'somewhere' o 'nowhere'.",
-  "translation" : "No hay ningún lugar donde quiera estar más que contigo. ¡Estar contigo es lo mejor!",
+  "translation" : "Hay algún lugar donde quiero estar contigo.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -289,26 +285,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "There is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "nowhere" ]
+      "text" : null,
+      "options" : [ "somewhere" ]
     }, {
       "kind" : "TEXT",
-      "text" : "I want to be but with you. Being with you is the best!",
+      "text" : "I want to be with you.",
       "options" : null
     } ],
-    "sentences" : [ "There is nowhere I want to be but with you. Being with you is the best!" ]
+    "sentences" : [ "There is somewhere I want to be with you." ]
   }
 }, {
   "_id" : {
@@ -319,9 +315,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d280"
   },
-  "title" : "Distinguishing 'Somewhere' and 'Nowhere'",
+  "title" : "The animals had nowhere to hide. The crowd found them.",
   "instructions" : "Escribe 'somewhere' o 'nowhere'.",
-  "translation" : "Los animales escaparon a ninguna parte. Todavía los están buscando.",
+  "translation" : "Los animales no tenían dónde esconderse. La multitud los encontró.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -341,26 +337,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The animals escaped to",
+      "text" : "The animals had",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "nowhere" ]
     }, {
       "kind" : "TEXT",
-      "text" : ". They are still being looked for.",
+      "text" : "to hide. The crowd found them.",
       "options" : null
     } ],
-    "sentences" : [ "The animals escaped to nowhere. They are still being looked for." ]
+    "sentences" : [ "The animals had nowhere to hide. The crowd found them." ]
   }
 }, {
   "_id" : {
@@ -371,9 +367,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d280"
   },
-  "title" : "Distinguishing 'Somewhere' and 'Nowhere'",
+  "title" : "There was food everywhere! The kitchen was full of onions!",
   "instructions" : "Escribe 'somewhere' o 'nowhere'.",
-  "translation" : "¡Había comida por todas partes! ¡La cocina era un desastre!",
+  "translation" : "¡Había comida por todas partes! ¡La cocina estaba llena de cebollas!",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -393,26 +389,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "There was food",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "everywhere" ]
     }, {
       "kind" : "TEXT",
-      "text" : "! The kitchen was a disaster!",
+      "text" : "! The kitchen was full of onions!",
       "options" : null
     } ],
-    "sentences" : [ "There was food everywhere! The kitchen was a disaster!" ]
+    "sentences" : [ "There was food everywhere! The kitchen was full of onions!" ]
   }
 }, {
   "_id" : {
@@ -423,9 +419,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d280"
   },
-  "title" : "Distinguishing 'Somewhere' and 'Nowhere'",
+  "title" : "Everywhere we travelled in Italy, the food was fresh.",
   "instructions" : "Escribe 'somewhere' o 'nowhere'.",
-  "translation" : "En todos los lugares que viajamos en Italia, la comida era deliciosa. ¡Nos encantó!",
+  "translation" : "En todos los lugares que viajamos en Italia, la comida era fresca.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -445,26 +441,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Everywhere" ]
     }, {
       "kind" : "TEXT",
-      "text" : "we travelled in Italy, the food was delicious. We loved it!",
+      "text" : "we travelled in Italy, the food was fresh.",
       "options" : null
     } ],
-    "sentences" : [ "Everywhere we travelled in Italy, the food was delicious. We loved it!" ]
+    "sentences" : [ "Everywhere we travelled in Italy, the food was fresh." ]
   }
 }, {
   "_id" : {
@@ -475,9 +467,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d280"
   },
-  "title" : "Distinguishing 'Somewhere' and 'Nowhere'",
+  "title" : "We should go somewhere fun like this club!",
   "instructions" : "Escribe 'somewhere' o 'nowhere'.",
-  "translation" : "¡Ningún lugar es tan divertido como este club! ¡Es el mejor club de todos!",
+  "translation" : "¡Deberíamos ir a algún lugar divertido como este club!",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -497,25 +489,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "We should go",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Nowhere" ]
+      "text" : null,
+      "options" : [ "somewhere" ]
     }, {
       "kind" : "TEXT",
-      "text" : "is as fun as this club! It's the best club ever!",
+      "text" : "fun like this club!",
       "options" : null
     } ],
-    "sentences" : [ "Nowhere is as fun as this club! It's the best club ever!" ]
+    "sentences" : [ "We should go somewhere fun like this club!" ]
   }
 } ]

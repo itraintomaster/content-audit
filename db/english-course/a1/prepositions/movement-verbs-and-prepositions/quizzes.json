@@ -163,7 +163,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
-  "title" : "Movement Verbs and Prepositions",
+  "title" : "We got to Paris.",
   "instructions" : "Elige in, to o -",
   "translation" : "Llegamos a París.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We arrived",
+      "text" : "We got",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "in" ]
+      "text" : null,
+      "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "Paris.",
       "options" : null
     } ],
-    "sentences" : [ "We arrived in Paris." ]
+    "sentences" : [ "We got to Paris." ]
   }
 }, {
   "_id" : {
@@ -371,7 +371,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
-  "title" : "Movement Verbs and Prepositions",
+  "title" : "Robert has got - there.",
   "instructions" : "Elige in, to o -",
   "translation" : "Robert ha llegado allí.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Robert has arrived",
+      "text" : "Robert has got",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "there.",
       "options" : null
     } ],
-    "sentences" : [ "Robert has arrived - there." ]
+    "sentences" : [ "Robert has got - there." ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
-  "title" : "Movement Verbs and Prepositions",
+  "title" : "He'll stay in Italy tomorrow.",
   "instructions" : "Elige in, to o -",
-  "translation" : "Llegará a Italia mañana.",
+  "translation" : "Se quedará en Italia mañana.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He'll arrive",
+      "text" : "He'll stay",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "Italy tomorrow.",
       "options" : null
     } ],
-    "sentences" : [ "He'll arrive in Italy tomorrow." ]
+    "sentences" : [ "He'll stay in Italy tomorrow." ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
-  "title" : "Movement Verbs and Prepositions",
+  "title" : "She took a child to the hotel.",
   "instructions" : "Elige in, to o -",
-  "translation" : "Tomó un scooter al hotel.",
+  "translation" : "Llevó a un niño al hotel.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She took a scooter",
+      "text" : "She took a child",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "the hotel.",
       "options" : null
     } ],
-    "sentences" : [ "She took a scooter to the hotel." ]
+    "sentences" : [ "She took a child to the hotel." ]
   }
 }, {
   "_id" : {
@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
-  "title" : "Movement Verbs and Prepositions",
+  "title" : "She came to the school with us.",
   "instructions" : "Elige in, to o -",
-  "translation" : "Vino al teatro con nosotros.",
+  "translation" : "Vino a la escuela con nosotros.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She came",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the theatre with us.",
+      "text" : "the school with us.",
       "options" : null
     } ],
-    "sentences" : [ "She came to the theatre with us." ]
+    "sentences" : [ "She came to the school with us." ]
   }
 }, {
   "_id" : {
@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
-  "title" : "Movement Verbs and Prepositions",
+  "title" : "When did you fly to Australia?",
   "instructions" : "Elige in, to o -",
-  "translation" : "¿Cuándo llegaste a Australia?",
+  "translation" : "¿Cuándo volaste a Australia?",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "When did you arrive",
+      "text" : "When did you fly",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "in" ]
+      "text" : null,
+      "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "Australia?",
       "options" : null
     } ],
-    "sentences" : [ "When did you arrive in Australia?" ]
+    "sentences" : [ "When did you fly to Australia?" ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
-  "title" : "Movement Verbs and Prepositions",
+  "title" : "The children will walk to the beach.",
   "instructions" : "Elige in, to o -",
-  "translation" : "Los profesores llegarán a Oxford el próximo semestre.",
+  "translation" : "Los niños caminarán a la playa.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The professors will arrive",
+      "text" : "The children will walk",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "in" ]
+      "text" : null,
+      "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "Oxford next semester.",
+      "text" : "the beach.",
       "options" : null
     } ],
-    "sentences" : [ "The professors will arrive in Oxford next semester." ]
+    "sentences" : [ "The children will walk to the beach." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
-  "title" : "Movement Verbs and Prepositions",
+  "title" : "The people stayed in Berlin last week.",
   "instructions" : "Elige in, to o -",
-  "translation" : "Los turistas llegaron a Berlín la semana pasada.",
+  "translation" : "La gente se quedó en Berlín la semana pasada.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The tourists arrived",
+      "text" : "The people stayed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "Berlin last week.",
       "options" : null
     } ],
-    "sentences" : [ "The tourists arrived in Berlin last week." ]
+    "sentences" : [ "The people stayed in Berlin last week." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
-  "title" : "Movement Verbs and Prepositions",
+  "title" : "They ran - here.",
   "instructions" : "Elige in, to o -",
-  "translation" : "Navegaron hasta aquí.",
+  "translation" : "Corrieron hasta aquí.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They sailed",
+      "text" : "They ran",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "here.",
       "options" : null
     } ],
-    "sentences" : [ "They sailed - here." ]
+    "sentences" : [ "They ran - here." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3df"
   },
-  "title" : "Movement Verbs and Prepositions",
+  "title" : "Peter lived in Asia for three years.",
   "instructions" : "Elige in, to o -",
-  "translation" : "Peter llegó a Asia hace tres años.",
+  "translation" : "Peter vivió en Asia durante tres años.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Peter arrived",
+      "text" : "Peter lived",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
-      "text" : "Asia three years ago.",
+      "text" : "Asia for three years.",
       "options" : null
     } ],
-    "sentences" : [ "Peter arrived in Asia three years ago." ]
+    "sentences" : [ "Peter lived in Asia for three years." ]
   }
 }, {
   "_id" : {

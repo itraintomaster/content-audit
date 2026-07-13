@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d332"
   },
-  "title" : "Giving Advice with 'Ought to'",
+  "title" : "The students shouldn't miss class today.",
   "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
-  "translation" : "Los estudiantes no deberían faltar a clase.",
+  "translation" : "Los estudiantes no deberían faltar a clase hoy.",
   "theoryId" : "b1.11.Ought_to_for_Advice",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -133,26 +133,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I don't think it's a good idea for the students to skip class.",
+      "text" : "I don't think it's a good idea for the students to miss class today.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The students shouldn't skip class." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The students shouldn't miss class today." ]
     } ],
-    "sentences" : [ "The students shouldn't skip class." ]
+    "sentences" : [ "The students shouldn't miss class today." ]
   }
 }, {
   "_id" : {
@@ -423,9 +419,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d332"
   },
-  "title" : "Giving Advice with 'Ought to'",
+  "title" : "They shouldn't drive so slowly today.",
   "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
-  "translation" : "No deberían conducir tan descuidadamente.",
+  "translation" : "No deberían conducir tan despacio hoy.",
   "theoryId" : "b1.11.Ought_to_for_Advice",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -445,26 +441,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I don't think it's a good idea for them to drive so carelessly.",
+      "text" : "I don't think it's a good idea for them to drive so slowly today.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They shouldn't drive so carelessly." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "They shouldn't drive so slowly today." ]
     } ],
-    "sentences" : [ "They shouldn't drive so carelessly." ]
+    "sentences" : [ "They shouldn't drive so slowly today." ]
   }
 }, {
   "_id" : {
@@ -891,9 +883,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d332"
   },
-  "title" : "Giving Advice with 'Ought to'",
+  "title" : "You ought to save some money today.",
   "instructions" : "Crea oraciones con 'ought to' o 'shouldn't'.",
-  "translation" : "Deberías invertir algo de dinero.",
+  "translation" : "Deberías ahorrar algo de dinero hoy.",
   "theoryId" : "b1.11.Ought_to_for_Advice",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -913,26 +905,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I think it's a good idea for you to invest some money.",
+      "text" : "I think it's a good idea for you to save some money today.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You ought to invest some money." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You ought to save some money today." ]
     } ],
-    "sentences" : [ "You ought to invest some money." ]
+    "sentences" : [ "You ought to save some money today." ]
   }
 }, {
   "_id" : {

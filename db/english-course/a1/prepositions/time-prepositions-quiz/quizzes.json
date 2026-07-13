@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d9"
   },
-  "title" : "Time Prepositions Quiz",
+  "title" : "He is playing a game on Wednesday.",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "Él juega al golf el miércoles.",
+  "translation" : "Él está jugando un juego el miércoles.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He is playing golf",
+      "text" : "He is playing a game",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
       "text" : "Wednesday.",
       "options" : null
     } ],
-    "sentences" : [ "He is playing golf on Wednesday." ]
+    "sentences" : [ "He is playing a game on Wednesday." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d9"
   },
-  "title" : "Time Prepositions Quiz",
+  "title" : "On her birthday we visited a hotel.",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "El día de su boda todos fuimos a un hotel elegante.",
+  "translation" : "En su cumpleaños visitamos un hotel.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -393,26 +393,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "On" ]
     }, {
       "kind" : "TEXT",
-      "text" : "her wedding day we all went to a fancy hotel.",
+      "text" : "her birthday we visited a hotel.",
       "options" : null
     } ],
-    "sentences" : [ "On her wedding day we all went to a fancy hotel." ]
+    "sentences" : [ "On her birthday we visited a hotel." ]
   }
 }, {
   "_id" : {
@@ -475,9 +471,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d9"
   },
-  "title" : "Time Prepositions Quiz",
+  "title" : "It happened in the past.",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "Soy tan afortunado de estar vivo en el siglo XX.",
+  "translation" : "Sucedió en el pasado.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -497,26 +493,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I'm so lucky to be alive",
+      "text" : "It happened",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the 20th century.",
+      "text" : "the past.",
       "options" : null
     } ],
-    "sentences" : [ "I'm so lucky to be alive in the 20th century." ]
+    "sentences" : [ "It happened in the past." ]
   }
 }, {
   "_id" : {
@@ -579,9 +575,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d9"
   },
-  "title" : "Time Prepositions Quiz",
+  "title" : "It's always cold in December.",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "Normalmente hace frío en diciembre.",
+  "translation" : "Siempre hace frío en diciembre.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -601,26 +597,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's usually cold",
+      "text" : "It's always cold",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "December.",
       "options" : null
     } ],
-    "sentences" : [ "It's usually cold in December." ]
+    "sentences" : [ "It's always cold in December." ]
   }
 }, {
   "_id" : {
@@ -679,9 +675,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d9"
   },
-  "title" : "Time Prepositions Quiz",
+  "title" : "On Sunday morning we are visiting friends.",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "El domingo por la mañana vamos a visitar a unos familiares.",
+  "translation" : "El domingo por la mañana vamos a visitar a unos amigos.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -701,26 +697,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "On" ]
     }, {
       "kind" : "TEXT",
-      "text" : "Sunday morning we are visiting some relatives.",
+      "text" : "Sunday morning we are visiting friends.",
       "options" : null
     } ],
-    "sentences" : [ "On Sunday morning we are visiting some relatives." ]
+    "sentences" : [ "On Sunday morning we are visiting friends." ]
   }
 }, {
   "_id" : {
@@ -783,9 +775,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d9"
   },
-  "title" : "Time Prepositions Quiz",
+  "title" : "Are you going to the beach - tonight?",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "¿Qué vas a cocinar esta noche?",
+  "translation" : "¿Vas a ir a la playa esta noche?",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -805,26 +797,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "What are you cooking",
+      "text" : "Are you going to the beach",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "tonight?",
       "options" : null
     } ],
-    "sentences" : [ "What are you cooking - tonight?" ]
+    "sentences" : [ "Are you going to the beach - tonight?" ]
   }
 }, {
   "_id" : {
@@ -887,9 +879,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d9"
   },
-  "title" : "Time Prepositions Quiz",
+  "title" : "I hurt my mouth - this week.",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "Necesito escribir un informe esta semana.",
+  "translation" : "Me lastimé la boca esta semana.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -909,26 +901,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I need to write a report",
+      "text" : "I hurt my mouth",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "this week.",
       "options" : null
     } ],
-    "sentences" : [ "I need to write a report - this week." ]
+    "sentences" : [ "I hurt my mouth - this week." ]
   }
 }, {
   "_id" : {

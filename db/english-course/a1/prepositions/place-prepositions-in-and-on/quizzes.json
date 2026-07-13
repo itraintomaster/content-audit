@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3dc"
   },
-  "title" : "Place Prepositions: In and On",
+  "title" : "I saw them on the water.",
   "instructions" : "Completa con: in / on.",
-  "translation" : "Los vi en una bicicleta.",
+  "translation" : "Los vi en el agua.",
   "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I saw them",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
-      "text" : "a bicycle.",
+      "text" : "the water.",
       "options" : null
     } ],
-    "sentences" : [ "I saw them on a bicycle." ]
+    "sentences" : [ "I saw them on the water." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3dc"
   },
-  "title" : "Place Prepositions: In and On",
+  "title" : "The man is on the train now.",
   "instructions" : "Completa con: in / on.",
-  "translation" : "Posiblemente esté en el tren ahora.",
+  "translation" : "El hombre está en el tren ahora.",
   "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He's possibly",
+      "text" : "The man is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
       "text" : "the train now.",
       "options" : null
     } ],
-    "sentences" : [ "He's possibly on the train now." ]
+    "sentences" : [ "The man is on the train now." ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3dc"
   },
-  "title" : "Place Prepositions: In and On",
+  "title" : "Manchester is a big city in England.",
   "instructions" : "Completa con: in / on.",
-  "translation" : "Manchester está en el norte de Inglaterra.",
+  "translation" : "Manchester es una gran ciudad en Inglaterra.",
   "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Manchester is",
+      "text" : "Manchester is a big city",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the north of England.",
+      "text" : "England.",
       "options" : null
     } ],
-    "sentences" : [ "Manchester is in the north of England." ]
+    "sentences" : [ "Manchester is a big city in England." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3dc"
   },
-  "title" : "Place Prepositions: In and On",
+  "title" : "He wants to live in the house.",
   "instructions" : "Completa con: in / on.",
-  "translation" : "Él quiere vivir en las montañas.",
+  "translation" : "Él quiere vivir en la casa.",
   "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He wants to live",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the mountains.",
+      "text" : "the house.",
       "options" : null
     } ],
-    "sentences" : [ "He wants to live in the mountains." ]
+    "sentences" : [ "He wants to live in the house." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3dc"
   },
-  "title" : "Place Prepositions: In and On",
+  "title" : "I saw her in the school.",
   "instructions" : "Completa con: in / on.",
-  "translation" : "La vi en las noticias.",
+  "translation" : "La vi en la escuela.",
   "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I saw her",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "on" ]
+      "text" : null,
+      "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the news.",
+      "text" : "the school.",
       "options" : null
     } ],
-    "sentences" : [ "I saw her on the news." ]
+    "sentences" : [ "I saw her in the school." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3dc"
   },
-  "title" : "Place Prepositions: In and On",
+  "title" : "Paolo works in Milan.",
   "instructions" : "Completa con: in / on.",
-  "translation" : "Paolo estudia en Milán.",
+  "translation" : "Paolo trabaja en Milán.",
   "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Paolo studies",
+      "text" : "Paolo works",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "Milan.",
       "options" : null
     } ],
-    "sentences" : [ "Paolo studies in Milan." ]
+    "sentences" : [ "Paolo works in Milan." ]
   }
 }, {
   "_id" : {

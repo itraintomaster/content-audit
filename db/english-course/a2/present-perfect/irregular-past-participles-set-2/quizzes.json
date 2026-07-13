@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d240"
   },
-  "title" : "Irregular Past Participles Set 2",
+  "title" : "Has Peter swum to the island?",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Ha nadado Peter 20 vueltas?",
+  "translation" : "¿Ha nadado Peter hasta la isla?",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -81,26 +81,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Has Peter swum" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(Peter / swim) 20 laps?",
+      "text" : "(Peter / swim) to the island?",
       "options" : null
     } ],
-    "sentences" : [ "Has Peter swum 20 laps?" ]
+    "sentences" : [ "Has Peter swum to the island?" ]
   }
 }, {
   "_id" : {

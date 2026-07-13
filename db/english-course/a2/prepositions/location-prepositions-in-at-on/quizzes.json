@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d285"
   },
-  "title" : "Location Prepositions: In, At, On",
+  "title" : "They played on the beach.",
   "instructions" : "Escribe 'in', 'at' u 'on'.",
-  "translation" : "Se relajaron en la playa.",
+  "translation" : "Jugaron en la playa.",
   "theoryId" : "",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They relaxed",
+      "text" : "They played",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
       "text" : "the beach.",
       "options" : null
     } ],
-    "sentences" : [ "They relaxed on the beach." ]
+    "sentences" : [ "They played on the beach." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d285"
   },
-  "title" : "Location Prepositions: In, At, On",
+  "title" : "Please sit on that platform.",
   "instructions" : "Escribe 'in', 'at' u 'on'.",
-  "translation" : "Por favor, siéntate en ese banco.",
+  "translation" : "Por favor, siéntate en esa plataforma.",
   "theoryId" : "",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Please sit",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
-      "text" : "that bench.",
+      "text" : "that platform.",
       "options" : null
     } ],
-    "sentences" : [ "Please sit on that bench." ]
+    "sentences" : [ "Please sit on that platform." ]
   }
 }, {
   "_id" : {

@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29e"
   },
-  "title" : "Giving Advice: Using 'Should'",
+  "title" : "Granny should arrive on time.",
   "instructions" : "Crea oraciones que incluyan 'should' o 'shouldn't'.",
-  "translation" : "Los empleados deberían llegar a tiempo.",
+  "translation" : "La abuela debería llegar a tiempo.",
   "theoryId" : "a2.10.Should_for_Advice",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -185,26 +185,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I think it's a good idea for the employees to arrive on time.",
+      "text" : "I think it's a good idea for granny to arrive on time.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The employees should arrive on time." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Granny should arrive on time." ]
     } ],
-    "sentences" : [ "The employees should arrive on time." ]
+    "sentences" : [ "Granny should arrive on time." ]
   }
 }, {
   "_id" : {

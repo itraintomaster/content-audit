@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2dd"
   },
-  "title" : "Positive and Negative Past Perfect Practice",
+  "title" : "He hadn't ordered coffee this morning.",
   "instructions" : "Escribe oraciones en 'past perfect'.",
-  "translation" : "Él no había bebido café.",
+  "translation" : "Él no había pedido café esta mañana.",
   "theoryId" : "b1.04.Past_Perfect_Forms_1_Positive_and_Negative",
   "topicName" : "Future continuous / present perfect continuous / past perfect",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "hadn't drunk" ]
+      "text" : null,
+      "options" : [ "hadn't ordered" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / drink) coffee.",
+      "text" : "(not / order) coffee this morning.",
       "options" : null
     } ],
-    "sentences" : [ "He hadn't drunk coffee." ]
+    "sentences" : [ "He hadn't ordered coffee this morning." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2dd"
   },
-  "title" : "Positive and Negative Past Perfect Practice",
+  "title" : "She hadn't transferred water to the bottle.",
   "instructions" : "Escribe oraciones en 'past perfect'.",
-  "translation" : "Ella no había bebido agua.",
+  "translation" : "Ella no había pasado agua a la botella.",
   "theoryId" : "b1.04.Past_Perfect_Forms_1_Positive_and_Negative",
   "topicName" : "Future continuous / present perfect continuous / past perfect",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "hadn't drunk" ]
+      "text" : null,
+      "options" : [ "hadn't transferred" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / drink) water.",
+      "text" : "(not / transfer) water to the bottle.",
       "options" : null
     } ],
-    "sentences" : [ "She hadn't drunk water." ]
+    "sentences" : [ "She hadn't transferred water to the bottle." ]
   }
 }, {
   "_id" : {

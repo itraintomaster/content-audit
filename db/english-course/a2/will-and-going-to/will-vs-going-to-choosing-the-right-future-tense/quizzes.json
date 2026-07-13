@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22f"
   },
-  "title" : "'Will' vs. 'Going to': Choosing the Right Future Tense",
+  "title" : "Prediction: The album is going to be amazing.",
   "instructions" : "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "El concierto va a ser increíble.",
+  "translation" : "Predicción: El álbum va a ser increíble.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Prediction: The concert",
+      "text" : "Prediction: The album",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is going to be" ]
     }, {
       "kind" : "TEXT",
       "text" : "(be) amazing.",
       "options" : null
     } ],
-    "sentences" : [ "Prediction: The concert is going to be amazing." ]
+    "sentences" : [ "Prediction: The album is going to be amazing." ]
   }
 }, {
   "_id" : {
@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22f"
   },
-  "title" : "'Will' vs. 'Going to': Choosing the Right Future Tense",
+  "title" : "Prediction: They 're going to hurt themselves on the ice.",
   "instructions" : "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "Ellos van a disfrutar el viaje.",
+  "translation" : "Ellos van a lastimarse en el hielo.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Prediction: They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'re going to enjoy|are going to enjoy" ]
+      "text" : null,
+      "options" : [ "'re going to hurt|are going to hurt" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(enjoy) the trip.",
+      "text" : "(hurt) themselves on the ice.",
       "options" : null
     } ],
-    "sentences" : [ "Prediction: They're going to enjoy the trip.", "Prediction: They are going to enjoy the trip." ]
+    "sentences" : [ "Prediction: They 're going to hurt themselves on the ice.", "Prediction: They are going to hurt themselves on the ice." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22f"
   },
-  "title" : "'Will' vs. 'Going to': Choosing the Right Future Tense",
+  "title" : "Prediction: The engine is going to start soon.",
   "instructions" : "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "El agua va a hervir pronto.",
+  "translation" : "Predicción: El motor va a arrancar pronto.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Prediction: The water",
+      "text" : "Prediction: The engine",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is going to boil" ]
+      "text" : null,
+      "options" : [ "is going to start" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(boil) soon.",
+      "text" : "(start) soon.",
       "options" : null
     } ],
-    "sentences" : [ "Prediction: The water is going to boil soon." ]
+    "sentences" : [ "Prediction: The engine is going to start soon." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22f"
   },
-  "title" : "'Will' vs. 'Going to': Choosing the Right Future Tense",
+  "title" : "Watch out! She 's going to burn the cake.",
   "instructions" : "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "Ella va a quemar el pastel.",
+  "translation" : "¡Cuidado! Ella va a quemar el pastel.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Prediction: She",
+      "text" : "Watch out! She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'s going to burn|is going to burn" ]
     }, {
       "kind" : "TEXT",
       "text" : "(burn) the cake.",
       "options" : null
     } ],
-    "sentences" : [ "Prediction: She's going to burn the cake.", "Prediction: She is going to burn the cake." ]
+    "sentences" : [ "Watch out! She 's going to burn the cake.", "Watch out! She is going to burn the cake." ]
   }
 }, {
   "_id" : {
@@ -475,7 +475,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22f"
   },
-  "title" : "'Will' vs. 'Going to': Choosing the Right Future Tense",
+  "title" : "Will you open the window, please?",
   "instructions" : "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
   "translation" : "¿Puedes abrir la ventana, por favor?",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
@@ -497,26 +497,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Request:",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Will you open" ]
     }, {
       "kind" : "TEXT",
       "text" : "(you / open) the window, please?",
       "options" : null
     } ],
-    "sentences" : [ "Request: Will you open the window, please?" ]
+    "sentences" : [ "Will you open the window, please?" ]
   }
 }, {
   "_id" : {
@@ -527,9 +523,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22f"
   },
-  "title" : "'Will' vs. 'Going to': Choosing the Right Future Tense",
+  "title" : "I think the business is going to be successful.",
   "instructions" : "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "La película va a ser interesante.",
+  "translation" : "Creo que el negocio va a ser exitoso.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -549,26 +545,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Prediction: The movie",
+      "text" : "I think the business",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is going to be" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) interesting.",
+      "text" : "(be) successful.",
       "options" : null
     } ],
-    "sentences" : [ "Prediction: The movie is going to be interesting." ]
+    "sentences" : [ "I think the business is going to be successful." ]
   }
 }, {
   "_id" : {
@@ -631,9 +627,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22f"
   },
-  "title" : "'Will' vs. 'Going to': Choosing the Right Future Tense",
+  "title" : "I'm sure the trip is going to be exciting.",
   "instructions" : "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "El viaje va a ser emocionante.",
+  "translation" : "Estoy seguro de que el viaje va a ser emocionante.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -653,26 +649,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Prediction: The trip",
+      "text" : "I'm sure the trip",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is going to be" ]
     }, {
       "kind" : "TEXT",
       "text" : "(be) exciting.",
       "options" : null
     } ],
-    "sentences" : [ "Prediction: The trip is going to be exciting." ]
+    "sentences" : [ "I'm sure the trip is going to be exciting." ]
   }
 }, {
   "_id" : {
@@ -683,9 +679,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22f"
   },
-  "title" : "'Will' vs. 'Going to': Choosing the Right Future Tense",
+  "title" : "Look! That glass is going to break.",
   "instructions" : "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "Ese vaso se va a romper.",
+  "translation" : "¡Mira! Ese vaso se va a romper.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -705,26 +701,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Prediction: That glass",
+      "text" : "Look! That glass",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is going to break" ]
     }, {
       "kind" : "TEXT",
       "text" : "(break).",
       "options" : null
     } ],
-    "sentences" : [ "Prediction: That glass is going to break." ]
+    "sentences" : [ "Look! That glass is going to break." ]
   }
 }, {
   "_id" : {
@@ -787,9 +783,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22f"
   },
-  "title" : "'Will' vs. 'Going to': Choosing the Right Future Tense",
+  "title" : "Prediction: The prices are going to double.",
   "instructions" : "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "El sol va a brillar.",
+  "translation" : "Predicción: Los precios van a duplicarse.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -809,26 +805,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Prediction: The sun",
+      "text" : "Prediction: The prices",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s going to shine|is going to shine" ]
+      "text" : null,
+      "options" : [ "are going to double|'re going to double" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(shine).",
+      "text" : "(double).",
       "options" : null
     } ],
-    "sentences" : [ "Prediction: The sun's going to shine.", "Prediction: The sun is going to shine." ]
+    "sentences" : [ "Prediction: The prices are going to double.", "Prediction: The prices 're going to double." ]
   }
 }, {
   "_id" : {
@@ -839,7 +835,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22f"
   },
-  "title" : "'Will' vs. 'Going to': Choosing the Right Future Tense",
+  "title" : "Will you bring me the newspaper, please?",
   "instructions" : "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
   "translation" : "¿Me traes el periódico, por favor?",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
@@ -861,26 +857,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "Request:",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Will you bring" ]
     }, {
       "kind" : "TEXT",
       "text" : "(you / bring) me the newspaper, please?",
       "options" : null
     } ],
-    "sentences" : [ "Request: Will you bring me the newspaper, please?" ]
+    "sentences" : [ "Will you bring me the newspaper, please?" ]
   }
 }, {
   "_id" : {
@@ -891,7 +883,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22f"
   },
-  "title" : "'Will' vs. 'Going to': Choosing the Right Future Tense",
+  "title" : "I 'm going to feel sick after all this food.",
   "instructions" : "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
   "translation" : "Me voy a sentir mal después de toda esta comida.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
@@ -913,26 +905,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Prediction: I",
+      "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'m going to feel|am going to feel" ]
     }, {
       "kind" : "TEXT",
       "text" : "(feel) sick after all this food.",
       "options" : null
     } ],
-    "sentences" : [ "Prediction: I'm going to feel sick after all this food.", "Prediction: I am going to feel sick after all this food." ]
+    "sentences" : [ "I 'm going to feel sick after all this food.", "I am going to feel sick after all this food." ]
   }
 }, {
   "_id" : {
@@ -943,9 +935,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22f"
   },
-  "title" : "'Will' vs. 'Going to': Choosing the Right Future Tense",
+  "title" : "The waiter is going to serve dinner soon.",
   "instructions" : "Elige 'be going to' para predicciones o 'will' para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "Los gatos van a querer salir pronto.",
+  "translation" : "El camarero va a servir la cena pronto.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -965,26 +957,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Prediction: The cats",
+      "text" : "The waiter",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are going to want" ]
+      "text" : null,
+      "options" : [ "is going to serve|'s going to serve" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(want) to go outside soon.",
+      "text" : "(serve) dinner soon.",
       "options" : null
     } ],
-    "sentences" : [ "Prediction: The cats are going to want to go outside soon." ]
+    "sentences" : [ "The waiter is going to serve dinner soon.", "The waiter 's going to serve dinner soon." ]
   }
 }, {
   "_id" : {

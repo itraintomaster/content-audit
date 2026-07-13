@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
-  "title" : "Questions with 'be' in Past Simple",
+  "title" : "Was she a student?",
   "instructions" : "Escribe preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
-  "translation" : "¿Era ella cantante?",
+  "translation" : "¿Era ella estudiante?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -445,26 +445,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Was she" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / be) a singer?",
+      "text" : "(she / be) a student?",
       "options" : null
     } ],
-    "sentences" : [ "Was she a singer?" ]
+    "sentences" : [ "Was she a student?" ]
   }
 }, {
   "_id" : {
@@ -631,9 +627,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
-  "title" : "Questions with 'be' in Past Simple",
+  "title" : "Was she a child?",
   "instructions" : "Escribe preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
-  "translation" : "¿Era ella enfermera?",
+  "translation" : "¿Era ella una niña?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -653,26 +649,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Was she" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / be) a nurse?",
+      "text" : "(she / be) a child?",
       "options" : null
     } ],
-    "sentences" : [ "Was she a nurse?" ]
+    "sentences" : [ "Was she a child?" ]
   }
 }, {
   "_id" : {
@@ -839,9 +831,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
-  "title" : "Questions with 'be' in Past Simple",
+  "title" : "Why was he important?",
   "instructions" : "Escribe preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
-  "translation" : "¿Por qué tenía sed?",
+  "translation" : "¿Por qué era importante?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -861,26 +853,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "was he" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / be) thirsty?",
+      "text" : "(he / be) important?",
       "options" : null
     } ],
-    "sentences" : [ "Why was he thirsty?" ]
+    "sentences" : [ "Why was he important?" ]
   }
 }, {
   "_id" : {
@@ -891,9 +883,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
-  "title" : "Questions with 'be' in Past Simple",
+  "title" : "Why were they happy?",
   "instructions" : "Escribe preguntas en pasado simple con el verbo 'be': preguntas de tipo 'yes/no' y preguntas 'wh'.",
-  "translation" : "¿Por qué estaban enojados?",
+  "translation" : "¿Por qué estaban contentos?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -913,26 +905,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "were they" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / be) angry?",
+      "text" : "(they / be) happy?",
       "options" : null
     } ],
-    "sentences" : [ "Why were they angry?" ]
+    "sentences" : [ "Why were they happy?" ]
   }
 }, {
   "_id" : {

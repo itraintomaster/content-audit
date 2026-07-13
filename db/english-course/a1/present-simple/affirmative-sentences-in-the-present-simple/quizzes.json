@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d389"
   },
-  "title" : "Affirmative sentences in the present simple",
+  "title" : "It hails every year.",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
-  "translation" : "Graniza cada primavera.",
+  "translation" : "Graniza cada año.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "hails" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(hail) every spring.",
+      "text" : "(hail) every year.",
       "options" : null
     } ],
-    "sentences" : [ "It hails every spring." ]
+    "sentences" : [ "It hails every year." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d389"
   },
-  "title" : "Affirmative sentences in the present simple",
+  "title" : "She eats lunch.",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
-  "translation" : "Ella cocina el almuerzo.",
+  "translation" : "Ella come el almuerzo.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "cooks" ]
+      "text" : null,
+      "options" : [ "eats" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(cook) lunch.",
+      "text" : "(eat) lunch.",
       "options" : null
     } ],
-    "sentences" : [ "She cooks lunch." ]
+    "sentences" : [ "She eats lunch." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d389"
   },
-  "title" : "Affirmative sentences in the present simple",
+  "title" : "You enjoy life.",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
-  "translation" : "Disfrutas del helado.",
+  "translation" : "Disfrutas de la vida.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "enjoy" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(enjoy) ice cream.",
+      "text" : "(enjoy) life.",
       "options" : null
     } ],
-    "sentences" : [ "You enjoy ice cream." ]
+    "sentences" : [ "You enjoy life." ]
   }
 }, {
   "_id" : {
@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d389"
   },
-  "title" : "Affirmative sentences in the present simple",
+  "title" : "I play basketball every week.",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
-  "translation" : "Practico baloncesto todas las semanas.",
+  "translation" : "Juego baloncesto todas las semanas.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "practice" ]
+      "text" : null,
+      "options" : [ "play" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(practice) basketball every week.",
+      "text" : "(play) basketball every week.",
       "options" : null
     } ],
-    "sentences" : [ "I practice basketball every week." ]
+    "sentences" : [ "I play basketball every week." ]
   }
 }, {
   "_id" : {
@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d389"
   },
-  "title" : "Affirmative sentences in the present simple",
+  "title" : "He adores books.",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
-  "translation" : "Él adora los conciertos.",
+  "translation" : "Él adora los libros.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "adores" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(adore) concerts.",
+      "text" : "(adore) books.",
       "options" : null
     } ],
-    "sentences" : [ "He adores concerts." ]
+    "sentences" : [ "He adores books." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d389"
   },
-  "title" : "Affirmative sentences in the present simple",
+  "title" : "They labor on the beach.",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
-  "translation" : "Ellos laboran en el campo.",
+  "translation" : "Ellos trabajan en la playa.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "labor" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(labor) in the countryside.",
+      "text" : "(labor) on the beach.",
       "options" : null
     } ],
-    "sentences" : [ "They labor in the countryside." ]
+    "sentences" : [ "They labor on the beach." ]
   }
 }, {
   "_id" : {

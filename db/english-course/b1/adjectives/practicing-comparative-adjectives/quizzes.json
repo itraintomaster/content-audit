@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d358"
   },
-  "title" : "Practicing Comparative Adjectives",
+  "title" : "The book was more scientific than I'd anticipated.",
   "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "El libro era más complejo de lo que había previsto.",
+  "translation" : "El libro era más científico de lo que había previsto.",
   "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The book was",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more complex" ]
+      "text" : null,
+      "options" : [ "more scientific" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(complex) than I'd anticipated.",
+      "text" : "(scientific) than I'd anticipated.",
       "options" : null
     } ],
-    "sentences" : [ "The book was more complex than I'd anticipated." ]
+    "sentences" : [ "The book was more scientific than I'd anticipated." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d358"
   },
-  "title" : "Practicing Comparative Adjectives",
+  "title" : "The blue shirts are more colourful than the green ones.",
   "instructions" : "Completa las oraciones con la forma comparativa del adjetivo que está entre paréntesis.",
-  "translation" : "Las camisas azules son más elegantes que las verdes.",
+  "translation" : "Las camisas azules son más coloridas que las verdes.",
   "theoryId" : "b1.15.Comparatives_Get_Better_and_Better",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The blue shirts are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more elegant" ]
+      "text" : null,
+      "options" : [ "more colourful" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(elegant) than the green ones.",
+      "text" : "(colourful) than the green ones.",
       "options" : null
     } ],
-    "sentences" : [ "The blue shirts are more elegant than the green ones." ]
+    "sentences" : [ "The blue shirts are more colourful than the green ones." ]
   }
 }, {
   "_id" : {

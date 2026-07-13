@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d329"
   },
-  "title" : "Transforming Time Expressions in Reported Speech",
+  "title" : "John said that the students finished the translations the week before.",
   "instructions" : "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como lo harías en un examen. Comienza con 'John said that'.",
-  "translation" : "John dijo que los estudiantes habían terminado las tareas la semana pasada.",
+  "translation" : "John dijo que los estudiantes habían terminado las traducciones la semana anterior.",
   "theoryId" : "b1.10.Time_E_xpressions_in_Reported_Speech",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -705,26 +705,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The students finished the tasks last week.",
+      "text" : "The students finished the translations last week.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that the students finished the tasks last week.|John said that the students had finished the tasks last week." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "John said that the students finished the translations the week before.|John said that the students had finished the translations the week before." ]
     } ],
-    "sentences" : [ "John said that the students finished the tasks last week.", "John said that the students had finished the tasks last week." ]
+    "sentences" : [ "John said that the students finished the translations the week before.", "John said that the students had finished the translations the week before." ]
   }
 }, {
   "_id" : {

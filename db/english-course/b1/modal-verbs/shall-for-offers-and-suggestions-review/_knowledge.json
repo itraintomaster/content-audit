@@ -5,11 +5,11 @@
   "code" : "6814dafa7d73e7209a13d32e",
   "isRule" : true,
   "kind" : "KNOWLEDGE",
-  "label" : "'Shall' for Offers and Suggestions Review",
+  "label" : "Ofrecer o sugerir",
   "oldId" : "9768c78e-1aad-4c77-9895-ce7a59a53415",
   "parentId" : {
     "$oid" : "6814dafa7d73e7209a13d32a"
   },
-  "instructions" : "Transforma las oraciones en preguntas que incluyan la palabra 'shall'.",
+  "instructions" : "Convierte cada afirmación en una pregunta usando $shall$.",
   "sentenceMode" : "REWRITE"
 }

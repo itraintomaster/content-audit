@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d30d"
   },
-  "title" : "'Every', 'Each' and 'All' - Review",
+  "title" : "We contacted every lawyer in the land.",
   "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-  "translation" : "Contactamos a todos los abogados del estado.",
+  "translation" : "Contactamos a todos los abogados del país.",
   "theoryId" : "b1.08.Either",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We contacted",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "every" ]
     }, {
       "kind" : "TEXT",
-      "text" : "lawyer in the state.",
+      "text" : "lawyer in the land.",
       "options" : null
     } ],
-    "sentences" : [ "We contacted every lawyer in the state." ]
+    "sentences" : [ "We contacted every lawyer in the land." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d30d"
   },
-  "title" : "'Every', 'Each' and 'All' - Review",
+  "title" : "She had bracelets on each arm today.",
   "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-  "translation" : "Ella tenía pulseras en cada muñeca.",
+  "translation" : "Ella tenía pulseras en cada brazo hoy.",
   "theoryId" : "b1.08.Either",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She had bracelets on",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "each" ]
     }, {
       "kind" : "TEXT",
-      "text" : "wrist.",
+      "text" : "arm today.",
       "options" : null
     } ],
-    "sentences" : [ "She had bracelets on each wrist." ]
+    "sentences" : [ "She had bracelets on each arm today." ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d30d"
   },
-  "title" : "'Every', 'Each' and 'All' - Review",
+  "title" : "She struck every plate on the table.",
   "instructions" : "Si es posible, usa 'every'; de lo contrario, usa 'each'.",
-  "translation" : "Ella rompió todos los platos.",
+  "translation" : "Ella golpeó todos los platos de la mesa.",
   "theoryId" : "b1.08.Either",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She smashed",
+      "text" : "She struck",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "every" ]
     }, {
       "kind" : "TEXT",
-      "text" : "plate.",
+      "text" : "plate on the table.",
       "options" : null
     } ],
-    "sentences" : [ "She smashed every plate." ]
+    "sentences" : [ "She struck every plate on the table." ]
   }
 }, {
   "_id" : {

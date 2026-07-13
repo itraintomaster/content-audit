@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28c"
   },
-  "title" : "Deciding Between During and While",
+  "title" : "The cooker went out during the storm.",
   "instructions" : "Elige 'during' o 'while'.",
-  "translation" : "Se fue la luz durante la tormenta.",
+  "translation" : "La cocina se apagó durante la tormenta.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The power went out",
+      "text" : "The cooker went out",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "during" ]
     }, {
       "kind" : "TEXT",
       "text" : "the storm.",
       "options" : null
     } ],
-    "sentences" : [ "The power went out during the storm." ]
+    "sentences" : [ "The cooker went out during the storm." ]
   }
 }, {
   "_id" : {

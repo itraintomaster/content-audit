@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a3"
   },
-  "title" : "Stative verbs: simple or continuous?",
+  "title" : "He believes the man.",
   "instructions" : "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
-  "translation" : "Él cree la historia.",
+  "translation" : "Él le cree al hombre.",
   "theoryId" : "a1.02.Stative_Verbs",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "believes" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(believe) the story.",
+      "text" : "(believe) the man.",
       "options" : null
     } ],
-    "sentences" : [ "He believes the story." ]
+    "sentences" : [ "He believes the man." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a3"
   },
-  "title" : "Stative verbs: simple or continuous?",
+  "title" : "She gets the subject.",
   "instructions" : "Si es posible, escribe la oración en 'present continuous'. Si no, usa el 'present simple'. No uses contracciones ('short forms').",
-  "translation" : "Ella entiende el tema.",
+  "translation" : "Ella entiende la materia.",
   "theoryId" : "a1.02.Stative_Verbs",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "gets" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(understand) the topic.",
+      "text" : "(understand) the subject.",
       "options" : null
     } ],
-    "sentences" : [ "She gets the topic." ]
+    "sentences" : [ "She gets the subject." ]
   }
 }, {
   "_id" : {

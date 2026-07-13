@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2b8"
   },
-  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "title" : "He'll charge us once he completes the form.",
   "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-  "translation" : "Él completa la tarea.",
+  "translation" : "Él nos cobrará una vez que complete el formulario.",
   "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He'll assist us once he",
+      "text" : "He'll charge us once he",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "completes" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(complete) the task.",
+      "text" : "(complete) the form.",
       "options" : null
     } ],
-    "sentences" : [ "He'll assist us once he completes the task." ]
+    "sentences" : [ "He'll charge us once he completes the form." ]
   }
 }, {
   "_id" : {
@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2b8"
   },
-  "title" : "Future Review: Present Simple vs. Present Continuous",
+  "title" : "What will you become when you qualify?",
   "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-  "translation" : "¿En qué te convertirás cuando madures?",
+  "translation" : "¿En qué te convertirás cuando califiques?",
   "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "What will you become when you",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "mature" ]
+      "text" : null,
+      "options" : [ "qualify" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(mature)?",
+      "text" : "(qualify)?",
       "options" : null
     } ],
-    "sentences" : [ "What will you become when you mature?" ]
+    "sentences" : [ "What will you become when you qualify?" ]
   }
 }, {
   "_id" : {

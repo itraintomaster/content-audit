@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
-  "title" : "'Yes / No' questions using 'be' in the present simple",
+  "title" : "Is he a child?",
   "instructions" : "Formula una pregunta 'yes / no' usando el verbo 'be'.",
-  "translation" : "¿Él es piloto?",
+  "translation" : "¿Él es un niño?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Is he" ]
     }, {
       "kind" : "TEXT",
-      "text" : "a pilot? (He)",
+      "text" : "a child? (He)",
       "options" : null
     } ],
-    "sentences" : [ "Is he a pilot?" ]
+    "sentences" : [ "Is he a child?" ]
   }
 }, {
   "_id" : {
@@ -215,9 +211,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
-  "title" : "'Yes / No' questions using 'be' in the present simple",
+  "title" : "Is she a student?",
   "instructions" : "Formula una pregunta 'yes / no' usando el verbo 'be'.",
-  "translation" : "¿Ella es enfermera?",
+  "translation" : "¿Ella es estudiante?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -237,26 +233,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Is she" ]
     }, {
       "kind" : "TEXT",
-      "text" : "a nurse? (She)",
+      "text" : "a student? (She)",
       "options" : null
     } ],
-    "sentences" : [ "Is she a nurse?" ]
+    "sentences" : [ "Is she a student?" ]
   }
 }, {
   "_id" : {
@@ -735,9 +727,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
-  "title" : "'Yes / No' questions using 'be' in the present simple",
+  "title" : "Are we in the green room?",
   "instructions" : "Formula una pregunta 'yes / no' usando el verbo 'be'.",
-  "translation" : "¿Estamos en la sala correcta?",
+  "translation" : "¿Estamos en la sala verde?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -757,26 +749,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Are we" ]
     }, {
       "kind" : "TEXT",
-      "text" : "in the correct room? (We)",
+      "text" : "in the green room? (We)",
       "options" : null
     } ],
-    "sentences" : [ "Are we in the correct room?" ]
+    "sentences" : [ "Are we in the green room?" ]
   }
 }, {
   "_id" : {

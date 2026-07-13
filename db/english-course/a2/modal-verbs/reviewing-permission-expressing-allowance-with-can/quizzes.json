@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d297"
   },
-  "title" : "Reviewing Permission: Expressing Allowance with Can",
+  "title" : "You can't cook if you're under sixteen.",
   "instructions" : "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
-  "translation" : "No se puede votar si eres menor de dieciséis años.",
+  "translation" : "No se puede cocinar si eres menor de dieciséis años.",
   "theoryId" : "a2.10.Would_for_Imaginary_Situations",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -185,26 +185,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's not okay to vote if you're under sixteen.",
+      "text" : "It's not okay to cook if you're under sixteen.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You can't vote if you're under sixteen." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You can't cook if you're under sixteen." ]
     } ],
-    "sentences" : [ "You can't vote if you're under sixteen." ]
+    "sentences" : [ "You can't cook if you're under sixteen." ]
   }
 }, {
   "_id" : {
@@ -215,9 +211,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d297"
   },
-  "title" : "Reviewing Permission: Expressing Allowance with Can",
+  "title" : "You can't take videos in the museum.",
   "instructions" : "Transforma las oraciones para que incluyan 'can' cuando algo esté permitido y 'can't' cuando no lo esté, usando 'you' para referirse a la gente en general. Por ejemplo: it's okay to pay later -> you can pay later.",
-  "translation" : "No se pueden grabar videos en el museo.",
+  "translation" : "No se pueden tomar videos en el museo.",
   "theoryId" : "a2.10.Would_for_Imaginary_Situations",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -237,26 +233,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's not okay to record videos in the museum.",
+      "text" : "It's not okay to take videos in the museum.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You can't record videos in the museum." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You can't take videos in the museum." ]
     } ],
-    "sentences" : [ "You can't record videos in the museum." ]
+    "sentences" : [ "You can't take videos in the museum." ]
   }
 }, {
   "_id" : {

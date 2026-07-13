@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d369"
   },
-  "title" : "Using 'Particularly' and 'Especially'",
+  "title" : "She especially forecasts the weather in Spain.",
   "instructions" : "Reescribe la oración para que incluya 'particularly' o 'especially'.",
-  "translation" : "Ella aprecia especialmente el clima en España.",
+  "translation" : "Ella pronostica especialmente el clima en España.",
   "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -965,26 +965,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She appreciates the weather in Spain. (especially / mid)",
+      "text" : "She forecasts the weather in Spain. (especially / mid)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She especially appreciates the weather in Spain." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She especially forecasts the weather in Spain." ]
     } ],
-    "sentences" : [ "She especially appreciates the weather in Spain." ]
+    "sentences" : [ "She especially forecasts the weather in Spain." ]
   }
 }, {
   "_id" : {

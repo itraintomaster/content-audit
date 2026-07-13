@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
-  "title" : "'Will' for Predictions and Decisions",
+  "title" : "Maybe Peter will eat an apple.",
   "instructions" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms').",
-  "translation" : "Quizás Peter se coma una manzana.",
+  "translation" : "Tal vez Peter se coma una manzana.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Perhaps Peter",
+      "text" : "Maybe Peter",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "will eat" ]
     }, {
       "kind" : "TEXT",
       "text" : "(eat) an apple.",
       "options" : null
     } ],
-    "sentences" : [ "Perhaps Peter will eat an apple." ]
+    "sentences" : [ "Maybe Peter will eat an apple." ]
   }
 }, {
   "_id" : {
@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
-  "title" : "'Will' for Predictions and Decisions",
+  "title" : "Mary will go soon.",
   "instructions" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms').",
-  "translation" : "Mary llegará pronto.",
+  "translation" : "Mary se irá pronto.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Mary",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will arrive" ]
+      "text" : null,
+      "options" : [ "will go" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(arrive) soon.",
+      "text" : "(go) soon.",
       "options" : null
     } ],
-    "sentences" : [ "Mary will arrive soon." ]
+    "sentences" : [ "Mary will go soon." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
-  "title" : "'Will' for Predictions and Decisions",
+  "title" : "The parents will love this book.",
   "instructions" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms').",
-  "translation" : "Estoy seguro de que a los padres les encantará este regalo.",
+  "translation" : "A los padres les encantará este libro.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I'm sure the parents",
+      "text" : "The parents",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "will love" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(love) this gift.",
+      "text" : "(love) this book.",
       "options" : null
     } ],
-    "sentences" : [ "I'm sure the parents will love this gift." ]
+    "sentences" : [ "The parents will love this book." ]
   }
 }, {
   "_id" : {
@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
-  "title" : "'Will' for Predictions and Decisions",
+  "title" : "I promise I won't make the same mistake next time.",
   "instructions" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms').",
-  "translation" : "Es imposible ahora. No lo lograré.",
+  "translation" : "Prometo que no cometeré el mismo error la próxima vez.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's impossible now. I",
+      "text" : "I promise I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "won't make" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / make) it.",
+      "text" : "(not / make) the same mistake next time.",
       "options" : null
     } ],
-    "sentences" : [ "It's impossible now. I won't make it." ]
+    "sentences" : [ "I promise I won't make the same mistake next time." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
-  "title" : "'Will' for Predictions and Decisions",
+  "title" : "He says he won't drink juice.",
   "instructions" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms').",
-  "translation" : "Acaba de decidir que no se beberá su zumo.",
+  "translation" : "Dice que no beberá zumo.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He has just decided that he",
+      "text" : "He says he",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "won't drink" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / drink) his juice.",
+      "text" : "(not / drink) juice.",
       "options" : null
     } ],
-    "sentences" : [ "He has just decided that he won't drink his juice." ]
+    "sentences" : [ "He says he won't drink juice." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
-  "title" : "'Will' for Predictions and Decisions",
+  "title" : "Robert is here! I 'll come!",
   "instructions" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms').",
-  "translation" : "¡Robert está aquí! ¡Lo saludaré!",
+  "translation" : "¡Robert está aquí! ¡Ya voy!",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Robert is here! I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll greet" ]
+      "text" : null,
+      "options" : [ "'ll come" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(greet) him!",
+      "text" : "(come)!",
       "options" : null
     } ],
-    "sentences" : [ "Robert is here! I'll greet him!" ]
+    "sentences" : [ "Robert is here! I 'll come!" ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
-  "title" : "'Will' for Predictions and Decisions",
+  "title" : "I 'll visit my family.",
   "instructions" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms').",
-  "translation" : "A: Voy a montar en mi bicicleta. B: Yo también montaré en la mía entonces.",
+  "translation" : "Visitaré a mi familia.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: I'm going to ride my bike. B: I",
+      "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll ride" ]
+      "text" : null,
+      "options" : [ "'ll visit" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(ride) mine too then.",
+      "text" : "(visit) my family.",
       "options" : null
     } ],
-    "sentences" : [ "A: I'm going to ride my bike. B: I'll ride mine too then." ]
+    "sentences" : [ "I 'll visit my family." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
-  "title" : "'Will' for Predictions and Decisions",
+  "title" : "I think I 'll run today.",
   "instructions" : "Escribe oraciones utilizando 'will'. Utiliza contracciones ('short forms').",
-  "translation" : "Quizás haga ejercicio hoy.",
+  "translation" : "Creo que correré hoy.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Maybe I",
+      "text" : "I think I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll exercise" ]
+      "text" : null,
+      "options" : [ "'ll run" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(exercise) today.",
+      "text" : "(run) today.",
       "options" : null
     } ],
-    "sentences" : [ "Maybe I'll exercise today." ]
+    "sentences" : [ "I think I 'll run today." ]
   }
 } ]

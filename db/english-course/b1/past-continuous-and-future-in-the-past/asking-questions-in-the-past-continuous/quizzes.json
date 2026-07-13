@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2cf"
   },
-  "title" : "Asking questions in the past continuous",
+  "title" : "Were you drinking soda at the party?",
   "instructions" : "Formula preguntas usando el *past continuous*.",
-  "translation" : "¿Estabas consumiendo refresco?",
+  "translation" : "¿Estabas tomando refresco en la fiesta?",
   "theoryId" : "b1.03.Past_Continuous_Forms",
   "topicName" : "Past Continuous and Future in the Past",
   "difficulty" : {
@@ -809,26 +809,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Were you consuming" ]
+      "text" : null,
+      "options" : [ "Were you drinking" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / consume) soda?",
+      "text" : "(you / drink) soda at the party?",
       "options" : null
     } ],
-    "sentences" : [ "Were you consuming soda?" ]
+    "sentences" : [ "Were you drinking soda at the party?" ]
   }
 }, {
   "_id" : {
