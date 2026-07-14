@@ -109,7 +109,7 @@ public class FPipreJ001JourneyTest {
         AuditReport auditReport = mock(AuditReport.class);
         CorrectionContext context = mock(CorrectionContext.class);
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
 
         RevisionProposal proposal = new RevisionProposal(
                 taskId + "-j001p1", taskId, planId, auditId,
@@ -191,7 +191,7 @@ public class FPipreJ001JourneyTest {
         AuditReport auditReport = mock(AuditReport.class);
         CorrectionContext context = mock(CorrectionContext.class);
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
 
         RevisionProposal proposal = new RevisionProposal(
                 taskId + "-j001p2", taskId, planId, auditId,

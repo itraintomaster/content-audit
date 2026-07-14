@@ -118,8 +118,8 @@ public class FCdiffJ005JourneyTest {
         RevisionProposal prop = new RevisionProposal(
                 proposalId, "t", PLAN_ID, AUDIT_ID,
                 null, AuditTarget.QUIZ, QUIZ_ID,
-                new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null),
-                new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null, null),
                 "r", "auto", Instant.now(), null);
         return new RevisionArtifact(prop, RevisionVerdict.APPROVED, null, null, Instant.now(), null, null, null);
     }
@@ -130,7 +130,7 @@ public class FCdiffJ005JourneyTest {
                 proposalId, "t", PLAN_ID, AUDIT_ID,
                 null, AuditTarget.QUIZ, QUIZ_ID,
                 elementBefore,
-                new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null, null),
                 "r", "auto", Instant.now(), null);
         return new RevisionArtifact(prop, RevisionVerdict.PENDING_APPROVAL, null, null, Instant.now(), null, null, null);
     }
@@ -145,7 +145,7 @@ public class FCdiffJ005JourneyTest {
         stubCommon(baseRoot);
 
         // El snapshot devuelve el elementBefore CORRECTO (coincide con el consolidated)
-        CourseElementSnapshot snapshotCons = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null);
+        CourseElementSnapshot snapshotCons = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null, null);
         when(courseElementLocator.snapshot(any(), any(), anyString()))
                 .thenReturn(Optional.of(snapshotCons));
         when(courseElementLocator.replace(any(), any()))
@@ -200,7 +200,7 @@ public class FCdiffJ005JourneyTest {
         // El snapshot del consolidated NO coincide con el elementBefore de la pendiente
         CourseElementSnapshot snapshotCons = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID,
                 // simulamos el quiz actualizado (distinto del elementBefore de la pendiente)
-                null);
+                null, null);
         when(courseElementLocator.snapshot(any(), any(), anyString()))
                 .thenReturn(Optional.of(snapshotCons));
         when(courseElementLocator.replace(any(), any()))
@@ -209,7 +209,7 @@ public class FCdiffJ005JourneyTest {
         RevisionArtifact approved = approvedFor("prop-j005-app2");
         // La pendiente tiene un elementBefore DIFERENTE al snapshot del consolidated
         // (usamos un snapshot con un QuizTemplateEntity distinto para forzar mismatch)
-        CourseElementSnapshot oldElementBefore = new CourseElementSnapshot(AuditTarget.QUIZ, "otro-quiz", null);
+        CourseElementSnapshot oldElementBefore = new CourseElementSnapshot(AuditTarget.QUIZ, "otro-quiz", null, null);
         RevisionArtifact pending = pendingFor("prop-j005-pend2", oldElementBefore);
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(approved, pending));
 

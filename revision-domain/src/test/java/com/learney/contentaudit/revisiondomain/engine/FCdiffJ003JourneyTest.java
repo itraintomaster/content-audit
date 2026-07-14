@@ -137,15 +137,15 @@ public class FCdiffJ003JourneyTest {
         when(courseElementLocator.replace(any(), any()))
                 .thenReturn(new CourseEntity("cid", "English", Collections.emptyList(), null, "english"));
         when(courseElementLocator.snapshot(any(), any(), anyString()))
-                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.KNOWLEDGE, KNOWLEDGE_ID, null)));
+                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.KNOWLEDGE, KNOWLEDGE_ID, null, null)));
     }
 
     private RevisionArtifact approvedArtifact(String proposalId) {
         RevisionProposal proposal = new RevisionProposal(
                 proposalId, "task-" + proposalId, PLAN_ID, AUDIT_ID,
                 null, AuditTarget.KNOWLEDGE, KNOWLEDGE_ID,
-                new CourseElementSnapshot(AuditTarget.KNOWLEDGE, KNOWLEDGE_ID, null),
-                new CourseElementSnapshot(AuditTarget.KNOWLEDGE, KNOWLEDGE_ID, null),
+                new CourseElementSnapshot(AuditTarget.KNOWLEDGE, KNOWLEDGE_ID, null, null),
+                new CourseElementSnapshot(AuditTarget.KNOWLEDGE, KNOWLEDGE_ID, null, null),
                 "r", "auto", Instant.now(), null);
         return new RevisionArtifact(proposal, RevisionVerdict.APPROVED, null, null, Instant.now(), null, null, null);
     }

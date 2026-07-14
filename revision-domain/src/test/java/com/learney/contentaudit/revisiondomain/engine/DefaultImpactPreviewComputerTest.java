@@ -71,7 +71,7 @@ public class DefaultImpactPreviewComputerTest {
      * the computer's output depends on what auditEngine returns, not on the snapshot content).
      */
     private static RevisionProposal proposal(String proposalId, String nodeId) {
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
         return new RevisionProposal(
                 proposalId, "task-001", "plan-001", "audit-001",
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
@@ -664,8 +664,8 @@ public class DefaultImpactPreviewComputerTest {
         String stableNodeId = "quiz-stable-r012-001";
         CourseEntity course = minimalCourse("course-r012-001");
         // Both before and after share the same nodeId (stable identity per F-LAPS-R014 / R012)
-        CourseElementSnapshot snapshotBefore = new CourseElementSnapshot(AuditTarget.QUIZ, stableNodeId, null);
-        CourseElementSnapshot snapshotAfter = new CourseElementSnapshot(AuditTarget.QUIZ, stableNodeId, null);
+        CourseElementSnapshot snapshotBefore = new CourseElementSnapshot(AuditTarget.QUIZ, stableNodeId, null, null);
+        CourseElementSnapshot snapshotAfter = new CourseElementSnapshot(AuditTarget.QUIZ, stableNodeId, null, null);
         RevisionProposal prop = new RevisionProposal(
                 "proposal-r012-001", "task-r012", "plan-r012", "audit-r012",
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, stableNodeId,

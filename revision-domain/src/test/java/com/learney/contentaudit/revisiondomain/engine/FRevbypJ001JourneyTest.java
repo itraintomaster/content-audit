@@ -112,7 +112,7 @@ public class FRevbypJ001JourneyTest {
 
         // STEP: cargar_elemento — elemento existe en el curso [gate: elemento encontrado]
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
 
         // STEP: elegir_reviser — bypass reviser applies [gate: R003, R004, R005]
         // STEP: generar_propuesta — bypass produce elementAfter == elementBefore [gate: R001, R002, R004]
@@ -184,7 +184,7 @@ public class FRevbypJ001JourneyTest {
 
         // STEP: cargar_elemento — elemento existe
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
 
         // STEP: elegir_reviser / generar_propuesta — bypass reviser, elementAfter == elementBefore
         RevisionProposal proposal = new RevisionProposal(
@@ -254,7 +254,7 @@ public class FRevbypJ001JourneyTest {
 
         // STEP: cargar_elemento — elemento existe
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
 
         // STEP: elegir_reviser / generar_propuesta — bypass reviser
         RevisionProposal proposal = new RevisionProposal(
@@ -321,7 +321,7 @@ public class FRevbypJ001JourneyTest {
 
         // STEP: cargar_elemento — elemento existe
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
 
         // STEP: elegir_reviser — no hay Reviser para COCA_BUCKETS [gate: R005]
         // → abortar_sin_reviser: el sistema informa NO_REVISER; propuesta/curso/tarea no se tocan

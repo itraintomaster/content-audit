@@ -40,7 +40,7 @@ public class IdentityReviserTest {
 
     /** Builds a minimal CourseElementSnapshot representing a QUIZ node. */
     private CourseElementSnapshot buildSnapshot() {
-        return new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null);
+        return new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null, null);
     }
 
     @Test

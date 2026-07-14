@@ -177,7 +177,7 @@ public class FLapsJ004JourneyTest {
                 "basics.01.Vocabulary", "Vocabulary",
                 form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
                 List.of("She uses advanced vocabulary."));
-        return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz);
+        return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz, null);
     }
 
     private RefinementPlan buildPlan() {

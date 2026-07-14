@@ -186,7 +186,7 @@ public class FLapsJ005JourneyTest {
                 "basics.01.Learning", "Learning",
                 form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
                 List.of("She learns complicated words daily."));
-        return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz);
+        return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz, null);
     }
 
     private RefinementPlan buildPlan() {

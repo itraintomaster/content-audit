@@ -69,7 +69,7 @@ public class FPipreJ003JourneyTest {
         //   whose nodeId points to an existing node in the course.
         String nodeId = "quiz-j003-001";
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null);
         RevisionProposal proposal = new RevisionProposal(
                 "proposal-j003-path1", "task-j003", "plan-j003", "audit-j003",
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, nodeId,
@@ -141,7 +141,7 @@ public class FPipreJ003JourneyTest {
         //   whose nodeId no longer exists in the course at simulation time.
         String absentNodeId = "quiz-j003-absent-999";
         CourseEntity course = mock(CourseEntity.class);
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, absentNodeId, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, absentNodeId, null, null);
         RevisionProposal proposal = new RevisionProposal(
                 "proposal-j003-path2", "task-j003-b", "plan-j003", "audit-j003",
                 DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, absentNodeId,

@@ -106,8 +106,8 @@ public class FCdiffJ008JourneyTest {
         RevisionProposal prop = new RevisionProposal(
                 proposalId, "t", PLAN_ID, AUDIT_ID,
                 null, AuditTarget.QUIZ, nodeId,
-                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null),
-                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
                 "r", "auto", Instant.now(), null);
         return new RevisionArtifact(prop, RevisionVerdict.APPROVED, null, null, Instant.now(), null, null, null);
     }
@@ -116,8 +116,8 @@ public class FCdiffJ008JourneyTest {
         RevisionProposal prop = new RevisionProposal(
                 proposalId, "t", PLAN_ID, AUDIT_ID,
                 null, AuditTarget.QUIZ, nodeId,
-                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null),
-                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
                 "r", "auto", Instant.now(), null);
         return new RevisionArtifact(prop, RevisionVerdict.PENDING_APPROVAL, null, null, Instant.now(), null, null, null);
     }
@@ -143,7 +143,7 @@ public class FCdiffJ008JourneyTest {
         when(courseElementLocator.replace(any(), any()))
                 .thenReturn(new CourseEntity("cid", "English", Collections.emptyList(), null, "english"));
         when(courseElementLocator.snapshot(any(), any(), anyString()))
-                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_A, null)));
+                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_A, null, null)));
 
         // Tres propuestas: 2 APPROVED y 1 PENDING sobre distintos nodos
         RevisionArtifact app1 = approvedFor("prop-j008-app1", QUIZ_A);

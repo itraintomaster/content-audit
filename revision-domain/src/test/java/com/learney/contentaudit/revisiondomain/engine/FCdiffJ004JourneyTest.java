@@ -109,15 +109,15 @@ public class FCdiffJ004JourneyTest {
         when(courseElementLocator.replace(any(), any()))
                 .thenReturn(new CourseEntity("cid", "English", Collections.emptyList(), null, "english"));
         when(courseElementLocator.snapshot(any(), any(), anyString()))
-                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null)));
+                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null, null)));
     }
 
     private RevisionArtifact approvedFor(String proposalId, String nodeId) {
         RevisionProposal prop = new RevisionProposal(
                 proposalId, "t", PLAN_ID, AUDIT_ID,
                 null, AuditTarget.QUIZ, nodeId,
-                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null),
-                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
                 "r", "auto", Instant.now(), null);
         return new RevisionArtifact(prop, RevisionVerdict.APPROVED, null, null, Instant.now(), null, null, null);
     }

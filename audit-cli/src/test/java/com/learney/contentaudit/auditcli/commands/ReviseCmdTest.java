@@ -289,7 +289,7 @@ public class ReviseCmdTest {
         when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(latestPlan));
 
         // Build a RevisionProposal carrying the known proposalId
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-001", null, null);
         RevisionProposal proposal = new RevisionProposal(
                 proposalId,
                 taskId,

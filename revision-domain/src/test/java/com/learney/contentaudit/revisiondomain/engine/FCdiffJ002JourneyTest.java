@@ -107,8 +107,8 @@ public class FCdiffJ002JourneyTest {
         RevisionProposal proposal = new RevisionProposal(
                 proposalId, "task-" + proposalId, PLAN_ID, AUDIT_ID,
                 null, AuditTarget.QUIZ, QUIZ_ID,
-                new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null),
-                new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null, null),
                 "r", "auto", createdAt, null);
         return new RevisionArtifact(proposal, verdict, null, null, createdAt, null, null, null);
     }
@@ -147,7 +147,7 @@ public class FCdiffJ002JourneyTest {
 
         // El locator encuentra el snapshot del quiz
         when(courseElementLocator.snapshot(any(), any(), anyString()))
-                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null)));
+                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null, null)));
 
         // Motor produce consolidated (tokenCount=10) y pendingProjection (tokenCount=11)
         AuditNode consRoot = quizNodeWith(QUIZ_ID, 10, 0);

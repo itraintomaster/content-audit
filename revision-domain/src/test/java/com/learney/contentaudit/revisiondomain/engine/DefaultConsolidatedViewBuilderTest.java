@@ -124,8 +124,8 @@ public class DefaultConsolidatedViewBuilderTest {
         RevisionProposal proposal = new RevisionProposal(
                 proposalId, "task-" + proposalId, PLAN_ID, AUDIT_ID,
                 null, AuditTarget.QUIZ, nodeId,
-                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null),
-                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
                 "rationale", "auto", Instant.now(), null);
         return new RevisionArtifact(proposal, RevisionVerdict.APPROVED, null, null, Instant.now(), null, null, null);
     }
@@ -134,8 +134,8 @@ public class DefaultConsolidatedViewBuilderTest {
         RevisionProposal proposal = new RevisionProposal(
                 proposalId, "task-" + proposalId, PLAN_ID, AUDIT_ID,
                 null, AuditTarget.QUIZ, nodeId,
-                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null),
-                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
                 "rationale", "auto", Instant.now(), null);
         return new RevisionArtifact(proposal, RevisionVerdict.PENDING_APPROVAL, null, null, Instant.now(), null, null, null);
     }
@@ -144,8 +144,8 @@ public class DefaultConsolidatedViewBuilderTest {
         RevisionProposal proposal = new RevisionProposal(
                 proposalId, "task-" + proposalId, PLAN_ID, AUDIT_ID,
                 null, AuditTarget.QUIZ, nodeId,
-                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null),
-                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, null, null),
                 "rationale", "auto", Instant.now(), null);
         return new RevisionArtifact(proposal, RevisionVerdict.REJECTED, "no sirve", null, Instant.now(), null, null, null);
     }
@@ -379,7 +379,7 @@ public class DefaultConsolidatedViewBuilderTest {
         RevisionArtifact pending = pendingArtifact("prop-dormida", "quiz-r004");
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(pending));
 
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r004", null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r004", null, null);
         when(courseElementLocator.snapshot(any(), any(), anyString()))
                 .thenReturn(Optional.of(snapshot));
         when(courseElementLocator.replace(any(), any()))
@@ -492,7 +492,7 @@ public class DefaultConsolidatedViewBuilderTest {
         RevisionArtifact approved = approvedArtifact("prop-r006", "quiz-r006");
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(approved));
 
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r006", null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r006", null, null);
         when(courseElementLocator.snapshot(any(), any(), anyString()))
                 .thenReturn(Optional.of(snapshot));
         when(courseElementLocator.replace(any(), any()))
@@ -535,7 +535,7 @@ public class DefaultConsolidatedViewBuilderTest {
         RevisionArtifact approved = approvedArtifact("prop-r006b", "quiz-r006b");
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(approved));
 
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r006b", null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r006b", null, null);
         when(courseElementLocator.snapshot(any(), any(), anyString()))
                 .thenReturn(Optional.of(snapshot));
         when(courseElementLocator.replace(any(), any()))
@@ -618,7 +618,7 @@ public class DefaultConsolidatedViewBuilderTest {
         RevisionArtifact approved = approvedArtifact("prop-r007a", "quiz-r007a");
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(approved));
 
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r007a", null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r007a", null, null);
         when(courseElementLocator.snapshot(any(), any(), anyString()))
                 .thenReturn(Optional.of(snapshot));
         when(courseElementLocator.replace(any(), any()))
@@ -660,7 +660,7 @@ public class DefaultConsolidatedViewBuilderTest {
         RevisionArtifact approved = approvedArtifact("prop-r007b", "quiz-r007b");
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(approved));
 
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r007b", null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r007b", null, null);
         when(courseElementLocator.snapshot(any(), any(), anyString()))
                 .thenReturn(Optional.of(snapshot));
         when(courseElementLocator.replace(any(), any()))
@@ -701,7 +701,7 @@ public class DefaultConsolidatedViewBuilderTest {
         RevisionArtifact pending  = pendingArtifact("prop-r007c-pend", "quiz-r007c");
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(approved, pending));
 
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r007c", null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r007c", null, null);
         when(courseElementLocator.snapshot(any(), any(), anyString()))
                 .thenReturn(Optional.of(snapshot));
         when(courseElementLocator.replace(any(), any()))
@@ -742,8 +742,8 @@ public class DefaultConsolidatedViewBuilderTest {
         RevisionArtifact pending  = pendingArtifact("prop-r007d-pend", "quiz-r007d");
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(approved, pending));
 
-        CourseElementSnapshot snapshotOrig = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r007d", null);
-        CourseElementSnapshot snapshotCons = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r007d", null);
+        CourseElementSnapshot snapshotOrig = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r007d", null, null);
+        CourseElementSnapshot snapshotCons = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r007d", null, null);
         when(courseElementLocator.snapshot(any(), any(), anyString()))
                 .thenReturn(Optional.of(snapshotOrig));
         CourseEntity courseAfterApproved = new CourseEntity("cid", "English", Collections.emptyList(), null, "english");
@@ -791,7 +791,7 @@ public class DefaultConsolidatedViewBuilderTest {
         RevisionArtifact approved = approvedArtifact("prop-r007e", "quiz-parent");
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(approved));
 
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-parent", null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-parent", null, null);
         when(courseElementLocator.snapshot(any(), any(), anyString()))
                 .thenReturn(Optional.of(snapshot));
         when(courseElementLocator.replace(any(), any()))
@@ -837,7 +837,7 @@ public class DefaultConsolidatedViewBuilderTest {
         RevisionArtifact approved = approvedArtifact("prop-r009", "quiz-r009");
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(approved));
 
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r009", null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r009", null, null);
         when(courseElementLocator.snapshot(any(), any(), anyString()))
                 .thenReturn(Optional.of(snapshot));
         when(courseElementLocator.replace(any(), any()))
@@ -891,7 +891,7 @@ public class DefaultConsolidatedViewBuilderTest {
         RevisionArtifact approved = approvedArtifact("prop-r010", "quiz-r010");
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(approved));
 
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r010", null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r010", null, null);
         when(courseElementLocator.snapshot(any(), any(), anyString()))
                 .thenReturn(Optional.of(snapshot));
         when(courseElementLocator.replace(any(), any()))
@@ -953,9 +953,9 @@ public class DefaultConsolidatedViewBuilderTest {
 
         // El locator encuentra quiz-r011a pero NO quiz-r011b (empty para r011b)
         when(courseElementLocator.snapshot(any(), any(), org.mockito.ArgumentMatchers.eq("quiz-r011a")))
-                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011a", null)));
+                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011a", null, null)));
         when(courseElementLocator.snapshot(any(), any(), org.mockito.ArgumentMatchers.eq("quiz-r011b")))
-                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011b", null)));
+                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011b", null, null)));
         when(courseElementLocator.replace(any(), any()))
                 .thenReturn(new CourseEntity("cid", "English", Collections.emptyList(), null, "english"));
 
@@ -996,7 +996,7 @@ public class DefaultConsolidatedViewBuilderTest {
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(pend1, pend2));
 
         when(courseElementLocator.snapshot(any(), any(), anyString()))
-                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011c", null)));
+                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011c", null, null)));
         when(courseElementLocator.replace(any(), any()))
                 .thenReturn(new CourseEntity("cid", "English", Collections.emptyList(), null, "english"));
 
@@ -1043,8 +1043,8 @@ public class DefaultConsolidatedViewBuilderTest {
         RevisionProposal proposal1 = new RevisionProposal(
                 "prop-r011-vieja", "task-v", PLAN_ID, AUDIT_ID,
                 null, AuditTarget.QUIZ, "quiz-r011e",
-                new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011e", null),
-                new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011e", null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011e", null, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011e", null, null),
                 "r1", "auto", t1, null);
         RevisionArtifact approved1 = new RevisionArtifact(proposal1, RevisionVerdict.APPROVED,
                 null, null, t1, null, null, null);
@@ -1052,8 +1052,8 @@ public class DefaultConsolidatedViewBuilderTest {
         RevisionProposal proposal2 = new RevisionProposal(
                 "prop-r011-nueva", "task-n", PLAN_ID, AUDIT_ID,
                 null, AuditTarget.QUIZ, "quiz-r011e",
-                new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011e", null),
-                new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011e", null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011e", null, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011e", null, null),
                 "r2", "auto", t2, null);
         RevisionArtifact approved2 = new RevisionArtifact(proposal2, RevisionVerdict.APPROVED,
                 null, null, t2, null, null, null);
@@ -1062,7 +1062,7 @@ public class DefaultConsolidatedViewBuilderTest {
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(approved1, approved2));
 
         when(courseElementLocator.snapshot(any(), any(), anyString()))
-                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011e", null)));
+                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011e", null, null)));
         when(courseElementLocator.replace(any(), any()))
                 .thenReturn(new CourseEntity("cid", "English", Collections.emptyList(), null, "english"));
 
@@ -1106,7 +1106,7 @@ public class DefaultConsolidatedViewBuilderTest {
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(approved, pending));
 
         when(courseElementLocator.snapshot(any(), any(), anyString()))
-                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011f", null)));
+                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r011f", null, null)));
         when(courseElementLocator.replace(any(), any()))
                 .thenReturn(new CourseEntity("cid", "English", Collections.emptyList(), null, "english"));
 
@@ -1173,7 +1173,7 @@ public class DefaultConsolidatedViewBuilderTest {
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(app1, app2, pend));
 
         when(courseElementLocator.snapshot(any(), any(), anyString()))
-                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r016a", null)));
+                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r016a", null, null)));
         when(courseElementLocator.replace(any(), any()))
                 .thenReturn(new CourseEntity("cid", "English", Collections.emptyList(), null, "english"));
 
@@ -1220,7 +1220,7 @@ public class DefaultConsolidatedViewBuilderTest {
         RevisionArtifact approved = approvedArtifact("prop-r007-inv5", "quiz-r007-inv5");
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(approved));
 
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r007-inv5", null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-r007-inv5", null, null);
         when(courseElementLocator.snapshot(any(), any(), anyString()))
                 .thenReturn(Optional.of(snapshot));
         when(courseElementLocator.replace(any(), any()))

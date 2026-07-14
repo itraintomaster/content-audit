@@ -87,7 +87,7 @@ public class FSmodeJ002JourneyTest {
                 // "You should watch the DVD." queda excluida (F-SMODE-R004)
                 List.of("Watch the DVD.")
         );
-        return new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-dvd-001", quiz);
+        return new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-dvd-001", quiz, null);
     }
 
     @Test

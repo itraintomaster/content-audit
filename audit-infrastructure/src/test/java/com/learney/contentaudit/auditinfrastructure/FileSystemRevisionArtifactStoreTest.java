@@ -45,7 +45,7 @@ public class FileSystemRevisionArtifactStoreTest {
                 AuditTarget.QUIZ,
                 "quiz-node-001",
                 null   // quiz field is nullable
-        );
+        , null);
         RevisionProposal proposal = new RevisionProposal(
                 proposalId,
                 "task-001",
@@ -81,7 +81,7 @@ public class FileSystemRevisionArtifactStoreTest {
                 AuditTarget.QUIZ,
                 "quiz-node-001",
                 null
-        );
+        , null);
         RevisionProposal proposal = new RevisionProposal(
                 proposalId,
                 taskId,
@@ -117,7 +117,7 @@ public class FileSystemRevisionArtifactStoreTest {
                 AuditTarget.QUIZ,
                 "quiz-node-001",
                 null
-        );
+        , null);
         RevisionProposal proposal = new RevisionProposal(
                 proposalId,
                 taskId,

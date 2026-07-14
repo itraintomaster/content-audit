@@ -69,7 +69,7 @@ public class FRevaprJ005JourneyTest {
     // -------------------------------------------------------------------------
 
     private RevisionProposal buildProposal(String proposalId, String planId) {
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-j005", null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-j005", null, null);
         return new RevisionProposal(
                 proposalId, "task-j005", planId, "audit-j005",
                 DiagnosisKind.SENTENCE_LENGTH, AuditTarget.QUIZ, "quiz-j005",

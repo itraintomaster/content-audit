@@ -186,7 +186,7 @@ public class FLapsJ002JourneyTest {
                 "basics.01.DailyRoutines", "Daily Routines",
                 form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
                 List.of("She does advanced exercise every morning."));
-        return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz);
+        return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz, null);
     }
 
     private RefinementPlan buildPlan() {

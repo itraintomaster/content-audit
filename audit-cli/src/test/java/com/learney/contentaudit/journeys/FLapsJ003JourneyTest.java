@@ -179,7 +179,7 @@ public class FLapsJ003JourneyTest {
                 "basics.01.Grammar", "Grammar",
                 form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
                 List.of("She does complicated things."));
-        return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz);
+        return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz, null);
     }
 
     private RefinementPlan buildPlan() {

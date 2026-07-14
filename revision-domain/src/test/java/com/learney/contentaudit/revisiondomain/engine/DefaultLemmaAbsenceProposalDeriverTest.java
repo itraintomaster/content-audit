@@ -79,7 +79,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
                 "",                        // successMessage
                 List.of("She reads (read) books.") // sentences
         );
-        return new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-id-001", quiz);
+        return new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-id-001", quiz, null);
     }
 
     /**
@@ -378,7 +378,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
                 "", "", "", "", "", "", "",
                 List.of("Watch the DVD.")            // sentences[0]: frase canonica original (4 tokens)
         );
-        CourseElementSnapshot before = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-dvd-001", originalQuiz);
+        CourseElementSnapshot before = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-dvd-001", originalQuiz, null);
 
         // Candidato: nueva respuesta "Watch the film." (mismo numero de tokens que "Watch the DVD.")
         // DSL: "You should watch the film. ____ [Watch the film.]"
@@ -440,7 +440,7 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
                 "", "", "", "", "", "", "",
                 List.of("Watch the DVD.")                // sentences[0] original: 4 tokens
         );
-        CourseElementSnapshot before = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-dvd-002", originalQuiz);
+        CourseElementSnapshot before = new CourseElementSnapshot(AuditTarget.QUIZ, "quiz-dvd-002", originalQuiz, null);
 
         // Candidato: "Watch the film." — 4 tokens, igual longitud que la respuesta original "Watch the DVD."
         // DSL: nueva oracion fuente + hueco + nueva respuesta de 4 tokens

@@ -240,7 +240,7 @@ public class FLapsJ001JourneyTest {
                 "basics.01.Reading", "Reading Comprehension",
                 form, 0.0, 0.0, 0.0, "", "", "", "", "", "", "",
                 List.of("She reads books about advanced topics."));
-        return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz);
+        return new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz, null);
     }
 
     /** Build a RefinementPlan with one LEMMA_ABSENCE task for QUIZ_ID. */

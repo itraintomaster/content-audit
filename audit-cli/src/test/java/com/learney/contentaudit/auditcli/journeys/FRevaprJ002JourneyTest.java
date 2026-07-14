@@ -146,7 +146,7 @@ public class FRevaprJ002JourneyTest {
 
         RefinementPlan plan = buildPlan();
         AuditReport auditReport = buildMinimalAuditReport();
-        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null);
+        CourseElementSnapshot snapshot = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null, null);
         CourseEntity course = mock(CourseEntity.class);
 
         when(planStore.load(PLAN_ID)).thenReturn(Optional.of(plan));

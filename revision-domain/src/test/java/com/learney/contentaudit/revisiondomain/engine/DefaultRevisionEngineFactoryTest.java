@@ -48,7 +48,7 @@ public class DefaultRevisionEngineFactoryTest {
                 null,                                            // auditEngine
                 null,                                            // impactPreviewStore
                 null                                             // correctionContextOverrideParser (nullable per TECH_SPEC)
-        );
+        , null, null);
 
         RevisionEngineFactory factory = new DefaultRevisionEngineFactory();
 
