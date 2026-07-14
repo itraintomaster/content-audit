@@ -4,6 +4,19 @@ Estado actual, última acción y próximo paso. Entrada más reciente arriba.
 
 <!-- entries below -->
 
+2026-07-13 — test-writer — Implementado stub F-KTLR-R007 (DefaultCourseElementLocatorTest,
+  revision-domain), el 4to test de la clase (junto a F-SMODE-R006/F-KTLR-R006/R008 ya existentes).
+  - Escenario: snapshot embebe un KnowledgeEntity con quizTemplates STALE ("v1 viejo", tomado en T0)
+    mientras el curso actual ya tiene ese mismo quiz corregido ("v2 corregido", T2 — cambio posterior
+    al snapshot). Assert: tras replace(), el knowledge resultante tiene label/instructions NUEVOS del
+    snapshot, pero quizTemplates = los ACTUALES del curso (no los congelados del snapshot); id/topic/
+    milestone/root intactos.
+  - Este es el bug real que motivó el rule: hoy DefaultCourseElementLocator pisa quizTemplates con
+    los del snapshot embebido en vez de preservar los del curso — test queda ROJO por diseño (TDD),
+    no lo corro (orquestador lo hace). Compila limpio: `mvn -pl revision-domain test-compile -q` exit 0.
+  - No toqué producción ni otros tests. Próximo: developer arregla DefaultCourseElementLocator para
+    que la rama KNOWLEDGE preserve quizTemplates del curso actual en vez de los del snapshot.
+
 2026-07-07 — developer — FEAT-KTLR producción COMPLETA y VERDE en los 4 módulos.
   - Implementado (esta sesión, retomando tras compactación de contexto):
     refiner-domain/DispatchingCorrectionContextResolver (rama KNOWLEDGE_TITLE_LENGTH → R001,

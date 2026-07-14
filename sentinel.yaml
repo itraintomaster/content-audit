@@ -8888,6 +8888,14 @@ modules:
         traceability:
           feature: FEAT-KTLR
           rule: F-KTLR-R008
+      - name: "Given a KNOWLEDGE_TITLE_LENGTH snapshot whose embedded knowledge quizTemplates\
+          \ differ from the course's current quizzes (the course changed after the\
+          \ snapshot was taken), when replace writes the knowledge, then the resulting\
+          \ course keeps the current course quizzes and only the targeted knowledge's\
+          \ title and instructions change"
+        traceability:
+          feature: FEAT-KTLR
+          rule: F-KTLR-R007
       implements:
       - CourseElementLocator
     - name: DefaultRevisionEngine

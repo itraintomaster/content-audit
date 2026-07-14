@@ -224,4 +224,101 @@ public class DefaultCourseElementLocatorTest {
         assertEquals("She studies books.", resultQuiz.getTitle(),
                 "The corrected quiz content must be persisted exactly as before this feature (R008)");
     }
+
+    @Test
+    @DisplayName("Given a KNOWLEDGE_TITLE_LENGTH snapshot whose embedded knowledge quizTemplates differ from the course's current quizzes (the course changed after the snapshot was taken), when replace writes the knowledge, then the resulting course keeps the current course quizzes and only the targeted knowledge's title and instructions change")
+    @Tag("FEAT-KTLR")
+    @Tag("F-KTLR-R007")
+    public void givenAKNOWLEDGETITLELENGTHSnapshotWhoseEmbeddedKnowledgeQuizTemplatesDifferFromTheCoursesCurrentQuizzesTheCourseChangedAfterTheSnapshotWasTakenWhenReplaceWritesTheKnowledgeThenTheResultingCourseKeepsTheCurrentCourseQuizzesAndOnlyTheTargetedKnowledgesTitleAndInstructionsChange() {
+        // Arrange — the course's CURRENT state (T2): the quiz was already corrected
+        // ("v2 corregido") after the snapshot was taken at T0.
+        QuizTemplateEntity currentCourseQuiz = new QuizTemplateEntity();
+        currentCourseQuiz.setId("quiz-ktlr-007");
+        currentCourseQuiz.setKnowledgeId("knowledge-ktlr-007");
+        currentCourseQuiz.setTitle("v2 corregido");
+        currentCourseQuiz.setSentences(List.of("v2 corregido."));
+
+        KnowledgeEntity originalKnowledge = new KnowledgeEntity();
+        originalKnowledge.setId("knowledge-ktlr-007");
+        originalKnowledge.setKind(NodeKind.KNOWLEDGE);
+        originalKnowledge.setLabel("Present Simple Affirmative Sentences With Third Person Singular Verbs");
+        originalKnowledge.setInstructions("Completa la oracion con la forma correcta del verbo en presente simple.");
+        originalKnowledge.setQuizTemplates(List.of(currentCourseQuiz));
+
+        TopicEntity topic = new TopicEntity();
+        topic.setId("topic-ktlr-007");
+        topic.setKind(NodeKind.TOPIC);
+        topic.setLabel("Verb Tenses");
+        topic.setKnowledges(List.of(originalKnowledge));
+
+        MilestoneEntity milestone = new MilestoneEntity();
+        milestone.setId("milestone-ktlr-007");
+        milestone.setKind(NodeKind.MILESTONE);
+        milestone.setLabel("A1");
+        milestone.setTopics(List.of(topic));
+
+        RootNodeEntity root = new RootNodeEntity();
+        root.setId("root-ktlr-007");
+        root.setKind(NodeKind.ROOT);
+        root.setMilestones(List.of(milestone));
+
+        CourseEntity course = new CourseEntity();
+        course.setId("course-ktlr-007");
+        course.setTitle("english-course");
+        course.setRoot(root);
+
+        // The snapshot's embedded knowledge (taken at T0): same quiz id, but STALE content
+        // ("v1 viejo") — the course changed after this snapshot was captured.
+        QuizTemplateEntity staleSnapshotQuiz = new QuizTemplateEntity();
+        staleSnapshotQuiz.setId("quiz-ktlr-007");
+        staleSnapshotQuiz.setKnowledgeId("knowledge-ktlr-007");
+        staleSnapshotQuiz.setTitle("v1 viejo");
+        staleSnapshotQuiz.setSentences(List.of("v1 viejo."));
+
+        KnowledgeEntity snapshotEmbeddedKnowledge = new KnowledgeEntity();
+        snapshotEmbeddedKnowledge.setId("knowledge-ktlr-007");
+        snapshotEmbeddedKnowledge.setKind(NodeKind.KNOWLEDGE);
+        snapshotEmbeddedKnowledge.setLabel("Present Simple Affirmative");
+        snapshotEmbeddedKnowledge.setInstructions("Completa la oracion con el verbo en presente simple.");
+        snapshotEmbeddedKnowledge.setQuizTemplates(List.of(staleSnapshotQuiz));
+
+        CourseElementSnapshot elementAfter = new CourseElementSnapshot(
+                AuditTarget.KNOWLEDGE, "knowledge-ktlr-007", null, snapshotEmbeddedKnowledge);
+
+        // Act — replace writes the approved title/instructions correction to the course
+        CourseElementLocator locator = new DefaultCourseElementLocator();
+        CourseEntity result = locator.replace(course, elementAfter);
+
+        // Assert — only label/instructions change (R007); quizzes come from the CURRENT
+        // course state, not from the stale snapshot; id/hierarchy remain untouched.
+        KnowledgeEntity resultKnowledge = result.getRoot()
+                .getMilestones().get(0)
+                .getTopics().get(0)
+                .getKnowledges().get(0);
+
+        assertEquals("Present Simple Affirmative", resultKnowledge.getLabel(),
+                "The knowledge label must be updated to the snapshot's proposed title (R007)");
+        assertEquals("Completa la oracion con el verbo en presente simple.", resultKnowledge.getInstructions(),
+                "The knowledge instructions must be updated to the snapshot's proposed instructions (R007)");
+        assertEquals("knowledge-ktlr-007", resultKnowledge.getId(),
+                "The knowledge identifier must be preserved (R007)");
+
+        assertEquals(1, resultKnowledge.getQuizTemplates().size(),
+                "The knowledge must keep exactly the current course's quizzes, not gain or lose any (R007)");
+        QuizTemplateEntity resultQuiz = resultKnowledge.getQuizTemplates().get(0);
+        assertEquals("v2 corregido", resultQuiz.getTitle(),
+                "The resulting course must keep the CURRENT course quiz content, not the stale " +
+                "quizTemplates frozen inside the snapshot (R007): the course changed after the " +
+                "snapshot was taken and that change must not be reverted");
+        assertEquals(List.of("v2 corregido."), resultQuiz.getSentences(),
+                "The resulting course must keep the current course quiz's sentences, not the snapshot's stale ones (R007)");
+
+        // Assert — the rest of the tree (topic/milestone/root ids) is untouched by the replace
+        assertEquals("topic-ktlr-007", result.getRoot().getMilestones().get(0).getTopics().get(0).getId(),
+                "No other node in the hierarchy must be altered by the replace (R007)");
+        assertEquals("milestone-ktlr-007", result.getRoot().getMilestones().get(0).getId(),
+                "No other node in the hierarchy must be altered by the replace (R007)");
+        assertEquals("root-ktlr-007", result.getRoot().getId(),
+                "No other node in the hierarchy must be altered by the replace (R007)");
+    }
 }

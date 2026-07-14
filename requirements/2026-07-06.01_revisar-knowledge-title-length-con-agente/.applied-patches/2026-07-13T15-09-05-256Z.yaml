@@ -1,0 +1,16 @@
+code: FEAT-KTLR
+modules:
+- name: revision-domain
+  packages:
+  - name: engine
+    implementations:
+    - name: DefaultCourseElementLocator
+      handwrittenTests:
+      - name: "Given a KNOWLEDGE_TITLE_LENGTH snapshot whose embedded knowledge quizTemplates\
+          \ differ from the course's current quizzes (the course changed after the\
+          \ snapshot was taken), when replace writes the knowledge, then the resulting\
+          \ course keeps the current course quizzes and only the targeted knowledge's\
+          \ title and instructions change"
+        traceability:
+          feature: FEAT-KTLR
+          rule: F-KTLR-R007

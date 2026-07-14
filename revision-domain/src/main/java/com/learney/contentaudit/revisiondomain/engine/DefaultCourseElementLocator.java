@@ -155,7 +155,7 @@ class DefaultCourseElementLocator implements CourseElementLocator {
             return course;
         }
         String nodeId = replacement.getNodeId();
-        KnowledgeEntity updatedKnowledge = replacement.getKnowledge();
+        KnowledgeEntity correction = replacement.getKnowledge();
 
         RootNodeEntity root = course.getRoot();
         if (root == null || root.getMilestones() == null) {
@@ -180,6 +180,12 @@ class DefaultCourseElementLocator implements CourseElementLocator {
                 boolean knowledgeChanged = false;
                 for (KnowledgeEntity knowledge : topic.getKnowledges()) {
                     if (nodeId.equals(knowledge.getId())) {
+                        KnowledgeEntity updatedKnowledge = new KnowledgeEntity(
+                                knowledge.getId(), knowledge.getCode(), knowledge.getKind(),
+                                correction.getLabel(), knowledge.getOldId(), knowledge.getParentId(),
+                                knowledge.isIsRule(), correction.getInstructions(),
+                                knowledge.getOrder(), knowledge.getSlug(), knowledge.getQuizTemplates(),
+                                knowledge.getSentenceMode());
                         updatedKnowledges.add(updatedKnowledge);
                         knowledgeChanged = true;
                         replaced = true;
