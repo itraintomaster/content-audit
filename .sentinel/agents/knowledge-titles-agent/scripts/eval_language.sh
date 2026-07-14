@@ -83,10 +83,12 @@ ENGLISH_SIGNALS = {
 ACCENTED = re.compile(r"[áéíóúüñ¿¡]", re.IGNORECASE)
 
 def strip_quoted(text):
-    """Saca los términos citados: comillas simples ('be') Y glosas entre
-    paréntesis — convención del curso para el término inglés: «sin
-    contracciones (short forms)»."""
+    """Saca los términos destacados: comillas simples ('be'), glosas entre
+    paréntesis («sin contracciones (short forms)») y palabras clave entre
+    $...$ ($be$ — negrita naranja en la UI) — las tres convenciones del
+    curso para el término inglés dentro de texto en español."""
     text = re.sub(r"'[^']*'", " ", text or "")
+    text = re.sub(r"\$[^$]*\$", " ", text)
     return re.sub(r"\([^)]*\)", " ", text)
 
 def words(text):

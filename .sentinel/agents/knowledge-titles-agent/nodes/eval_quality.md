@@ -9,9 +9,10 @@ description: |
        practica de verdad                          — BLOQUEANTE
     #7 idioma — título en inglés natural, instructions en español natural
        (términos técnicos citados OK)              — BLOQUEANTE
-    #8 no-redundancia semántica — el título no repite información que el
-       topic o las instructions ya dan (cross-idioma) — BLOQUEANTE
-    #9 estilo — claridad y concisión               — DESEABLE (score 0..1)
+    #8 no-redundancia semántica — el título no repite el topic ni la ACCIÓN
+       de las instructions; nombrar el mismo CONCEPTO que las instructions
+       operan (aun con sinónimos) NO es redundancia — BLOQUEANTE
+    #9 estilo — claridad, concisión y título con sustantivo — DESEABLE (score 0..1)
   (Los evals #1–#5 son deterministas y corren antes.) Emite verdicts.json;
   el combinado bloqueante/champion lo hace `tally`.
 budgets:
@@ -57,17 +58,30 @@ distinción ya corrieron en nodos deterministas — no son tu tarea):
   CORRECTO mientras el conjunto no pierda nada. Si el par perdió una
   restricción, cambió la tarea o el título promete otra cosa → `pass:false`.
 - **#7 language** (bloqueante): ¿el título y las instructions son español
-  natural? Términos técnicos ingleses citados con comillas simples ('be',
-  'short forms') son correctos en ambos. Título o instructions en inglés
-  fuera de citas, spanglish o calcos → `pass:false`.
-- **#8 no_redundancy** (bloqueante): ¿alguna parte del título repite
-  información que el topic o las instructions candidatas ya dan — aunque sea
-  en otro idioma? (p.ej. título "Short answers" con instructions «Escribe la
-  respuesta corta…» ES redundante; título "Negatives" con instructions que
-  solo dicen «Escribe en presente simple» NO lo es). Redundancia clara →
-  `pass:false`; si el solapamiento es dudoso o parcial, no bloquees.
+  natural? Términos técnicos ingleses destacados son correctos: en el título
+  citados con comillas simples ('be'); en las instructions entre signos $
+  ($be$, $short forms$ — la UI los renderiza como negrita naranja). Título o
+  instructions en inglés fuera de esas marcas, spanglish o calcos →
+  `pass:false`.
+- **#8 no_redundancy** (bloqueante): distinguí CONCEPTO de ACCIÓN.
+  - ES redundante (`pass:false`): el título repite el TOPIC visible arriba
+    (aunque sea en otro idioma), o el título repite la ACCIÓN/consigna de las
+    instructions — es decir, el título es una paráfrasis de la instrucción y
+    no aporta nada (p.ej. título "Reescribe con contracciones" + instructions
+    «Reescribe cada oración usando contracciones»).
+  - NO es redundante (`pass:true`): el título NOMBRA el concepto gramatical
+    que el ejercicio practica y las instructions dicen QUÉ HACER con ese
+    concepto, aunque usen un sinónimo (p.ej. título "Oraciones con
+    contracciones" + instructions «Reescribe cada oración usando la forma
+    corta del verbo» es un buen par — la coherencia conceptual entre título e
+    instructions es DESEABLE, no un defecto).
+  - En este eval NO apliques la regla general de conservadurismo: bloqueá solo
+    redundancia CLARA (paráfrasis de la acción o repetición del topic); ante
+    solapamiento conceptual, sinónimos del concepto o duda → `pass:true`.
 - **#9 style** (deseable): claridad y concisión del par título+instructions
-  para un alumno. Puntuá 0.0–1.0 (no bloquea).
+  para un alumno. Preferí títulos con un sustantivo como núcleo: "Oraciones
+  con contracciones" puntúa mejor que el fragmento "Con contracciones".
+  Puntuá 0.0–1.0 (no bloquea).
 
 ## Salida
 

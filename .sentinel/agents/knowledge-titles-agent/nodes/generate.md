@@ -74,18 +74,25 @@ Simple". Si las instructions ya nombran el verbo 'be', el título no lo repite.
    quedan solo con la parte operativa. Ejemplo: original «Escribe una oración
    negativa con 'be'. No uses contracciones.» →
    título: `Oraciones negativas` + instructions: «Escribe una oración con
-   'be', sin usar contracciones.» — «negativa» migró al título, no se
+   $be$, sin usar contracciones.» — «negativa» migró al título, no se
    duplica, y el par completo conserva TODA la consigna. Al revés también:
    lo que dejás en las instructions no va al título.
 4. **Idiomas estrictos.** Título e instructions: solo ESPAÑOL. Los términos
-   gramaticales ingleses van citados entre comillas simples ('be', 'going
-   to', 'short forms') tanto en el título como en las instructions — nunca
-   inglés suelto fuera de comillas.
+   gramaticales ingleses nunca van sueltos: en el TÍTULO citados entre
+   comillas simples ('be', 'going to'); en las INSTRUCTIONS marcados entre
+   signos `$` (regla 4b).
+4b. **Palabras clave de las instructions: entre `$...$`.** La UI renderiza
+   `$palabra$` como negrita del naranja institucional. Marcá así los términos
+   que el alumno debe usar o notar — típicamente los términos gramaticales
+   ingleses y las formas objetivo: «Completa con $be$ en presente ($am$,
+   $is$, $are$).», «Reescribe usando $short forms$.» Los `$` pesan 0 en la
+   longitud. Siempre en PARES balanceados: nunca un `$` suelto ni `$$` vacío.
+   En el TÍTULO no se usa `$` (ahí citá con comillas simples).
 5. **Distinto de los hermanos.** Te paso los títulos de los demás ejercicios
    del topic: tu título debe distinguirse claramente de todos (el alumno tiene
    que poder elegir el ejercicio por su título).
-6. **No introduzcas `$` ni `*`** (son caracteres de formato de la UI) ni
-   comillas dobles `"`.
+6. **No introduzcas `*` ni comillas dobles `"`** (caracteres de formato de la
+   UI). `$` solo como marcador de palabra clave en las instructions (regla 4b).
 7. **Si recibís «Feedback del intento anterior», está PROHIBIDO repetir el
    candidato rechazado.** Corregí EXACTAMENTE cada punto señalado con el
    cambio mínimo que lo resuelve.
@@ -105,8 +112,9 @@ Simple". Si las instructions ya nombran el verbo 'be', el título no lo repite.
    - ¿Longitud ponderada del título ≤ 28? (contá: casi todo pesa 1)
    - ¿Longitud ponderada de las instructions ≤ 70?
    - ¿Alguna palabra del título aparece en el topic o en las instructions
-     (incluidos los términos citados)? → sacala o reemplazá el título.
+     (incluidos los términos citados o entre `$`)? → sacala o reemplazá el título.
    - ¿Las instructions conservan TODAS las restricciones de la original?
+   - ¿Los `$` de las instructions están en pares balanceados y el título no tiene `$`?
    - ¿El título se diferencia de todos los hermanos?
 
 ## Salida (CRÍTICO)

@@ -114,6 +114,16 @@ for ch, name in (("$", "'$'"), ("*", "'*'"), ('"', "comillas dobles")):
 if "\n" in title:
     fail("el título debe ser UNA sola línea", prev=title)
 
+# Instructions: $...$ marca palabras clave (negrita naranja en la UI).
+# Deben venir en pares balanceados y sin $$ vacíos. Con conteo par, los
+# segmentos impares del split son el interior de cada par.
+if instructions.count("$") % 2 != 0:
+    fail("las instructions tienen un `$` sin cerrar — las palabras clave van "
+         "en pares $palabra$", prev=title + " / " + instructions)
+if any(not seg.strip() for seg in instructions.split("$")[1::2]):
+    fail("las instructions tienen un par `$...$` vacío — cada par debe "
+         "envolver una palabra clave", prev=title + " / " + instructions)
+
 # OK → canonicalizar candidate.json con exactamente las dos claves.
 with open(cand_path, "w", encoding="utf-8") as f:
     json.dump({"title": title, "instructions": instructions}, f, ensure_ascii=False)

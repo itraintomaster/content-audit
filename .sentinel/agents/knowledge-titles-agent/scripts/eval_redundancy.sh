@@ -59,13 +59,16 @@ def content_words(text):
     return {t.strip("'") for t in tokens(text)} - STOP - {""}
 
 def quoted_terms(text):
-    """Términos citados: comillas simples ('be', 'short forms') y glosas entre
-    paréntesis («sin contracciones (short forms)») — ambas convenciones del
-    curso para el término inglés dentro de instructions en español."""
+    """Términos destacados: comillas simples ('be', 'short forms'), glosas
+    entre paréntesis («sin contracciones (short forms)») y palabras clave
+    entre $...$ ($be$ — negrita naranja en la UI) — las tres convenciones
+    del curso para el término inglés dentro de instructions en español."""
     words = set()
     for m in re.findall(r"'([^']+)'", text or ""):
         words.update(content_words(m))
     for m in re.findall(r"\(([^)]+)\)", text or ""):
+        words.update(content_words(m))
+    for m in re.findall(r"\$([^$]+)\$", text or ""):
         words.update(content_words(m))
     return words
 
