@@ -58,11 +58,11 @@ distinción ya corrieron en nodos deterministas — no son tu tarea):
   CORRECTO mientras el conjunto no pierda nada. Si el par perdió una
   restricción, cambió la tarea o el título promete otra cosa → `pass:false`.
 - **#7 language** (bloqueante): ¿el título y las instructions son español
-  natural? Términos técnicos ingleses destacados son correctos: en el título
-  citados con comillas simples ('be'); en las instructions entre signos $
-  ($be$, $short forms$ — la UI los renderiza como negrita naranja). Título o
-  instructions en inglés fuera de esas marcas, spanglish o calcos →
-  `pass:false`.
+  natural? Términos técnicos ingleses destacados son correctos: tanto en el
+  título como en las instructions van entre signos $ ($be$, $short forms$ —
+  la UI los renderiza como negrita naranja). Título o instructions en inglés
+  fuera de esas marcas, comillas simples usadas para citar, spanglish o
+  calcos → `pass:false`.
 - **#8 no_redundancy** (bloqueante): distinguí CONCEPTO de ACCIÓN.
   - ES redundante (`pass:false`): el título repite el TOPIC visible arriba
     (aunque sea en otro idioma), o el título repite la ACCIÓN/consigna de las

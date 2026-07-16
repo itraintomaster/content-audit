@@ -50,8 +50,8 @@ Simple". Si las instructions ya nombran el verbo 'be', el título no lo repite.
 
 1. **Título en ESPAÑOL, longitud ponderada ≤ 28 (apuntá a ≤ 24).** Aunque los
    títulos VIEJOS de la db estén en inglés, el título NUEVO va en español —
-   los términos gramaticales ingleses citados entre comillas simples se
-   conservan en inglés (p.ej. `'Be': repaso`, `Preguntas con 'do'`). La UI
+   los términos gramaticales ingleses citados entre `$...$` se
+   conservan en inglés (p.ej. `$Be$: repaso`, `Preguntas con $do$`). La UI
    mide los caracteres con pesos: `$` y `*` pesan 0; `i` `,` `.` pesan 0.5;
    `f` `t` `"` pesan 0.7; TODO lo demás (espacios y acentos incluidos) pesa
    1.0. Regla práctica: ~24 caracteres o menos, unas 2–4 palabras cortas.
@@ -78,21 +78,21 @@ Simple". Si las instructions ya nombran el verbo 'be', el título no lo repite.
    duplica, y el par completo conserva TODA la consigna. Al revés también:
    lo que dejás en las instructions no va al título.
 4. **Idiomas estrictos.** Título e instructions: solo ESPAÑOL. Los términos
-   gramaticales ingleses nunca van sueltos: en el TÍTULO citados entre
-   comillas simples ('be', 'going to'); en las INSTRUCTIONS marcados entre
-   signos `$` (regla 4b).
-4b. **Palabras clave de las instructions: entre `$...$`.** La UI renderiza
+   gramaticales ingleses nunca van sueltos: tanto en el TÍTULO como en las
+   INSTRUCTIONS van marcados entre signos `$` ($be$, $going to$) — regla 4b.
+4b. **Términos citados y palabras clave: entre `$...$`.** La UI renderiza
    `$palabra$` como negrita del naranja institucional. Marcá así los términos
    que el alumno debe usar o notar — típicamente los términos gramaticales
    ingleses y las formas objetivo: «Completa con $be$ en presente ($am$,
    $is$, $are$).», «Reescribe usando $short forms$.» Los `$` pesan 0 en la
    longitud. Siempre en PARES balanceados: nunca un `$` suelto ni `$$` vacío.
-   En el TÍTULO no se usa `$` (ahí citá con comillas simples).
+   Aplica igual en el TÍTULO: los términos ingleses citados van entre `$...$`
+   (nunca entre comillas simples).
 5. **Distinto de los hermanos.** Te paso los títulos de los demás ejercicios
    del topic: tu título debe distinguirse claramente de todos (el alumno tiene
    que poder elegir el ejercicio por su título).
 6. **No introduzcas `*` ni comillas dobles `"`** (caracteres de formato de la
-   UI). `$` solo como marcador de palabra clave en las instructions (regla 4b).
+   UI). `$` solo como marcador de término citado o palabra clave (regla 4b).
 7. **Si recibís «Feedback del intento anterior», está PROHIBIDO repetir el
    candidato rechazado.** Corregí EXACTAMENTE cada punto señalado con el
    cambio mínimo que lo resuelve.

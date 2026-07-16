@@ -106,13 +106,22 @@ if not isinstance(instructions, str) or not instructions.strip():
 title = title.strip()
 instructions = instructions.strip()
 
-for ch, name in (("$", "'$'"), ("*", "'*'"), ('"', "comillas dobles")):
+for ch, name in (("*", "'*'"), ('"', "comillas dobles")):
     if ch in title:
         fail("el título no puede contener %s (caracteres de formato de la UI); "
-             "usá comillas simples para citar términos" % name, prev=title)
+             "citá términos ingleses con $...$" % name, prev=title)
 
 if "\n" in title:
     fail("el título debe ser UNA sola línea", prev=title)
+
+# Título: $...$ marca términos ingleses citados (negrita naranja en la UI).
+# Misma regla que instructions: pares balanceados y sin $$ vacíos.
+if title.count("$") % 2 != 0:
+    fail("el título tiene un `$` sin cerrar — los términos citados van "
+         "en pares $palabra$", prev=title)
+if any(not seg.strip() for seg in title.split("$")[1::2]):
+    fail("el título tiene un par `$...$` vacío — cada par debe envolver "
+         "un término", prev=title)
 
 # Instructions: $...$ marca palabras clave (negrita naranja en la UI).
 # Deben venir en pares balanceados y sin $$ vacíos. Con conteo par, los

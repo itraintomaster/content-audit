@@ -112,7 +112,7 @@ detail = []
 title_english_hits = [w for w in words(title_bare) if w in ENGLISH_ONLY_TITLE]
 title_lang_ok = not title_english_hits
 if not title_lang_ok:
-    detail.append("título con inglés fuera de comillas (%s) — el título va en ESPAÑOL"
+    detail.append("título con inglés fuera de $...$ (%s) — el título va en ESPAÑOL"
                   % ", ".join(sorted(set(title_english_hits))))
 
 # --- Instructions: español ---
