@@ -379,11 +379,11 @@ public class RecursiveNodeFieldDifferTest {
         // porque el registry declara la identidad bajo "LemmaAbsenceLevelDiagnosis::misplacedLemmas".
         LemmaAndPos lemaPos = new LemmaAndPos("run", "v");
         MisplacedLemma misplacedOrig = new MisplacedLemma(
-                lemaPos, CefrLevel.A1, CefrLevel.B1, null, 500, "sports");
+                lemaPos, CefrLevel.A1, CefrLevel.B1, null, 500, "sports", null, null);
         MisplacedLemma misplacedCons = new MisplacedLemma(
-                lemaPos, CefrLevel.A1, CefrLevel.B1, null, 500, "general");
+                lemaPos, CefrLevel.A1, CefrLevel.B1, null, 500, "general", null, null);
         MisplacedLemma misplacedPend = new MisplacedLemma(
-                lemaPos, CefrLevel.A1, CefrLevel.B1, null, 500, "general");
+                lemaPos, CefrLevel.A1, CefrLevel.B1, null, 500, "general", null, null);
 
         // LemmaAbsenceLevelDiagnosis es el tipo declarante en el registry para misplacedLemmas
         LemmaAbsenceLevelDiagnosis levelDiagOrig = new LemmaAbsenceLevelDiagnosis(
@@ -503,11 +503,11 @@ public class RecursiveNodeFieldDifferTest {
 
         LemmaAndPos lemaPos1 = new LemmaAndPos("go", "v");
         MisplacedLemma misplacedOrig = new MisplacedLemma(
-                lemaPos1, CefrLevel.A1, CefrLevel.B1, null, 200, "movement");
+                lemaPos1, CefrLevel.A1, CefrLevel.B1, null, 200, "movement", null, null);
         MisplacedLemma misplacedCons = new MisplacedLemma(
-                lemaPos1, CefrLevel.A1, CefrLevel.B1, null, 200, "action");
+                lemaPos1, CefrLevel.A1, CefrLevel.B1, null, 200, "action", null, null);
         MisplacedLemma misplacedPend = new MisplacedLemma(
-                lemaPos1, CefrLevel.A1, CefrLevel.B1, null, 200, "action");
+                lemaPos1, CefrLevel.A1, CefrLevel.B1, null, 200, "action", null, null);
 
         LemmaAbsenceLevelDiagnosis levelDiagOrig = new LemmaAbsenceLevelDiagnosis(
                 CefrLevel.A1, 10, 1, 0.10, 0.80,

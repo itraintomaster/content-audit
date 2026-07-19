@@ -35,12 +35,6 @@ public class SentinelArchitectureTest {
   }
 
   @Test
-  public void enforceLemmaAbsenceConfigSealedImplementation() {
-    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
-    ArchRuleDefinition.classes().that().implement(com.learney.contentaudit.auditdomain.LemmaAbsenceConfig.class).should().haveSimpleName("DefaultLemmaAbsenceConfig").allowEmptyShould(true).check(classes);
-  }
-
-  @Test
   public void enforceLemmaCountConfigSealedImplementation() {
     JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
     ArchRuleDefinition.classes().that().implement(com.learney.contentaudit.auditdomain.LemmaCountConfig.class).should().haveSimpleName("DefaultLemmaCountConfig").allowEmptyShould(true).check(classes);

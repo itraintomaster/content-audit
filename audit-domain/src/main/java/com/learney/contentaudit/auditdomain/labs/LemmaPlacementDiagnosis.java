@@ -13,12 +13,19 @@ public class LemmaPlacementDiagnosis {
 
     private List<MisplacedLemma> misplacedLemmas;
 
+    private int outOfCatalogWordCount;
+
+    private List<OutOfCatalogWord> outOfCatalogWords;
+
     public LemmaPlacementDiagnosis() {
     }
 
-    public LemmaPlacementDiagnosis(int misplacedLemmaCount, List<MisplacedLemma> misplacedLemmas) {
+    public LemmaPlacementDiagnosis(int misplacedLemmaCount, List<MisplacedLemma> misplacedLemmas,
+            int outOfCatalogWordCount, List<OutOfCatalogWord> outOfCatalogWords) {
         this.misplacedLemmaCount = misplacedLemmaCount;
         this.misplacedLemmas = misplacedLemmas;
+        this.outOfCatalogWordCount = outOfCatalogWordCount;
+        this.outOfCatalogWords = outOfCatalogWords;
     }
 
     public int getMisplacedLemmaCount() {
@@ -37,17 +44,35 @@ public class LemmaPlacementDiagnosis {
         this.misplacedLemmas = misplacedLemmas;
     }
 
+    public int getOutOfCatalogWordCount() {
+        return this.outOfCatalogWordCount;
+    }
+
+    public void setOutOfCatalogWordCount(int outOfCatalogWordCount) {
+        this.outOfCatalogWordCount = outOfCatalogWordCount;
+    }
+
+    public List<OutOfCatalogWord> getOutOfCatalogWords() {
+        return this.outOfCatalogWords;
+    }
+
+    public void setOutOfCatalogWords(List<OutOfCatalogWord> outOfCatalogWords) {
+        this.outOfCatalogWords = outOfCatalogWords;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LemmaPlacementDiagnosis that = (LemmaPlacementDiagnosis) o;
         return Objects.equals(this.misplacedLemmaCount, that.misplacedLemmaCount)
-                    && Objects.equals(this.misplacedLemmas, that.misplacedLemmas);
+                    && Objects.equals(this.misplacedLemmas, that.misplacedLemmas)
+                    && Objects.equals(this.outOfCatalogWordCount, that.outOfCatalogWordCount)
+                    && Objects.equals(this.outOfCatalogWords, that.outOfCatalogWords);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(misplacedLemmaCount, misplacedLemmas);
+        return Objects.hash(misplacedLemmaCount, misplacedLemmas, outOfCatalogWordCount, outOfCatalogWords);
     }
 }

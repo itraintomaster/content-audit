@@ -118,16 +118,6 @@ modules:
     - name: A2
     - name: B1
     - name: B2
-    - name: C1
-      description: "Nivel C1 del MCER. Retenido del catalogo solo para la deteccion\
-        \ de mal-ubicacion por oracion (F-LABS-R033); excluido de cobertura, umbrales,\
-        \ pesos, alertas y recomendaciones (F-LABS-R037). Orden numerico 5 para el\
-        \ calculo de distancia (F-LABS-R018)."
-    - name: C2
-      description: "Nivel C2 del MCER. Retenido del catalogo solo para la deteccion\
-        \ de mal-ubicacion por oracion (F-LABS-R033); excluido de cobertura, umbrales,\
-        \ pesos, alertas y recomendaciones (F-LABS-R037). Orden numerico 6 para el\
-        \ calculo de distancia (F-LABS-R018)."
   - name: TargetRange
     type: record
     fields:
@@ -331,7 +321,7 @@ modules:
     - SelfDescribingConfig
   - name: LemmaAbsenceConfig
     stereotype: port
-    sealed: false
+    sealed: true
     exposes:
     - signature: "getAbsoluteThreshold(CefrLevel level): int"
     - signature: "getPercentageThreshold(CefrLevel level): double"
@@ -349,10 +339,6 @@ modules:
     - signature: "getLowReportLimit(): int"
     - signature: "getDiscountPerLevel(): double"
     - signature: "getCoverageTarget(CefrLevel level): double"
-    - signature: "getOutOfCatalogNoPenaltyRankBound(CefrLevel level): int"
-    - signature: "getOutOfCatalogMildDiscountRankBound(CefrLevel level): int"
-    - signature: "getOutOfCatalogMildDiscount(): double"
-    - signature: "getOutOfCatalogStrongDiscount(): double"
     extends:
     - SelfDescribingConfig
   - name: EvpCatalogPort
@@ -364,7 +350,6 @@ modules:
     - signature: "getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>"
     - signature: "getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>"
     - signature: "lookupLevel(LemmaAndPos lemmaAndPos): Optional<CefrLevel>"
-    - signature: "lookupLevelByLemma(String lemma): Optional<CefrLevel>"
   - name: AuditableEntity
     stereotype: port
     sealed: false
@@ -1992,16 +1977,6 @@ modules:
       - name: misplacedLemmas
         type: List<MisplacedLemma>
         description: Detailed list of each misplaced lemma
-      - name: outOfCatalogWordCount
-        type: int
-        description: "Cantidad de palabras fuera de catalogo penalizadas en este nodo\
-          \ (F-LABS-R034, R038). Simetrico a misplacedLemmaCount; 0 en reportes previos."
-      - name: outOfCatalogWords
-        type: List<OutOfCatalogWord>
-        description: "Detalle de cada palabra fuera de catalogo que genero descuento,\
-          \ con motivo expresado como ranking de frecuencia y sin nivel CEFR inventado\
-          \ (F-LABS-R034, R038). Lista vacia cuando no hay penalizadas o en reportes\
-          \ previos."
     - name: MisplacedLemma
       type: record
       fields:
@@ -2023,41 +1998,6 @@ modules:
       - name: semanticCategory
         type: String
         description: Semantic topic from EVP catalog (nullable)
-      - name: observedPos
-        type: String
-        description: Etiqueta POS del token observada en la oracion (F-LABS-R038).
-          Puede diferir de lemmaAndPos.pos cuando el emparejamiento uso el fallback
-          por lema de F-LABS-R036 (la entrada de catalogo elegida es la de menor nivel
-          entre otras categorias). Nullable en reportes previos a F-LABS-R038.
-      - name: discount
-        type: Double
-        description: "Descuento aplicado por distancia de nivel (0.1 por nivel, F-LABS-R018/R033)\
-          \ que compitio en el maximo de F-LABS-R019 (F-LABS-R038). Nullable en reportes\
-          \ serializados previos a F-LABS-R038."
-    - name: OutOfCatalogWord
-      type: record
-      fields:
-      - name: lemma
-        type: String
-        description: "Forma base de la palabra de contenido que no figura en el catalogo\
-          \ bajo ninguna categoria gramatical, tras agotar el fallback por lema de\
-          \ F-LABS-R036 (F-LABS-R034, R038)."
-      - name: observedPos
-        type: String
-        description: "Etiqueta POS del token en la oracion (Universal Dependencies,\
-          \ de NlpToken.posTag). Es la categoria observada, no una del catalogo: la\
-          \ palabra no tiene entrada de catalogo (F-LABS-R038)."
-      - name: frequencyRank
-        type: Integer
-        description: "Ranking de frecuencia del token (NlpToken.frequencyRank) evaluado\
-          \ contra las bandas por nivel de F-LABS-R034. Nullable: sin ranking la palabra\
-          \ cae siempre en la banda de descuento fuerte. NO se le inventa nivel CEFR\
-          \ (F-LABS-R038)."
-      - name: discount
-        type: double
-        description: "Descuento aplicado segun la banda de frecuencia del nivel de\
-          \ la oracion (0.0 no ocurre: solo se registran palabras que generaron descuento).\
-          \ Compite en el maximo de F-LABS-R019 (F-LABS-R038)."
     implementations:
     - name: LemmaByLevelAbsenceAnalyzer
       requiresInject:
@@ -2153,6 +2093,10 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R010
+      - name: should consider LemmaAndPos pair for absence not just lemma string
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R003
       - name: should not mark lemma as absent when present in expected level even
           if also in other levels
         traceability:
@@ -2267,6 +2211,10 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R017
+      - name: should not consider non-EVP lemma as misplaced in sentence
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R017
       - name: should apply 0.1 discount per level of distance for misplaced lemma
         traceability:
           feature: FEAT-LABS
@@ -2279,11 +2227,20 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R018
+      - name: should score 0.7 for sentence with 3-level distance misplaced lemma
+          which is minimum
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R019
       - name: should use maximum discount among all misplaced lemmas in sentence
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R019
       - name: should score 1.0 for sentence with no misplaced lemmas
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R020
+      - name: should score 1.0 for sentence containing only non-EVP lemmas
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R020
@@ -2522,142 +2479,6 @@ modules:
         traceability:
           feature: FEAT-DLABS
           rule: F-DLABS-R012
-      - name: should count expected lemma as present when the level contains it under
-          a different part of speech
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R039
-      - name: should cover multiple expected entries of the same lemma with a single
-          occurrence in the level
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R039
-      - name: should classify absence as APPEARS_TOO_LATE when the lemma appears under
-          another part of speech only in later levels
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R039
-      - name: should flag catalog lemma expected above the sentence level as misplaced
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R017
-      - name: should not penalize basic lemma from a lower level reused in a higher
-          level sentence
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R017
-      - name: should apply 0.3 discount for C1 lemma in A2 sentence using the extended
-          level order
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R018
-      - name: should floor sentence score at 0.5 when a C2 lemma appears in an A1
-          sentence
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R019
-      - name: should take the maximum between misplacement and out-of-catalog discounts
-          in the same sentence
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R019
-      - name: should score 1.0 only when every content word is justified by catalog
-          level frequency band or exclusion
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R020
-      - name: should not score 1.0 when the sentence contains an infrequent out-of-catalog
-          content word
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R020
-      - name: should penalize A1 quiz whose only advanced word is a C2 catalog lemma
-          instead of scoring perfect
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R020
-      - name: should treat C2 lemma as misplaced even in a B2 sentence
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R033
-      - name: should penalize C1 lemma in every course level with distance-proportional
-          discount
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R033
-      - name: should apply strong discount 0.3 to out-of-catalog word with rank 6081
-          in A1 sentence
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R034
-      - name: should apply mild discount 0.1 to out-of-catalog word with rank 6081
-          in B2 sentence
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R034
-      - name: should not penalize out-of-catalog word with rank 900 in any course
-          level
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R034
-      - name: should apply strong discount to out-of-catalog word without frequency
-          rank
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R034
-      - name: should not penalize proper noun token even when infrequent and out of
-          catalog
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R035
-      - name: should not penalize non-alphabetic token in the misplacement evaluation
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R035
-      - name: should not evaluate functional word against the out-of-catalog frequency
-          bands
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R035
-      - name: should penalize via exact lemma and pos entry even when another pos
-          of the same lemma has a lower level
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R036
-      - name: should fall back to the lowest level among other pos entries when the
-          exact pair is missing
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R036
-      - name: should treat word as out of catalog only when the lemma has no entry
-          under any pos
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R036
-      - name: should not report C1 or C2 catalog lemmas as absent in any level coverage
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R037
-      - name: should keep expected lemma totals per level unchanged after retaining
-          C1 and C2 entries
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R037
-      - name: should expose observed pos and applied discount for each misplaced lemma
-          in the quiz diagnosis
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R038
-      - name: should expose out-of-catalog word detail with observed pos and frequency
-          rank without inventing a cefr level
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R038
-      - name: should register only words that generated discount in the quiz diagnosis
-          detail
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R038
       implements:
       - ContentAnalyzer
     - name: LemmaAbsenceScoreAggregator
@@ -3593,12 +3414,6 @@ modules:
     - name: cocaRank
       type: Integer
       description: COCA frequency ranking (nullable)
-    - name: discount
-      type: Double
-      description: "Descuento aplicado por distancia de nivel que compitio en el maximo\
-        \ de F-LABS-R019, propagado desde MisplacedLemma.discount (F-LABS-R038). Nullable\
-        \ cuando el reporte fuente es previo a F-LABS-R038. El expectedLevel puede\
-        \ ser ahora C1/C2 (F-LABS-R033)."
   - name: LemmaAbsenceCorrectionContext
     type: record
     fields:
@@ -3696,15 +3511,6 @@ modules:
         \ cuando la auditoria no incluyo lemma-count, ninguna palabra esta por debajo\
         \ del umbral, o la oracion no tiene palabras de contenido (F-RCLA-R003c).\
         \ Analoga a misplacedLemmas/suggestedLemmas: se serializa a JSON en `get task`."
-    - name: outOfCatalogWords
-      type: List<OutOfCatalogWordContext>
-      description: "Palabras de contenido fuera de catalogo que penalizaron la oracion\
-        \ del quiz (F-LABS-R034), con su detalle observable (F-LABS-R038): lema, POS\
-        \ observada, ranking nullable y descuento. Estampada por LemmaAbsenceContextResolver\
-        \ desde LemmaPlacementDiagnosis.outOfCatalogWords del nodo, analoga a misplacedLemmas.\
-        \ Lista vacia (nunca null) cuando no hay penalizadas o el reporte es previo.\
-        \ Alimenta el pipeline existente de planes y revisiones para que estas penalizaciones\
-        \ produzcan tareas corregibles."
     implements:
     - CorrectionContext
   - name: LengthDirection
@@ -3862,27 +3668,6 @@ modules:
         del contenido (F-KTLR-R002).
     implements:
     - CorrectionContext
-  - name: OutOfCatalogWordContext
-    type: record
-    fields:
-    - name: lemma
-      type: String
-      description: Forma base de la palabra fuera de catalogo penalizada en la oracion
-        del quiz (F-LABS-R038). Copiada por LemmaAbsenceContextResolver desde OutOfCatalogWord
-        del diagnostico del nodo.
-    - name: observedPos
-      type: String
-      description: Etiqueta POS observada del token en la oracion (F-LABS-R038).
-    - name: frequencyRank
-      type: Integer
-      description: "Ranking de frecuencia evaluado contra las bandas por nivel de\
-        \ F-LABS-R034. Nullable: sin ranking equivale a banda de descuento fuerte.\
-        \ El motivo se expresa como 'fuera de catalogo' con este ranking; nunca como\
-        \ un nivel CEFR (F-LABS-R038)."
-    - name: discount
-      type: double
-      description: Descuento que compitio en el maximo de F-LABS-R019. Permite al
-        agente priorizar que palabra reemplazar (F-LABS-R038).
   interfaces:
   - name: RefinerEngine
     stereotype: port
@@ -4341,20 +4126,6 @@ modules:
       traceability:
         feature: FEAT-RCLA
         rule: F-RCLA-R003c
-    - name: should populate outOfCatalogWords on the lemma-absence correction context
-        from the quiz diagnosis
-      traceability:
-        feature: FEAT-LABS
-        rule: F-LABS-R038
-    - name: should map the applied discount into each MisplacedLemmaContext entry
-      traceability:
-        feature: FEAT-LABS
-        rule: F-LABS-R038
-    - name: should leave outOfCatalogWords empty not null when the diagnosis has no
-        out-of-catalog penalties
-      traceability:
-        feature: FEAT-LABS
-        rule: F-LABS-R038
     implements:
     - CorrectionContextResolver
   - name: DispatchingCorrectionContextResolver
@@ -5193,25 +4964,6 @@ modules:
       traceability:
         feature: FEAT-LABS
         rule: F-LABS-R032
-    - name: should return out-of-catalog no-penalty rank bounds 1000 2000 3500 5000
-        for A1 A2 B1 B2
-      traceability:
-        feature: FEAT-LABS
-        rule: F-LABS-R034
-    - name: should return out-of-catalog mild-discount rank bounds 3000 5000 8000
-        10000 for A1 A2 B1 B2
-      traceability:
-        feature: FEAT-LABS
-        rule: F-LABS-R034
-    - name: should return out-of-catalog mild discount 0.1 and strong discount 0.3
-      traceability:
-        feature: FEAT-LABS
-        rule: F-LABS-R034
-    - name: should have out-of-catalog rank bounds non-decreasing from A1 to B2 within
-        each band
-      traceability:
-        feature: FEAT-LABS
-        rule: F-LABS-R034
     implements:
     - LemmaAbsenceConfig
   - name: DefaultAnalyzerRegistry
@@ -8196,22 +7948,6 @@ modules:
     implementations:
     - name: FileSystemEvpCatalog
       visibility: public
-      handwrittenTests:
-      - name: should retain C1 and C2 catalog entries at load and resolve their level
-          for misplacement lookup
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R033
-      - name: should resolve lookupLevelByLemma to the minimum level across the pos
-          entries of the lemma
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R036
-      - name: should return empty from lookupLevelByLemma when the lemma has no entry
-          under any pos
-        traceability:
-          feature: FEAT-LABS
-          rule: F-LABS-R036
       implements:
       - EvpCatalogPort
   - name: coca
@@ -11272,10 +11008,6 @@ modules:
         type: ChatModel
       - name: strategyName
         type: String
-      - name: config
-        type: LagenConfig
-      - name: projectRoot
-        type: Path
       handwrittenTests:
       - name: "Given a valid knowledge context, when generate runs, then it produces\
           \ exactly one candidate with non-empty title and non-empty instructions"
@@ -11389,10 +11121,6 @@ features:
     testModule: audit-domain
     testPackage: com.learney.contentaudit.auditdomain.labs
   - id: F-LABS-J005
-    validation: AUTO_VALIDATED
-    testModule: audit-domain
-    testPackage: com.learney.contentaudit.auditdomain.labs
-  - id: F-LABS-J006
     validation: AUTO_VALIDATED
     testModule: audit-domain
     testPackage: com.learney.contentaudit.auditdomain.labs

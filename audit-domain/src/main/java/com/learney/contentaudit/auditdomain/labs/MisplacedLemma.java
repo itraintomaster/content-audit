@@ -21,17 +21,24 @@ public class MisplacedLemma {
 
     private String semanticCategory;
 
+    private String observedPos;
+
+    private Double discount;
+
     public MisplacedLemma() {
     }
 
     public MisplacedLemma(LemmaAndPos lemmaAndPos, CefrLevel expectedLevel, CefrLevel foundInLevel,
-            AbsenceType absenceType, Integer cocaRank, String semanticCategory) {
+            AbsenceType absenceType, Integer cocaRank, String semanticCategory, String observedPos,
+            Double discount) {
         this.lemmaAndPos = lemmaAndPos;
         this.expectedLevel = expectedLevel;
         this.foundInLevel = foundInLevel;
         this.absenceType = absenceType;
         this.cocaRank = cocaRank;
         this.semanticCategory = semanticCategory;
+        this.observedPos = observedPos;
+        this.discount = discount;
     }
 
     public LemmaAndPos getLemmaAndPos() {
@@ -82,6 +89,22 @@ public class MisplacedLemma {
         this.semanticCategory = semanticCategory;
     }
 
+    public String getObservedPos() {
+        return this.observedPos;
+    }
+
+    public void setObservedPos(String observedPos) {
+        this.observedPos = observedPos;
+    }
+
+    public Double getDiscount() {
+        return this.discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -92,11 +115,13 @@ public class MisplacedLemma {
                     && Objects.equals(this.foundInLevel, that.foundInLevel)
                     && Objects.equals(this.absenceType, that.absenceType)
                     && Objects.equals(this.cocaRank, that.cocaRank)
-                    && Objects.equals(this.semanticCategory, that.semanticCategory);
+                    && Objects.equals(this.semanticCategory, that.semanticCategory)
+                    && Objects.equals(this.observedPos, that.observedPos)
+                    && Objects.equals(this.discount, that.discount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lemmaAndPos, expectedLevel, foundInLevel, absenceType, cocaRank, semanticCategory);
+        return Objects.hash(lemmaAndPos, expectedLevel, foundInLevel, absenceType, cocaRank, semanticCategory, observedPos, discount);
     }
 }

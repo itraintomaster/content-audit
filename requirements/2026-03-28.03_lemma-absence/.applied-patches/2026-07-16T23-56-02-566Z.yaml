@@ -1,0 +1,152 @@
+code: FEAT-LABS
+modules:
+- name: audit-domain
+  models:
+  - name: CefrLevel
+    type: enum
+    fields:
+    - name: C1
+      description: "Nivel C1 del MCER. Retenido del catalogo solo para la deteccion\
+        \ de mal-ubicacion por oracion (F-LABS-R033); excluido de cobertura, umbrales,\
+        \ pesos, alertas y recomendaciones (F-LABS-R037). Orden numerico 5 para el\
+        \ calculo de distancia (F-LABS-R018)."
+      _change: add
+    - name: C2
+      description: "Nivel C2 del MCER. Retenido del catalogo solo para la deteccion\
+        \ de mal-ubicacion por oracion (F-LABS-R033); excluido de cobertura, umbrales,\
+        \ pesos, alertas y recomendaciones (F-LABS-R037). Orden numerico 6 para el\
+        \ calculo de distancia (F-LABS-R018)."
+      _change: add
+    _change: modify
+  interfaces:
+  - name: EvpCatalogPort
+    sealed: false
+    exposes:
+    - signature: "lookupLevelByLemma(String lemma): Optional<CefrLevel>"
+      _change: add
+    _change: modify
+  - name: LemmaAbsenceConfig
+    sealed: false
+    exposes:
+    - signature: "getOutOfCatalogNoPenaltyRankBound(CefrLevel level): int"
+      _change: add
+    - signature: "getOutOfCatalogMildDiscountRankBound(CefrLevel level): int"
+      _change: add
+    - signature: "getOutOfCatalogMildDiscount(): double"
+      _change: add
+    - signature: "getOutOfCatalogStrongDiscount(): double"
+      _change: add
+    _change: modify
+  packages:
+  - name: labs
+    models:
+    - name: OutOfCatalogWord
+      type: record
+      fields:
+      - name: lemma
+        type: String
+        description: "Forma base de la palabra de contenido que no figura en el catalogo\
+          \ bajo ninguna categoria gramatical, tras agotar el fallback por lema de\
+          \ F-LABS-R036 (F-LABS-R034, R038)."
+      - name: observedPos
+        type: String
+        description: "Etiqueta POS del token en la oracion (Universal Dependencies,\
+          \ de NlpToken.posTag). Es la categoria observada, no una del catalogo: la\
+          \ palabra no tiene entrada de catalogo (F-LABS-R038)."
+      - name: frequencyRank
+        type: Integer
+        description: "Ranking de frecuencia del token (NlpToken.frequencyRank) evaluado\
+          \ contra las bandas por nivel de F-LABS-R034. Nullable: sin ranking la palabra\
+          \ cae siempre en la banda de descuento fuerte. NO se le inventa nivel CEFR\
+          \ (F-LABS-R038)."
+      - name: discount
+        type: double
+        description: "Descuento aplicado segun la banda de frecuencia del nivel de\
+          \ la oracion (0.0 no ocurre: solo se registran palabras que generaron descuento).\
+          \ Compite en el maximo de F-LABS-R019 (F-LABS-R038)."
+      _change: add
+    - name: MisplacedLemma
+      type: record
+      fields:
+      - name: observedPos
+        type: String
+        description: Etiqueta POS del token observada en la oracion (F-LABS-R038).
+          Puede diferir de lemmaAndPos.pos cuando el emparejamiento uso el fallback
+          por lema de F-LABS-R036 (la entrada de catalogo elegida es la de menor nivel
+          entre otras categorias). Nullable en reportes previos a F-LABS-R038.
+        _change: add
+      - name: discount
+        type: Double
+        description: "Descuento aplicado por distancia de nivel (0.1 por nivel, F-LABS-R018/R033)\
+          \ que compitio en el maximo de F-LABS-R019 (F-LABS-R038). Nullable en reportes\
+          \ serializados previos a F-LABS-R038."
+        _change: add
+      _change: modify
+    - name: LemmaPlacementDiagnosis
+      type: record
+      fields:
+      - name: outOfCatalogWordCount
+        type: int
+        description: "Cantidad de palabras fuera de catalogo penalizadas en este nodo\
+          \ (F-LABS-R034, R038). Simetrico a misplacedLemmaCount; 0 en reportes previos."
+        _change: add
+      - name: outOfCatalogWords
+        type: List<OutOfCatalogWord>
+        description: "Detalle de cada palabra fuera de catalogo que genero descuento,\
+          \ con motivo expresado como ranking de frecuencia y sin nivel CEFR inventado\
+          \ (F-LABS-R034, R038). Lista vacia cuando no hay penalizadas o en reportes\
+          \ previos."
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: refiner-domain
+  models:
+  - name: OutOfCatalogWordContext
+    type: record
+    fields:
+    - name: lemma
+      type: String
+      description: Forma base de la palabra fuera de catalogo penalizada en la oracion
+        del quiz (F-LABS-R038). Copiada por LemmaAbsenceContextResolver desde OutOfCatalogWord
+        del diagnostico del nodo.
+    - name: observedPos
+      type: String
+      description: Etiqueta POS observada del token en la oracion (F-LABS-R038).
+    - name: frequencyRank
+      type: Integer
+      description: "Ranking de frecuencia evaluado contra las bandas por nivel de\
+        \ F-LABS-R034. Nullable: sin ranking equivale a banda de descuento fuerte.\
+        \ El motivo se expresa como 'fuera de catalogo' con este ranking; nunca como\
+        \ un nivel CEFR (F-LABS-R038)."
+    - name: discount
+      type: double
+      description: Descuento que compitio en el maximo de F-LABS-R019. Permite al
+        agente priorizar que palabra reemplazar (F-LABS-R038).
+    _change: add
+  - name: MisplacedLemmaContext
+    type: record
+    fields:
+    - name: discount
+      type: Double
+      description: "Descuento aplicado por distancia de nivel que compitio en el maximo\
+        \ de F-LABS-R019, propagado desde MisplacedLemma.discount (F-LABS-R038). Nullable\
+        \ cuando el reporte fuente es previo a F-LABS-R038. El expectedLevel puede\
+        \ ser ahora C1/C2 (F-LABS-R033)."
+      _change: add
+    _change: modify
+  - name: LemmaAbsenceCorrectionContext
+    type: record
+    fields:
+    - name: outOfCatalogWords
+      type: List<OutOfCatalogWordContext>
+      description: "Palabras de contenido fuera de catalogo que penalizaron la oracion\
+        \ del quiz (F-LABS-R034), con su detalle observable (F-LABS-R038): lema, POS\
+        \ observada, ranking nullable y descuento. Estampada por LemmaAbsenceContextResolver\
+        \ desde LemmaPlacementDiagnosis.outOfCatalogWords del nodo, analoga a misplacedLemmas.\
+        \ Lista vacia (nunca null) cuando no hay penalizadas o el reporte es previo.\
+        \ Alimenta el pipeline existente de planes y revisiones para que estas penalizaciones\
+        \ produzcan tareas corregibles."
+      _change: add
+    _change: modify
+  _change: modify

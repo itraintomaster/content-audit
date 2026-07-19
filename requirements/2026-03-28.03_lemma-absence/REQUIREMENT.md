@@ -59,10 +59,10 @@ Los niveles A1 y A2 se consideran **criticos** para la evaluacion de ausencia. L
 
 Las reglas se organizan en seis grupos segun la fase y el tema al que pertenecen:
 
-- **Grupo A - Identificacion de lemas ausentes (R001-R005)**: reglas que describen como se determinan los lemas esperados, presentes y ausentes para cada nivel CEFR.
+- **Grupo A - Identificacion de lemas ausentes (R001-R005, R039)**: reglas que describen como se determinan los lemas esperados, presentes y ausentes para cada nivel CEFR.
 - **Grupo B - Clasificacion del tipo de ausencia (R006-R010)**: reglas que describen como se clasifica cada lema ausente segun donde aparece (o no) en el curso.
 - **Grupo C - Prioridad y enriquecimiento (R011-R016)**: reglas que describen como se asigna prioridad basada en frecuencia COCA y como se enriquece cada lema con informacion adicional.
-- **Grupo D - Scoring por oracion (R017-R020)**: reglas que describen como se evalua el impacto de los lemas mal ubicados en cada oracion del curso.
+- **Grupo D - Scoring por oracion y vocabulario avanzado (R017-R020, R033-R038)**: reglas que describen como se evalua el impacto de los lemas mal ubicados en cada oracion del curso, incluyendo el vocabulario de nivel superior al rango del curso (C1/C2) y las palabras de contenido fuera de catalogo.
 - **Grupo E - Assessment global y metricas por nivel (R021-R026)**: reglas que describen la evaluacion global, los umbrales de tolerancia y las metricas resultantes por nivel.
 - **Grupo F - Recomendaciones (R027-R031)**: reglas que describen la generacion de recomendaciones accionables para corregir las brechas de vocabulario.
 
@@ -98,7 +98,7 @@ Para cada nivel CEFR, los **lemas ausentes** son la diferencia entre los lemas e
 
 lemas ausentes del nivel = lemas esperados del nivel - lemas presentes del nivel
 
-La comparacion se realiza por el par LemmaAndPos: un lema se considera ausente si no existe ninguna ocurrencia con el mismo lema y la misma parte de la oracion en el nivel correspondiente. Si el EVP espera "run" como verbo en A2 y el curso tiene "run" como sustantivo en A2 (pero no como verbo), entonces "run" como verbo se marca como ausente en A2.
+La comparacion usa la presencia relajada por lema (R039): un lema esperado se considera presente si el nivel contiene ese lema bajo **cualquier** categoria gramatical. Si el EVP espera "run" como verbo en A2 y el curso tiene "run" como sustantivo en A2, "run" **no** se marca como ausente: el etiquetado automatico de categorias no es lo bastante confiable como para afirmar la ausencia sobre esa distincion (resolucion de DOUBT-POS-FALLBACK-ALCANCE).
 
 **Error**: N/A (esta regla describe un calculo de conjuntos)
 
@@ -119,6 +119,21 @@ El catalogo EVP puede contener tanto lemas individuales como frases multipalabra
 La determinacion de si una entrada del EVP es un lema individual o una frase multipalabra se basa en el indicador de frase del catalogo.
 
 **Error**: N/A (esta regla describe un criterio de filtrado)
+
+### Rule[F-LABS-R039] - Presencia de lemas bajo cualquier categoria gramatical
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+Para el calculo de ausencia por nivel (R003) y la busqueda de lemas ausentes en otros niveles (R004), un lema esperado cuenta como **presente** cuando el nivel contiene ese lema bajo **cualquier** categoria gramatical, no solo bajo la categoria esperada por el catalogo.
+
+Consecuencias observables:
+
+1. Un lema esperado como verbo que solo aparece etiquetado como sustantivo en el nivel **no** se reporta ausente. Ejemplo: "run" esperado como verbo en A2 con "run" presente como sustantivo en A2 -> presente.
+2. Dos entradas esperadas del mismo lema con distinta categoria (por ejemplo "run" verbo y "run" sustantivo, ambas esperadas en A2) quedan **ambas cubiertas** por una unica ocurrencia del lema en el nivel.
+3. La clasificacion del tipo de ausencia (R006/R007) usa la misma presencia relajada al buscar el lema en otros niveles: si "run" verbo esta ausente de A2 pero "run" (bajo cualquier categoria) aparece en B1, el tipo es APPEARS_TOO_LATE, no COMPLETELY_ABSENT.
+
+Esta regla es la contracara en el Grupo A del fallback por lema de R036 (Grupo D), y elimina el riesgo de falsos "ausentes" por inconsistencia de etiquetas descrito en R015 (el lado de falsos positivos de DOUBT-POS-CONSISTENCY): la distincion por categoria gramatical del catalogo enriquecido no es lo bastante confiable como para fundar una ausencia.
+
+**Error**: N/A (esta regla describe el criterio de presencia)
 
 ---
 
@@ -295,7 +310,7 @@ Ejemplo: una oracion del nivel A1 que contiene el lema "invest" (esperado en B2)
 
 Los lemas cuyo nivel esperado es **igual o inferior** al de la oracion no se consideran mal ubicados. Una palabra de A1 que aparece en B2 es vocabulario basico reutilizado, no un error de contenido. La accion correctiva para esos lemas (si estan ausentes en su nivel esperado) se maneja a nivel de Level mediante los tipos de ausencia TOO_LATE y COMPLETELY_ABSENT (R006).
 
-Solo los lemas que estan en el catalogo EVP participan en esta evaluacion.
+La evaluacion cubre **todos los niveles del catalogo de vocabulario**, incluidos los superiores al rango del curso (C1 y C2, ver R033). Las palabras de contenido que no figuran en el catalogo se evaluan mediante la heuristica de frecuencia (R034); los nombres propios y tokens no lexicos se excluyen (R035). El emparejamiento entre token y entrada de catalogo usa el fallback por lema definido en R036.
 
 **Error**: N/A (esta regla describe un mecanismo de deteccion)
 
@@ -306,11 +321,12 @@ Para cada lema mal ubicado en una oracion (nivel esperado superior al de la orac
 
 descuento = 0.1 * (nivel esperado del lema - nivel de la oracion)
 
-La distancia se calcula como la diferencia en el orden numerico de los niveles CEFR (A1=1, A2=2, B1=3, B2=4). Solo se aplica cuando el nivel esperado es mayor que el de la oracion.
+La distancia se calcula como la diferencia en el orden numerico de los niveles CEFR (A1=1, A2=2, B1=3, B2=4, y para los niveles superiores al curso C1=5, C2=6 — ver R033). Solo se aplica cuando el nivel esperado es mayor que el de la oracion.
 
 Ejemplos:
 - Lema B2 en oracion A1: distancia = 4-1 = 3, descuento = 0.3
 - Lema B1 en oracion A2: distancia = 3-2 = 1, descuento = 0.1
+- Lema C2 en oracion A1: distancia = 6-1 = 5, descuento = 0.5
 - Lema A1 en oracion B2: no se penaliza (vocabulario basico reutilizado)
 
 El factor de 0.1 por nivel de distancia es un valor fijo configurable via `getDiscountPerLevel()`.
@@ -330,18 +346,122 @@ Ejemplos:
 - Oracion sin lemas mal ubicados: score = 1.0 (perfecta)
 - Oracion A1 con lema B1 (distancia 2): score = 1.0 - 0.2 = 0.8
 - Oracion A1 con lemas B1 y B2 (distancias 2 y 3): score = 1.0 - max(0.2, 0.3) = 0.7
+- Oracion A1 con lema C2 (distancia 5): score = 1.0 - 0.5 = 0.5
 - Oracion B2 con lema A1: score = 1.0 (no se penaliza, vocabulario basico)
 
-El score minimo posible es 0.7 (lema a maxima distancia de 3 niveles, por ejemplo B2 en oracion A1).
+El score minimo posible es 0.5 (lema a maxima distancia de 5 niveles: lema C2 en oracion A1, ver R033). Los descuentos de la heuristica de fuera-de-catalogo (R034) compiten en el mismo maximo.
 
 **Error**: "Score calculado fuera de rango [0.0, 1.0] para la oracion {sentenceId}: {score}"
 
-### Rule[F-LABS-R020] - Oraciones sin lemas mal ubicados
-**Severity**: minor | **Validation**: AUTO_VALIDATED
+### Rule[F-LABS-R020] - Puntuacion perfecta solo con vocabulario integramente justificado
+**Severity**: major | **Validation**: AUTO_VALIDATED
 
-Las oraciones que no contienen ningun lema mal ubicado (todos sus lemas EVP pertenecen al nivel correcto, o la oracion no contiene lemas del EVP) reciben una puntuacion de **1.0** (maxima). Estas oraciones no contribuyen negativamente al score del nivel.
+Una oracion recibe la puntuacion maxima (**1.0**) unicamente cuando **cada una** de sus palabras de contenido esta justificada por alguno de estos motivos:
 
-**Error**: N/A (esta regla describe un caso base)
+1. Es un lema del catalogo cuyo nivel esperado es **igual o inferior** al nivel de la oracion (aplicando el fallback por lema de R036).
+2. Es una palabra fuera de catalogo **frecuente** segun las bandas de R034 (ranking dentro de la banda sin penalidad para el nivel de la oracion).
+3. Es un nombre propio u otro token excluido segun R035.
+
+Desconocer el nivel esperado de una palabra **no otorga puntuacion perfecta por defecto**: un lema de catalogo de nivel superior al curso (C1/C2, R033) o una palabra fuera de catalogo infrecuente (R034) penalizan la oracion. Esta regla elimina el punto ciego por el cual las palabras mas avanzadas eran exactamente las invisibles al analisis (caso confirmado 2026-07-16: la quiz A1 "It hails every year." con "hail" de nivel C2 puntuaba 1.0).
+
+Las oraciones cuyo vocabulario esta integramente justificado no contribuyen negativamente al score del nivel.
+
+**Error**: N/A (esta regla describe la condicion del caso base)
+
+### Rule[F-LABS-R033] - Vocabulario de nivel superior al curso (C1/C2)
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+El catalogo de vocabulario **conserva las entradas de niveles C1 y C2** para la evaluacion de mal-ubicacion, aun cuando los niveles del curso son A1-B2 (hoy esas entradas se descartan al cargar el catalogo, lo que genera el punto ciego de R020). Un lema cuyo nivel esperado es C1 o C2 esta **mal ubicado en cualquier oracion del curso**, porque ningun nivel del curso alcanza ese vocabulario.
+
+La distancia se calcula con la extension del orden numerico de R018 (C1=5, C2=6), con la misma pendiente de descuento (0.1 por nivel). El piso del score por oracion pasa de 0.7 a 0.5.
+
+Ejemplos:
+- "hail" (C2) en oracion A1: distancia = 6-1 = 5, descuento = 0.5, score = 0.5
+- "possess" (C1) en oracion A2: distancia = 5-2 = 3, descuento = 0.3, score = 0.7
+- "shatter" (C2) en oracion B2: distancia = 6-4 = 2, descuento = 0.2, score = 0.8
+
+La extension lineal de la escala existente (en lugar de una penalidad especial mas dura para C1/C2 en niveles iniciales) fue confirmada por el usuario. Ver Doubt[DOUBT-C1C2-SEVERIDAD], resuelta.
+
+**Error**: N/A (esta regla extiende el mecanismo de deteccion de R017/R018)
+
+### Rule[F-LABS-R034] - Palabras de contenido fuera de catalogo: bandas de frecuencia por nivel
+**Severity**: critical | **Validation**: ASSUMPTION
+
+Las palabras de contenido (sustantivos, verbos, adjetivos, adverbios) que aparecen en una oracion y **no figuran en el catalogo de vocabulario bajo ninguna categoria gramatical** (es decir, tras agotar el fallback de R036) se evaluan por su **ranking de frecuencia** (dato que cada token del audit ya trae) contra **bandas graduadas que dependen del nivel de la oracion**: cuanto mas basico el nivel, mas frecuente debe ser una palabra desconocida para no penalizar.
+
+| Nivel de la oracion | Sin penalidad (ranking <=) | Descuento leve 0.1 (ranking <=) | Descuento fuerte 0.3 |
+|---------------------|----------------------------|----------------------------------|-----------------------|
+| A1 | 1000 | 3000 | ranking > 3000 o sin ranking |
+| A2 | 2000 | 5000 | ranking > 5000 o sin ranking |
+| B1 | 3500 | 8000 | ranking > 8000 o sin ranking |
+| B2 | 5000 | 10000 | ranking > 10000 o sin ranking |
+
+Las palabras sin ranking de frecuencia disponible caen siempre en la banda de descuento fuerte (una palabra tan rara que no figura en la lista de frecuencia no puede presumirse adecuada). El descuento compite en el maximo de R019 junto a los descuentos por distancia de nivel. Las exclusiones de R035 (nombres propios, tokens no lexicos) se aplican **antes** de estas bandas.
+
+Ejemplos:
+- Palabra fuera de catalogo con ranking 6081 en oracion A1: descuento 0.3 (supera la banda de A1)
+- La misma palabra en oracion B2: descuento 0.1 (banda leve de B2)
+- Palabra fuera de catalogo con ranking 900: sin penalidad en cualquier nivel
+
+[ASSUMPTION] El esquema de bandas graduadas por nivel fue confirmado por el usuario ("bandas graduadas. Para A1, debajo de 1000, por ejemplo" — Doubt[DOUBT-OOC-HEURISTICA], resuelta). Los valores numericos exactos de la tabla (umbral sin-penalidad de A1 en 1000 anclado por el usuario; el resto de la tabla y los descuentos 0.1/0.3) son propuesta del requerimiento, configurables por nivel.
+
+**Error**: N/A (esta regla describe una heuristica de scoring)
+
+### Rule[F-LABS-R035] - Exclusion de nombres propios y tokens no lexicos
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+No penalizan ni participan de la evaluacion de mal-ubicacion (R017, R033, R034):
+
+1. Los tokens etiquetados como **nombre propio** por el procesamiento linguistico (nombres de personas, lugares, marcas). Un nombre propio no tiene nivel pedagogico: "Maria vive en London" no contiene vocabulario avanzado.
+2. Los tokens **no alfabeticos** (numeros, simbolos, cifras con digitos).
+3. Las **palabras funcionales**, ya excluidas por el filtro general de palabras de contenido (R001).
+
+La etiqueta de nombre propio del procesamiento linguistico es el **unico** criterio de exclusion; no se mantiene lista blanca manual y los errores residuales del etiquetado se toleran (confirmado por el usuario, ver Doubt[DOUBT-NOMBRES-PROPIOS], resuelta).
+
+**Error**: N/A (esta regla describe un criterio de exclusion)
+
+### Rule[F-LABS-R036] - Emparejamiento con fallback por lema (relajacion de la categoria gramatical)
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+Para la evaluacion de mal-ubicacion por oracion (Grupo D), el emparejamiento entre un token y el catalogo de vocabulario se realiza en dos pasos:
+
+1. **Match exacto** por el par lema + categoria gramatical (LemmaAndPos), como hasta ahora.
+2. **Fallback por lema**: si no existe entrada para ese par pero el catalogo contiene el lema bajo otras categorias gramaticales, se usa la entrada de **menor nivel esperado** entre las disponibles (beneficio de la duda: nunca se penaliza mas por culpa del fallback).
+
+Motiva esta regla que el catalogo enriquecido trae categorias gramaticales poco confiables (caso confirmado: "hail" usado como verbo figura en el catalogo solo como sustantivo), lo que con match exacto produce falsos negativos incluso dentro de A1-B2. Solo cuando el lema no existe en el catalogo bajo ninguna categoria se considera fuera de catalogo y pasa a las bandas de frecuencia de R034.
+
+El mismo criterio de relajacion se extiende al calculo de ausencia por nivel del Grupo A mediante R039 (resolucion de Doubt[DOUBT-POS-FALLBACK-ALCANCE]: un lema presente bajo cualquier categoria cuenta como presente).
+
+**Error**: N/A (esta regla describe el mecanismo de emparejamiento)
+
+### Rule[F-LABS-R037] - Los niveles C1/C2 no participan de la cobertura de ausencias
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+La retencion de las entradas C1/C2 del catalogo (R033) **no altera** los Grupos A, B, C, E y F:
+
+- Los lemas esperados por nivel (R001) siguen siendo unicamente los de los niveles presentes en el curso (A1-B2).
+- No existen umbrales de tolerancia, coverage targets, pesos de nivel, alertas ni recomendaciones para C1/C2.
+- Un lema C1/C2 jamas se reporta como ausente (COMPLETELY_ABSENT, APPEARS_TOO_LATE ni APPEARS_TOO_EARLY).
+
+Su unica participacion es la deteccion de mal-ubicacion del Grupo D. Sin esta exclusion explicita, las miles de entradas C1/C2 del catalogo aparecerian como "completamente ausentes" y distorsionarian el score global, las alertas y las recomendaciones.
+
+**Error**: N/A (esta regla describe una condicion de exclusion)
+
+### Rule[F-LABS-R038] - Detalle observable de los lemas penalizados por oracion
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+Cada oracion penalizada expone en su diagnostico el detalle de **cada lema que genero descuento**:
+
+| Dato | Descripcion |
+|------|-------------|
+| Lema | La forma base penalizada |
+| Categoria gramatical observada | La etiqueta POS del token en la oracion |
+| Motivo | Nivel esperado del catalogo (incluyendo C1/C2), o "fuera de catalogo" con su ranking de frecuencia |
+| Descuento aplicado | El valor que compitio en el maximo de R019 |
+
+Para las palabras fuera de catalogo el motivo se expresa como "fuera de catalogo" con el ranking observado; no se les inventa un nivel CEFR. Este detalle alimenta el pipeline existente de planes y revisiones igual que los lemas mal ubicados actuales, de modo que las nuevas penalizaciones producen tareas corregibles.
+
+**Error**: N/A (esta regla describe la estructura del detalle diagnostico)
 
 ---
 
@@ -560,7 +680,7 @@ journeys:
 
       - id: ejecutar_analisis
         action: "ContentAudit analiza el curso y presenta los resultados de ausencia de vocabulario"
-        gate: [F-LABS-R001, F-LABS-R002, F-LABS-R003, F-LABS-R005, F-LABS-R010]
+        gate: [F-LABS-R001, F-LABS-R002, F-LABS-R003, F-LABS-R005, F-LABS-R010, F-LABS-R039]
         outcomes:
           - when: "El analisis se completa exitosamente"
             then: revisar_resumen
@@ -765,6 +885,57 @@ journeys:
         result: success
 ```
 
+### Journey[F-LABS-J006] - Detectar vocabulario avanzado invisible al rango del curso
+**Validation**: AUTO_VALIDATED
+
+Cubre el cierre del punto ciego C1/C2 y fuera-de-catalogo: una quiz de nivel inicial con vocabulario avanzado deja de puntuar 1.0, el detalle diagnostico explica el motivo, y la cobertura de ausencias por nivel permanece intacta.
+
+```yaml
+journeys:
+  - id: F-LABS-J006
+    name: Detectar vocabulario avanzado invisible al rango del curso
+    flow:
+      - id: ejecutar_auditoria
+        action: "El usuario ejecuta la auditoria de ausencia de lemas sobre un curso A1-B2 que contiene oraciones con vocabulario C1/C2 y palabras fuera de catalogo"
+        gate: [F-LABS-R017, F-LABS-R036]
+        then: revisar_scores_oracion
+
+      - id: revisar_scores_oracion
+        action: "El usuario revisa los scores por oracion de las quizzes con vocabulario avanzado"
+        outcomes:
+          - when: "La oracion contiene un lema del catalogo de nivel C1 o C2"
+            then: ver_penalidad_c1c2
+          - when: "La oracion contiene una palabra de contenido fuera de catalogo e infrecuente"
+            then: ver_penalidad_fuera_catalogo
+          - when: "Las unicas palabras no justificadas de la oracion son nombres propios o tokens no lexicos"
+            then: confirmar_sin_penalidad
+
+      - id: ver_penalidad_c1c2
+        action: "El usuario observa que la oracion recibe el descuento por distancia extendida (por ejemplo, quiz A1 con lema C2 puntua 0.5), aunque la categoria gramatical del catalogo difiera de la observada"
+        gate: [F-LABS-R033, F-LABS-R019, F-LABS-R036]
+        then: examinar_detalle
+
+      - id: ver_penalidad_fuera_catalogo
+        action: "El usuario observa que la oracion recibe el descuento de la banda de frecuencia correspondiente al nivel de la oracion (la misma palabra penaliza mas fuerte en A1 que en B2)"
+        gate: [F-LABS-R034]
+        then: examinar_detalle
+
+      - id: confirmar_sin_penalidad
+        action: "El usuario confirma que la oracion puntua 1.0 porque su vocabulario esta integramente justificado"
+        gate: [F-LABS-R035, F-LABS-R020]
+        result: success
+
+      - id: examinar_detalle
+        action: "El usuario examina el detalle diagnostico de la oracion: lema, categoria observada, motivo (nivel C1/C2 o fuera de catalogo con ranking) y descuento aplicado"
+        gate: [F-LABS-R038]
+        then: verificar_cobertura_intacta
+
+      - id: verificar_cobertura_intacta
+        action: "El usuario verifica que las metricas de cobertura por nivel no incluyen lemas C1/C2 como ausentes, y que los lemas presentes bajo otra categoria gramatical ya no figuran como falsos ausentes"
+        gate: [F-LABS-R037, F-LABS-R039]
+        result: success
+```
+
 ---
 
 ## Open Questions
@@ -860,6 +1031,58 @@ El analisis actual asume que el curso cubre los niveles A1 a B2. Sin embargo, po
 - [ ] Opcion B: Si faltan A1 o A2, el assessment no puede ser peor que ACCEPTABLE (ya que no se pueden evaluar niveles criticos)
 - [ ] Opcion C: Se requiere que todos los niveles esten presentes para ejecutar el analisis; si falta algun nivel, se reporta un error de configuracion
 
+### Doubt[DOUBT-C1C2-SEVERIDAD] - Escala de penalidad para vocabulario C1/C2
+**Status**: RESOLVED
+
+R033 extiende linealmente la escala de descuento de R018 (C1=5, C2=6, pendiente 0.1), de modo que un lema C2 en A1 produce score 0.5. Alternativamente, el vocabulario por encima del rango del curso podria considerarse un defecto absoluto (nunca deberia estar en ningun nivel del curso) y penalizarse mas fuerte.
+
+**Pregunta**: Como se penaliza un lema C1/C2 en el curso?
+
+- [x] Opcion A: Extension lineal de la escala existente (C1=5, C2=6, descuento 0.1 por nivel; piso 0.5) — propuesta del requerimiento, consistente con R018
+- [ ] Opcion B: Descuento fijo maximo (por ejemplo 0.5) para todo C1/C2 en cualquier nivel, sin gradacion por distancia
+- [ ] Opcion C: Extension lineal pero con pendiente mayor para la porcion por encima de B2 (por ejemplo 0.15 por nivel a partir de C1)
+
+**Answer**: Resuelto por el usuario el 2026-07-16: Opcion A. R033 queda como esta.
+
+### Doubt[DOUBT-OOC-HEURISTICA] - Umbral y descuento para palabras fuera de catalogo
+**Status**: RESOLVED
+
+R034 usaba un umbral de ranking de frecuencia unico (5000) y un descuento fijo (0.2) para palabras de contenido fuera de catalogo. La mezcla real observada (~83 quizzes de A1/A2 afectadas) incluye vocabulario no-EVP genuinamente avanzado pero tambien palabras cotidianas que el catalogo simplemente no lista.
+
+**Pregunta**: Que parametros usa la heuristica de fuera-de-catalogo?
+
+- [ ] Opcion A: Umbral 5000 y descuento fijo 0.2 (propuesta original del requerimiento)
+- [x] Opcion B: Bandas de descuento graduadas por ranking — con el matiz del usuario: los umbrales dependen del nivel de la oracion ("bandas graduadas. Para A1, debajo de 1000, por ejemplo")
+- [ ] Opcion C: Penalizar solo las palabras sin ranking de frecuencia (las mas raras) y no penalizar las que tienen ranking
+
+**Answer**: Resuelto por el usuario el 2026-07-16: bandas graduadas por ranking con umbrales dependientes del nivel de la oracion (en A1 una palabra desconocida solo queda sin penalizar si es muy frecuente, ranking <= 1000; en niveles superiores el umbral es mas laxo). R034 quedo reescrita con la tabla de bandas por nivel; los valores numericos exactos (salvo el ancla de A1 en 1000, dada por el usuario) son propuesta del requerimiento marcada como ASSUMPTION.
+
+### Doubt[DOUBT-POS-FALLBACK-ALCANCE] - Alcance del fallback por lema
+**Status**: RESOLVED
+
+R036 definia el fallback por lema (relajacion de categoria gramatical) solo para el scoring por oracion (Grupo D). El calculo de ausencia por nivel (Grupo A, R003) mantenia el match exacto por LemmaAndPos, donde el mismo problema de categorias poco confiables puede producir falsos "ausentes" ("run" verbo marcado ausente porque el curso solo tiene "run" clasificado como sustantivo).
+
+**Pregunta**: El fallback por lema debe extenderse tambien al calculo de ausencia por nivel?
+
+- [ ] Opcion A: Solo Grupo D por ahora
+- [x] Opcion B: Extenderlo tambien al Grupo A (un lema presente bajo cualquier categoria cuenta como presente)
+- [ ] Opcion C: Extenderlo al Grupo A solo cuando la entrada del catalogo tiene categoria vacia o unica
+
+**Answer**: Resuelto por el usuario el 2026-07-16: Opcion B. La presencia relajada quedo reglada en R039 (regla propia del Grupo A, con su test explicito), R003 y R036 fueron ajustadas en consecuencia, y la clasificacion de tipo de ausencia (R004/R006/R007) usa la misma presencia relajada.
+
+### Doubt[DOUBT-NOMBRES-PROPIOS] - Criterio de exclusion de nombres propios
+**Status**: RESOLVED
+
+R035 excluye los tokens etiquetados como nombre propio por el procesamiento linguistico. El etiquetado automatico puede fallar en oraciones cortas o con mayusculas iniciales ambiguas (inicio de oracion), dejando pasar nombres propios como supuesto vocabulario avanzado o viceversa.
+
+**Pregunta**: Alcanza la etiqueta del NLP como unico criterio?
+
+- [x] Opcion A: Si, solo la etiqueta del NLP (propuesta del requerimiento; los errores residuales se toleran)
+- [ ] Opcion B: Etiqueta del NLP + exclusion adicional de todo token capitalizado en posicion no inicial
+- [ ] Opcion C: Etiqueta del NLP + lista blanca mantenida manualmente para falsos positivos recurrentes
+
+**Answer**: Resuelto por el usuario el 2026-07-16: Opcion A. R035 queda como esta.
+
 ---
 
 ## Configuracion
@@ -911,6 +1134,26 @@ lemmaAbsence:
 
   # Factor de descuento por distancia de nivel (ver DOUBT-DISCOUNT-FACTOR)
   discountPerLevelDistance: 0.1
+
+  # Orden numerico extendido para mal-ubicacion (R033; C1/C2 solo Grupo D, ver R037)
+  misplacedLevelOrders:
+    A1: 1
+    A2: 2
+    B1: 3
+    B2: 4
+    C1: 5
+    C2: 6
+
+  # Bandas de frecuencia por nivel para palabras fuera de catalogo
+  # (R034; DOUBT-OOC-HEURISTICA resuelta: bandas graduadas dependientes del nivel,
+  #  ancla del usuario: A1 sin penalidad solo con ranking <= 1000)
+  outOfCatalogBands:
+    A1: { noPenaltyMaxRank: 1000, lightDiscountMaxRank: 3000 }
+    A2: { noPenaltyMaxRank: 2000, lightDiscountMaxRank: 5000 }
+    B1: { noPenaltyMaxRank: 3500, lightDiscountMaxRank: 8000 }
+    B2: { noPenaltyMaxRank: 5000, lightDiscountMaxRank: 10000 }
+  outOfCatalogLightDiscount: 0.1
+  outOfCatalogHeavyDiscount: 0.3   # tambien para palabras sin ranking
 
   # Tipos de ausencia incluidos en el analisis
   includedAbsenceTypes:

@@ -54,7 +54,7 @@ public class FLasagJ004JourneyTest {
                 15,
                 0,
                 LengthDirection.KEEP_SAME,
-                null, null, Collections.emptyList(), "quiz-node-001", null
+                null, null, Collections.emptyList(), "quiz-node-001", null, null
         );
     }
 

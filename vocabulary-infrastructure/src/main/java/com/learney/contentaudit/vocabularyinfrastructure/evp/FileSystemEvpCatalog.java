@@ -24,8 +24,11 @@ import java.util.Set;
 public class FileSystemEvpCatalog implements EvpCatalogPort {
 
     private final Map<CefrLevel, Set<LemmaAndPos>> expectedByLevel = new EnumMap<>(CefrLevel.class);
-    // Reverse index: lemma+pos -> its CEFR level (first/lowest level wins on collision)
+    // Reverse index: lemma+pos -> its CEFR level (lowest level wins on collision)
     private final Map<LemmaAndPos, CefrLevel> levelByLemma = new HashMap<>();
+    // F-LABS-R036 (paso 2): lemma (sin POS) -> MENOR nivel entre todas sus entradas.
+    // Solo se consulta cuando no existe entrada exacta para el par lemma+POS.
+    private final Map<String, CefrLevel> lowestLevelByLemmaOnly = new HashMap<>();
     private final Map<LemmaAndPos, Integer> cocaRanks = new HashMap<>();
     private final Map<LemmaAndPos, String> semanticCategories = new HashMap<>();
     private final Set<String> phrases = new HashSet<>();
@@ -55,12 +58,16 @@ public class FileSystemEvpCatalog implements EvpCatalogPort {
                 if (lemma == null || posTag == null || levelStr == null) continue;
 
                 CefrLevel level = parseCefrLevel(levelStr);
-                if (level == null) continue; // skip C1, C2
+                // F-LABS-R033: C1/C2 se retienen (participan solo de la mal-ubicacion, Grupo D).
+                // Solo se descartan niveles no representables en el enum.
+                if (level == null) continue;
 
                 LemmaAndPos lp = new LemmaAndPos(lemma, posTag);
                 expectedByLevel.get(level).add(lp);
-                // Keep the first (lowest ordinal) level if a lemma appears in multiple levels
-                levelByLemma.putIfAbsent(lp, level);
+                // Keep the lowest level if a lemma+pos appears in multiple levels
+                levelByLemma.merge(lp, level, FileSystemEvpCatalog::lowest);
+                // F-LABS-R036 (paso 2): menor nivel del lema bajo cualquier POS
+                lowestLevelByLemmaOnly.merge(lemma, level, FileSystemEvpCatalog::lowest);
 
                 if (freqRank > 0) {
                     cocaRanks.putIfAbsent(lp, freqRank);
@@ -95,6 +102,10 @@ public class FileSystemEvpCatalog implements EvpCatalogPort {
         }
     }
 
+    private static CefrLevel lowest(CefrLevel a, CefrLevel b) {
+        return a.ordinal() <= b.ordinal() ? a : b;
+    }
+
     @Override
     public Set<LemmaAndPos> getExpectedLemmas(CefrLevel level) {
         return expectedByLevel.getOrDefault(level, Set.of());
@@ -118,6 +129,22 @@ public class FileSystemEvpCatalog implements EvpCatalogPort {
     @Override
     public Optional<CefrLevel> lookupLevel(LemmaAndPos lemmaAndPos) {
         return Optional.ofNullable(levelByLemma.get(lemmaAndPos));
+    }
+
+
+    /**
+     * F-LABS-R036 (paso 2, fallback por lema): devuelve el MENOR nivel entre todas las
+     * entradas del catalogo para el lema, bajo cualquier categoria gramatical (beneficio
+     * de la duda: el fallback nunca penaliza mas). Optional.empty() = fuera de catalogo.
+     * NO reemplaza el match exacto por par de {@link #lookupLevel(LemmaAndPos)}, que
+     * tiene precedencia estricta.
+     */
+    @Override
+    public Optional<CefrLevel> lookupLevelByLemma(String lemma) {
+        if (lemma == null) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(lowestLevelByLemmaOnly.get(lemma));
     }
 
 }

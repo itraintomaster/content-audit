@@ -552,6 +552,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: MisplacedLemma - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditdomain.labs.OutOfCatalogWord");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: OutOfCatalogWord - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaByLevelAbsenceAnalyzer - " + e.getMessage());

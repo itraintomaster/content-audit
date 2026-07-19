@@ -30,6 +30,15 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     @InjectMocks
     private LemmaByLevelAbsenceAnalyzer sut;
 
+    /**
+     * Niveles del curso (A1-B2). Tras la extension del enum con C1/C2 (F-LABS-R033),
+     * CefrLevel.values() ya no representa los niveles del curso: los milestones de un
+     * curso siguen siendo A1-B2 y los niveles C1/C2 solo participan de la deteccion
+     * de mal-ubicacion del Grupo D (F-LABS-R037).
+     */
+    private static final CefrLevel[] COURSE_LEVELS =
+            {CefrLevel.A1, CefrLevel.A2, CefrLevel.B1, CefrLevel.B2};
+
     // -----------------------------------------------------------------------
     // Helper: build a minimal config stub that won't throw during runAnalysis
     // -----------------------------------------------------------------------
@@ -50,6 +59,17 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         when(lemmaAbsenceConfig.getAcceptableAbsenceThreshold()).thenReturn(5);
         when(lemmaAbsenceConfig.getDiscountPerLevel()).thenReturn(0.1);
         when(lemmaAbsenceConfig.getCoverageTarget(any())).thenReturn(1.0); // Default: 100% target
+        // Bandas de fuera-de-catalogo por nivel de la oracion (F-LABS-R034)
+        when(lemmaAbsenceConfig.getOutOfCatalogNoPenaltyRankBound(CefrLevel.A1)).thenReturn(1000);
+        when(lemmaAbsenceConfig.getOutOfCatalogNoPenaltyRankBound(CefrLevel.A2)).thenReturn(2000);
+        when(lemmaAbsenceConfig.getOutOfCatalogNoPenaltyRankBound(CefrLevel.B1)).thenReturn(3500);
+        when(lemmaAbsenceConfig.getOutOfCatalogNoPenaltyRankBound(CefrLevel.B2)).thenReturn(5000);
+        when(lemmaAbsenceConfig.getOutOfCatalogMildDiscountRankBound(CefrLevel.A1)).thenReturn(3000);
+        when(lemmaAbsenceConfig.getOutOfCatalogMildDiscountRankBound(CefrLevel.A2)).thenReturn(5000);
+        when(lemmaAbsenceConfig.getOutOfCatalogMildDiscountRankBound(CefrLevel.B1)).thenReturn(8000);
+        when(lemmaAbsenceConfig.getOutOfCatalogMildDiscountRankBound(CefrLevel.B2)).thenReturn(10000);
+        when(lemmaAbsenceConfig.getOutOfCatalogMildDiscount()).thenReturn(0.1);
+        when(lemmaAbsenceConfig.getOutOfCatalogStrongDiscount()).thenReturn(0.3);
         // Default: all tokens pass content word filter (overridden per test when needed)
         when(contentWordFilter.isContentWord(any())).thenReturn(true);
     }
@@ -91,7 +111,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     /** Build a course tree with 4 empty milestones (A1-B2) */
     private AuditNode buildEmptyCourseTree() {
         AuditNode root = makeNode(AuditTarget.COURSE, null, null);
-        for (CefrLevel level : CefrLevel.values()) {
+        for (CefrLevel level : COURSE_LEVELS) {
             AuditableMilestone ms = new AuditableMilestone(List.of(), level.name(), level.name(), null);
             makeNode(AuditTarget.MILESTONE, ms, root);
         }
@@ -101,7 +121,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     /** Build a course tree with a single quiz at the specified level index (0=A1, etc.) */
     private AuditNode courseTreeWithQuiz(int miIdx, String quizId, List<NlpToken> tokens) {
         AuditNode root = makeNode(AuditTarget.COURSE, null, null);
-        CefrLevel[] levels = CefrLevel.values();
+        CefrLevel[] levels = COURSE_LEVELS;
         for (int i = 0; i < Math.max(miIdx + 1, levels.length); i++) {
             String label = i < levels.length ? levels[i].name() : String.valueOf(i);
             AuditableMilestone ms = new AuditableMilestone(List.of(), "m" + i, label, null);
@@ -122,7 +142,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     /** Build a course tree with quizzes at multiple level indices. */
     private AuditNode courseTreeWithQuizzes(Map<Integer, List<NlpToken>> quizzesByLevel) {
         AuditNode root = makeNode(AuditTarget.COURSE, null, null);
-        CefrLevel[] levels = CefrLevel.values();
+        CefrLevel[] levels = COURSE_LEVELS;
         for (int i = 0; i < levels.length; i++) {
             AuditableMilestone ms = new AuditableMilestone(List.of(), "m" + i, levels[i].name(), null);
             AuditNode milestoneNode = makeNode(AuditTarget.MILESTONE, ms, root);
@@ -1194,6 +1214,9 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         when(evpCatalogPort.getExpectedLemmas(CefrLevel.B2)).thenReturn(Collections.emptySet());
         when(evpCatalogPort.isPhrase("cat")).thenReturn(false);
 
+        // R036 paso 1: el scoring resuelve el nivel esperado con el match exacto del catalogo
+        when(evpCatalogPort.lookupLevel(cat)).thenReturn(Optional.of(CefrLevel.A1));
+
         NlpToken catToken = new NlpToken("cat", "cat", "NOUN", 0, false, false);
         when(contentWordFilter.isContentWord(catToken)).thenReturn(true);
 
@@ -1218,7 +1241,9 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         stubEmptyEvp();
 
         // Token with lemma "unknown" not in EVP
-        NlpToken token = new NlpToken("unknown", "unknown", "NOUN", 0, false, false);
+        // R020 reformulada: para seguir puntuando 1.0 la palabra fuera de catalogo debe ser
+        // frecuente (banda sin penalidad de R034); rank 0 = sin ranking valido penalizaria.
+        NlpToken token = new NlpToken("unknown", "unknown", "NOUN", 900, false, false);
         AuditNode rootNode = courseTreeWithQuiz(0, "q1", List.of(token));
         sut.onQuiz(findByTarget(rootNode, AuditTarget.QUIZ));
         sut.onCourseComplete(rootNode);
@@ -1259,6 +1284,9 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         when(evpCatalogPort.getCocaRank(cat)).thenReturn(Optional.of(500));
         when(evpCatalogPort.getSemanticCategory(cat)).thenReturn(Optional.empty());
 
+        // R036 paso 1: el scoring resuelve el nivel esperado con el match exacto del catalogo
+        when(evpCatalogPort.lookupLevel(cat)).thenReturn(Optional.of(CefrLevel.A2));
+
         NlpToken catToken = new NlpToken("cat", "cat", "NOUN", 0, false, false);
         // Quiz in milestone 0 (A1); cat expected at A2 -> distance=1 -> score=0.9
         AuditNode rootNode = courseTreeWithQuiz(0, "q1", List.of(catToken));
@@ -1288,6 +1316,9 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         when(evpCatalogPort.getCocaRank(cat)).thenReturn(Optional.of(500));
         when(evpCatalogPort.getSemanticCategory(cat)).thenReturn(Optional.empty());
 
+        // R036 paso 1: el scoring resuelve el nivel esperado con el match exacto del catalogo
+        when(evpCatalogPort.lookupLevel(cat)).thenReturn(Optional.of(CefrLevel.B1));
+
         NlpToken catToken = new NlpToken("cat", "cat", "NOUN", 0, false, false);
         // Quiz in milestone 0 (A1); cat expected at B1 -> distance=2 -> score=0.8
         AuditNode rootNode = courseTreeWithQuiz(0, "q1", List.of(catToken));
@@ -1315,6 +1346,8 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         when(contentWordFilter.isContentWord(any())).thenReturn(true);
         when(evpCatalogPort.getCocaRank(cat)).thenReturn(Optional.of(500));
         when(evpCatalogPort.getSemanticCategory(cat)).thenReturn(Optional.empty());
+        // R036 paso 1: el scoring resuelve el nivel esperado con el match exacto del catalogo
+        when(evpCatalogPort.lookupLevel(cat)).thenReturn(Optional.of(CefrLevel.B2));
 
         NlpToken catToken = new NlpToken("cat", "cat", "NOUN", 0, false, false);
         AuditNode rootNode = courseTreeWithQuiz(0, "q1", List.of(catToken));
@@ -1347,6 +1380,9 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         when(evpCatalogPort.getCocaRank(cat)).thenReturn(Optional.of(500));
         when(evpCatalogPort.getCocaRank(dog)).thenReturn(Optional.of(500));
         when(evpCatalogPort.getSemanticCategory(any())).thenReturn(Optional.empty());
+        // R036 paso 1: el scoring resuelve el nivel esperado con el match exacto del catalogo
+        when(evpCatalogPort.lookupLevel(cat)).thenReturn(Optional.of(CefrLevel.A2));
+        when(evpCatalogPort.lookupLevel(dog)).thenReturn(Optional.of(CefrLevel.B2));
 
         NlpToken catToken = new NlpToken("cat", "cat", "NOUN", 0, false, false);
         NlpToken dogToken = new NlpToken("dog", "dog", "NOUN", 0, false, false);
@@ -1373,6 +1409,9 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         when(evpCatalogPort.getExpectedLemmas(CefrLevel.B2)).thenReturn(Collections.emptySet());
         when(evpCatalogPort.isPhrase("cat")).thenReturn(false);
 
+        // R036 paso 1: el scoring resuelve el nivel esperado con el match exacto del catalogo
+        when(evpCatalogPort.lookupLevel(cat)).thenReturn(Optional.of(CefrLevel.A1));
+
         NlpToken catToken = new NlpToken("cat", "cat", "NOUN", 0, false, false);
         when(contentWordFilter.isContentWord(catToken)).thenReturn(true);
 
@@ -1394,7 +1433,10 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         stubMinimalConfig();
         stubEmptyEvp();
 
-        NlpToken token = new NlpToken("xyzzy", "xyzzy", "NOUN", 0, false, false);
+        // R020 reformulada: una palabra fuera de catalogo solo esta justificada si es
+        // FRECUENTE (banda sin penalidad de R034). Con rank 900 sigue puntuando 1.0;
+        // el fixture original (rank 0 = sin ranking valido) hoy caeria en descuento fuerte.
+        NlpToken token = new NlpToken("xyzzy", "xyzzy", "NOUN", 900, false, false);
         AuditNode rootNode = courseTreeWithQuiz(0, "q1", List.of(token));
         sut.onQuiz(findByTarget(rootNode, AuditTarget.QUIZ));
         sut.onCourseComplete(rootNode);
@@ -1952,6 +1994,9 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         when(evpCatalogPort.getCocaRank(cat)).thenReturn(Optional.of(500));
         when(evpCatalogPort.getSemanticCategory(cat)).thenReturn(Optional.empty());
 
+        // R036 paso 1: el scoring resuelve el nivel esperado con el match exacto del catalogo
+        when(evpCatalogPort.lookupLevel(cat)).thenReturn(Optional.of(CefrLevel.B2));
+
         NlpToken catToken = new NlpToken("cat", "cat", "NOUN", 0, false, false);
         // Quiz in first milestone (index 0 = A1 level)
         AuditNode rootNode = courseTreeWithQuiz(0, "q1", List.of(catToken));
@@ -2489,6 +2534,8 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         when(contentWordFilter.isContentWord(any())).thenReturn(true);
         when(evpCatalogPort.getCocaRank(ambiguous)).thenReturn(Optional.of(2000));
         when(evpCatalogPort.getSemanticCategory(ambiguous)).thenReturn(Optional.empty());
+        // R036 paso 1: el scoring resuelve el nivel esperado con el match exacto del catalogo
+        when(evpCatalogPort.lookupLevel(ambiguous)).thenReturn(Optional.of(CefrLevel.B1));
 
         NlpToken token = new NlpToken("ambiguous", "ambiguous", "ADJ", 2000, false, false);
         when(contentWordFilter.isContentWord(token)).thenReturn(true);
@@ -2524,6 +2571,8 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         when(contentWordFilter.isContentWord(any())).thenReturn(true);
         when(evpCatalogPort.getCocaRank(ambiguous)).thenReturn(Optional.of(2000));
         when(evpCatalogPort.getSemanticCategory(ambiguous)).thenReturn(Optional.empty());
+        // R036 paso 1: el scoring resuelve el nivel esperado con el match exacto del catalogo
+        when(evpCatalogPort.lookupLevel(ambiguous)).thenReturn(Optional.of(CefrLevel.B1));
 
         NlpToken token = new NlpToken("ambiguous", "ambiguous", "ADJ", 2000, false, false);
         when(contentWordFilter.isContentWord(token)).thenReturn(true);
@@ -2566,6 +2615,8 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         when(contentWordFilter.isContentWord(any())).thenReturn(true);
         when(evpCatalogPort.getCocaRank(ambiguous)).thenReturn(Optional.of(2000));
         when(evpCatalogPort.getSemanticCategory(ambiguous)).thenReturn(Optional.empty());
+        // R036 paso 1: el scoring resuelve el nivel esperado con el match exacto del catalogo
+        when(evpCatalogPort.lookupLevel(ambiguous)).thenReturn(Optional.of(CefrLevel.B1));
 
         NlpToken token = new NlpToken("ambiguous", "ambiguous", "ADJ", 2000, false, false);
         when(contentWordFilter.isContentWord(token)).thenReturn(true);
@@ -2680,7 +2731,7 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
 
         // Simulate lemma-absence writing a LemmaPlacementDiagnosis
-        LemmaPlacementDiagnosis placement = new LemmaPlacementDiagnosis(0, List.of());
+        LemmaPlacementDiagnosis placement = new LemmaPlacementDiagnosis(0, List.of(), 0, List.of());
         quizDiagnoses.setLemmaAbsenceDiagnosis(placement);
 
         // Simulate sentence-length writing a SentenceLengthDiagnosis
@@ -2805,5 +2856,662 @@ public class LemmaByLevelAbsenceAnalyzerTest {
                 "R012: LemmaAbsenceLevelDiagnosis accessible via typed getter from milestone ancestor");
         // R012: fields are accessible via typed getters without unsafe casts
         assertNotNull(levelDiag.get().getLevel(), "R012: level field accessible as typed CefrLevel");
+    }
+
+    // -----------------------------------------------------------------------
+    // Helpers de lectura de diagnosticos para los tests de FEAT-LABS R033-R039
+    // -----------------------------------------------------------------------
+
+    /** Lee el LemmaAbsenceLevelDiagnosis del milestone en el indice dado (0=A1..3=B2). */
+    private LemmaAbsenceLevelDiagnosis levelDiagnosisAt(AuditNode root, int miIdx) {
+        NodeDiagnoses diagnoses = root.getChildren().get(miIdx).getDiagnoses();
+        assertInstanceOf(LevelDiagnoses.class, diagnoses,
+                "El milestone " + miIdx + " debe portar LevelDiagnoses");
+        return ((LevelDiagnoses) diagnoses).getLemmaAbsenceDiagnosis()
+                .orElseThrow(() -> new AssertionError(
+                        "El milestone " + miIdx + " debe tener LemmaAbsenceLevelDiagnosis tras onCourseComplete"));
+    }
+
+    /** Lee el LemmaPlacementDiagnosis del primer quiz del arbol. */
+    private LemmaPlacementDiagnosis quizPlacementDiagnosis(AuditNode root) {
+        AuditNode quizNode = findByTarget(root, AuditTarget.QUIZ);
+        assertNotNull(quizNode, "El arbol debe contener un nodo QUIZ");
+        NodeDiagnoses diagnoses = quizNode.getDiagnoses();
+        assertInstanceOf(QuizDiagnoses.class, diagnoses, "El quiz debe portar QuizDiagnoses");
+        return ((QuizDiagnoses) diagnoses).getLemmaAbsenceDiagnosis()
+                .orElseThrow(() -> new AssertionError(
+                        "El quiz debe tener LemmaPlacementDiagnosis tras onQuiz"));
+    }
+
+    /** Score lemma-absence del primer quiz del arbol. */
+    private double quizScore(AuditNode root) {
+        return findByTarget(root, AuditTarget.QUIZ).getScores().getOrDefault("lemma-absence", 0.0);
+    }
+
+    @Test
+    @DisplayName("should count expected lemma as present when the level contains it under a different part of speech")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R039")
+    public void shouldCountExpectedLemmaAsPresentWhenTheLevelContainsItUnderADifferentPartOfSpeech() {
+        // R039: la presencia se relaja del lado CURSO. El EVP espera "run" como VERB en A2;
+        // el curso solo tiene "run" etiquetado como NOUN en A2 -> "run" NO se reporta ausente
+        // (el etiquetado automatico no es lo bastante confiable como para fundar la ausencia).
+        stubMinimalConfig();
+        LemmaAndPos runVerb = new LemmaAndPos("run", "VERB");
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A1)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A2)).thenReturn(new HashSet<>(List.of(runVerb)));
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B1)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B2)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.isPhrase("run")).thenReturn(false);
+        when(evpCatalogPort.getCocaRank(runVerb)).thenReturn(Optional.of(500));
+        when(evpCatalogPort.getSemanticCategory(runVerb)).thenReturn(Optional.empty());
+        // Grupo D coherente con el fixture: el par exacto (run,NOUN) no existe en el catalogo,
+        // el fallback por lema resuelve al A2 del run VERB -> el quiz no se penaliza (R036)
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("run", "VERB"))).thenReturn(Optional.of(CefrLevel.A2));
+        when(evpCatalogPort.lookupLevelByLemma("run")).thenReturn(Optional.of(CefrLevel.A2));
+
+        NlpToken runNounToken = new NlpToken("run", "run", "NOUN", 500, false, false);
+        AuditNode root = courseTreeWithQuiz(1, "q1", List.of(runNounToken)); // quiz en A2
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        LemmaAbsenceLevelDiagnosis a2 = levelDiagnosisAt(root, 1);
+        assertEquals(0, a2.getTotalAbsent(),
+                "R039: 'run' VERB esperado en A2 con 'run' NOUN presente en A2 NO es ausente");
+        assertTrue(a2.getAbsentLemmas() == null || a2.getAbsentLemmas().isEmpty(),
+                "R039: la lista de ausentes de A2 debe quedar vacia (presencia relajada por lema)");
+        assertEquals(1.0, root.getScores().getOrDefault("lemma-absence", 0.0), 0.001,
+                "R039: sin ausentes, la cobertura del curso queda perfecta");
+    }
+
+    @Test
+    @DisplayName("should cover multiple expected entries of the same lemma with a single occurrence in the level")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R039")
+    public void shouldCoverMultipleExpectedEntriesOfTheSameLemmaWithASingleOccurrenceInTheLevel() {
+        // R039 consecuencia 2: dos entradas esperadas del mismo lema con distinta categoria
+        // ("run" VERB y "run" NOUN, ambas esperadas en A2) quedan AMBAS cubiertas por una
+        // unica ocurrencia del lema en el nivel.
+        stubMinimalConfig();
+        LemmaAndPos runVerb = new LemmaAndPos("run", "VERB");
+        LemmaAndPos runNoun = new LemmaAndPos("run", "NOUN");
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A1)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A2)).thenReturn(new HashSet<>(List.of(runVerb, runNoun)));
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B1)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B2)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.isPhrase("run")).thenReturn(false);
+        when(evpCatalogPort.getCocaRank(any())).thenReturn(Optional.of(500));
+        when(evpCatalogPort.getSemanticCategory(any())).thenReturn(Optional.empty());
+        // El par exacto (run,NOUN) existe en el catalogo en A2: quiz sin penalidad
+        when(evpCatalogPort.lookupLevel(runNoun)).thenReturn(Optional.of(CefrLevel.A2));
+        when(evpCatalogPort.lookupLevel(runVerb)).thenReturn(Optional.of(CefrLevel.A2));
+
+        NlpToken runNounToken = new NlpToken("run", "run", "NOUN", 500, false, false);
+        AuditNode root = courseTreeWithQuiz(1, "q1", List.of(runNounToken)); // una sola ocurrencia en A2
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        LemmaAbsenceLevelDiagnosis a2 = levelDiagnosisAt(root, 1);
+        assertEquals(0, a2.getTotalAbsent(),
+                "R039: una unica ocurrencia de 'run' cubre las dos entradas esperadas (VERB y NOUN)");
+        assertTrue(a2.getAbsentLemmas() == null || a2.getAbsentLemmas().isEmpty(),
+                "R039: ninguna de las dos entradas del lema puede figurar como ausente");
+        assertEquals(1.0, root.getScores().getOrDefault("lemma-absence", 0.0), 0.001,
+                "R039: cobertura perfecta con una sola ocurrencia del lema");
+    }
+
+    @Test
+    @DisplayName("should classify absence as APPEARS_TOO_LATE when the lemma appears under another part of speech only in later levels")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R039")
+    public void shouldClassifyAbsenceAsAPPEARSTOOLATEWhenTheLemmaAppearsUnderAnotherPartOfSpeechOnlyInLaterLevels() {
+        // R039 consecuencia 3: la clasificacion del tipo de ausencia (R004/R007) usa la MISMA
+        // presencia relajada. "run" VERB esperado en A2, ausente de A2, pero "run" (como NOUN)
+        // aparece en B1 -> APPEARS_TOO_LATE, no COMPLETELY_ABSENT.
+        stubMinimalConfig();
+        LemmaAndPos runVerb = new LemmaAndPos("run", "VERB");
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A1)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A2)).thenReturn(new HashSet<>(List.of(runVerb)));
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B1)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B2)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.isPhrase("run")).thenReturn(false);
+        when(evpCatalogPort.getCocaRank(runVerb)).thenReturn(Optional.of(500));
+        when(evpCatalogPort.getSemanticCategory(runVerb)).thenReturn(Optional.empty());
+        when(evpCatalogPort.lookupLevelByLemma("run")).thenReturn(Optional.of(CefrLevel.A2));
+
+        NlpToken runNounToken = new NlpToken("run", "run", "NOUN", 500, false, false);
+        AuditNode root = courseTreeWithQuiz(2, "q1", List.of(runNounToken)); // quiz en B1
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        LemmaAbsenceLevelDiagnosis a2 = levelDiagnosisAt(root, 1);
+        assertEquals(1, a2.getTotalAbsent(), "R039: 'run' VERB sigue ausente de A2");
+        assertNotNull(a2.getAbsentLemmas());
+        assertEquals(1, a2.getAbsentLemmas().size());
+        AbsentLemma absent = a2.getAbsentLemmas().get(0);
+        assertEquals(runVerb, absent.getLemmaAndPos());
+        assertEquals(AbsenceType.APPEARS_TOO_LATE, absent.getAbsenceType(),
+                "R039: la presencia relajada en B1 (bajo otra POS) clasifica TOO_LATE, no COMPLETELY_ABSENT");
+        assertNotNull(absent.getPresentInLevels());
+        assertTrue(absent.getPresentInLevels().contains(CefrLevel.B1),
+                "R039: presentInLevels debe registrar B1, donde el lema aparece bajo otra POS");
+    }
+
+    @Test
+    @DisplayName("should treat C2 lemma as misplaced even in a B2 sentence")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R033")
+    public void shouldTreatC2LemmaAsMisplacedEvenInAB2Sentence() {
+        // R033: un lema C1/C2 esta mal ubicado en CUALQUIER oracion del curso, incluso en B2
+        // (ningun nivel del curso alcanza ese vocabulario). Ejemplo de la regla:
+        // "shatter" (C2) en oracion B2 -> distancia = 6-4 = 2 -> descuento 0.2 -> score 0.8.
+        stubMinimalConfig();
+        stubEmptyEvp();
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("shatter", "VERB")))
+                .thenReturn(Optional.of(CefrLevel.C2));
+
+        NlpToken shatter = new NlpToken("shatter", "shatter", "VERB", 9000, false, false);
+        AuditNode root = courseTreeWithQuiz(3, "q1", List.of(shatter)); // quiz en B2
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        assertEquals(0.8, quizScore(root), 0.001,
+                "R033: 'shatter' C2 en oracion B2 -> distancia 2 -> score 0.8 (antes era invisible)");
+    }
+
+    @Test
+    @DisplayName("should penalize C1 lemma in every course level with distance-proportional discount")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R033")
+    public void shouldPenalizeC1LemmaInEveryCourseLevelWithDistanceproportionalDiscount() {
+        // R033: extension LINEAL de la escala de R018 (C1=5), pendiente 0.1 por nivel.
+        // "possess" (C1) penaliza en los cuatro niveles del curso con descuento proporcional:
+        // A1: d=4 -> 0.6 | A2: d=3 -> 0.7 | B1: d=2 -> 0.8 | B2: d=1 -> 0.9.
+        stubMinimalConfig();
+        stubEmptyEvp();
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("possess", "VERB")))
+                .thenReturn(Optional.of(CefrLevel.C1));
+
+        NlpToken possess = new NlpToken("possess", "possess", "VERB", 4500, false, false);
+        AuditNode root = courseTreeWithQuizzes(Map.of(
+                0, List.of(possess),
+                1, List.of(possess),
+                2, List.of(possess),
+                3, List.of(possess)));
+        addDiagnosesToTree(root);
+        processQuizNodes(root);
+        sut.onCourseComplete(root);
+
+        double[] expectedScores = {0.6, 0.7, 0.8, 0.9};
+        for (int i = 0; i < COURSE_LEVELS.length; i++) {
+            AuditNode quizNode = findByTarget(root.getChildren().get(i), AuditTarget.QUIZ);
+            assertNotNull(quizNode, "Debe existir quiz en el milestone " + COURSE_LEVELS[i]);
+            assertEquals(expectedScores[i],
+                    quizNode.getScores().getOrDefault("lemma-absence", 0.0), 0.001,
+                    "R033: 'possess' C1 en " + COURSE_LEVELS[i]
+                            + " debe descontar 0.1 * distancia (C1=5, extension lineal)");
+        }
+    }
+
+    @Test
+    @DisplayName("should apply strong discount 0.3 to out-of-catalog word with rank 6081 in A1 sentence")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R034")
+    public void shouldApplyStrongDiscount03ToOutofcatalogWordWithRank6081InA1Sentence() {
+        // R034: palabra de contenido fuera de catalogo (sin entrada bajo ninguna POS, R036
+        // agotado) con ranking 6081 en oracion A1: supera la banda leve de A1 (3000) ->
+        // descuento fuerte 0.3 -> score 0.7.
+        stubMinimalConfig();
+        stubEmptyEvp();
+        // lookupLevel y lookupLevelByLemma sin stub -> Optional.empty(): fuera de catalogo
+
+        NlpToken gadget = new NlpToken("gadget", "gadget", "NOUN", 6081, false, false);
+        AuditNode root = courseTreeWithQuiz(0, "q1", List.of(gadget)); // quiz en A1
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        assertEquals(0.7, quizScore(root), 0.001,
+                "R034: ranking 6081 > banda leve de A1 (3000) -> descuento fuerte 0.3");
+    }
+
+    @Test
+    @DisplayName("should apply mild discount 0.1 to out-of-catalog word with rank 6081 in B2 sentence")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R034")
+    public void shouldApplyMildDiscount01ToOutofcatalogWordWithRank6081InB2Sentence() {
+        // R034: la MISMA palabra (ranking 6081) en oracion B2 cae en la banda leve de B2
+        // (5000 < 6081 <= 10000) -> descuento 0.1 -> score 0.9. Las bandas dependen del
+        // nivel de la oracion: penaliza mas fuerte en A1 que en B2.
+        stubMinimalConfig();
+        stubEmptyEvp();
+
+        NlpToken gadget = new NlpToken("gadget", "gadget", "NOUN", 6081, false, false);
+        AuditNode root = courseTreeWithQuiz(3, "q1", List.of(gadget)); // quiz en B2
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        assertEquals(0.9, quizScore(root), 0.001,
+                "R034: ranking 6081 en banda leve de B2 (5000-10000) -> descuento 0.1");
+    }
+
+    @Test
+    @DisplayName("should not penalize out-of-catalog word with rank 900 in any course level")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R034")
+    public void shouldNotPenalizeOutofcatalogWordWithRank900InAnyCourseLevel() {
+        // R034: una palabra fuera de catalogo con ranking 900 queda dentro de la banda
+        // sin penalidad de TODOS los niveles (el umbral mas estricto es A1 con 1000).
+        stubMinimalConfig();
+        stubEmptyEvp();
+
+        NlpToken common = new NlpToken("stuff", "stuff", "NOUN", 900, false, false);
+        AuditNode root = courseTreeWithQuizzes(Map.of(
+                0, List.of(common),
+                1, List.of(common),
+                2, List.of(common),
+                3, List.of(common)));
+        addDiagnosesToTree(root);
+        processQuizNodes(root);
+        sut.onCourseComplete(root);
+
+        for (int i = 0; i < COURSE_LEVELS.length; i++) {
+            AuditNode quizNode = findByTarget(root.getChildren().get(i), AuditTarget.QUIZ);
+            assertNotNull(quizNode, "Debe existir quiz en el milestone " + COURSE_LEVELS[i]);
+            assertEquals(1.0, quizNode.getScores().getOrDefault("lemma-absence", 0.0), 0.001,
+                    "R034: ranking 900 <= umbral sin-penalidad de " + COURSE_LEVELS[i]
+                            + " -> sin descuento");
+        }
+    }
+
+    @Test
+    @DisplayName("should apply strong discount to out-of-catalog word without frequency rank")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R034")
+    public void shouldApplyStrongDiscountToOutofcatalogWordWithoutFrequencyRank() {
+        // R034: las palabras sin ranking de frecuencia caen SIEMPRE en la banda de descuento
+        // fuerte (una palabra tan rara que no figura en la lista de frecuencia no puede
+        // presumirse adecuada). Se usa B2 — la banda mas laxa — para probar el "siempre".
+        stubMinimalConfig();
+        stubEmptyEvp();
+
+        NlpToken unranked = new NlpToken("whatsit", "whatsit", "NOUN", null, false, false);
+        AuditNode root = courseTreeWithQuiz(3, "q1", List.of(unranked)); // quiz en B2
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        assertEquals(0.7, quizScore(root), 0.001,
+                "R034: sin ranking -> descuento fuerte 0.3 incluso en B2 (banda mas laxa)");
+    }
+
+    @Test
+    @DisplayName("should not penalize proper noun token even when infrequent and out of catalog")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R035")
+    public void shouldNotPenalizeProperNounTokenEvenWhenInfrequentAndOutOfCatalog() {
+        // R035: los nombres propios (etiqueta PROPN del NLP, unico criterio) no participan
+        // de la evaluacion de mal-ubicacion. "London" no tiene nivel pedagogico aunque sea
+        // infrecuente (sin ranking) y no figure en el catalogo.
+        stubMinimalConfig();
+        stubEmptyEvp();
+
+        NlpToken london = new NlpToken("London", "london", "PROPN", null, false, false);
+        AuditNode root = courseTreeWithQuiz(0, "q1", List.of(london)); // quiz en A1
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        assertEquals(1.0, quizScore(root), 0.001,
+                "R035: nombre propio excluido -> sin penalidad aunque sea infrecuente y fuera de catalogo");
+        LemmaPlacementDiagnosis placement = quizPlacementDiagnosis(root);
+        assertTrue(placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty(),
+                "R035: el nombre propio no debe figurar en el detalle de fuera-de-catalogo");
+    }
+
+    @Test
+    @DisplayName("should not penalize non-alphabetic token in the misplacement evaluation")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R035")
+    public void shouldNotPenalizeNonalphabeticTokenInTheMisplacementEvaluation() {
+        // R035: los tokens no alfabeticos (numeros, simbolos, cifras con digitos) no
+        // participan de la evaluacion de mal-ubicacion ni de las bandas de R034.
+        stubMinimalConfig();
+        stubEmptyEvp();
+
+        NlpToken numeric = new NlpToken("42", "42", "NUM", null, false, false);
+        AuditNode root = courseTreeWithQuiz(0, "q1", List.of(numeric)); // quiz en A1
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        assertEquals(1.0, quizScore(root), 0.001,
+                "R035: token no alfabetico excluido -> sin penalidad (aunque no tenga ranking)");
+        LemmaPlacementDiagnosis placement = quizPlacementDiagnosis(root);
+        assertTrue(placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty(),
+                "R035: el token no alfabetico no debe figurar en el detalle de fuera-de-catalogo");
+    }
+
+    @Test
+    @DisplayName("should not evaluate functional word against the out-of-catalog frequency bands")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R035")
+    public void shouldNotEvaluateFunctionalWordAgainstTheOutofcatalogFrequencyBands() {
+        // R035: las palabras funcionales (excluidas por el filtro de palabras de contenido,
+        // R001) se descartan ANTES de las bandas de R034: "the" sin ranking y fuera de
+        // catalogo no recibe el descuento fuerte.
+        stubMinimalConfig();
+        stubEmptyEvp();
+        NlpToken the = new NlpToken("the", "the", "DET", null, true, false);
+        // Override del default any()->true: "the" NO es palabra de contenido
+        when(contentWordFilter.isContentWord(the)).thenReturn(false);
+
+        AuditNode root = courseTreeWithQuiz(0, "q1", List.of(the)); // quiz en A1
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        assertEquals(1.0, quizScore(root), 0.001,
+                "R035: palabra funcional excluida antes de las bandas de R034 -> sin penalidad");
+        LemmaPlacementDiagnosis placement = quizPlacementDiagnosis(root);
+        assertTrue(placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty(),
+                "R035: la palabra funcional no debe figurar en el detalle de fuera-de-catalogo");
+    }
+
+    @Test
+    @DisplayName("should penalize via exact lemma and pos entry even when another pos of the same lemma has a lower level")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R036")
+    public void shouldPenalizeViaExactLemmaAndPosEntryEvenWhenAnotherPosOfTheSameLemmaHasALowerLevel() {
+        // R036 PRECEDENCIA ESTRICTA: el match exacto lema+POS (paso 1) manda AUNQUE otra POS
+        // del mismo lema tenga nivel menor. Caso "record": sustantivo A2, verbo B1; token
+        // usado como VERB en oracion A2 -> penaliza por B1 (paso 1), NO se resuelve al A2
+        // del sustantivo (el minimo-entre-POS es SOLO fallback cuando el par no existe).
+        stubMinimalConfig();
+        stubEmptyEvp();
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("record", "VERB")))
+                .thenReturn(Optional.of(CefrLevel.B1));
+        // El fallback por lema devolveria A2 (el minimo del sustantivo); NO debe usarse aca
+        when(evpCatalogPort.lookupLevelByLemma("record")).thenReturn(Optional.of(CefrLevel.A2));
+
+        NlpToken recordVerb = new NlpToken("record", "record", "VERB", 950, false, false);
+        AuditNode root = courseTreeWithQuiz(1, "q1", List.of(recordVerb)); // quiz en A2
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        assertEquals(0.9, quizScore(root), 0.001,
+                "R036: el par exacto (record,VERB)=B1 manda -> distancia 1 -> score 0.9 "
+                        + "(1.0 delataria que se uso indebidamente el fallback al A2 del sustantivo)");
+        LemmaPlacementDiagnosis placement = quizPlacementDiagnosis(root);
+        assertNotNull(placement.getMisplacedLemmas());
+        assertEquals(1, placement.getMisplacedLemmas().size());
+        assertEquals(CefrLevel.B1, placement.getMisplacedLemmas().get(0).getExpectedLevel(),
+                "R036: el nivel esperado registrado debe ser el de la entrada exacta (B1)");
+    }
+
+    @Test
+    @DisplayName("should fall back to the lowest level among other pos entries when the exact pair is missing")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R036")
+    public void shouldFallBackToTheLowestLevelAmongOtherPosEntriesWhenTheExactPairIsMissing() {
+        // R036 paso 2: si el par exacto no existe, se usa la entrada de MENOR nivel entre las
+        // POS disponibles del lema (que expone lookupLevelByLemma). Beneficio de la duda:
+        // el fallback nunca penaliza mas. "record" VERB no figura; el lema resuelve a A2.
+        stubMinimalConfig();
+        stubEmptyEvp();
+        // lookupLevel(record,VERB) sin stub -> Optional.empty(): el par exacto no existe
+        when(evpCatalogPort.lookupLevelByLemma("record")).thenReturn(Optional.of(CefrLevel.A2));
+
+        NlpToken recordVerb = new NlpToken("record", "record", "VERB", 950, false, false);
+        AuditNode root = courseTreeWithQuiz(0, "q1", List.of(recordVerb)); // quiz en A1
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        assertEquals(0.9, quizScore(root), 0.001,
+                "R036: fallback por lema -> nivel A2, distancia 1 desde A1 -> score 0.9 "
+                        + "(no es fuera de catalogo: el lema existe bajo otra POS)");
+        verify(evpCatalogPort, atLeastOnce()).lookupLevelByLemma("record");
+        LemmaPlacementDiagnosis placement = quizPlacementDiagnosis(root);
+        assertNotNull(placement.getMisplacedLemmas());
+        assertEquals(1, placement.getMisplacedLemmas().size());
+        assertEquals(CefrLevel.A2, placement.getMisplacedLemmas().get(0).getExpectedLevel(),
+                "R036: el nivel esperado registrado es el menor entre las POS disponibles del lema");
+        assertTrue(placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty(),
+                "R036: con fallback disponible la palabra NO es fuera de catalogo");
+    }
+
+    @Test
+    @DisplayName("should treat word as out of catalog only when the lemma has no entry under any pos")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R036")
+    public void shouldTreatWordAsOutOfCatalogOnlyWhenTheLemmaHasNoEntryUnderAnyPos() {
+        // R036: SOLO cuando el lema no existe bajo NINGUNA categoria se considera fuera de
+        // catalogo y pasa a las bandas de R034. Dos tokens en la misma oracion A1:
+        // - "hail" VERB: el par exacto falta pero el lema existe (NOUN C2) -> mal ubicado via
+        //   fallback (distancia 5, descuento 0.5), NO fuera de catalogo.
+        // - "gadget" NOUN rank 6081: sin entrada bajo ninguna POS -> fuera de catalogo,
+        //   banda fuerte de A1 (descuento 0.3).
+        // Score = 1.0 - max(0.5, 0.3) = 0.5 (los descuentos compiten en el maximo de R019).
+        stubMinimalConfig();
+        stubEmptyEvp();
+        when(evpCatalogPort.lookupLevelByLemma("hail")).thenReturn(Optional.of(CefrLevel.C2));
+        // lookupLevel(hail,VERB), lookupLevel(gadget,NOUN) y lookupLevelByLemma("gadget")
+        // sin stub -> Optional.empty()
+
+        NlpToken hail = new NlpToken("hails", "hail", "VERB", 12000, false, false);
+        NlpToken gadget = new NlpToken("gadget", "gadget", "NOUN", 6081, false, false);
+        AuditNode root = courseTreeWithQuiz(0, "q1", List.of(hail, gadget)); // quiz en A1
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        LemmaPlacementDiagnosis placement = quizPlacementDiagnosis(root);
+        assertNotNull(placement.getMisplacedLemmas());
+        assertEquals(1, placement.getMisplacedLemmas().size(),
+                "R036: solo 'hail' es mal-ubicado (su lema existe en el catalogo bajo otra POS)");
+        assertEquals("hail", placement.getMisplacedLemmas().get(0).getLemmaAndPos().getLemma());
+        assertNotNull(placement.getOutOfCatalogWords());
+        assertEquals(1, placement.getOutOfCatalogWords().size(),
+                "R036: solo 'gadget' es fuera de catalogo (sin entrada bajo ninguna POS)");
+        assertEquals("gadget", placement.getOutOfCatalogWords().get(0).getLemma());
+        assertEquals(0.5, quizScore(root), 0.001,
+                "R019/R033: gana el maximo descuento (0.5 de 'hail' C2 a distancia 5)");
+    }
+
+    @Test
+    @DisplayName("should not report C1 or C2 catalog lemmas as absent in any level coverage")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R037")
+    public void shouldNotReportC1OrC2CatalogLemmasAsAbsentInAnyLevelCoverage() {
+        // R037: los lemas C1/C2 retenidos en el catalogo (R033) JAMAS se reportan ausentes
+        // (COMPLETELY_ABSENT, TOO_LATE ni TOO_EARLY). Su unica participacion es el Grupo D:
+        // aca "hail" C2 penaliza el score del quiz A1 pero no aparece en ninguna lista de
+        // ausentes ni altera la cobertura.
+        stubMinimalConfig();
+        LemmaAndPos cat = new LemmaAndPos("cat", "NOUN");
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A1)).thenReturn(new HashSet<>(List.of(cat)));
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A2)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B1)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B2)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.isPhrase(any())).thenReturn(false);
+        when(evpCatalogPort.getCocaRank(any())).thenReturn(Optional.of(500));
+        when(evpCatalogPort.getSemanticCategory(any())).thenReturn(Optional.empty());
+        when(evpCatalogPort.lookupLevel(cat)).thenReturn(Optional.of(CefrLevel.A1));
+        // "hail" es entrada de CATALOGO C2 (solo via lookup del Grupo D, nunca un milestone)
+        when(evpCatalogPort.lookupLevelByLemma("hail")).thenReturn(Optional.of(CefrLevel.C2));
+
+        NlpToken catToken = new NlpToken("cat", "cat", "NOUN", 500, false, false);
+        NlpToken hailToken = new NlpToken("hails", "hail", "VERB", 12000, false, false);
+        AuditNode root = courseTreeWithQuiz(0, "q1", List.of(catToken, hailToken)); // quiz en A1
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        // El Grupo D SI penalizo el quiz (hail C2 en A1: distancia 5 -> score 0.5)...
+        assertEquals(0.5, quizScore(root), 0.001,
+                "R033: 'hail' C2 debe penalizar la oracion A1 (unica participacion de C1/C2)");
+        // ...pero la cobertura por nivel queda intacta: ningun ausente en ningun nivel,
+        // y en particular ningun ausente con nivel esperado C1/C2
+        for (int i = 0; i < COURSE_LEVELS.length; i++) {
+            LemmaAbsenceLevelDiagnosis levelDiag = levelDiagnosisAt(root, i);
+            assertEquals(0, levelDiag.getTotalAbsent(),
+                    "R037: sin ausentes en " + COURSE_LEVELS[i] + " ('cat' presente; 'hail' C2 no cuenta)");
+            if (levelDiag.getAbsentLemmas() != null) {
+                assertTrue(levelDiag.getAbsentLemmas().stream()
+                                .noneMatch(a -> a.getExpectedLevel() == CefrLevel.C1
+                                        || a.getExpectedLevel() == CefrLevel.C2),
+                        "R037: ningun lema C1/C2 puede figurar como ausente en " + COURSE_LEVELS[i]);
+            }
+        }
+        assertEquals(1.0, root.getScores().getOrDefault("lemma-absence", 0.0), 0.001,
+                "R037: la retencion de C1/C2 no altera el score de cobertura del curso");
+    }
+
+    @Test
+    @DisplayName("should keep expected lemma totals per level unchanged after retaining C1 and C2 entries")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R037")
+    public void shouldKeepExpectedLemmaTotalsPerLevelUnchangedAfterRetainingC1AndC2Entries() {
+        // R037: los lemas esperados por nivel (R001) siguen siendo unicamente los de los
+        // niveles del curso (A1-B2). La retencion de C1/C2 (R033) no infla los totales
+        // esperados ni agrega niveles a la cobertura.
+        stubMinimalConfig();
+        LemmaAndPos cat = new LemmaAndPos("cat", "NOUN");
+        LemmaAndPos dog = new LemmaAndPos("dog", "NOUN");
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A1)).thenReturn(new HashSet<>(List.of(cat)));
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.A2)).thenReturn(new HashSet<>(List.of(dog)));
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B1)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.getExpectedLemmas(CefrLevel.B2)).thenReturn(Collections.emptySet());
+        when(evpCatalogPort.isPhrase(any())).thenReturn(false);
+        when(evpCatalogPort.getCocaRank(any())).thenReturn(Optional.of(500));
+        when(evpCatalogPort.getSemanticCategory(any())).thenReturn(Optional.empty());
+
+        AuditNode root = buildEmptyCourseTree();
+        addDiagnosesToTree(root);
+        sut.onCourseComplete(root);
+
+        // Totales esperados: exactamente los del catalogo A1-B2, sin aporte de C1/C2
+        assertEquals(1, levelDiagnosisAt(root, 0).getTotalExpected(), "R037: A1 espera solo 'cat'");
+        assertEquals(1, levelDiagnosisAt(root, 1).getTotalExpected(), "R037: A2 espera solo 'dog'");
+        assertEquals(0, levelDiagnosisAt(root, 2).getTotalExpected(), "R037: B1 sin esperados");
+        assertEquals(0, levelDiagnosisAt(root, 3).getTotalExpected(), "R037: B2 sin esperados");
+        // La cobertura jamas consulta lemas esperados de C1/C2
+        verify(evpCatalogPort, never()).getExpectedLemmas(CefrLevel.C1);
+        verify(evpCatalogPort, never()).getExpectedLemmas(CefrLevel.C2);
+    }
+
+    @Test
+    @DisplayName("should expose observed pos and applied discount for each misplaced lemma in the quiz diagnosis")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R038")
+    public void shouldExposeObservedPosAndAppliedDiscountForEachMisplacedLemmaInTheQuizDiagnosis() {
+        // R038: cada lema penalizado expone lema, categoria gramatical OBSERVADA (la POS del
+        // token en la oracion, que puede diferir de la del catalogo cuando opero el fallback
+        // de R036), motivo (nivel esperado) y descuento aplicado.
+        stubMinimalConfig();
+        stubEmptyEvp();
+        // "record" VERB no figura como par exacto; el lema resuelve a B1 via fallback
+        when(evpCatalogPort.lookupLevelByLemma("record")).thenReturn(Optional.of(CefrLevel.B1));
+
+        NlpToken recordVerb = new NlpToken("recorded", "record", "VERB", 950, false, false);
+        AuditNode root = courseTreeWithQuiz(0, "q1", List.of(recordVerb)); // quiz en A1
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        LemmaPlacementDiagnosis placement = quizPlacementDiagnosis(root);
+        assertNotNull(placement.getMisplacedLemmas());
+        assertEquals(1, placement.getMisplacedLemmas().size());
+        MisplacedLemma detail = placement.getMisplacedLemmas().get(0);
+        assertEquals("record", detail.getLemmaAndPos().getLemma(), "R038: lema penalizado");
+        assertEquals("VERB", detail.getObservedPos(),
+                "R038: POS observada del token en la oracion (difiere de la del catalogo por el fallback)");
+        assertEquals(CefrLevel.B1, detail.getExpectedLevel(),
+                "R038: motivo = nivel esperado segun catalogo");
+        assertNotNull(detail.getDiscount(), "R038: descuento aplicado presente");
+        assertEquals(0.2, detail.getDiscount(), 0.001,
+                "R038: descuento que compitio en el maximo de R019 (B1 a distancia 2 de A1)");
+        assertEquals(0.8, quizScore(root), 0.001, "Coherencia: score = 1.0 - 0.2");
+    }
+
+    @Test
+    @DisplayName("should expose out-of-catalog word detail with observed pos and frequency rank without inventing a cefr level")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R038")
+    public void shouldExposeOutofcatalogWordDetailWithObservedPosAndFrequencyRankWithoutInventingACefrLevel() {
+        // R038: para las palabras fuera de catalogo el motivo se expresa como "fuera de
+        // catalogo" con el ranking observado — NO se les inventa un nivel CEFR. El detalle
+        // va en el tipo propio OutOfCatalogWord (sin campo de nivel), no en misplacedLemmas.
+        stubMinimalConfig();
+        stubEmptyEvp();
+        // lookupLevel / lookupLevelByLemma sin stub -> Optional.empty(): fuera de catalogo
+
+        NlpToken gadget = new NlpToken("gadget", "gadget", "NOUN", 6081, false, false);
+        AuditNode root = courseTreeWithQuiz(0, "q1", List.of(gadget)); // quiz en A1
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        LemmaPlacementDiagnosis placement = quizPlacementDiagnosis(root);
+        assertNotNull(placement.getOutOfCatalogWords(), "R038: la lista nunca es null");
+        assertEquals(1, placement.getOutOfCatalogWords().size());
+        assertEquals(1, placement.getOutOfCatalogWordCount());
+        OutOfCatalogWord word = placement.getOutOfCatalogWords().get(0);
+        assertEquals("gadget", word.getLemma(), "R038: lema penalizado");
+        assertEquals("NOUN", word.getObservedPos(), "R038: POS observada del token");
+        assertEquals(6081, word.getFrequencyRank(), "R038: motivo = fuera de catalogo con su ranking");
+        assertEquals(0.3, word.getDiscount(), 0.001,
+                "R038: descuento aplicado (banda fuerte de A1 para ranking 6081)");
+        // Sin nivel CEFR inventado: la palabra NO aparece entre los mal-ubicados (que son
+        // los unicos con expectedLevel) y el tipo OutOfCatalogWord no porta nivel alguno
+        assertTrue(placement.getMisplacedLemmas() == null || placement.getMisplacedLemmas().isEmpty(),
+                "R038: la palabra fuera de catalogo no debe figurar como mal-ubicada con un nivel inventado");
+    }
+
+    @Test
+    @DisplayName("should register only words that generated discount in the quiz diagnosis detail")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R038")
+    public void shouldRegisterOnlyWordsThatGeneratedDiscountInTheQuizDiagnosisDetail() {
+        // R038: el detalle registra CADA lema que genero descuento — y solo esos. Oracion A1:
+        // - "cat" NOUN A1 exacto -> justificado, sin descuento (no aparece en el detalle)
+        // - "stuff" NOUN rank 900 fuera de catalogo -> banda sin-penalidad de A1 (no aparece)
+        // - "London" PROPN -> excluido por R035 (no aparece)
+        // - "possess" VERB C1 -> descuento 0.4 (UNICO en el detalle)
+        stubMinimalConfig();
+        stubEmptyEvp();
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("cat", "NOUN")))
+                .thenReturn(Optional.of(CefrLevel.A1));
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("possess", "VERB")))
+                .thenReturn(Optional.of(CefrLevel.C1));
+        // "stuff" y "London": lookups sin stub -> Optional.empty()
+
+        NlpToken cat = new NlpToken("cat", "cat", "NOUN", 500, false, false);
+        NlpToken stuff = new NlpToken("stuff", "stuff", "NOUN", 900, false, false);
+        NlpToken london = new NlpToken("London", "london", "PROPN", null, false, false);
+        NlpToken possess = new NlpToken("possesses", "possess", "VERB", 4500, false, false);
+        AuditNode root = courseTreeWithQuiz(0, "q1", List.of(cat, stuff, london, possess));
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        LemmaPlacementDiagnosis placement = quizPlacementDiagnosis(root);
+        assertNotNull(placement.getMisplacedLemmas());
+        assertEquals(1, placement.getMisplacedLemmas().size(),
+                "R038: solo 'possess' genero descuento por mal-ubicacion");
+        assertEquals("possess", placement.getMisplacedLemmas().get(0).getLemmaAndPos().getLemma());
+        assertEquals(1, placement.getMisplacedLemmaCount());
+        assertTrue(placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty(),
+                "R038: 'stuff' (banda sin-penalidad) y 'London' (excluido) no generaron descuento");
+        assertEquals(0, placement.getOutOfCatalogWordCount());
+        assertEquals(0.6, quizScore(root), 0.001,
+                "Coherencia: score = 1.0 - 0.4 ('possess' C1 a distancia 4 de A1)");
     }
 }

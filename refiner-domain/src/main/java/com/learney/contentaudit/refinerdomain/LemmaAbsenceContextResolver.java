@@ -23,6 +23,7 @@ import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis;
 import com.learney.contentaudit.auditdomain.labs.LemmaAndPos;
 import com.learney.contentaudit.auditdomain.labs.LemmaPlacementDiagnosis;
 import com.learney.contentaudit.auditdomain.labs.MisplacedLemma;
+import com.learney.contentaudit.auditdomain.labs.OutOfCatalogWord;
 import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountCourseDiagnosis;
 import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountLevelDiagnosis;
 import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountStats;
@@ -172,12 +173,28 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
             for (MisplacedLemma ml : misplacedLemmas) {
                 String lemma = ml.getLemmaAndPos() != null ? ml.getLemmaAndPos().getLemma() : null;
                 String pos = ml.getLemmaAndPos() != null ? ml.getLemmaAndPos().getPos() : null;
+                // F-LABS-R038: propagar el descuento aplicado (null solo en reportes viejos)
                 misplacedLemmaContexts.add(new MisplacedLemmaContext(
                         lemma,
                         pos,
                         ml.getExpectedLevel(),
                         cefrLevel,
-                        ml.getCocaRank()));
+                        ml.getCocaRank(), ml.getDiscount()));
+            }
+        }
+
+        // F-LABS-R038: propagar las palabras fuera de catalogo penalizadas al contexto
+        // del plan. Lista vacia — nunca null — cuando no hay penalizadas o el reporte
+        // fuente es previo a esta feature.
+        List<OutOfCatalogWordContext> outOfCatalogWordContexts = new ArrayList<>();
+        List<OutOfCatalogWord> outOfCatalogWords = placementDiagnosis.getOutOfCatalogWords();
+        if (outOfCatalogWords != null) {
+            for (OutOfCatalogWord oocw : outOfCatalogWords) {
+                outOfCatalogWordContexts.add(new OutOfCatalogWordContext(
+                        oocw.getLemma(),
+                        oocw.getObservedPos(),
+                        oocw.getFrequencyRank(),
+                        oocw.getDiscount()));
             }
         }
 
@@ -236,7 +253,7 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
                 targetMax,
                 delta,
                 lengthDirection, null, sentenceMode, exerciseQuizzes, task.getNodeId(),
-                scarceContentWords);
+                scarceContentWords, outOfCatalogWordContexts);
 
         return Optional.of(context);
     }
@@ -756,12 +773,28 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
             for (MisplacedLemma ml : misplacedLemmas) {
                 String lemma = ml.getLemmaAndPos() != null ? ml.getLemmaAndPos().getLemma() : null;
                 String pos = ml.getLemmaAndPos() != null ? ml.getLemmaAndPos().getPos() : null;
+                // F-LABS-R038: propagar el descuento aplicado (null solo en reportes viejos)
                 misplacedLemmaContexts.add(new MisplacedLemmaContext(
                         lemma,
                         pos,
                         ml.getExpectedLevel(),
                         cefrLevel,
-                        ml.getCocaRank()));
+                        ml.getCocaRank(), ml.getDiscount()));
+            }
+        }
+
+        // F-LABS-R038: propagar las palabras fuera de catalogo penalizadas al contexto
+        // del plan. Lista vacia — nunca null — cuando no hay penalizadas o el reporte
+        // fuente es previo a esta feature.
+        List<OutOfCatalogWordContext> outOfCatalogWordContexts = new ArrayList<>();
+        List<OutOfCatalogWord> outOfCatalogWords = placementDiagnosis.getOutOfCatalogWords();
+        if (outOfCatalogWords != null) {
+            for (OutOfCatalogWord oocw : outOfCatalogWords) {
+                outOfCatalogWordContexts.add(new OutOfCatalogWordContext(
+                        oocw.getLemma(),
+                        oocw.getObservedPos(),
+                        oocw.getFrequencyRank(),
+                        oocw.getDiscount()));
             }
         }
 
@@ -816,7 +849,7 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
                 targetMax,
                 delta,
                 lengthDirection, null, sentenceMode, exerciseQuizzes, task.getNodeId(),
-                scarceContentWords);
+                scarceContentWords, outOfCatalogWordContexts);
 
         return Optional.of(context);
     }

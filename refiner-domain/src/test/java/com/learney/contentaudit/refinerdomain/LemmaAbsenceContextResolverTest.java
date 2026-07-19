@@ -24,6 +24,7 @@ import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis;
 import com.learney.contentaudit.auditdomain.labs.LemmaAndPos;
 import com.learney.contentaudit.auditdomain.labs.LemmaPlacementDiagnosis;
 import com.learney.contentaudit.auditdomain.labs.MisplacedLemma;
+import com.learney.contentaudit.auditdomain.labs.OutOfCatalogWord;
 import com.learney.contentaudit.auditdomain.labs.PriorityLevel;
 import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountLevelDiagnosis;
 import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountStats;
@@ -166,7 +167,7 @@ public class LemmaAbsenceContextResolverTest {
     private DefaultQuizDiagnoses buildQuizDiagnosesWithPlacement(
             List<MisplacedLemma> misplacedLemmas) {
         DefaultQuizDiagnoses d = new DefaultQuizDiagnoses();
-        d.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(misplacedLemmas.size(), misplacedLemmas));
+        d.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(misplacedLemmas.size(), misplacedLemmas, 0, List.of()));
         return d;
     }
 
@@ -213,6 +214,8 @@ public class LemmaAbsenceContextResolverTest {
                 foundInLevel,
                 AbsenceType.APPEARS_TOO_LATE,
                 cocaRank,
+                null,
+                null,
                 null);
     }
 
@@ -2856,5 +2859,134 @@ public class LemmaAbsenceContextResolverTest {
         Assertions.assertNotNull(scarce, "scarceContentWords must not be null (R003c)");
         Assertions.assertTrue(scarce.isEmpty(),
                 "scarceContentWords must be empty when all content words have count >= threshold (R003c)");
+    }
+
+    @Test
+    @DisplayName("should populate outOfCatalogWords on the lemma-absence correction context from the quiz diagnosis")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R038")
+    public void shouldPopulateOutOfCatalogWordsOnTheLemmaabsenceCorrectionContextFromTheQuizDiagnosis() {
+        // R038: las palabras fuera de catalogo penalizadas se propagan al contexto de
+        // correccion (record espejo OutOfCatalogWordContext) para que el pipeline de planes
+        // y revisiones produzca tareas corregibles. El motivo NO trae nivel CEFR: solo
+        // lema, POS observada, ranking de frecuencia y descuento aplicado.
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-ooc-1", null, null,
+                "El aparato es raro.", List.of("The gadget is odd."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Objects", "Complete.",
+                true, "know-la-ooc-1", null, null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-ooc-1", "Things", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-ooc-1", "A1", null);
+
+        DefaultQuizDiagnoses quizDiag = new DefaultQuizDiagnoses();
+        quizDiag.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(
+                0, List.of(),
+                1, List.of(new OutOfCatalogWord("gadget", "NOUN", 6081, 0.3))));
+        DefaultLevelDiagnoses milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of());
+
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag);
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = new RefinementTask(
+                "task-la-ooc-1", AuditTarget.QUIZ, "quiz-la-ooc-1",
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        Assertions.assertTrue(result.isPresent());
+        List<OutOfCatalogWordContext> words = result.get().getOutOfCatalogWords();
+        Assertions.assertNotNull(words, "R038: la lista nunca es null");
+        Assertions.assertEquals(1, words.size(),
+                "R038: cada palabra fuera de catalogo penalizada se propaga al contexto");
+        OutOfCatalogWordContext word = words.get(0);
+        Assertions.assertEquals("gadget", word.getLemma());
+        Assertions.assertEquals("NOUN", word.getObservedPos());
+        Assertions.assertEquals(6081, word.getFrequencyRank(),
+                "R038: el motivo es 'fuera de catalogo' con su ranking observado");
+        Assertions.assertEquals(0.3, word.getDiscount(), 0.001,
+                "R038: el descuento aplicado viaja al contexto para priorizar el reemplazo");
+    }
+
+    @Test
+    @DisplayName("should map the applied discount into each MisplacedLemmaContext entry")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R038")
+    public void shouldMapTheAppliedDiscountIntoEachMisplacedLemmaContextEntry() {
+        // R038: MisplacedLemmaContext gana el descuento aplicado para que el agente de
+        // revision priorice que palabra reemplazar. Cada entrada conserva SU descuento.
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-disc-1", null, null,
+                "Ella posee un registro.", List.of("She possesses a record."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Ownership", "Complete.",
+                true, "know-la-disc-1", null, null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-disc-1", "Possessions", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-disc-1", "A1", null);
+
+        MisplacedLemma record = new MisplacedLemma(
+                new LemmaAndPos("record", "NOUN"), CefrLevel.B1, CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_EARLY, 950, null, "VERB", 0.2);
+        MisplacedLemma possess = new MisplacedLemma(
+                new LemmaAndPos("possess", "VERB"), CefrLevel.C1, CefrLevel.A1,
+                AbsenceType.APPEARS_TOO_EARLY, 4500, null, "VERB", 0.4);
+        DefaultQuizDiagnoses quizDiag = buildQuizDiagnosesWithPlacement(List.of(record, possess));
+        DefaultLevelDiagnoses milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of());
+
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag);
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = new RefinementTask(
+                "task-la-disc-1", AuditTarget.QUIZ, "quiz-la-disc-1",
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        Assertions.assertTrue(result.isPresent());
+        List<MisplacedLemmaContext> misplaced = result.get().getMisplacedLemmas();
+        Assertions.assertNotNull(misplaced);
+        Assertions.assertEquals(2, misplaced.size());
+        for (MisplacedLemmaContext entry : misplaced) {
+            if ("record".equals(entry.getLemma())) {
+                Assertions.assertEquals(0.2, entry.getDiscount(), 0.001,
+                        "R038: 'record' conserva su descuento aplicado (0.2)");
+            } else if ("possess".equals(entry.getLemma())) {
+                Assertions.assertEquals(0.4, entry.getDiscount(), 0.001,
+                        "R038: 'possess' conserva su descuento aplicado (0.4)");
+            } else {
+                Assertions.fail("Entrada inesperada en misplacedLemmas: " + entry.getLemma());
+            }
+        }
+    }
+
+    @Test
+    @DisplayName("should leave outOfCatalogWords empty not null when the diagnosis has no out-of-catalog penalties")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R038")
+    public void shouldLeaveOutOfCatalogWordsEmptyNotNullWhenTheDiagnosisHasNoOutofcatalogPenalties() {
+        // R038: la lista del contexto es VACIA — nunca null — cuando no hay palabras
+        // penalizadas o el reporte fuente es previo a la feature (diagnostico serializado
+        // sin el campo: se simula con lista null en el diagnosis).
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-ooc-empty", null, null,
+                "El gato duerme.", List.of("The cat sleeps."), null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Complete.",
+                true, "know-la-ooc-empty", null, null, null);
+        AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-ooc-empty", "Pets", null);
+        AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-ooc-empty", "A1", null);
+
+        MisplacedLemma ml = buildMisplacedLemma("cat", "NOUN", CefrLevel.A2, CefrLevel.A1, 300);
+        // Reporte previo: el diagnostico trae outOfCatalogWords null (campo inexistente al serializar)
+        DefaultQuizDiagnoses quizDiag = new DefaultQuizDiagnoses();
+        quizDiag.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(ml), 0, null));
+        DefaultLevelDiagnoses milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of());
+
+        AuditNode[] tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag);
+        AuditReport report = new AuditReport(tree[0]);
+        RefinementTask task = new RefinementTask(
+                "task-la-ooc-empty", AuditTarget.QUIZ, "quiz-la-ooc-empty",
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+
+        Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
+
+        Assertions.assertTrue(result.isPresent());
+        List<OutOfCatalogWordContext> words = result.get().getOutOfCatalogWords();
+        Assertions.assertNotNull(words,
+                "R038: outOfCatalogWords debe ser lista vacia, nunca null, con reportes previos");
+        Assertions.assertTrue(words.isEmpty(),
+                "R038: sin penalizaciones fuera-de-catalogo la lista queda vacia");
     }
 }

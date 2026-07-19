@@ -95,14 +95,26 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
         CRITICAL_FUNCTIONAL_LEMMAS.add("since");
     }
 
-    // Numeric order of CEFR levels
+    // Numeric order of CEFR levels — extendido con C1/C2 (F-LABS-R033: solo participan
+    // de la mal-ubicacion del Grupo D, con la misma pendiente de descuento)
     private static final Map<CefrLevel, Integer> LEVEL_ORDER = new EnumMap<>(CefrLevel.class);
     static {
         LEVEL_ORDER.put(CefrLevel.A1, 1);
         LEVEL_ORDER.put(CefrLevel.A2, 2);
         LEVEL_ORDER.put(CefrLevel.B1, 3);
         LEVEL_ORDER.put(CefrLevel.B2, 4);
+        LEVEL_ORDER.put(CefrLevel.C1, 5);
+        LEVEL_ORDER.put(CefrLevel.C2, 6);
     }
+
+    // F-LABS-R037: los Grupos A/B/C/E/F iteran SOLO los niveles del curso (A1-B2).
+    // Un lema C1/C2 jamas se reporta ausente ni entra en umbrales/pesos/alertas.
+    private static final CefrLevel[] COURSE_LEVELS = {
+            CefrLevel.A1, CefrLevel.A2, CefrLevel.B1, CefrLevel.B2
+    };
+
+    // F-LABS-R035.1: etiqueta POS de nombre propio (unico criterio de exclusion)
+    private static final String PROPER_NOUN_POS = "PROPN";
 
     private static final Set<CefrLevel> CRITICAL_LEVELS = new HashSet<>();
     static {
@@ -167,7 +179,9 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
     }
 
     private void runAnalysis(AuditNode rootNode) {
-        CefrLevel[] allLevels = CefrLevel.values();
+        // F-LABS-R037: la cobertura de ausencias (Grupos A/B/C/E/F) solo mira A1-B2;
+        // C1/C2 participan unicamente del scoring por oracion (Grupo D, scoreQuizzes).
+        CefrLevel[] allLevels = COURSE_LEVELS;
 
         // Step 1: For each level, get expected lemmas from EVP (filtered)
         Map<CefrLevel, Set<LemmaAndPos>> expectedByLevel = new EnumMap<>(CefrLevel.class);
@@ -197,23 +211,27 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
         }
 
         // Step 2: Compute absent lemmas per level
-        // Map<LemmaAndPos, List<CefrLevel>> — where a lemma appears (for cross-level lookup)
-        Map<LemmaAndPos, List<CefrLevel>> lemmaPresenceMap = buildLemmaPresenceMap();
+        // F-LABS-R039: la presencia se compara por lema SOLO (cualquier categoria gramatical
+        // del lado curso cuenta como presente); los esperados conservan su POS de catalogo.
+        // Map<String, List<CefrLevel>> — donde aparece cada lema (for cross-level lookup)
+        Map<String, List<CefrLevel>> lemmaPresenceMap = buildLemmaPresenceMap();
 
         // Step 3 & 4: For each level, compute absent lemmas and classify them
         Map<CefrLevel, List<AbsentLemma>> absentByLevel = new EnumMap<>(CefrLevel.class);
         for (CefrLevel level : allLevels) {
             Set<LemmaAndPos> expected = expectedByLevel.get(level);
-            Set<LemmaAndPos> present = presentLemmasByLevel.getOrDefault(level, Collections.emptySet());
+            Set<String> presentLemmas = presentLemmaNames(level);
 
             List<AbsentLemma> absentList = new ArrayList<>();
             for (LemmaAndPos lp : expected) {
-                if (present.contains(lp)) {
-                    // Present at expected level — not absent (R010)
+                if (presentLemmas.contains(lp.getLemma())) {
+                    // Present at expected level under ANY POS — not absent (R010 + R039)
                     continue;
                 }
-                // Find where this lemma appears in other levels
-                List<CefrLevel> presentInLevels = lemmaPresenceMap.getOrDefault(lp, Collections.emptyList());
+                // Find where this lemma appears in other levels (by lemma only — R039
+                // tambien aplica a la clasificacion TOO_LATE/TOO_EARLY de R004/R007)
+                List<CefrLevel> presentInLevels = lemmaPresenceMap.getOrDefault(
+                        lp.getLemma(), Collections.emptyList());
 
                 // Classify absence type (R007)
                 AbsenceType absenceType = classifyAbsence(level, presentInLevels);
@@ -241,10 +259,10 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
             limitedAbsentByLevel.put(level, applyReportLimits(absentList));
         }
 
-        // Step 6: Score quizzes (sentence scoring — R017-R020)
-        // We need the EVP level map: for each LemmaAndPos, which level does EVP assign?
-        Map<LemmaAndPos, CefrLevel> lemmaExpectedLevel = buildLemmaExpectedLevelMap(expectedByLevel);
-        scoreQuizzes(rootNode, lemmaExpectedLevel);
+        // Step 6: Score quizzes (sentence scoring — R017-R020, R033-R036, R038)
+        // El Grupo D consulta el catalogo completo (incluye C1/C2) via EvpCatalogPort,
+        // con la precedencia exacto-antes-que-fallback de R036.
+        scoreQuizzes(rootNode);
 
         // Step 7: Calculate per-level metrics (R023) and write to milestone nodes
         Map<CefrLevel, LevelAbsenceMetrics> levelMetrics = new EnumMap<>(CefrLevel.class);
@@ -369,26 +387,21 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
         return CRITICAL_LEVELS.contains(level) && CRITICAL_FUNCTIONAL_LEMMAS.contains(lemmaLower);
     }
 
-    // --- Helper: build map of lemma -> list of levels where it appears ---
-    private Map<LemmaAndPos, List<CefrLevel>> buildLemmaPresenceMap() {
-        Map<LemmaAndPos, List<CefrLevel>> map = new HashMap<>();
-        for (CefrLevel level : CefrLevel.values()) {
-            Set<LemmaAndPos> present = presentLemmasByLevel.getOrDefault(level, Collections.emptySet());
-            for (LemmaAndPos lp : present) {
-                map.computeIfAbsent(lp, k -> new ArrayList<>()).add(level);
-            }
+    // --- Helper (R039): lemas presentes en un nivel, indexados por lema solo ---
+    private Set<String> presentLemmaNames(CefrLevel level) {
+        Set<String> names = new HashSet<>();
+        for (LemmaAndPos lp : presentLemmasByLevel.getOrDefault(level, Collections.emptySet())) {
+            names.add(lp.getLemma());
         }
-        return map;
+        return names;
     }
 
-    // --- Helper: build reverse map from expected sets: lemma -> its expected level ---
-    private Map<LemmaAndPos, CefrLevel> buildLemmaExpectedLevelMap(
-            Map<CefrLevel, Set<LemmaAndPos>> expectedByLevel) {
-        Map<LemmaAndPos, CefrLevel> map = new HashMap<>();
-        // If a lemma appears in multiple levels' expected sets, use the lowest (first encounter)
-        for (CefrLevel level : CefrLevel.values()) {
-            for (LemmaAndPos lp : expectedByLevel.get(level)) {
-                map.putIfAbsent(lp, level);
+    // --- Helper (R039): build map of lemma (sin POS) -> list of levels where it appears ---
+    private Map<String, List<CefrLevel>> buildLemmaPresenceMap() {
+        Map<String, List<CefrLevel>> map = new HashMap<>();
+        for (CefrLevel level : COURSE_LEVELS) {
+            for (String lemma : presentLemmaNames(level)) {
+                map.computeIfAbsent(lemma, k -> new ArrayList<>()).add(level);
             }
         }
         return map;
@@ -472,16 +485,21 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
         return result;
     }
 
-    // --- R017-R020: Score quizzes based on misplaced lemmas, writing to nodes ---
-    private void scoreQuizzes(AuditNode rootNode, Map<LemmaAndPos, CefrLevel> lemmaExpectedLevel) {
+    // --- R017-R020, R033-R036, R038: Score quizzes, writing to nodes ---
+    private void scoreQuizzes(AuditNode rootNode) {
         List<AuditNode> milestoneNodes = rootNode.getChildren();
         if (milestoneNodes == null) {
             return;
         }
-        CefrLevel[] levels = CefrLevel.values();
         for (int mi = 0; mi < milestoneNodes.size(); mi++) {
             AuditNode milestoneNode = milestoneNodes.get(mi);
-            CefrLevel sentenceLevel = mi < levels.length ? levels[mi] : null;
+            // Derivar el nivel de la oracion del label del milestone (misma convencion
+            // que findMilestoneNodeForLevel), no de la posicion en el arbol
+            CefrLevel sentenceLevel = null;
+            if (milestoneNode.getEntity() instanceof AuditableMilestone) {
+                sentenceLevel = parseCefrLevelFromLabel(
+                        ((AuditableMilestone) milestoneNode.getEntity()).getLabel());
+            }
             if (sentenceLevel == null) continue;
 
             List<AuditNode> topicNodes = milestoneNode.getChildren();
@@ -494,6 +512,7 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
                 double topicScoreSum = 0.0;
                 int topicQuizCount = 0;
                 int topicMisplacedCount = 0;
+                int topicOutOfCatalogCount = 0;
 
                 for (AuditNode knowledgeNode : knowledgeNodes) {
                     List<AuditNode> quizNodes = knowledgeNode.getChildren();
@@ -501,28 +520,34 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
 
                     double knowledgeScoreSum = 0.0;
                     int knowledgeQuizCount = 0;
-                    // Collect unique misplaced lemmas per knowledge (dedup by lemma+pos)
+                    // Collect unique misplaced lemmas / OOC words per knowledge (dedup by lemma+pos)
                     Set<String> knowledgeSeen = new HashSet<>();
                     List<MisplacedLemma> knowledgeMisplacedLemmas = new ArrayList<>();
+                    Set<String> knowledgeOocSeen = new HashSet<>();
+                    List<OutOfCatalogWord> knowledgeOutOfCatalogWords = new ArrayList<>();
 
                     for (AuditNode quizNode : quizNodes) {
                         AuditableQuiz quiz = (AuditableQuiz) quizNode.getEntity();
                         double quizScore = 1.0;
                         List<MisplacedLemma> typedMisplacedLemmas = Collections.emptyList();
+                        List<OutOfCatalogWord> outOfCatalogWords = Collections.emptyList();
                         if (quiz != null) {
-                            QuizScoringResult qsr = scoreQuiz(quiz, sentenceLevel, lemmaExpectedLevel);
+                            QuizScoringResult qsr = scoreQuiz(quiz, sentenceLevel);
                             quizScore = qsr.score;
                             typedMisplacedLemmas = qsr.typedMisplacedLemmas;
+                            outOfCatalogWords = qsr.outOfCatalogWords;
                         }
 
                         // Write quiz score directly to quiz node
                         quizNode.getScores().put(ANALYZER_NAME, quizScore);
 
-                        // Write typed diagnosis to quiz node
+                        // Write typed diagnosis to quiz node (R038: listas nuevas
+                        // siempre no-null; null solo se tolera leyendo reportes viejos)
                         if (quizNode.getDiagnoses() instanceof DefaultQuizDiagnoses) {
                             DefaultQuizDiagnoses quizDiagnoses = (DefaultQuizDiagnoses) quizNode.getDiagnoses();
                             LemmaPlacementDiagnosis quizPlacement = new LemmaPlacementDiagnosis(
-                                    typedMisplacedLemmas.size(), new ArrayList<>(typedMisplacedLemmas));
+                                    typedMisplacedLemmas.size(), new ArrayList<>(typedMisplacedLemmas),
+                                    outOfCatalogWords.size(), new ArrayList<>(outOfCatalogWords));
                             quizDiagnoses.setLemmaAbsenceDiagnosis(quizPlacement);
                         }
 
@@ -536,6 +561,13 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
                                 knowledgeMisplacedLemmas.add(ml);
                             }
                         }
+                        // Accumulate unique out-of-catalog words for knowledge level (R038)
+                        for (OutOfCatalogWord oocw : outOfCatalogWords) {
+                            String key = oocw.getLemma() + "|" + oocw.getObservedPos();
+                            if (knowledgeOocSeen.add(key)) {
+                                knowledgeOutOfCatalogWords.add(oocw);
+                            }
+                        }
                     }
 
                     // Write knowledge-level score and typed diagnosis
@@ -547,13 +579,15 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
                             DefaultKnowledgeDiagnoses knowledgeDiagnoses =
                                     (DefaultKnowledgeDiagnoses) knowledgeNode.getDiagnoses();
                             LemmaPlacementDiagnosis knowledgePlacement = new LemmaPlacementDiagnosis(
-                                    knowledgeMisplacedLemmas.size(), new ArrayList<>(knowledgeMisplacedLemmas));
+                                    knowledgeMisplacedLemmas.size(), new ArrayList<>(knowledgeMisplacedLemmas),
+                                    knowledgeOutOfCatalogWords.size(), new ArrayList<>(knowledgeOutOfCatalogWords));
                             knowledgeDiagnoses.setLemmaAbsenceDiagnosis(knowledgePlacement);
                         }
 
                         topicScoreSum += knowledgeScore;
                         topicQuizCount++;
                         topicMisplacedCount += knowledgeMisplacedLemmas.size();
+                        topicOutOfCatalogCount += knowledgeOutOfCatalogWords.size();
                     }
                 }
 
@@ -564,8 +598,11 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
 
                     if (topicNode.getDiagnoses() instanceof DefaultTopicDiagnoses) {
                         DefaultTopicDiagnoses topicDiagnoses = (DefaultTopicDiagnoses) topicNode.getDiagnoses();
+                        // A nivel topic se reportan solo los contadores (mismo criterio que
+                        // misplacedLemmas: lista vacia no-null, detalle en quiz/knowledge)
                         LemmaPlacementDiagnosis topicPlacement = new LemmaPlacementDiagnosis(
-                                topicMisplacedCount, Collections.emptyList());
+                                topicMisplacedCount, Collections.emptyList(),
+                                topicOutOfCatalogCount, Collections.emptyList());
                         topicDiagnoses.setLemmaAbsenceDiagnosis(topicPlacement);
                     }
                 }
@@ -573,62 +610,158 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
         }
     }
 
-    // Holds quiz score + misplaced lemma details together (internal use only)
+    // Holds quiz score + penalized lemma details together (internal use only)
     private static class QuizScoringResult {
         final double score;
         final List<MisplacedLemma> typedMisplacedLemmas;
+        final List<OutOfCatalogWord> outOfCatalogWords;
 
-        QuizScoringResult(double score, List<MisplacedLemma> typedMisplacedLemmas) {
+        QuizScoringResult(double score, List<MisplacedLemma> typedMisplacedLemmas,
+                List<OutOfCatalogWord> outOfCatalogWords) {
             this.score = score;
             this.typedMisplacedLemmas = typedMisplacedLemmas;
+            this.outOfCatalogWords = outOfCatalogWords;
         }
     }
 
-    private QuizScoringResult scoreQuiz(AuditableQuiz quiz, CefrLevel sentenceLevel,
-            Map<LemmaAndPos, CefrLevel> lemmaExpectedLevel) {
+    private QuizScoringResult scoreQuiz(AuditableQuiz quiz, CefrLevel sentenceLevel) {
         if (quiz == null || quiz.getTokens() == null) {
-            return new QuizScoringResult(1.0, Collections.emptyList());
+            return new QuizScoringResult(1.0, Collections.emptyList(), Collections.emptyList());
         }
         double discountPerLevel = lemmaAbsenceConfig.getDiscountPerLevel();
         double maxDiscount = 0.0;
         int sentenceOrder = LEVEL_ORDER.get(sentenceLevel);
         List<MisplacedLemma> typedMisplacedLemmas = new ArrayList<>();
+        List<OutOfCatalogWord> outOfCatalogWords = new ArrayList<>();
         Set<String> seen = new HashSet<>();
 
         for (NlpToken token : quiz.getTokens()) {
-            if (token == null || token.getLemma() == null) continue;
-            LemmaAndPos lp = new LemmaAndPos(token.getLemma(), token.getPosTag());
-            CefrLevel expectedLevel = lemmaExpectedLevel.get(lp);
-            if (expectedLevel == null) {
-                // Not in EVP — not misplaced (R020)
+            if (token == null || token.getLemma() == null || token.getLemma().isEmpty()) continue;
+            // R035: exclusiones ANTES de las bandas — nombres propios, tokens no
+            // alfabeticos y palabras funcionales no participan de la mal-ubicacion
+            if (isExcludedFromPlacement(token)) {
                 continue;
             }
-            int expectedOrder = LEVEL_ORDER.get(expectedLevel);
-            // Only penalize lemmas from a HIGHER level than this sentence
-            // (advanced word in basic level). Words from lower levels are normal reuse.
-            if (expectedOrder <= sentenceOrder) {
-                continue;
+            String observedPos = token.getPosTag();
+            LemmaAndPos lp = new LemmaAndPos(token.getLemma(), observedPos);
+
+            // R036 paso 1: match exacto por lemma+POS — su nivel MANDA aunque otra POS
+            // del mismo lema tenga nivel menor (ej.: "record" verbo B1 en oracion A2
+            // penaliza via este paso, no se resuelve al A2 del sustantivo)
+            Optional<CefrLevel> expectedLevelOpt = evpCatalogPort.lookupLevel(lp);
+            if (expectedLevelOpt.isEmpty()) {
+                // R036 paso 2 (fallback por lema): menor nivel entre las POS disponibles
+                // del lema — beneficio de la duda, nunca penaliza mas
+                expectedLevelOpt = evpCatalogPort.lookupLevelByLemma(token.getLemma());
             }
-            int distance = expectedOrder - sentenceOrder;
-            double discount = discountPerLevel * distance;
-            if (discount > maxDiscount) {
-                maxDiscount = discount;
-            }
-            String key = lp.getLemma() + "|" + lp.getPos();
-            if (seen.add(key)) {
-                Optional<Integer> cocaRankOpt = evpCatalogPort.getCocaRank(lp);
-                int cocaRank = cocaRankOpt.orElse(0);
-                Optional<String> semanticCategoryOpt = evpCatalogPort.getSemanticCategory(lp);
-                String semanticCategory = semanticCategoryOpt.orElse(null);
-                MisplacedLemma typedMl = new MisplacedLemma(
-                        lp, expectedLevel, sentenceLevel,
-                        AbsenceType.APPEARS_TOO_EARLY, cocaRank, semanticCategory);
-                typedMisplacedLemmas.add(typedMl);
+
+            if (expectedLevelOpt.isPresent()) {
+                CefrLevel expectedLevel = expectedLevelOpt.get();
+                int expectedOrder = LEVEL_ORDER.get(expectedLevel);
+                // R017: solo penalizan los lemas de nivel superior al de la oracion.
+                // Words from lower levels are normal reuse.
+                if (expectedOrder <= sentenceOrder) {
+                    continue;
+                }
+                // R018/R033: descuento lineal por distancia (C1=5, C2=6; piso 0.5)
+                int distance = expectedOrder - sentenceOrder;
+                double discount = discountPerLevel * distance;
+                if (discount > maxDiscount) {
+                    maxDiscount = discount;
+                }
+                String key = lp.getLemma() + "|" + lp.getPos();
+                if (seen.add(key)) {
+                    Optional<Integer> cocaRankOpt = evpCatalogPort.getCocaRank(lp);
+                    int cocaRank = cocaRankOpt.orElse(0);
+                    Optional<String> semanticCategoryOpt = evpCatalogPort.getSemanticCategory(lp);
+                    String semanticCategory = semanticCategoryOpt.orElse(null);
+                    // R038: observedPos = POS del token en la oracion (puede diferir de la
+                    // POS de catalogo cuando opero el fallback); discount = el aplicado
+                    MisplacedLemma typedMl = new MisplacedLemma(
+                            lp, expectedLevel, sentenceLevel,
+                            AbsenceType.APPEARS_TOO_EARLY, cocaRank, semanticCategory,
+                            observedPos, discount);
+                    typedMisplacedLemmas.add(typedMl);
+                }
+            } else {
+                // R034: fuera de catalogo bajo CUALQUIER categoria (fallback agotado) —
+                // bandas de frecuencia por nivel de la oracion. R038: nunca se le
+                // inventa un nivel CEFR; se registra como OutOfCatalogWord.
+                Integer frequencyRank = normalizeFrequencyRank(token.getFrequencyRank());
+                double discount = outOfCatalogDiscount(frequencyRank, sentenceLevel);
+                if (discount <= 0.0) {
+                    // Banda sin penalidad: palabra frecuente justificada (R020.2)
+                    continue;
+                }
+                if (discount > maxDiscount) {
+                    maxDiscount = discount;
+                }
+                String key = token.getLemma() + "|" + observedPos;
+                if (seen.add(key)) {
+                    outOfCatalogWords.add(new OutOfCatalogWord(
+                            token.getLemma(), observedPos, frequencyRank, discount));
+                }
             }
         }
+        // R019: score = 1.0 - maximo descuento; los descuentos de distancia (R018/R033)
+        // y de fuera-de-catalogo (R034) compiten en el MISMO maximo
         double score = 1.0 - maxDiscount;
         score = Math.max(0.0, Math.min(1.0, score));
-        return new QuizScoringResult(score, typedMisplacedLemmas);
+        return new QuizScoringResult(score, typedMisplacedLemmas, outOfCatalogWords);
+    }
+
+    // --- R035: exclusiones de la evaluacion de mal-ubicacion (antes de R034) ---
+    private boolean isExcludedFromPlacement(NlpToken token) {
+        // R035.1: nombre propio — la etiqueta POS del NLP es el UNICO criterio
+        if (PROPER_NOUN_POS.equals(token.getPosTag())) {
+            return true;
+        }
+        // R035.2: tokens no alfabeticos (numeros, simbolos, cifras con digitos)
+        if (!isAlphabetic(token)) {
+            return true;
+        }
+        // R035.3: palabras funcionales — ya excluidas por el filtro general de
+        // palabras de contenido (R001)
+        return !contentWordFilter.isContentWord(token);
+    }
+
+    // R035.2: alfabetico = al menos una letra y ningun digito (cifras/simbolos quedan fuera)
+    private static boolean isAlphabetic(NlpToken token) {
+        String text = token.getText() != null ? token.getText() : token.getLemma();
+        if (text == null || text.isEmpty()) {
+            return false;
+        }
+        boolean hasLetter = false;
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            if (Character.isDigit(c)) {
+                return false;
+            }
+            if (Character.isLetter(c)) {
+                hasLetter = true;
+            }
+        }
+        return hasLetter;
+    }
+
+    // R034: rank <= 0 significa "sin ranking" en NlpToken; se normaliza a null
+    private static Integer normalizeFrequencyRank(Integer frequencyRank) {
+        return (frequencyRank == null || frequencyRank <= 0) ? null : frequencyRank;
+    }
+
+    // --- R034: bandas de frecuencia por nivel de la oracion ---
+    private double outOfCatalogDiscount(Integer frequencyRank, CefrLevel sentenceLevel) {
+        if (frequencyRank == null) {
+            // Sin ranking disponible: siempre banda de descuento fuerte
+            return lemmaAbsenceConfig.getOutOfCatalogStrongDiscount();
+        }
+        if (frequencyRank <= lemmaAbsenceConfig.getOutOfCatalogNoPenaltyRankBound(sentenceLevel)) {
+            return 0.0;
+        }
+        if (frequencyRank <= lemmaAbsenceConfig.getOutOfCatalogMildDiscountRankBound(sentenceLevel)) {
+            return lemmaAbsenceConfig.getOutOfCatalogMildDiscount();
+        }
+        return lemmaAbsenceConfig.getOutOfCatalogStrongDiscount();
     }
 
     // --- R008/R024/R032: Compute level score relative to coverage target ---
@@ -671,9 +804,10 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
         }
 
         // Check if any critical level exceeds its threshold (R022)
+        // R037: solo los niveles del curso tienen umbrales
         boolean anyCriticalExceeds = false;
         boolean anyLevelExceeds = false;
-        for (CefrLevel level : CefrLevel.values()) {
+        for (CefrLevel level : COURSE_LEVELS) {
             LevelAbsenceMetrics metrics = levelMetrics.get(level);
             boolean exceeds = exceedsThreshold(level, metrics);
             if (exceeds) {
@@ -709,7 +843,8 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
     private double computeGlobalScore(Map<CefrLevel, LevelAbsenceMetrics> levelMetrics) {
         double totalWeight = 0.0;
         double weightedSum = 0.0;
-        for (CefrLevel level : CefrLevel.values()) {
+        // R037: solo los niveles del curso tienen peso en el score global
+        for (CefrLevel level : COURSE_LEVELS) {
             double weight = lemmaAbsenceConfig.getLevelWeight(level);
             double levelScore = levelMetrics.get(level).getScore();
             weightedSum += weight * levelScore;
@@ -725,7 +860,8 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
             Map<CefrLevel, List<AbsentLemma>> absentByLevel) {
         List<AbsenceRecommendation> recommendations = new ArrayList<>();
 
-        for (CefrLevel level : CefrLevel.values()) {
+        // R037: no existen recomendaciones para C1/C2
+        for (CefrLevel level : COURSE_LEVELS) {
             LevelAbsenceMetrics metrics = levelMetrics.get(level);
             if (!exceedsThreshold(level, metrics)) {
                 // R027: only generate for levels exceeding their threshold

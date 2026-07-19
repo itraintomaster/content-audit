@@ -38,12 +38,12 @@ public class CannedLemmaAbsenceQuizCandidateGeneratorTest {
                 "Write simple present tense sentences.",
                 "Education",
                 level,
-                List.of(new MisplacedLemmaContext("go", "VERB", CefrLevel.B2, level, 200)),
+                List.of(new MisplacedLemmaContext("go", "VERB", CefrLevel.B2, level, 200, null)),
                 List.of(new SuggestedLemma("walk", "VERB", "A1 synonym", 80, null, null, null)),
                 quizSentence,
                 0, 0, 0, 0,
                 com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, null
         );
     }
 
@@ -114,7 +114,7 @@ public class CannedLemmaAbsenceQuizCandidateGeneratorTest {
                 "I ____[study|learn] English.",
                 0, 0, 0, 0,
                 com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN,
-                null, null, List.of(), "quiz-node-xyz", null
+                null, null, List.of(), "quiz-node-xyz", null, null
         );
 
         LemmaAbsenceGeneratorResponse forA1 = generator.generate(contextA1);

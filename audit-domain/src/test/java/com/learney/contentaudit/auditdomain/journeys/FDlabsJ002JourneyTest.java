@@ -58,11 +58,15 @@ public class FDlabsJ002JourneyTest {
                 CefrLevel.B1,
                 AbsenceType.APPEARS_TOO_LATE,
                 500,
+                null,
+                null,
                 null
         );
         LemmaPlacementDiagnosis quizPlacementDiagnosis = new LemmaPlacementDiagnosis(
                 1,
-                List.of(misplacedLemma)
+                List.of(misplacedLemma),
+                0,
+                List.of()
         );
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
         quizDiagnoses.setLemmaAbsenceDiagnosis(quizPlacementDiagnosis);
@@ -162,11 +166,15 @@ public class FDlabsJ002JourneyTest {
                 CefrLevel.A2,
                 AbsenceType.APPEARS_TOO_LATE,
                 200,
+                null,
+                null,
                 null
         );
         LemmaPlacementDiagnosis quizPlacementDiagnosis = new LemmaPlacementDiagnosis(
                 1,
-                List.of(misplacedLemma)
+                List.of(misplacedLemma),
+                0,
+                List.of()
         );
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
         quizDiagnoses.setLemmaAbsenceDiagnosis(quizPlacementDiagnosis);

@@ -38,7 +38,9 @@ public class FLabsJ004JourneyTest {
                 CefrLevel.A1,    // found in sentence at A1 (order 1)
                 AbsenceType.APPEARS_TOO_EARLY,
                 2800,
-                "finance");
+                "finance",
+                null,
+                null);
 
         // Distance = B2(4) - A1(1) = 3 levels → discount = 0.1 * 3 = 0.3 (R018)
         // Score = 1.0 - 0.3 = 0.7 (R019)
@@ -95,7 +97,9 @@ public class FLabsJ004JourneyTest {
                 CefrLevel.A1,   // found in sentence at A1 (order 1)
                 AbsenceType.APPEARS_TOO_EARLY,
                 1800,
-                "cognition");
+                "cognition",
+                null,
+                null);
 
         // Another sentence with 3-level displacement that triggered the score check
         LemmaAndPos invest = new LemmaAndPos("invest", "VERB");
@@ -105,7 +109,9 @@ public class FLabsJ004JourneyTest {
                 CefrLevel.A1,   // found at A1 (order 1) → distance 3
                 AbsenceType.APPEARS_TOO_EARLY,
                 2800,
-                "finance");
+                "finance",
+                null,
+                null);
 
         // Distance calculation for single-level displaced lemma (R018)
         double discountPerLevel = 0.1;

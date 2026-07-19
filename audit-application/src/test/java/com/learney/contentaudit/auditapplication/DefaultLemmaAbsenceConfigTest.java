@@ -11,6 +11,14 @@ public class DefaultLemmaAbsenceConfigTest {
 
     private final DefaultLemmaAbsenceConfig config = new DefaultLemmaAbsenceConfig();
 
+    /**
+     * Niveles del curso (A1-B2). Por F-LABS-R037 los niveles C1/C2 del catalogo NO
+     * participan de umbrales, coverage targets ni pesos de nivel: solo intervienen
+     * en la deteccion de mal-ubicacion del Grupo D.
+     */
+    private static final CefrLevel[] COURSE_LEVELS =
+            {CefrLevel.A1, CefrLevel.A2, CefrLevel.B1, CefrLevel.B2};
+
     @Test
     @DisplayName("should return absolute threshold 0 for A1")
     @Tag("FEAT-LABS")
@@ -298,7 +306,7 @@ public class DefaultLemmaAbsenceConfigTest {
     @Tag("FEAT-LABS")
     @Tag("F-LABS-R021")
     public void shouldReturnNonnegativeValuesForAllThresholdsAndBounds() {
-        for (CefrLevel level : CefrLevel.values()) {
+        for (CefrLevel level : COURSE_LEVELS) {
             assertTrue(config.getAbsoluteThreshold(level) >= 0);
             assertTrue(config.getPercentageThreshold(level) >= 0.0);
         }
@@ -324,7 +332,7 @@ public class DefaultLemmaAbsenceConfigTest {
     @Tag("FEAT-LABS")
     @Tag("F-LABS-R021")
     public void shouldReturnPercentageThresholdsBetween0And100ForAllLevels() {
-        for (CefrLevel level : CefrLevel.values()) {
+        for (CefrLevel level : COURSE_LEVELS) {
             double pct = config.getPercentageThreshold(level);
             assertTrue(pct >= 0.0 && pct <= 100.0,
                     "Percentage threshold for " + level + " should be between 0 and 100, was " + pct);
@@ -336,7 +344,7 @@ public class DefaultLemmaAbsenceConfigTest {
     @Tag("FEAT-LABS")
     @Tag("F-LABS-R024")
     public void shouldReturnPositiveLevelWeightsForAllCEFRLevels() {
-        for (CefrLevel level : CefrLevel.values()) {
+        for (CefrLevel level : COURSE_LEVELS) {
             assertTrue(config.getLevelWeight(level) > 0.0);
         }
     }
@@ -397,10 +405,80 @@ public class DefaultLemmaAbsenceConfigTest {
     @Tag("FEAT-LABS")
     @Tag("F-LABS-R032")
     public void shouldReturnCoverageTargetsBetween0And1ForAllLevels() {
-        for (CefrLevel level : CefrLevel.values()) {
+        for (CefrLevel level : COURSE_LEVELS) {
             double target = config.getCoverageTarget(level);
             assertTrue(target > 0.0 && target <= 1.0,
                     "Coverage target for " + level + " should be between 0 and 1, was " + target);
+        }
+    }
+
+    @Test
+    @DisplayName("should return out-of-catalog no-penalty rank bounds 1000 2000 3500 5000 for A1 A2 B1 B2")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R034")
+    public void shouldReturnOutofcatalogNopenaltyRankBounds1000200035005000ForA1A2B1B2() {
+        // R034: banda "sin penalidad" por nivel de la oracion. El ancla de A1 en 1000
+        // fue dada por el usuario (DOUBT-OOC-HEURISTICA); el resto es propuesta configurable.
+        assertEquals(1000, config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.A1));
+        assertEquals(2000, config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.A2));
+        assertEquals(3500, config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.B1));
+        assertEquals(5000, config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.B2));
+    }
+
+    @Test
+    @DisplayName("should return out-of-catalog mild-discount rank bounds 3000 5000 8000 10000 for A1 A2 B1 B2")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R034")
+    public void shouldReturnOutofcatalogMilddiscountRankBounds30005000800010000ForA1A2B1B2() {
+        // R034: banda "descuento leve" por nivel de la oracion; por encima de esta banda
+        // (o sin ranking) aplica el descuento fuerte.
+        assertEquals(3000, config.getOutOfCatalogMildDiscountRankBound(CefrLevel.A1));
+        assertEquals(5000, config.getOutOfCatalogMildDiscountRankBound(CefrLevel.A2));
+        assertEquals(8000, config.getOutOfCatalogMildDiscountRankBound(CefrLevel.B1));
+        assertEquals(10000, config.getOutOfCatalogMildDiscountRankBound(CefrLevel.B2));
+    }
+
+    @Test
+    @DisplayName("should return out-of-catalog mild discount 0.1 and strong discount 0.3")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R034")
+    public void shouldReturnOutofcatalogMildDiscount01AndStrongDiscount03() {
+        // R034: dos descuentos planos — leve 0.1 y fuerte 0.3 (el fuerte aplica tambien
+        // a palabras sin ranking de frecuencia disponible).
+        assertEquals(0.1, config.getOutOfCatalogMildDiscount(), 0.001);
+        assertEquals(0.3, config.getOutOfCatalogStrongDiscount(), 0.001);
+    }
+
+    @Test
+    @DisplayName("should have out-of-catalog rank bounds non-decreasing from A1 to B2 within each band")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R034")
+    public void shouldHaveOutofcatalogRankBoundsNondecreasingFromA1ToB2WithinEachBand() {
+        // R034: cuanto mas basico el nivel, mas frecuente debe ser una palabra desconocida
+        // para no penalizar -> los umbrales no decrecen de A1 a B2 dentro de cada banda.
+        assertTrue(config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.A1)
+                        <= config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.A2),
+                "Banda sin-penalidad: A1 <= A2");
+        assertTrue(config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.A2)
+                        <= config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.B1),
+                "Banda sin-penalidad: A2 <= B1");
+        assertTrue(config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.B1)
+                        <= config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.B2),
+                "Banda sin-penalidad: B1 <= B2");
+        assertTrue(config.getOutOfCatalogMildDiscountRankBound(CefrLevel.A1)
+                        <= config.getOutOfCatalogMildDiscountRankBound(CefrLevel.A2),
+                "Banda descuento-leve: A1 <= A2");
+        assertTrue(config.getOutOfCatalogMildDiscountRankBound(CefrLevel.A2)
+                        <= config.getOutOfCatalogMildDiscountRankBound(CefrLevel.B1),
+                "Banda descuento-leve: A2 <= B1");
+        assertTrue(config.getOutOfCatalogMildDiscountRankBound(CefrLevel.B1)
+                        <= config.getOutOfCatalogMildDiscountRankBound(CefrLevel.B2),
+                "Banda descuento-leve: B1 <= B2");
+        // Coherencia interna: en cada nivel la banda leve empieza donde termina la sin-penalidad
+        for (CefrLevel level : new CefrLevel[] {CefrLevel.A1, CefrLevel.A2, CefrLevel.B1, CefrLevel.B2}) {
+            assertTrue(config.getOutOfCatalogNoPenaltyRankBound(level)
+                            <= config.getOutOfCatalogMildDiscountRankBound(level),
+                    "En " + level + " el umbral sin-penalidad no puede superar al de descuento leve");
         }
     }
 }

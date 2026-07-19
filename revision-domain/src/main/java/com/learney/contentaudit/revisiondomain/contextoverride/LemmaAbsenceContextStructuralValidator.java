@@ -139,7 +139,7 @@ class LemmaAbsenceContextStructuralValidator implements CorrectionContextStructu
                     try { quizLevel = CefrLevel.valueOf(ml.get("quizLevel").asText()); } catch (IllegalArgumentException ignored) {}
                 }
                 Integer cocaRank = ml.has("cocaRank") && !ml.get("cocaRank").isNull() ? ml.get("cocaRank").asInt(0) : null;
-                misplacedLemmas.add(new MisplacedLemmaContext(lemma, pos, expectedLevel, quizLevel, cocaRank));
+                misplacedLemmas.add(new MisplacedLemmaContext(lemma, pos, expectedLevel, quizLevel, cocaRank, null));
             }
         }
 
@@ -259,6 +259,6 @@ class LemmaAbsenceContextStructuralValidator implements CorrectionContextStructu
                 targetMax,
                 delta,
                 lengthDirection,
-                sourceAuditId, sentenceMode, exerciseQuizzes, nodeId, null);
+                sourceAuditId, sentenceMode, exerciseQuizzes, nodeId, null, null);
     }
 }

@@ -13,5 +13,9 @@ public enum CefrLevel {
 
     B1,
 
-    B2
+    B2,
+
+    C1,
+
+    C2
 }

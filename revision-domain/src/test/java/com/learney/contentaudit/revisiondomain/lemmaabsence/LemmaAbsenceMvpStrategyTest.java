@@ -51,12 +51,12 @@ public class LemmaAbsenceMvpStrategyTest {
                 "Write simple present tense sentences.",
                 "Everyday Life",
                 CefrLevel.A1,
-                List.of(new MisplacedLemmaContext("run", "VERB", CefrLevel.B1, CefrLevel.A1, 150)),
+                List.of(new MisplacedLemmaContext("run", "VERB", CefrLevel.B1, CefrLevel.A1, 150, null)),
                 List.of(new SuggestedLemma("walk", "VERB", "A1 level synonym", 80, null, null, null)),
                 "She ____[runs|walks] every morning.",
                 0, 0, 0, 0,
                 com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, null
         );
     }
 

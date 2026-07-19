@@ -52,7 +52,7 @@ public class DefaultLemmaAbsenceConfigSentinelTest {
 
   /**
    * Feature: Analisis de Ausencia de Lemas por Nivel CEFR
-   * Rule: Para cada lema mal ubicado en una oracion (nivel esperado superior al de la oracion), se calcula un **descuento** proporcional a la distancia: descuento = 0.1 * (nivel esperado del lema - nivel de la oracion) La distancia se calcula como la diferencia en el orden numerico de los niveles CEFR (A1=1, A2=2, B1=3, B2=4). Solo se aplica cuando el nivel esperado es mayor que el de la oracion. Ejemplos: - Lema B2 en oracion A1: distancia = 4-1 = 3, descuento = 0.3 - Lema B1 en oracion A2: distancia = 3-2 = 1, descuento = 0.1 - Lema A1 en oracion B2: no se penaliza (vocabulario basico reutilizado) El factor de 0.1 por nivel de distancia es un valor fijo configurable via `getDiscountPerLevel()`.
+   * Rule: Para cada lema mal ubicado en una oracion (nivel esperado superior al de la oracion), se calcula un **descuento** proporcional a la distancia: descuento = 0.1 * (nivel esperado del lema - nivel de la oracion) La distancia se calcula como la diferencia en el orden numerico de los niveles CEFR (A1=1, A2=2, B1=3, B2=4, y para los niveles superiores al curso C1=5, C2=6 — ver R033). Solo se aplica cuando el nivel esperado es mayor que el de la oracion. Ejemplos: - Lema B2 en oracion A1: distancia = 4-1 = 3, descuento = 0.3 - Lema B1 en oracion A2: distancia = 3-2 = 1, descuento = 0.1 - Lema C2 en oracion A1: distancia = 6-1 = 5, descuento = 0.5 - Lema A1 en oracion B2: no se penaliza (vocabulario basico reutilizado) El factor de 0.1 por nivel de distancia es un valor fijo configurable via `getDiscountPerLevel()`.
    */
   @Test
   @DisplayName("should have discount per level that limits max penalty to 0.3 for three-level distance")
@@ -107,7 +107,7 @@ public class DefaultLemmaAbsenceConfigSentinelTest {
 
   /**
    * Feature: Analisis de Ausencia de Lemas por Nivel CEFR
-   * Rule: Para cada lema mal ubicado en una oracion (nivel esperado superior al de la oracion), se calcula un **descuento** proporcional a la distancia: descuento = 0.1 * (nivel esperado del lema - nivel de la oracion) La distancia se calcula como la diferencia en el orden numerico de los niveles CEFR (A1=1, A2=2, B1=3, B2=4). Solo se aplica cuando el nivel esperado es mayor que el de la oracion. Ejemplos: - Lema B2 en oracion A1: distancia = 4-1 = 3, descuento = 0.3 - Lema B1 en oracion A2: distancia = 3-2 = 1, descuento = 0.1 - Lema A1 en oracion B2: no se penaliza (vocabulario basico reutilizado) El factor de 0.1 por nivel de distancia es un valor fijo configurable via `getDiscountPerLevel()`.
+   * Rule: Para cada lema mal ubicado en una oracion (nivel esperado superior al de la oracion), se calcula un **descuento** proporcional a la distancia: descuento = 0.1 * (nivel esperado del lema - nivel de la oracion) La distancia se calcula como la diferencia en el orden numerico de los niveles CEFR (A1=1, A2=2, B1=3, B2=4, y para los niveles superiores al curso C1=5, C2=6 — ver R033). Solo se aplica cuando el nivel esperado es mayor que el de la oracion. Ejemplos: - Lema B2 en oracion A1: distancia = 4-1 = 3, descuento = 0.3 - Lema B1 en oracion A2: distancia = 3-2 = 1, descuento = 0.1 - Lema C2 en oracion A1: distancia = 6-1 = 5, descuento = 0.5 - Lema A1 en oracion B2: no se penaliza (vocabulario basico reutilizado) El factor de 0.1 por nivel de distancia es un valor fijo configurable via `getDiscountPerLevel()`.
    */
   @Test
   @DisplayName("should return discount per level between 0 exclusive and 1 exclusive")

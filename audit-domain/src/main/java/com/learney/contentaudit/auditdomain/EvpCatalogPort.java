@@ -19,4 +19,6 @@ public interface EvpCatalogPort {
     Optional<String> getSemanticCategory(LemmaAndPos lemmaAndPos);
 
     Optional<CefrLevel> lookupLevel(LemmaAndPos lemmaAndPos);
+
+    Optional<CefrLevel> lookupLevelByLemma(String lemma);
 }

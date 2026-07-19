@@ -19,16 +19,19 @@ public class MisplacedLemmaContext {
 
     private Integer cocaRank;
 
+    private Double discount;
+
     public MisplacedLemmaContext() {
     }
 
     public MisplacedLemmaContext(String lemma, String pos, CefrLevel expectedLevel,
-            CefrLevel quizLevel, Integer cocaRank) {
+            CefrLevel quizLevel, Integer cocaRank, Double discount) {
         this.lemma = lemma;
         this.pos = pos;
         this.expectedLevel = expectedLevel;
         this.quizLevel = quizLevel;
         this.cocaRank = cocaRank;
+        this.discount = discount;
     }
 
     public String getLemma() {
@@ -71,6 +74,14 @@ public class MisplacedLemmaContext {
         this.cocaRank = cocaRank;
     }
 
+    public Double getDiscount() {
+        return this.discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,11 +91,12 @@ public class MisplacedLemmaContext {
                     && Objects.equals(this.pos, that.pos)
                     && Objects.equals(this.expectedLevel, that.expectedLevel)
                     && Objects.equals(this.quizLevel, that.quizLevel)
-                    && Objects.equals(this.cocaRank, that.cocaRank);
+                    && Objects.equals(this.cocaRank, that.cocaRank)
+                    && Objects.equals(this.discount, that.discount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lemma, pos, expectedLevel, quizLevel, cocaRank);
+        return Objects.hash(lemma, pos, expectedLevel, quizLevel, cocaRank, discount);
     }
 }

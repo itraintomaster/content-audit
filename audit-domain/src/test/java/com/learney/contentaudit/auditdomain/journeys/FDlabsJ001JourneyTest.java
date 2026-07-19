@@ -163,10 +163,12 @@ public class FDlabsJ001JourneyTest {
                 CefrLevel.A2,
                 AbsenceType.APPEARS_TOO_LATE,
                 500,
+                null,
+                null,
                 null
         );
         LemmaPlacementDiagnosis quizPlacementDiagnosis =
-                new LemmaPlacementDiagnosis(1, List.of(misplacedLemma));
+                new LemmaPlacementDiagnosis(1, List.of(misplacedLemma), 0, List.of());
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
         quizDiagnoses.setLemmaAbsenceDiagnosis(quizPlacementDiagnosis);
         AuditNode quizNode = new AuditNode(null, AuditTarget.QUIZ, milestoneNode,

@@ -12,6 +12,21 @@ import javax.annotation.processing.Generated;
 )
 public class DefaultLemmaAbsenceConfig implements LemmaAbsenceConfig {
 
+    // F-LABS-R037: los niveles del curso son A1-B2; C1/C2 solo participan de la
+    // mal-ubicacion (Grupo D) y no tienen umbrales, pesos, coverage targets ni bandas.
+    private static final CefrLevel[] COURSE_LEVELS = {
+            CefrLevel.A1, CefrLevel.A2, CefrLevel.B1, CefrLevel.B2
+    };
+
+    // F-LABS-R037: pedir un valor de cobertura/banda para C1/C2 es un error de
+    // programacion, no un caso configurable — se falla explicitamente en lugar de
+    // devolver un default silencioso.
+    private static IllegalArgumentException outsideCourseRange(String what, CefrLevel level) {
+        return new IllegalArgumentException(
+                "F-LABS-R037: el nivel " + level + " no participa de " + what
+                        + " (solo niveles del curso A1-B2)");
+    }
+
     @Override
     public int getAbsoluteThreshold(CefrLevel level) {
         return switch (level) {
@@ -19,6 +34,7 @@ public class DefaultLemmaAbsenceConfig implements LemmaAbsenceConfig {
             case A2 -> 2;
             case B1 -> 5;
             case B2 -> 8;
+            case C1, C2 -> throw outsideCourseRange("umbrales de ausencia", level);
         };
     }
 
@@ -29,6 +45,7 @@ public class DefaultLemmaAbsenceConfig implements LemmaAbsenceConfig {
             case A2 -> 5.0;
             case B1 -> 10.0;
             case B2 -> 15.0;
+            case C1, C2 -> throw outsideCourseRange("umbrales de ausencia", level);
         };
     }
 
@@ -37,6 +54,7 @@ public class DefaultLemmaAbsenceConfig implements LemmaAbsenceConfig {
         return switch (level) {
             case A1, A2 -> 2.0;
             case B1, B2 -> 1.0;
+            case C1, C2 -> throw outsideCourseRange("pesos de nivel", level);
         };
     }
 
@@ -121,7 +139,8 @@ public class DefaultLemmaAbsenceConfig implements LemmaAbsenceConfig {
                 "critical", getCriticalAbsenceThreshold(),
                 "acceptable", getAcceptableAbsenceThreshold()));
         Map<String, Object> thresholdsByLevel = new LinkedHashMap<>();
-        for (CefrLevel level : CefrLevel.values()) {
+        // F-LABS-R037: solo los niveles del curso tienen umbrales/pesos/targets/bandas
+        for (CefrLevel level : COURSE_LEVELS) {
             thresholdsByLevel.put(level.name(), Map.of(
                     "absolute", getAbsoluteThreshold(level),
                     "percentage", getPercentageThreshold(level),
@@ -129,6 +148,16 @@ public class DefaultLemmaAbsenceConfig implements LemmaAbsenceConfig {
                     "coverageTarget", getCoverageTarget(level)));
         }
         desc.put("thresholdsByLevel", thresholdsByLevel);
+        Map<String, Object> outOfCatalogBandsByLevel = new LinkedHashMap<>();
+        for (CefrLevel level : COURSE_LEVELS) {
+            outOfCatalogBandsByLevel.put(level.name(), Map.of(
+                    "noPenaltyRankBound", getOutOfCatalogNoPenaltyRankBound(level),
+                    "mildDiscountRankBound", getOutOfCatalogMildDiscountRankBound(level)));
+        }
+        desc.put("outOfCatalog", Map.of(
+                "bandsByLevel", outOfCatalogBandsByLevel,
+                "mildDiscount", getOutOfCatalogMildDiscount(),
+                "strongDiscount", getOutOfCatalogStrongDiscount()));
         return desc;
     }
 
@@ -139,7 +168,51 @@ public class DefaultLemmaAbsenceConfig implements LemmaAbsenceConfig {
             case A2 -> 0.85;
             case B1 -> 0.70;
             case B2 -> 0.55;
+            case C1, C2 -> throw outsideCourseRange("coverage targets", level);
         };
+    }
+
+    /**
+     * F-LABS-R034 [ASSUMPTION]: banda sin penalidad — ranking de frecuencia maximo (inclusive)
+     * para que una palabra fuera de catalogo no penalice en una oracion de este nivel.
+     * El ancla A1=1000 la dio el usuario; el resto de la tabla es propuesta del requerimiento.
+     */
+    @Override
+    public int getOutOfCatalogNoPenaltyRankBound(CefrLevel level) {
+        return switch (level) {
+            case A1 -> 1000;
+            case A2 -> 2000;
+            case B1 -> 3500;
+            case B2 -> 5000;
+            case C1, C2 -> throw outsideCourseRange("bandas de fuera-de-catalogo", level);
+        };
+    }
+
+    /**
+     * F-LABS-R034 [ASSUMPTION]: banda de descuento leve — ranking maximo (inclusive) para el
+     * descuento leve; por encima (o sin ranking) aplica el descuento fuerte.
+     */
+    @Override
+    public int getOutOfCatalogMildDiscountRankBound(CefrLevel level) {
+        return switch (level) {
+            case A1 -> 3000;
+            case A2 -> 5000;
+            case B1 -> 8000;
+            case B2 -> 10000;
+            case C1, C2 -> throw outsideCourseRange("bandas de fuera-de-catalogo", level);
+        };
+    }
+
+    /** F-LABS-R034: descuento plano de la banda leve. */
+    @Override
+    public double getOutOfCatalogMildDiscount() {
+        return 0.1;
+    }
+
+    /** F-LABS-R034: descuento plano de la banda fuerte (tambien para palabras sin ranking). */
+    @Override
+    public double getOutOfCatalogStrongDiscount() {
+        return 0.3;
     }
 
 }

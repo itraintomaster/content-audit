@@ -113,6 +113,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: KnowledgeTitleCorrectionContext - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.refinerdomain.OutOfCatalogWordContext");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: OutOfCatalogWordContext - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.refinerdomain.RefinerEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: RefinerEngine - " + e.getMessage());

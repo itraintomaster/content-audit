@@ -38,4 +38,12 @@ public interface LemmaAbsenceConfig extends SelfDescribingConfig {
     double getDiscountPerLevel();
 
     double getCoverageTarget(CefrLevel level);
+
+    int getOutOfCatalogNoPenaltyRankBound(CefrLevel level);
+
+    int getOutOfCatalogMildDiscountRankBound(CefrLevel level);
+
+    double getOutOfCatalogMildDiscount();
+
+    double getOutOfCatalogStrongDiscount();
 }

@@ -51,6 +51,8 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
 
     private List<ScarceContentWord> scarceContentWords;
 
+    private List<OutOfCatalogWordContext> outOfCatalogWords;
+
     public LemmaAbsenceCorrectionContext() {
     }
 
@@ -60,7 +62,8 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
             List<SuggestedLemma> suggestedLemmas, String quizSentence, Integer tokenCount,
             Integer targetMin, Integer targetMax, Integer delta, LengthDirection lengthDirection,
             String sourceAuditId, SentenceMode sentenceMode, List<String> exerciseQuizzes,
-            String nodeId, List<ScarceContentWord> scarceContentWords) {
+            String nodeId, List<ScarceContentWord> scarceContentWords,
+            List<OutOfCatalogWordContext> outOfCatalogWords) {
         this.taskId = taskId;
         this.sentence = sentence;
         this.translation = translation;
@@ -81,6 +84,7 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
         this.exerciseQuizzes = exerciseQuizzes;
         this.nodeId = nodeId;
         this.scarceContentWords = scarceContentWords;
+        this.outOfCatalogWords = outOfCatalogWords;
     }
 
     public String getTaskId() {
@@ -243,6 +247,14 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
         this.scarceContentWords = scarceContentWords;
     }
 
+    public List<OutOfCatalogWordContext> getOutOfCatalogWords() {
+        return this.outOfCatalogWords;
+    }
+
+    public void setOutOfCatalogWords(List<OutOfCatalogWordContext> outOfCatalogWords) {
+        this.outOfCatalogWords = outOfCatalogWords;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -267,11 +279,12 @@ public class LemmaAbsenceCorrectionContext implements CorrectionContext {
                     && Objects.equals(this.sentenceMode, that.sentenceMode)
                     && Objects.equals(this.exerciseQuizzes, that.exerciseQuizzes)
                     && Objects.equals(this.nodeId, that.nodeId)
-                    && Objects.equals(this.scarceContentWords, that.scarceContentWords);
+                    && Objects.equals(this.scarceContentWords, that.scarceContentWords)
+                    && Objects.equals(this.outOfCatalogWords, that.outOfCatalogWords);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskId, sentence, translation, knowledgeTitle, knowledgeInstructions, topicLabel, cefrLevel, misplacedLemmas, suggestedLemmas, quizSentence, tokenCount, targetMin, targetMax, delta, lengthDirection, sourceAuditId, sentenceMode, exerciseQuizzes, nodeId, scarceContentWords);
+        return Objects.hash(taskId, sentence, translation, knowledgeTitle, knowledgeInstructions, topicLabel, cefrLevel, misplacedLemmas, suggestedLemmas, quizSentence, tokenCount, targetMin, targetMax, delta, lengthDirection, sourceAuditId, sentenceMode, exerciseQuizzes, nodeId, scarceContentWords, outOfCatalogWords);
     }
 }
