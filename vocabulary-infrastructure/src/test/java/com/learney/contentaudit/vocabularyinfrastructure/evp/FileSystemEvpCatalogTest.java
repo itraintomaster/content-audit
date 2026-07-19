@@ -128,4 +128,58 @@ public class FileSystemEvpCatalogTest {
         assertEquals(Optional.empty(), catalog.lookupLevelByLemma("blorptastic"),
                 "Un lema sin entrada bajo ninguna POS debe devolver Optional vacio (fuera de catalogo, R036)");
     }
+
+    @Test
+    @DisplayName("should return empty from exact lookupLevel when the only catalog entry for the pair is phrasal")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R005")
+    public void shouldReturnEmptyFromExactLookupLevelWhenTheOnlyCatalogEntryForThePairIsPhrasal() throws IOException {
+        // R005: las frases multipalabra se excluyen del analisis. Si la UNICA entrada del
+        // catalogo para el par (sleep,VERB) es la frase "sleep on it", el lookup exacto no
+        // debe resolver nivel alguno: la entrada phrasal no representa al lema individual.
+        Path catalogPath = writeCatalog(
+                entry("sleep on it", "sleep", "C2", "VERB", 15000));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.empty(), catalog.lookupLevel(new LemmaAndPos("sleep", "VERB")),
+                "R005: el par cuyo unico respaldo es una entrada phrasal debe resolver Optional vacio");
+    }
+
+    @Test
+    @DisplayName("should return empty from lookupLevelByLemma when the only catalog entry for the lemma is phrasal")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R005")
+    public void shouldReturnEmptyFromLookupLevelByLemmaWhenTheOnlyCatalogEntryForTheLemmaIsPhrasal() throws IOException {
+        // R005 + R036: el fallback por lema tampoco puede apoyarse en entradas phrasal.
+        // Con "sleep on it" como unica entrada del lemma "sleep", lookupLevelByLemma
+        // devuelve vacio (el lema individual queda fuera de catalogo, deriva a R034).
+        Path catalogPath = writeCatalog(
+                entry("sleep on it", "sleep", "C2", "VERB", 15000));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.empty(), catalog.lookupLevelByLemma("sleep"),
+                "R005: el lema cuyo unico respaldo es una entrada phrasal debe resolver Optional vacio");
+    }
+
+    @Test
+    @DisplayName("should resolve the single word entry level when the lemma also has phrasal entries")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R005")
+    public void shouldResolveTheSingleWordEntryLevelWhenTheLemmaAlsoHasPhrasalEntries() throws IOException {
+        // R005: la exclusion de frases no arrastra a los lemas individuales. Con "sleep"
+        // palabra-simple (A1) conviviendo con la frase "sleep on it" (C2), ambos lookups
+        // resuelven el nivel REAL de la entrada palabra-simple, no el de la phrasal.
+        Path catalogPath = writeCatalog(
+                entry("sleep", "sleep", "A1", "VERB", 700),
+                entry("sleep on it", "sleep", "C2", "VERB", 15000));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.of(CefrLevel.A1), catalog.lookupLevel(new LemmaAndPos("sleep", "VERB")),
+                "R005: el lookup exacto resuelve el A1 de la entrada palabra-simple");
+        assertEquals(Optional.of(CefrLevel.A1), catalog.lookupLevelByLemma("sleep"),
+                "R005: el fallback por lema resuelve el A1 palabra-simple, ignorando la phrasal C2");
+    }
 }

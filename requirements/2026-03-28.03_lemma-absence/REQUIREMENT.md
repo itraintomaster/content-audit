@@ -118,6 +118,8 @@ El catalogo EVP puede contener tanto lemas individuales como frases multipalabra
 
 La determinacion de si una entrada del EVP es un lema individual o una frase multipalabra se basa en el indicador de frase del catalogo.
 
+La exclusion de entradas de frase aplica a **toda consulta de nivel sobre el catalogo**, no solo a la construccion de los conjuntos de lemas esperados: las entradas de frase tampoco participan del emparejamiento de mal-ubicacion (R017/R036, tanto en el match exacto por lema+POS como en el fallback por lema). Ejemplo: la entrada de frase "sleep on it" (C2, lema "sleep") no debe hacer que el lema "sleep" responda nivel C2 en ninguna consulta — sin esta exclusion, oraciones basicas con "sleep" se marcarian falsamente como vocabulario C1/C2 mal ubicado (caso confirmado 2026-07-19 en el primer plan real: ~251 ocurrencias falsas via lemas de entradas phrasal como "sleep", "train", "own", "mind").
+
 **Error**: N/A (esta regla describe un criterio de filtrado)
 
 ### Rule[F-LABS-R039] - Presencia de lemas bajo cualquier categoria gramatical
@@ -405,6 +407,8 @@ Ejemplos:
 
 [ASSUMPTION] El esquema de bandas graduadas por nivel fue confirmado por el usuario ("bandas graduadas. Para A1, debajo de 1000, por ejemplo" — Doubt[DOUBT-OOC-HEURISTICA], resuelta). Los valores numericos exactos de la tabla (umbral sin-penalidad de A1 en 1000 anclado por el usuario; el resto de la tabla y los descuentos 0.1/0.3) son propuesta del requerimiento, configurables por nivel.
 
+**Limitacion conocida (aceptada, sin correccion en esta ronda)**: el lematizador puede producir lemas artefacto que no figuran en el catalogo aunque la palabra si este (caso confirmado 2026-07-19: "cookies" lematizado como "cooky" mientras el catalogo lista "cookie"; 19 ocurrencias). Esas ocurrencias caen en la via fuera-de-catalogo y pueden penalizar como falso positivo residual de baja prioridad. Se documenta para no re-diagnosticarlo; una normalizacion de lemas artefacto queda fuera del alcance de esta version.
+
 **Error**: N/A (esta regla describe una heuristica de scoring)
 
 ### Rule[F-LABS-R035] - Exclusion de nombres propios y tokens no lexicos
@@ -413,7 +417,7 @@ Ejemplos:
 No penalizan ni participan de la evaluacion de mal-ubicacion (R017, R033, R034):
 
 1. Los tokens etiquetados como **nombre propio** por el procesamiento linguistico (nombres de personas, lugares, marcas). Un nombre propio no tiene nivel pedagogico: "Maria vive en London" no contiene vocabulario avanzado.
-2. Los tokens **no alfabeticos** (numeros, simbolos, cifras con digitos).
+2. Los tokens que no cumplen los criterios de **token lexico evaluable**: longitud minima de 2 caracteres y todos sus caracteres alfabeticos (sin digitos, sin puntuacion embebida, sin apostrofos). Estos criterios son condicion de **entrada** a la evaluacion de R033/R034: un token que no los cumple no se evalua ni penaliza. Quedan asi excluidos, entre otros: las letras sueltas de etiquetas de dialogo ("b" en oraciones "A: ... B: ..."), los tokens con puntuacion pegada ("i."), y los artefactos de tokenizacion de contracciones ("weren't" cuando llega como token unico con apostrofo).
 3. Las **palabras funcionales**, ya excluidas por el filtro general de palabras de contenido (R001).
 
 La etiqueta de nombre propio del procesamiento linguistico es el **unico** criterio de exclusion; no se mantiene lista blanca manual y los errores residuales del etiquetado se toleran (confirmado por el usuario, ver Doubt[DOUBT-NOMBRES-PROPIOS], resuelta).

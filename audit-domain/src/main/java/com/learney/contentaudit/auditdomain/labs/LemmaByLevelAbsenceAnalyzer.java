@@ -725,23 +725,21 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
         return !contentWordFilter.isContentWord(token);
     }
 
-    // R035.2: alfabetico = al menos una letra y ningun digito (cifras/simbolos quedan fuera)
+    // R035.2: un token entra a la evaluacion de mal-ubicacion (R033/R034) solo si tiene
+    // longitud >= 2 y TODOS sus caracteres son letras — sin digitos, sin puntuacion
+    // embebida, sin apostrofos. Mata los artefactos no lexicos observados: "b" (marcador
+    // de dialogo A:/B:), "i." (puntuacion embebida), "weren't" (artefacto de contraccion).
     private static boolean isAlphabetic(NlpToken token) {
         String text = token.getText() != null ? token.getText() : token.getLemma();
-        if (text == null || text.isEmpty()) {
+        if (text == null || text.length() < 2) {
             return false;
         }
-        boolean hasLetter = false;
         for (int i = 0; i < text.length(); i++) {
-            char c = text.charAt(i);
-            if (Character.isDigit(c)) {
+            if (!Character.isLetter(text.charAt(i))) {
                 return false;
             }
-            if (Character.isLetter(c)) {
-                hasLetter = true;
-            }
         }
-        return hasLetter;
+        return true;
     }
 
     // R034: rank <= 0 significa "sin ranking" en NlpToken; se normaliza a null

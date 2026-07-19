@@ -64,22 +64,35 @@ public class FileSystemEvpCatalog implements EvpCatalogPort {
 
                 LemmaAndPos lp = new LemmaAndPos(lemma, posTag);
                 expectedByLevel.get(level).add(lp);
-                // Keep the lowest level if a lemma+pos appears in multiple levels
-                levelByLemma.merge(lp, level, FileSystemEvpCatalog::lowest);
-                // F-LABS-R036 (paso 2): menor nivel del lema bajo cualquier POS
-                lowestLevelByLemmaOnly.merge(lemma, level, FileSystemEvpCatalog::lowest);
+
+                // Detect phrases: multi-word entries. La fuente de verdad de "fila
+                // phrasal" es el headword del catalogo con espacios (misma señal que
+                // alimenta isPhrase).
+                boolean phrasal = word != null && word.contains(" ");
+                if (phrasal) {
+                    phrases.add(lemma);
+                    phrases.add(word);
+                }
+
+                // Los indices de consulta de nivel (lookupLevel / lookupLevelByLemma)
+                // solo admiten filas palabra-simple: una entrada phrasal ("sleep on it",
+                // C2, lemma=sleep) no define el nivel del lema suelto — con la
+                // precedencia del match exacto (F-LABS-R036 paso 1) contaminaria el
+                // scoring con falsos C1/C2. El filtrado de frases en la cobertura
+                // (F-LABS-R005) sigue siendo via isPhrase sobre getExpectedLemmas,
+                // que queda intacto.
+                if (!phrasal) {
+                    // Keep the lowest level if a lemma+pos appears in multiple levels
+                    levelByLemma.merge(lp, level, FileSystemEvpCatalog::lowest);
+                    // F-LABS-R036 (paso 2): menor nivel del lema bajo cualquier POS
+                    lowestLevelByLemmaOnly.merge(lemma, level, FileSystemEvpCatalog::lowest);
+                }
 
                 if (freqRank > 0) {
                     cocaRanks.putIfAbsent(lp, freqRank);
                 }
                 if (topic != null && !topic.isEmpty()) {
                     semanticCategories.putIfAbsent(lp, topic);
-                }
-
-                // Detect phrases: multi-word entries
-                if (word != null && word.contains(" ")) {
-                    phrases.add(lemma);
-                    phrases.add(word);
                 }
             }
         } catch (IOException e) {

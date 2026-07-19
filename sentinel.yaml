@@ -2658,6 +2658,25 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R038
+      - name: should not evaluate single letter dialogue label token against misplacement
+          or frequency bands
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R035
+      - name: should not evaluate token with embedded punctuation against misplacement
+          or frequency bands
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R035
+      - name: should not evaluate contraction token with apostrophe against misplacement
+          or frequency bands
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R035
+      - name: should evaluate two letter fully alphabetic token as lexical candidate
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R035
       implements:
       - ContentAnalyzer
     - name: LemmaAbsenceScoreAggregator
@@ -8212,6 +8231,21 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R036
+      - name: should return empty from exact lookupLevel when the only catalog entry
+          for the pair is phrasal
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R005
+      - name: should return empty from lookupLevelByLemma when the only catalog entry
+          for the lemma is phrasal
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R005
+      - name: should resolve the single word entry level when the lemma also has phrasal
+          entries
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R005
       implements:
       - EvpCatalogPort
   - name: coca

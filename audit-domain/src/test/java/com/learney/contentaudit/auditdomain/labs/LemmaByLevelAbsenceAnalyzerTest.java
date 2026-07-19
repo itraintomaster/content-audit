@@ -3224,6 +3224,111 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     }
 
     @Test
+    @DisplayName("should not evaluate single letter dialogue label token against misplacement or frequency bands")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R035")
+    public void shouldNotEvaluateSingleLetterDialogueLabelTokenAgainstMisplacementOrFrequencyBands() {
+        // R035 criterio de token lexico evaluable: longitud minima de 2 caracteres. La letra
+        // suelta "b" (etiqueta de dialogo en oraciones "A: ... B: ...") no cumple la condicion
+        // de entrada a R033/R034: no se evalua ni penaliza, aunque no tenga ranking.
+        stubMinimalConfig();
+        stubEmptyEvp();
+
+        NlpToken dialogueLabel = new NlpToken("b", "b", "NOUN", null, false, false);
+        AuditNode root = courseTreeWithQuiz(0, "q1", List.of(dialogueLabel)); // quiz en A1
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        assertEquals(1.0, quizScore(root), 0.001,
+                "R035: la letra suelta de etiqueta de dialogo no entra a la evaluacion -> sin penalidad");
+        LemmaPlacementDiagnosis placement = quizPlacementDiagnosis(root);
+        assertTrue(placement.getMisplacedLemmas() == null || placement.getMisplacedLemmas().isEmpty(),
+                "R035: la letra suelta no debe figurar como mal-ubicada");
+        assertTrue(placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty(),
+                "R035: la letra suelta no debe pasar por las bandas de frecuencia de R034");
+    }
+
+    @Test
+    @DisplayName("should not evaluate token with embedded punctuation against misplacement or frequency bands")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R035")
+    public void shouldNotEvaluateTokenWithEmbeddedPunctuationAgainstMisplacementOrFrequencyBands() {
+        // R035: un token con puntuacion pegada ("i.") no es todo-alfabetico -> no cumple la
+        // condicion de entrada a R033/R034 y queda fuera de la evaluacion.
+        stubMinimalConfig();
+        stubEmptyEvp();
+
+        NlpToken punctuated = new NlpToken("i.", "i.", "NOUN", null, false, false);
+        AuditNode root = courseTreeWithQuiz(0, "q1", List.of(punctuated)); // quiz en A1
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        assertEquals(1.0, quizScore(root), 0.001,
+                "R035: el token con puntuacion embebida no entra a la evaluacion -> sin penalidad");
+        LemmaPlacementDiagnosis placement = quizPlacementDiagnosis(root);
+        assertTrue(placement.getMisplacedLemmas() == null || placement.getMisplacedLemmas().isEmpty(),
+                "R035: el token con puntuacion embebida no debe figurar como mal-ubicado");
+        assertTrue(placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty(),
+                "R035: el token con puntuacion embebida no debe pasar por las bandas de R034");
+    }
+
+    @Test
+    @DisplayName("should not evaluate contraction token with apostrophe against misplacement or frequency bands")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R035")
+    public void shouldNotEvaluateContractionTokenWithApostropheAgainstMisplacementOrFrequencyBands() {
+        // R035: los artefactos de tokenizacion de contracciones ("weren't" cuando llega como
+        // token UNICO con apostrofo) no son todo-alfabeticos -> quedan fuera de la evaluacion.
+        stubMinimalConfig();
+        stubEmptyEvp();
+
+        NlpToken contraction = new NlpToken("weren't", "weren't", "VERB", null, false, false);
+        AuditNode root = courseTreeWithQuiz(0, "q1", List.of(contraction)); // quiz en A1
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        assertEquals(1.0, quizScore(root), 0.001,
+                "R035: la contraccion con apostrofo no entra a la evaluacion -> sin penalidad");
+        LemmaPlacementDiagnosis placement = quizPlacementDiagnosis(root);
+        assertTrue(placement.getMisplacedLemmas() == null || placement.getMisplacedLemmas().isEmpty(),
+                "R035: la contraccion no debe figurar como mal-ubicada");
+        assertTrue(placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty(),
+                "R035: la contraccion no debe pasar por las bandas de R034");
+    }
+
+    @Test
+    @DisplayName("should evaluate two letter fully alphabetic token as lexical candidate")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R035")
+    public void shouldEvaluateTwoLetterFullyAlphabeticTokenAsLexicalCandidate() {
+        // R035 borde inferior (anti-regresion contra un filtro voraz): un token de DOS
+        // caracteres todo-alfabetico ("go") SI cumple el criterio de token lexico evaluable
+        // y entra a R033/R036. Se prueba con "go" B1 en oracion A1: si el filtro lo comiera,
+        // el score seria 1.0; al evaluarse, penaliza 0.2.
+        stubMinimalConfig();
+        stubEmptyEvp();
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("go", "VERB")))
+                .thenReturn(Optional.of(CefrLevel.B1));
+
+        NlpToken go = new NlpToken("go", "go", "VERB", 100, false, false);
+        AuditNode root = courseTreeWithQuiz(0, "q1", List.of(go)); // quiz en A1
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        assertEquals(0.8, quizScore(root), 0.001,
+                "R035: 'go' (2 letras, todo alfabetico) debe evaluarse -> B1 en A1 penaliza 0.2");
+        LemmaPlacementDiagnosis placement = quizPlacementDiagnosis(root);
+        assertNotNull(placement.getMisplacedLemmas());
+        assertEquals(1, placement.getMisplacedLemmas().size(),
+                "R035: el token de dos letras debe figurar como candidato lexico evaluado");
+        assertEquals("go", placement.getMisplacedLemmas().get(0).getLemmaAndPos().getLemma());
+    }
+
+    @Test
     @DisplayName("should penalize via exact lemma and pos entry even when another pos of the same lemma has a lower level")
     @Tag("FEAT-LABS")
     @Tag("F-LABS-R036")
