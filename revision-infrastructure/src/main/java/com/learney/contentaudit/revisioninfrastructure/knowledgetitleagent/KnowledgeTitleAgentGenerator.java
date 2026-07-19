@@ -34,18 +34,20 @@ class KnowledgeTitleAgentGenerator implements KnowledgeTitleCandidateGenerator {
 
     private final String strategyName;
 
-    public KnowledgeTitleAgentGenerator(LagenConfig config, Path projectRoot,
-            KnowledgeTitleAgentRuntimeLauncher agentRuntimeLauncher,
+    // Orden de parametros = orden de requiresInject en sentinel.yaml (el generator
+    // deriva el constructor de ahi; mantenerlo alineado evita el drift spec-vs-codigo)
+    public KnowledgeTitleAgentGenerator(KnowledgeTitleAgentRuntimeLauncher agentRuntimeLauncher,
             KnowledgeTitleAgentCandidateParser candidateParser,
             KnowledgeTitleAgentErrorClassifier errorClassifier,
-            ChatModel chatModel, String strategyName) {
-        this.config = config;
-        this.projectRoot = projectRoot;
+            ChatModel chatModel, String strategyName,
+            LagenConfig config, Path projectRoot) {
         this.agentRuntimeLauncher = agentRuntimeLauncher;
         this.candidateParser = candidateParser;
         this.errorClassifier = errorClassifier;
         this.chatModel = chatModel;
         this.strategyName = strategyName;
+        this.config = config;
+        this.projectRoot = projectRoot;
     }
 
     @Override

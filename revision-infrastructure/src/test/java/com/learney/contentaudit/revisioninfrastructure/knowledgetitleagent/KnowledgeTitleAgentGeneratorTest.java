@@ -67,14 +67,15 @@ public class KnowledgeTitleAgentGeneratorTest {
 
         KnowledgeTitleAgentErrorClassifier classifier = mock(KnowledgeTitleAgentErrorClassifier.class);
 
-        // Firma real de 7 args: config y projectRoot minimos (espejo de LemmaAbsenceAgentGeneratorTest);
-        // el launcher es un mock, asi que no hay launch real que use estos valores
+        // Firma de 7 args en orden-spec (requiresInject): config y projectRoot AL FINAL.
+        // Valores minimos espejo de LemmaAbsenceAgentGeneratorTest; el launcher es un mock,
+        // asi que no hay launch real que use estos valores
         LagenConfig config = new LagenConfig(
                 "test-provider", "test-model", "http://localhost:1234/v1",
                 null, null, null, null, 1, 3);
         KnowledgeTitleAgentGenerator generator = new KnowledgeTitleAgentGenerator(
-                config, Path.of("."),
-                launcher, parser, classifier, null, "knowledge-title-agent");
+                launcher, parser, classifier, null, "knowledge-title-agent",
+                config, Path.of("."));
 
         // Act — F-KTLR-R004: valid context → exactly one candidate
         KnowledgeTitleGeneratorResponse result = generator.generate(validContext());

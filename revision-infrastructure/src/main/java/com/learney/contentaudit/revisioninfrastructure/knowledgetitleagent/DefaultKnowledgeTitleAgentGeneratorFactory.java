@@ -36,13 +36,13 @@ public class DefaultKnowledgeTitleAgentGeneratorFactory implements KnowledgeTitl
     public KnowledgeTitleCandidateGenerator create(LagenConfig config) {
         ChatModel chatModel = buildChatModel(config);
         return new KnowledgeTitleAgentGenerator(
-                config,
-                projectRoot,
                 new DefaultKnowledgeTitleAgentRuntimeLauncher(),
                 new DefaultKnowledgeTitleAgentCandidateParser(),
                 new DefaultKnowledgeTitleAgentErrorClassifier(),
                 chatModel,
-                STRATEGY_NAME);
+                STRATEGY_NAME,
+                config,
+                projectRoot);
     }
 
     @Override
