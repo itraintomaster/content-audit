@@ -1,4 +1,4 @@
-generatedAt: 2026-07-17T00:26:32.030260Z
+generatedAt: 2026-07-19T04:08:38.902001Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -223,12 +223,12 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
+      linesMissed: 460
+      linesTotal: 460
       lineCoveragePct: 0
       branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
+      branchesMissed: 244
+      branchesTotal: 244
       branchCoveragePct: 0
       blendPct: 0
     mutation:
@@ -241,17 +241,92 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
-      high: 0
-      veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      totalMethods: 35
+      hotspots: 12
+      maxCrap: 650.0
+      averageCrap: 51.714285714285715
+      simple: 14
+      moderate: 9
+      high: 6
+      veryHigh: 6
+      healthPct: 53
+      top:
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: runAnalysis
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)V
+        line: 184
+        cyclomatic: 25
+        lineCoveragePct: 0
+        crap: 650.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: scoreQuizzes
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Ljava/util/Map;)V
+        line: 491
+        cyclomatic: 19
+        lineCoveragePct: 0
+        crap: 380.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: computeAssessment
+        methodDesc: (Ljava/util/Map;Ljava/util/Map;)Lcom/learney/contentaudit/auditdomain/labs/AbsenceAssessment;
+        line: 678
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: onQuiz
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 151
+        cyclomatic: 10
+        lineCoveragePct: 0
+        crap: 110.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: scoreQuiz
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditableQuiz;Lcom/learney/contentaudit/auditdomain/CefrLevel;Ljava/util/Map;)Lcom/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzer$QuizScoringResult;
+        line: 603
+        cyclomatic: 10
+        lineCoveragePct: 0
+        crap: 110.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: recommendationPriority
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/CefrLevel;Ljava/util/List;)Lcom/learney/contentaudit/auditdomain/labs/PriorityLevel;
+        line: 811
+        cyclomatic: 7
+        lineCoveragePct: 0
+        crap: 56.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: assignPriority
+        methodDesc: (Ljava/lang/String;Ljava/util/Optional;Lcom/learney/contentaudit/auditdomain/CefrLevel;)Lcom/learney/contentaudit/auditdomain/labs/PriorityLevel;
+        line: 435
+        cyclomatic: 6
+        lineCoveragePct: 0
+        crap: 42.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: generateRecommendations
+        methodDesc: (Ljava/util/Map;Ljava/util/Map;)Ljava/util/List;
+        line: 740
+        cyclomatic: 6
+        lineCoveragePct: 0
+        crap: 42.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: parseLevelFromQuizNode
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Lcom/learney/contentaudit/auditdomain/CefrLevel;
+        line: 360
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: classifyAbsence
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/CefrLevel;Ljava/util/List;)Lcom/learney/contentaudit/auditdomain/labs/AbsenceType;
+        line: 413
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 13
+    verdict: WARNED
+    violations:
+    - lineCoverage 0% < 70%
+    - branchCoverage 0% < 60%
+    - crapHotspots 12 > 5
 - id: FEAT-REVCTX
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-05-09.01_revise-correction-context-override/REQUIREMENT.md
@@ -1375,12 +1450,12 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
+      linesMissed: 179
+      linesTotal: 179
       lineCoveragePct: 0
       branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
+      branchesMissed: 80
+      branchesTotal: 80
       branchCoveragePct: 0
       blendPct: 0
     mutation:
@@ -1393,17 +1468,64 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
-      high: 0
-      veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      totalMethods: 23
+      hotspots: 6
+      maxCrap: 72.0
+      averageCrap: 16.26086956521739
+      simple: 15
+      moderate: 2
+      high: 2
+      veryHigh: 4
+      healthPct: 70
+      top:
+      - className: com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzer
+        methodName: onQuiz
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 54
+        cyclomatic: 8
+        lineCoveragePct: 0
+        crap: 72.0
+      - className: com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter
+        methodName: isContentWord
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/NlpToken;)Z
+        line: 14
+        cyclomatic: 7
+        lineCoveragePct: 0
+        crap: 56.0
+      - className: com.learney.contentaudit.auditdomain.lrec.DefaultIntervalCalculator
+        methodName: parsePositions
+        methodDesc: (Ljava/lang/String;)Ljava/util/List;
+        line: 57
+        cyclomatic: 7
+        lineCoveragePct: 0
+        crap: 56.0
+      - className: com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzer
+        methodName: onCourseComplete
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 83
+        cyclomatic: 7
+        lineCoveragePct: 0
+        crap: 56.0
+      - className: com.learney.contentaudit.auditdomain.IAuditEngine
+        methodName: buildTree
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditableCourse;)Lcom/learney/contentaudit/auditdomain/AuditNode;
+        line: 40
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+      - className: com.learney.contentaudit.auditdomain.IAuditEngine
+        methodName: traverseAndNotify
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Lcom/learney/contentaudit/auditdomain/ContentAnalyzer;)V
+        line: 103
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 18
+    verdict: WARNED
+    violations:
+    - lineCoverage 0% < 70%
+    - branchCoverage 0% < 60%
+    - crapHotspots 6 > 5
 - id: FEAT-RCLAQS
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
@@ -1696,12 +1818,12 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
+      linesMissed: 262
+      linesTotal: 262
       lineCoveragePct: 0
       branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
+      branchesMissed: 141
+      branchesTotal: 141
       branchCoveragePct: 0
       blendPct: 0
     mutation:
@@ -1714,17 +1836,49 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
-      high: 0
-      veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      totalMethods: 21
+      hotspots: 4
+      maxCrap: 870.0
+      averageCrap: 58.095238095238095
+      simple: 8
+      moderate: 9
+      high: 2
+      veryHigh: 2
+      healthPct: 60
+      top:
+      - className: com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzer
+        methodName: onCourseComplete
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 128
+        cyclomatic: 29
+        lineCoveragePct: 0
+        crap: 870.0
+      - className: com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzer
+        methodName: onQuiz
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 93
+        cyclomatic: 10
+        lineCoveragePct: 0
+        crap: 110.0
+      - className: com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzer
+        methodName: assess
+        methodDesc: (DDLcom/learney/contentaudit/auditdomain/coca/TargetKind;DD)Lcom/learney/contentaudit/auditdomain/coca/AssessmentState;
+        line: 393
+        cyclomatic: 6
+        lineCoveragePct: 0
+        crap: 42.0
+      - className: com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzer
+        methodName: buildBucketResults
+        methodDesc: (Ljava/util/Map;ILjava/util/List;D)Ljava/util/List;
+        line: 353
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 15
+    verdict: WARNED
+    violations:
+    - lineCoverage 0% < 70%
+    - branchCoverage 0% < 60%
 - id: FEAT-CSLATDC
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-05-21.05_consultar-suggested-lemmas-a-trav-s-del-cli/REQUIREMENT.md
@@ -3037,12 +3191,12 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
+      linesMissed: 58
+      linesTotal: 58
       lineCoveragePct: 0
       branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
+      branchesMissed: 28
+      branchesTotal: 28
       branchCoveragePct: 0
       blendPct: 0
     mutation:
@@ -3055,17 +3209,35 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
-      high: 0
-      veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      totalMethods: 11
+      hotspots: 2
+      maxCrap: 72.0
+      averageCrap: 12.545454545454545
+      simple: 8
+      moderate: 1
+      high: 1
+      veryHigh: 1
+      healthPct: 77
+      top:
+      - className: com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer
+        methodName: onQuiz
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 49
+        cyclomatic: 8
+        lineCoveragePct: 0
+        crap: 72.0
+      - className: com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer
+        methodName: scoreQuiz
+        methodDesc: (ILcom/learney/contentaudit/auditdomain/TargetRange;)D
+        line: 103
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 19
+    verdict: WARNED
+    violations:
+    - lineCoverage 0% < 70%
+    - branchCoverage 0% < 60%
 - id: FEAT-INCEXP
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-06-18.01_incluir-lemas-ya-expuestos-en-suggested-lemmas/REQUIREMENT.md
@@ -3663,12 +3835,12 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
+      linesMissed: 365
+      linesTotal: 365
       lineCoveragePct: 0
       branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
+      branchesMissed: 227
+      branchesTotal: 227
       branchCoveragePct: 0
       blendPct: 0
     mutation:
@@ -3681,17 +3853,92 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
-      high: 0
-      veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      totalMethods: 33
+      hotspots: 10
+      maxCrap: 870.0
+      averageCrap: 51.878787878787875
+      simple: 13
+      moderate: 10
+      high: 5
+      veryHigh: 5
+      healthPct: 55
+      top:
+      - className: com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzer
+        methodName: onCourseComplete
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 128
+        cyclomatic: 29
+        lineCoveragePct: 0
+        crap: 870.0
+      - className: com.learney.contentaudit.auditdomain.coca.DefaultProgressionEvaluator
+        methodName: evaluateBandProgression
+        methodDesc: (Ljava/lang/String;Ljava/util/List;)Lcom/learney/contentaudit/auditdomain/coca/ProgressionState;
+        line: 39
+        cyclomatic: 14
+        lineCoveragePct: 0
+        crap: 210.0
+      - className: com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzer
+        methodName: onQuiz
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 93
+        cyclomatic: 10
+        lineCoveragePct: 0
+        crap: 110.0
+      - className: com.learney.contentaudit.auditdomain.coca.DefaultTokenClassifier
+        methodName: classify
+        methodDesc: (ILcom/learney/contentaudit/auditdomain/coca/BandConfiguration;)Lcom/learney/contentaudit/auditdomain/coca/FrequencyBand;
+        line: 14
+        cyclomatic: 9
+        lineCoveragePct: 0
+        crap: 90.0
+      - className: com.learney.contentaudit.auditdomain.coca.DefaultImprovementPlanner
+        methodName: generateDirectivesForBuckets
+        methodDesc: (Ljava/util/List;Ljava/lang/String;Lcom/learney/contentaudit/auditdomain/coca/BandConfiguration;Ljava/util/List;)V
+        line: 44
+        cyclomatic: 8
+        lineCoveragePct: 0
+        crap: 72.0
+      - className: com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzer
+        methodName: assess
+        methodDesc: (DDLcom/learney/contentaudit/auditdomain/coca/TargetKind;DD)Lcom/learney/contentaudit/auditdomain/coca/AssessmentState;
+        line: 393
+        cyclomatic: 6
+        lineCoveragePct: 0
+        crap: 42.0
+      - className: com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzer
+        methodName: buildBucketResults
+        methodDesc: (Ljava/util/Map;ILjava/util/List;D)Ljava/util/List;
+        line: 353
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+      - className: com.learney.contentaudit.auditdomain.coca.DefaultImprovementPlanner
+        methodName: plan
+        methodDesc: (Ljava/util/List;Lcom/learney/contentaudit/auditdomain/coca/BandConfiguration;Lcom/learney/contentaudit/auditdomain/CocaBucketsConfig;)Ljava/util/List;
+        line: 17
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+      - className: com.learney.contentaudit.auditdomain.coca.DefaultImprovementPlanner
+        methodName: findBand
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditdomain/coca/BandConfiguration;)Lcom/learney/contentaudit/auditdomain/coca/FrequencyBand;
+        line: 76
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+      - className: com.learney.contentaudit.auditdomain.coca.DefaultProgressionEvaluator
+        methodName: evaluate
+        methodDesc: (Ljava/util/List;Ljava/util/List;)Ljava/util/List;
+        line: 19
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 14
+    verdict: WARNED
+    violations:
+    - lineCoverage 0% < 70%
+    - branchCoverage 0% < 60%
+    - crapHotspots 10 > 5
 - id: FEAT-DBSENT
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-05-20.01_plain-sentences-from-db/REQUIREMENT.md
@@ -4481,32 +4728,50 @@ features:
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R005
-    state: PASSING
+    state: FAILING
     tests:
     - name: should exclude multi-word phrases from expected lemmas
       implemented: true
       passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should return empty from exact lookupLevel when the only catalog entry
+        for the pair is phrasal
+      implemented: true
+      passing: false
+      module: vocabulary-infrastructure
+      implementation: FileSystemEvpCatalog
+    - name: should return empty from lookupLevelByLemma when the only catalog entry
+        for the lemma is phrasal
+      implemented: true
+      passing: false
+      module: vocabulary-infrastructure
+      implementation: FileSystemEvpCatalog
+    - name: should resolve the single word entry level when the lemma also has phrasal
+        entries
+      implemented: true
+      passing: false
+      module: vocabulary-infrastructure
+      implementation: FileSystemEvpCatalog
   - ruleId: F-LABS-R039
-    state: FAILING
+    state: PASSING
     tests:
     - name: should count expected lemma as present when the level contains it under
         a different part of speech
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should cover multiple expected entries of the same lemma with a single
         occurrence in the level
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should classify absence as APPEARS_TOO_LATE when the lemma appears under
         another part of speech only in later levels
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R006
@@ -4876,72 +5141,72 @@ features:
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R033
-    state: FAILING
+    state: PASSING
     tests:
     - name: should treat C2 lemma as misplaced even in a B2 sentence
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should penalize C1 lemma in every course level with distance-proportional
         discount
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should retain C1 and C2 catalog entries at load and resolve their level
         for misplacement lookup
       implemented: true
-      passing: false
+      passing: true
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
   - ruleId: F-LABS-R034
-    state: FAILING
+    state: PASSING
     tests:
     - name: should apply strong discount 0.3 to out-of-catalog word with rank 6081
         in A1 sentence
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should apply mild discount 0.1 to out-of-catalog word with rank 6081 in
         B2 sentence
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should not penalize out-of-catalog word with rank 900 in any course level
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should apply strong discount to out-of-catalog word without frequency
         rank
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should return out-of-catalog no-penalty rank bounds 1000 2000 3500 5000
         for A1 A2 B1 B2
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: DefaultLemmaAbsenceConfig
     - name: should return out-of-catalog mild-discount rank bounds 3000 5000 8000
         10000 for A1 A2 B1 B2
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: DefaultLemmaAbsenceConfig
     - name: should return out-of-catalog mild discount 0.1 and strong discount 0.3
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: DefaultLemmaAbsenceConfig
     - name: should have out-of-catalog rank bounds non-decreasing from A1 to B2 within
         each band
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: DefaultLemmaAbsenceConfig
   - ruleId: F-LABS-R035
@@ -4950,103 +5215,126 @@ features:
     - name: should not penalize proper noun token even when infrequent and out of
         catalog
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should not penalize non-alphabetic token in the misplacement evaluation
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should not evaluate functional word against the out-of-catalog frequency
         bands
       implemented: true
+      passing: true
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should not evaluate single letter dialogue label token against misplacement
+        or frequency bands
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should not evaluate token with embedded punctuation against misplacement
+        or frequency bands
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should not evaluate contraction token with apostrophe against misplacement
+        or frequency bands
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should evaluate two letter fully alphabetic token as lexical candidate
+      implemented: true
       passing: false
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R036
-    state: FAILING
+    state: PASSING
     tests:
     - name: should penalize via exact lemma and pos entry even when another pos of
         the same lemma has a lower level
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should fall back to the lowest level among other pos entries when the
         exact pair is missing
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should treat word as out of catalog only when the lemma has no entry under
         any pos
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should resolve lookupLevelByLemma to the minimum level across the pos
         entries of the lemma
       implemented: true
-      passing: false
+      passing: true
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
     - name: should return empty from lookupLevelByLemma when the lemma has no entry
         under any pos
       implemented: true
-      passing: false
+      passing: true
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
   - ruleId: F-LABS-R037
-    state: FAILING
+    state: PASSING
     tests:
     - name: should not report C1 or C2 catalog lemmas as absent in any level coverage
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should keep expected lemma totals per level unchanged after retaining
         C1 and C2 entries
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R038
-    state: FAILING
+    state: PASSING
     tests:
     - name: should expose observed pos and applied discount for each misplaced lemma
         in the quiz diagnosis
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should expose out-of-catalog word detail with observed pos and frequency
         rank without inventing a cefr level
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should register only words that generated discount in the quiz diagnosis
         detail
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should populate outOfCatalogWords on the lemma-absence correction context
         from the quiz diagnosis
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should map the applied discount into each MisplacedLemmaContext entry
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
     - name: should leave outOfCatalogWords empty not null when the diagnosis has no
         out-of-catalog penalties
       implemented: true
-      passing: false
+      passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
   - ruleId: F-LABS-R021
@@ -5665,33 +5953,33 @@ features:
         module: audit-domain
         implementation: FLabsJ005JourneyTest
   - journeyId: F-LABS-J006
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_laOracionContieneUnLemaDelCatalogoDeNivelC1OC2_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: audit-domain
         implementation: FLabsJ006JourneyTest
     - pathId: path-2
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path2_laOracionContieneUnaPalabraDeContenidoFueraDeCatalogoEInfrecuente_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: audit-domain
         implementation: FLabsJ006JourneyTest
     - pathId: path-3
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path3_lasUnicasPalabrasNoJustificadasDeLaOracionSonNombresPropiosOTokensNoLexicos_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: audit-domain
         implementation: FLabsJ006JourneyTest
   quality:
@@ -5708,12 +5996,12 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
+      linesMissed: 460
+      linesTotal: 460
       lineCoveragePct: 0
       branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
+      branchesMissed: 244
+      branchesTotal: 244
       branchCoveragePct: 0
       blendPct: 0
     mutation:
@@ -5726,17 +6014,92 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
-      high: 0
-      veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      totalMethods: 35
+      hotspots: 12
+      maxCrap: 650.0
+      averageCrap: 51.714285714285715
+      simple: 14
+      moderate: 9
+      high: 6
+      veryHigh: 6
+      healthPct: 53
+      top:
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: runAnalysis
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)V
+        line: 184
+        cyclomatic: 25
+        lineCoveragePct: 0
+        crap: 650.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: scoreQuizzes
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Ljava/util/Map;)V
+        line: 491
+        cyclomatic: 19
+        lineCoveragePct: 0
+        crap: 380.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: computeAssessment
+        methodDesc: (Ljava/util/Map;Ljava/util/Map;)Lcom/learney/contentaudit/auditdomain/labs/AbsenceAssessment;
+        line: 678
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: onQuiz
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 151
+        cyclomatic: 10
+        lineCoveragePct: 0
+        crap: 110.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: scoreQuiz
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditableQuiz;Lcom/learney/contentaudit/auditdomain/CefrLevel;Ljava/util/Map;)Lcom/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzer$QuizScoringResult;
+        line: 603
+        cyclomatic: 10
+        lineCoveragePct: 0
+        crap: 110.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: recommendationPriority
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/CefrLevel;Ljava/util/List;)Lcom/learney/contentaudit/auditdomain/labs/PriorityLevel;
+        line: 811
+        cyclomatic: 7
+        lineCoveragePct: 0
+        crap: 56.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: assignPriority
+        methodDesc: (Ljava/lang/String;Ljava/util/Optional;Lcom/learney/contentaudit/auditdomain/CefrLevel;)Lcom/learney/contentaudit/auditdomain/labs/PriorityLevel;
+        line: 435
+        cyclomatic: 6
+        lineCoveragePct: 0
+        crap: 42.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: generateRecommendations
+        methodDesc: (Ljava/util/Map;Ljava/util/Map;)Ljava/util/List;
+        line: 740
+        cyclomatic: 6
+        lineCoveragePct: 0
+        crap: 42.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: parseLevelFromQuizNode
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Lcom/learney/contentaudit/auditdomain/CefrLevel;
+        line: 360
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: classifyAbsence
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/CefrLevel;Ljava/util/List;)Lcom/learney/contentaudit/auditdomain/labs/AbsenceType;
+        line: 413
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 13
+    verdict: WARNED
+    violations:
+    - lineCoverage 0% < 70%
+    - branchCoverage 0% < 60%
+    - crapHotspots 12 > 5
 - id: FEAT-CLI
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
@@ -6581,12 +6944,12 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
+      linesMissed: 136
+      linesTotal: 136
       lineCoveragePct: 0
       branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
+      branchesMissed: 44
+      branchesTotal: 44
       branchCoveragePct: 0
       blendPct: 0
     mutation:
@@ -6599,17 +6962,42 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
-      high: 0
+      totalMethods: 26
+      hotspots: 3
+      maxCrap: 30.0
+      averageCrap: 7.769230769230769
+      simple: 20
+      moderate: 3
+      high: 3
       veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      healthPct: 83
+      top:
+      - className: com.learney.contentaudit.auditdomain.IAuditEngine
+        methodName: buildTree
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditableCourse;)Lcom/learney/contentaudit/auditdomain/AuditNode;
+        line: 40
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+      - className: com.learney.contentaudit.auditdomain.IAuditEngine
+        methodName: traverseAndNotify
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Lcom/learney/contentaudit/auditdomain/ContentAnalyzer;)V
+        line: 103
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+      - className: com.learney.contentaudit.auditdomain.KnowledgeInstructionsLengthAnalyzer
+        methodName: onKnowledge
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 28
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 21
+    verdict: WARNED
+    violations:
+    - lineCoverage 0% < 70%
+    - branchCoverage 0% < 60%
 - id: FEAT-CDIFF
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-05-06.01_consolidated-differential-view/REQUIREMENT.md
@@ -8986,12 +9374,12 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
+      linesMissed: 58
+      linesTotal: 58
       lineCoveragePct: 0
       branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
+      branchesMissed: 28
+      branchesTotal: 28
       branchCoveragePct: 0
       blendPct: 0
     mutation:
@@ -9004,17 +9392,35 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
-      high: 0
-      veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      totalMethods: 11
+      hotspots: 2
+      maxCrap: 72.0
+      averageCrap: 12.545454545454545
+      simple: 8
+      moderate: 1
+      high: 1
+      veryHigh: 1
+      healthPct: 77
+      top:
+      - className: com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer
+        methodName: onQuiz
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 49
+        cyclomatic: 8
+        lineCoveragePct: 0
+        crap: 72.0
+      - className: com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer
+        methodName: scoreQuiz
+        methodDesc: (ILcom/learney/contentaudit/auditdomain/TargetRange;)D
+        line: 103
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 19
+    verdict: WARNED
+    violations:
+    - lineCoverage 0% < 70%
+    - branchCoverage 0% < 60%
 - id: FEAT-LEMMA-SUGGESTIONS
   state: IMPLEMENTING
   requirementFile: ./requirements/2026-05-15.04_agregar-lemmacount-como-variable-de-suggestedlemmas-en-el-contexto/REQUIREMENT.md
@@ -9549,12 +9955,12 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
+      linesMissed: 138
+      linesTotal: 138
       lineCoveragePct: 0
       branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
+      branchesMissed: 46
+      branchesTotal: 46
       branchCoveragePct: 0
       blendPct: 0
     mutation:
@@ -9567,17 +9973,49 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
-      high: 0
-      veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      totalMethods: 15
+      hotspots: 4
+      maxCrap: 72.0
+      averageCrap: 13.733333333333333
+      simple: 10
+      moderate: 1
+      high: 3
+      veryHigh: 1
+      healthPct: 70
+      top:
+      - className: com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer
+        methodName: onQuiz
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 49
+        cyclomatic: 8
+        lineCoveragePct: 0
+        crap: 72.0
+      - className: com.learney.contentaudit.auditdomain.IAuditEngine
+        methodName: buildTree
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditableCourse;)Lcom/learney/contentaudit/auditdomain/AuditNode;
+        line: 40
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+      - className: com.learney.contentaudit.auditdomain.IAuditEngine
+        methodName: traverseAndNotify
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Lcom/learney/contentaudit/auditdomain/ContentAnalyzer;)V
+        line: 103
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+      - className: com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer
+        methodName: scoreQuiz
+        methodDesc: (ILcom/learney/contentaudit/auditdomain/TargetRange;)D
+        line: 103
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+    healthScore: 18
+    verdict: WARNED
+    violations:
+    - lineCoverage 0% < 70%
+    - branchCoverage 0% < 60%
 - id: FEAT-SLREGEX
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-06-26.01_filtrar-suggested-lemmas-por-regex/REQUIREMENT.md
@@ -10046,12 +10484,12 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
+      linesMissed: 103
+      linesTotal: 103
       lineCoveragePct: 0
       branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
+      branchesMissed: 50
+      branchesTotal: 50
       branchCoveragePct: 0
       blendPct: 0
     mutation:
@@ -10064,17 +10502,35 @@ features:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
+      totalMethods: 14
+      hotspots: 2
+      maxCrap: 182.0
+      averageCrap: 23.142857142857142
+      simple: 10
+      moderate: 2
       high: 0
-      veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      veryHigh: 2
+      healthPct: 79
+      top:
+      - className: com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzer
+        methodName: onCourseComplete
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 92
+        cyclomatic: 13
+        lineCoveragePct: 0
+        crap: 182.0
+      - className: com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzer
+        methodName: onQuiz
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 56
+        cyclomatic: 9
+        lineCoveragePct: 0
+        crap: 90.0
+    healthScore: 20
+    verdict: WARNED
+    violations:
+    - lineCoverage 0% < 70%
+    - branchCoverage 0% < 60%
 - id: FEAT-REVBYP
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
@@ -12049,6 +12505,112 @@ elements:
         topic.getScores().get("sentence-length") is not null
         knowledge.getScores().get("sentence-length") is not null
         quiz.getScores().get("sentence-length") is not null
+    quality:
+      coverage:
+        linesCovered: 0
+        linesMissed: 80
+        linesTotal: 80
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 18
+        branchesTotal: 18
+        branchCoveragePct: 0
+        blendPct: 0
+      mutation:
+        totalMutants: 0
+        killed: 0
+        survived: 0
+        noCoverage: 0
+        timedOut: 0
+        other: 0
+        mutationScorePct: 0
+        testStrengthPct: 0
+      crap:
+        totalMethods: 4
+        hotspots: 2
+        maxCrap: 30.0
+        averageCrap: 17.0
+        simple: 2
+        moderate: 0
+        high: 2
+        veryHigh: 0
+        healthPct: 50
+        top:
+        - className: com.learney.contentaudit.auditdomain.IAuditEngine
+          methodName: buildTree
+          methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditableCourse;)Lcom/learney/contentaudit/auditdomain/AuditNode;
+          line: 40
+          cyclomatic: 5
+          lineCoveragePct: 0
+          crap: 30.0
+        - className: com.learney.contentaudit.auditdomain.IAuditEngine
+          methodName: traverseAndNotify
+          methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Lcom/learney/contentaudit/auditdomain/ContentAnalyzer;)V
+          line: 103
+          cyclomatic: 5
+          lineCoveragePct: 0
+          crap: 30.0
+      methods:
+      - name: <init>
+        desc: (Ljava/util/List;Lcom/learney/contentaudit/auditdomain/ScoreAggregator;)V
+        line: 17
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 4
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: runAudit
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditableCourse;)Lcom/learney/contentaudit/auditdomain/AuditReport;
+        line: 25
+        cyclomatic: 2
+        linesCovered: 0
+        linesMissed: 7
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 2
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 6.0
+      - name: buildTree
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditableCourse;)Lcom/learney/contentaudit/auditdomain/AuditNode;
+        line: 40
+        cyclomatic: 5
+        linesCovered: 0
+        linesMissed: 56
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 8
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 30.0
+      - name: traverseAndNotify
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Lcom/learney/contentaudit/auditdomain/ContentAnalyzer;)V
+        line: 103
+        cyclomatic: 5
+        linesCovered: 0
+        linesMissed: 13
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 8
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 30.0
   - name: KnowledgeTitleLengthAnalyzer
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/KnowledgeTitleLengthAnalyzer.java
@@ -12419,6 +12981,202 @@ elements:
 
       then:
         node.getScores().get("knowledge-title-length") == 0.0
+    quality:
+      coverage:
+        linesCovered: 0
+        linesMissed: 27
+        linesTotal: 27
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 12
+        branchesTotal: 12
+        branchCoveragePct: 0
+        blendPct: 0
+      mutation:
+        totalMutants: 0
+        killed: 0
+        survived: 0
+        noCoverage: 0
+        timedOut: 0
+        other: 0
+        mutationScorePct: 0
+        testStrengthPct: 0
+      crap:
+        totalMethods: 11
+        hotspots: 0
+        maxCrap: 20.0
+        averageCrap: 5.636363636363637
+        simple: 9
+        moderate: 2
+        high: 0
+        veryHigh: 0
+        healthPct: 91
+      methods:
+      - name: <init>
+        desc: ()V
+        line: 8
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: getName
+        desc: ()Ljava/lang/String;
+        line: 15
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: getTarget
+        desc: ()Lcom/learney/contentaudit/auditdomain/AuditTarget;
+        line: 18
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: onMilestone
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 21
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: onTopic
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 24
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: onKnowledge
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 28
+        cyclomatic: 4
+        linesCovered: 0
+        linesMissed: 10
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 6
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 20.0
+      - name: computeWeightedLength
+        desc: (Ljava/lang/String;)D
+        line: 46
+        cyclomatic: 2
+        linesCovered: 0
+        linesMissed: 4
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 2
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 6.0
+      - name: charWeight
+        desc: (C)D
+        line: 54
+        cyclomatic: 4
+        linesCovered: 0
+        linesMissed: 5
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 4
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 20.0
+      - name: onQuiz
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 63
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: onCourseComplete
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 66
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: getDescription
+        desc: ()Ljava/lang/String;
+        line: 70
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
   - name: KnowledgeInstructionsLengthAnalyzer
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/KnowledgeInstructionsLengthAnalyzer.java
@@ -12733,6 +13491,210 @@ elements:
         aboveSoft.getScores().get("knowledge-instructions-length") == 0.5
         atHard.getScores().get("knowledge-instructions-length") == 0.5
         aboveHard.getScores().get("knowledge-instructions-length") == 0.0
+    quality:
+      coverage:
+        linesCovered: 0
+        linesMissed: 29
+        linesTotal: 29
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 14
+        branchesTotal: 14
+        branchCoveragePct: 0
+        blendPct: 0
+      mutation:
+        totalMutants: 0
+        killed: 0
+        survived: 0
+        noCoverage: 0
+        timedOut: 0
+        other: 0
+        mutationScorePct: 0
+        testStrengthPct: 0
+      crap:
+        totalMethods: 11
+        hotspots: 1
+        maxCrap: 30.0
+        averageCrap: 6.545454545454546
+        simple: 9
+        moderate: 1
+        high: 1
+        veryHigh: 0
+        healthPct: 86
+        top:
+        - className: com.learney.contentaudit.auditdomain.KnowledgeInstructionsLengthAnalyzer
+          methodName: onKnowledge
+          methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+          line: 28
+          cyclomatic: 5
+          lineCoveragePct: 0
+          crap: 30.0
+      methods:
+      - name: <init>
+        desc: ()V
+        line: 8
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: getName
+        desc: ()Ljava/lang/String;
+        line: 15
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: getTarget
+        desc: ()Lcom/learney/contentaudit/auditdomain/AuditTarget;
+        line: 18
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: onMilestone
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 21
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: onTopic
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 24
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: onKnowledge
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 28
+        cyclomatic: 5
+        linesCovered: 0
+        linesMissed: 12
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 8
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 30.0
+      - name: computeWeightedLength
+        desc: (Ljava/lang/String;)D
+        line: 48
+        cyclomatic: 2
+        linesCovered: 0
+        linesMissed: 4
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 2
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 6.0
+      - name: charWeight
+        desc: (C)D
+        line: 56
+        cyclomatic: 4
+        linesCovered: 0
+        linesMissed: 5
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 4
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 20.0
+      - name: onQuiz
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 65
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: onCourseComplete
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 68
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: getDescription
+        desc: ()Ljava/lang/String;
+        line: 72
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
   - name: SentenceLengthAnalyzer
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/SentenceLengthAnalyzer.java
@@ -13260,9 +14222,319 @@ elements:
       then:
         quizNode.getScores().containsKey("sentence-length") is true
         score == 1.0
+    quality:
+      coverage:
+        linesCovered: 0
+        linesMissed: 58
+        linesTotal: 58
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 28
+        branchesTotal: 28
+        branchCoveragePct: 0
+        blendPct: 0
+      mutation:
+        totalMutants: 0
+        killed: 0
+        survived: 0
+        noCoverage: 0
+        timedOut: 0
+        other: 0
+        mutationScorePct: 0
+        testStrengthPct: 0
+      crap:
+        totalMethods: 11
+        hotspots: 2
+        maxCrap: 72.0
+        averageCrap: 12.545454545454545
+        simple: 8
+        moderate: 1
+        high: 1
+        veryHigh: 1
+        healthPct: 77
+        top:
+        - className: com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer
+          methodName: onQuiz
+          methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+          line: 49
+          cyclomatic: 8
+          lineCoveragePct: 0
+          crap: 72.0
+        - className: com.learney.contentaudit.auditdomain.SentenceLengthAnalyzer
+          methodName: scoreQuiz
+          methodDesc: (ILcom/learney/contentaudit/auditdomain/TargetRange;)D
+          line: 103
+          cyclomatic: 5
+          lineCoveragePct: 0
+          crap: 30.0
+      methods:
+      - name: <init>
+        desc: (Lcom/learney/contentaudit/auditdomain/NlpTokenizer;Lcom/learney/contentaudit/auditdomain/SentenceLengthConfig;)V
+        line: 17
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 4
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: getName
+        desc: ()Ljava/lang/String;
+        line: 24
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: getTarget
+        desc: ()Lcom/learney/contentaudit/auditdomain/AuditTarget;
+        line: 29
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: onMilestone
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 34
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: onTopic
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 39
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: onKnowledge
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 44
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: onQuiz
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 49
+        cyclomatic: 8
+        linesCovered: 0
+        linesMissed: 30
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 14
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 72.0
+      - name: onCourseComplete
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 99
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: scoreQuiz
+        desc: (ILcom/learney/contentaudit/auditdomain/TargetRange;)D
+        line: 103
+        cyclomatic: 5
+        linesCovered: 0
+        linesMissed: 11
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 8
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 30.0
+      - name: parseCefrLevel
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Lcom/learney/contentaudit/auditdomain/CefrLevel;
+        line: 126
+        cyclomatic: 4
+        linesCovered: 0
+        linesMissed: 6
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 6
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 20.0
+      - name: getDescription
+        desc: ()Ljava/lang/String;
+        line: 138
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
   - name: IScoreAggregator
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/IScoreAggregator.java
+    quality:
+      coverage:
+        linesCovered: 0
+        linesMissed: 28
+        linesTotal: 28
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 18
+        branchesTotal: 18
+        branchCoveragePct: 0
+        blendPct: 0
+      mutation:
+        totalMutants: 0
+        killed: 0
+        survived: 0
+        noCoverage: 0
+        timedOut: 0
+        other: 0
+        mutationScorePct: 0
+        testStrengthPct: 0
+      crap:
+        totalMethods: 4
+        hotspots: 1
+        maxCrap: 110.0
+        averageCrap: 29.0
+        simple: 3
+        moderate: 0
+        high: 0
+        veryHigh: 1
+        healthPct: 75
+        top:
+        - className: com.learney.contentaudit.auditdomain.IScoreAggregator
+          methodName: bubbleUp
+          methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)V
+          line: 22
+          cyclomatic: 10
+          lineCoveragePct: 0
+          crap: 110.0
+      methods:
+      - name: <init>
+        desc: ()V
+        line: 9
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: aggregate
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)V
+        line: 13
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 2
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
+      - name: bubbleUp
+        desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)V
+        line: 22
+        cyclomatic: 10
+        linesCovered: 0
+        linesMissed: 24
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 18
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 110.0
+      - name: lambda$bubbleUp$0
+        desc: (Ljava/lang/String;)Ljava/util/List;
+        line: 36
+        cyclomatic: 1
+        linesCovered: 0
+        linesMissed: 1
+        lineCoveragePct: 0
+        branchesCovered: 0
+        branchesMissed: 0
+        mutantsTotal: 0
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 0
+        crap: 2.0
   - name: CocaBucketsAnalyzer
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/coca/CocaBucketsAnalyzer.java
@@ -15003,6 +16275,21 @@ elements:
         detail
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
+    - name: should not evaluate single letter dialogue label token against misplacement
+        or frequency bands
+      status: MISSING
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
+    - name: should not evaluate token with embedded punctuation against misplacement
+        or frequency bands
+      status: MISSING
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
+    - name: should not evaluate contraction token with apostrophe against misplacement
+        or frequency bands
+      status: MISSING
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
+    - name: should evaluate two letter fully alphabetic token as lexical candidate
+      status: MISSING
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     testCleanViews:
     - |
       test: "should return lemma-absence as analyzer name"
@@ -15816,6 +17103,7 @@ elements:
         evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
         evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
         evpCatalogPort.isPhrase("cat") -> false
+        evpCatalogPort.lookupLevel(cat) -> Optional.of(CefrLevel.A1)
         contentWordFilter.isContentWord(catToken) -> true
 
       when:
@@ -15828,7 +17116,7 @@ elements:
       trace: FEAT-LABS / F-LABS-R017
 
       given:
-        token = NlpToken("unknown", "unknown", "NOUN", 0, false, false)
+        token = NlpToken("unknown", "unknown", "NOUN", 900, false, false)
         rootNode = courseTreeWithQuiz(0, "q1", List.of(token))
 
       when:
@@ -15866,6 +17154,7 @@ elements:
         contentWordFilter.isContentWord(any()) -> true
         evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
         evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+        evpCatalogPort.lookupLevel(cat) -> Optional.of(CefrLevel.A2)
 
       when:
         sut.onQuiz(findByTarget(rootNode, AuditTarget.QUIZ))
@@ -15890,6 +17179,7 @@ elements:
         contentWordFilter.isContentWord(any()) -> true
         evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
         evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+        evpCatalogPort.lookupLevel(cat) -> Optional.of(CefrLevel.B1)
 
       when:
         sut.onQuiz(findByTarget(rootNode, AuditTarget.QUIZ))
@@ -15914,6 +17204,7 @@ elements:
         contentWordFilter.isContentWord(any()) -> true
         evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
         evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+        evpCatalogPort.lookupLevel(cat) -> Optional.of(CefrLevel.B2)
 
       when:
         sut.onQuiz(findByTarget(rootNode, AuditTarget.QUIZ))
@@ -15943,6 +17234,8 @@ elements:
         evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
         evpCatalogPort.getCocaRank(dog) -> Optional.of(500)
         evpCatalogPort.getSemanticCategory(any()) -> Optional.empty()
+        evpCatalogPort.lookupLevel(cat) -> Optional.of(CefrLevel.A2)
+        evpCatalogPort.lookupLevel(dog) -> Optional.of(CefrLevel.B2)
 
       when:
         sut.onQuiz(findByTarget(rootNode, AuditTarget.QUIZ))
@@ -15964,6 +17257,7 @@ elements:
         evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
         evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
         evpCatalogPort.isPhrase("cat") -> false
+        evpCatalogPort.lookupLevel(cat) -> Optional.of(CefrLevel.A1)
         contentWordFilter.isContentWord(catToken) -> true
 
       when:
@@ -15976,7 +17270,7 @@ elements:
       trace: FEAT-LABS / F-LABS-R020
 
       given:
-        token = NlpToken("xyzzy", "xyzzy", "NOUN", 0, false, false)
+        token = NlpToken("xyzzy", "xyzzy", "NOUN", 900, false, false)
         rootNode = courseTreeWithQuiz(0, "q1", List.of(token))
 
       when:
@@ -16451,6 +17745,7 @@ elements:
         contentWordFilter.isContentWord(any()) -> true
         evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
         evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+        evpCatalogPort.lookupLevel(cat) -> Optional.of(CefrLevel.B2)
 
       when:
         sut.onQuiz(findByTarget(rootNode, AuditTarget.QUIZ))
@@ -16852,6 +18147,7 @@ elements:
         contentWordFilter.isContentWord(any()) -> true
         evpCatalogPort.getCocaRank(ambiguous) -> Optional.of(2000)
         evpCatalogPort.getSemanticCategory(ambiguous) -> Optional.empty()
+        evpCatalogPort.lookupLevel(ambiguous) -> Optional.of(CefrLevel.B1)
         contentWordFilter.isContentWord(token) -> true
 
       when:
@@ -16884,6 +18180,7 @@ elements:
         contentWordFilter.isContentWord(any()) -> true
         evpCatalogPort.getCocaRank(ambiguous) -> Optional.of(2000)
         evpCatalogPort.getSemanticCategory(ambiguous) -> Optional.empty()
+        evpCatalogPort.lookupLevel(ambiguous) -> Optional.of(CefrLevel.B1)
         contentWordFilter.isContentWord(token) -> true
 
       when:
@@ -16919,6 +18216,7 @@ elements:
         contentWordFilter.isContentWord(any()) -> true
         evpCatalogPort.getCocaRank(ambiguous) -> Optional.of(2000)
         evpCatalogPort.getSemanticCategory(ambiguous) -> Optional.empty()
+        evpCatalogPort.lookupLevel(ambiguous) -> Optional.of(CefrLevel.B1)
         contentWordFilter.isContentWord(token) -> true
 
       when:
@@ -16993,7 +18291,7 @@ elements:
 
       given:
         quizDiagnoses = DefaultQuizDiagnoses()
-        placement = LemmaPlacementDiagnosis(0, List.of())
+        placement = LemmaPlacementDiagnosis(0, List.of(), 0, List.of())
         sld = SentenceLengthDiagnosis(6, 5, 8, CefrLevel.A1, 0, 4)
 
       when:
@@ -17073,6 +18371,418 @@ elements:
         assertInstanceOf(LevelDiagnoses.class)
         levelDiag.isPresent() is true
         levelDiag.get().getLevel() is not null
+    - |
+      test: "should count expected lemma as present when the level contains it under a different part of speech"
+      trace: FEAT-LABS / F-LABS-R039
+
+      given:
+        runVerb = LemmaAndPos("run", "VERB")
+        runNounToken = NlpToken("run", "run", "NOUN", 500, false, false)
+        root = courseTreeWithQuiz(1, "q1", List.of(runNounToken))
+        a2 = levelDiagnosisAt(root, 1)
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> new HashSet<>(List.of(runVerb))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("run") -> false
+        evpCatalogPort.getCocaRank(runVerb) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(runVerb) -> Optional.empty()
+        evpCatalogPort.lookupLevel(new LemmaAndPos("run", "VERB")) -> Optional.of(CefrLevel.A2)
+        evpCatalogPort.lookupLevelByLemma("run") -> Optional.of(CefrLevel.A2)
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        a2.getTotalAbsent() == 0
+        a2.getAbsentLemmas() == null || a2.getAbsentLemmas().isEmpty() is true
+        root.getScores().getOrDefault("lemma-absence", 0.0) == 1.0
+    - |
+      test: "should cover multiple expected entries of the same lemma with a single occurrence in the level"
+      trace: FEAT-LABS / F-LABS-R039
+
+      given:
+        runVerb = LemmaAndPos("run", "VERB")
+        runNoun = LemmaAndPos("run", "NOUN")
+        runNounToken = NlpToken("run", "run", "NOUN", 500, false, false)
+        root = courseTreeWithQuiz(1, "q1", List.of(runNounToken))
+        a2 = levelDiagnosisAt(root, 1)
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> new HashSet<>(List.of(runVerb, runNoun))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("run") -> false
+        evpCatalogPort.getCocaRank(any()) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(any()) -> Optional.empty()
+        evpCatalogPort.lookupLevel(runNoun) -> Optional.of(CefrLevel.A2)
+        evpCatalogPort.lookupLevel(runVerb) -> Optional.of(CefrLevel.A2)
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        a2.getTotalAbsent() == 0
+        a2.getAbsentLemmas() == null || a2.getAbsentLemmas().isEmpty() is true
+        root.getScores().getOrDefault("lemma-absence", 0.0) == 1.0
+    - |
+      test: "should classify absence as APPEARS_TOO_LATE when the lemma appears under another part of speech only in later levels"
+      trace: FEAT-LABS / F-LABS-R039
+
+      given:
+        runVerb = LemmaAndPos("run", "VERB")
+        runNounToken = NlpToken("run", "run", "NOUN", 500, false, false)
+        root = courseTreeWithQuiz(2, "q1", List.of(runNounToken))
+        a2 = levelDiagnosisAt(root, 1)
+        absent = a2.getAbsentLemmas().get(0)
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> new HashSet<>(List.of(runVerb))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase("run") -> false
+        evpCatalogPort.getCocaRank(runVerb) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(runVerb) -> Optional.empty()
+        evpCatalogPort.lookupLevelByLemma("run") -> Optional.of(CefrLevel.A2)
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        a2.getTotalAbsent() == 1
+        a2.getAbsentLemmas() is not null
+        a2.getAbsentLemmas().size() == 1
+        absent.getLemmaAndPos() == runVerb
+        absent.getAbsenceType() == AbsenceType.APPEARS_TOO_LATE
+        absent.getPresentInLevels() is not null
+        absent.getPresentInLevels().contains(CefrLevel.B1) is true
+    - |
+      test: "should treat C2 lemma as misplaced even in a B2 sentence"
+      trace: FEAT-LABS / F-LABS-R033
+
+      given:
+        shatter = NlpToken("shatter", "shatter", "VERB", 9000, false, false)
+        root = courseTreeWithQuiz(3, "q1", List.of(shatter))
+
+      mock:
+        evpCatalogPort.lookupLevel(new LemmaAndPos("shatter", "VERB")) -> Optional.of(CefrLevel.C2)
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        quizScore(root) == 0.8
+    - |
+      test: "should penalize C1 lemma in every course level with distance-proportional discount"
+      trace: FEAT-LABS / F-LABS-R033
+
+      given:
+        possess = NlpToken("possess", "possess", "VERB", 4500, false, false)
+        root = courseTreeWithQuizzes(Map.of(0, List.of(possess), 1, List.of(possess), 2, List.of(possess), 3, List.of(possess)))
+        expectedScores = { 0.6, 0.7, 0.8, 0.9 }
+
+      mock:
+        evpCatalogPort.lookupLevel(new LemmaAndPos("possess", "VERB")) -> Optional.of(CefrLevel.C1)
+
+      when:
+        sut.onCourseComplete(root)
+    - |
+      test: "should apply strong discount 0.3 to out-of-catalog word with rank 6081 in A1 sentence"
+      trace: FEAT-LABS / F-LABS-R034
+
+      given:
+        gadget = NlpToken("gadget", "gadget", "NOUN", 6081, false, false)
+        root = courseTreeWithQuiz(0, "q1", List.of(gadget))
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        quizScore(root) == 0.7
+    - |
+      test: "should apply mild discount 0.1 to out-of-catalog word with rank 6081 in B2 sentence"
+      trace: FEAT-LABS / F-LABS-R034
+
+      given:
+        gadget = NlpToken("gadget", "gadget", "NOUN", 6081, false, false)
+        root = courseTreeWithQuiz(3, "q1", List.of(gadget))
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        quizScore(root) == 0.9
+    - |
+      test: "should not penalize out-of-catalog word with rank 900 in any course level"
+      trace: FEAT-LABS / F-LABS-R034
+
+      given:
+        common = NlpToken("stuff", "stuff", "NOUN", 900, false, false)
+        root = courseTreeWithQuizzes(Map.of(0, List.of(common), 1, List.of(common), 2, List.of(common), 3, List.of(common)))
+
+      when:
+        sut.onCourseComplete(root)
+    - |
+      test: "should apply strong discount to out-of-catalog word without frequency rank"
+      trace: FEAT-LABS / F-LABS-R034
+
+      given:
+        unranked = NlpToken("whatsit", "whatsit", "NOUN", null, false, false)
+        root = courseTreeWithQuiz(3, "q1", List.of(unranked))
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        quizScore(root) == 0.7
+    - |
+      test: "should not penalize proper noun token even when infrequent and out of catalog"
+      trace: FEAT-LABS / F-LABS-R035
+
+      given:
+        london = NlpToken("London", "london", "PROPN", null, false, false)
+        root = courseTreeWithQuiz(0, "q1", List.of(london))
+        placement = quizPlacementDiagnosis(root)
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        quizScore(root) == 1.0
+        placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty() is true
+    - |
+      test: "should not penalize non-alphabetic token in the misplacement evaluation"
+      trace: FEAT-LABS / F-LABS-R035
+
+      given:
+        numeric = NlpToken("42", "42", "NUM", null, false, false)
+        root = courseTreeWithQuiz(0, "q1", List.of(numeric))
+        placement = quizPlacementDiagnosis(root)
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        quizScore(root) == 1.0
+        placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty() is true
+    - |
+      test: "should not evaluate functional word against the out-of-catalog frequency bands"
+      trace: FEAT-LABS / F-LABS-R035
+
+      given:
+        the = NlpToken("the", "the", "DET", null, true, false)
+        root = courseTreeWithQuiz(0, "q1", List.of(the))
+        placement = quizPlacementDiagnosis(root)
+
+      mock:
+        contentWordFilter.isContentWord(the) -> false
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        quizScore(root) == 1.0
+        placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty() is true
+    - |
+      test: "should penalize via exact lemma and pos entry even when another pos of the same lemma has a lower level"
+      trace: FEAT-LABS / F-LABS-R036
+
+      given:
+        recordVerb = NlpToken("record", "record", "VERB", 950, false, false)
+        root = courseTreeWithQuiz(1, "q1", List.of(recordVerb))
+        placement = quizPlacementDiagnosis(root)
+
+      mock:
+        evpCatalogPort.lookupLevel(new LemmaAndPos("record", "VERB")) -> Optional.of(CefrLevel.B1)
+        evpCatalogPort.lookupLevelByLemma("record") -> Optional.of(CefrLevel.A2)
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        quizScore(root) == 0.9
+        placement.getMisplacedLemmas() is not null
+        placement.getMisplacedLemmas().size() == 1
+        placement.getMisplacedLemmas().get(0).getExpectedLevel() == CefrLevel.B1
+    - |
+      test: "should fall back to the lowest level among other pos entries when the exact pair is missing"
+      trace: FEAT-LABS / F-LABS-R036
+
+      given:
+        recordVerb = NlpToken("record", "record", "VERB", 950, false, false)
+        root = courseTreeWithQuiz(0, "q1", List.of(recordVerb))
+        placement = quizPlacementDiagnosis(root)
+
+      mock:
+        evpCatalogPort.lookupLevelByLemma("record") -> Optional.of(CefrLevel.A2)
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        quizScore(root) == 0.9
+        placement.getMisplacedLemmas() is not null
+        placement.getMisplacedLemmas().size() == 1
+        placement.getMisplacedLemmas().get(0).getExpectedLevel() == CefrLevel.A2
+        placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty() is true
+        verify: evpCatalogPort.lookupLevelByLemma("record") x atLeastOnce()
+    - |
+      test: "should treat word as out of catalog only when the lemma has no entry under any pos"
+      trace: FEAT-LABS / F-LABS-R036
+
+      given:
+        hail = NlpToken("hails", "hail", "VERB", 12000, false, false)
+        gadget = NlpToken("gadget", "gadget", "NOUN", 6081, false, false)
+        root = courseTreeWithQuiz(0, "q1", List.of(hail, gadget))
+        placement = quizPlacementDiagnosis(root)
+
+      mock:
+        evpCatalogPort.lookupLevelByLemma("hail") -> Optional.of(CefrLevel.C2)
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        placement.getMisplacedLemmas() is not null
+        placement.getMisplacedLemmas().size() == 1
+        placement.getMisplacedLemmas().get(0).getLemmaAndPos().getLemma() == "hail"
+        placement.getOutOfCatalogWords() is not null
+        placement.getOutOfCatalogWords().size() == 1
+        placement.getOutOfCatalogWords().get(0).getLemma() == "gadget"
+        quizScore(root) == 0.5
+    - |
+      test: "should not report C1 or C2 catalog lemmas as absent in any level coverage"
+      trace: FEAT-LABS / F-LABS-R037
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        catToken = NlpToken("cat", "cat", "NOUN", 500, false, false)
+        hailToken = NlpToken("hails", "hail", "VERB", 12000, false, false)
+        root = courseTreeWithQuiz(0, "q1", List.of(catToken, hailToken))
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase(any()) -> false
+        evpCatalogPort.getCocaRank(any()) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(any()) -> Optional.empty()
+        evpCatalogPort.lookupLevel(cat) -> Optional.of(CefrLevel.A1)
+        evpCatalogPort.lookupLevelByLemma("hail") -> Optional.of(CefrLevel.C2)
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        quizScore(root) == 0.5
+        root.getScores().getOrDefault("lemma-absence", 0.0) == 1.0
+    - |
+      test: "should keep expected lemma totals per level unchanged after retaining C1 and C2 entries"
+      trace: FEAT-LABS / F-LABS-R037
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        dog = LemmaAndPos("dog", "NOUN")
+        root = buildEmptyCourseTree()
+
+      mock:
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A1) -> new HashSet<>(List.of(cat))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.A2) -> new HashSet<>(List.of(dog))
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B1) -> Collections.emptySet()
+        evpCatalogPort.getExpectedLemmas(CefrLevel.B2) -> Collections.emptySet()
+        evpCatalogPort.isPhrase(any()) -> false
+        evpCatalogPort.getCocaRank(any()) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(any()) -> Optional.empty()
+
+      when:
+        sut.onCourseComplete(root)
+
+      then:
+        levelDiagnosisAt(root, 0).getTotalExpected() == 1
+        levelDiagnosisAt(root, 1).getTotalExpected() == 1
+        levelDiagnosisAt(root, 2).getTotalExpected() == 0
+        levelDiagnosisAt(root, 3).getTotalExpected() == 0
+        verify: evpCatalogPort.getExpectedLemmas(CefrLevel.C1) x 0
+        verify: evpCatalogPort.getExpectedLemmas(CefrLevel.C2) x 0
+    - |
+      test: "should expose observed pos and applied discount for each misplaced lemma in the quiz diagnosis"
+      trace: FEAT-LABS / F-LABS-R038
+
+      given:
+        recordVerb = NlpToken("recorded", "record", "VERB", 950, false, false)
+        root = courseTreeWithQuiz(0, "q1", List.of(recordVerb))
+        placement = quizPlacementDiagnosis(root)
+        detail = placement.getMisplacedLemmas().get(0)
+
+      mock:
+        evpCatalogPort.lookupLevelByLemma("record") -> Optional.of(CefrLevel.B1)
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        placement.getMisplacedLemmas() is not null
+        placement.getMisplacedLemmas().size() == 1
+        detail.getLemmaAndPos().getLemma() == "record"
+        detail.getObservedPos() == "VERB"
+        detail.getExpectedLevel() == CefrLevel.B1
+        detail.getDiscount() is not null
+        detail.getDiscount() == 0.2
+        quizScore(root) == 0.8
+    - |
+      test: "should expose out-of-catalog word detail with observed pos and frequency rank without inventing a cefr level"
+      trace: FEAT-LABS / F-LABS-R038
+
+      given:
+        gadget = NlpToken("gadget", "gadget", "NOUN", 6081, false, false)
+        root = courseTreeWithQuiz(0, "q1", List.of(gadget))
+        placement = quizPlacementDiagnosis(root)
+        word = placement.getOutOfCatalogWords().get(0)
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        placement.getOutOfCatalogWords() is not null
+        placement.getOutOfCatalogWords().size() == 1
+        placement.getOutOfCatalogWordCount() == 1
+        word.getLemma() == "gadget"
+        word.getObservedPos() == "NOUN"
+        word.getFrequencyRank() == 6081
+        word.getDiscount() == 0.3
+        placement.getMisplacedLemmas() == null || placement.getMisplacedLemmas().isEmpty() is true
+    - |
+      test: "should register only words that generated discount in the quiz diagnosis detail"
+      trace: FEAT-LABS / F-LABS-R038
+
+      given:
+        cat = NlpToken("cat", "cat", "NOUN", 500, false, false)
+        stuff = NlpToken("stuff", "stuff", "NOUN", 900, false, false)
+        london = NlpToken("London", "london", "PROPN", null, false, false)
+        possess = NlpToken("possesses", "possess", "VERB", 4500, false, false)
+        root = courseTreeWithQuiz(0, "q1", List.of(cat, stuff, london, possess))
+        placement = quizPlacementDiagnosis(root)
+
+      mock:
+        evpCatalogPort.lookupLevel(new LemmaAndPos("cat", "NOUN")) -> Optional.of(CefrLevel.A1)
+        evpCatalogPort.lookupLevel(new LemmaAndPos("possess", "VERB")) -> Optional.of(CefrLevel.C1)
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        placement.getMisplacedLemmas() is not null
+        placement.getMisplacedLemmas().size() == 1
+        placement.getMisplacedLemmas().get(0).getLemmaAndPos().getLemma() == "possess"
+        placement.getMisplacedLemmaCount() == 1
+        placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty() is true
+        placement.getOutOfCatalogWordCount() == 0
+        quizScore(root) == 0.6
   - name: LemmaAbsenceScoreAggregator
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/labs/LemmaAbsenceScoreAggregator.java
@@ -17879,12 +19589,12 @@ elements:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
+      linesMissed: 2724
+      linesTotal: 2724
       lineCoveragePct: 0
       branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
+      branchesMissed: 1353
+      branchesTotal: 1353
       branchCoveragePct: 0
       blendPct: 0
     mutation:
@@ -17897,17 +19607,92 @@ elements:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
-      high: 0
-      veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      totalMethods: 767
+      hotspots: 76
+      maxCrap: 870.0
+      averageCrap: 12.435462842242503
+      simple: 655
+      moderate: 36
+      high: 22
+      veryHigh: 54
+      healthPct: 88
+      top:
+      - className: com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzer
+        methodName: onCourseComplete
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 128
+        cyclomatic: 29
+        lineCoveragePct: 0
+        crap: 870.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: runAnalysis
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)V
+        line: 184
+        cyclomatic: 25
+        lineCoveragePct: 0
+        crap: 650.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+        methodName: scoreQuizzes
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Ljava/util/Map;)V
+        line: 491
+        cyclomatic: 19
+        lineCoveragePct: 0
+        crap: 380.0
+      - className: com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 179
+        cyclomatic: 18
+        lineCoveragePct: 0
+        crap: 342.0
+      - className: com.learney.contentaudit.auditdomain.coca.DefaultProgressionEvaluator
+        methodName: evaluateBandProgression
+        methodDesc: (Ljava/lang/String;Ljava/util/List;)Lcom/learney/contentaudit/auditdomain/coca/ProgressionState;
+        line: 39
+        cyclomatic: 14
+        lineCoveragePct: 0
+        crap: 210.0
+      - className: com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzer
+        methodName: onCourseComplete
+        methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+        line: 92
+        cyclomatic: 13
+        lineCoveragePct: 0
+        crap: 182.0
+      - className: com.learney.contentaudit.auditdomain.AuditableKnowledge
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 110
+        cyclomatic: 12
+        lineCoveragePct: 0
+        crap: 156.0
+      - className: com.learney.contentaudit.auditdomain.labs.MisplacedLemma
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 110
+        cyclomatic: 12
+        lineCoveragePct: 0
+        crap: 156.0
+      - className: com.learney.contentaudit.auditdomain.AuditNode
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 106
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+      - className: com.learney.contentaudit.auditdomain.AuditableQuiz
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 98
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+    healthScore: 22
+    verdict: WARNED
+    violations:
+    - lineCoverage 0% < 70%
+    - branchCoverage 0% < 60%
+    - crapHotspots 76 > 5
 - module: course-domain
   status: EXISTS
   models:
@@ -21395,6 +23180,83 @@ elements:
         result.isPresent() is true
         scarce is not null
         scarce.isEmpty() is true
+    - |
+      test: "should populate outOfCatalogWords on the lemma-absence correction context from the quiz diagnosis"
+      trace: FEAT-LABS / F-LABS-R038
+
+      given:
+        quiz = AuditableQuiz(List.of(), "quiz-la-ooc-1", null, null, "El aparato es raro.", List.of("The gadget is odd."), null)
+        knowledge = AuditableKnowledge(List.of(), "Objects", "Complete.", true, "know-la-ooc-1", null, null, null)
+        topic = AuditableTopic(List.of(), "topic-la-ooc-1", "Things", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-ooc-1", "A1", null)
+        quizDiag = DefaultQuizDiagnoses()
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of())
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = RefinementTask("task-la-ooc-1", AuditTarget.QUIZ, "quiz-la-ooc-1", "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        result = sut.resolve(report, task)
+        words = result.get().getOutOfCatalogWords()
+        word = words.get(0)
+
+      when:
+        sut.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(0, List.of(), 1, List.of(new OutOfCatalogWord("gadget", "NOUN", 6081, 0.3))))
+
+      then:
+        result.isPresent() is true
+        words is not null
+        words.size() == 1
+        word.getLemma() == "gadget"
+        word.getObservedPos() == "NOUN"
+        word.getFrequencyRank() == 6081
+        word.getDiscount() == 0.3
+    - |
+      test: "should map the applied discount into each MisplacedLemmaContext entry"
+      trace: FEAT-LABS / F-LABS-R038
+
+      given:
+        quiz = AuditableQuiz(List.of(), "quiz-la-disc-1", null, null, "Ella posee un registro.", List.of("She possesses a record."), null)
+        knowledge = AuditableKnowledge(List.of(), "Ownership", "Complete.", true, "know-la-disc-1", null, null, null)
+        topic = AuditableTopic(List.of(), "topic-la-disc-1", "Possessions", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-disc-1", "A1", null)
+        record = MisplacedLemma(new LemmaAndPos("record", "NOUN"), CefrLevel.B1, CefrLevel.A1, AbsenceType.APPEARS_TOO_EARLY, 950, null, "VERB", 0.2)
+        possess = MisplacedLemma(new LemmaAndPos("possess", "VERB"), CefrLevel.C1, CefrLevel.A1, AbsenceType.APPEARS_TOO_EARLY, 4500, null, "VERB", 0.4)
+        quizDiag = buildQuizDiagnosesWithPlacement(List.of(record, possess))
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of())
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = RefinementTask("task-la-disc-1", AuditTarget.QUIZ, "quiz-la-disc-1", "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        result = sut.resolve(report, task)
+        misplaced = result.get().getMisplacedLemmas()
+
+      then:
+        result.isPresent() is true
+        misplaced is not null
+        misplaced.size() == 2
+    - |
+      test: "should leave outOfCatalogWords empty not null when the diagnosis has no out-of-catalog penalties"
+      trace: FEAT-LABS / F-LABS-R038
+
+      given:
+        quiz = AuditableQuiz(List.of(), "quiz-la-ooc-empty", null, null, "El gato duerme.", List.of("The cat sleeps."), null)
+        knowledge = AuditableKnowledge(List.of(), "Animals", "Complete.", true, "know-la-ooc-empty", null, null, null)
+        topic = AuditableTopic(List.of(), "topic-la-ooc-empty", "Pets", null)
+        milestone = AuditableMilestone(List.of(), "ms-la-ooc-empty", "A1", null)
+        ml = buildMisplacedLemma("cat", "NOUN", CefrLevel.A2, CefrLevel.A1, 300)
+        quizDiag = DefaultQuizDiagnoses()
+        milestoneDiag = buildMilestoneDiagnoses(CefrLevel.A1, List.of())
+        tree = buildFullTree(milestone, milestoneDiag, topic, knowledge, quiz, quizDiag)
+        report = AuditReport(tree[0])
+        task = RefinementTask("task-la-ooc-empty", AuditTarget.QUIZ, "quiz-la-ooc-empty", "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING)
+        result = sut.resolve(report, task)
+        words = result.get().getOutOfCatalogWords()
+
+      when:
+        sut.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(ml), 0, null))
+
+      then:
+        result.isPresent() is true
+        words is not null
+        words.isEmpty() is true
   - name: DispatchingCorrectionContextResolver
     status: EXISTS
     filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/DispatchingCorrectionContextResolver.java
@@ -23840,6 +25702,42 @@ elements:
         config.getCoverageTarget(CefrLevel.A1) > config.getCoverageTarget(CefrLevel.A2) is true
         config.getCoverageTarget(CefrLevel.A2) > config.getCoverageTarget(CefrLevel.B1) is true
         config.getCoverageTarget(CefrLevel.B1) > config.getCoverageTarget(CefrLevel.B2) is true
+    - |
+      test: "should return out-of-catalog no-penalty rank bounds 1000 2000 3500 5000 for A1 A2 B1 B2"
+      trace: FEAT-LABS / F-LABS-R034
+
+      then:
+        config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.A1) == 1000
+        config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.A2) == 2000
+        config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.B1) == 3500
+        config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.B2) == 5000
+    - |
+      test: "should return out-of-catalog mild-discount rank bounds 3000 5000 8000 10000 for A1 A2 B1 B2"
+      trace: FEAT-LABS / F-LABS-R034
+
+      then:
+        config.getOutOfCatalogMildDiscountRankBound(CefrLevel.A1) == 3000
+        config.getOutOfCatalogMildDiscountRankBound(CefrLevel.A2) == 5000
+        config.getOutOfCatalogMildDiscountRankBound(CefrLevel.B1) == 8000
+        config.getOutOfCatalogMildDiscountRankBound(CefrLevel.B2) == 10000
+    - |
+      test: "should return out-of-catalog mild discount 0.1 and strong discount 0.3"
+      trace: FEAT-LABS / F-LABS-R034
+
+      then:
+        config.getOutOfCatalogMildDiscount() == 0.1
+        config.getOutOfCatalogStrongDiscount() == 0.3
+    - |
+      test: "should have out-of-catalog rank bounds non-decreasing from A1 to B2 within each band"
+      trace: FEAT-LABS / F-LABS-R034
+
+      then:
+        config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.A1) <= config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.A2) is true
+        config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.A2) <= config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.B1) is true
+        config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.B1) <= config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.B2) is true
+        config.getOutOfCatalogMildDiscountRankBound(CefrLevel.A1) <= config.getOutOfCatalogMildDiscountRankBound(CefrLevel.A2) is true
+        config.getOutOfCatalogMildDiscountRankBound(CefrLevel.A2) <= config.getOutOfCatalogMildDiscountRankBound(CefrLevel.B1) is true
+        config.getOutOfCatalogMildDiscountRankBound(CefrLevel.B1) <= config.getOutOfCatalogMildDiscountRankBound(CefrLevel.B2) is true
   - name: DefaultAnalyzerRegistry
     status: EXISTS
     filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultAnalyzerRegistry.java
@@ -30518,6 +32416,52 @@ elements:
         under any pos
       status: EXISTS
       testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalogTest.java
+    - name: should return empty from exact lookupLevel when the only catalog entry
+        for the pair is phrasal
+      status: EXISTS
+      testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalogTest.java
+    - name: should return empty from lookupLevelByLemma when the only catalog entry
+        for the lemma is phrasal
+      status: EXISTS
+      testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalogTest.java
+    - name: should resolve the single word entry level when the lemma also has phrasal
+        entries
+      status: EXISTS
+      testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalogTest.java
+    testCleanViews:
+    - |
+      test: "should retain C1 and C2 catalog entries at load and resolve their level for misplacement lookup"
+      trace: FEAT-LABS / F-LABS-R033
+
+      given:
+        catalogPath = writeCatalog(entry("hail", "hail", "C2", "NOUN", 12000), entry("possess", "possess", "C1", "VERB", 4500), entry("cat", "cat", "A1", "NOUN", 800))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevel(new LemmaAndPos("hail", "NOUN")) == Optional.of(CefrLevel.C2)
+        catalog.lookupLevel(new LemmaAndPos("possess", "VERB")) == Optional.of(CefrLevel.C1)
+        catalog.lookupLevel(new LemmaAndPos("cat", "NOUN")) == Optional.of(CefrLevel.A1)
+    - |
+      test: "should resolve lookupLevelByLemma to the minimum level across the pos entries of the lemma"
+      trace: FEAT-LABS / F-LABS-R036
+
+      given:
+        catalogPath = writeCatalog(entry("record", "record", "A2", "NOUN", 900), entry("record", "record", "B1", "VERB", 950), entry("hail", "hail", "C2", "NOUN", 12000))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevelByLemma("record") == Optional.of(CefrLevel.A2)
+        catalog.lookupLevelByLemma("hail") == Optional.of(CefrLevel.C2)
+    - |
+      test: "should return empty from lookupLevelByLemma when the lemma has no entry under any pos"
+      trace: FEAT-LABS / F-LABS-R036
+
+      given:
+        catalogPath = writeCatalog(entry("cat", "cat", "A1", "NOUN", 800), entry("record", "record", "A2", "NOUN", 900))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevelByLemma("blorptastic") == Optional.empty()
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -35584,7 +37528,7 @@ elements:
         contextB2 = buildContext("He ____[commutes|travels] to the university.", CefrLevel.B2)
         contextNoLemmas = LemmaAbsenceCorrectionContext("task-xyz", "I study English.", "Estudio inglés.", "Languages", "Formal instructions.", "General", CefrLevel.A2, // no misplacedLemmas
       List.of(), // no suggestedLemmas
-      List.of(), "I ____[study|learn] English.", 0, 0, 0, 0, com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN, null, null, List.of(), "quiz-node-xyz", null)
+      List.of(), "I ____[study|learn] English.", 0, 0, 0, 0, com.learney.contentaudit.refinerdomain.LengthDirection.UNKNOWN, null, null, List.of(), "quiz-node-xyz", null, null)
         forA1 = generator.generate(contextA1)
         forB2 = generator.generate(contextB2)
         forEmpty = generator.generate(contextNoLemmas)
@@ -35817,9 +37761,9 @@ elements:
 
       given:
         lemaPos = LemmaAndPos("run", "v")
-        misplacedOrig = MisplacedLemma(lemaPos, CefrLevel.A1, CefrLevel.B1, null, 500, "sports")
-        misplacedCons = MisplacedLemma(lemaPos, CefrLevel.A1, CefrLevel.B1, null, 500, "general")
-        misplacedPend = MisplacedLemma(lemaPos, CefrLevel.A1, CefrLevel.B1, null, 500, "general")
+        misplacedOrig = MisplacedLemma(lemaPos, CefrLevel.A1, CefrLevel.B1, null, 500, "sports", null, null)
+        misplacedCons = MisplacedLemma(lemaPos, CefrLevel.A1, CefrLevel.B1, null, 500, "general", null, null)
+        misplacedPend = MisplacedLemma(lemaPos, CefrLevel.A1, CefrLevel.B1, null, 500, "general", null, null)
         levelDiagOrig = LemmaAbsenceLevelDiagnosis(CefrLevel.A1, 10, 1, 0.10, 0.80, 0.8, 0.0, 0.0, null, Collections.emptyList(), List.of(misplacedOrig), 1, 0, 0)
         levelDiagCons = LemmaAbsenceLevelDiagnosis(CefrLevel.A1, 10, 1, 0.10, 0.80, 0.8, 0.0, 0.0, null, Collections.emptyList(), List.of(misplacedCons), 1, 0, 0)
         levelDiagPend = LemmaAbsenceLevelDiagnosis(CefrLevel.A1, 10, 1, 0.10, 0.80, 0.8, 0.0, 0.0, null, Collections.emptyList(), List.of(misplacedPend), 1, 0, 0)
@@ -35858,9 +37802,9 @@ elements:
       }
         differSinIdentidad = RecursiveNodeFieldDiffer(new DefaultFieldExclusionRegistry(), emptyIdentityRegistry)
         lemaPos1 = LemmaAndPos("go", "v")
-        misplacedOrig = MisplacedLemma(lemaPos1, CefrLevel.A1, CefrLevel.B1, null, 200, "movement")
-        misplacedCons = MisplacedLemma(lemaPos1, CefrLevel.A1, CefrLevel.B1, null, 200, "action")
-        misplacedPend = MisplacedLemma(lemaPos1, CefrLevel.A1, CefrLevel.B1, null, 200, "action")
+        misplacedOrig = MisplacedLemma(lemaPos1, CefrLevel.A1, CefrLevel.B1, null, 200, "movement", null, null)
+        misplacedCons = MisplacedLemma(lemaPos1, CefrLevel.A1, CefrLevel.B1, null, 200, "action", null, null)
+        misplacedPend = MisplacedLemma(lemaPos1, CefrLevel.A1, CefrLevel.B1, null, 200, "action", null, null)
         levelDiagOrig = LemmaAbsenceLevelDiagnosis(CefrLevel.A1, 10, 1, 0.10, 0.80, 0.8, 0.0, 0.0, null, Collections.emptyList(), List.of(misplacedOrig), 1, 0, 0)
         levelDiagCons = LemmaAbsenceLevelDiagnosis(CefrLevel.A1, 10, 1, 0.10, 0.80, 0.8, 0.0, 0.0, null, Collections.emptyList(), List.of(misplacedCons), 1, 0, 0)
         levelDiagPend = LemmaAbsenceLevelDiagnosis(CefrLevel.A1, 10, 1, 0.10, 0.80, 0.8, 0.0, 0.0, null, Collections.emptyList(), List.of(misplacedPend), 1, 0, 0)
@@ -36776,7 +38720,8 @@ elements:
         expectedResponse = KnowledgeTitleGeneratorResponse("Present Simple Affirmative", "Completa la oracion con el verbo en presente simple.")
         parser = mock(KnowledgeTitleAgentCandidateParser.class)
         classifier = mock(KnowledgeTitleAgentErrorClassifier.class)
-        generator = KnowledgeTitleAgentGenerator(launcher, parser, classifier, null, "knowledge-title-agent")
+        config = LagenConfig("test-provider", "test-model", "http://localhost:1234/v1", null, null, null, null, 1, 3)
+        generator = KnowledgeTitleAgentGenerator(launcher, parser, classifier, null, "knowledge-title-agent", config, Path.of("."))
         result = generator.generate(validContext())
 
       mock:
@@ -36840,10 +38785,10 @@ elements:
     healthScore: 0
     verdict: PASSED
 testSummary:
-  total: 1029
-  passing: 1015
+  total: 1036
+  passing: 1018
   failing: 0
-  notImplemented: 14
+  notImplemented: 18
 qualitySummary:
   enforcement: warn
   thresholds:
@@ -36854,12 +38799,12 @@ qualitySummary:
     crapHotspotsMax: 5
   coverage:
     linesCovered: 0
-    linesMissed: 0
-    linesTotal: 0
+    linesMissed: 2724
+    linesTotal: 2724
     lineCoveragePct: 0
     branchesCovered: 0
-    branchesMissed: 0
-    branchesTotal: 0
+    branchesMissed: 1353
+    branchesTotal: 1353
     branchCoveragePct: 0
     blendPct: 0
   mutation:
@@ -36872,17 +38817,92 @@ qualitySummary:
     mutationScorePct: 0
     testStrengthPct: 0
   crap:
-    totalMethods: 0
-    hotspots: 0
-    maxCrap: 0.0
-    averageCrap: 0.0
-    simple: 0
-    moderate: 0
-    high: 0
-    veryHigh: 0
-    healthPct: 0
-  healthScore: 0
-  verdict: PASSED
+    totalMethods: 767
+    hotspots: 76
+    maxCrap: 870.0
+    averageCrap: 12.435462842242503
+    simple: 655
+    moderate: 36
+    high: 22
+    veryHigh: 54
+    healthPct: 88
+    top:
+    - className: com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzer
+      methodName: onCourseComplete
+      methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+      line: 128
+      cyclomatic: 29
+      lineCoveragePct: 0
+      crap: 870.0
+    - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+      methodName: runAnalysis
+      methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)V
+      line: 184
+      cyclomatic: 25
+      lineCoveragePct: 0
+      crap: 650.0
+    - className: com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer
+      methodName: scoreQuizzes
+      methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Ljava/util/Map;)V
+      line: 491
+      cyclomatic: 19
+      lineCoveragePct: 0
+      crap: 380.0
+    - className: com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis
+      methodName: equals
+      methodDesc: (Ljava/lang/Object;)Z
+      line: 179
+      cyclomatic: 18
+      lineCoveragePct: 0
+      crap: 342.0
+    - className: com.learney.contentaudit.auditdomain.coca.DefaultProgressionEvaluator
+      methodName: evaluateBandProgression
+      methodDesc: (Ljava/lang/String;Ljava/util/List;)Lcom/learney/contentaudit/auditdomain/coca/ProgressionState;
+      line: 39
+      cyclomatic: 14
+      lineCoveragePct: 0
+      crap: 210.0
+    - className: com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzer
+      methodName: onCourseComplete
+      methodDesc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
+      line: 92
+      cyclomatic: 13
+      lineCoveragePct: 0
+      crap: 182.0
+    - className: com.learney.contentaudit.auditdomain.AuditableKnowledge
+      methodName: equals
+      methodDesc: (Ljava/lang/Object;)Z
+      line: 110
+      cyclomatic: 12
+      lineCoveragePct: 0
+      crap: 156.0
+    - className: com.learney.contentaudit.auditdomain.labs.MisplacedLemma
+      methodName: equals
+      methodDesc: (Ljava/lang/Object;)Z
+      line: 110
+      cyclomatic: 12
+      lineCoveragePct: 0
+      crap: 156.0
+    - className: com.learney.contentaudit.auditdomain.AuditNode
+      methodName: equals
+      methodDesc: (Ljava/lang/Object;)Z
+      line: 106
+      cyclomatic: 11
+      lineCoveragePct: 0
+      crap: 132.0
+    - className: com.learney.contentaudit.auditdomain.AuditableQuiz
+      methodName: equals
+      methodDesc: (Ljava/lang/Object;)Z
+      line: 98
+      cyclomatic: 11
+      lineCoveragePct: 0
+      crap: 132.0
+  healthScore: 22
+  verdict: WARNED
+  violations:
+  - lineCoverage 0% < 70%
+  - branchCoverage 0% < 60%
+  - crapHotspots 76 > 5
 patterns:
 - id: declared-1
   pattern: Factory

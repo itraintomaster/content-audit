@@ -1479,6 +1479,8 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 | `errorClassifier` | `KnowledgeTitleAgentErrorClassifier` |
 | `chatModel` | `ChatModel` |
 | `strategyName` | `String` |
+| `config` | `LagenConfig` |
+| `projectRoot` | `Path` |
 
 #### DefaultKnowledgeTitleAgentRuntimeLauncher (package: knowledgetitleagent)
 
