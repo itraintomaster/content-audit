@@ -105,7 +105,7 @@ project-root/
 | Depends On | audit-domain, course-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
-| Models | 14 (DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext, LengthDirection, SuggestedLemmaQueryResult, SuggestedLemmaQueryRejectedException, SuggestedLemmaQueryCriteria, ScarceContentWord, KnowledgeTitleCorrectionContext) |
+| Models | 15 (DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext, LengthDirection, SuggestedLemmaQueryResult, SuggestedLemmaQueryRejectedException, SuggestedLemmaQueryCriteria, ScarceContentWord, KnowledgeTitleCorrectionContext, OutOfCatalogWordContext) |
 | Interfaces | 7 (RefinerEngine, RefinementPlanStore, CorrectionContextResolver, CorrectionContext, SuggestedLemmaQueryPort, SuggestedLemmaQuerySession, SuggestedLemmaQuerySessionFactory) |
 | Implementations | 5 (SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver, DefaultRefinerEngine, KnowledgeTitleContextResolver) |
 | Packages | 1 (lemmasuggestion [internal]) |

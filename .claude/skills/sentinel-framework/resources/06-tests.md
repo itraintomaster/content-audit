@@ -205,6 +205,9 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should populate each scarceContentWords entry with lemma pos count and threshold where count is the global exposure and threshold is the shared lemma-count threshold → FEAT-RCLA/F-RCLA-R003b
 - should return an empty scarceContentWords list when the audit did not include lemma-count so no exposure signal is available → FEAT-RCLA/F-RCLA-R003c
 - should return an empty scarceContentWords list when no content word of the current sentence is below the lemma-count threshold or the sentence has no content words → FEAT-RCLA/F-RCLA-R003c
+- should populate outOfCatalogWords on the lemma-absence correction context from the quiz diagnosis → FEAT-LABS/F-LABS-R038
+- should map the applied discount into each MisplacedLemmaContext entry → FEAT-LABS/F-LABS-R038
+- should leave outOfCatalogWords empty not null when the diagnosis has no out-of-catalog penalties → FEAT-LABS/F-LABS-R038
 
 ### DispatchingCorrectionContextResolver (refiner-domain)
 
@@ -326,6 +329,10 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should return coverage target 0.55 for B2 → FEAT-LABS/F-LABS-R032
 - should have coverage targets decreasing from A1 to B2 → FEAT-LABS/F-LABS-R032
 - should return coverage targets between 0 and 1 for all levels → FEAT-LABS/F-LABS-R032
+- should return out-of-catalog no-penalty rank bounds 1000 2000 3500 5000 for A1 A2 B1 B2 → FEAT-LABS/F-LABS-R034
+- should return out-of-catalog mild-discount rank bounds 3000 5000 8000 10000 for A1 A2 B1 B2 → FEAT-LABS/F-LABS-R034
+- should return out-of-catalog mild discount 0.1 and strong discount 0.3 → FEAT-LABS/F-LABS-R034
+- should have out-of-catalog rank bounds non-decreasing from A1 to B2 within each band → FEAT-LABS/F-LABS-R034
 
 ### DefaultLemmaCountConfigLoader (audit-application)
 

@@ -137,7 +137,7 @@ Examples:
 | `getSubExposedThreshold(): double` | (none) |
 | `getOverExposedThreshold(): double` | (none) |
 
-#### LemmaAbsenceConfig [SEALED] (port)
+#### LemmaAbsenceConfig (port)
 
 **Package:** `com.learney.contentaudit.auditdomain`
 
@@ -161,6 +161,10 @@ Examples:
 | `getLowReportLimit(): int` | (none) |
 | `getDiscountPerLevel(): double` | (none) |
 | `getCoverageTarget(CefrLevel level): double` | (none) |
+| `getOutOfCatalogNoPenaltyRankBound(CefrLevel level): int` | (none) |
+| `getOutOfCatalogMildDiscountRankBound(CefrLevel level): int` | (none) |
+| `getOutOfCatalogMildDiscount(): double` | (none) |
+| `getOutOfCatalogStrongDiscount(): double` | (none) |
 
 #### EvpCatalogPort (port)
 
@@ -173,6 +177,7 @@ Examples:
 | `getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>` | (none) |
 | `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>` | (none) |
 | `lookupLevel(LemmaAndPos lemmaAndPos): Optional<CefrLevel>` | (none) |
+| `lookupLevelByLemma(String lemma): Optional<CefrLevel>` | (none) |
 
 #### AuditableEntity (port)
 

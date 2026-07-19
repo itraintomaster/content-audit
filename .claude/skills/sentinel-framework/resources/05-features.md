@@ -363,6 +363,7 @@ enabling JUnit 5 tag-based filtering (e.g., run only tests for `FEAT-001`).
 | F-LABS-R003 | Calculo de lemas ausentes por nivel | critical | - |
 | F-LABS-R004 | Busqueda de lemas ausentes en otros niveles | critical | - |
 | F-LABS-R005 | Exclusion de frases multipalabra del EVP | major | - |
+| F-LABS-R039 | Presencia de lemas bajo cualquier categoria gramatical | critical | - |
 | F-LABS-R006 | Tipos de ausencia | critical | - |
 | F-LABS-R007 | Algoritmo de clasificacion de ausencia | critical | - |
 | F-LABS-R008 | Puntuacion de impacto por tipo de ausencia | major | - |
@@ -377,7 +378,13 @@ enabling JUnit 5 tag-based filtering (e.g., run only tests for `FEAT-001`).
 | F-LABS-R017 | Identificacion de lemas mal ubicados en una oracion | major | - |
 | F-LABS-R018 | Descuento por distancia de nivel | major | - |
 | F-LABS-R019 | Calculo de score por oracion | critical | Score calculado fuera de rango [0.0, 1.0] para la oracion {sentenceId}: {score} |
-| F-LABS-R020 | Oraciones sin lemas mal ubicados | minor | - |
+| F-LABS-R020 | Puntuacion perfecta solo con vocabulario integramente justificado | major | - |
+| F-LABS-R033 | Vocabulario de nivel superior al curso (C1/C2) | critical | - |
+| F-LABS-R034 | Palabras de contenido fuera de catalogo: bandas de frecuencia por nivel | critical | - |
+| F-LABS-R035 | Exclusion de nombres propios y tokens no lexicos | critical | - |
+| F-LABS-R036 | Emparejamiento con fallback por lema (relajacion de la categoria gramatical) | critical | - |
+| F-LABS-R037 | Los niveles C1/C2 no participan de la cobertura de ausencias | critical | - |
+| F-LABS-R038 | Detalle observable de los lemas penalizados por oracion | major | - |
 | F-LABS-R021 | Umbrales de tolerancia por nivel CEFR | critical | Configuracion de umbrales invalida para el nivel {nivel}: los valores deben ser no negativos |
 | F-LABS-R022 | Categorias de assessment global | critical | - |
 | F-LABS-R023 | Metricas por nivel | critical | - |
@@ -402,6 +409,8 @@ enabling JUnit 5 tag-based filtering (e.g., run only tests for `FEAT-001`).
 - **F-LABS-J004**: Revisar el impacto por oracion de los lemas mal ubicados
 
 - **F-LABS-J005**: Planificar mejoras de contenido a partir de las recomendaciones
+
+- **F-LABS-J006**: Detectar vocabulario avanzado invisible al rango del curso
 
 ### FEAT-CLI: Punto de Entrada CLI para Ejecucion de Auditoria [F-CLI]
 

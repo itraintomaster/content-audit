@@ -94,6 +94,8 @@ The following models and interfaces are available from dependencies. You can use
 | A2 | `null` |
 | B1 | `null` |
 | B2 | `null` |
+| C1 | `null` |
+| C2 | `null` |
 
 ### TargetRange (`record`)
 
@@ -245,7 +247,7 @@ Methods:
 - `getSubExposedThreshold(): double`
 - `getOverExposedThreshold(): double`
 
-### LemmaAbsenceConfig (port) [sealed]
+### LemmaAbsenceConfig (port)
 
 Methods:
 
@@ -265,6 +267,10 @@ Methods:
 - `getLowReportLimit(): int`
 - `getDiscountPerLevel(): double`
 - `getCoverageTarget(CefrLevel level): double`
+- `getOutOfCatalogNoPenaltyRankBound(CefrLevel level): int`
+- `getOutOfCatalogMildDiscountRankBound(CefrLevel level): int`
+- `getOutOfCatalogMildDiscount(): double`
+- `getOutOfCatalogStrongDiscount(): double`
 
 ### EvpCatalogPort (port)
 
@@ -275,6 +281,7 @@ Methods:
 - `getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>`
 - `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>`
 - `lookupLevel(LemmaAndPos lemmaAndPos): Optional<CefrLevel>`
+- `lookupLevelByLemma(String lemma): Optional<CefrLevel>`
 
 ### AuditableEntity (port)
 

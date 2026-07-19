@@ -59,7 +59,6 @@ Before writing any code, read `sentinel.yaml`. It defines the contracts, boundar
 
 The following interfaces are `sealed`. Only the listed classes may implement them:
 
-- `LemmaAbsenceConfig` permits: DefaultLemmaAbsenceConfig
 - `NodeDiagnoses` permits: (none declared)
 - `LemmaCountConfig` permits: DefaultLemmaCountConfig
 - `AnalyzeCommand` permits: (none declared)
@@ -247,7 +246,7 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 **Depends on:** audit-domain, course-domain
 
-**Models:** DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext, LengthDirection, SuggestedLemmaQueryResult, SuggestedLemmaQueryRejectedException, SuggestedLemmaQueryCriteria, ScarceContentWord, KnowledgeTitleCorrectionContext
+**Models:** DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext, LengthDirection, SuggestedLemmaQueryResult, SuggestedLemmaQueryRejectedException, SuggestedLemmaQueryCriteria, ScarceContentWord, KnowledgeTitleCorrectionContext, OutOfCatalogWordContext
 
 **Interfaces:** RefinerEngine, RefinementPlanStore, CorrectionContextResolver, CorrectionContext, SuggestedLemmaQueryPort, SuggestedLemmaQuerySession, SuggestedLemmaQuerySessionFactory
 

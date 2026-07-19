@@ -1,5 +1,5 @@
 #!/bin/bash
-# Eval #4: guardia determinista de idioma (título EN, instructions ES).
+# Eval #4: guardia determinista de idioma (título ES, instructions ES).
 # Conservadora a propósito: solo marca casos inequívocos; la naturalidad la
 # juzga el LLM (#7). Script de cómputo (no rutea). Solo stdlib.
 set -euo pipefail

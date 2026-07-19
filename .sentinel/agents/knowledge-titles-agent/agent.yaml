@@ -28,7 +28,7 @@ description: |
         ──▶ eval_redundancy (script: #3 el título no repite content-words del
               topic ni términos citados de las instructions; bloqueante)
         ──▶ eval_language   (script: #4 guardia de idioma — título sin
-              inglés fuera de comillas, instructions con señales de
+              inglés fuera de $...$, instructions con señales de
               español; bloqueante)
         ──▶ eval_distinct   (script: #5 título distinto de los hermanos del
               topic — difflib + Jaccard, umbral 0.85; bloqueante)

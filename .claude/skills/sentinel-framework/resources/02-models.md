@@ -143,10 +143,12 @@ new AuditableQuiz(List<NlpToken> tokens, String id, String label, String code, S
 | `A2` | `null` |  |
 | `B1` | `null` |  |
 | `B2` | `null` |  |
+| `C1` | `null` |  |
+| `C2` | `null` |  |
 
 **Generated constructor:**
 ```java
-new CefrLevel(null A1, null A2, null B1, null B2)
+new CefrLevel(null A1, null A2, null B1, null B2, null C1, null C2)
 ```
 
 #### TargetRange
@@ -760,6 +762,8 @@ new ActiveAnalysisSelection(String auditId, String planId)
 |-------|------|
 | `misplacedLemmaCount` | `int` |
 | `misplacedLemmas` | `List<MisplacedLemma>` |
+| `outOfCatalogWordCount` | `int` |
+| `outOfCatalogWords` | `List<OutOfCatalogWord>` |
 
 #### MisplacedLemma (package: labs)
 
@@ -775,6 +779,21 @@ new ActiveAnalysisSelection(String auditId, String planId)
 | `absenceType` | `AbsenceType` |
 | `cocaRank` | `Integer` |
 | `semanticCategory` | `String` |
+| `observedPos` | `String` |
+| `discount` | `Double` |
+
+#### OutOfCatalogWord (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `lemma` | `String` |
+| `observedPos` | `String` |
+| `frequencyRank` | `Integer` |
+| `discount` | `double` |
 
 #### LemmaCountStats (package: lemmacount)
 
@@ -1243,10 +1262,11 @@ new SentenceLengthCorrectionContext(String taskId, String sentence, String trans
 | `expectedLevel` | `CefrLevel` |  |
 | `quizLevel` | `CefrLevel` |  |
 | `cocaRank` | `Integer` |  |
+| `discount` | `Double` |  |
 
 **Generated constructor:**
 ```java
-new MisplacedLemmaContext(String lemma, String pos, CefrLevel expectedLevel, CefrLevel quizLevel, Integer cocaRank)
+new MisplacedLemmaContext(String lemma, String pos, CefrLevel expectedLevel, CefrLevel quizLevel, Integer cocaRank, Double discount)
 ```
 
 #### LemmaAbsenceCorrectionContext
@@ -1277,10 +1297,11 @@ new MisplacedLemmaContext(String lemma, String pos, CefrLevel expectedLevel, Cef
 | `exerciseQuizzes` | `List<String>` | Import `java.util.List` |
 | `nodeId` | `String` |  |
 | `scarceContentWords` | `List<ScarceContentWord>` | Import `java.util.List` |
+| `outOfCatalogWords` | `List<OutOfCatalogWordContext>` | Import `java.util.List` |
 
 **Generated constructor:**
 ```java
-new LemmaAbsenceCorrectionContext(String taskId, String sentence, String translation, String knowledgeTitle, String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel, List<MisplacedLemmaContext> misplacedLemmas, List<SuggestedLemma> suggestedLemmas, String quizSentence, Integer tokenCount, Integer targetMin, Integer targetMax, Integer delta, LengthDirection lengthDirection, String sourceAuditId, SentenceMode sentenceMode, List<String> exerciseQuizzes, String nodeId, List<ScarceContentWord> scarceContentWords)
+new LemmaAbsenceCorrectionContext(String taskId, String sentence, String translation, String knowledgeTitle, String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel, List<MisplacedLemmaContext> misplacedLemmas, List<SuggestedLemma> suggestedLemmas, String quizSentence, Integer tokenCount, Integer targetMin, Integer targetMax, Integer delta, LengthDirection lengthDirection, String sourceAuditId, SentenceMode sentenceMode, List<String> exerciseQuizzes, String nodeId, List<ScarceContentWord> scarceContentWords, List<OutOfCatalogWordContext> outOfCatalogWords)
 ```
 
 #### LengthDirection
@@ -1389,6 +1410,23 @@ new ScarceContentWord(String lemma, String pos, Integer count, Integer threshold
 **Generated constructor:**
 ```java
 new KnowledgeTitleCorrectionContext(String taskId, String knowledgeId, String currentTitle, String currentInstructions, String topicLabel, Integer titleTargetMax, Integer instructionsTargetMax, String expectedTitleLanguage, String expectedInstructionsLanguage)
+```
+
+#### OutOfCatalogWordContext
+
+**Package:** `com.learney.contentaudit.refinerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `lemma` | `String` |  |
+| `observedPos` | `String` |  |
+| `frequencyRank` | `Integer` |  |
+| `discount` | `double` |  |
+
+**Generated constructor:**
+```java
+new OutOfCatalogWordContext(String lemma, String observedPos, Integer frequencyRank, double discount)
 ```
 
 ### Module: audit-cli

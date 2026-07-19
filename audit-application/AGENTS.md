@@ -174,6 +174,10 @@ Methods:
 - should return coverage target 0.55 for B2 → FEAT-LABS/F-LABS-R032
 - should have coverage targets decreasing from A1 to B2 → FEAT-LABS/F-LABS-R032
 - should return coverage targets between 0 and 1 for all levels → FEAT-LABS/F-LABS-R032
+- should return out-of-catalog no-penalty rank bounds 1000 2000 3500 5000 for A1 A2 B1 B2 → FEAT-LABS/F-LABS-R034
+- should return out-of-catalog mild-discount rank bounds 3000 5000 8000 10000 for A1 A2 B1 B2 → FEAT-LABS/F-LABS-R034
+- should return out-of-catalog mild discount 0.1 and strong discount 0.3 → FEAT-LABS/F-LABS-R034
+- should have out-of-catalog rank bounds non-decreasing from A1 to B2 within each band → FEAT-LABS/F-LABS-R034
 
 ### DefaultAnalyzerRegistry
 
@@ -282,6 +286,8 @@ The following models and interfaces are available from dependencies. You can use
 | A2 | `null` |
 | B1 | `null` |
 | B2 | `null` |
+| C1 | `null` |
+| C2 | `null` |
 
 ### TargetRange (`record`)
 
@@ -433,7 +439,7 @@ Methods:
 - `getSubExposedThreshold(): double`
 - `getOverExposedThreshold(): double`
 
-### LemmaAbsenceConfig (port) [sealed]
+### LemmaAbsenceConfig (port)
 
 Methods:
 
@@ -453,6 +459,10 @@ Methods:
 - `getLowReportLimit(): int`
 - `getDiscountPerLevel(): double`
 - `getCoverageTarget(CefrLevel level): double`
+- `getOutOfCatalogNoPenaltyRankBound(CefrLevel level): int`
+- `getOutOfCatalogMildDiscountRankBound(CefrLevel level): int`
+- `getOutOfCatalogMildDiscount(): double`
+- `getOutOfCatalogStrongDiscount(): double`
 
 ### EvpCatalogPort (port)
 
@@ -463,6 +473,7 @@ Methods:
 - `getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>`
 - `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>`
 - `lookupLevel(LemmaAndPos lemmaAndPos): Optional<CefrLevel>`
+- `lookupLevelByLemma(String lemma): Optional<CefrLevel>`
 
 ### AuditableEntity (port)
 
@@ -803,6 +814,7 @@ Methods:
 | expectedLevel | `CefrLevel` |
 | quizLevel | `CefrLevel` |
 | cocaRank | `Integer` |
+| discount | `Double` |
 
 ### LemmaAbsenceCorrectionContext (`record`)
 
@@ -828,6 +840,7 @@ Methods:
 | exerciseQuizzes | `List<String>` |
 | nodeId | `String` |
 | scarceContentWords | `List<ScarceContentWord>` |
+| outOfCatalogWords | `List<OutOfCatalogWordContext>` |
 
 ### LengthDirection (`enum`)
 
@@ -889,6 +902,15 @@ Methods:
 | instructionsTargetMax | `Integer` |
 | expectedTitleLanguage | `String` |
 | expectedInstructionsLanguage | `String` |
+
+### OutOfCatalogWordContext (`record`)
+
+| Field | Type |
+|-------|------|
+| lemma | `String` |
+| observedPos | `String` |
+| frequencyRank | `Integer` |
+| discount | `double` |
 
 ### RefinerEngine (port)
 

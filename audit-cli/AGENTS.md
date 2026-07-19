@@ -216,6 +216,8 @@ Methods:
 | A2 | `null` |
 | B1 | `null` |
 | B2 | `null` |
+| C1 | `null` |
+| C2 | `null` |
 
 ### TargetRange (`record`)
 
@@ -367,7 +369,7 @@ Methods:
 - `getSubExposedThreshold(): double`
 - `getOverExposedThreshold(): double`
 
-### LemmaAbsenceConfig (port) [sealed]
+### LemmaAbsenceConfig (port)
 
 Methods:
 
@@ -387,6 +389,10 @@ Methods:
 - `getLowReportLimit(): int`
 - `getDiscountPerLevel(): double`
 - `getCoverageTarget(CefrLevel level): double`
+- `getOutOfCatalogNoPenaltyRankBound(CefrLevel level): int`
+- `getOutOfCatalogMildDiscountRankBound(CefrLevel level): int`
+- `getOutOfCatalogMildDiscount(): double`
+- `getOutOfCatalogStrongDiscount(): double`
 
 ### EvpCatalogPort (port)
 
@@ -397,6 +403,7 @@ Methods:
 - `getCocaRank(LemmaAndPos lemmaAndPos): Optional<Integer>`
 - `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>`
 - `lookupLevel(LemmaAndPos lemmaAndPos): Optional<CefrLevel>`
+- `lookupLevelByLemma(String lemma): Optional<CefrLevel>`
 
 ### AuditableEntity (port)
 
@@ -737,6 +744,7 @@ Methods:
 | expectedLevel | `CefrLevel` |
 | quizLevel | `CefrLevel` |
 | cocaRank | `Integer` |
+| discount | `Double` |
 
 ### LemmaAbsenceCorrectionContext (`record`)
 
@@ -762,6 +770,7 @@ Methods:
 | exerciseQuizzes | `List<String>` |
 | nodeId | `String` |
 | scarceContentWords | `List<ScarceContentWord>` |
+| outOfCatalogWords | `List<OutOfCatalogWordContext>` |
 
 ### LengthDirection (`enum`)
 
@@ -823,6 +832,15 @@ Methods:
 | instructionsTargetMax | `Integer` |
 | expectedTitleLanguage | `String` |
 | expectedInstructionsLanguage | `String` |
+
+### OutOfCatalogWordContext (`record`)
+
+| Field | Type |
+|-------|------|
+| lemma | `String` |
+| observedPos | `String` |
+| frequencyRank | `Integer` |
+| discount | `double` |
 
 ### RefinerEngine (port)
 
