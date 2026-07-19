@@ -11,8 +11,10 @@ import static org.mockito.Mockito.when;
 
 import com.learney.contentaudit.refinerdomain.KnowledgeTitleCorrectionContext;
 import com.learney.contentaudit.revisiondomain.knowledgetitle.KnowledgeTitleGeneratorResponse;
+import com.learney.contentaudit.revisioninfrastructure.lagen.LagenConfig;
 import com.sentinel.agents.framework.state.RunState;
 import com.sentinel.agents.framework.state.RunStatus;
+import java.nio.file.Path;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -65,7 +67,13 @@ public class KnowledgeTitleAgentGeneratorTest {
 
         KnowledgeTitleAgentErrorClassifier classifier = mock(KnowledgeTitleAgentErrorClassifier.class);
 
+        // Firma real de 7 args: config y projectRoot minimos (espejo de LemmaAbsenceAgentGeneratorTest);
+        // el launcher es un mock, asi que no hay launch real que use estos valores
+        LagenConfig config = new LagenConfig(
+                "test-provider", "test-model", "http://localhost:1234/v1",
+                null, null, null, null, 1, 3);
         KnowledgeTitleAgentGenerator generator = new KnowledgeTitleAgentGenerator(
+                config, Path.of("."),
                 launcher, parser, classifier, null, "knowledge-title-agent");
 
         // Act — F-KTLR-R004: valid context → exactly one candidate

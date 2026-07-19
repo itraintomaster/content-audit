@@ -34,8 +34,19 @@ class KnowledgeTitleAgentGenerator implements KnowledgeTitleCandidateGenerator {
 
     private final String strategyName;
 
-public KnowledgeTitleAgentGenerator(KnowledgeTitleAgentRuntimeLauncher agentRuntimeLauncher, KnowledgeTitleAgentCandidateParser candidateParser, KnowledgeTitleAgentErrorClassifier errorClassifier, ChatModel chatModel, String strategyName) {
-}
+    public KnowledgeTitleAgentGenerator(LagenConfig config, Path projectRoot,
+            KnowledgeTitleAgentRuntimeLauncher agentRuntimeLauncher,
+            KnowledgeTitleAgentCandidateParser candidateParser,
+            KnowledgeTitleAgentErrorClassifier errorClassifier,
+            ChatModel chatModel, String strategyName) {
+        this.config = config;
+        this.projectRoot = projectRoot;
+        this.agentRuntimeLauncher = agentRuntimeLauncher;
+        this.candidateParser = candidateParser;
+        this.errorClassifier = errorClassifier;
+        this.chatModel = chatModel;
+        this.strategyName = strategyName;
+    }
 
     @Override
     public KnowledgeTitleGeneratorResponse generate(KnowledgeTitleCorrectionContext context) {

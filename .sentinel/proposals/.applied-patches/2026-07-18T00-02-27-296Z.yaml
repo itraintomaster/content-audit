@@ -1,0 +1,27 @@
+code: __proposal__
+modules:
+- name: revision-infrastructure
+  packages:
+  - name: knowledgetitleagent
+    implementations:
+    - name: KnowledgeTitleAgentGenerator
+      requiresInject:
+      - name: config
+        type: LagenConfig
+      - name: projectRoot
+        type: Path
+      - name: agentRuntimeLauncher
+        type: KnowledgeTitleAgentRuntimeLauncher
+      - name: candidateParser
+        type: KnowledgeTitleAgentCandidateParser
+      - name: errorClassifier
+        type: KnowledgeTitleAgentErrorClassifier
+      - name: chatModel
+        type: ChatModel
+      - name: strategyName
+        type: String
+      implements:
+      - KnowledgeTitleCandidateGenerator
+      _change: modify
+    _change: modify
+  _change: modify
