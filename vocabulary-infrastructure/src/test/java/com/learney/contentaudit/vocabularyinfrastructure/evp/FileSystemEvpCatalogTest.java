@@ -52,6 +52,31 @@ public class FileSystemEvpCatalogTest {
                 + "}";
     }
 
+    /** Construye una entrada del catalogo enriquecido con evpPartOfSpeech explicito (R041). */
+    private String entry(String word, String lemma, String cefrLevel, String evpPartOfSpeech, String spacyPos, Integer frequencyRank) {
+        return "{"
+                + "\"word\":\"" + word + "\","
+                + "\"cefrLevel\":\"" + cefrLevel + "\","
+                + "\"topic\":\"test\","
+                + "\"lemma\":\"" + lemma + "\","
+                + "\"highFrequencyForLevel\":false,"
+                + "\"difficultyScore\":1.0,"
+                + "\"summary\":\"Word: " + word + " | Level: " + cefrLevel + "\","
+                + "\"evpPartOfSpeech\":\"" + evpPartOfSpeech + "\","
+                + "\"spacyPosTag\":\"" + spacyPos + "\","
+                + "\"spacyTag\":\"" + spacyPos + "\","
+                + "\"isAlpha\":true,"
+                + "\"isStop\":false,"
+                + "\"namedEntity\":null,"
+                + "\"frequencyRank\":" + frequencyRank + ","
+                + "\"lemmaFrequency\":1000,"
+                + "\"wordFrequency\":1000,"
+                + "\"frequencyCategory\":\"MEDIUM\","
+                + "\"confidenceScore\":0.9,"
+                + "\"processingNotes\":\"\""
+                + "}";
+    }
+
     /** Escribe un catalogo con las entradas dadas y devuelve la ruta del archivo. */
     private Path writeCatalog(String... entries) throws IOException {
         String json = "{"
@@ -181,5 +206,114 @@ public class FileSystemEvpCatalogTest {
                 "R005: el lookup exacto resuelve el A1 de la entrada palabra-simple");
         assertEquals(Optional.of(CefrLevel.A1), catalog.lookupLevelByLemma("sleep"),
                 "R005: el fallback por lema resuelve el A1 palabra-simple, ignorando la phrasal C2");
+    }
+
+    @Test
+    @DisplayName("should return empty from exact lookupLevel when the only entry for the pair is a derived form whose headword differs from the lemma")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R040")
+    public void shouldReturnEmptyFromExactLookupLevelWhenTheOnlyEntryForThePairIsADerivedFormWhoseHeadwordDiffersFromTheLemma() throws IOException {
+        // R040: "next-door" es una forma derivada/compuesta (headword distinto del lema "next").
+        // Es la UNICA entrada del par (next, ADJ): esa entrada no puede fijar el nivel del lema
+        // base, por lo que el lookup exacto no debe resolver el B1 que traia "next-door".
+        Path catalogPath = writeCatalog(
+                entry("next-door", "next", "B1", "ADJ", 5000));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.empty(), catalog.lookupLevel(new LemmaAndPos("next", "ADJ")),
+                "R040: el par cuyo unico respaldo es una entrada derivada/compuesta debe resolver Optional vacio");
+    }
+
+    @Test
+    @DisplayName("should ignore derived-form entry levels in the lemma fallback and resolve the base word entry level")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R040")
+    public void shouldIgnoreDerivedformEntryLevelsInTheLemmaFallbackAndResolveTheBaseWordEntryLevel() throws IOException {
+        // R040: junto a la forma derivada "next-door" (A2, ADJ) el catalogo tiene la palabra
+        // base "next" (B1, otra categoria: DET). El fallback por lema (R036) debe ignorar el
+        // A2 derivado y resolver el B1 de la entrada palabra base -- si el A2 derivado no se
+        // excluyera, el minimo entre categorias devolveria incorrectamente A2.
+        Path catalogPath = writeCatalog(
+                entry("next-door", "next", "A2", "ADJ", 5000),
+                entry("next", "next", "B1", "DET", 3000));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.of(CefrLevel.B1), catalog.lookupLevelByLemma("next"),
+                "R040: el fallback por lema debe ignorar la forma derivada y resolver la palabra base (B1), no el minimo A2 de la derivada");
+    }
+
+    @Test
+    @DisplayName("should return empty from both lookups when the lemma only has derived and compound form entries")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R040")
+    public void shouldReturnEmptyFromBothLookupsWhenTheLemmaOnlyHasDerivedAndCompoundFormEntries() throws IOException {
+        // R040: el lema "work" solo tiene entradas derivadas ("working", NOUN, B1) y
+        // compuestas ("working-class", ADJ, C1). Ninguna es la palabra base "work": ni el
+        // lookup exacto ni el fallback por lema pueden inventar un nivel a partir de ellas.
+        Path catalogPath = writeCatalog(
+                entry("working", "work", "B1", "NOUN", 2000),
+                entry("working-class", "work", "C1", "ADJ", 8000));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.empty(), catalog.lookupLevel(new LemmaAndPos("work", "NOUN")),
+                "R040: el par respaldado solo por una entrada derivada debe resolver Optional vacio");
+        assertEquals(Optional.empty(), catalog.lookupLevelByLemma("work"),
+                "R040: el lema respaldado solo por entradas derivadas/compuestas debe resolver Optional vacio");
+    }
+
+    @Test
+    @DisplayName("should match an entry under its EVP declared part of speech rather than the auto computed tag")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R041")
+    public void shouldMatchAnEntryUnderItsEVPDeclaredPartOfSpeechRatherThanTheAutoComputedTag() throws IOException {
+        // R041: "next" declara categoria EVP "adjective" (-> ADJ), pero su categoria calculada
+        // automaticamente quedo mal fijada como adverbio (ADV). El emparejamiento por par
+        // lema+categoria debe usar la categoria EVP, no la calculada.
+        Path catalogPath = writeCatalog(
+                entry("next", "next", "A2", "adjective", "ADV", 3000));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.of(CefrLevel.A2), catalog.lookupLevel(new LemmaAndPos("next", "ADJ")),
+                "R041: la categoria EVP declarada (adjective->ADJ) debe fijar el emparejamiento");
+        assertEquals(Optional.empty(), catalog.lookupLevel(new LemmaAndPos("next", "ADV")),
+                "R041: la categoria calculada automaticamente (ADV) ya no debe usarse para el emparejamiento");
+    }
+
+    @Test
+    @DisplayName("should fall back to the auto computed tag when the entry declares no EVP part of speech")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R041")
+    public void shouldFallBackToTheAutoComputedTagWhenTheEntryDeclaresNoEVPPartOfSpeech() throws IOException {
+        // R041: cuando la entrada no declara categoria EVP (campo vacio, por ejemplo "cattle"),
+        // se conserva como respaldo la categoria calculada automaticamente (comportamiento
+        // actual, sin cambios).
+        Path catalogPath = writeCatalog(
+                entry("cattle", "cattle", "B1", "", "NOUN", 4000));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.of(CefrLevel.B1), catalog.lookupLevel(new LemmaAndPos("cattle", "NOUN")),
+                "R041: sin categoria EVP declarada, la categoria calculada automaticamente sigue emparejando");
+    }
+
+    @Test
+    @DisplayName("should keep the auto computed tag for single word entries whose EVP category is phrase")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R041")
+    public void shouldKeepTheAutoComputedTagForSingleWordEntriesWhoseEVPCategoryIsPhrase() throws IOException {
+        // R041: las entradas de una sola palabra con categoria EVP "phrase" (por ejemplo
+        // "let's") quedan explicitamente fuera del alcance de esta regla: mantienen el
+        // comportamiento actual, emparejando bajo la categoria calculada automaticamente.
+        Path catalogPath = writeCatalog(
+                entry("let's", "let", "A2", "phrase", "VERB", 1500));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.of(CefrLevel.A2), catalog.lookupLevel(new LemmaAndPos("let", "VERB")),
+                "R041: la categoria EVP 'phrase' en una entrada monopalabra no se traduce; se mantiene la categoria calculada (VERB)");
     }
 }

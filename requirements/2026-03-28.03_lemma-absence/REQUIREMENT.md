@@ -59,7 +59,7 @@ Los niveles A1 y A2 se consideran **criticos** para la evaluacion de ausencia. L
 
 Las reglas se organizan en seis grupos segun la fase y el tema al que pertenecen:
 
-- **Grupo A - Identificacion de lemas ausentes (R001-R005, R039)**: reglas que describen como se determinan los lemas esperados, presentes y ausentes para cada nivel CEFR.
+- **Grupo A - Identificacion de lemas ausentes (R001-R005, R039-R041)**: reglas que describen como se determinan los lemas esperados, presentes y ausentes para cada nivel CEFR, incluyendo como se interpreta el catalogo de vocabulario en toda consulta de nivel (que entradas y que categoria gramatical fijan el nivel de un lema).
 - **Grupo B - Clasificacion del tipo de ausencia (R006-R010)**: reglas que describen como se clasifica cada lema ausente segun donde aparece (o no) en el curso.
 - **Grupo C - Prioridad y enriquecimiento (R011-R016)**: reglas que describen como se asigna prioridad basada en frecuencia COCA y como se enriquece cada lema con informacion adicional.
 - **Grupo D - Scoring por oracion y vocabulario avanzado (R017-R020, R033-R038)**: reglas que describen como se evalua el impacto de los lemas mal ubicados en cada oracion del curso, incluyendo el vocabulario de nivel superior al rango del curso (C1/C2) y las palabras de contenido fuera de catalogo.
@@ -120,7 +120,58 @@ La determinacion de si una entrada del EVP es un lema individual o una frase mul
 
 La exclusion de entradas de frase aplica a **toda consulta de nivel sobre el catalogo**, no solo a la construccion de los conjuntos de lemas esperados: las entradas de frase tampoco participan del emparejamiento de mal-ubicacion (R017/R036, tanto en el match exacto por lema+POS como en el fallback por lema). Ejemplo: la entrada de frase "sleep on it" (C2, lema "sleep") no debe hacer que el lema "sleep" responda nivel C2 en ninguna consulta — sin esta exclusion, oraciones basicas con "sleep" se marcarian falsamente como vocabulario C1/C2 mal ubicado (caso confirmado 2026-07-19 en el primer plan real: ~251 ocurrencias falsas via lemas de entradas phrasal como "sleep", "train", "own", "mind").
 
+El mismo principio se extiende, con su propia regla, a las **formas derivadas y compuestas** cuya palabra encabezado difiere del lema (por ejemplo "next-door" para el lema "next"): tampoco fijan el nivel del lema base (R040). Y la **categoria gramatical** con la que una entrada participa del emparejamiento por par lema+categoria se toma de la fuente EVP, no del etiquetado automatico (R041).
+
 **Error**: N/A (esta regla describe un criterio de filtrado)
+
+### Rule[F-LABS-R040] - Las formas derivadas y compuestas no definen el nivel del lema base
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+En el catalogo de vocabulario enriquecido, algunas entradas comparten la clave de un lema base aunque su palabra encabezado (headword) sea distinta del lema: **formas derivadas y compuestas** como "next-door" (nivel B1, lema "next"), "working" y "working-class" (B1/C1, lema "work"), "planning" (B2/C1, lema "plan") u "open-minded" (C1, lema "open"). Como no contienen espacios, la exclusion de frases multipalabra de R005 no las alcanza.
+
+Estas entradas **no participan de ninguna consulta de nivel del lema base**: ni de la obtencion de lemas esperados por nivel (R001), ni del match exacto por lema+categoria, ni del fallback por lema de R036. Rige el mismo espiritu y alcance que la exclusion de frases de R005: una entrada cuya palabra encabezado difiere del lema no puede fijar el nivel de ese lema. Igual que las frases, estas entradas pueden seguir participando de consultas que **no** son de nivel (por ejemplo, la deteccion de que una entrada es una forma compuesta).
+
+Consecuencias observables:
+
+1. "next" usado como adjetivo en una oracion responde nivel **A2** (las filas adjetivo del EVP), ya no B1 (que provenia de "next-door").
+2. "work" usado como verbo responde **A1** (la fila verbo del EVP, guideword DO JOB), ya no B1 (que provenia de "working").
+3. Si tras esta exclusion el par exacto lema+categoria queda sin entradas, el lema cae al **fallback por lema de R036** (menor nivel entre las categorias restantes). Si el lema entero queda sin entradas de nivel, pasa a **fuera de catalogo** (R034). La exclusion nunca inventa un nivel.
+
+Este defecto, combinado con la categoria gramatical poco confiable (R041), producia falsos positivos de mal-ubicacion: pares poblados **exclusivamente** por formas derivadas eran la unica evidencia de nivel del lema (por ejemplo, el par (next, adjetivo) solo existia via "next-door" B1; el par (work, verbo) solo via "working" B1). Casos confirmados (audit 2026-07-20): de 2967 ocurrencias de mal-ubicacion, 254 (9%) provenian de pares cuyo match respondia un nivel mayor que el minimo real del lema, y 246 de ellas de pares poblados unicamente por formas derivadas. Los lemas mas afectados: "work" verbo (77 ocurrencias), "plan" verbo (42), "next" adjetivo (32), "open" adjetivo (20). Ejemplo end-to-end: la oracion A1 "Let's visit Italy next year." reportaba falsamente "next A1->B1" (el EVP dice A2 adjetivo, y A1 la frase "next week/year").
+
+**Error**: N/A (esta regla describe un criterio de filtrado del catalogo)
+
+### Rule[F-LABS-R041] - La categoria gramatical autoritativa de una entrada es la declarada por EVP
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+Para el emparejamiento por par **lema + categoria gramatical**, la categoria de una entrada del catalogo se toma de la **categoria declarada por la fuente EVP**, no de la categoria calculada automaticamente (que el catalogo obtiene etiquetando la palabra de forma aislada, sin el contexto de una oracion). La categoria declarada por EVP se traduce al mismo conjunto de etiquetas universales que usan los tokens de las oraciones del curso:
+
+| Categoria declarada por EVP | Etiqueta universal |
+|-----------------------------|--------------------|
+| noun | NOUN |
+| verb | VERB |
+| adjective | ADJ |
+| adverb | ADV |
+| preposition | ADP |
+| pronoun | PRON |
+| determiner | DET |
+| conjunction | CCONJ |
+| exclamation | INTJ |
+| number | NUM |
+| modal verb | AUX |
+
+Cuando la entrada **no declara categoria EVP** (campo vacio; por ejemplo "cattle", "lot"), se conserva como respaldo la categoria calculada automaticamente — el comportamiento actual, sin cambios.
+
+Las categorias EVP "phrase" y "phrasal verb" **no forman parte** de esta traduccion: las entradas multipalabra ya se rigen por la exclusion de frases de R005, y las entradas de una sola palabra con categoria "phrase" (por ejemplo "let's") quedan **explicitamente fuera del alcance** de este cambio — mantienen el comportamiento actual; su tratamiento se decidira en una iteracion futura (ver Doubt[DOUBT-PHRASE-MONOPALABRA]).
+
+Motiva esta regla que la categoria calculada automaticamente es poco confiable: el **26,4% de las entradas de palabra simple** (2913 de 11035) tiene una categoria calculada que **contradice** su propia categoria EVP. Consecuencias observables:
+
+1. "next" (adjetivo EVP A2, con la categoria calculada mal fijada como adverbio) responde A2 cuando se lo consulta como adjetivo, en vez de no encontrar las filas A2.
+2. "work" (verbo EVP A1, con la categoria calculada mal fijada como sustantivo) responde A1 cuando se lo consulta como verbo, en vez de no encontrar la fila A1.
+3. "wish" (sustantivo EVP B2/C2, con la categoria calculada mal fijada como verbo) deja de inflar el nivel del par (wish, verbo).
+4. "last" (adverbio B1/B2 y verbo B1/C1, con la categoria calculada mal fijada como adjetivo) deja de inflar el par (last, adjetivo).
+
+**Error**: N/A (esta regla describe el criterio de categoria gramatical de las entradas del catalogo)
 
 ### Rule[F-LABS-R039] - Presencia de lemas bajo cualquier categoria gramatical
 **Severity**: critical | **Validation**: AUTO_VALIDATED
@@ -312,7 +363,7 @@ Ejemplo: una oracion del nivel A1 que contiene el lema "invest" (esperado en B2)
 
 Los lemas cuyo nivel esperado es **igual o inferior** al de la oracion no se consideran mal ubicados. Una palabra de A1 que aparece en B2 es vocabulario basico reutilizado, no un error de contenido. La accion correctiva para esos lemas (si estan ausentes en su nivel esperado) se maneja a nivel de Level mediante los tipos de ausencia TOO_LATE y COMPLETELY_ABSENT (R006).
 
-La evaluacion cubre **todos los niveles del catalogo de vocabulario**, incluidos los superiores al rango del curso (C1 y C2, ver R033). Las palabras de contenido que no figuran en el catalogo se evaluan mediante la heuristica de frecuencia (R034); los nombres propios y tokens no lexicos se excluyen (R035). El emparejamiento entre token y entrada de catalogo usa el fallback por lema definido en R036.
+La evaluacion cubre **todos los niveles del catalogo de vocabulario**, incluidos los superiores al rango del curso (C1 y C2, ver R033). Las palabras de contenido que no figuran en el catalogo se evaluan mediante la heuristica de frecuencia (R034); los nombres propios y tokens no lexicos se excluyen (R035). El emparejamiento entre token y entrada de catalogo usa el fallback por lema definido en R036, con la categoria gramatical de cada entrada tomada de la fuente EVP (R041) y las formas derivadas y compuestas excluidas de las consultas de nivel (R040).
 
 **Error**: N/A (esta regla describe un mecanismo de deteccion)
 
@@ -429,8 +480,8 @@ La etiqueta de nombre propio del procesamiento linguistico es el **unico** crite
 
 Para la evaluacion de mal-ubicacion por oracion (Grupo D), el emparejamiento entre un token y el catalogo de vocabulario se realiza en dos pasos:
 
-1. **Match exacto** por el par lema + categoria gramatical (LemmaAndPos), como hasta ahora.
-2. **Fallback por lema**: si no existe entrada para ese par pero el catalogo contiene el lema bajo otras categorias gramaticales, se usa la entrada de **menor nivel esperado** entre las disponibles (beneficio de la duda: nunca se penaliza mas por culpa del fallback).
+1. **Match exacto** por el par lema + categoria gramatical (LemmaAndPos), como hasta ahora. La categoria gramatical de cada entrada del catalogo es la declarada por la fuente EVP (R041), y las entradas de formas derivadas y compuestas cuya palabra encabezado difiere del lema no participan (R040).
+2. **Fallback por lema**: si no existe entrada para ese par pero el catalogo contiene el lema bajo otras categorias gramaticales, se usa la entrada de **menor nivel esperado** entre las disponibles (beneficio de la duda: nunca se penaliza mas por culpa del fallback). El fallback recorre las mismas entradas admisibles del match exacto: excluye frases (R005) y formas derivadas y compuestas (R040).
 
 Motiva esta regla que el catalogo enriquecido trae categorias gramaticales poco confiables (caso confirmado: "hail" usado como verbo figura en el catalogo solo como sustantivo), lo que con match exacto produce falsos negativos incluso dentro de A1-B2. Solo cuando el lema no existe en el catalogo bajo ninguna categoria se considera fuera de catalogo y pasa a las bandas de frecuencia de R034.
 
@@ -1086,6 +1137,19 @@ R035 excluye los tokens etiquetados como nombre propio por el procesamiento ling
 - [ ] Opcion C: Etiqueta del NLP + lista blanca mantenida manualmente para falsos positivos recurrentes
 
 **Answer**: Resuelto por el usuario el 2026-07-16: Opcion A. R035 queda como esta.
+
+### Doubt[DOUBT-PHRASE-MONOPALABRA] - Tratamiento de las entradas monopalabra con categoria "phrase"
+**Status**: OPEN
+
+R041 traduce la categoria declarada por EVP al conjunto de etiquetas universales, pero excluye de esa traduccion las categorias "phrase" y "phrasal verb". Las entradas multipalabra con esas categorias ya se filtran por la exclusion de frases de R005. Sin embargo, existen entradas de **una sola palabra** con categoria "phrase" (por ejemplo "let's") que no son alcanzadas por R005 y que hoy resuelven su categoria por la via calculada automaticamente.
+
+**Pregunta**: Como deberian tratarse las entradas monopalabra con categoria "phrase" en las consultas de nivel?
+
+- [x] Opcion A: Mantener el comportamiento actual (resuelven por la categoria calculada automaticamente) — decision de esta ronda, a revisar en una iteracion futura
+- [ ] Opcion B: Excluirlas de las consultas de nivel igual que las frases multipalabra (R005)
+- [ ] Opcion C: Traducir la categoria "phrase" monopalabra a una etiqueta universal especifica caso por caso
+
+**Answer**: Diferido por decision del usuario. En esta ronda se mantiene el comportamiento actual (Opcion A); estas entradas quedan explicitamente fuera del alcance de R041 y su tratamiento definitivo se decidira mas adelante.
 
 ---
 

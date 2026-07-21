@@ -8246,6 +8246,36 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R005
+      - name: should return empty from exact lookupLevel when the only entry for the
+          pair is a derived form whose headword differs from the lemma
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R040
+      - name: should ignore derived-form entry levels in the lemma fallback and resolve
+          the base word entry level
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R040
+      - name: should return empty from both lookups when the lemma only has derived
+          and compound form entries
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R040
+      - name: should match an entry under its EVP declared part of speech rather than
+          the auto computed tag
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R041
+      - name: should fall back to the auto computed tag when the entry declares no
+          EVP part of speech
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R041
+      - name: should keep the auto computed tag for single word entries whose EVP
+          category is phrase
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R041
       implements:
       - EvpCatalogPort
   - name: coca
