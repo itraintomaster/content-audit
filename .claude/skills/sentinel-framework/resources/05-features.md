@@ -363,6 +363,8 @@ enabling JUnit 5 tag-based filtering (e.g., run only tests for `FEAT-001`).
 | F-LABS-R003 | Calculo de lemas ausentes por nivel | critical | - |
 | F-LABS-R004 | Busqueda de lemas ausentes en otros niveles | critical | - |
 | F-LABS-R005 | Exclusion de frases multipalabra del EVP | major | - |
+| F-LABS-R040 | Las formas derivadas y compuestas no definen el nivel del lema base | critical | - |
+| F-LABS-R041 | La categoria gramatical autoritativa de una entrada es la declarada por EVP | critical | - |
 | F-LABS-R039 | Presencia de lemas bajo cualquier categoria gramatical | critical | - |
 | F-LABS-R006 | Tipos de ausencia | critical | - |
 | F-LABS-R007 | Algoritmo de clasificacion de ausencia | critical | - |

@@ -1,4 +1,4 @@
-generatedAt: 2026-07-19T04:08:38.902001Z
+generatedAt: 2026-07-21T20:35:14.693463Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -4728,7 +4728,7 @@ features:
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: should exclude multi-word phrases from expected lemmas
       implemented: true
@@ -4738,17 +4738,59 @@ features:
     - name: should return empty from exact lookupLevel when the only catalog entry
         for the pair is phrasal
       implemented: true
-      passing: false
+      passing: true
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
     - name: should return empty from lookupLevelByLemma when the only catalog entry
         for the lemma is phrasal
       implemented: true
-      passing: false
+      passing: true
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
     - name: should resolve the single word entry level when the lemma also has phrasal
         entries
+      implemented: true
+      passing: true
+      module: vocabulary-infrastructure
+      implementation: FileSystemEvpCatalog
+  - ruleId: F-LABS-R040
+    state: FAILING
+    tests:
+    - name: should return empty from exact lookupLevel when the only entry for the
+        pair is a derived form whose headword differs from the lemma
+      implemented: true
+      passing: false
+      module: vocabulary-infrastructure
+      implementation: FileSystemEvpCatalog
+    - name: should ignore derived-form entry levels in the lemma fallback and resolve
+        the base word entry level
+      implemented: true
+      passing: false
+      module: vocabulary-infrastructure
+      implementation: FileSystemEvpCatalog
+    - name: should return empty from both lookups when the lemma only has derived
+        and compound form entries
+      implemented: true
+      passing: false
+      module: vocabulary-infrastructure
+      implementation: FileSystemEvpCatalog
+  - ruleId: F-LABS-R041
+    state: FAILING
+    tests:
+    - name: should match an entry under its EVP declared part of speech rather than
+        the auto computed tag
+      implemented: true
+      passing: false
+      module: vocabulary-infrastructure
+      implementation: FileSystemEvpCatalog
+    - name: should fall back to the auto computed tag when the entry declares no EVP
+        part of speech
+      implemented: true
+      passing: false
+      module: vocabulary-infrastructure
+      implementation: FileSystemEvpCatalog
+    - name: should keep the auto computed tag for single word entries whose EVP category
+        is phrase
       implemented: true
       passing: false
       module: vocabulary-infrastructure
@@ -5210,7 +5252,7 @@ features:
       module: audit-application
       implementation: DefaultLemmaAbsenceConfig
   - ruleId: F-LABS-R035
-    state: FAILING
+    state: PASSING
     tests:
     - name: should not penalize proper noun token even when infrequent and out of
         catalog
@@ -5232,24 +5274,24 @@ features:
     - name: should not evaluate single letter dialogue label token against misplacement
         or frequency bands
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should not evaluate token with embedded punctuation against misplacement
         or frequency bands
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should not evaluate contraction token with apostrophe against misplacement
         or frequency bands
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
     - name: should evaluate two letter fully alphabetic token as lexical candidate
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R036
@@ -16277,18 +16319,18 @@ elements:
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should not evaluate single letter dialogue label token against misplacement
         or frequency bands
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should not evaluate token with embedded punctuation against misplacement
         or frequency bands
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should not evaluate contraction token with apostrophe against misplacement
         or frequency bands
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should evaluate two letter fully alphabetic token as lexical candidate
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     testCleanViews:
     - |
@@ -18587,6 +18629,74 @@ elements:
       then:
         quizScore(root) == 1.0
         placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty() is true
+    - |
+      test: "should not evaluate single letter dialogue label token against misplacement or frequency bands"
+      trace: FEAT-LABS / F-LABS-R035
+
+      given:
+        dialogueLabel = NlpToken("b", "b", "NOUN", null, false, false)
+        root = courseTreeWithQuiz(0, "q1", List.of(dialogueLabel))
+        placement = quizPlacementDiagnosis(root)
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        quizScore(root) == 1.0
+        placement.getMisplacedLemmas() == null || placement.getMisplacedLemmas().isEmpty() is true
+        placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty() is true
+    - |
+      test: "should not evaluate token with embedded punctuation against misplacement or frequency bands"
+      trace: FEAT-LABS / F-LABS-R035
+
+      given:
+        punctuated = NlpToken("i.", "i.", "NOUN", null, false, false)
+        root = courseTreeWithQuiz(0, "q1", List.of(punctuated))
+        placement = quizPlacementDiagnosis(root)
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        quizScore(root) == 1.0
+        placement.getMisplacedLemmas() == null || placement.getMisplacedLemmas().isEmpty() is true
+        placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty() is true
+    - |
+      test: "should not evaluate contraction token with apostrophe against misplacement or frequency bands"
+      trace: FEAT-LABS / F-LABS-R035
+
+      given:
+        contraction = NlpToken("weren't", "weren't", "VERB", null, false, false)
+        root = courseTreeWithQuiz(0, "q1", List.of(contraction))
+        placement = quizPlacementDiagnosis(root)
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        quizScore(root) == 1.0
+        placement.getMisplacedLemmas() == null || placement.getMisplacedLemmas().isEmpty() is true
+        placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty() is true
+    - |
+      test: "should evaluate two letter fully alphabetic token as lexical candidate"
+      trace: FEAT-LABS / F-LABS-R035
+
+      given:
+        go = NlpToken("go", "go", "VERB", 100, false, false)
+        root = courseTreeWithQuiz(0, "q1", List.of(go))
+        placement = quizPlacementDiagnosis(root)
+
+      mock:
+        evpCatalogPort.lookupLevel(new LemmaAndPos("go", "VERB")) -> Optional.of(CefrLevel.B1)
+
+      when:
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ))
+
+      then:
+        quizScore(root) == 0.8
+        placement.getMisplacedLemmas() is not null
+        placement.getMisplacedLemmas().size() == 1
+        placement.getMisplacedLemmas().get(0).getLemmaAndPos().getLemma() == "go"
     - |
       test: "should penalize via exact lemma and pos entry even when another pos of the same lemma has a lower level"
       trace: FEAT-LABS / F-LABS-R036
@@ -32428,6 +32538,30 @@ elements:
         entries
       status: EXISTS
       testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalogTest.java
+    - name: should return empty from exact lookupLevel when the only entry for the
+        pair is a derived form whose headword differs from the lemma
+      status: EXISTS
+      testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalogTest.java
+    - name: should ignore derived-form entry levels in the lemma fallback and resolve
+        the base word entry level
+      status: EXISTS
+      testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalogTest.java
+    - name: should return empty from both lookups when the lemma only has derived
+        and compound form entries
+      status: EXISTS
+      testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalogTest.java
+    - name: should match an entry under its EVP declared part of speech rather than
+        the auto computed tag
+      status: EXISTS
+      testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalogTest.java
+    - name: should fall back to the auto computed tag when the entry declares no EVP
+        part of speech
+      status: EXISTS
+      testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalogTest.java
+    - name: should keep the auto computed tag for single word entries whose EVP category
+        is phrase
+      status: EXISTS
+      testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalogTest.java
     testCleanViews:
     - |
       test: "should retain C1 and C2 catalog entries at load and resolve their level for misplacement lookup"
@@ -32462,6 +32596,37 @@ elements:
 
       then:
         catalog.lookupLevelByLemma("blorptastic") == Optional.empty()
+    - |
+      test: "should return empty from exact lookupLevel when the only catalog entry for the pair is phrasal"
+      trace: FEAT-LABS / F-LABS-R005
+
+      given:
+        catalogPath = writeCatalog(entry("sleep on it", "sleep", "C2", "VERB", 15000))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevel(new LemmaAndPos("sleep", "VERB")) == Optional.empty()
+    - |
+      test: "should return empty from lookupLevelByLemma when the only catalog entry for the lemma is phrasal"
+      trace: FEAT-LABS / F-LABS-R005
+
+      given:
+        catalogPath = writeCatalog(entry("sleep on it", "sleep", "C2", "VERB", 15000))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevelByLemma("sleep") == Optional.empty()
+    - |
+      test: "should resolve the single word entry level when the lemma also has phrasal entries"
+      trace: FEAT-LABS / F-LABS-R005
+
+      given:
+        catalogPath = writeCatalog(entry("sleep", "sleep", "A1", "VERB", 700), entry("sleep on it", "sleep", "C2", "VERB", 15000))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevel(new LemmaAndPos("sleep", "VERB")) == Optional.of(CefrLevel.A1)
+        catalog.lookupLevelByLemma("sleep") == Optional.of(CefrLevel.A1)
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -38785,10 +38950,10 @@ elements:
     healthScore: 0
     verdict: PASSED
 testSummary:
-  total: 1036
-  passing: 1018
+  total: 1042
+  passing: 1028
   failing: 0
-  notImplemented: 18
+  notImplemented: 14
 qualitySummary:
   enforcement: warn
   thresholds:
