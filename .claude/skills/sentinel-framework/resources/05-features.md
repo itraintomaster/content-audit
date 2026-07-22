@@ -365,6 +365,9 @@ enabling JUnit 5 tag-based filtering (e.g., run only tests for `FEAT-001`).
 | F-LABS-R005 | Exclusion de frases multipalabra del EVP | major | - |
 | F-LABS-R040 | Las formas derivadas y compuestas no definen el nivel del lema base | critical | - |
 | F-LABS-R041 | La categoria gramatical autoritativa de una entrada es la declarada por EVP | critical | - |
+| F-LABS-R042 | Las entradas de frase solo pueden rebajar el nivel de un lema, nunca subirlo | critical | - |
+| F-LABS-R043 | Las categorias gramaticales no de contenido rebajan el nivel del lema | critical | - |
+| F-LABS-R044 | Puente sustantivo-adverbio para expresiones temporales y locativas | major | - |
 | F-LABS-R039 | Presencia de lemas bajo cualquier categoria gramatical | critical | - |
 | F-LABS-R006 | Tipos de ausencia | critical | - |
 | F-LABS-R007 | Algoritmo de clasificacion de ausencia | critical | - |
