@@ -175,9 +175,9 @@ public class FSlemJ003JourneyTest {
 
         MisplacedLemma ml = new MisplacedLemma(
                 new LemmaAndPos("grow", "VERB"), CefrLevel.A2, CefrLevel.A1,
-                AbsenceType.APPEARS_TOO_LATE, 600, null);
+                AbsenceType.APPEARS_TOO_LATE, 600, null, "VERB", null);
         DefaultQuizDiagnoses quizDiag = new DefaultQuizDiagnoses();
-        quizDiag.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(ml)));
+        quizDiag.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(ml), 0, List.of()));
 
         AuditNode courseNode = buildCourseNode();
         AuditNode milestoneNode = buildMilestoneNode(courseNode, milestone, milestoneDiag);

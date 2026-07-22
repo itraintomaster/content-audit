@@ -169,11 +169,11 @@ public class FRclalenJ002JourneyTest {
                 new LemmaAndPos("want", "VERB"),
                 CefrLevel.B1, CefrLevel.A1,
                 AbsenceType.APPEARS_TOO_LATE,
-                890, null);
+                890, null, "VERB", null);
 
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
         quizDiagnoses.setSentenceLengthDiagnosis(slDiagnosis);
-        quizDiagnoses.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(misplaced)));
+        quizDiagnoses.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(misplaced), 0, List.of()));
 
         // Milestone carries an absent-lemma diagnosis so suggested lemmas can be sourced.
         AbsentLemma absentLemma = new AbsentLemma(

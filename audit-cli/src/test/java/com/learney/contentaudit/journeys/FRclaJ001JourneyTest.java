@@ -146,6 +146,8 @@ public class FRclaJ001JourneyTest {
                 foundInLevel,
                 AbsenceType.APPEARS_TOO_LATE,
                 cocaRank,
+                null,
+                pos,
                 null);
     }
 
@@ -206,7 +208,7 @@ public class FRclaJ001JourneyTest {
         // LemmaPlacementDiagnosis: "negotiate" (B2) misplaced in A1 quiz
         MisplacedLemma misplaced = buildMisplacedLemma("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840);
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
-        quizDiagnoses.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(misplaced)));
+        quizDiagnoses.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(misplaced), 0, List.of()));
 
         // Step: buscar_sugerencias (gate F-RCLA-R004b)
         // Milestone has two qualifying absent lemmas and one excluded (APPEARS_TOO_EARLY)
@@ -283,7 +285,7 @@ public class FRclaJ001JourneyTest {
         // Step: obtener_diagnostico — LemmaPlacementDiagnosis present with one misplaced lemma
         MisplacedLemma misplaced = buildMisplacedLemma("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840);
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
-        quizDiagnoses.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(misplaced)));
+        quizDiagnoses.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(misplaced), 0, List.of()));
 
         // Step: buscar_sugerencias — milestone has only APPEARS_TOO_EARLY lemmas (all excluded per R004b)
         AbsentLemma tooEarly = buildAbsentLemma("whenever", "ADV", AbsenceType.APPEARS_TOO_EARLY, 2000);
@@ -378,7 +380,7 @@ public class FRclaJ001JourneyTest {
 
         MisplacedLemma misplaced = buildMisplacedLemma("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840);
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
-        quizDiagnoses.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(misplaced)));
+        quizDiagnoses.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(misplaced), 0, List.of()));
 
         DefaultLevelDiagnoses milestoneDiagnoses = buildMilestoneDiagnoses(List.of());
 

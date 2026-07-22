@@ -138,9 +138,9 @@ public class FLapsJ002JourneyTest {
 
         MisplacedLemma misplaced = new MisplacedLemma(
                 new LemmaAndPos("advanced", "ADJ"), CefrLevel.B2, CefrLevel.A1,
-                AbsenceType.APPEARS_TOO_LATE, 1500, null);
+                AbsenceType.APPEARS_TOO_LATE, 1500, null, "ADJ", null);
         DefaultQuizDiagnoses quizDx = new DefaultQuizDiagnoses();
-        quizDx.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(misplaced)));
+        quizDx.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(misplaced), 0, List.of()));
 
         AuditNode courseNode = buildCourseNode();
         AuditNode msNode = buildNode(courseNode, AuditTarget.MILESTONE, milestone, levelDiagnoses);

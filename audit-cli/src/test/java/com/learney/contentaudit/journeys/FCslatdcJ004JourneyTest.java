@@ -125,9 +125,9 @@ public class FCslatdcJ004JourneyTest {
     private AuditNode buildQuizNode(AuditNode parent, AuditableQuiz quiz) {
         MisplacedLemma ml = new MisplacedLemma(
                 new LemmaAndPos("run", "VERB"), CefrLevel.A2, CefrLevel.A1,
-                AbsenceType.APPEARS_TOO_LATE, 400, null);
+                AbsenceType.APPEARS_TOO_LATE, 400, null, "VERB", null);
         DefaultQuizDiagnoses quizDiag = new DefaultQuizDiagnoses();
-        quizDiag.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(ml)));
+        quizDiag.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(ml), 0, List.of()));
         AuditNode node = new AuditNode();
         node.setTarget(AuditTarget.QUIZ);
         node.setEntity(quiz);

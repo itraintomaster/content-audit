@@ -54,7 +54,7 @@ class FileSystemAuditReportStoreTest {
         SentenceLengthDiagnosis sentenceDiagnosis = new SentenceLengthDiagnosis(7, 5, 10, CefrLevel.A1, 0, 2);
         quizDiagnoses.setSentenceLengthDiagnosis(sentenceDiagnosis);
 
-        LemmaPlacementDiagnosis quizLemmaDiagnosis = new LemmaPlacementDiagnosis(0, List.of());
+        LemmaPlacementDiagnosis quizLemmaDiagnosis = new LemmaPlacementDiagnosis(0, List.of(), 0, List.of());
         quizDiagnoses.setLemmaAbsenceDiagnosis(quizLemmaDiagnosis);
 
         Map<String, Double> quizScores = new HashMap<>();
@@ -80,7 +80,7 @@ class FileSystemAuditReportStoreTest {
         , null);
 
         DefaultKnowledgeDiagnoses knowledgeDiagnoses = new DefaultKnowledgeDiagnoses();
-        LemmaPlacementDiagnosis knowledgeLemmaDiagnosis = new LemmaPlacementDiagnosis(1, List.of());
+        LemmaPlacementDiagnosis knowledgeLemmaDiagnosis = new LemmaPlacementDiagnosis(1, List.of(), 0, List.of());
         knowledgeDiagnoses.setLemmaAbsenceDiagnosis(knowledgeLemmaDiagnosis);
 
         Map<String, Double> knowledgeScores = new HashMap<>();

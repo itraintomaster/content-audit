@@ -157,12 +157,12 @@ public class FRclalenJ001JourneyTest {
         MisplacedLemma negotiate = new MisplacedLemma(
                 new LemmaAndPos("negotiate", "VERB"),
                 CefrLevel.B2, CefrLevel.A1,
-                AbsenceType.APPEARS_TOO_LATE, 2840, null);
+                AbsenceType.APPEARS_TOO_LATE, 2840, null, "VERB", null);
         MisplacedLemma contract = new MisplacedLemma(
                 new LemmaAndPos("contract", "NOUN"),
                 CefrLevel.B1, CefrLevel.A1,
-                AbsenceType.APPEARS_TOO_LATE, 1205, null);
-        return new LemmaPlacementDiagnosis(2, List.of(negotiate, contract));
+                AbsenceType.APPEARS_TOO_LATE, 1205, null, "NOUN", null);
+        return new LemmaPlacementDiagnosis(2, List.of(negotiate, contract), 0, List.of());
     }
 
     @Test

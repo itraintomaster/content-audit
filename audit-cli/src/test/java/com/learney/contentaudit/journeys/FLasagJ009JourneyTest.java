@@ -71,12 +71,12 @@ public class FLasagJ009JourneyTest {
                 "Write simple present tense sentences.",
                 "Education",
                 CefrLevel.A1,
-                List.of(new MisplacedLemmaContext("go", "VERB", CefrLevel.B2, CefrLevel.A1, 200)),
+                List.of(new MisplacedLemmaContext("go", "VERB", CefrLevel.B2, CefrLevel.A1, 200, null)),
                 List.of(new SuggestedLemma("walk", "VERB", "A1 synonym", 80, null, null, null)),
                 "She ____[goes|walks] to school.",
                 0, 0, 0, 0,
                 LengthDirection.UNKNOWN,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
 
         CannedLemmaAbsenceQuizCandidateGenerator cannedGenerator =

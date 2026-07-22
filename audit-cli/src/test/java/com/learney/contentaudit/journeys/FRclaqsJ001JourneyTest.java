@@ -139,6 +139,8 @@ public class FRclaqsJ001JourneyTest {
                 foundInLevel,
                 AbsenceType.APPEARS_TOO_LATE,
                 cocaRank,
+                null,
+                pos,
                 null);
     }
 
@@ -207,7 +209,7 @@ public class FRclaqsJ001JourneyTest {
         // copies it verbatim without reinvoking any converter.
         MisplacedLemma misplaced = buildMisplacedLemma("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840);
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
-        quizDiagnoses.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(misplaced)));
+        quizDiagnoses.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(misplaced), 0, List.of()));
 
         AbsentLemma absentLemma = buildAbsentLemma("like", "VERB", AbsenceType.COMPLETELY_ABSENT, 52);
         DefaultLevelDiagnoses milestoneDiagnoses = buildMilestoneDiagnoses(List.of(absentLemma));
@@ -291,7 +293,7 @@ public class FRclaqsJ001JourneyTest {
                 List.of(), "ms-j001-002", "A1", "M002");
 
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
-        quizDiagnoses.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(0, List.of()));
+        quizDiagnoses.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(0, List.of(), 0, List.of()));
         DefaultLevelDiagnoses milestoneDiagnoses = buildMilestoneDiagnoses(List.of());
 
         // AuditReport contains only the "other" quiz — the invalid quiz was never added
@@ -349,7 +351,7 @@ public class FRclaqsJ001JourneyTest {
                 List.of(), "ms-j001-003", "A1", "M003");
 
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
-        quizDiagnoses.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(0, List.of()));
+        quizDiagnoses.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(0, List.of(), 0, List.of()));
         DefaultLevelDiagnoses milestoneDiagnoses = buildMilestoneDiagnoses(List.of());
 
         AuditNode courseRoot = buildFullTree(milestone, milestoneDiagnoses, topic, knowledge, differentQuiz, quizDiagnoses);

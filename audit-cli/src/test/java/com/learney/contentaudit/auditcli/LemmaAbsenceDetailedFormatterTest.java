@@ -100,21 +100,21 @@ public class LemmaAbsenceDetailedFormatterTest {
 
     private DefaultTopicDiagnoses topicWithMisplaced(int count, List<MisplacedLemma> lemmas) {
         DefaultTopicDiagnoses td = new DefaultTopicDiagnoses();
-        LemmaPlacementDiagnosis diag = new LemmaPlacementDiagnosis(count, lemmas);
+        LemmaPlacementDiagnosis diag = new LemmaPlacementDiagnosis(count, lemmas, 0, List.of());
         td.setLemmaAbsenceDiagnosis(diag);
         return td;
     }
 
     private DefaultKnowledgeDiagnoses knowledgeWithMisplaced(int count, List<MisplacedLemma> lemmas) {
         DefaultKnowledgeDiagnoses kd = new DefaultKnowledgeDiagnoses();
-        LemmaPlacementDiagnosis diag = new LemmaPlacementDiagnosis(count, lemmas);
+        LemmaPlacementDiagnosis diag = new LemmaPlacementDiagnosis(count, lemmas, 0, List.of());
         kd.setLemmaAbsenceDiagnosis(diag);
         return kd;
     }
 
     private DefaultQuizDiagnoses quizWithMisplaced(int count, List<MisplacedLemma> lemmas) {
         DefaultQuizDiagnoses qd = new DefaultQuizDiagnoses();
-        LemmaPlacementDiagnosis diag = new LemmaPlacementDiagnosis(count, lemmas);
+        LemmaPlacementDiagnosis diag = new LemmaPlacementDiagnosis(count, lemmas, 0, List.of());
         qd.setLemmaAbsenceDiagnosis(diag);
         return qd;
     }
@@ -125,7 +125,7 @@ public class LemmaAbsenceDetailedFormatterTest {
 
     private MisplacedLemma makeMisplacedLemma(String lemma, String pos, CefrLevel expectedLevel) {
         return new MisplacedLemma(new LemmaAndPos(lemma, pos), expectedLevel, CefrLevel.B1,
-                AbsenceType.APPEARS_TOO_LATE, 1500, null);
+                AbsenceType.APPEARS_TOO_LATE, 1500, null, pos, null);
     }
 
     // ── Tests ────────────────────────────────────────────────────────────────

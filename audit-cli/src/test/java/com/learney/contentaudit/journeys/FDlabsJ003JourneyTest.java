@@ -63,10 +63,12 @@ public class FDlabsJ003JourneyTest {
                 CefrLevel.B1,
                 AbsenceType.APPEARS_TOO_LATE,
                 620,
+                null,
+                "VERB",
                 null
         );
         LemmaPlacementDiagnosis quizPlacementDiagnosis =
-                new LemmaPlacementDiagnosis(1, List.of(misplacedLemma));
+                new LemmaPlacementDiagnosis(1, List.of(misplacedLemma), 0, List.of());
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
         quizDiagnoses.setLemmaAbsenceDiagnosis(quizPlacementDiagnosis);
         AuditNode quizNode = new AuditNode(null, AuditTarget.QUIZ, null,
@@ -75,7 +77,7 @@ public class FDlabsJ003JourneyTest {
 
         // Knowledge node: LemmaPlacementDiagnosis with same misplaced lemma (R008)
         LemmaPlacementDiagnosis knowledgePlacementDiagnosis =
-                new LemmaPlacementDiagnosis(1, List.of(misplacedLemma));
+                new LemmaPlacementDiagnosis(1, List.of(misplacedLemma), 0, List.of());
         DefaultKnowledgeDiagnoses knowledgeDiagnoses = new DefaultKnowledgeDiagnoses();
         knowledgeDiagnoses.setLemmaAbsenceDiagnosis(knowledgePlacementDiagnosis);
         AuditNode knowledgeNode = new AuditNode(null, AuditTarget.KNOWLEDGE, null,
@@ -85,7 +87,7 @@ public class FDlabsJ003JourneyTest {
 
         // Topic node: LemmaPlacementDiagnosis with misplaced count (R007)
         LemmaPlacementDiagnosis topicPlacementDiagnosis =
-                new LemmaPlacementDiagnosis(1, List.of(misplacedLemma));
+                new LemmaPlacementDiagnosis(1, List.of(misplacedLemma), 0, List.of());
         DefaultTopicDiagnoses topicDiagnoses = new DefaultTopicDiagnoses();
         topicDiagnoses.setLemmaAbsenceDiagnosis(topicPlacementDiagnosis);
         AuditNode topicNode = new AuditNode(null, AuditTarget.TOPIC, null,

@@ -176,9 +176,9 @@ public class FSlemJ001JourneyTest {
 
         MisplacedLemma ml = new MisplacedLemma(
                 new LemmaAndPos("run", "VERB"), CefrLevel.A2, CefrLevel.A1,
-                AbsenceType.APPEARS_TOO_LATE, 400, null);
+                AbsenceType.APPEARS_TOO_LATE, 400, null, "VERB", null);
         DefaultQuizDiagnoses quizDiag = new DefaultQuizDiagnoses();
-        quizDiag.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(ml)));
+        quizDiag.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(ml), 0, List.of()));
 
         AuditNode courseNode = buildCourseNode();
         AuditNode milestoneNode = buildMilestoneNode(courseNode, milestone, milestoneDiag);
@@ -291,9 +291,9 @@ public class FSlemJ001JourneyTest {
 
         MisplacedLemma ml = new MisplacedLemma(
                 new LemmaAndPos("dog", "NOUN"), CefrLevel.A2, CefrLevel.A1,
-                AbsenceType.APPEARS_TOO_LATE, 300, null);
+                AbsenceType.APPEARS_TOO_LATE, 300, null, "NOUN", null);
         DefaultQuizDiagnoses quizDiag = new DefaultQuizDiagnoses();
-        quizDiag.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(ml)));
+        quizDiag.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(ml), 0, List.of()));
 
         AuditNode courseNode = buildCourseNode();
         AuditNode milestoneNode = buildMilestoneNode(courseNode, milestone, milestoneDiag);
@@ -383,9 +383,9 @@ public class FSlemJ001JourneyTest {
         // NO COCA band analysis on the course node → no CourseDiagnoses → no enrichBands
         MisplacedLemma ml = new MisplacedLemma(
                 new LemmaAndPos("run", "VERB"), CefrLevel.A2, CefrLevel.A1,
-                AbsenceType.APPEARS_TOO_LATE, 200, null);
+                AbsenceType.APPEARS_TOO_LATE, 200, null, "VERB", null);
         DefaultQuizDiagnoses quizDiag = new DefaultQuizDiagnoses();
-        quizDiag.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(ml)));
+        quizDiag.setLemmaAbsenceDiagnosis(new LemmaPlacementDiagnosis(1, List.of(ml), 0, List.of()));
 
         AuditNode courseNode = buildCourseNode();
         // No diagnoses set on course node → no CourseDiagnoses → no COCA bands
