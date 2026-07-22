@@ -1205,6 +1205,9 @@ trazable.
 | F-LASAG-R010 | Carry-forward de contexto de fallo e historial de tool entre reintentos | medium | - |
 | F-LASAG-R011 | Perilla maxEvalRetries con default 3, ignorada por CANNED | medium | - |
 | F-LASAG-R012 | Error de runtime en cualquier fase = falla inmediata fuera del lazo de retry | high | - |
+| F-LASAG-R013 | Las palabras fuera de catálogo alimentan los insumos de generación | high | - |
+| F-LASAG-R014 | Edición mínima: las palabras objetivo son la unión de mal ubicadas y fuera de catálogo | high | - |
+| F-LASAG-R015 | Una tarea sin lemas mal ubicados pero con palabras fuera de catálogo es generación válida | high | - |
 
 **User Journeys:**
 
