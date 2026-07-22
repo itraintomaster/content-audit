@@ -34,6 +34,32 @@ public class FileSystemEvpCatalog implements EvpCatalogPort {
     private final Map<LemmaAndPos, String> semanticCategories = new HashMap<>();
     private final Set<String> phrases = new HashSet<>();
 
+    // F-LABS-R042: techo (MENOR nivel) que aportan las entradas de frase
+    // multipalabra para el mismo par lema+categoria que ellas mismas resuelven.
+    // Se aplica en la post-pasada sobre levelByLemma, solo si la clave ya existe
+    // (nunca inventa, nunca sube).
+    private final Map<LemmaAndPos, CefrLevel> phraseCeilingByPos = new HashMap<>();
+    // F-LABS-R042 (fallback por lema): techo (MENOR nivel) entre TODAS las
+    // entradas de frase multipalabra del lema, bajo cualquier categoria. Se
+    // aplica en la post-pasada sobre lowestLevelByLemmaOnly, solo si la clave ya
+    // existe.
+    private final Map<String, CefrLevel> phraseCeilingByLemma = new HashMap<>();
+    // F-LABS-R043: techo (MENOR nivel) entre las entradas cuya categoria (F-LABS-R041)
+    // es no-de-contenido (DET/PRON/ADP/CCONJ/INTJ/NUM/AUX), inalcanzables por el
+    // match exacto de un token de contenido. Se aplica en la post-pasada a todas
+    // las categorias de contenido ya resueltas para el mismo lema.
+    private final Map<String, CefrLevel> nonContentCeilingByLemma = new HashMap<>();
+    // Categorias de palabra realmente registradas en levelByLemma, indexadas por
+    // lema, para poder recorrerlas en la post-pasada de F-LABS-R043/F-LABS-R044
+    // sin iterar todo el catalogo.
+    private final Map<String, Set<String>> posTagsByLemma = new HashMap<>();
+
+    // F-LABS-R043: categorias gramaticales universales que no son de contenido
+    // (traduccion de F-LABS-R041 para determiner/pronoun/preposition/conjunction/
+    // exclamation/number/modal verb).
+    private static final Set<String> NON_CONTENT_POS =
+            Set.of("DET", "PRON", "ADP", "CCONJ", "INTJ", "NUM", "AUX");
+
     public FileSystemEvpCatalog(Path catalogPath) {
         for (CefrLevel level : CefrLevel.values()) {
             expectedByLevel.put(level, new HashSet<>());
@@ -98,18 +124,36 @@ public class FileSystemEvpCatalog implements EvpCatalogPort {
                     expectedByLevel.get(level).add(lp);
                 }
 
-                // Los indices de consulta de nivel (lookupLevel / lookupLevelByLemma)
-                // solo admiten filas palabra-simple, base: una entrada phrasal ("sleep on
-                // it", C2, lemma=sleep) o derivada/compuesta ("next-door", B1, lemma=next)
-                // no define el nivel del lema suelto — con la precedencia del match exacto
-                // (F-LABS-R036 paso 1) contaminaria el scoring con falsos niveles. El
-                // filtrado de frases en la cobertura (F-LABS-R005) sigue siendo via
-                // isPhrase sobre getExpectedLemmas, que queda intacto.
-                if (!phrasal && !derivedForm) {
+                // Los indices de consulta de nivel (lookupLevel / lookupLevelByLemma) no
+                // admiten una entrada phrasal ("sleep on it", C2, lemma=sleep) ni una
+                // derivada/compuesta ("next-door", B1, lemma=next) como fuente DIRECTA del
+                // nivel del lema suelto -- con la precedencia del match exacto (F-LABS-R036
+                // paso 1) contaminarian el scoring con falsos niveles. El filtrado de frases
+                // en la cobertura (F-LABS-R005) sigue siendo via isPhrase sobre
+                // getExpectedLemmas, que queda intacto.
+                //
+                // F-LABS-R042: una entrada phrasal SI participa, pero unicamente como TECHO
+                // asimetrico (solo puede rebajar, nunca subir ni inventar) que la
+                // post-pasada de loadCatalog (ver applyCeilingsAndBridge) aplicara sobre el
+                // nivel que las entradas de palabra del mismo lema ya resuelven. Las
+                // entradas derivadas/compuestas (F-LABS-R040) no aportan ningun techo: se
+                // excluyen por completo, como hoy.
+                if (phrasal) {
+                    phraseCeilingByPos.merge(lp, level, FileSystemEvpCatalog::lowest);
+                    phraseCeilingByLemma.merge(lemma, level, FileSystemEvpCatalog::lowest);
+                } else if (!derivedForm) {
                     // Keep the lowest level if a lemma+pos appears in multiple levels
                     levelByLemma.merge(lp, level, FileSystemEvpCatalog::lowest);
                     // F-LABS-R036 (paso 2): menor nivel del lema bajo cualquier POS
                     lowestLevelByLemmaOnly.merge(lemma, level, FileSystemEvpCatalog::lowest);
+                    posTagsByLemma.computeIfAbsent(lemma, k -> new HashSet<>()).add(posTag);
+
+                    // F-LABS-R043: una categoria no-de-contenido es inalcanzable por el
+                    // match exacto de un token de contenido (R001/R035); solo aporta el
+                    // mismo tipo de techo asimetrico que R042, resuelto en la post-pasada.
+                    if (isNonContentPos(posTag)) {
+                        nonContentCeilingByLemma.merge(lemma, level, FileSystemEvpCatalog::lowest);
+                    }
                 }
 
                 if (freqRank > 0) {
@@ -119,9 +163,69 @@ public class FileSystemEvpCatalog implements EvpCatalogPort {
                     semanticCategories.putIfAbsent(lp, topic);
                 }
             }
+
+            // F-LABS-R042/R043/R044: se resuelven al final, independientemente del orden
+            // de las filas del JSON (una fila de palabra puede aparecer antes o despues de
+            // la fila de frase / categoria no-de-contenido / puente que la rebaja).
+            applyCeilingsAndBridge();
         } catch (IOException e) {
             throw new UncheckedIOException("Failed to load EVP catalog from " + catalogPath, e);
         }
+    }
+
+    /**
+     * Post-pasada de loadCatalog: aplica los techos asimetricos de F-LABS-R042 (frases
+     * multipalabra) y F-LABS-R043 (categorias no-de-contenido) sobre los indices de
+     * consulta de nivel ya poblados por las entradas de palabra, y el puente
+     * sustantivo-adverbio de F-LABS-R044. Los tres mecanismos comparten el mismo
+     * principio (extension de F-LABS-R036): solo pueden REBAJAR un nivel que las
+     * entradas de palabra ya resolvieron, nunca subirlo ni crear una clave nueva -- por
+     * eso los techos se aplican con {@code computeIfPresent}, nunca creando entradas.
+     */
+    private void applyCeilingsAndBridge() {
+        // F-LABS-R042 (match exacto, F-LABS-R036 paso 1): la frase rebaja el par
+        // lema+categoria que ella misma resuelve.
+        for (Map.Entry<LemmaAndPos, CefrLevel> ceiling : phraseCeilingByPos.entrySet()) {
+            levelByLemma.computeIfPresent(ceiling.getKey(), (k, v) -> lowest(v, ceiling.getValue()));
+        }
+        // F-LABS-R042 (fallback por lema, F-LABS-R036 paso 2): la frase rebaja el
+        // minimo del lema bajo cualquier categoria.
+        for (Map.Entry<String, CefrLevel> ceiling : phraseCeilingByLemma.entrySet()) {
+            lowestLevelByLemmaOnly.computeIfPresent(ceiling.getKey(), (k, v) -> lowest(v, ceiling.getValue()));
+        }
+        // F-LABS-R043 (match exacto): la categoria no-de-contenido rebaja cualquier
+        // categoria de contenido ya resuelta para el mismo lema.
+        for (Map.Entry<String, CefrLevel> ceiling : nonContentCeilingByLemma.entrySet()) {
+            String lemma = ceiling.getKey();
+            CefrLevel ceilingLevel = ceiling.getValue();
+            for (String pos : posTagsByLemma.getOrDefault(lemma, Set.of())) {
+                levelByLemma.computeIfPresent(new LemmaAndPos(lemma, pos), (k, v) -> lowest(v, ceilingLevel));
+            }
+        }
+        // F-LABS-R044: puente acotado sustantivo-adverbio. Cuando un lema tiene, a esta
+        // altura (ya rebajadas por R042/R043), entradas bajo NOUN y bajo ADV, ambas
+        // categorias resuelven el minimo entre las dos. No puentea ningun otro par:
+        // protege snow (NOUN-VERB) y early/late (ADJ-ADV).
+        for (String lemma : posTagsByLemma.keySet()) {
+            LemmaAndPos nounKey = new LemmaAndPos(lemma, "NOUN");
+            LemmaAndPos advKey = new LemmaAndPos(lemma, "ADV");
+            CefrLevel nounLevel = levelByLemma.get(nounKey);
+            CefrLevel advLevel = levelByLemma.get(advKey);
+            if (nounLevel != null && advLevel != null) {
+                CefrLevel bridged = lowest(nounLevel, advLevel);
+                levelByLemma.put(nounKey, bridged);
+                levelByLemma.put(advKey, bridged);
+            }
+        }
+    }
+
+    /**
+     * F-LABS-R043: indica si una categoria universal (F-LABS-R041) no es de contenido
+     * (determiner/pronoun/preposition/conjunction/exclamation/number/modal verb), y por
+     * lo tanto es inalcanzable por el match exacto de un token de contenido.
+     */
+    private static boolean isNonContentPos(String posTag) {
+        return NON_CONTENT_POS.contains(posTag);
     }
 
     private static String textOrNull(JsonNode node, String field) {

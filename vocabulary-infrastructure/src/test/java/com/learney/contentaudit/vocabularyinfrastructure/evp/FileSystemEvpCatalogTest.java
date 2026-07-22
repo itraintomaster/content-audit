@@ -316,4 +316,171 @@ public class FileSystemEvpCatalogTest {
         assertEquals(Optional.of(CefrLevel.A2), catalog.lookupLevel(new LemmaAndPos("let", "VERB")),
                 "R041: la categoria EVP 'phrase' en una entrada monopalabra no se traduce; se mantiene la categoria calculada (VERB)");
     }
+
+    @Test
+    @DisplayName("should lower the exact lookupLevel level when a lower level phrase entry exists for the same lemma")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R042")
+    public void shouldLowerTheExactLookupLevelLevelWhenALowerLevelPhraseEntryExistsForTheSameLemma() throws IOException {
+        // R042: la entrada de palabra "live" (verbo B1) convive con la frase multipalabra
+        // "live in/at, etc." (A1, lema "live"). La frase solo puede rebajar el nivel: el
+        // match exacto por (live, VERB) debe resolver el minimo A1, no el B1 de la palabra.
+        Path catalogPath = writeCatalog(
+                entry("live", "live", "B1", "verb", "VERB", 3000),
+                entry("live in/at, etc.", "live", "A1", "phrase", "VERB", 6000));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.of(CefrLevel.A1), catalog.lookupLevel(new LemmaAndPos("live", "VERB")),
+                "R042: la entrada de frase de menor nivel debe rebajar el match exacto de la palabra (B1->A1)");
+    }
+
+    @Test
+    @DisplayName("should lower the lookupLevelByLemma level when a lower level phrase entry exists for the same lemma")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R042")
+    public void shouldLowerTheLookupLevelByLemmaLevelWhenALowerLevelPhraseEntryExistsForTheSameLemma() throws IOException {
+        // R042 paso 2: la rebaja de frase tambien opera en el fallback por lema (R036), no
+        // solo en el match exacto -- de lo contrario el par exacto (live, VERB)=B1 ganaria
+        // por precedencia y la correccion no operaria.
+        Path catalogPath = writeCatalog(
+                entry("live", "live", "B1", "verb", "VERB", 3000),
+                entry("live in/at, etc.", "live", "A1", "phrase", "VERB", 6000));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.of(CefrLevel.A1), catalog.lookupLevelByLemma("live"),
+                "R042: el fallback por lema tambien debe resolver el minimo rebajado por la frase (A1)");
+    }
+
+    @Test
+    @DisplayName("should lower the lemma level for a single word entry whose EVP category is phrase")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R042")
+    public void shouldLowerTheLemmaLevelForASingleWordEntryWhoseEVPCategoryIsPhrase() throws IOException {
+        // R042 alcance 1: las entradas de una sola palabra con categoria EVP "phrase"
+        // (por ejemplo "let's") se gobiernan igual que las frases multipalabra: solo
+        // pueden rebajar. "let" verbo B1 convive con "let's" (A2, categoria "phrase");
+        // el match exacto (let, VERB) debe resolver el minimo A2, no el B1 de la palabra.
+        Path catalogPath = writeCatalog(
+                entry("let", "let", "B1", "verb", "VERB", 2500),
+                entry("let's", "let", "A2", "phrase", "VERB", 1500));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.of(CefrLevel.A2), catalog.lookupLevel(new LemmaAndPos("let", "VERB")),
+                "R042: la entrada monopalabra de categoria 'phrase' debe rebajar el match exacto de la palabra (B1->A2)");
+    }
+
+    @Test
+    @DisplayName("should never invent a level from a phrase entry when the lemma has no reachable word entry")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R042")
+    public void shouldNeverInventALevelFromAPhraseEntryWhenTheLemmaHasNoReachableWordEntry() throws IOException {
+        // R042 alcance 3: la rebaja nunca inventa un nivel. El lema "give" solo tiene
+        // entradas de frase ("give up" B1, "give away" A2), sin ninguna entrada de
+        // palabra alcanzable: debe permanecer fuera de catalogo en ambos lookups, no
+        // adoptar el minimo (A2) de las frases como si fuera un nivel real.
+        Path catalogPath = writeCatalog(
+                entry("give up", "give", "B1", "phrasal verb", "VERB", 4000),
+                entry("give away", "give", "A2", "phrase", "VERB", 4200));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.empty(), catalog.lookupLevel(new LemmaAndPos("give", "VERB")),
+                "R042: sin entrada de palabra alcanzable, el match exacto no debe inventar un nivel a partir de las frases");
+        assertEquals(Optional.empty(), catalog.lookupLevelByLemma("give"),
+                "R042: sin entrada de palabra alcanzable, el fallback por lema no debe inventar un nivel a partir de las frases");
+    }
+
+    @Test
+    @DisplayName("should lower a content pos lookupLevel when a lower level non-content pos entry exists for the lemma")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R043")
+    public void shouldLowerAContentPosLookupLevelWhenALowerLevelNoncontentPosEntryExistsForTheLemma() throws IOException {
+        // R043: "much" adverbio B1 convive con "much" determinante A1 (categoria no de
+        // contenido, inalcanzable por el match de un token de contenido). La entrada
+        // no-de-contenido solo puede rebajar: el match exacto (much, ADV) debe resolver
+        // el minimo A1, no el B1 de la entrada adverbio.
+        Path catalogPath = writeCatalog(
+                entry("much", "much", "B1", "adverb", "ADV", 1200),
+                entry("much", "much", "A1", "determiner", "DET", 1000));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.of(CefrLevel.A1), catalog.lookupLevel(new LemmaAndPos("much", "ADV")),
+                "R043: la entrada no-de-contenido de menor nivel debe rebajar el match exacto de la categoria de contenido (B1->A1)");
+    }
+
+    @Test
+    @DisplayName("should not lower a content pos lookupLevel when the lemma has no non-content pos entry")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R043")
+    public void shouldNotLowerAContentPosLookupLevelWhenTheLemmaHasNoNoncontentPosEntry() throws IOException {
+        // R043 guardia: "snow" tiene sustantivo A1 y verbo A2, ambas categorias de
+        // contenido, sin ninguna entrada no-de-contenido. El match exacto (snow, VERB)
+        // debe permanecer intacto en A2 -- no hay nada que rebaje, R043 no aplica.
+        Path catalogPath = writeCatalog(
+                entry("snow", "snow", "A1", "noun", "NOUN", 500),
+                entry("snow", "snow", "A2", "verb", "VERB", 900));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.of(CefrLevel.A2), catalog.lookupLevel(new LemmaAndPos("snow", "VERB")),
+                "R043: sin entrada no-de-contenido, el match exacto del verbo debe permanecer en A2, sin rebaja");
+    }
+
+    @Test
+    @DisplayName("should bridge noun and adverb entries and resolve the minimum level for a noun lookupLevel")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R044")
+    public void shouldBridgeNounAndAdverbEntriesAndResolveTheMinimumLevelForANounLookupLevel() throws IOException {
+        // R044: "tonight" tiene sustantivo A2 y adverbio A1. El puente NOUN-ADV responde
+        // el minimo bajo cualquiera de las dos categorias: el match exacto (tonight, NOUN)
+        // debe resolver A1, no el A2 propio de la entrada sustantivo.
+        Path catalogPath = writeCatalog(
+                entry("tonight", "tonight", "A2", "noun", "NOUN", 1800),
+                entry("tonight", "tonight", "A1", "adverb", "ADV", 1600));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.of(CefrLevel.A1), catalog.lookupLevel(new LemmaAndPos("tonight", "NOUN")),
+                "R044: el puente NOUN-ADV debe resolver el minimo (A1) para el lookup por sustantivo");
+    }
+
+    @Test
+    @DisplayName("should bridge noun and adverb entries and resolve the minimum level for an adverb lookupLevel")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R044")
+    public void shouldBridgeNounAndAdverbEntriesAndResolveTheMinimumLevelForAnAdverbLookupLevel() throws IOException {
+        // R044: "home" tiene sustantivo A1 y adverbio A2. El puente NOUN-ADV responde el
+        // minimo bajo cualquiera de las dos categorias: el match exacto (home, ADV) debe
+        // resolver A1, no el A2 propio de la entrada adverbio.
+        Path catalogPath = writeCatalog(
+                entry("home", "home", "A1", "noun", "NOUN", 400),
+                entry("home", "home", "A2", "adverb", "ADV", 600));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.of(CefrLevel.A1), catalog.lookupLevel(new LemmaAndPos("home", "ADV")),
+                "R044: el puente NOUN-ADV debe resolver el minimo (A1) para el lookup por adverbio");
+    }
+
+    @Test
+    @DisplayName("should not bridge adjective and adverb entries when resolving an adverb lookupLevel")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R044")
+    public void shouldNotBridgeAdjectiveAndAdverbEntriesWhenResolvingAnAdverbLookupLevel() throws IOException {
+        // R044 guardia: el puente se limita al par NOUN-ADV; NO puentea ADJ-ADV. "late"
+        // tiene adjetivo A1 y adverbio A2: el match exacto (late, ADV) debe permanecer
+        // en A2, sin tomar el minimo con la entrada adjetivo (protege el positivo real).
+        Path catalogPath = writeCatalog(
+                entry("late", "late", "A1", "adjective", "ADJ", 700),
+                entry("late", "late", "A2", "adverb", "ADV", 750));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.of(CefrLevel.A2), catalog.lookupLevel(new LemmaAndPos("late", "ADV")),
+                "R044: el par ADJ-ADV no debe puentearse; el match exacto del adverbio permanece en A2");
+    }
 }

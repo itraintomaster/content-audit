@@ -59,7 +59,7 @@ Los niveles A1 y A2 se consideran **criticos** para la evaluacion de ausencia. L
 
 Las reglas se organizan en seis grupos segun la fase y el tema al que pertenecen:
 
-- **Grupo A - Identificacion de lemas ausentes (R001-R005, R039-R041)**: reglas que describen como se determinan los lemas esperados, presentes y ausentes para cada nivel CEFR, incluyendo como se interpreta el catalogo de vocabulario en toda consulta de nivel (que entradas y que categoria gramatical fijan el nivel de un lema).
+- **Grupo A - Identificacion de lemas ausentes (R001-R005, R039-R044)**: reglas que describen como se determinan los lemas esperados, presentes y ausentes para cada nivel CEFR, incluyendo como se interpreta el catalogo de vocabulario en toda consulta de nivel (que entradas fijan el nivel de un lema, que entradas solo pueden rebajarlo y que categoria gramatical rige el emparejamiento).
 - **Grupo B - Clasificacion del tipo de ausencia (R006-R010)**: reglas que describen como se clasifica cada lema ausente segun donde aparece (o no) en el curso.
 - **Grupo C - Prioridad y enriquecimiento (R011-R016)**: reglas que describen como se asigna prioridad basada en frecuencia COCA y como se enriquece cada lema con informacion adicional.
 - **Grupo D - Scoring por oracion y vocabulario avanzado (R017-R020, R033-R038)**: reglas que describen como se evalua el impacto de los lemas mal ubicados en cada oracion del curso, incluyendo el vocabulario de nivel superior al rango del curso (C1/C2) y las palabras de contenido fuera de catalogo.
@@ -122,6 +122,8 @@ La exclusion de entradas de frase aplica a **toda consulta de nivel sobre el cat
 
 El mismo principio se extiende, con su propia regla, a las **formas derivadas y compuestas** cuya palabra encabezado difiere del lema (por ejemplo "next-door" para el lema "next"): tampoco fijan el nivel del lema base (R040). Y la **categoria gramatical** con la que una entrada participa del emparejamiento por par lema+categoria se toma de la fuente EVP, no del etiquetado automatico (R041).
 
+La exclusion de R005 es la cara "nunca inflar" del criterio: una frase de nivel **superior** al del lema no lo sube. Su contracara asimetrica es R042: una entrada de frase de nivel **inferior** al del lema (que suele documentar el sentido mas basico, por ejemplo "live in/at, etc." A1 para el lema "live") **si puede rebajarlo**, nunca subirlo. R005 y R042 son complementarias: R005 bloquea la inflacion, R042 habilita solo la rebaja.
+
 **Error**: N/A (esta regla describe un criterio de filtrado)
 
 ### Rule[F-LABS-R040] - Las formas derivadas y compuestas no definen el nivel del lema base
@@ -162,7 +164,7 @@ Para el emparejamiento por par **lema + categoria gramatical**, la categoria de 
 
 Cuando la entrada **no declara categoria EVP** (campo vacio; por ejemplo "cattle", "lot"), se conserva como respaldo la categoria calculada automaticamente — el comportamiento actual, sin cambios.
 
-Las categorias EVP "phrase" y "phrasal verb" **no forman parte** de esta traduccion: las entradas multipalabra ya se rigen por la exclusion de frases de R005, y las entradas de una sola palabra con categoria "phrase" (por ejemplo "let's") quedan **explicitamente fuera del alcance** de este cambio — mantienen el comportamiento actual; su tratamiento se decidira en una iteracion futura (ver Doubt[DOUBT-PHRASE-MONOPALABRA]).
+Las categorias EVP "phrase" y "phrasal verb" **no forman parte** de esta traduccion: las entradas multipalabra ya se rigen por la exclusion de frases de R005, y las entradas de una sola palabra con categoria "phrase" (por ejemplo "let's") quedan gobernadas por la rebaja asimetrica de frases de **R042** (solo pueden bajar el nivel del lema, nunca subirlo). Para "let's" (A2) esto reproduce el comportamiento actual: "let" queda en A2. Esto cierra Doubt[DOUBT-PHRASE-MONOPALABRA], resuelta.
 
 Motiva esta regla que la categoria calculada automaticamente es poco confiable: el **26,4% de las entradas de palabra simple** (2913 de 11035) tiene una categoria calculada que **contradice** su propia categoria EVP. Consecuencias observables:
 
@@ -172,6 +174,65 @@ Motiva esta regla que la categoria calculada automaticamente es poco confiable: 
 4. "last" (adverbio B1/B2 y verbo B1/C1, con la categoria calculada mal fijada como adjetivo) deja de inflar el par (last, adjetivo).
 
 **Error**: N/A (esta regla describe el criterio de categoria gramatical de las entradas del catalogo)
+
+### Rule[F-LABS-R042] - Las entradas de frase solo pueden rebajar el nivel de un lema, nunca subirlo
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+La exclusion de frases (R005) impide correctamente que una frase de nivel alto **infle** el nivel de un lema (que "sleep on it" C2 haga responder C2 al lema suelto "sleep"). Pero esa misma exclusion total tambien descarta entradas de frase que documentan el sentido **mas basico** del lema, y por eso el sentido A1 canonico queda sin registrar y el lema responde el nivel (mas alto) de sus entradas de palabra sola.
+
+Se corrige con un principio **asimetrico**, extension natural del beneficio de la duda ya escrito en R036 ("nunca se penaliza mas"): una entrada de frase participa de la consulta de nivel de su lema **unicamente para bajarlo** (se toma el minimo), **nunca para subirlo**. Si el nivel de la frase es inferior al que resuelven las entradas de palabra, lo rebaja; si es igual o superior, no tiene efecto. Racional pedagogico: si el EVP espera que un alumno de nivel X produzca la frase, ese alumno ya conoce el lema; en cambio un idiom de C2 no acredita el lema suelto.
+
+Alcance:
+
+1. **Cubre tanto las frases multipalabra como las entradas de una sola palabra con categoria EVP "phrase"/"phrasal verb"** (por ejemplo "let's"). Estas ultimas estaban excluidas de la traduccion de categoria de R041 a la espera de esta decision (Doubt[DOUBT-PHRASE-MONOPALABRA]); R042 las gobierna ahora de forma uniforme como frases-que-solo-bajan.
+2. **La rebaja aplica en los dos pasos del emparejamiento de R036**: al match exacto por par lema+categoria **y** al fallback por lema. Si aplicara solo al fallback, el par exacto poblado por entradas de palabra (por ejemplo (live, verbo)=B1) seguiria ganando por precedencia y la correccion no operaria.
+3. **La rebaja nunca inventa un nivel**: solo reduce el nivel que ya resuelven las entradas de palabra (contenido) del lema. Si el lema no tiene ninguna entrada de palabra alcanzable, permanece fuera de catalogo (R034); una frase por si sola no lo coloca en catalogo. Asi se preserva el "nunca inflar" incluso para un hipotetico lema que solo existiera como frase.
+
+Consecuencias observables (evidencia: audit 2026-07-21T20-52-49):
+
+| Lema | Entradas de palabra | Entrada de frase que rebaja | Nivel resuelto | Ocurrencias corregidas |
+|------|---------------------|-----------------------------|----------------|------------------------|
+| live | verbo/adjetivo B1 | "live in/at, etc." A1 | A1 (antes B1) | 69 (el par mas frecuente del audit) |
+| last | adjetivo A2 | "last week/year/Monday, etc." A1, "last night" A1 | A1 (antes A2) | 37 |
+| next | adjetivo A2 (residuo de iter 1) | "next week/year/Monday, etc." A1 | A1 (antes A2) | 17 |
+| sleep | verbo A1 | "sleep on it" C2 (mayor: no baja) | A1 (sin cambio) | -- (caso de R005 intacto) |
+| let | verbo B1 | "let's"/"let sb know" A2 ("let alone" C1 no sube) | A2 (sin cambio) | -- (reproduce el comportamiento actual) |
+
+El caso "let" cierra Doubt[DOUBT-PHRASE-MONOPALABRA]: tratada "let's" (A2) uniformemente como frase-que-solo-baja, "let" queda en min(B1, A2)=A2, exactamente el comportamiento actual.
+
+**Error**: N/A (esta regla describe un criterio de resolucion de nivel del catalogo)
+
+### Rule[F-LABS-R043] - Las categorias gramaticales no de contenido rebajan el nivel del lema
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+La evaluacion de mal-ubicacion solo alcanza tokens que son **palabras de contenido** (NOUN, VERB, ADJ, ADV); las palabras funcionales estan excluidas de la evaluacion (R001, R035). En consecuencia, las entradas del catalogo cuya categoria declarada por EVP **no es de contenido** — preposicion (ADP), pronombre (PRON), determinante (DET), conjuncion (CCONJ), exclamacion (INTJ), numero (NUM) y verbo modal (AUX), segun la traduccion de R041 — **nunca pueden ser emparejadas por el match exacto de un token de contenido**: son inalcanzables. Sin embargo, para ciertas palabras el EVP describe con una categoria no-de-contenido **el mismo uso** que el tokenizador etiqueta como palabra de contenido de nivel mas alto.
+
+Estas entradas no-de-contenido participan de la consulta de nivel del lema **unicamente para bajarlo** (se toma el minimo), nunca para subirlo. Es la misma asimetria de R042 y con la misma garantia de seguridad: como ningun token de contenido podria haberlas emparejado por el par exacto, permitir que rebajen **solo puede eliminar falsos positivos**, jamas crear falsos negativos.
+
+Consecuencias observables (evidencia: audit 2026-07-21T20-52-49):
+
+1. "much" responde **A1** (la fila determiner A1 rebaja la fila adverbio B1). El token "much" etiquetado ADV en "how much...?" deja de marcarse B1. **27 ocurrencias corregidas.**
+2. **No afecta** a "snow" (sustantivo A1 / verbo A2, ambas categorias de contenido y sin entrada no-de-contenido): sigue flaggeando el verbo A2 en oraciones A1. Tampoco afecta a "early" ni "late" (adjetivo/adverbio, sin entrada no-de-contenido): siguen flaggeando.
+3. 30 lemas del catalogo tienen una entrada no-de-contenido de nivel inferior a su minimo de contenido; la mayoria son palabras funcionales ya excluidas de la evaluacion, de modo que el efecto observable se concentra en los pocos lemas con uso de contenido (much, inside, opposite, past, welcome, please, entre otros).
+
+**Error**: N/A (esta regla describe un criterio de resolucion de nivel del catalogo)
+
+### Rule[F-LABS-R044] - Puente sustantivo-adverbio para expresiones temporales y locativas
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+Para ciertos lemas el EVP y el tokenizador clasifican **el mismo uso** con etiquetas de contenido distintas: el EVP lo lista como adverbio y el tokenizador lo etiqueta NOUN (o viceversa), y como ambas categorias son de contenido, el match exacto responde el nivel de la categoria equivocada. Es tipico de expresiones **temporales y locativas** (tonight, home, today): "See you tonight" se etiqueta NOUN y matchea la fila sustantivo, cuando el uso es el que el EVP llama adverbio.
+
+Se corrige con un **puente acotado sustantivo-adverbio**: cuando un lema tiene entradas de sustantivo **y** de adverbio, la consulta de nivel bajo **cualquiera** de las dos responde el **minimo** de ambas. El puente se limita al par NOUN-ADV: **no** puentea NOUN-VERB (protege "snow") ni ADJ-ADV (protege "early" y "late").
+
+El alcance acotado a NOUN-ADV fue confirmado por el usuario (Doubt[DOUBT-NOUN-ADV-BRIDGE], resuelta). Analisis del catalogo enriquecido (2026-07-21): solo **11 lemas** tienen entradas de sustantivo y adverbio a niveles distintos (round, flat, worse, top, inside, tonight, second, home, half, fine, back). Los enmascaramientos colaterales recaen en sentidos avanzados y raros (round C2, worse C1, el sentido C1 de "home", second C2) de palabras que son basicas en su otra categoria — aceptable bajo el principio de beneficio de la duda que ya gobierna la feature (R036, R039). Ninguno de los positivos verdaderos protegidos (snow, early, late) es del par NOUN-ADV.
+
+Consecuencias observables (evidencia: audit 2026-07-21T20-52-49):
+
+1. "tonight" responde **A1** (adverbio A1 y sustantivo A2 -> min A1). "See you tonight" etiquetado NOUN deja de marcarse A2. **34 ocurrencias corregidas.**
+2. "home" responde **A1** (sustantivo A1 y adverbio A2 -> min A1). **16 ocurrencias corregidas.**
+3. snow, early y late no se ven afectados (no son del par NOUN-ADV): siguen flaggeando.
+
+**Error**: N/A (esta regla describe un criterio de resolucion de nivel del catalogo)
 
 ### Rule[F-LABS-R039] - Presencia de lemas bajo cualquier categoria gramatical
 **Severity**: critical | **Validation**: AUTO_VALIDATED
@@ -363,7 +424,7 @@ Ejemplo: una oracion del nivel A1 que contiene el lema "invest" (esperado en B2)
 
 Los lemas cuyo nivel esperado es **igual o inferior** al de la oracion no se consideran mal ubicados. Una palabra de A1 que aparece en B2 es vocabulario basico reutilizado, no un error de contenido. La accion correctiva para esos lemas (si estan ausentes en su nivel esperado) se maneja a nivel de Level mediante los tipos de ausencia TOO_LATE y COMPLETELY_ABSENT (R006).
 
-La evaluacion cubre **todos los niveles del catalogo de vocabulario**, incluidos los superiores al rango del curso (C1 y C2, ver R033). Las palabras de contenido que no figuran en el catalogo se evaluan mediante la heuristica de frecuencia (R034); los nombres propios y tokens no lexicos se excluyen (R035). El emparejamiento entre token y entrada de catalogo usa el fallback por lema definido en R036, con la categoria gramatical de cada entrada tomada de la fuente EVP (R041) y las formas derivadas y compuestas excluidas de las consultas de nivel (R040).
+La evaluacion cubre **todos los niveles del catalogo de vocabulario**, incluidos los superiores al rango del curso (C1 y C2, ver R033). Las palabras de contenido que no figuran en el catalogo se evaluan mediante la heuristica de frecuencia (R034); los nombres propios y tokens no lexicos se excluyen (R035). El emparejamiento entre token y entrada de catalogo usa el fallback por lema definido en R036, con la categoria gramatical de cada entrada tomada de la fuente EVP (R041) y las formas derivadas y compuestas excluidas de las consultas de nivel (R040). Sobre el nivel asi resuelto operan ademas las rebajas asimetricas del catalogo: las entradas de frase (R042) y las de categorias no de contenido (R043) solo pueden bajar el nivel del lema, y el puente sustantivo-adverbio (R044) responde el minimo entre ambas categorias.
 
 **Error**: N/A (esta regla describe un mecanismo de deteccion)
 
@@ -482,6 +543,8 @@ Para la evaluacion de mal-ubicacion por oracion (Grupo D), el emparejamiento ent
 
 1. **Match exacto** por el par lema + categoria gramatical (LemmaAndPos), como hasta ahora. La categoria gramatical de cada entrada del catalogo es la declarada por la fuente EVP (R041), y las entradas de formas derivadas y compuestas cuya palabra encabezado difiere del lema no participan (R040).
 2. **Fallback por lema**: si no existe entrada para ese par pero el catalogo contiene el lema bajo otras categorias gramaticales, se usa la entrada de **menor nivel esperado** entre las disponibles (beneficio de la duda: nunca se penaliza mas por culpa del fallback). El fallback recorre las mismas entradas admisibles del match exacto: excluye frases (R005) y formas derivadas y compuestas (R040).
+
+Sobre el nivel resuelto por cualquiera de los dos pasos anteriores se aplica ademas la **rebaja asimetrica** de las entradas inalcanzables del lema, que solo puede bajar el nivel y nunca subirlo: las entradas de frase (R042) y las de categorias no de contenido (R043). La rebaja opera en **ambos** pasos — de lo contrario un par exacto poblado por entradas de palabra (por ejemplo (live, verbo)=B1) ganaria por precedencia y la rebaja de la frase A1 no operaria. Adicionalmente, para los lemas con entradas de sustantivo y adverbio rige el puente NOUN-ADV de R044 (minimo entre ambas categorias).
 
 Motiva esta regla que el catalogo enriquecido trae categorias gramaticales poco confiables (caso confirmado: "hail" usado como verbo figura en el catalogo solo como sustantivo), lo que con match exacto produce falsos negativos incluso dentro de A1-B2. Solo cuando el lema no existe en el catalogo bajo ninguna categoria se considera fuera de catalogo y pasa a las bandas de frecuencia de R034.
 
@@ -1139,17 +1202,30 @@ R035 excluye los tokens etiquetados como nombre propio por el procesamiento ling
 **Answer**: Resuelto por el usuario el 2026-07-16: Opcion A. R035 queda como esta.
 
 ### Doubt[DOUBT-PHRASE-MONOPALABRA] - Tratamiento de las entradas monopalabra con categoria "phrase"
-**Status**: OPEN
+**Status**: RESOLVED
 
-R041 traduce la categoria declarada por EVP al conjunto de etiquetas universales, pero excluye de esa traduccion las categorias "phrase" y "phrasal verb". Las entradas multipalabra con esas categorias ya se filtran por la exclusion de frases de R005. Sin embargo, existen entradas de **una sola palabra** con categoria "phrase" (por ejemplo "let's") que no son alcanzadas por R005 y que hoy resuelven su categoria por la via calculada automaticamente.
+R041 traduce la categoria declarada por EVP al conjunto de etiquetas universales, pero excluye de esa traduccion las categorias "phrase" y "phrasal verb". Las entradas multipalabra con esas categorias ya se filtran por la exclusion de frases de R005. Sin embargo, existen entradas de **una sola palabra** con categoria "phrase" (por ejemplo "let's") que no son alcanzadas por R005 y que en la iteracion 1 resolvian su categoria por la via calculada automaticamente.
 
 **Pregunta**: Como deberian tratarse las entradas monopalabra con categoria "phrase" en las consultas de nivel?
 
-- [x] Opcion A: Mantener el comportamiento actual (resuelven por la categoria calculada automaticamente) — decision de esta ronda, a revisar en una iteracion futura
-- [ ] Opcion B: Excluirlas de las consultas de nivel igual que las frases multipalabra (R005)
+- [ ] Opcion A: Mantener el comportamiento de iteracion 1 (resuelven por la categoria calculada automaticamente)
+- [x] Opcion B: Tratarlas como frases, ahora bajo la rebaja asimetrica de R042 (solo pueden bajar el nivel del lema, nunca subirlo)
 - [ ] Opcion C: Traducir la categoria "phrase" monopalabra a una etiqueta universal especifica caso por caso
 
-**Answer**: Diferido por decision del usuario. En esta ronda se mantiene el comportamiento actual (Opcion A); estas entradas quedan explicitamente fuera del alcance de R041 y su tratamiento definitivo se decidira mas adelante.
+**Answer**: Resuelta en la iteracion 2. R042 gobierna de forma uniforme todas las entradas de frase, multipalabra o de una sola palabra: solo pueden **bajar** el nivel del lema. Para "let's" (categoria "phrase", A2) esto rebaja el lema "let" de su entrada de palabra (verbo B1) a min(B1, A2) = **A2**, que reproduce exactamente el comportamiento observado en iteracion 1. La resolucion es preferible a la via calculada automatica porque, siendo solo-baja, no puede inflar el nivel de un lema por una entrada monopalabra de nivel alto.
+
+### Doubt[DOUBT-NOUN-ADV-BRIDGE] - Puente sustantivo-adverbio para la clase 2 de falsos positivos
+**Status**: RESOLVED
+
+Tras R041 las entradas del catalogo quedan bajo su categoria EVP declarada, pero los tokens de las oraciones traen la categoria contextual del tokenizador. Para ciertas palabras **temporales y locativas** ambos sistemas clasifican el mismo uso con etiquetas de contenido distintas: "tonight" es adverbio A1 para el EVP y sustantivo A2, pero el tokenizador etiqueta "See you tonight" como NOUN y matchea la fila A2 (34 ocurrencias A1->A2); "home" es sustantivo A1 / adverbio A2 y el tokenizador oscila (16 ocurrencias A1->A2). La restriccion dura es no re-enmascarar los positivos verdaderos que la iteracion 1 destapo (snow verbo A2, early adjetivo A2, late adverbio A2), donde los dos sistemas distinguen genuinamente dos usos a dos niveles.
+
+**Pregunta**: Como se resuelve la clase 2 de expresiones temporales/locativas (tonight, home)?
+
+- [x] Opcion A: Puente acotado NOUN-ADV (R044): cuando el lema tiene entradas de sustantivo y adverbio, la consulta bajo cualquiera responde el minimo. Corrige tonight (34) y home (16). Analisis del catalogo: solo 11 lemas tienen niveles distintos entre sustantivo y adverbio; los enmascaramientos colaterales son sentidos avanzados raros (round C2, worse C1, home C1, second C2), aceptable bajo el beneficio de la duda. No toca snow (NOUN-VERB) ni early/late (ADJ-ADV). Propuesta del requerimiento.
+- [ ] Opcion B: No resolver la clase 2 de tonight/home en esta iteracion (aceptar ~50 ocurrencias de ruido); aplicar solo R042 (clase 1) y R043 (much).
+- [ ] Opcion C: Puente restringido a una lista blanca manual de lemas temporales/locativos (tonight, home, today, tomorrow), evitando enmascarar los sustantivos avanzados. Descartada en principio: la feature evita listas blancas manuales (ver resolucion de Doubt[DOUBT-NOMBRES-PROPIOS]).
+
+**Answer**: Resuelto por el usuario el 2026-07-21: Opcion A. Se adopta el puente acotado NOUN-ADV (R044), que queda como regla firme del Grupo A. La clase 1 (R042) y la clase 2a de "much" (R043) son independientes de esta decision.
 
 ---
 

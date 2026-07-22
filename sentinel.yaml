@@ -8276,6 +8276,51 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R041
+      - name: should lower the exact lookupLevel level when a lower level phrase entry
+          exists for the same lemma
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R042
+      - name: should lower the lookupLevelByLemma level when a lower level phrase
+          entry exists for the same lemma
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R042
+      - name: should lower the lemma level for a single word entry whose EVP category
+          is phrase
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R042
+      - name: should never invent a level from a phrase entry when the lemma has no
+          reachable word entry
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R042
+      - name: should lower a content pos lookupLevel when a lower level non-content
+          pos entry exists for the lemma
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R043
+      - name: should not lower a content pos lookupLevel when the lemma has no non-content
+          pos entry
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R043
+      - name: should bridge noun and adverb entries and resolve the minimum level
+          for a noun lookupLevel
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R044
+      - name: should bridge noun and adverb entries and resolve the minimum level
+          for an adverb lookupLevel
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R044
+      - name: should not bridge adjective and adverb entries when resolving an adverb
+          lookupLevel
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R044
       implements:
       - EvpCatalogPort
   - name: coca
