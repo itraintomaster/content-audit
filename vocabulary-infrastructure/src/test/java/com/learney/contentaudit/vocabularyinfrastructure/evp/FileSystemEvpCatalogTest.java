@@ -483,4 +483,45 @@ public class FileSystemEvpCatalogTest {
         assertEquals(Optional.of(CefrLevel.A2), catalog.lookupLevel(new LemmaAndPos("late", "ADV")),
                 "R044: el par ADJ-ADV no debe puentearse; el match exacto del adverbio permanece en A2");
     }
+
+    @Test
+    @DisplayName("should resolve the lemma level from a regular plural variant entry differing from the lemma only by the plural suffix")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R040")
+    public void shouldResolveTheLemmaLevelFromARegularPluralVariantEntryDifferingFromTheLemmaOnlyByThePluralSuffix(
+            ) throws IOException {
+        // R040 (refinada): "clothes" es un plural lexicalizado del lema "clothe" -- su
+        // palabra encabezado difiere del lema unicamente por el sufijo de plural regular
+        // "-s". Esa diferencia es puramente flexiva, no una forma derivada/compuesta, asi
+        // que la entrada SI debe fijar el nivel del lema tanto en el match exacto como en
+        // el fallback por lema.
+        Path catalogPath = writeCatalog(
+                entry("clothes", "clothe", "A1", "noun", "NOUN", 1100));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.of(CefrLevel.A1), catalog.lookupLevel(new LemmaAndPos("clothe", "NOUN")),
+                "R040: la variante flexiva de plural regular (clothes->clothe) debe fijar el nivel del match exacto");
+        assertEquals(Optional.of(CefrLevel.A1), catalog.lookupLevelByLemma("clothe"),
+                "R040: la variante flexiva de plural regular tambien debe fijar el nivel en el fallback por lema");
+    }
+
+    @Test
+    @DisplayName("should resolve the lemma level from an acronym variant entry differing from the lemma only by letter case")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R040")
+    public void shouldResolveTheLemmaLevelFromAnAcronymVariantEntryDifferingFromTheLemmaOnlyByLetterCase(
+            ) throws IOException {
+        // R040 (refinada): "DVD" es una sigla cuyo lema del tokenizador quedo en minusculas
+        // ("dvd"). Comparada sin distincion de mayusculas/minusculas, la palabra encabezado
+        // es igual al lema -- diferencia puramente de caja, no una forma derivada/compuesta.
+        // La entrada SI debe fijar el nivel del lema en el match exacto.
+        Path catalogPath = writeCatalog(
+                entry("DVD", "dvd", "A1", "noun", "NOUN", 3500));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.of(CefrLevel.A1), catalog.lookupLevel(new LemmaAndPos("dvd", "NOUN")),
+                "R040: la variante de caja (DVD->dvd) debe fijar el nivel del match exacto, sin distincion de mayusculas/minusculas");
+    }
 }

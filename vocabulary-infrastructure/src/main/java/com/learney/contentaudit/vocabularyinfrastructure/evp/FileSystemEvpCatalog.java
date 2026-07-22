@@ -107,18 +107,25 @@ public class FileSystemEvpCatalog implements EvpCatalogPort {
                     phrases.add(word);
                 }
 
-                // F-LABS-R040: formas derivadas/compuestas cuya palabra encabezado difiere
-                // literalmente del lema (por ejemplo "next-door" para el lema "next") no
-                // fijan el nivel del lema base. No contienen espacios, por lo que la
-                // exclusion de frases no las alcanza; se excluyen aqui con su propio criterio
-                // (mutuamente excluyente con phrasal por construccion).
+                // F-LABS-R040 (refinada): formas derivadas/compuestas cuya palabra encabezado
+                // es una PALABRA NUEVA construida a partir del lema (por ejemplo "next-door"
+                // para el lema "next") no fijan el nivel del lema base. No contienen espacios,
+                // por lo que la exclusion de frases no las alcanza; se excluyen aqui con su
+                // propio criterio (mutuamente excluyente con phrasal por construccion).
+                // Las meras variantes flexivas u ortograficas del mismo vocablo -- plurales
+                // lexicalizados ("clothes"->clothe) o siglas/palabras con distinta caja
+                // ("DVD"->dvd, "FALSE"->false) -- NO son formas derivadas y SI deben fijar el
+                // nivel del lema: se comparan sin distincion de mayusculas/minusculas, y se
+                // tolera que la palabra encabezado difiera del lema unicamente por el sufijo
+                // de plural regular "-s"/"-es" (la palabra es lema+sufijo, nunca al reves).
                 // Las entradas monopalabra cuya categoria EVP es "phrase"/"phrasal verb"
                 // (por ejemplo "let's") quedan fuera de este criterio: su tratamiento esta
                 // explicitamente diferido (Doubt[DOUBT-PHRASE-MONOPALABRA], F-LABS-R041) y
                 // no son formas derivadas/compuestas en el sentido de R040.
                 boolean evpPhraseCategory = evpPos != null
                         && (evpPos.equalsIgnoreCase("phrase") || evpPos.equalsIgnoreCase("phrasal verb"));
-                boolean derivedForm = !phrasal && !evpPhraseCategory && word != null && !word.equals(lemma);
+                boolean derivedForm = !phrasal && !evpPhraseCategory && word != null
+                        && !isInflectionalVariant(word, lemma);
 
                 if (!derivedForm) {
                     expectedByLevel.get(level).add(lp);
@@ -226,6 +233,22 @@ public class FileSystemEvpCatalog implements EvpCatalogPort {
      */
     private static boolean isNonContentPos(String posTag) {
         return NON_CONTENT_POS.contains(posTag);
+    }
+
+    /**
+     * F-LABS-R040 (refinada): indica si la palabra encabezado del catalogo es una mera
+     * variante flexiva u ortografica del lema -- el mismo vocablo, no una forma
+     * derivada/compuesta -- y por lo tanto SI debe fijar el nivel del lema. La comparacion
+     * ignora mayusculas/minusculas y tolera que la palabra difiera del lema unicamente por
+     * el sufijo de plural regular "-s" o "-es" (plural lexicalizado): la palabra es
+     * lema+sufijo, nunca al reves.
+     */
+    private static boolean isInflectionalVariant(String word, String lemma) {
+        String wordLower = word.toLowerCase(Locale.ROOT);
+        String lemmaLower = lemma.toLowerCase(Locale.ROOT);
+        return wordLower.equals(lemmaLower)
+                || wordLower.equals(lemmaLower + "s")
+                || wordLower.equals(lemmaLower + "es");
     }
 
     private static String textOrNull(JsonNode node, String field) {

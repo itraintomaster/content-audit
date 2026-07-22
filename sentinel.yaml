@@ -8321,6 +8321,16 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R044
+      - name: should resolve the lemma level from a regular plural variant entry differing
+          from the lemma only by the plural suffix
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R040
+      - name: should resolve the lemma level from an acronym variant entry differing
+          from the lemma only by letter case
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R040
       implements:
       - EvpCatalogPort
   - name: coca
