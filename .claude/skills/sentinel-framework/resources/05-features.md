@@ -388,6 +388,7 @@ enabling JUnit 5 tag-based filtering (e.g., run only tests for `FEAT-001`).
 | F-LABS-R034 | Palabras de contenido fuera de catalogo: bandas de frecuencia por nivel | critical | - |
 | F-LABS-R035 | Exclusion de nombres propios y tokens no lexicos | critical | - |
 | F-LABS-R036 | Emparejamiento con fallback por lema (relajacion de la categoria gramatical) | critical | - |
+| F-LABS-R045 | Repliegue del emparejamiento por lema normalizado a minusculas | major | - |
 | F-LABS-R037 | Los niveles C1/C2 no participan de la cobertura de ausencias | critical | - |
 | F-LABS-R038 | Detalle observable de los lemas penalizados por oracion | major | - |
 | F-LABS-R021 | Umbrales de tolerancia por nivel CEFR | critical | Configuracion de umbrales invalida para el nivel {nivel}: los valores deben ser no negativos |
@@ -609,6 +610,8 @@ Este requerimiento hace dos cosas: (1) re-rutea las tareas LEMMA_ABSENCE para qu
 | F-RCLA-R004c | Contexto sin lemas sugeridos | major | - |
 | F-RCLA-R003b | Palabras de contenido escasas de la oracion actual | major | - |
 | F-RCLA-R003c | Contexto sin palabras escasas | major | - |
+| F-RCLA-R003d | Estructura de cada palabra fuera de catalogo | critical | - |
+| F-RCLA-R003e | Contexto sin palabras fuera de catalogo | major | - |
 | F-RCLA-R005 | Resolucion del nodo quiz desde una tarea de refinamiento | critical | No se pudo cargar el reporte de auditoria '{sourceAuditId}' necesario para construir el contexto de correccion |
 | F-RCLA-R006 | Contexto cuando el diagnostico de placement no esta disponible | major | No se pudo obtener el diagnostico de placement de lemas para el quiz '{nodeId}' |
 | F-RCLA-R007 | El comando que muestra una tarea individual incluye el contexto de correccion para tareas LEMMA_ABSENCE | critical | - |

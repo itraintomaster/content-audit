@@ -1,4 +1,4 @@
-generatedAt: 2026-07-22T02:51:05.638638Z
+generatedAt: 2026-07-22T05:05:52.338225Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -5121,7 +5121,7 @@ features:
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
   - ruleId: F-LABS-R040
-    state: FAILING
+    state: PASSING
     tests:
     - name: should return empty from exact lookupLevel when the only entry for the
         pair is a derived form whose headword differs from the lemma
@@ -5144,13 +5144,13 @@ features:
     - name: should resolve the lemma level from a regular plural variant entry differing
         from the lemma only by the plural suffix
       implemented: true
-      passing: false
+      passing: true
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
     - name: should resolve the lemma level from an acronym variant entry differing
         from the lemma only by letter case
       implemented: true
-      passing: false
+      passing: true
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
   - ruleId: F-LABS-R041
@@ -5769,6 +5769,27 @@ features:
       passing: true
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
+  - ruleId: F-LABS-R045
+    state: FAILING
+    tests:
+    - name: should resolve a capitalized token lemma via lowercase normalization and
+        not penalize the sentence as out of catalog
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should keep the word out of catalog when neither the literal nor the lowercase
+        lemma has a catalog entry
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
+    - name: should match the literal lemma without normalization when the literal
+        form already has a catalog entry
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: LemmaByLevelAbsenceAnalyzer
   - ruleId: F-LABS-R037
     state: PASSING
     tests:
@@ -11855,6 +11876,36 @@ features:
       passing: true
       module: refiner-domain
       implementation: LemmaAbsenceContextResolver
+  - ruleId: F-RCLA-R003d
+    state: FAILING
+    tests:
+    - name: should print each out-of-catalog word as lemma pos rank and discount in
+        text output and show rank n/d when the frequency rank is unknown
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: GetCmd
+    - name: should serialize each outOfCatalogWords entry with lemma pos frequencyRank
+        and discount emitting frequencyRank as null when the word has no known rank
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultCorrectionContextJsonMapper
+  - ruleId: F-RCLA-R003e
+    state: FAILING
+    tests:
+    - name: should print the out-of-catalog words section with none when the correction
+        context has no out-of-catalog words in text output
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: GetCmd
+    - name: should always emit outOfCatalogWords in the JSON map as an empty list
+        when the correction context has no out-of-catalog words
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultCorrectionContextJsonMapper
   - ruleId: F-RCLA-R005
     state: PASSING
     tests:
@@ -12005,18 +12056,18 @@ features:
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: PASSING
+      state: DECLARED
       tests:
-      - name: path1_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_elLemmaPlacementDiagnosisExisteYTieneAlMenosUnMisplacedLemma_hayLemasAusentesDeTipoCOMPLETELYABSENTOAPPEARSTOOLATEDisponibles_success
-        implemented: true
-        passing: true
+      - name: path1_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_elLemmaPlacementDiagnosisExisteConAlMenosUnLemaMalUbicadoOUnaPalabraFueraDeCatalogoQueSealeElProblema_hayLemasAusentesDeTipoCOMPLETELYABSENTOAPPEARSTOOLATEDisponibles_success
+        implemented: false
+        passing: false
         module: audit-cli
         implementation: FRclaJ001JourneyTest
     - pathId: path-2
       result: success
       state: DECLARED
       tests:
-      - name: path2_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_elLemmaPlacementDiagnosisExisteYTieneAlMenosUnMisplacedLemma_hayLemasAusentesDeTipoCOMPLETELYABSENTOAPPEARSTOOLATEDisponibles_success
+      - name: path2_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_elLemmaPlacementDiagnosisExisteConAlMenosUnLemaMalUbicadoOUnaPalabraFueraDeCatalogoQueSealeElProblema_hayLemasAusentesDeTipoCOMPLETELYABSENTOAPPEARSTOOLATEDisponibles_success
         implemented: false
         passing: false
         module: audit-cli
@@ -12025,7 +12076,7 @@ features:
       result: success
       state: DECLARED
       tests:
-      - name: path3_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_elLemmaPlacementDiagnosisExisteYTieneAlMenosUnMisplacedLemma_noHayLemasSugeridosDisponibles_success
+      - name: path3_elReporteDeAuditoriaExisteYElNodoQuizSeLocalizaCorrectamente_elLemmaPlacementDiagnosisExisteConAlMenosUnLemaMalUbicadoOUnaPalabraFueraDeCatalogoQueSealeElProblema_noHayLemasSugeridosDisponibles_success
         implemented: false
         passing: false
         module: audit-cli
@@ -12062,6 +12113,7 @@ features:
         implementation: FRclaJ002JourneyTest
   quality:
     classes:
+    - com.learney.contentaudit.auditcli.commands.DefaultCorrectionContextJsonMapper
     - com.learney.contentaudit.auditcli.commands.GetCmd
     - com.learney.contentaudit.refinerdomain.DefaultRefinerEngine
     - com.learney.contentaudit.refinerdomain.DispatchingCorrectionContextResolver
@@ -12074,14 +12126,14 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 376
-      linesMissed: 969
-      linesTotal: 1345
-      lineCoveragePct: 27
+      linesMissed: 1074
+      linesTotal: 1450
+      lineCoveragePct: 25
       branchesCovered: 197
-      branchesMissed: 645
-      branchesTotal: 842
-      branchCoveragePct: 23
-      blendPct: 25
+      branchesMissed: 683
+      branchesTotal: 880
+      branchCoveragePct: 22
+      blendPct: 23
     mutation:
       totalMutants: 242
       killed: 112
@@ -12092,14 +12144,14 @@ features:
       mutationScorePct: 46
       testStrengthPct: 63
     crap:
-      totalMethods: 109
-      hotspots: 25
+      totalMethods: 119
+      hotspots: 26
       maxCrap: 870.0
-      averageCrap: 43.30356987155963
-      simple: 63
-      moderate: 20
+      averageCrap: 41.17721946218487
+      simple: 68
+      moderate: 24
       high: 8
-      veryHigh: 18
+      veryHigh: 19
       healthPct: 67
       top:
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
@@ -12158,6 +12210,13 @@ features:
         cyclomatic: 11
         lineCoveragePct: 0
         crap: 132.0
+      - className: com.learney.contentaudit.auditcli.commands.DefaultCorrectionContextJsonMapper
+        methodName: buildLemmaAbsenceContextMap
+        methodDesc: (Lcom/learney/contentaudit/refinerdomain/LemmaAbsenceCorrectionContext;)Ljava/util/Map;
+        line: 79
+        cyclomatic: 10
+        lineCoveragePct: 0
+        crap: 110.0
       - className: com.learney.contentaudit.auditcli.commands.GetCmd
         methodName: get
         methodDesc: (Ljava/lang/String;Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)Ljava/lang/Integer;
@@ -12165,20 +12224,13 @@ features:
         cyclomatic: 9
         lineCoveragePct: 0
         crap: 90.0
-      - className: com.learney.contentaudit.auditcli.commands.GetCmd
-        methodName: handleProposalList
-        methodDesc: (Lcom/learney/contentaudit/auditcli/GetTasksFilter;Ljava/lang/String;)I
-        line: 938
-        cyclomatic: 9
-        lineCoveragePct: 0
-        crap: 90.0
-    healthScore: 45
+    healthScore: 44
     verdict: WARNED
     violations:
-    - lineCoverage 27% < 70%
-    - branchCoverage 23% < 60%
+    - lineCoverage 25% < 70%
+    - branchCoverage 22% < 60%
     - mutationScore 46% < 60%
-    - crapHotspots 25 > 5
+    - crapHotspots 26 > 5
 - id: FEAT-RCSL
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
@@ -17078,6 +17130,18 @@ elements:
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     - name: should evaluate two letter fully alphabetic token as lexical candidate
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
+    - name: should resolve a capitalized token lemma via lowercase normalization and
+        not penalize the sentence as out of catalog
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
+    - name: should keep the word out of catalog when neither the literal nor the lowercase
+        lemma has a catalog entry
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
+    - name: should match the literal lemma without normalization when the literal
+        form already has a catalog entry
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/LemmaByLevelAbsenceAnalyzerTest.java
     testCleanViews:
@@ -30958,6 +31022,14 @@ elements:
         when there are no scarce words for LEMMA_ABSENCE task
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should print each out-of-catalog word as lemma pos rank and discount in
+        text output and show rank n/d when the frequency rank is unknown
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: should print the out-of-catalog words section with none when the correction
+        context has no out-of-catalog words in text output
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
     testCleanViews:
     - |
       test: "should list all stored audits when invoked as 'get audits' without a name"
@@ -34613,6 +34685,14 @@ elements:
         knowledge phrase mode
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DefaultCorrectionContextJsonMapperTest.java
+    - name: should serialize each outOfCatalogWords entry with lemma pos frequencyRank
+        and discount emitting frequencyRank as null when the word has no known rank
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DefaultCorrectionContextJsonMapperTest.java
+    - name: should always emit outOfCatalogWords in the JSON map as an empty list
+        when the correction context has no out-of-catalog words
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DefaultCorrectionContextJsonMapperTest.java
     testCleanViews:
     - |
       test: "should include the sentenceMode in the serialized payload when a LEMMA_ABSENCE correction context carries REWRITE so the override round-trip preserves the knowledge phrase mode"
@@ -36784,6 +36864,27 @@ elements:
 
       then:
         catalog.lookupLevel(new LemmaAndPos("late", "ADV")) == Optional.of(CefrLevel.A2)
+    - |
+      test: "should resolve the lemma level from a regular plural variant entry differing from the lemma only by the plural suffix"
+      trace: FEAT-LABS / F-LABS-R040
+
+      given:
+        catalogPath = writeCatalog(entry("clothes", "clothe", "A1", "noun", "NOUN", 1100))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevel(new LemmaAndPos("clothe", "NOUN")) == Optional.of(CefrLevel.A1)
+        catalog.lookupLevelByLemma("clothe") == Optional.of(CefrLevel.A1)
+    - |
+      test: "should resolve the lemma level from an acronym variant entry differing from the lemma only by letter case"
+      trace: FEAT-LABS / F-LABS-R040
+
+      given:
+        catalogPath = writeCatalog(entry("DVD", "dvd", "A1", "noun", "NOUN", 3500))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevel(new LemmaAndPos("dvd", "NOUN")) == Optional.of(CefrLevel.A1)
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -44283,8 +44384,8 @@ elements:
     - branchCoverage 0% < 60%
     - crapHotspots 17 > 5
 testSummary:
-  total: 1053
-  passing: 1039
+  total: 1060
+  passing: 1046
   failing: 0
   notImplemented: 14
 qualitySummary:
