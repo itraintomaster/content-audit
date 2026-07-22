@@ -5,6 +5,7 @@ import com.learney.contentaudit.refinerdomain.KnowledgeTitleCorrectionContext;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
 import com.learney.contentaudit.refinerdomain.LengthDirection;
 import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
+import com.learney.contentaudit.refinerdomain.OutOfCatalogWordContext;
 import com.learney.contentaudit.refinerdomain.ScarceContentWord;
 import com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext;
 import com.learney.contentaudit.refinerdomain.SuggestedLemma;
@@ -145,6 +146,18 @@ class DefaultCorrectionContextJsonMapper implements CorrectionContextJsonMapper 
                     wm.put("pos", w.getPos());
                     wm.put("count", w.getCount());
                     wm.put("threshold", w.getThreshold());
+                    return wm;
+                })
+                .collect(Collectors.toList()));
+        // F-RCLA-R003d / R003e: outOfCatalogWords — always present; [] when empty
+        List<OutOfCatalogWordContext> outOfCatalog = ctx.getOutOfCatalogWords();
+        map.put("outOfCatalogWords", outOfCatalog == null ? List.of() : outOfCatalog.stream()
+                .map(w -> {
+                    Map<String, Object> wm = new LinkedHashMap<>();
+                    wm.put("lemma", w.getLemma());
+                    wm.put("pos", w.getObservedPos());
+                    wm.put("frequencyRank", w.getFrequencyRank());
+                    wm.put("discount", w.getDiscount());
                     return wm;
                 })
                 .collect(Collectors.toList()));

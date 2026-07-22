@@ -15,6 +15,7 @@ import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
 import com.learney.contentaudit.refinerdomain.LengthDirection;
 import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
+import com.learney.contentaudit.refinerdomain.OutOfCatalogWordContext;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
@@ -1724,10 +1725,10 @@ public class GetCmdTest {
                 "Escribe la forma afirmativa",
                 "Present Simple",
                 CefrLevel.A1,
-                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -1777,11 +1778,11 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(
-                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
-                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
+                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null),
+                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205, null)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -1834,7 +1835,7 @@ public class GetCmdTest {
 
         // Fixture from R008 example: negotiate=B2 in A1 quiz
         MisplacedLemmaContext negotiateLemma =
-                new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840);
+                new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null);
         LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
                 "task-la-001",
                 "She needs to negotiate the contract before Friday",
@@ -1846,7 +1847,7 @@ public class GetCmdTest {
                 List.of(negotiateLemma),
                 List.of(),
                 null, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -1909,12 +1910,12 @@ public class GetCmdTest {
                 "Escribe la forma afirmativa",
                 "Present Simple",
                 CefrLevel.A1,
-                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null)),
                 List.of(
                         new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null),
                         new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89, null, null, null)),
                 null, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2021,10 +2022,10 @@ public class GetCmdTest {
                 "Escribe la forma afirmativa",
                 "Present Simple",
                 CefrLevel.A1,
-                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null)),
                 List.of(),
                 null, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2088,11 +2089,11 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(
-                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
-                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
+                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null),
+                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205, null)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2149,11 +2150,11 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(
-                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
-                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
+                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null),
+                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205, null)),
                 List.of(),
                 null, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2213,12 +2214,12 @@ public class GetCmdTest {
                 "Escribe la forma afirmativa",
                 "Present Simple",
                 CefrLevel.A1,
-                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null)),
                 List.of(
                         new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null),
                         new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89, null, null, null)),
                 null, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2274,10 +2275,10 @@ public class GetCmdTest {
                 "Escribe la forma afirmativa",
                 "Present Simple",
                 CefrLevel.A1,
-                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null)),
                 List.of(),
                 null, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2736,10 +2737,10 @@ public class GetCmdTest {
                 "Escribe la forma afirmativa",
                 "Present Simple",
                 CefrLevel.A1,
-                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 dsl, null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -2798,10 +2799,10 @@ public class GetCmdTest {
                 "Usa el verbo to be.",
                 "Grammar",
                 CefrLevel.A1,
-                List.of(new MisplacedLemmaContext("great", "ADJ", CefrLevel.A2, CefrLevel.A1, 100)),
+                List.of(new MisplacedLemmaContext("great", "ADJ", CefrLevel.A2, CefrLevel.A1, 100, null)),
                 List.of(new SuggestedLemma("nice", "ADJ", "COMPLETELY_ABSENT", 75, null, null, null)),
                 "He ____ [is|'s] (to be) great.", null, null, null, null, null,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3082,12 +3083,12 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(
-                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
-                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
+                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null),
+                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205, null)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 10, 5, 8, 2, LengthDirection.SHORTEN,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3156,11 +3157,11 @@ public class GetCmdTest {
                 "Escribe la forma afirmativa",
                 "Present Simple",
                 CefrLevel.A1,
-                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 10, 5, 8, 2, LengthDirection.SHORTEN,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3222,11 +3223,11 @@ public class GetCmdTest {
                 "Escribe la forma afirmativa",
                 "Present Simple",
                 CefrLevel.A1,
-                List.of(new MisplacedLemmaContext("tennis", "NOUN", CefrLevel.B1, CefrLevel.A1, 3100)),
+                List.of(new MisplacedLemmaContext("tennis", "NOUN", CefrLevel.B1, CefrLevel.A1, 3100, null)),
                 List.of(new SuggestedLemma("play", "VERB", "APPEARS_TOO_LATE", 78, null, null, null)),
                 null,
                 6, 5, 8, 0, LengthDirection.KEEP_SAME,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3291,11 +3292,11 @@ public class GetCmdTest {
                 "Escribe la forma afirmativa",
                 "Present Simple",
                 CefrLevel.A1,
-                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 3, 5, 8, -2, LengthDirection.LENGTHEN,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3363,11 +3364,11 @@ public class GetCmdTest {
                 "Escribe la forma afirmativa",
                 "Present Simple",
                 CefrLevel.A1,
-                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 null, null, null, null, LengthDirection.UNKNOWN,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3428,12 +3429,12 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(
-                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
-                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
+                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null),
+                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205, null)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 10, 5, 8, 2, LengthDirection.SHORTEN,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3494,11 +3495,11 @@ public class GetCmdTest {
                 "Escribe la forma afirmativa",
                 "Present Simple",
                 CefrLevel.A1,
-                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 10, 5, 8, 2, LengthDirection.SHORTEN,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3560,11 +3561,11 @@ public class GetCmdTest {
                 "Escribe la forma afirmativa",
                 "Present Simple",
                 CefrLevel.A1,
-                List.of(new MisplacedLemmaContext("tennis", "NOUN", CefrLevel.B1, CefrLevel.A1, 3100)),
+                List.of(new MisplacedLemmaContext("tennis", "NOUN", CefrLevel.B1, CefrLevel.A1, 3100, null)),
                 List.of(new SuggestedLemma("play", "VERB", "APPEARS_TOO_LATE", 78, null, null, null)),
                 null,
                 6, 5, 8, 0, LengthDirection.KEEP_SAME,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3626,11 +3627,11 @@ public class GetCmdTest {
                 "Escribe la forma afirmativa",
                 "Present Simple",
                 CefrLevel.A1,
-                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 3, 5, 8, -2, LengthDirection.LENGTHEN,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3692,11 +3693,11 @@ public class GetCmdTest {
                 "Escribe la forma afirmativa",
                 "Present Simple",
                 CefrLevel.A1,
-                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null,
                 null, null, null, null, LengthDirection.UNKNOWN,
-                null, null, List.of(), "quiz-node-001", null
+                null, null, List.of(), "quiz-node-001", null, List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3864,15 +3865,16 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(
-                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
-                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
+                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null),
+                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205, null)),
                 List.of(
                         new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null),
                         new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89, null, null, null),
                         new SuggestedLemma("big", "ADJ", "COMPLETELY_ABSENT", 201, null, null, null)),
                 null, null, null, null, null, null,
                 null, null, List.of(), "quiz-node-001",
-                List.of() // scarceContentWords empty — no word below threshold (R003c)
+                List.of(), // scarceContentWords empty — no word below threshold (R003c)
+                List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -3914,13 +3916,14 @@ public class GetCmdTest {
                 "Escribe la forma afirmativa",
                 "Present Simple",
                 CefrLevel.A1,
-                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840)),
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null, null, null, null, null, null,
                 null, null, List.of(), "quiz-node-001",
                 List.of(
                         new ScarceContentWord("friday", "NOUN", 1, 4),
-                        new ScarceContentWord("before", "ADV", 3, 4))
+                        new ScarceContentWord("before", "ADV", 3, 4)),
+                List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctxWithEntries));
@@ -3978,8 +3981,8 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(
-                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
-                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
+                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null),
+                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205, null)),
                 List.of(
                         new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null),
                         new SuggestedLemma("want", "VERB", "APPEARS_TOO_LATE", 89, null, null, null),
@@ -3988,7 +3991,8 @@ public class GetCmdTest {
                 null, null, List.of(), "quiz-node-001",
                 List.of(
                         new ScarceContentWord("friday", "NOUN", 1, 4),
-                        new ScarceContentWord("before", "ADV", 3, 4))
+                        new ScarceContentWord("before", "ADV", 3, 4)),
+                List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -4055,12 +4059,13 @@ public class GetCmdTest {
                 "Present Simple",
                 CefrLevel.A1,
                 List.of(
-                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840),
-                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205)),
+                        new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null),
+                        new MisplacedLemmaContext("contract", "NOUN", CefrLevel.B1, CefrLevel.A1, 1205, null)),
                 List.of(new SuggestedLemma("like", "VERB", "COMPLETELY_ABSENT", 52, null, null, null)),
                 null, null, null, null, null, null,
                 null, null, List.of(), "quiz-node-001",
-                List.of() // scarceContentWords empty — R003c
+                List.of(), // scarceContentWords empty — R003c
+                List.of()
         );
         when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
                 .thenReturn(Optional.of(ctx));
@@ -4089,5 +4094,138 @@ public class GetCmdTest {
         assertTrue(
                 output.contains("(none)") || output.toLowerCase().contains("none"),
                 "Expected '(none)' in Scarce content words section when list is empty, got: " + output);
+    }
+
+    @Test
+    @DisplayName("should print each out-of-catalog word as lemma pos rank and discount in text output and show rank n/d when the frequency rank is unknown")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R003d")
+    public void shouldPrintEachOutofcatalogWordAsLemmaPosRankAndDiscountInTextOutputAndShowRankNdWhenTheFrequencyRankIsUnknown() {
+        // formatName is "text" (from setUp)
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // Tarea motivada por 2 palabras fuera de catalogo: "sipps" sin rango conocido
+        // y "Sheep" con rango conocido (F-RCLA-R003d)
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-la-001",
+                "He sipps a lot of tea.",
+                "El toma mucho te.",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(),
+                List.of(),
+                null, null, null, null, null, null,
+                null, null, List.of(), "quiz-node-001",
+                List.of(),
+                List.of(
+                        new OutOfCatalogWordContext("sipps", "VERB", null, 0.3),
+                        new OutOfCatalogWordContext("Sheep", "NOUN", 4450, 0.15))
+        );
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // F-RCLA-R003d / R009: seccion "Out-of-catalog words:" con "lemma (pos) - rank {r}, discount {d}"
+        assertTrue(output.contains("Out-of-catalog words"),
+                "Expected 'Out-of-catalog words:' section in text output: " + output);
+        assertTrue(output.contains("sipps (VERB)"),
+                "Expected 'sipps (VERB)' entry in Out-of-catalog words section: " + output);
+        assertTrue(output.contains("rank n/d"),
+                "Expected 'rank n/d' for the word without a known frequency rank: " + output);
+        assertTrue(output.contains("discount 0.3"),
+                "Expected 'discount 0.3' for 'sipps' in Out-of-catalog words section: " + output);
+        assertTrue(output.contains("Sheep (NOUN)"),
+                "Expected 'Sheep (NOUN)' entry in Out-of-catalog words section: " + output);
+        assertTrue(output.contains("rank 4450"),
+                "Expected 'rank 4450' for 'Sheep' in Out-of-catalog words section: " + output);
+        assertTrue(output.contains("discount 0.15"),
+                "Expected 'discount 0.15' for 'Sheep' in Out-of-catalog words section: " + output);
+    }
+
+    @Test
+    @DisplayName("should print the out-of-catalog words section with none when the correction context has no out-of-catalog words in text output")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R003e")
+    public void shouldPrintTheOutofcatalogWordsSectionWithNoneWhenTheCorrectionContextHasNoOutofcatalogWordsInTextOutput() {
+        String sourceAuditId = "audit-2026-04-19T10-30-00";
+        RefinementTask laTask = new RefinementTask(
+                "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-04-19", sourceAuditId,
+                Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
+        AuditReport report = new AuditReport();
+
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(report));
+
+        // F-RCLA-R003e: quiz con lema mal ubicado pero SIN palabras fuera de catalogo -> lista vacia
+        LemmaAbsenceCorrectionContext ctx = new LemmaAbsenceCorrectionContext(
+                "task-la-001",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null)),
+                List.of(),
+                null, null, null, null, null, null,
+                null, null, List.of(), "quiz-node-001",
+                List.of(),
+                List.of() // outOfCatalogWords vacia — F-RCLA-R003e
+        );
+        when(correctionContextResolver.resolve(any(AuditReport.class), any(RefinementTask.class)))
+                .thenReturn(Optional.of(ctx));
+
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty());
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        // F-RCLA-R003e / R009: la seccion "Out-of-catalog words:" esta SIEMPRE presente; "(none)" cuando esta vacia
+        assertTrue(output.contains("Out-of-catalog words"),
+                "Expected 'Out-of-catalog words:' section present even when empty: " + output);
+        assertTrue(output.contains("(none)"),
+                "Expected '(none)' in the Out-of-catalog words section when there are no out-of-catalog words: "
+                        + output);
     }
 }

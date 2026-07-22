@@ -1,0 +1,23 @@
+code: FEAT-LABS
+modules:
+- name: audit-domain
+  packages:
+  - name: labs
+    implementations:
+    - name: LemmaByLevelAbsenceAnalyzer
+      handwrittenTests:
+      - name: should resolve a capitalized token lemma via lowercase normalization
+          and not penalize the sentence as out of catalog
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R045
+      - name: should keep the word out of catalog when neither the literal nor the
+          lowercase lemma has a catalog entry
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R045
+      - name: should match the literal lemma without normalization when the literal
+          form already has a catalog entry
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R045

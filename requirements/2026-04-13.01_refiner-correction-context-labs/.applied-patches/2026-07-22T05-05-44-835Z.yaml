@@ -1,0 +1,30 @@
+code: FEAT-RCLA
+modules:
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: DefaultCorrectionContextJsonMapper
+      handwrittenTests:
+      - name: should serialize each outOfCatalogWords entry with lemma pos frequencyRank
+          and discount emitting frequencyRank as null when the word has no known rank
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R003d
+      - name: should always emit outOfCatalogWords in the JSON map as an empty list
+          when the correction context has no out-of-catalog words
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R003e
+    - name: GetCmd
+      handwrittenTests:
+      - name: should print each out-of-catalog word as lemma pos rank and discount
+          in text output and show rank n/d when the frequency rank is unknown
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R003d
+      - name: should print the out-of-catalog words section with none when the correction
+          context has no out-of-catalog words in text output
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R003e

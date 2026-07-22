@@ -34,10 +34,21 @@ Sin embargo, el analyzer `LemmaByLevelAbsenceAnalyzer` ya escribe un score de `l
 
 ### Relacion con features existentes
 
-- **FEAT-DLABS** (diagnosticos tipados de lemma-absence): provee el `LemmaPlacementDiagnosis` a nivel quiz con la lista de `MisplacedLemma`, y el `LemmaAbsenceLevelDiagnosis` a nivel milestone. Este requerimiento consume el diagnostico de quiz; el de milestone no se ve afectado.
+- **FEAT-DLABS** (diagnosticos tipados de lemma-absence): provee el `LemmaPlacementDiagnosis` a nivel quiz con la lista de `MisplacedLemma` **y la lista de palabras fuera de catalogo** (`OutOfCatalogWord`: palabras de contenido que no figuran en el catalogo de vocabulario y fueron penalizadas por frecuencia, ver F-LABS), y el `LemmaAbsenceLevelDiagnosis` a nivel milestone. Este requerimiento consume el diagnostico de quiz —tanto los lemas mal ubicados como las palabras fuera de catalogo—; el de milestone no se ve afectado.
 - **FEAT-RCSL** (contexto de correccion para SENTENCE_LENGTH): establecio el patron de contexto de correccion para el refiner. Ese feature ya consume los lemas ausentes del milestone como `suggestedLemmas` para oraciones demasiado cortas. La cobertura de lemas a nivel milestone sigue siendo util como enriquecedor de contexto en SENTENCE_LENGTH, aunque deje de generar tareas propias.
 - **FEAT-CSTRUCT** (estructura del curso): provee la oracion original del quiz a traves de la entidad AuditableQuiz.
 - **FEAT-LCOUNT** (analisis de conteo de repeticiones de lemas): provee la señal de `lemma-count` (cantidad de oraciones distintas del curso donde aparece cada lema content-word) y su umbral de exposicion. Este requerimiento la consume para marcar las palabras de contenido escasas de la oracion actual (R003b). Es la misma señal y el mismo umbral que ya usa **F-SLEM** para enriquecer `suggestedLemmas`.
+
+### Evidencia (2026-07-22): tarjetas "mudas" por palabras fuera de catalogo
+
+El diagnostico de placement del quiz ya trae las palabras fuera de catalogo (el contexto de correccion las materializa en su lista interna desde la iteracion de fuera-de-catalogo de F-LABS), pero **ni el formato JSON ni el formato texto de la tarea las mostraban**. La consecuencia observada: las tareas cuyo unico motivo es una palabra fuera de catalogo se muestran como tarjetas "mudas" —sin ninguna seccion que diga cual es la palabra problematica—, porque su lista de lemas mal ubicados esta vacia y la de palabras fuera de catalogo, aunque poblada, no se renderiza.
+
+Casos reales del audit activo:
+
+- **"He sipps a lot of tea."** — el typo "sipps" se detecta como palabra fuera de catalogo con descuento 0.3. La tarea no tiene lemas mal ubicados; sin la nueva seccion, la tarjeta no indica que "sipps" es el problema.
+- **"Sheep run. Verb in infinitive = run"** — "Sheep" se detecta como palabra fuera de catalogo con rango de frecuencia 4450. Misma situacion: tarjeta muda.
+
+En el audit activo hay **646 ocurrencias de palabras fuera de catalogo**; cualquier tarea motivada exclusivamente por ellas es hoy indescifrable desde la tarjeta. Este requerimiento cierra ese hueco exponiendo `outOfCatalogWords` en ambos formatos (R008, R009), con la estructura de R003d y la degradacion de R003e.
 
 ### Prerequisito: sourceAuditId
 
@@ -89,8 +100,9 @@ Para cada tarea de refinamiento de tipo LEMMA_ABSENCE, el sistema debe poder con
 | misplacedLemmas | Lista de lemas fuera de nivel | LemmaPlacementDiagnosis.misplacedLemmas | Palabras del quiz cuyo nivel esperado es mas alto que el del quiz (ver R004) |
 | suggestedLemmas | Lista de lemas sugeridos | Derivado de LemmaAbsenceLevelDiagnosis | Lemas ausentes del nivel CEFR que el LLM podria usar como reemplazo de las palabras fuera de nivel (ver R004b) |
 | scarceContentWords | Lista de palabras escasas de la oración | Derivado de la señal de lemma-count del curso sobre las palabras de contenido de la oración actual | Palabras de contenido de la oración actual con exposición global baja (por debajo del umbral de lemma-count), que el LLM NO debería quitar al reescribir (ver R003b) |
+| outOfCatalogWords | Lista de palabras fuera de catálogo de la oración | LemmaPlacementDiagnosis.outOfCatalogWords | Palabras de contenido de la oración actual que no figuran en el catálogo de vocabulario y fueron penalizadas por frecuencia; son las que el LLM debería reemplazar o corregir (ver R003d) |
 
-Este contexto reune informacion de multiples fuentes: la tarea de refinamiento, el nodo quiz del arbol de auditoria (con su diagnostico de placement y la entidad AuditableQuiz), los nodos ancestros knowledge y topic (para el contexto pedagogico), la entidad QuizTemplateEntity (para la traduccion), el nodo milestone ancestro (con su diagnostico de ausencia de lemas para las sugerencias de reemplazo), y la señal de `lemma-count` del curso aplicada a las palabras de contenido de la oracion actual (para las palabras escasas; ver R003b).
+Este contexto reune informacion de multiples fuentes: la tarea de refinamiento, el nodo quiz del arbol de auditoria (con su diagnostico de placement, que aporta tanto los lemas mal ubicados como las palabras fuera de catalogo, y la entidad AuditableQuiz), los nodos ancestros knowledge y topic (para el contexto pedagogico), la entidad QuizTemplateEntity (para la traduccion), el nodo milestone ancestro (con su diagnostico de ausencia de lemas para las sugerencias de reemplazo), y la señal de `lemma-count` del curso aplicada a las palabras de contenido de la oracion actual (para las palabras escasas; ver R003b).
 
 **Error**: N/A (esta regla define la estructura de un registro)
 
@@ -172,6 +184,31 @@ Si no hay palabras de contenido escasas que reportar —porque la auditoria no i
 
 **Error**: N/A (la ausencia de palabras escasas no impide la correccion)
 
+### Rule[F-RCLA-R003d] - Estructura de cada palabra fuera de catalogo
+**Severity**: critical | **Validation**: VALIDATED
+
+El contexto de correccion incluye una lista `outOfCatalogWords`: las palabras de contenido de la oracion actual del quiz que **no figuran en el catalogo de vocabulario** y que la auditoria penalizo por frecuencia. Son las palabras que, junto con los lemas mal ubicados, motivan la tarea LEMMA_ABSENCE. Provienen del mismo diagnostico de placement del quiz que ya alimenta `misplacedLemmas` (la señal de fuera-de-catalogo definida en FEAT-DLABS / F-LABS).
+
+El proposito es que el LLM sepa exactamente cual es la palabra problematica **incluso cuando la tarea no tiene ningun lema mal ubicado** y su unico motivo es una palabra fuera de catalogo. Casos tipicos: un error de tipeo que el analisis trata como palabra desconocida (e.g., "sipps" por "sips"), o un nombre propio tratado como palabra comun (e.g., "Sheep"). Sin esta lista, esas tareas se muestran sin ninguna palabra señalada y resultan indescifrables desde la tarjeta (ver Evidencia 2026-07-22 en Contexto).
+
+Cada entrada en la lista `outOfCatalogWords` incluye:
+
+| Campo | Tipo | Origen | Descripcion |
+|-------|------|--------|-------------|
+| lemma | Texto | OutOfCatalogWord.lemma | Forma base de la palabra fuera de catalogo (e.g., "sipps", "Sheep") |
+| pos | Texto | OutOfCatalogWord.observedPos | Parte de la oracion observada para la palabra (e.g., "VERB", "NOUN") |
+| frequencyRank | Entero (opcional) | OutOfCatalogWord.frequencyRank | Rango de frecuencia observado de la palabra. Puede ser nulo cuando la palabra no tiene rango conocido |
+| discount | Numero | OutOfCatalogWord.discount | Descuento de puntuacion que la palabra aplico a la oracion en la auditoria (e.g., 0.3) |
+
+**Error**: N/A (esta regla define la estructura de un registro)
+
+### Rule[F-RCLA-R003e] - Contexto sin palabras fuera de catalogo
+**Severity**: major | **Validation**: VALIDATED
+
+El campo `outOfCatalogWords` esta **siempre presente** en el contexto de correccion. Cuando la oracion actual no tiene ninguna palabra fuera de catalogo penalizada —o el reporte de auditoria fuente es previo a la deteccion de palabras fuera de catalogo y por lo tanto no las registra— la lista se construye **vacia**, sin impedir la construccion del contexto ni degradar el resto de la informacion. Es el mismo patron siempre-presente que ya usan `scarceContentWords` (R003c) y `suggestedLemmas` (R004c): la ausencia de palabras fuera de catalogo no es un error, solo significa que la tarea no tiene ninguna palabra desconocida que señalar.
+
+**Error**: N/A (la ausencia de palabras fuera de catalogo no impide la correccion)
+
 ### Rule[F-RCLA-R005] - Resolucion del nodo quiz desde una tarea de refinamiento
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
@@ -239,6 +276,7 @@ En formato JSON, el contexto de correccion se incluye como un campo `correctionC
       { "lemma": "negotiate", "pos": "VERB", "expectedLevel": "B2", "quizLevel": "A1", "cocaRank": 2840 },
       { "lemma": "contract", "pos": "NOUN", "expectedLevel": "B1", "quizLevel": "A1", "cocaRank": 1205 }
     ],
+    "outOfCatalogWords": [],
     "suggestedLemmas": [
       { "lemma": "like", "pos": "VERB", "reason": "COMPLETELY_ABSENT", "cocaRank": 52 },
       { "lemma": "want", "pos": "VERB", "reason": "APPEARS_TOO_LATE", "cocaRank": 89 },
@@ -252,7 +290,26 @@ En formato JSON, el contexto de correccion se incluye como un campo `correctionC
 }
 ```
 
-El campo `scarceContentWords` siempre esta presente en `correctionContext`; cuando no hay palabras escasas que reportar (ver R003c) es una lista vacia `[]`.
+Los campos `scarceContentWords` y `outOfCatalogWords` estan **siempre presentes** en `correctionContext`; cuando no hay nada que reportar (ver R003c y R003e) son listas vacias `[]`. Cada entrada de `outOfCatalogWords` incluye `lemma`, `pos`, `frequencyRank` (numero, o `null` si la palabra no tiene rango conocido) y `discount` (ver R003d).
+
+Cuando la tarea esta motivada **exclusivamente** por una palabra fuera de catalogo (sin lemas mal ubicados), `misplacedLemmas` sale vacia y `outOfCatalogWords` es la unica lista que señala el problema. Ejemplo real ("He sipps a lot of tea."):
+
+```
+{
+  "target": "QUIZ",
+  "diagnosis": "LEMMA_ABSENCE",
+  "correctionContext": {
+    "sentence": "He sipps a lot of tea.",
+    "cefrLevel": "A1",
+    "misplacedLemmas": [],
+    "outOfCatalogWords": [
+      { "lemma": "sipps", "pos": "VERB", "frequencyRank": 6081, "discount": 0.3 }
+    ],
+    "suggestedLemmas": [],
+    "scarceContentWords": []
+  }
+}
+```
 
 Si el contexto de correccion no puede construirse (por ejemplo, porque el reporte de auditoria no se encuentra o el diagnostico no esta disponible), el campo `correctionContext` debe ser nulo y se incluye un campo `correctionContextError` con un mensaje descriptivo.
 
@@ -281,6 +338,8 @@ Next task (#1 of 42):
     Misplaced lemmas:
       1. negotiate (VERB) - expected B2, found in A1 [COCA #2840]
       2. contract (NOUN) - expected B1, found in A1 [COCA #1205]
+    Out-of-catalog words:
+      (none)
     Suggested replacements:
       1. like (VERB) - COMPLETELY_ABSENT [COCA #52]
       2. want (VERB) - APPEARS_TOO_LATE [COCA #89]
@@ -290,11 +349,24 @@ Next task (#1 of 42):
       2. before (ADV) - appears in 3/4 sentences
 ```
 
+La seccion "Out-of-catalog words:" se muestra **tras** "Misplaced lemmas:". Cada palabra fuera de catalogo se lista con su forma base, su categoria gramatical entre parentesis, su rango de frecuencia y su descuento: `lemma (pos) - rank {frequencyRank}, discount {discount}`. Cuando la palabra no tiene rango conocido, se muestra `rank n/d`.
+
 Cada palabra escasa se muestra con su exposicion global frente al umbral (`count`/`threshold`), para que quede claro cuan escasa es en el curso.
+
+Cuando la tarea esta motivada **exclusivamente** por una palabra fuera de catalogo (sin lemas mal ubicados), "Misplaced lemmas:" sale vacia y "Out-of-catalog words:" es la unica seccion que señala el problema. Ejemplo real ("He sipps a lot of tea."):
+
+```
+    Misplaced lemmas:
+      (none)
+    Out-of-catalog words:
+      1. sipps (VERB) - rank 6081, discount 0.3
+```
 
 Si no hay lemas sugeridos, la seccion "Suggested replacements" muestra "(none available)".
 
 Si no hay palabras escasas (ver R003c), la seccion "Scarce content words" muestra "(none)".
+
+Si no hay palabras fuera de catalogo (ver R003e), la seccion "Out-of-catalog words" muestra "(none)".
 
 Si el contexto no puede construirse, se muestra un aviso en lugar de la seccion de contexto.
 
@@ -345,10 +417,10 @@ journeys:
             then: contexto_no_disponible
 
       - id: obtener_diagnostico
-        action: "El sistema extrae la oracion del quiz y el LemmaPlacementDiagnosis del nodo. El diagnostico contiene la lista de palabras que estan fuera de nivel (e.g., 'negotiate' es B2 pero el quiz es A1)"
-        gate: [F-RCLA-R003, F-RCLA-R004]
+        action: "El sistema extrae la oracion del quiz y el LemmaPlacementDiagnosis del nodo. El diagnostico contiene las palabras que estan fuera de nivel (e.g., 'negotiate' es B2 pero el quiz es A1) y/o las palabras fuera de catalogo (e.g., el typo 'sipps')"
+        gate: [F-RCLA-R003, F-RCLA-R004, F-RCLA-R003d]
         outcomes:
-          - when: "El LemmaPlacementDiagnosis existe y tiene al menos un MisplacedLemma"
+          - when: "El LemmaPlacementDiagnosis existe (con al menos un lema mal ubicado o una palabra fuera de catalogo que señale el problema)"
             then: buscar_sugerencias
           - when: "El LemmaPlacementDiagnosis no esta disponible"
             then: diagnostico_no_disponible
@@ -372,18 +444,18 @@ journeys:
             then: construir_contexto_con_escasas_vacio
 
       - id: construir_contexto_completo
-        action: "El sistema construye el contexto con la oracion, la traduccion, el contexto pedagogico, la lista de lemas fuera de nivel, los top 10 lemas sugeridos como candidatos de reemplazo, y la lista de palabras de contenido escasas que el LLM no debe quitar"
-        gate: [F-RCLA-R003, F-RCLA-R004, F-RCLA-R004b, F-RCLA-R003b]
+        action: "El sistema construye el contexto con la oracion, la traduccion, el contexto pedagogico, la lista de lemas fuera de nivel, la lista de palabras fuera de catalogo de la oracion, los top 10 lemas sugeridos como candidatos de reemplazo, y la lista de palabras de contenido escasas que el LLM no debe quitar"
+        gate: [F-RCLA-R003, F-RCLA-R004, F-RCLA-R004b, F-RCLA-R003b, F-RCLA-R003d, F-RCLA-R003e]
         then: presentar_contexto
 
       - id: construir_contexto_con_escasas_vacio
-        action: "El sistema construye el contexto con la oracion, la traduccion, el contexto pedagogico, la lista de lemas fuera de nivel y los lemas sugeridos, pero con la lista de palabras escasas vacia"
-        gate: [F-RCLA-R003, F-RCLA-R004, F-RCLA-R004b, F-RCLA-R003c]
+        action: "El sistema construye el contexto con la oracion, la traduccion, el contexto pedagogico, la lista de lemas fuera de nivel, la lista de palabras fuera de catalogo y los lemas sugeridos, pero con la lista de palabras escasas vacia"
+        gate: [F-RCLA-R003, F-RCLA-R004, F-RCLA-R004b, F-RCLA-R003c, F-RCLA-R003d, F-RCLA-R003e]
         then: presentar_contexto
 
       - id: construir_contexto_sin_sugerencias
-        action: "El sistema construye el contexto con la oracion, la traduccion, el contexto pedagogico y la lista de lemas fuera de nivel, pero sin sugerencias de reemplazo. Igual evalua e incluye las palabras de contenido escasas de la oracion actual"
-        gate: [F-RCLA-R003, F-RCLA-R004, F-RCLA-R004c, F-RCLA-R003b, F-RCLA-R003c]
+        action: "El sistema construye el contexto con la oracion, la traduccion, el contexto pedagogico, la lista de lemas fuera de nivel y la lista de palabras fuera de catalogo, pero sin sugerencias de reemplazo. Igual evalua e incluye las palabras de contenido escasas de la oracion actual"
+        gate: [F-RCLA-R003, F-RCLA-R004, F-RCLA-R004c, F-RCLA-R003b, F-RCLA-R003c, F-RCLA-R003d, F-RCLA-R003e]
         then: presentar_contexto
 
       - id: presentar_contexto

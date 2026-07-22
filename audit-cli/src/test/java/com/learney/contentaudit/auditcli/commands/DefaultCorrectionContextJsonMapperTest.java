@@ -4,6 +4,8 @@ import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
 import com.learney.contentaudit.refinerdomain.LengthDirection;
+import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
+import com.learney.contentaudit.refinerdomain.OutOfCatalogWordContext;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.processing.Generated;
@@ -12,6 +14,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Generated(
@@ -44,7 +47,7 @@ public class DefaultCorrectionContextJsonMapperTest {
                 LengthDirection.KEEP_SAME,
                 "audit-001",
                 SentenceMode.REWRITE,
-                List.of(), "quiz-node-001", null
+                List.of(), "quiz-node-001", null, List.of()
         );
 
         DefaultCorrectionContextJsonMapper mapper = new DefaultCorrectionContextJsonMapper();
@@ -57,5 +60,87 @@ public class DefaultCorrectionContextJsonMapperTest {
                 "El payload del override debe incluir la key 'sentenceMode' para que el round-trip conserve el modo del knowledge (F-SMODE-R006)");
         assertEquals("REWRITE", payload.get("sentenceMode"),
                 "El valor de 'sentenceMode' en el payload debe ser 'REWRITE'");
+    }
+
+    @Test
+    @DisplayName("should serialize each outOfCatalogWords entry with lemma pos frequencyRank and discount emitting frequencyRank as null when the word has no known rank")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R003d")
+    public void shouldSerializeEachOutOfCatalogWordsEntryWithLemmaPosFrequencyRankAndDiscountEmittingFrequencyRankAsNullWhenTheWordHasNoKnownRank() {
+        // Arrange — tarea motivada exclusivamente por una palabra fuera de catalogo sin rango conocido
+        // (typo tratado como palabra desconocida, e.g. "sipps"; ver F-RCLA-R003d)
+        LemmaAbsenceCorrectionContext context = new LemmaAbsenceCorrectionContext(
+                "task-la-001",
+                "He sipps a lot of tea.",
+                "El toma mucho te.",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(),
+                List.of(),
+                null, null, null, null, null, null,
+                null, null, List.of(), "quiz-node-001",
+                List.of(),
+                List.of(new OutOfCatalogWordContext("sipps", "VERB", null, 0.3))
+        );
+
+        DefaultCorrectionContextJsonMapper mapper = new DefaultCorrectionContextJsonMapper();
+
+        // Act
+        Map<String, Object> payload = mapper.toJsonMap(context);
+
+        // Assert — F-RCLA-R003d: cada entrada de outOfCatalogWords expone lemma, pos,
+        // frequencyRank (null cuando no hay rango conocido) y discount
+        assertTrue(payload.containsKey("outOfCatalogWords"),
+                "El payload debe incluir la key 'outOfCatalogWords'");
+        Object rawList = payload.get("outOfCatalogWords");
+        assertTrue(rawList instanceof List, "outOfCatalogWords debe ser una lista, fue: " + rawList);
+        List<?> outOfCatalogWords = (List<?>) rawList;
+        assertEquals(1, outOfCatalogWords.size(), "Se esperaba una unica entrada fuera de catalogo");
+        Object rawEntry = outOfCatalogWords.get(0);
+        assertTrue(rawEntry instanceof Map, "Cada entrada de outOfCatalogWords debe ser un objeto, fue: " + rawEntry);
+        Map<?, ?> entry = (Map<?, ?>) rawEntry;
+        assertEquals("sipps", entry.get("lemma"));
+        assertEquals("VERB", entry.get("pos"));
+        assertNull(entry.get("frequencyRank"),
+                "frequencyRank debe ser null cuando la palabra no tiene rango conocido (F-RCLA-R003d)");
+        assertEquals(0.3, entry.get("discount"));
+    }
+
+    @Test
+    @DisplayName("should always emit outOfCatalogWords in the JSON map as an empty list when the correction context has no out-of-catalog words")
+    @Tag("FEAT-RCLA")
+    @Tag("F-RCLA-R003e")
+    public void shouldAlwaysEmitOutOfCatalogWordsInTheJSONMapAsAnEmptyListWhenTheCorrectionContextHasNoOutofcatalogWords() {
+        // Arrange — quiz con lema mal ubicado pero SIN palabras fuera de catalogo (F-RCLA-R003e)
+        LemmaAbsenceCorrectionContext context = new LemmaAbsenceCorrectionContext(
+                "task-la-002",
+                "She needs to negotiate the contract before Friday",
+                "Ella necesita negociar el contrato antes del viernes",
+                "Affirmative sentences in the present simple",
+                "Escribe la forma afirmativa",
+                "Present Simple",
+                CefrLevel.A1,
+                List.of(new MisplacedLemmaContext("negotiate", "VERB", CefrLevel.B2, CefrLevel.A1, 2840, null)),
+                List.of(),
+                null, null, null, null, null, null,
+                null, null, List.of(), "quiz-node-001",
+                List.of(),
+                List.of() // outOfCatalogWords vacia — F-RCLA-R003e
+        );
+
+        DefaultCorrectionContextJsonMapper mapper = new DefaultCorrectionContextJsonMapper();
+
+        // Act
+        Map<String, Object> payload = mapper.toJsonMap(context);
+
+        // Assert — F-RCLA-R003e: el campo esta SIEMPRE presente en el payload, [] cuando no hay OOC
+        assertTrue(payload.containsKey("outOfCatalogWords"),
+                "El payload debe incluir 'outOfCatalogWords' incluso cuando esta vacia (F-RCLA-R003e)");
+        Object rawList = payload.get("outOfCatalogWords");
+        assertTrue(rawList instanceof List, "outOfCatalogWords debe ser una lista, fue: " + rawList);
+        assertTrue(((List<?>) rawList).isEmpty(),
+                "outOfCatalogWords debe estar vacia cuando no hay palabras fuera de catalogo, fue: " + rawList);
     }
 }

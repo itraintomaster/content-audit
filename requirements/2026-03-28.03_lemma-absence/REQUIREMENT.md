@@ -62,7 +62,7 @@ Las reglas se organizan en seis grupos segun la fase y el tema al que pertenecen
 - **Grupo A - Identificacion de lemas ausentes (R001-R005, R039-R044)**: reglas que describen como se determinan los lemas esperados, presentes y ausentes para cada nivel CEFR, incluyendo como se interpreta el catalogo de vocabulario en toda consulta de nivel (que entradas fijan el nivel de un lema, que entradas solo pueden rebajarlo y que categoria gramatical rige el emparejamiento).
 - **Grupo B - Clasificacion del tipo de ausencia (R006-R010)**: reglas que describen como se clasifica cada lema ausente segun donde aparece (o no) en el curso.
 - **Grupo C - Prioridad y enriquecimiento (R011-R016)**: reglas que describen como se asigna prioridad basada en frecuencia COCA y como se enriquece cada lema con informacion adicional.
-- **Grupo D - Scoring por oracion y vocabulario avanzado (R017-R020, R033-R038)**: reglas que describen como se evalua el impacto de los lemas mal ubicados en cada oracion del curso, incluyendo el vocabulario de nivel superior al rango del curso (C1/C2) y las palabras de contenido fuera de catalogo.
+- **Grupo D - Scoring por oracion y vocabulario avanzado (R017-R020, R033-R038, R045)**: reglas que describen como se evalua el impacto de los lemas mal ubicados en cada oracion del curso, incluyendo el vocabulario de nivel superior al rango del curso (C1/C2), las palabras de contenido fuera de catalogo y la normalizacion a minusculas del lema del token como repliegue del emparejamiento.
 - **Grupo E - Assessment global y metricas por nivel (R021-R026)**: reglas que describen la evaluacion global, los umbrales de tolerancia y las metricas resultantes por nivel.
 - **Grupo F - Recomendaciones (R027-R031)**: reglas que describen la generacion de recomendaciones accionables para corregir las brechas de vocabulario.
 
@@ -509,7 +509,7 @@ La extension lineal de la escala existente (en lugar de una penalidad especial m
 ### Rule[F-LABS-R034] - Palabras de contenido fuera de catalogo: bandas de frecuencia por nivel
 **Severity**: critical | **Validation**: ASSUMPTION
 
-Las palabras de contenido (sustantivos, verbos, adjetivos, adverbios) que aparecen en una oracion y **no figuran en el catalogo de vocabulario bajo ninguna categoria gramatical** (es decir, tras agotar el fallback de R036) se evaluan por su **ranking de frecuencia** (dato que cada token del audit ya trae) contra **bandas graduadas que dependen del nivel de la oracion**: cuanto mas basico el nivel, mas frecuente debe ser una palabra desconocida para no penalizar.
+Las palabras de contenido (sustantivos, verbos, adjetivos, adverbios) que aparecen en una oracion y **no figuran en el catalogo de vocabulario bajo ninguna categoria gramatical** (es decir, tras agotar el fallback de R036 y el repliegue por lema normalizado a minusculas de R045) se evaluan por su **ranking de frecuencia** (dato que cada token del audit ya trae) contra **bandas graduadas que dependen del nivel de la oracion**: cuanto mas basico el nivel, mas frecuente debe ser una palabra desconocida para no penalizar.
 
 | Nivel de la oracion | Sin penalidad (ranking <=) | Descuento leve 0.1 (ranking <=) | Descuento fuerte 0.3 |
 |---------------------|----------------------------|----------------------------------|-----------------------|
@@ -554,11 +554,32 @@ Para la evaluacion de mal-ubicacion por oracion (Grupo D), el emparejamiento ent
 
 Sobre el nivel resuelto por cualquiera de los dos pasos anteriores se aplica ademas la **rebaja asimetrica** de las entradas inalcanzables del lema, que solo puede bajar el nivel y nunca subirlo: las entradas de frase (R042) y las de categorias no de contenido (R043). La rebaja opera en **ambos** pasos — de lo contrario un par exacto poblado por entradas de palabra (por ejemplo (live, verbo)=B1) ganaria por precedencia y la rebaja de la frase A1 no operaria. Adicionalmente, para los lemas con entradas de sustantivo y adverbio rige el puente NOUN-ADV de R044 (minimo entre ambas categorias).
 
-Motiva esta regla que el catalogo enriquecido trae categorias gramaticales poco confiables (caso confirmado: "hail" usado como verbo figura en el catalogo solo como sustantivo), lo que con match exacto produce falsos negativos incluso dentro de A1-B2. Solo cuando el lema no existe en el catalogo bajo ninguna categoria se considera fuera de catalogo y pasa a las bandas de frecuencia de R034.
+Motiva esta regla que el catalogo enriquecido trae categorias gramaticales poco confiables (caso confirmado: "hail" usado como verbo figura en el catalogo solo como sustantivo), lo que con match exacto produce falsos negativos incluso dentro de A1-B2. Solo cuando el lema no existe en el catalogo bajo ninguna categoria — tras agotar tambien el repliegue por lema normalizado a minusculas de R045 — se considera fuera de catalogo y pasa a las bandas de frecuencia de R034.
 
 El mismo criterio de relajacion se extiende al calculo de ausencia por nivel del Grupo A mediante R039 (resolucion de Doubt[DOUBT-POS-FALLBACK-ALCANCE]: un lema presente bajo cualquier categoria cuenta como presente).
 
 **Error**: N/A (esta regla describe el mecanismo de emparejamiento)
+
+### Rule[F-LABS-R045] - Repliegue del emparejamiento por lema normalizado a minusculas
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+El emparejamiento de R036 compara el lema del token contra las claves del catalogo de forma **sensible a mayusculas y minusculas**. El lematizador a veces conserva la mayuscula inicial de oracion en el lema — tipico de plurales irregulares y de palabras que no lematiza —: "Sheep run." produce el lema `Sheep`, "Clean the table." produce el lema `Clean`. El catalogo lista esas palabras en minuscula (`sheep` A1, `clean` A1), de modo que ni el match exacto por par ni el fallback por lema de R036 las encuentran, y la palabra cae a **fuera de catalogo** (R034), penalizando oraciones perfectamente A1.
+
+Se corrige con un **repliegue de normalizacion**: cuando el lema del token no tiene entrada en el catalogo con su **forma literal** (tras agotar los dos pasos de R036), el emparejamiento se **reintenta con el lema normalizado a minusculas** antes de declarar la palabra fuera de catalogo. El reintento cubre los dos pasos de R036 (match exacto por par lema+categoria **y** fallback por lema), y sobre el nivel asi resuelto operan igual todas las rebajas y puentes del catalogo (R040/R041/R042/R043/R044).
+
+Garantias de seguridad, en linea con el "nunca inflar / nunca inventar" del resto de la feature:
+
+1. **Solo repliegue**: la normalizacion actua unicamente cuando el lema literal no existe en el catalogo. Si el lema literal si tiene entrada, manda y **no cambia ningun comportamiento actual**.
+2. **Nunca inventa nivel**: un lema que no existe en el catalogo bajo **ninguna** forma — ni literal ni normalizada a minusculas — sigue cayendo a las bandas de frecuencia de R034. La normalizacion solo puede rescatar palabras que el catalogo ya lista.
+3. **No rescata nombres propios**: normalizar un nombre propio mal etiquetado por el procesamiento linguistico (por ejemplo `Sophie` -> `sophie`) no encuentra entrada, porque los nombres propios no figuran en el catalogo de vocabulario; permanecen fuera de catalogo, que es lo correcto. Los nombres propios bien reconocidos ya quedan excluidos aguas arriba por R035.
+
+Consecuencias observables (evidencia: audit 2026-07-22T04-50-18, 6 ocurrencias de fuera-de-catalogo con lema capitalizado):
+
+1. "Sheep run." (lema del token `Sheep`) resuelve `sheep` **A1** con la normalizacion y deja de penalizar. **2 ocurrencias corregidas.**
+2. "Clean the table." (lema del token `Clean`) resuelve `clean` **A1** y deja de penalizar. **2 ocurrencias corregidas.**
+3. "Sophie ..." (lema del token `Sophie`, nombre propio mal etiquetado por el procesamiento linguistico) **no** se rescata: `sophie` no figura en el catalogo bajo ninguna forma, de modo que permanece fuera de catalogo (R034). **2 ocurrencias, correctamente no rescatadas.**
+
+**Error**: N/A (esta regla describe un criterio de normalizacion del emparejamiento)
 
 ### Rule[F-LABS-R037] - Los niveles C1/C2 no participan de la cobertura de ausencias
 **Severity**: critical | **Validation**: AUTO_VALIDATED

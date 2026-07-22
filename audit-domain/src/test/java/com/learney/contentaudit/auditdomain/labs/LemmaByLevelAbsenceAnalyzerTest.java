@@ -3619,4 +3619,111 @@ public class LemmaByLevelAbsenceAnalyzerTest {
         assertEquals(0.6, quizScore(root), 0.001,
                 "Coherencia: score = 1.0 - 0.4 ('possess' C1 a distancia 4 de A1)");
     }
+
+    @Test
+    @DisplayName("should resolve a capitalized token lemma via lowercase normalization and not penalize the sentence as out of catalog")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R045")
+    public void shouldResolveACapitalizedTokenLemmaViaLowercaseNormalizationAndNotPenalizeTheSentenceAsOutOfCatalog() {
+        // R045: el lema literal "Sheep" (mayuscula inicial de oracion conservada por el
+        // lematizador) no tiene entrada en el catalogo ni por match exacto ni por fallback
+        // por lema (R036 agotado). Se reintenta con el lema normalizado a minusculas
+        // "sheep", que SI tiene entrada exacta A1. Sin la normalizacion la palabra caeria
+        // fuera de catalogo con ranking 6081 (banda fuerte de A1, descuento 0.3); con ella
+        // resuelve A1 exacto sin penalidad alguna.
+        stubMinimalConfig();
+        stubEmptyEvp();
+        // lookupLevel(Sheep,NOUN) y lookupLevelByLemma(Sheep) sin stub -> Optional.empty()
+        // (el lema literal no tiene entrada bajo ninguna forma de R036)
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("sheep", "NOUN")))
+                .thenReturn(Optional.of(CefrLevel.A1));
+
+        NlpToken sheep = new NlpToken("Sheep", "Sheep", "NOUN", 6081, false, false);
+        AuditNode root = courseTreeWithQuiz(0, "q1", List.of(sheep)); // quiz en A1
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        assertEquals(1.0, quizScore(root), 0.001,
+                "R045: repliegue a minusculas resuelve 'sheep' A1 exacto -> sin penalidad "
+                        + "(sin la normalizacion caeria fuera de catalogo con descuento 0.3)");
+        LemmaPlacementDiagnosis placement = quizPlacementDiagnosis(root);
+        assertTrue(placement.getMisplacedLemmas() == null || placement.getMisplacedLemmas().isEmpty(),
+                "R045: resuelto en A1 exacto, sin distancia de nivel -> no es mal-ubicado");
+        assertTrue(placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty(),
+                "R045: el repliegue a minusculas encontro entrada -> no es fuera de catalogo");
+        verify(evpCatalogPort, atLeastOnce()).lookupLevel(new LemmaAndPos("sheep", "NOUN"));
+    }
+
+    @Test
+    @DisplayName("should keep the word out of catalog when neither the literal nor the lowercase lemma has a catalog entry")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R045")
+    public void shouldKeepTheWordOutOfCatalogWhenNeitherTheLiteralNorTheLowercaseLemmaHasACatalogEntry() {
+        // R045 garantia 2 (nunca inventa nivel): "Sophie" (nombre propio mal etiquetado
+        // como NOUN por el procesamiento linguistico, no PROPN) no tiene entrada en el
+        // catalogo ni por su forma literal ni por su forma normalizada a minusculas
+        // "sophie" -- el catalogo no lista nombres propios bajo ninguna forma. La palabra
+        // permanece fuera de catalogo y cae en las bandas de frecuencia de R034 (ranking
+        // 6081 en oracion A1 -> banda fuerte, descuento 0.3).
+        stubMinimalConfig();
+        stubEmptyEvp();
+        // lookupLevel/lookupLevelByLemma para "Sophie" y "sophie" sin stub -> Optional.empty()
+        // bajo cualquier forma: el nombre propio no figura en el catalogo
+
+        NlpToken sophie = new NlpToken("Sophie", "Sophie", "NOUN", 6081, false, false);
+        AuditNode root = courseTreeWithQuiz(0, "q1", List.of(sophie)); // quiz en A1
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        assertEquals(0.7, quizScore(root), 0.001,
+                "R045: ni el literal ni la forma en minusculas tienen entrada -> sigue fuera "
+                        + "de catalogo, banda fuerte de A1 para ranking 6081 (descuento 0.3)");
+        LemmaPlacementDiagnosis placement = quizPlacementDiagnosis(root);
+        assertNotNull(placement.getOutOfCatalogWords());
+        assertEquals(1, placement.getOutOfCatalogWords().size(),
+                "R045: 'Sophie' no se rescata bajo ninguna forma -> sigue fuera de catalogo");
+        OutOfCatalogWord word = placement.getOutOfCatalogWords().get(0);
+        assertEquals("Sophie", word.getLemma());
+        assertEquals(0.3, word.getDiscount(), 0.001);
+        assertTrue(placement.getMisplacedLemmas() == null || placement.getMisplacedLemmas().isEmpty(),
+                "R045: sin entrada bajo ninguna forma -> no puede ser mal-ubicado, solo fuera de catalogo");
+    }
+
+    @Test
+    @DisplayName("should match the literal lemma without normalization when the literal form already has a catalog entry")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R045")
+    public void shouldMatchTheLiteralLemmaWithoutNormalizationWhenTheLiteralFormAlreadyHasACatalogEntry() {
+        // R045 garantia 1 (solo repliegue): cuando el lema literal del token YA tiene
+        // entrada en el catalogo, esa entrada manda y el comportamiento actual no cambia
+        // -- nunca se reintenta con el lema en minusculas. Se estresa con un catalogo
+        // donde la forma literal "Bank" (A1) y la forma en minusculas "bank" (B2) resuelven
+        // a niveles DISTINTOS: si el emparejamiento normalizara de mas, el resultado seria
+        // B2 (distancia 4, descuento 0.4); usando el literal el resultado es A1 exacto,
+        // sin descuento.
+        stubMinimalConfig();
+        stubEmptyEvp();
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("Bank", "NOUN")))
+                .thenReturn(Optional.of(CefrLevel.A1));
+        when(evpCatalogPort.lookupLevel(new LemmaAndPos("bank", "NOUN")))
+                .thenReturn(Optional.of(CefrLevel.B2));
+
+        NlpToken bank = new NlpToken("Bank", "Bank", "NOUN", 500, false, false);
+        AuditNode root = courseTreeWithQuiz(0, "q1", List.of(bank)); // quiz en A1
+        addDiagnosesToTree(root);
+        sut.onQuiz(findByTarget(root, AuditTarget.QUIZ));
+        sut.onCourseComplete(root);
+
+        assertEquals(1.0, quizScore(root), 0.001,
+                "R045: el lema literal 'Bank' ya tiene entrada A1 -> manda, sin normalizar a "
+                        + "minusculas (si normalizara de mas resolveria B2 y penalizaria)");
+        LemmaPlacementDiagnosis placement = quizPlacementDiagnosis(root);
+        assertTrue(placement.getMisplacedLemmas() == null || placement.getMisplacedLemmas().isEmpty(),
+                "R045: resuelto A1 exacto por el literal -> sin distancia, no es mal-ubicado");
+        assertTrue(placement.getOutOfCatalogWords() == null || placement.getOutOfCatalogWords().isEmpty(),
+                "R045: el literal resolvio -> no es fuera de catalogo");
+        verify(evpCatalogPort, never()).lookupLevel(new LemmaAndPos("bank", "NOUN"));
+    }
 }

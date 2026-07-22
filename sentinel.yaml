@@ -2677,6 +2677,21 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R035
+      - name: should resolve a capitalized token lemma via lowercase normalization
+          and not penalize the sentence as out of catalog
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R045
+      - name: should keep the word out of catalog when neither the literal nor the
+          lowercase lemma has a catalog entry
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R045
+      - name: should match the literal lemma without normalization when the literal
+          form already has a catalog entry
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R045
       implements:
       - ContentAnalyzer
     - name: LemmaAbsenceScoreAggregator
@@ -6625,6 +6640,16 @@ modules:
         traceability:
           feature: FEAT-RCLA
           rule: F-RCLA-R009
+      - name: should print each out-of-catalog word as lemma pos rank and discount
+          in text output and show rank n/d when the frequency rank is unknown
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R003d
+      - name: should print the out-of-catalog words section with none when the correction
+          context has no out-of-catalog words in text output
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R003e
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -7245,6 +7270,16 @@ modules:
         traceability:
           feature: FEAT-SMODE
           rule: F-SMODE-R006
+      - name: should serialize each outOfCatalogWords entry with lemma pos frequencyRank
+          and discount emitting frequencyRank as null when the word has no known rank
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R003d
+      - name: should always emit outOfCatalogWords in the JSON map as an empty list
+          when the correction context has no out-of-catalog words
+        traceability:
+          feature: FEAT-RCLA
+          rule: F-RCLA-R003e
       implements:
       - CorrectionContextJsonMapper
   - name: formatting

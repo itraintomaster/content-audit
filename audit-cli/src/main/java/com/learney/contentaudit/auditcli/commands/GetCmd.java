@@ -13,6 +13,7 @@ import com.learney.contentaudit.refinerdomain.KnowledgeTitleCorrectionContext;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
 import com.learney.contentaudit.refinerdomain.LengthDirection;
 import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
+import com.learney.contentaudit.refinerdomain.OutOfCatalogWordContext;
 import com.learney.contentaudit.refinerdomain.ScarceContentWord;
 import com.learney.contentaudit.refinerdomain.SentenceLengthCorrectionContext;
 import com.learney.contentaudit.refinerdomain.SuggestedLemma;
@@ -841,6 +842,23 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
                         + ", found in "
                         + (ml.getQuizLevel() != null ? ml.getQuizLevel().name() : "")
                         + cocaPart);
+            }
+        }
+        // F-RCLA-R003d / R009: Out-of-catalog words section — shown after Misplaced lemmas,
+        // before Suggested replacements; always rendered, "(none)" when empty (R003e)
+        System.out.println("    Out-of-catalog words:");
+        List<OutOfCatalogWordContext> outOfCatalog = ctx.getOutOfCatalogWords();
+        if (outOfCatalog == null || outOfCatalog.isEmpty()) {
+            System.out.println("      (none)");
+        } else {
+            for (int i = 0; i < outOfCatalog.size(); i++) {
+                OutOfCatalogWordContext w = outOfCatalog.get(i);
+                String rankPart = w.getFrequencyRank() != null
+                        ? "rank " + w.getFrequencyRank()
+                        : "rank n/d";
+                System.out.println("      " + (i + 1) + ". " + nullToEmpty(w.getLemma())
+                        + " (" + nullToEmpty(w.getObservedPos()) + ") - " + rankPart
+                        + ", discount " + w.getDiscount());
             }
         }
         System.out.println("    Suggested replacements:");

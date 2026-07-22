@@ -23,6 +23,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -643,7 +644,8 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
                 continue;
             }
             String observedPos = token.getPosTag();
-            LemmaAndPos lp = new LemmaAndPos(token.getLemma(), observedPos);
+            String literalLemma = token.getLemma();
+            LemmaAndPos lp = new LemmaAndPos(literalLemma, observedPos);
 
             // R036 paso 1: match exacto por lemma+POS — su nivel MANDA aunque otra POS
             // del mismo lema tenga nivel menor (ej.: "record" verbo B1 en oracion A2
@@ -652,7 +654,28 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
             if (expectedLevelOpt.isEmpty()) {
                 // R036 paso 2 (fallback por lema): menor nivel entre las POS disponibles
                 // del lema — beneficio de la duda, nunca penaliza mas
-                expectedLevelOpt = evpCatalogPort.lookupLevelByLemma(token.getLemma());
+                expectedLevelOpt = evpCatalogPort.lookupLevelByLemma(literalLemma);
+            }
+
+            // R045: si el lema literal agota los dos pasos de R036, reintentar ambos
+            // pasos con el lema normalizado a minusculas antes de declarar la palabra
+            // fuera de catalogo. Solo repliegue: si el literal resolvio, esto no corre.
+            if (expectedLevelOpt.isEmpty()) {
+                String lowerLemma = literalLemma.toLowerCase(Locale.ROOT);
+                if (!lowerLemma.equals(literalLemma)) {
+                    LemmaAndPos lowerLp = new LemmaAndPos(lowerLemma, observedPos);
+                    Optional<CefrLevel> lowerLevelOpt = evpCatalogPort.lookupLevel(lowerLp);
+                    if (lowerLevelOpt.isEmpty()) {
+                        lowerLevelOpt = evpCatalogPort.lookupLevelByLemma(lowerLemma);
+                    }
+                    if (lowerLevelOpt.isPresent()) {
+                        expectedLevelOpt = lowerLevelOpt;
+                        // La clave que resolvio (minuscula) pasa a ser la usada para el
+                        // MisplacedLemma reportado y las consultas de cocaRank/semanticCategory;
+                        // observedPos sigue siendo el del token.
+                        lp = lowerLp;
+                    }
+                }
             }
 
             if (expectedLevelOpt.isPresent()) {
