@@ -1,4 +1,4 @@
-generatedAt: 2026-07-21T23:34:32.846378Z
+generatedAt: 2026-07-22T02:51:05.638638Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -5121,7 +5121,7 @@ features:
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
   - ruleId: F-LABS-R040
-    state: PASSING
+    state: FAILING
     tests:
     - name: should return empty from exact lookupLevel when the only entry for the
         pair is a derived form whose headword differs from the lemma
@@ -5139,6 +5139,18 @@ features:
         and compound form entries
       implemented: true
       passing: true
+      module: vocabulary-infrastructure
+      implementation: FileSystemEvpCatalog
+    - name: should resolve the lemma level from a regular plural variant entry differing
+        from the lemma only by the plural suffix
+      implemented: true
+      passing: false
+      module: vocabulary-infrastructure
+      implementation: FileSystemEvpCatalog
+    - name: should resolve the lemma level from an acronym variant entry differing
+        from the lemma only by letter case
+      implemented: true
+      passing: false
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
   - ruleId: F-LABS-R041
@@ -5163,66 +5175,66 @@ features:
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
   - ruleId: F-LABS-R042
-    state: FAILING
+    state: PASSING
     tests:
     - name: should lower the exact lookupLevel level when a lower level phrase entry
         exists for the same lemma
       implemented: true
-      passing: false
+      passing: true
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
     - name: should lower the lookupLevelByLemma level when a lower level phrase entry
         exists for the same lemma
       implemented: true
-      passing: false
+      passing: true
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
     - name: should lower the lemma level for a single word entry whose EVP category
         is phrase
       implemented: true
-      passing: false
+      passing: true
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
     - name: should never invent a level from a phrase entry when the lemma has no
         reachable word entry
       implemented: true
-      passing: false
+      passing: true
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
   - ruleId: F-LABS-R043
-    state: FAILING
+    state: PASSING
     tests:
     - name: should lower a content pos lookupLevel when a lower level non-content
         pos entry exists for the lemma
       implemented: true
-      passing: false
+      passing: true
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
     - name: should not lower a content pos lookupLevel when the lemma has no non-content
         pos entry
       implemented: true
-      passing: false
+      passing: true
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
   - ruleId: F-LABS-R044
-    state: FAILING
+    state: PASSING
     tests:
     - name: should bridge noun and adverb entries and resolve the minimum level for
         a noun lookupLevel
       implemented: true
-      passing: false
+      passing: true
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
     - name: should bridge noun and adverb entries and resolve the minimum level for
         an adverb lookupLevel
       implemented: true
-      passing: false
+      passing: true
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
     - name: should not bridge adjective and adverb entries when resolving an adverb
         lookupLevel
       implemented: true
-      passing: false
+      passing: true
       module: vocabulary-infrastructure
       implementation: FileSystemEvpCatalog
   - ruleId: F-LABS-R039
@@ -36546,6 +36558,14 @@ elements:
         lookupLevel
       status: EXISTS
       testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalogTest.java
+    - name: should resolve the lemma level from a regular plural variant entry differing
+        from the lemma only by the plural suffix
+      status: EXISTS
+      testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalogTest.java
+    - name: should resolve the lemma level from an acronym variant entry differing
+        from the lemma only by letter case
+      status: EXISTS
+      testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalogTest.java
     testCleanViews:
     - |
       test: "should retain C1 and C2 catalog entries at load and resolve their level for misplacement lookup"
@@ -36673,6 +36693,97 @@ elements:
 
       then:
         catalog.lookupLevel(new LemmaAndPos("let", "VERB")) == Optional.of(CefrLevel.A2)
+    - |
+      test: "should lower the exact lookupLevel level when a lower level phrase entry exists for the same lemma"
+      trace: FEAT-LABS / F-LABS-R042
+
+      given:
+        catalogPath = writeCatalog(entry("live", "live", "B1", "verb", "VERB", 3000), entry("live in/at, etc.", "live", "A1", "phrase", "VERB", 6000))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevel(new LemmaAndPos("live", "VERB")) == Optional.of(CefrLevel.A1)
+    - |
+      test: "should lower the lookupLevelByLemma level when a lower level phrase entry exists for the same lemma"
+      trace: FEAT-LABS / F-LABS-R042
+
+      given:
+        catalogPath = writeCatalog(entry("live", "live", "B1", "verb", "VERB", 3000), entry("live in/at, etc.", "live", "A1", "phrase", "VERB", 6000))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevelByLemma("live") == Optional.of(CefrLevel.A1)
+    - |
+      test: "should lower the lemma level for a single word entry whose EVP category is phrase"
+      trace: FEAT-LABS / F-LABS-R042
+
+      given:
+        catalogPath = writeCatalog(entry("let", "let", "B1", "verb", "VERB", 2500), entry("let's", "let", "A2", "phrase", "VERB", 1500))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevel(new LemmaAndPos("let", "VERB")) == Optional.of(CefrLevel.A2)
+    - |
+      test: "should never invent a level from a phrase entry when the lemma has no reachable word entry"
+      trace: FEAT-LABS / F-LABS-R042
+
+      given:
+        catalogPath = writeCatalog(entry("give up", "give", "B1", "phrasal verb", "VERB", 4000), entry("give away", "give", "A2", "phrase", "VERB", 4200))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevel(new LemmaAndPos("give", "VERB")) == Optional.empty()
+        catalog.lookupLevelByLemma("give") == Optional.empty()
+    - |
+      test: "should lower a content pos lookupLevel when a lower level non-content pos entry exists for the lemma"
+      trace: FEAT-LABS / F-LABS-R043
+
+      given:
+        catalogPath = writeCatalog(entry("much", "much", "B1", "adverb", "ADV", 1200), entry("much", "much", "A1", "determiner", "DET", 1000))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevel(new LemmaAndPos("much", "ADV")) == Optional.of(CefrLevel.A1)
+    - |
+      test: "should not lower a content pos lookupLevel when the lemma has no non-content pos entry"
+      trace: FEAT-LABS / F-LABS-R043
+
+      given:
+        catalogPath = writeCatalog(entry("snow", "snow", "A1", "noun", "NOUN", 500), entry("snow", "snow", "A2", "verb", "VERB", 900))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevel(new LemmaAndPos("snow", "VERB")) == Optional.of(CefrLevel.A2)
+    - |
+      test: "should bridge noun and adverb entries and resolve the minimum level for a noun lookupLevel"
+      trace: FEAT-LABS / F-LABS-R044
+
+      given:
+        catalogPath = writeCatalog(entry("tonight", "tonight", "A2", "noun", "NOUN", 1800), entry("tonight", "tonight", "A1", "adverb", "ADV", 1600))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevel(new LemmaAndPos("tonight", "NOUN")) == Optional.of(CefrLevel.A1)
+    - |
+      test: "should bridge noun and adverb entries and resolve the minimum level for an adverb lookupLevel"
+      trace: FEAT-LABS / F-LABS-R044
+
+      given:
+        catalogPath = writeCatalog(entry("home", "home", "A1", "noun", "NOUN", 400), entry("home", "home", "A2", "adverb", "ADV", 600))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevel(new LemmaAndPos("home", "ADV")) == Optional.of(CefrLevel.A1)
+    - |
+      test: "should not bridge adjective and adverb entries when resolving an adverb lookupLevel"
+      trace: FEAT-LABS / F-LABS-R044
+
+      given:
+        catalogPath = writeCatalog(entry("late", "late", "A1", "adjective", "ADJ", 700), entry("late", "late", "A2", "adverb", "ADV", 750))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevel(new LemmaAndPos("late", "ADV")) == Optional.of(CefrLevel.A2)
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -44172,8 +44283,8 @@ elements:
     - branchCoverage 0% < 60%
     - crapHotspots 17 > 5
 testSummary:
-  total: 1051
-  passing: 1037
+  total: 1053
+  passing: 1039
   failing: 0
   notImplemented: 14
 qualitySummary:
