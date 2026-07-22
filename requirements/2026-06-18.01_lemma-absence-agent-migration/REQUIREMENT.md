@@ -236,11 +236,74 @@ Distingue infraestructura (siempre falla inmediata) de veredicto (dispara retry,
 
 </details>
 
+<a id="F-LASAG-R013"></a>
+### Rule[F-LASAG-R013] - Las palabras fuera de catálogo alimentan los insumos de generación
+**Severity**: high | **Validation**: AUTO_VALIDATED
+
+> Los insumos que la generación transmite al modelo incluyen las **palabras fuera de catálogo** del contexto de corrección ([F-RCLA-R003d](../2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md#F-RCLA-R003d)), formateadas con al menos su lema y una indicación de si tienen rango de frecuencia conocido. Cuando la lista de palabras fuera de catálogo del contexto está vacía ([F-RCLA-R003e](../2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md#F-RCLA-R003e)), el insumo correspondiente aparece como `none`.
+
+<details><summary>Detail</summary>
+
+- **Today**: los insumos de generación se arman con la oración original, los `misplacedLemmas` formateados (o `none`) y `suggestedWords`/`curatedWords`, pero **no transmiten las palabras fuera de catálogo**. Para una tarea cuyo único diagnóstico son palabras fuera de catálogo (lemas mal ubicados vacíos), el modelo ve `misplaced: none` y no recibe ninguna señal de qué corregir — revisaría a ciegas.
+- **After**: los insumos incluyen un ítem dedicado a las palabras fuera de catálogo, formateado con su lema y una indicación de rango de frecuencia conocido (o `none` cuando la lista viene vacía), en pie de igualdad con el ítem de `misplacedLemmas`.
+- **Failing test**: construir un contexto con `outOfCatalogWords` no vacío y assertear que los insumos transmitidos a la generación contienen ese ítem formateado (lema + indicación de rango); con la lista vacía, el ítem es `none`. Falla hoy (el ítem no existe) y pasa tras el cambio.
+
+Esta regla es análoga a la presencia de cada campo poblado del contexto en la generación ([F-LAGEN-R003](../2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md#F-LAGEN-R003), que ya exige incorporar todo campo nuevo del contexto) y al patrón `none`/`(none)` de la lista vacía ([F-RCLA-R003e](../2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md#F-RCLA-R003e)). La forma exacta del formato (etiquetas, orden, cómo se indica el rango conocido) es decisión de implementación; lo que la regla fija es la **presencia** del ítem formateado y el marcador `none` cuando la lista está vacía.
+
+</details>
+
+<a id="F-LASAG-R014"></a>
+### Rule[F-LASAG-R014] - Edición mínima: las palabras objetivo son la unión de mal ubicadas y fuera de catálogo
+**Severity**: high | **Validation**: VALIDATED *(validada por el harness de evals del agente, no por el suite JUnit)*
+
+> La política de edición mínima toma como palabras a reemplazar la **unión** de los lemas mal ubicados y las palabras fuera de catálogo del contexto; todo lo demás de la oración (sujeto, objeto, estructura y las restantes content-words) se conserva. Para una palabra fuera de catálogo, la corrección preferida es:
+> 1. si es un **error ortográfico evidente** de una palabra del nivel, su ortografía correcta — siempre que la palabra corregida sea del nivel;
+> 2. si es una palabra **genuina pero avanzada/rara**, un equivalente del nivel, con preferencia por los `suggestedWords`/`curatedWords` cuando colocacionan;
+>
+> en ambos casos con las mismas restricciones de colocación y de preservación del objeto/complemento que ya rigen para los lemas mal ubicados.
+
+<details><summary>Detail</summary>
+
+**Superficie de validación**: la política de edición mínima y la corrección dirigida de las palabras fuera de catálogo son conducta del nodo de generación del agente declarativo; **no son observables en el suite JUnit** del adaptador (el consumidor recibe un único `QuizCandidate` final, sin observar qué palabras se tomaron como objetivo ni cómo se corrigieron). Se validan en el **harness de evals del agente**, por eso `VALIDATED` y no `AUTO_VALIDATED`.
+
+- **Today**: la edición mínima toma como objetivo **solo** los lemas mal ubicados; las palabras fuera de catálogo no entran en el conjunto a reemplazar.
+- **After**: el conjunto objetivo es la unión de mal ubicadas y fuera de catálogo; el resto de la oración se preserva igual que hoy.
+
+Las restricciones heredadas de los lemas mal ubicados (preservar el objeto/complemento, elegir un reemplazo que colocacione con el mismo objeto, no reescribir la oración de cero, la preferencia por `suggestedWords`/`curatedWords` solo cuando encajan sin reescribir) aplican idénticas a las palabras fuera de catálogo.
+
+**Conducta esperada (harness)**: dado un contexto cuya única palabra objetivo es un error ortográfico evidente de una palabra del nivel, el candidato corrige la ortografía y conserva el resto; dado un contexto cuya única palabra objetivo es una palabra genuina avanzada/rara, el candidato la reemplaza por un equivalente del nivel (prefiriendo `suggestedWords`/`curatedWords` cuando colocacionan) preservando el objeto y el resto de la oración.
+
+</details>
+
+<a id="F-LASAG-R015"></a>
+### Rule[F-LASAG-R015] - Una tarea sin lemas mal ubicados pero con palabras fuera de catálogo es generación válida
+**Severity**: high | **Validation**: AUTO_VALIDATED
+
+> Un contexto de corrección con la lista de lemas mal ubicados **vacía** y al menos una palabra fuera de catálogo es un caso válido de generación: el sistema ejecuta la generación y emite exactamente un `QuizCandidate`; no es un caso degenerado que se saltee ni que falle por ausencia de lemas mal ubicados.
+
+<details><summary>Detail</summary>
+
+Esta regla tiene dos mitades con superficies de validación distintas:
+
+- **Observable en el límite del sistema (AUTO_VALIDATED, suite JUnit)**: que un contexto con `misplacedLemmas` vacío y `outOfCatalogWords` no vacío **no cortocircuite** la generación. Configurado ese contexto, el consumidor recibe un `QuizCandidate` sin excepción y sin degradación a candidato vacío/nulo. Es la mitad testeable sobre el adaptador.
+- **Conducta interna del agente declarativo (validada por su harness de evals, no por JUnit)**: que la generación resultante sea **dirigida** — que las palabras fuera de catálogo sean las palabras objetivo efectivamente corregidas en el candidato — es conducta del nodo de generación (ver [F-LASAG-R014](#F-LASAG-R014)); el consumidor solo observa que se emitió un candidato.
+
+- **Today**: la generación se conducía por los lemas mal ubicados; con `misplacedLemmas` vacío no había señal de objetivo (`misplaced: none`), dejando el caso fuera-de-catálogo-only sin orientación.
+- **After**: el caso fuera-de-catálogo-only produce igualmente un `QuizCandidate` dirigido por las palabras fuera de catálogo ([F-LASAG-R013](#F-LASAG-R013), [F-LASAG-R014](#F-LASAG-R014)).
+
+**Validación (mitad observable)**: invocar el generador con un contexto de `misplacedLemmas` vacío y `outOfCatalogWords` no vacío y assertear que se emite exactamente un `QuizCandidate` (con `quizSentence` y `translation` presentes), sin excepción.
+
+</details>
+
 ## Context
 
 La ruta LLM de *lemma-absence* está hoy partida en dos implementaciones del puerto `QuizCandidateGenerator`: el single-shot FEAT-LAGEN (filtra `suggestedWords` dentro del prompt, una sola llamada) y el interactivo FEAT-LAGAG (sesión de consultas mid-generación contra suggested-lemmas). Cada una arrastra su propio `StrategyId.name`, su wiring por `LagenMode` y su provenance, duplicando la lógica de prompt/selección de vocabulario.
 
 La disponibilidad del runtime **sentinel-agent** permite expresar ambas como un **mismo agente**: un react acotado que decide cuándo consultar `suggestedWords` mediante una única tool en lugar de filtrarlos a mano o mantener una sesión interactiva separada. El delta consiste en sustituir el backend de la ruta LLM por este agente, conservando intacto el contrato del puerto (FEAT-LAPS R001–R003) y la política de fallas (R015/R016). `CANNED` se conserva como opt-in offline.
+
+### Evidencia (2026-07-22): tareas fuera-de-catálogo revisadas a ciegas
+
+El plan activo (`2026-07-22T05-26-12`) tiene 1420 tareas `LEMMA_ABSENCE` de quiz: 1112 con lemas mal ubicados y **308 cuyo único diagnóstico son palabras fuera de catálogo** (typos tratados como palabra desconocida, palabras genuinas pero avanzadas/raras, nombres propios mal etiquetados). El contexto de corrección ya expone esas palabras en `outOfCatalogWords` (lema, categoría, rango de frecuencia —típicamente nulo en typos/no-palabras— y descuento; [F-RCLA-R003d](../2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md#F-RCLA-R003d)), pero los insumos que el agente transmite al modelo se arman **solo con los lemas mal ubicados**: para esas 308 tareas el modelo ve `misplaced: none` y no sabe qué corregir. El delta de esta ronda expone las palabras fuera de catálogo en los insumos ([F-LASAG-R013](#F-LASAG-R013)), extiende la edición mínima para tomarlas como palabras objetivo ([F-LASAG-R014](#F-LASAG-R014)) y reconoce la tarea fuera-de-catálogo-only como caso válido de generación ([F-LASAG-R015](#F-LASAG-R015)).
 
 ## Scope
 
@@ -251,6 +314,7 @@ La disponibilidad del runtime **sentinel-agent** permite expresar ambas como un 
 - Presupuesto de consultas acotado; **exhaustion no es falla** (patrón FEAT-LAGAG R004/R005).
 - Mapeo de timeouts/errores del framework sentinel-agent a `ProposalStrategyFailedException` preservando categoría (FEAT-LAPS R015), **sin reintentos** (R016): un único intento de generación.
 - Absorción de la ruta interactiva (FEAT-LAGAG) y del single-shot (FEAT-LAGEN) en una única ruta LLM.
+- Exposición de las **palabras fuera de catálogo** del contexto en los insumos de generación ([F-LASAG-R013](#F-LASAG-R013)) y su corrección dirigida bajo edición mínima ([F-LASAG-R014](#F-LASAG-R014)), incluyendo la tarea fuera-de-catálogo-only ([F-LASAG-R015](#F-LASAG-R015)).
 
 **Fuera de alcance**
 
@@ -503,4 +567,4 @@ journeys:
 - **FEAT-LAGEN** (`2026-04-29.01_laps-llm-quiz-candidate-generator`) — generador LLM single-shot que se reemplaza: prompt desde `CorrectionContext`, `suggestedWords` como vocabulario preferido, taxonomía de fallas, provenance `provider:model`, wiring por `LagenMode`.
 - **FEAT-LAGAG** (`2026-05-29.01_generacion-interactiva-suggested-lemmas`) — variante interactiva que se absorbe: consultas mid-generación a suggested-lemmas, presupuesto acotado y exhaustion no-falla. Antecedente directo del react con UNA tool.
 - **F-CSLATDC** (`2026-05-21.05_consultar-suggested-lemmas-a-trav-s-del-cli`) — semántica de la única tool: consulta read-only de SuggestedLemmas con filtros level/POS/limit, inferencia de level, filtro cerrado, sin efectos colaterales.
-- **FEAT-RCLA** (`2026-04-13.01_refiner-correction-context-labs`) — fuente del `CorrectionContext`. Fuera de alcance modificarlo; solo se consume.
+- **FEAT-RCLA** (`2026-04-13.01_refiner-correction-context-labs`) — fuente del `CorrectionContext`. Fuera de alcance modificarlo; solo se consume. Provee la lista `outOfCatalogWords` (estructura en `F-RCLA-R003d`, siempre-presente/vacía en `F-RCLA-R003e`), que esta feature transmite a la generación y toma como palabras objetivo. Citado por [F-LASAG-R013](#F-LASAG-R013), [F-LASAG-R014](#F-LASAG-R014) y [F-LASAG-R015](#F-LASAG-R015).

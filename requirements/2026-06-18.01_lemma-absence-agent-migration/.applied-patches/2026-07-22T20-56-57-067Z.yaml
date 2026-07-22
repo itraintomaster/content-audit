@@ -1,0 +1,23 @@
+code: FEAT-LASAG
+modules:
+- name: revision-infrastructure
+  packages:
+  - name: lemmaabsenceagent
+    implementations:
+    - name: LemmaAbsenceAgentGenerator
+      handwrittenTests:
+      - name: should include the out-of-catalog words formatted with lemma and known-frequency-rank
+          indication in the generation inputs
+        traceability:
+          feature: FEAT-LASAG
+          rule: F-LASAG-R013
+      - name: should render the out-of-catalog generation input item as none when
+          the context has no out-of-catalog words
+        traceability:
+          feature: FEAT-LASAG
+          rule: F-LASAG-R013
+      - name: should emit exactly one QuizCandidate without exception when misplacedLemmas
+          is empty but outOfCatalogWords is non-empty
+        traceability:
+          feature: FEAT-LASAG
+          rule: F-LASAG-R015

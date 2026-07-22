@@ -1,4 +1,12 @@
 # fix-log
+
+2026-07-22 — developer — Formato elegido para el input outOfCatalogWords: "<lemma> (frequency rank N)" / "<lemma> (no known frequency rank — likely a typo or non-word)".
+  why: R013 deja el formato libre; elegido para que el test (assert contains "5432", ausencia de "null" crudo) pase naturalmente y para que el prompt de generate.md pueda mostrar la señal de rank sin parsear nada del lado del agente declarativo.
+
+2026-07-22 — test-writer — R013 tests no fijan el formato exacto del insumo OOC (regla lo deja libre).
+  R013 dice explícitamente "la forma exacta del formato ... es decisión de implementación". Aserciones sobre lo esencial: presencia de ambos lemas + rank numérico conocido (5432) + ausencia de "null" crudo (positivo); un valor exactamente "none" en el mapa de inputs (vacío). NO se asumió nombre de key ni separador.
+  why: evita atar el test a un formato que @developer todavía no escribió (TDD); ver guía del skill sentinel-test sobre reglas que dejan libertad de formato.
+
 2026-06-19 — qa-tester — Cobertura F-LASAG propuesta (QA-only, NO aplicada).
   9 handwrittenTests cubren R001-R006, R011, R012 sobre el seam Java (DefaultSuggestedLemmaAgentTool, LemmaAbsenceAgentGenerator, DefaultAgentRuntimeErrorClassifier, DefaultLagenConfigResolver).
   ESCALADO a @analyst: R007/R008/R009/R010 sin superficie observable en Java — viven enteras en el grafo declarativo (.sentinel/agents/); launch() encapsula react+evals+retry+carry-forward y devuelve un RunState final. No se forzaron tags.
@@ -55,3 +63,10 @@
   RE-HOME: J001-J007 → testModule=revision-infrastructure, testPackage=com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent (launcher mockeable, outcomes conducibles: éxito/budget/falla-runtime/retry). J009 SE QUEDA en audit-cli/journeys (su superficie es DefaultLagenConfigResolver default-3 + modo CANNED).
   Patrón: "testear el journey donde vive su superficie observable".
   Sentinel aceptó el re-home sin restricción (0 conflicts). handwrittenTests intactos. NO aplicado (lo aplica el usuario + sentinel generate, que reubica los stubs *JourneyTest).
+
+2026-07-22 — qa-tester — handwrittenTests R013+R015 propuestos sobre LemmaAbsenceAgentGenerator (paquete lemmaabsenceagent). NO aplicado.
+  R013 (2 tests): OOC formateado con lema + indicación de rango conocido en los insumos de generación; y marcador "none" cuando outOfCatalogWords viene vacío. Superficie observable = mismos insumos/tool que captura el test de R002 vía el launcher fake.
+  R015 (1 test): misplaced=[] + OOC no vacío emite exactamente 1 QuizCandidate sin excepción ni cortocircuito.
+  Placement: la impl vive en el scope de paquete 'lemmaabsenceagent' — el patch DEBE anidar packages[].implementations[] (module-root fue rechazado por el validador).
+  LIMITACIÓN del guard `--as=qa-tester`: rechaza CUALQUIER patch con clave packages[] como "structural", aunque la hoja sea handwrittenTests-only. Para impls package-scoped el wrapper packages[] es obligatorio → el self-apply con guard es inviable. Aplicar sin --as (usuario, per AGENTS.md Rule E) o esperar fix del guard para reconocer handwrittenTests bajo packages.
+  why: el guard no distingue "packages como wrapper de direccionamiento" de "packages con cambios estructurales reales".

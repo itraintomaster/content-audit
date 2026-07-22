@@ -1,8 +1,10 @@
 package com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyMap;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -14,6 +16,8 @@ import static org.mockito.Mockito.when;
 import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
 import com.learney.contentaudit.refinerdomain.LengthDirection;
+import com.learney.contentaudit.refinerdomain.MisplacedLemmaContext;
+import com.learney.contentaudit.refinerdomain.OutOfCatalogWordContext;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQuerySessionFactory;
 import com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException;
 import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceGeneratorResponse;
@@ -22,6 +26,7 @@ import com.learney.contentaudit.revisioninfrastructure.lagen.LlmGenerationFailur
 import com.sentinel.agents.framework.state.RunState;
 import com.sentinel.agents.framework.state.RunStatus;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.annotation.processing.Generated;
@@ -70,6 +75,34 @@ public class LemmaAbsenceAgentGeneratorTest {
                 0,
                 LengthDirection.KEEP_SAME,
                 null, null, Collections.emptyList(), "quiz-node-001", null, null
+        );
+    }
+
+    /**
+     * Builds a LEMMA_ABSENCE CorrectionContext identical to {@link #validContext()} except
+     * for the {@code misplacedLemmas} and {@code outOfCatalogWords} lists, which are
+     * supplied by the caller (F-LASAG-R013 / F-LASAG-R015 fixtures).
+     */
+    private LemmaAbsenceCorrectionContext contextWith(
+            List<MisplacedLemmaContext> misplacedLemmas,
+            List<OutOfCatalogWordContext> outOfCatalogWords) {
+        return new LemmaAbsenceCorrectionContext(
+                "task-001",
+                "She goes to school every day.",
+                "Ella va a la escuela todos los días.",
+                "Daily Routines",
+                "Fill in the blank with the correct verb.",
+                "Everyday Activities",
+                CefrLevel.A1,
+                misplacedLemmas,
+                Collections.emptyList(),
+                "She [[goes]] to school every day.",
+                12,
+                10,
+                15,
+                0,
+                LengthDirection.KEEP_SAME,
+                null, null, Collections.emptyList(), "quiz-node-001", null, outOfCatalogWords
         );
     }
 
@@ -284,5 +317,146 @@ public class LemmaAbsenceAgentGeneratorTest {
 
         // Assert — launch() called exactly once; no second attempt (no retry on runtime failure)
         verify(launcher, times(1)).launch(anyString(), anyMap(), any(), anyMap());
+    }
+
+    @Test
+    @DisplayName("should include the out-of-catalog words formatted with lemma and known-frequency-rank indication in the generation inputs")
+    @Tag("FEAT-LASAG")
+    @Tag("F-LASAG-R013")
+    public void shouldIncludeTheOutofcatalogWordsFormattedWithLemmaAndKnownfrequencyrankIndicationInTheGenerationInputs() {
+        // Arrange — two out-of-catalog words: one with a known frequency rank (adore, 5432)
+        // and one with an unknown/nullable rank (sipps, null). A non-empty misplacedLemmas
+        // list is included so its own "none" marker (if any) does not get confused with the
+        // out-of-catalog one.
+        List<MisplacedLemmaContext> misplaced = Collections.singletonList(
+                new MisplacedLemmaContext("run", "VERB", CefrLevel.B1, CefrLevel.A1, 3210, 1.5));
+        List<OutOfCatalogWordContext> outOfCatalogWords = List.of(
+                new OutOfCatalogWordContext("adore", "VERB", 5432, 3.5),
+                new OutOfCatalogWordContext("sipps", "NOUN", null, 2.0));
+
+        RunState successState = RunState.empty().withRunStatus(RunStatus.COMPLETED);
+
+        AtomicReference<Map<String, String>> capturedInputs = new AtomicReference<>();
+        AgentRuntimeLauncher launcher = mock(AgentRuntimeLauncher.class);
+        when(launcher.launch(anyString(), anyMap(), any(), anyMap()))
+                .thenAnswer(invocation -> {
+                    @SuppressWarnings("unchecked")
+                    Map<String, String> inputs = invocation.getArgument(1);
+                    capturedInputs.set(inputs);
+                    return successState;
+                });
+
+        LemmaAbsenceGeneratorResponse fixedResponse = new LemmaAbsenceGeneratorResponse(
+                "She [[adores]] going to school every day.",
+                "Ella adora ir a la escuela todos los días.");
+        AgentCandidateParser parser = mock(AgentCandidateParser.class);
+        when(parser.parse(any(), anyString(), anyString())).thenReturn(fixedResponse);
+
+        AgentRuntimeErrorClassifier classifier = mock(AgentRuntimeErrorClassifier.class);
+
+        LemmaAbsenceAgentGenerator generator = generatorWith(lagenConfig(5), launcher, parser, classifier);
+
+        // Act
+        generator.generate(contextWith(misplaced, outOfCatalogWords));
+
+        // Assert — F-LASAG-R013: the generation inputs include an item with both
+        // out-of-catalog lemmas and a signal of known vs. unknown frequency rank.
+        Map<String, String> inputs = capturedInputs.get();
+        assertNotNull(inputs, "launch() must have been called and the inputs map must not be null");
+
+        String combinedInputs = String.join(" | ", inputs.values());
+
+        assertTrue(combinedInputs.contains("adore"),
+                "the out-of-catalog lemma 'adore' must appear in the generation inputs (F-LASAG-R013)");
+        assertTrue(combinedInputs.contains("5432"),
+                "the known frequency rank of 'adore' must appear as an indication of known rank (F-LASAG-R013)");
+        assertTrue(combinedInputs.contains("sipps"),
+                "the out-of-catalog lemma 'sipps' must appear in the generation inputs (F-LASAG-R013)");
+        assertFalse(combinedInputs.toLowerCase().contains("null"),
+                "the unknown frequency rank must be rendered as a proper indication, not a raw 'null' (F-LASAG-R013)");
+    }
+
+    @Test
+    @DisplayName("should render the out-of-catalog generation input item as none when the context has no out-of-catalog words")
+    @Tag("FEAT-LASAG")
+    @Tag("F-LASAG-R013")
+    public void shouldRenderTheOutofcatalogGenerationInputItemAsNoneWhenTheContextHasNoOutofcatalogWords() {
+        // Arrange — misplacedLemmas is non-empty (so its own item is not "none"), while
+        // outOfCatalogWords is empty: the corresponding generation input item must be "none".
+        List<MisplacedLemmaContext> misplaced = Collections.singletonList(
+                new MisplacedLemmaContext("run", "VERB", CefrLevel.B1, CefrLevel.A1, 3210, 1.5));
+
+        RunState successState = RunState.empty().withRunStatus(RunStatus.COMPLETED);
+
+        AtomicReference<Map<String, String>> capturedInputs = new AtomicReference<>();
+        AgentRuntimeLauncher launcher = mock(AgentRuntimeLauncher.class);
+        when(launcher.launch(anyString(), anyMap(), any(), anyMap()))
+                .thenAnswer(invocation -> {
+                    @SuppressWarnings("unchecked")
+                    Map<String, String> inputs = invocation.getArgument(1);
+                    capturedInputs.set(inputs);
+                    return successState;
+                });
+
+        LemmaAbsenceGeneratorResponse fixedResponse = new LemmaAbsenceGeneratorResponse(
+                "She [[runs]] to school every day.", "Ella corre a la escuela todos los días.");
+        AgentCandidateParser parser = mock(AgentCandidateParser.class);
+        when(parser.parse(any(), anyString(), anyString())).thenReturn(fixedResponse);
+
+        AgentRuntimeErrorClassifier classifier = mock(AgentRuntimeErrorClassifier.class);
+
+        LemmaAbsenceAgentGenerator generator = generatorWith(lagenConfig(5), launcher, parser, classifier);
+
+        // Act
+        generator.generate(contextWith(misplaced, Collections.emptyList()));
+
+        // Assert — F-LASAG-R013: empty outOfCatalogWords renders its generation input item as "none"
+        Map<String, String> inputs = capturedInputs.get();
+        assertNotNull(inputs, "launch() must have been called and the inputs map must not be null");
+
+        boolean hasNoneValue = inputs.values().stream()
+                .anyMatch(value -> value != null && value.trim().equalsIgnoreCase("none"));
+        assertTrue(hasNoneValue,
+                "the out-of-catalog generation input item must be 'none' when outOfCatalogWords is empty (F-LASAG-R013)");
+    }
+
+    @Test
+    @DisplayName("should emit exactly one QuizCandidate without exception when misplacedLemmas is empty but outOfCatalogWords is non-empty")
+    @Tag("FEAT-LASAG")
+    @Tag("F-LASAG-R015")
+    public void shouldEmitExactlyOneQuizCandidateWithoutExceptionWhenMisplacedLemmasIsEmptyButOutOfCatalogWordsIsNonempty() {
+        // Arrange — misplacedLemmas empty, outOfCatalogWords non-empty: a valid generation
+        // scenario per F-LASAG-R015 that must not short-circuit.
+        List<OutOfCatalogWordContext> outOfCatalogWords = List.of(
+                new OutOfCatalogWordContext("adore", "VERB", 5432, 3.5),
+                new OutOfCatalogWordContext("sipps", "NOUN", null, 2.0));
+
+        RunState successState = RunState.empty().withRunStatus(RunStatus.COMPLETED);
+        AgentRuntimeLauncher launcher = mock(AgentRuntimeLauncher.class);
+        when(launcher.launch(anyString(), anyMap(), any(), anyMap())).thenReturn(successState);
+
+        LemmaAbsenceGeneratorResponse fixedResponse = new LemmaAbsenceGeneratorResponse(
+                "She [[adores]] going to school every day.",
+                "Ella adora ir a la escuela todos los días.");
+        AgentCandidateParser parser = mock(AgentCandidateParser.class);
+        when(parser.parse(any(), anyString(), anyString())).thenReturn(fixedResponse);
+
+        AgentRuntimeErrorClassifier classifier = mock(AgentRuntimeErrorClassifier.class);
+
+        LemmaAbsenceAgentGenerator generator = generatorWith(lagenConfig(5), launcher, parser, classifier);
+
+        // Act — F-LASAG-R015: misplacedLemmas empty + outOfCatalogWords non-empty must not
+        // short-circuit; the generation still runs and emits exactly one QuizCandidate.
+        LemmaAbsenceGeneratorResponse result =
+                generator.generate(contextWith(Collections.emptyList(), outOfCatalogWords));
+
+        // Assert — cardinality 1 (single non-null response), no exception, both fields present
+        assertNotNull(result,
+                "a context with misplacedLemmas empty and outOfCatalogWords non-empty must still "
+                        + "produce a QuizCandidate, not a short-circuit (F-LASAG-R015)");
+        assertNotNull(result.getQuizSentence(),
+                "quizSentence must be non-null in the returned QuizCandidate (F-LASAG-R015)");
+        assertNotNull(result.getTranslation(),
+                "translation must be non-null in the returned QuizCandidate (F-LASAG-R015)");
     }
 }

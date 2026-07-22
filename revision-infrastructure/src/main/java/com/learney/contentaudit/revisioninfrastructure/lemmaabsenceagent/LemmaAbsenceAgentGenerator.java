@@ -57,6 +57,7 @@ class LemmaAbsenceAgentGenerator implements LemmaAbsenceQuizCandidateGenerator {
      *   knowledgeInstructions — context.getKnowledgeInstructions() (or "")
      *   topicLabel            — context.getTopicLabel() (or "")
      *   misplacedLemmas       — formatted list: "&lt;lemma&gt; (expected level: X, found at: Y)" joined by ", " (or "none")
+     *   outOfCatalogWords     — formatted list: "&lt;lemma&gt; (frequency rank N)" or "&lt;lemma&gt; (no known frequency rank — likely a typo or non-word)", joined by ", " (or "none")
      *   lengthGuidance        — "current token count: N; target range: A-B tokens; delta: D tokens; direction: dir" (or "none")
      *   sentenceMode          — "FILL"/"REWRITE" (or "") — eval_length forwards it to `content-audit tokens --mode`
      *   exerciseQuizzes       — sibling quizSentences joined by "\n", one per line; empty string if none
@@ -158,6 +159,7 @@ class LemmaAbsenceAgentGenerator implements LemmaAbsenceQuizCandidateGenerator {
      *   <li>{@code knowledgeInstructions} — context.getKnowledgeInstructions() (or "")</li>
      *   <li>{@code topicLabel} — context.getTopicLabel() (or "")</li>
      *   <li>{@code misplacedLemmas} — formatted list of MisplacedLemmaContext items (or "none")</li>
+     *   <li>{@code outOfCatalogWords} — formatted list of OutOfCatalogWordContext items, lemma + known/unknown frequency rank indication (or "none")</li>
      *   <li>{@code lengthGuidance} — length guidance string when direction is known (or "none")</li>
      *   <li>{@code sentenceMode} — "FILL"/"REWRITE" or "" (forwarded by eval_length.sh to `tokens --mode`)</li>
      *   <li>{@code exerciseQuizzes} — sibling quizSentences joined by "\n"; "" if none (read by eval_distinct.sh)</li>
@@ -210,6 +212,26 @@ class LemmaAbsenceAgentGenerator implements LemmaAbsenceQuizCandidateGenerator {
             misplacedLemmas = "none";
         }
         inputs.put("misplacedLemmas", misplacedLemmas);
+
+        // Out-of-catalog words (F-LASAG-R013): formatted as "<lemma> (frequency rank N)" when
+        // the frequency rank is known, or "<lemma> (no known frequency rank — likely a typo or
+        // non-word)" when it is null, joined by ", " (or "none" when the list is empty/null —
+        // F-RCLA-R003e). Feeds the union-of-targets edition policy (F-LASAG-R014) and keeps the
+        // out-of-catalog-only task (F-LASAG-R015) from being generated blind.
+        java.util.List<com.learney.contentaudit.refinerdomain.OutOfCatalogWordContext> outOfCatalog =
+                context.getOutOfCatalogWords();
+        String outOfCatalogWords;
+        if (outOfCatalog != null && !outOfCatalog.isEmpty()) {
+            outOfCatalogWords = outOfCatalog.stream()
+                    .map(w -> w.getLemma()
+                            + (w.getFrequencyRank() != null
+                                    ? " (frequency rank " + w.getFrequencyRank() + ")"
+                                    : " (no known frequency rank — likely a typo or non-word)"))
+                    .collect(java.util.stream.Collectors.joining(", "));
+        } else {
+            outOfCatalogWords = "none";
+        }
+        inputs.put("outOfCatalogWords", outOfCatalogWords);
 
         // Length guidance: only when direction is known (non-null and not UNKNOWN).
         com.learney.contentaudit.refinerdomain.LengthDirection dir = context.getLengthDirection();

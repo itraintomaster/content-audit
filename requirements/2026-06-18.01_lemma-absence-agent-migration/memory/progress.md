@@ -1,5 +1,18 @@
 # progress
 
+2026-07-22 — developer — R013/R014/R015 implementadas. 24/24 verde (los 21 previos + 3 nuevos).
+  LemmaAbsenceAgentGenerator.buildInputs: nuevo input `outOfCatalogWords` (join ", " de "<lemma> (frequency rank N)" / "<lemma> (no known frequency rank — likely a typo or non-word)"; "none" si vacío/null), análogo a misplacedLemmas. Javadoc de clase actualizado (2 bloques: contrato de inputs + full input contract de buildInputs).
+  generate.md (nodo declarativo): (a) outOfCatalogWords agregado a dependencies; (b) expuesto en el user prompt template junto a misplacedLemmas con guía inline (typo→ortografía si es del nivel; genuina/rara→equivalente del nivel); (c) regla dura #2 (edición mínima) y sus 2 ecos (sección "Qué cambiar" + self-check) reescritos: palabras objetivo = UNIÓN misplacedLemmas ∪ outOfCatalogWords, con la guía de 2 casos OOC y las mismas restricciones de colocación/objeto.
+  Revisado curate_lemmas.md y evals/gates: NINGUNO además de generate.md referencia misplacedLemmas de forma que rompa OOC-only, pero curate_lemmas.md (paso 1, clasificación de qué vocabulario pide el ejercicio) mira knowledge/instructions + quizSentence + misplacedLemmas — NO mira outOfCatalogWords. Para una tarea OOC-only (misplaced=[]) la curación pierde la misma señal que generate tenía antes del fix (ve "misplaced: none" y no sabe qué POS/regex pedir a la tool salvo por knowledge/instructions genéricos). NO se tocó (fuera del alcance R013/R014/R015 tal como pedido) — reportado al usuario/orquestador como hallazgo a decidir (¿nueva regla o ampliar R014 a curate_lemmas?).
+  Verificación: JAVA_HOME=$(/usr/libexec/java_home -v 25) mvn test -pl revision-infrastructure -Dexec.skip=true -DskipPitest=true -Djacoco.skip=true → BUILD SUCCESS, Tests run: 24, Failures: 0, Errors: 0.
+
+2026-07-22 — test-writer — 3 stubs R013(x2)+R015 implementados en LemmaAbsenceAgentGeneratorTest.
+  Captura inputs de launch() vía arg index 1 (Map<String,String>), análogo a como R002 capturaba arg index 3 (tools). Helper nuevo contextWith(misplaced, outOfCatalogWords) reusando el shape de validContext().
+  R013-positivo (adore rank 5432, sipps rank null; misplaced no vacío para no confundir el "none"): combinedInputs debe contener "adore"+"5432"+"sipps" y NO "null" crudo. FALLA hoy (esperado): el item OOC no se transmite todavía.
+  R013-vacío (misplaced no vacío, OOC vacío): algún valor del inputs map debe ser literalmente "none". FALLA hoy (esperado).
+  R015 (misplaced=[] + OOC no vacío): generate() debe emitir 1 QuizCandidate sin excepción. PASA (el flujo actual no cortocircuita con misplaced vacío).
+  Tests run: 8, Failures: 2 (ambos R013, esperados), Errors: 0.
+
 2026-06-19 — test-writer — FLasagJ001JourneyTest y FLasagJ002JourneyTest implementados y VERDE.
   Patrón: idéntico a LemmaAbsenceAgentGeneratorTest (Mockito mocks de AgentRuntimeLauncher + AgentCandidateParser + AgentRuntimeErrorClassifier + SuggestedLemmaQuerySessionFactory; null para ChatModel). J001: mock launcher devuelve COMPLETED, parser devuelve candidato → assertNotNull result/quizSentence/translation. J002: budget N=1, launcher devuelve COMPLETED → assertNotNull sin excepción. Tests run: 2, Failures: 0, Errors: 0.
 
