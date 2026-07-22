@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3db"
   },
-  "title" : "$Before$ y $after$",
+  "title" : "The dog ran after seeing the cat.",
   "instructions" : "Transforma las oraciones para que incluyan la forma $verb-ing$.",
-  "translation" : "El perro ladró mucho después de ver al gato.",
+  "translation" : "El perro corrió después de ver al gato.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -81,26 +81,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The dog barked a lot after it saw the cat.",
+      "text" : "The dog ran after it saw the cat.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The dog barked a lot after seeing the cat." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The dog ran after seeing the cat." ]
     } ],
-    "sentences" : [ "The dog barked a lot after seeing the cat." ]
+    "sentences" : [ "The dog ran after seeing the cat." ]
   }
 }, {
   "_id" : {
@@ -463,9 +459,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3db"
   },
-  "title" : "$Before$ y $after$",
+  "title" : "They went home after finishing their work.",
   "instructions" : "Transforma las oraciones para que incluyan la forma $verb-ing$.",
-  "translation" : "Ellos fueron al parque después de terminar sus tareas.",
+  "translation" : "Ellos fueron a casa después de terminar su trabajo.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -485,25 +481,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They went to the park after they finished their chores.",
+      "text" : "They went home after they finished their work.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They went to the park after finishing their chores." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "They went home after finishing their work." ]
     } ],
-    "sentences" : [ "They went to the park after finishing their chores." ]
+    "sentences" : [ "They went home after finishing their work." ]
   }
 } ]

@@ -991,9 +991,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2cf"
   },
-  "title" : "Preguntas en pasado continuo",
+  "title" : "Was it raining heavily outside last night?",
   "instructions" : "Formula preguntas usando el *past continuous*.",
-  "translation" : "¿Estaba granizando?",
+  "translation" : "¿Estaba lloviendo mucho afuera anoche?",
   "theoryId" : "b1.03.Past_Continuous_Forms",
   "topicName" : "Past Continuous and Future in the Past",
   "difficulty" : {
@@ -1013,25 +1013,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Was it hailing" ]
+      "text" : null,
+      "options" : [ "Was it raining" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(it / hail)?",
+      "text" : "(it / rain) heavily outside last night?",
       "options" : null
     } ],
-    "sentences" : [ "Was it hailing?" ]
+    "sentences" : [ "Was it raining heavily outside last night?" ]
   }
 } ]

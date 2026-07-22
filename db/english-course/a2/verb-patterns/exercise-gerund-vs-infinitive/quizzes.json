@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24c"
   },
-  "title" : "Elegir: gerundio o infinitivo",
+  "title" : "They loved buying a car last month.",
   "instructions" : "Escribe el verbo en gerundio o en infinitivo. Aquí, usaremos el gerundio después de $like$, $love$ y $hate$.",
-  "translation" : "Esperaban comprar un coche el mes pasado.",
+  "translation" : "Les encantó comprar un coche el mes pasado.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They hoped",
+      "text" : "They loved",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "to buy" ]
+      "text" : null,
+      "options" : [ "buying" ]
     }, {
       "kind" : "TEXT",
       "text" : "(buy) a car last month.",
       "options" : null
     } ],
-    "sentences" : [ "They hoped to buy a car last month." ]
+    "sentences" : [ "They loved buying a car last month." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24c"
   },
-  "title" : "Elegir: gerundio o infinitivo",
+  "title" : "We really keep seeing Peter.",
   "instructions" : "Escribe el verbo en gerundio o en infinitivo. Aquí, usaremos el gerundio después de $like$, $love$ y $hate$.",
-  "translation" : "Realmente disfrutamos viendo a Peter.",
+  "translation" : "Realmente seguimos viendo a Peter.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We really relished",
+      "text" : "We really keep",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "seeing" ]
     }, {
       "kind" : "TEXT",
       "text" : "(see) Peter.",
       "options" : null
     } ],
-    "sentences" : [ "We really relished seeing Peter." ]
+    "sentences" : [ "We really keep seeing Peter." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d24c"
   },
-  "title" : "Elegir: gerundio o infinitivo",
+  "title" : "I don't like driving at night.",
   "instructions" : "Escribe el verbo en gerundio o en infinitivo. Aquí, usaremos el gerundio después de $like$, $love$ y $hate$.",
-  "translation" : "Detesto conducir de noche.",
+  "translation" : "No me gusta conducir de noche.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I detest",
+      "text" : "I don't like",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "driving" ]
     }, {
       "kind" : "TEXT",
       "text" : "(drive) at night.",
       "options" : null
     } ],
-    "sentences" : [ "I detest driving at night." ]
+    "sentences" : [ "I don't like driving at night." ]
   }
 } ]

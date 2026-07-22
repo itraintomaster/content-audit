@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3dc"
   },
-  "title" : "Lugar: $in$ y $on$",
+  "title" : "He lives in a city.",
   "instructions" : "Completa con: in / on.",
-  "translation" : "Él reside en una ciudad.",
+  "translation" : "Él vive en una ciudad.",
   "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He resides",
+      "text" : "He lives",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "a city.",
       "options" : null
     } ],
-    "sentences" : [ "He resides in a city." ]
+    "sentences" : [ "He lives in a city." ]
   }
 }, {
   "_id" : {

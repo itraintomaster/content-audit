@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c4"
   },
-  "title" : "Irregulares: repaso 2",
+  "title" : "Have you read the story this week?",
   "instructions" : "Escribe la oración en present perfect.",
-  "translation" : "¿Han narrado ellos la historia?",
+  "translation" : "¿Has leído la historia esta semana?",
   "theoryId" : "b1.02.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -601,26 +601,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Have they narrated" ]
+      "text" : null,
+      "options" : [ "Have you read" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / tell) the story?",
+      "text" : "(you / read) the story this week?",
       "options" : null
     } ],
-    "sentences" : [ "Have they narrated the story?" ]
+    "sentences" : [ "Have you read the story this week?" ]
   }
 }, {
   "_id" : {
@@ -891,9 +887,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c4"
   },
-  "title" : "Irregulares: repaso 2",
+  "title" : "Have you hidden my keys again?!",
   "instructions" : "Escribe la oración en present perfect.",
-  "translation" : "¡¿Has ocultado mis llaves?!",
+  "translation" : "¡¿Has escondido mis llaves otra vez?!",
   "theoryId" : "b1.02.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -913,26 +909,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Have you concealed" ]
+      "text" : null,
+      "options" : [ "Have you hidden" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / hide) my keys?!",
+      "text" : "(you / hide) my keys again?!",
       "options" : null
     } ],
-    "sentences" : [ "Have you concealed my keys?!" ]
+    "sentences" : [ "Have you hidden my keys again?!" ]
   }
 }, {
   "_id" : {

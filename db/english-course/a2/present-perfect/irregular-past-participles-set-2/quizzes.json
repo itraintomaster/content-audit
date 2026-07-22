@@ -159,7 +159,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d240"
   },
-  "title" : "Participios: grupo 2",
+  "title" : "The glass has broken into pieces.",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "El vaso se ha roto en pedazos.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
@@ -181,26 +181,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The glass",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "has shattered" ]
+      "text" : null,
+      "options" : [ "has broken" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(shatter) into pieces.",
+      "text" : "(break) into pieces.",
       "options" : null
     } ],
-    "sentences" : [ "The glass has shattered into pieces." ]
+    "sentences" : [ "The glass has broken into pieces." ]
   }
 }, {
   "_id" : {

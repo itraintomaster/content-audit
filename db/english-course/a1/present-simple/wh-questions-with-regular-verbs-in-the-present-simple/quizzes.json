@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38c"
   },
-  "title" : "Preguntas $wh$ con verbos",
+  "title" : "How do we get home?",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Cómo llegamos al estadio?",
+  "translation" : "¿Cómo llegamos a casa?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "How",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do we reach" ]
+      "text" : null,
+      "options" : [ "do we get" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(we / reach) the stadium?",
+      "text" : "(we / get) home?",
       "options" : null
     } ],
-    "sentences" : [ "How do we reach the stadium?" ]
+    "sentences" : [ "How do we get home?" ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38c"
   },
-  "title" : "Preguntas $wh$ con verbos",
+  "title" : "What book does he like?",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Qué género le gusta a él?",
+  "translation" : "¿Qué libro le gusta a él?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -193,7 +193,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "What genre",
+      "text" : "What book",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -204,7 +204,7 @@
       "text" : "(he / like)?",
       "options" : null
     } ],
-    "sentences" : [ "What genre does he like?" ]
+    "sentences" : [ "What book does he like?" ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38c"
   },
-  "title" : "Preguntas $wh$ con verbos",
+  "title" : "Where does it come from?",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Dónde se inunda más?",
+  "translation" : "¿De dónde viene?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Where",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does it flood" ]
+      "text" : null,
+      "options" : [ "does it come" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(it / flood) the most?",
+      "text" : "(it / come) from?",
       "options" : null
     } ],
-    "sentences" : [ "Where does it flood the most?" ]
+    "sentences" : [ "Where does it come from?" ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38c"
   },
-  "title" : "Preguntas $wh$ con verbos",
+  "title" : "Where do you live?",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Dónde se juntan ellos?",
+  "translation" : "¿Dónde vives?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Where",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do they hang" ]
+      "text" : null,
+      "options" : [ "do" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / hang)?",
+      "text" : "(do / does) you live?",
       "options" : null
     } ],
-    "sentences" : [ "Where do they hang?" ]
+    "sentences" : [ "Where do you live?" ]
   }
 } ]

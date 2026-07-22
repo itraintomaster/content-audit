@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d4a3"
   },
-  "title" : "$By$ o $with$",
+  "title" : "She cut the thick paper with a rotary cutter.",
   "instructions" : "Inserta $by$ o $with$ en el espacio correspondiente.",
-  "translation" : "Ella cortó la tela con un cortador rotatorio.",
+  "translation" : "Ella cortó el papel grueso con un cortador rotatorio.",
   "theoryId" : "b2.15.Verbs_and_Different_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She cut the fabric",
+      "text" : "She cut the thick paper",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
       "text" : "a rotary cutter.",
       "options" : null
     } ],
-    "sentences" : [ "She cut the fabric with a rotary cutter." ]
+    "sentences" : [ "She cut the thick paper with a rotary cutter." ]
   }
 }, {
   "_id" : {

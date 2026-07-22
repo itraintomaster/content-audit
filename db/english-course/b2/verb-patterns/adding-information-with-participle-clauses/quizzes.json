@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d42d"
   },
-  "title" : "Información añadida",
+  "title" : "Having overcome her nerves, she sat down for a cup of tea.",
   "instructions" : "Cambia las oraciones para que incluyan una $participle clause$.",
-  "translation" : "Después de aspirar la alfombra, se sentó a tomar una taza de té.",
+  "translation" : "Después de superar los nervios, se sentó a tomar una taza de té.",
   "theoryId" : "b2.05.Participle_Clauses_to_Give_More_Information",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -237,26 +237,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "After she had hoovered the carpet, she sat down for a cup of tea.",
+      "text" : "After she had overcome her nerves, she sat down for a cup of tea.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Having hoovered the carpet, she sat down for a cup of tea." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Having overcome her nerves, she sat down for a cup of tea." ]
     } ],
-    "sentences" : [ "Having hoovered the carpet, she sat down for a cup of tea." ]
+    "sentences" : [ "Having overcome her nerves, she sat down for a cup of tea." ]
   }
 }, {
   "_id" : {

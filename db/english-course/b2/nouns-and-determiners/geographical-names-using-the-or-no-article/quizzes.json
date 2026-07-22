@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d432"
   },
-  "title" : "Geografía",
+  "title" : "During our summer holiday, we explored the Urals for two weeks.",
   "instructions" : "Escribe $the$ o usa – si no necesitamos un artículo.",
-  "translation" : "Exploramos los Urales.",
+  "translation" : "Durante nuestras vacaciones de verano, exploramos los Urales durante dos semanas.",
   "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We explored",
+      "text" : "During our summer holiday, we explored",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
-      "text" : "Urals.",
+      "text" : "Urals for two weeks.",
       "options" : null
     } ],
-    "sentences" : [ "We explored the Urals." ]
+    "sentences" : [ "During our summer holiday, we explored the Urals for two weeks." ]
   }
 }, {
   "_id" : {

@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ea"
   },
-  "title" : "Adjetivo o adverbio",
+  "title" : "She dances well.",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ella baila con gracia.",
+  "translation" : "Ella baila bien.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She dances",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "gracefully" ]
+      "text" : null,
+      "options" : [ "well" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(graceful / gracefully).",
+      "text" : "(good / well).",
       "options" : null
     } ],
-    "sentences" : [ "She dances gracefully." ]
+    "sentences" : [ "She dances well." ]
   }
 }, {
   "_id" : {

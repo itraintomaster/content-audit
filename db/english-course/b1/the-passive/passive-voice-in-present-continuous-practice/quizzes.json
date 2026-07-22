@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d314"
   },
-  "title" : "Presente continuo",
+  "title" : "The beef is being taken out for dinner.",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice). No uses $by$.",
-  "translation" : "Se está sacando la basura.",
+  "translation" : "Se está sacando la carne para la cena.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -133,26 +133,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Someone is taking out the trash.",
+      "text" : "Someone is taking out the beef for dinner.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The trash is being taken out." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The beef is being taken out for dinner." ]
     } ],
-    "sentences" : [ "The trash is being taken out." ]
+    "sentences" : [ "The beef is being taken out for dinner." ]
   }
 }, {
   "_id" : {

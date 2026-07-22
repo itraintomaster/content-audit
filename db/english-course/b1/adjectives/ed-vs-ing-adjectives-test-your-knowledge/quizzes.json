@@ -631,7 +631,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35c"
   },
-  "title" : "$-ed$ vs $-ing$",
+  "title" : "The music was relaxing. I felt very calm.",
   "instructions" : "Selecciona la forma correcta del adjetivo.",
   "translation" : "La música era relajante. Me sentí muy tranquilo.",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The music was",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "soothing" ]
+      "text" : null,
+      "options" : [ "relaxing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(soothed / soothing). I felt very calm.",
+      "text" : "(relaxed / relaxing). I felt very calm.",
       "options" : null
     } ],
-    "sentences" : [ "The music was soothing. I felt very calm." ]
+    "sentences" : [ "The music was relaxing. I felt very calm." ]
   }
 }, {
   "_id" : {
@@ -735,7 +735,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35c"
   },
-  "title" : "$-ed$ vs $-ing$",
+  "title" : "I feel a bit puzzled. I don't quite understand it.",
   "instructions" : "Selecciona la forma correcta del adjetivo.",
   "translation" : "Me siento un poco desconcertado. No lo entiendo del todo.",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I feel a bit",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "puzzled" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(puzzled / puzzling). I don't quite grasp it.",
+      "text" : "(puzzled / puzzling). I don't quite understand it.",
       "options" : null
     } ],
-    "sentences" : [ "I feel a bit puzzled. I don't quite grasp it." ]
+    "sentences" : [ "I feel a bit puzzled. I don't quite understand it." ]
   }
 }, {
   "_id" : {

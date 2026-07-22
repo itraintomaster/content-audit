@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22c"
   },
-  "title" : "Espontáneo o previsto",
+  "title" : "We 're going to paint the house this year. We got the paint.",
   "instructions" : "Elige $will$ para decisiones espontáneas o $be going to$ para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-  "translation" : "Vamos a renovar la casa el año que viene. Obtuvimos los permisos.",
+  "translation" : "Vamos a pintar la casa este año. Conseguimos la pintura.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'re going to|are going to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "renovate the house next year. We got the permits.",
+      "text" : "paint the house this year. We got the paint.",
       "options" : null
     } ],
-    "sentences" : [ "We're going to renovate the house next year. We got the permits.", "We are going to renovate the house next year. We got the permits." ]
+    "sentences" : [ "We 're going to paint the house this year. We got the paint.", "We are going to paint the house this year. We got the paint." ]
   }
 }, {
   "_id" : {

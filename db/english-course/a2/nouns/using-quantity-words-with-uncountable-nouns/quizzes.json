@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d258"
   },
-  "title" : "Palabras de cantidad",
+  "title" : "He had a piece of cheddar.",
   "instructions" : "Crea oraciones usando $a$ + palabra de cantidad + $of$ + sustantivo incontable.",
-  "translation" : "Tenía un trozo de queso cheddar.",
+  "translation" : "Tenía un pedazo de queso cheddar.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He had",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a chunk of cheddar" ]
+      "text" : null,
+      "options" : [ "a piece of cheddar" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(chunk / cheddar).",
+      "text" : "(piece / cheddar).",
       "options" : null
     } ],
-    "sentences" : [ "He had a chunk of cheddar." ]
+    "sentences" : [ "He had a piece of cheddar." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d258"
   },
-  "title" : "Palabras de cantidad",
+  "title" : "He gulped a litre of milk.",
   "instructions" : "Crea oraciones usando $a$ + palabra de cantidad + $of$ + sustantivo incontable.",
-  "translation" : "Se tragó un galón de leche.",
+  "translation" : "Se tragó un litro de leche.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -497,25 +497,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He gulped",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a gallon of milk" ]
+      "text" : null,
+      "options" : [ "a litre of milk" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(gallon / milk).",
+      "text" : "(litre / milk).",
       "options" : null
     } ],
-    "sentences" : [ "He gulped a gallon of milk." ]
+    "sentences" : [ "He gulped a litre of milk." ]
   }
 } ]

@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3fc"
   },
-  "title" : "Enfatizar la finalización",
+  "title" : "He'll leave the mountain cabin before the storm arrives tonight.",
   "instructions" : "Elige el $future perfect$ (si quieres enfatizar que la cosa estará terminada) o el $future simple$ con $will$ si no quieres enfatizarlo.",
-  "translation" : "Él se irá al anochecer.",
+  "translation" : "Él se irá de la cabaña de montaña antes de que llegue la tormenta esta noche.",
   "theoryId" : "b2.01.Future_Perfect_for_Something_Complete_Before_a_Point_in_the_Future",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
   "difficulty" : {
@@ -185,26 +185,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He / leave by sundown.",
+      "text" : "He / leave the mountain cabin before the storm arrives tonight.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He'll leave by sundown.|He will leave by sundown." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He'll leave the mountain cabin before the storm arrives tonight.|He will leave the mountain cabin before the storm arrives tonight." ]
     } ],
-    "sentences" : [ "He'll leave by sundown.", "He will leave by sundown." ]
+    "sentences" : [ "He'll leave the mountain cabin before the storm arrives tonight.", "He will leave the mountain cabin before the storm arrives tonight." ]
   }
 }, {
   "_id" : {

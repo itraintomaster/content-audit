@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ae"
   },
-  "title" : "Intenciones y planes",
+  "title" : "They 're going to run the business.",
   "instructions" : "Escribe oraciones con $going to$ (estos son ejemplos del uso de $going to$ para planes e intenciones).",
-  "translation" : "Ellos van a correr en la maratón.",
+  "translation" : "Ellos van a dirigir el negocio.",
   "theoryId" : "a1.03.Going_to_Use_Plans_and_Intentions",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'re going to run|are going to run" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(run) in the marathon.",
+      "text" : "(run) the business.",
       "options" : null
     } ],
-    "sentences" : [ "They're going to run in the marathon.", "They are going to run in the marathon." ]
+    "sentences" : [ "They 're going to run the business.", "They are going to run the business." ]
   }
 }, {
   "_id" : {

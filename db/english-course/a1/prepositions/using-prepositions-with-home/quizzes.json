@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3de"
   },
-  "title" : "Con $home$",
+  "title" : "We stayed at home every night.",
   "instructions" : "Completa con: at / -",
-  "translation" : "Nos quedamos en casa anoche.",
+  "translation" : "Nos quedamos en casa todas las noches.",
   "theoryId" : "a1.09.Prepositions_with_Home",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We remained",
+      "text" : "We stayed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
-      "text" : "home last night.",
+      "text" : "home every night.",
       "options" : null
     } ],
-    "sentences" : [ "We remained at home last night." ]
+    "sentences" : [ "We stayed at home every night." ]
   }
 }, {
   "_id" : {

@@ -527,7 +527,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d42f"
   },
-  "title" : "Forma plural",
+  "title" : "The man had a trousers and a jacket on. not correct",
   "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde $correct$ o $not correct$.",
   "translation" : "El hombre tenía puestos unos pantalones y una chaqueta. Incorrecto.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
@@ -549,26 +549,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The man had a breeches and a jacket on.",
+      "text" : "The man had a trousers and a jacket on.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "not correct" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "The man had a breeches and a jacket on. not correct" ]
+    "sentences" : [ "The man had a trousers and a jacket on. not correct" ]
   }
 }, {
   "_id" : {
@@ -839,9 +835,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d42f"
   },
-  "title" : "Forma plural",
+  "title" : "The company built a new headquarter in the city. not correct",
   "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde $correct$ o $not correct$.",
-  "translation" : "¿Tienes un quevedo para leer? Incorrecto.",
+  "translation" : "La empresa construyó una nueva sede en la ciudad. Incorrecto.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -861,26 +857,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Do you have a pince-nez for reading?",
+      "text" : "The company built a new headquarter in the city.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "not correct" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "Do you have a pince-nez for reading? not correct" ]
+    "sentences" : [ "The company built a new headquarter in the city. not correct" ]
   }
 }, {
   "_id" : {

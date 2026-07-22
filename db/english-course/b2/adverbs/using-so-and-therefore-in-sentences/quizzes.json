@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d499"
   },
-  "title" : "Consecuencia",
+  "title" : "He studies continuously, so he achieves good grades.",
   "instructions" : "Incluye $so$ o $therefore$ en la oración.",
-  "translation" : "Él estudia diligentemente, así que obtiene buenas calificaciones.",
+  "translation" : "Él estudia continuamente, así que obtiene buenas calificaciones.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He studies diligently,",
+      "text" : "He studies continuously,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "so" ]
     }, {
       "kind" : "TEXT",
       "text" : "he achieves good grades.",
       "options" : null
     } ],
-    "sentences" : [ "He studies diligently, so he achieves good grades." ]
+    "sentences" : [ "He studies continuously, so he achieves good grades." ]
   }
 }, {
   "_id" : {

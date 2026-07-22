@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
-  "title" : "Tras verbos",
+  "title" : "He taught the lesson to his student.",
   "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
-  "translation" : "Él aclaró la lección a su estudiante.",
+  "translation" : "Él enseñó la lección a su estudiante.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He clarified the lesson",
+      "text" : "He taught the lesson",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "his student.",
       "options" : null
     } ],
-    "sentences" : [ "He clarified the lesson to his student." ]
+    "sentences" : [ "He taught the lesson to his student." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d289"
   },
-  "title" : "Tras verbos",
+  "title" : "Could you explain grammar to me?",
   "instructions" : "Coloca la preposición correcta (to / on / at / for / about).",
-  "translation" : "¿Podrías aclararme la gramática?",
+  "translation" : "¿Podrías explicarme la gramática?",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Could you clarify grammar",
+      "text" : "Could you explain grammar",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "me?",
       "options" : null
     } ],
-    "sentences" : [ "Could you clarify grammar to me?" ]
+    "sentences" : [ "Could you explain grammar to me?" ]
   }
 }, {
   "_id" : {

@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d287"
   },
-  "title" : "Destino o ubicación",
+  "title" : "She found luggage in France.",
   "instructions" : "Elige $in$ o $to$.",
-  "translation" : "Ella desembarcó en Francia.",
+  "translation" : "Ella encontró equipaje en Francia.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She disembarked",
+      "text" : "She found luggage",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "France.",
       "options" : null
     } ],
-    "sentences" : [ "She disembarked in France." ]
+    "sentences" : [ "She found luggage in France." ]
   }
 }, {
   "_id" : {

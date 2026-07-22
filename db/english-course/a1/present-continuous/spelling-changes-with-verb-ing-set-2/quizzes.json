@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d398"
   },
-  "title" : "Doble o sin $e$",
+  "title" : "He is writing a letter now.",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
-  "translation" : "trotando",
+  "translation" : "Él está escribiendo una carta ahora.",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "jog -",
+      "text" : "He is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "jogging" ]
+      "text" : null,
+      "options" : [ "writing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "(write) a letter now.",
       "options" : null
     } ],
-    "sentences" : [ "jog - jogging" ]
+    "sentences" : [ "He is writing a letter now." ]
   }
 }, {
   "_id" : {
@@ -419,9 +419,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d398"
   },
-  "title" : "Doble o sin $e$",
+  "title" : "go - going",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
-  "translation" : "admitiendo",
+  "translation" : "yendo",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -441,26 +441,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "admit -",
+      "text" : "go -",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "admitting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "going" ]
     } ],
-    "sentences" : [ "admit - admitting" ]
+    "sentences" : [ "go - going" ]
   }
 }, {
   "_id" : {
@@ -623,9 +619,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d398"
   },
-  "title" : "Doble o sin $e$",
+  "title" : "I am having lunch.",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
-  "translation" : "perdonando",
+  "translation" : "Estoy almorzando.",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -645,26 +641,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "forgive -",
+      "text" : "I am",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "forgiving" ]
+      "text" : null,
+      "options" : [ "having" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "(have) lunch.",
       "options" : null
     } ],
-    "sentences" : [ "forgive - forgiving" ]
+    "sentences" : [ "I am having lunch." ]
   }
 }, {
   "_id" : {
@@ -675,9 +671,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d398"
   },
-  "title" : "Doble o sin $e$",
+  "title" : "have - having",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
-  "translation" : "fingiendo",
+  "translation" : "teniendo",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -697,26 +693,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "fake -",
+      "text" : "have -",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "faking" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "having" ]
     } ],
-    "sentences" : [ "fake - faking" ]
+    "sentences" : [ "have - having" ]
   }
 }, {
   "_id" : {
@@ -727,9 +719,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d398"
   },
-  "title" : "Doble o sin $e$",
+  "title" : "She is taking photos.",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
-  "translation" : "sacudiendo",
+  "translation" : "Ella está sacando fotos.",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -749,26 +741,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "shake -",
+      "text" : "She is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "shaking" ]
+      "text" : null,
+      "options" : [ "taking" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "(take) photos.",
       "options" : null
     } ],
-    "sentences" : [ "shake - shaking" ]
+    "sentences" : [ "She is taking photos." ]
   }
 }, {
   "_id" : {
@@ -883,9 +875,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d398"
   },
-  "title" : "Doble o sin $e$",
+  "title" : "get - getting",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
-  "translation" : "palmeando",
+  "translation" : "consiguiendo",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -905,26 +897,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "pat -",
+      "text" : "get -",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "patting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "getting" ]
     } ],
-    "sentences" : [ "pat - patting" ]
+    "sentences" : [ "get - getting" ]
   }
 }, {
   "_id" : {

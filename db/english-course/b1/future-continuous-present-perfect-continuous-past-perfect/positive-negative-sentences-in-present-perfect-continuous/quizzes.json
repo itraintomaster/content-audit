@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d9"
   },
-  "title" : "Forma afirmativa o negativa",
+  "title" : "It 's been raining all afternoon today.",
   "instructions" : "Escribe oraciones en el $present perfect continuous$.",
-  "translation" : "Ha estado granizando.",
+  "translation" : "Ha estado lloviendo toda la tarde de hoy.",
   "theoryId" : "b1.04.Present_Perfect_Continuous_Forms_1_Positive_and_Negative",
   "topicName" : "Future continuous / present perfect continuous / past perfect",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s been hailing" ]
+      "text" : null,
+      "options" : [ "'s been raining" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(hail).",
+      "text" : "(rain) all afternoon today.",
       "options" : null
     } ],
-    "sentences" : [ "It's been hailing." ]
+    "sentences" : [ "It 's been raining all afternoon today." ]
   }
 }, {
   "_id" : {
@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d9"
   },
-  "title" : "Forma afirmativa o negativa",
+  "title" : "It hasn't been snowing much here recently.",
   "instructions" : "Escribe oraciones en el $present perfect continuous$.",
-  "translation" : "No ha estado granizando.",
+  "translation" : "No ha estado nevando mucho aquí últimamente.",
   "theoryId" : "b1.04.Present_Perfect_Continuous_Forms_1_Positive_and_Negative",
   "topicName" : "Future continuous / present perfect continuous / past perfect",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "hasn't been hailing" ]
+      "text" : null,
+      "options" : [ "hasn't been snowing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / hail).",
+      "text" : "(not / snow) much here recently.",
       "options" : null
     } ],
-    "sentences" : [ "It hasn't been hailing." ]
+    "sentences" : [ "It hasn't been snowing much here recently." ]
   }
 }, {
   "_id" : {

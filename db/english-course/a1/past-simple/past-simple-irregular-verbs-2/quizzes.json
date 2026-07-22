@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bd"
   },
-  "title" : "Verbos irregulares 2",
+  "title" : "I felt that you knew.",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Sentí que te importaba.",
+  "translation" : "Sentí que lo sabías.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "felt" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(feel) that you cared.",
+      "text" : "(feel) that you knew.",
       "options" : null
     } ],
-    "sentences" : [ "I felt that you cared." ]
+    "sentences" : [ "I felt that you knew." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bd"
   },
-  "title" : "Verbos irregulares 2",
+  "title" : "We had a party.",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Guardamos el secreto.",
+  "translation" : "Tuvimos una fiesta.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "kept" ]
+      "text" : null,
+      "options" : [ "had" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(keep) the secret.",
+      "text" : "(have) a party.",
       "options" : null
     } ],
-    "sentences" : [ "We kept the secret." ]
+    "sentences" : [ "We had a party." ]
   }
 }, {
   "_id" : {
@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bd"
   },
-  "title" : "Verbos irregulares 2",
+  "title" : "She made a cake.",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Ella hizo un castillo de arena.",
+  "translation" : "Ella hizo un pastel.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -669,10 +669,10 @@
       "options" : [ "made" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(make) a sandcastle.",
+      "text" : "(make) a cake.",
       "options" : null
     } ],
-    "sentences" : [ "She made a sandcastle." ]
+    "sentences" : [ "She made a cake." ]
   }
 }, {
   "_id" : {

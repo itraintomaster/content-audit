@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d458"
   },
-  "title" : "Buenas y malas ideas",
+  "title" : "You ought to learn to cope with daily stress.",
   "instructions" : "Transforma las oraciones para que incluyan $ought to$ o $shouldn't$.",
-  "translation" : "Deberías comer más saludablemente.",
+  "translation" : "Deberías aprender a sobrellevar el estrés diario.",
   "theoryId" : "",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -445,26 +445,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I think it's a good idea for you to exercise more often.",
+      "text" : "I think it's a good idea for you to learn to cope with daily stress.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You ought to eat more healthily." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You ought to learn to cope with daily stress." ]
     } ],
-    "sentences" : [ "You ought to eat more healthily." ]
+    "sentences" : [ "You ought to learn to cope with daily stress." ]
   }
 }, {
   "_id" : {

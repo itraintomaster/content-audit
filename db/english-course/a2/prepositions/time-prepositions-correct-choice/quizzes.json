@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
-  "title" : "Con $from/to/after/before$",
+  "title" : "After studying, you should take a break!",
   "instructions" : "Elige la preposición correcta.",
-  "translation" : "Después de estudiar, ¡deberías tomar una siesta!",
+  "translation" : "Después de estudiar, ¡deberías tomar un descanso!",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -445,26 +445,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "After" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(from / to / after) studying, you should take a nap!",
+      "text" : "(from / to / after) studying, you should take a break!",
       "options" : null
     } ],
-    "sentences" : [ "After studying, you should take a nap!" ]
+    "sentences" : [ "After studying, you should take a break!" ]
   }
 }, {
   "_id" : {

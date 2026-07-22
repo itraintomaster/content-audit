@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
-  "title" : "$Many$ o $many of$",
+  "title" : "We get many of CDs.",
   "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
-  "translation" : "Poseemos muchos CDs.",
+  "translation" : "Conseguimos muchos CDs.",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We possess",
+      "text" : "We get",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "many of" ]
     }, {
       "kind" : "TEXT",
       "text" : "CDs.",
       "options" : null
     } ],
-    "sentences" : [ "We possess many of CDs." ]
+    "sentences" : [ "We get many of CDs." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
-  "title" : "$Many$ o $many of$",
+  "title" : "I don't have many hats.",
   "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
-  "translation" : "Me encantan los sombreros, pero no poseo muchos.",
+  "translation" : "No tengo muchos sombreros.",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I love hats but I don't possess",
+      "text" : "I don't have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
-      "text" : ".",
+      "text" : "hats.",
       "options" : null
     } ],
-    "sentences" : [ "I love hats but I don't possess many." ]
+    "sentences" : [ "I don't have many hats." ]
   }
 }, {
   "_id" : {
@@ -575,9 +575,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
-  "title" : "$Many$ o $many of$",
+  "title" : "He has three cars but wants many!",
   "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
-  "translation" : "Tiene tres coches, ¡pero desea muchos!",
+  "translation" : "Tiene tres coches, ¡pero quiere muchos!",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -597,26 +597,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He has three cars but he desires",
+      "text" : "He has three cars but wants",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
       "text" : "!",
       "options" : null
     } ],
-    "sentences" : [ "He has three cars but he desires many!" ]
+    "sentences" : [ "He has three cars but wants many!" ]
   }
 }, {
   "_id" : {
@@ -835,9 +835,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
-  "title" : "$Many$ o $many of$",
+  "title" : "She loves plants and she has many.",
   "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
-  "translation" : "A ella le encantan las plantas y cultiva muchas.",
+  "translation" : "A ella le encantan las plantas y tiene muchas.",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -857,26 +857,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She loves plants and she cultivates",
+      "text" : "She loves plants and she has",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "She loves plants and she cultivates many." ]
+    "sentences" : [ "She loves plants and she has many." ]
   }
 }, {
   "_id" : {

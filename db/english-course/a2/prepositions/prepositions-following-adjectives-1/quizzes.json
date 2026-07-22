@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28e"
   },
-  "title" : "Sentimientos y cualidades",
+  "title" : "Is this car useful for shopping?",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "¿Es útil este coche para viajar al trabajo?",
+  "translation" : "¿Es útil este coche para ir de compras?",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -721,10 +721,10 @@
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
-      "text" : "commuting?",
+      "text" : "shopping?",
       "options" : null
     } ],
-    "sentences" : [ "Is this car useful for commuting?" ]
+    "sentences" : [ "Is this car useful for shopping?" ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28e"
   },
-  "title" : "Sentimientos y cualidades",
+  "title" : "Mark was married to a teacher.",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Mark se arrepintió de dejar la clase.",
+  "translation" : "Mark estaba casado con una profesora.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -921,18 +921,18 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Mark was regretful",
+      "text" : "Mark was married",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "for" ]
+      "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "leaving class.",
+      "text" : "a teacher.",
       "options" : null
     } ],
-    "sentences" : [ "Mark was regretful for leaving class." ]
+    "sentences" : [ "Mark was married to a teacher." ]
   }
 }, {
   "_id" : {

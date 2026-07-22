@@ -419,9 +419,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d31b"
   },
-  "title" : "Infinitivo",
+  "title" : "The team leader needs to be replaced.",
   "instructions" : "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar $by$.",
-  "translation" : "Los neumáticos necesitan ser reemplazados.",
+  "translation" : "El líder del equipo necesita ser reemplazado.",
   "theoryId" : "b1.09.Passive_Infinitive_Introduction",
   "topicName" : "The passive",
   "difficulty" : {
@@ -441,26 +441,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Someone needs to replace the tires.",
+      "text" : "Someone needs to replace the team leader.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The tires need to be replaced." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The team leader needs to be replaced." ]
     } ],
-    "sentences" : [ "The tires need to be replaced." ]
+    "sentences" : [ "The team leader needs to be replaced." ]
   }
 }, {
   "_id" : {

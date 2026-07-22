@@ -55,9 +55,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "Adverbios de modo",
+  "title" : "He writes words well.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Él escribe las palabras con esmero.",
+  "translation" : "Él escribe las palabras bien.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -85,14 +85,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He writes words (nice).",
+      "text" : "He writes words (good).",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "He writes words nicely." ]
+      "options" : [ "He writes words well." ]
     } ],
-    "sentences" : [ "He writes words nicely." ]
+    "sentences" : [ "He writes words well." ]
   }
 }, {
   "_id" : {
@@ -391,9 +391,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "Adverbios de modo",
+  "title" : "He walked sleepily.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Él suspiró con sueño.",
+  "translation" : "Él caminó con sueño.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -413,26 +413,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He sighed (sleepy).",
+      "text" : "He walked (sleepy).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He sighed sleepily." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He walked sleepily." ]
     } ],
-    "sentences" : [ "He sighed sleepily." ]
+    "sentences" : [ "He walked sleepily." ]
   }
 }, {
   "_id" : {
@@ -635,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "Adverbios de modo",
+  "title" : "He spoke coldly.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Él susurró con frialdad.",
+  "translation" : "Él habló con frialdad.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -665,14 +661,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He whispered (cold).",
+      "text" : "He spoke (cold).",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "He whispered coldly." ]
+      "options" : [ "He spoke coldly." ]
     } ],
-    "sentences" : [ "He whispered coldly." ]
+    "sentences" : [ "He spoke coldly." ]
   }
 }, {
   "_id" : {
@@ -875,9 +871,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "Adverbios de modo",
+  "title" : "The student answered every question well.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "El estudiante respondió cada pregunta incorrectamente.",
+  "translation" : "El estudiante respondió bien cada pregunta.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -910,13 +906,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "wrongly" ]
+      "options" : [ "well" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(wrong).",
+      "text" : "(good).",
       "options" : null
     } ],
-    "sentences" : [ "The student answered every question wrongly." ]
+    "sentences" : [ "The student answered every question well." ]
   }
 }, {
   "_id" : {
@@ -927,9 +923,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e9"
   },
-  "title" : "Adverbios de modo",
+  "title" : "Anna spoke early.",
   "instructions" : "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-  "translation" : "Anna habló cálidamente.",
+  "translation" : "Anna habló temprano.",
   "theoryId" : "a1.11.Adjectives_Basics",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -957,13 +953,13 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Anna spoke (warm).",
+      "text" : "Anna spoke (early).",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "Anna spoke warmly." ]
+      "options" : [ "Anna spoke early." ]
     } ],
-    "sentences" : [ "Anna spoke warmly." ]
+    "sentences" : [ "Anna spoke early." ]
   }
 } ]

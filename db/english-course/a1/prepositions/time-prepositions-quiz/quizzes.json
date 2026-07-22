@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d9"
   },
-  "title" : "Tiempo: repaso",
+  "title" : "Her game is in July.",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "Su graduación es en julio.",
+  "translation" : "Su partido es en julio.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Her graduation is",
+      "text" : "Her game is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "July.",
       "options" : null
     } ],
-    "sentences" : [ "Her graduation is in July." ]
+    "sentences" : [ "Her game is in July." ]
   }
 }, {
   "_id" : {

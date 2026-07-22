@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d292"
   },
-  "title" : "Foto, pausa y regalo",
+  "title" : "We used a plan of Berlin.",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Consultamos un plano de Berlín.",
+  "translation" : "Usamos un plano de Berlín.",
   "theoryId" : "a2.09.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We consulted a plan",
+      "text" : "We used a plan",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
       "text" : "Berlin.",
       "options" : null
     } ],
-    "sentences" : [ "We consulted a plan of Berlin." ]
+    "sentences" : [ "We used a plan of Berlin." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d292"
   },
-  "title" : "Foto, pausa y regalo",
+  "title" : "She's a fan of the railway.",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Ella es fanática de la red de transporte público.",
+  "translation" : "Ella es fanática del ferrocarril.",
   "theoryId" : "a2.09.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -721,10 +721,10 @@
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the public transportation network.",
+      "text" : "the railway.",
       "options" : null
     } ],
-    "sentences" : [ "She's a fan of the public transportation network." ]
+    "sentences" : [ "She's a fan of the railway." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d292"
   },
-  "title" : "Foto, pausa y regalo",
+  "title" : "This is an example of a very new fork.",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Esta es una ilustración de un tenedor muy nuevo.",
+  "translation" : "Este es un ejemplo de un tenedor muy nuevo.",
   "theoryId" : "a2.09.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -817,7 +817,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "This is an illustration",
+      "text" : "This is an example",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -828,7 +828,7 @@
       "text" : "a very new fork.",
       "options" : null
     } ],
-    "sentences" : [ "This is an illustration of a very new fork." ]
+    "sentences" : [ "This is an example of a very new fork." ]
   }
 }, {
   "_id" : {

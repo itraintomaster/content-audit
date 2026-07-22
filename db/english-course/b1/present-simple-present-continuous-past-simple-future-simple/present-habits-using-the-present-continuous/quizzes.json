@@ -363,9 +363,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2bd"
   },
-  "title" : "Quejas habituales",
+  "title" : "She's always losing her keys at home.",
   "instructions" : "Escribe oraciones utilizando el _present continuous_ o el _present simple_. En este caso, si el adverbio es $forever / always / constantly$, debes utilizar el _present continuous_.",
-  "translation" : "Ella siempre pierde sus llaves.",
+  "translation" : "Ella siempre pierde sus llaves en casa.",
   "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -385,26 +385,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She / always / misplace her keys.",
+      "text" : "She / always / lose her keys at home.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She's always misplacing her keys." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She's always losing her keys at home." ]
     } ],
-    "sentences" : [ "She's always misplacing her keys." ]
+    "sentences" : [ "She's always losing her keys at home." ]
   }
 }, {
   "_id" : {

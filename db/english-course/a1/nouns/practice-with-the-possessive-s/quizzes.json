@@ -555,9 +555,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ca"
   },
-  "title" : "El posesivo",
+  "title" : "That is the birds' home.",
   "instructions" : "Cambia la oración para que incluya $'s$ o $s'$. Por ejemplo: Pregunta: Those shoes belong to the boys. Respuesta: Those are the boys' shoes.",
-  "translation" : "Ese es el nido de los pájaros.",
+  "translation" : "Ese es el hogar de los pájaros.",
   "theoryId" : "a1.06.Possessive_s",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -577,26 +577,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "That nest belongs to the birds.",
+      "text" : "That home belongs to the birds.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "That is the birds' nest.|That's the birds' nest." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "That is the birds' home.|That's the birds' home." ]
     } ],
-    "sentences" : [ "That is the birds' nest.", "That's the birds' nest." ]
+    "sentences" : [ "That is the birds' home.", "That's the birds' home." ]
   }
 }, {
   "_id" : {

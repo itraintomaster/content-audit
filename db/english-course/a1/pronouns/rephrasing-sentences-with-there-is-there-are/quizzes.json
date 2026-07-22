@@ -307,9 +307,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d4"
   },
-  "title" : "Oraciones más naturales",
+  "title" : "There is a new place near here.",
   "instructions" : "Cambia estas oraciones (¡inusuales!) para que incluyan $there$.",
-  "translation" : "Hay una panadería nueva por aquí.",
+  "translation" : "Hay un lugar nuevo cerca de aquí.",
   "theoryId" : "a1.08.5_There_is_and_there_are",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -337,14 +337,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A new bakery is around here.",
+      "text" : "A new place is near here.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "There is a new bakery around here." ]
+      "options" : [ "There is a new place near here." ]
     } ],
-    "sentences" : [ "There is a new bakery around here." ]
+    "sentences" : [ "There is a new place near here." ]
   }
 }, {
   "_id" : {
@@ -863,9 +863,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d4"
   },
-  "title" : "Oraciones más naturales",
+  "title" : "There is a plate on the book.",
   "instructions" : "Cambia estas oraciones (¡inusuales!) para que incluyan $there$.",
-  "translation" : "Hay un plato en la encimera.",
+  "translation" : "Hay un plato sobre el libro.",
   "theoryId" : "a1.08.5_There_is_and_there_are",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -885,26 +885,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A plate is on the counter.",
+      "text" : "A plate is on the book.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "There is a plate on the counter." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "There is a plate on the book." ]
     } ],
-    "sentences" : [ "There is a plate on the counter." ]
+    "sentences" : [ "There is a plate on the book." ]
   }
 }, {
   "_id" : {

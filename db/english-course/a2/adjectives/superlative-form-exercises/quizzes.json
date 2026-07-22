@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a6"
   },
-  "title" : "Formar superlativos",
+  "title" : "That is the biggest cat that I've ever seen!",
   "instructions" : "Escribe la forma superlativa.",
-  "translation" : "¡Ese es el gato más raro que he conocido!",
+  "translation" : "¡Ese es el gato más grande que he visto!",
   "theoryId" : "a2.11.Form_the_Superlative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "That is the",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "oddest" ]
+      "text" : null,
+      "options" : [ "biggest" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(odd) cat that I've ever met!",
+      "text" : "(big) cat that I've ever seen!",
       "options" : null
     } ],
-    "sentences" : [ "That is the oddest cat that I've ever met!" ]
+    "sentences" : [ "That is the biggest cat that I've ever seen!" ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a6"
   },
-  "title" : "Formar superlativos",
+  "title" : "That is the cheapest car.",
   "instructions" : "Escribe la forma superlativa.",
-  "translation" : "Ese es el coche más asequible.",
+  "translation" : "Ese es el coche más barato.",
   "theoryId" : "a2.11.Form_the_Superlative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "That is the",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "most affordable" ]
+      "text" : null,
+      "options" : [ "cheapest" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(affordable) car.",
+      "text" : "(cheap) car.",
       "options" : null
     } ],
-    "sentences" : [ "That is the most affordable car." ]
+    "sentences" : [ "That is the cheapest car." ]
   }
 }, {
   "_id" : {
@@ -1047,9 +1047,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a6"
   },
-  "title" : "Formar superlativos",
+  "title" : "He was the worst with the glasses.",
   "instructions" : "Escribe la forma superlativa.",
-  "translation" : "Él fue el más imprudente con los vasos.",
+  "translation" : "Él fue el peor con los vasos.",
   "theoryId" : "a2.11.Form_the_Superlative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -1069,26 +1069,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He was the",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "most reckless" ]
+      "text" : null,
+      "options" : [ "worst" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(reckless) with the glasses.",
+      "text" : "(bad) with the glasses.",
       "options" : null
     } ],
-    "sentences" : [ "He was the most reckless with the glasses." ]
+    "sentences" : [ "He was the worst with the glasses." ]
   }
 }, {
   "_id" : {

@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22f"
   },
-  "title" : "Funciones mixtas",
+  "title" : "She will not cook the vegetables.",
   "instructions" : "Elige $be going to$ para predicciones o $will$ para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "Ella no se comerá las verduras.",
+  "translation" : "Ella no cocinará las verduras.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Refusal: She",
+      "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "won't eat|will not eat" ]
+      "text" : null,
+      "options" : [ "will not cook|won't cook" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / eat) the vegetables.",
+      "text" : "(not / cook) the vegetables.",
       "options" : null
     } ],
-    "sentences" : [ "Refusal: She won't eat the vegetables.", "Refusal: She will not eat the vegetables." ]
+    "sentences" : [ "She will not cook the vegetables.", "She won't cook the vegetables." ]
   }
 }, {
   "_id" : {
@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22f"
   },
-  "title" : "Funciones mixtas",
+  "title" : "No: He won't say sorry to you.",
   "instructions" : "Elige $be going to$ para predicciones o $will$ para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "Él no te pedirá perdón.",
+  "translation" : "No: Él no te pedirá perdón.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Refusal: He",
+      "text" : "No: He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "won't say|will not say" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / say) sorry to you.",
       "options" : null
     } ],
-    "sentences" : [ "Refusal: He won't say sorry to you.", "Refusal: He will not say sorry to you." ]
+    "sentences" : [ "No: He won't say sorry to you.", "No: He will not say sorry to you." ]
   }
 }, {
   "_id" : {

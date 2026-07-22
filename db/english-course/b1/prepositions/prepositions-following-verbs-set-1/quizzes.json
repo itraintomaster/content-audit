@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d375"
   },
-  "title" : "Verbos con destinatario",
+  "title" : "He invited everyone to the conference today.",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Él convocó a todos a la conferencia.",
+  "translation" : "Él invitó a todos a la conferencia hoy.",
   "theoryId" : "b1.17.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He summoned everyone",
+      "text" : "He invited everyone",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the conference.",
+      "text" : "the conference today.",
       "options" : null
     } ],
-    "sentences" : [ "He summoned everyone to the conference." ]
+    "sentences" : [ "He invited everyone to the conference today." ]
   }
 }, {
   "_id" : {

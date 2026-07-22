@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a9"
   },
-  "title" : "Vocabulario de adjetivos",
+  "title" : "This is a boring job! I can't stand it!",
   "instructions" : "Selecciona el adjetivo apropiado para completar cada oración.",
-  "translation" : "¡Este es un trabajo tedioso! ¡No lo soporto!",
+  "translation" : "¡Este es un trabajo aburrido! ¡No lo soporto!",
   "theoryId" : "a2.11.Bored_and_Boring",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -406,13 +406,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "tedious" ]
+      "options" : [ "boring" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(tedious / tedded) job! I can't stand it!",
+      "text" : "(boring / bored) job! I can't stand it!",
       "options" : null
     } ],
-    "sentences" : [ "This is a tedious job! I can't stand it!" ]
+    "sentences" : [ "This is a boring job! I can't stand it!" ]
   }
 }, {
   "_id" : {

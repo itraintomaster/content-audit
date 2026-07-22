@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d379"
   },
-  "title" : "$As$ o $Like$",
+  "title" : "He interned as a keeper at the zoo.",
   "instructions" : "Elegir $as$ si estamos hablando del trabajo de alguien. Elegir $like$ si estamos hablando de algo que es similar a otra cosa.",
-  "translation" : "Hizo una pasantía como desarrollador.",
+  "translation" : "Hizo una pasantía como cuidador en el zoológico.",
   "theoryId" : "b1.17.As_and_Like",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He interned",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "as" ]
     }, {
       "kind" : "TEXT",
-      "text" : "a developer.",
+      "text" : "a keeper at the zoo.",
       "options" : null
     } ],
-    "sentences" : [ "He interned as a developer." ]
+    "sentences" : [ "He interned as a keeper at the zoo." ]
   }
 }, {
   "_id" : {

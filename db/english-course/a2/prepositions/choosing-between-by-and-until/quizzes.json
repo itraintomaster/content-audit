@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28a"
   },
-  "title" : "$By$ o $until$",
+  "title" : "They resided in France until 2003; they moved to Germany.",
   "instructions" : "Elige $by$ o $until$.",
-  "translation" : "Residieron en Francia hasta 2003, luego se mudaron a Alemania.",
+  "translation" : "Residieron en Francia hasta 2003; se mudaron a Alemania.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They resided in France",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "until" ]
     }, {
       "kind" : "TEXT",
-      "text" : "2003, then they relocated to Germany.",
+      "text" : "2003; they moved to Germany.",
       "options" : null
     } ],
-    "sentences" : [ "They resided in France until 2003, then they relocated to Germany." ]
+    "sentences" : [ "They resided in France until 2003; they moved to Germany." ]
   }
 }, {
   "_id" : {

@@ -367,9 +367,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33b"
   },
-  "title" : "Pronombre sujeto",
+  "title" : "We phoned the employer who runs the school.",
   "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa $who$ para personas y $that$ para cosas.",
-  "translation" : "Llamamos al director que dirige la escuela.",
+  "translation" : "Llamamos al empleador que dirige la escuela.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -389,26 +389,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We phoned the headmaster (the headmaster runs the school).",
+      "text" : "We phoned the employer (the employer runs the school).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We phoned the headmaster who runs the school." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "We phoned the employer who runs the school." ]
     } ],
-    "sentences" : [ "We phoned the headmaster who runs the school." ]
+    "sentences" : [ "We phoned the employer who runs the school." ]
   }
 }, {
   "_id" : {

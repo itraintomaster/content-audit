@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3f6"
   },
-  "title" : "Presente histórico",
+  "title" : "Frodo takes the ring and has a dangerous strategy.",
   "instructions" : "Transforma las oraciones en pasado al $historic present$. Todas las oraciones hablan de algo en el pasado.",
-  "translation" : "Frodo toma el anillo y tiene una peligrosa misión.",
+  "translation" : "Frodo toma el anillo y tiene una estrategia peligrosa.",
   "theoryId" : "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
   "difficulty" : {
@@ -809,26 +809,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Frodo took the ring and had a dangerous quest.",
+      "text" : "Frodo took the ring and had a dangerous strategy.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Frodo takes the ring and has a dangerous quest." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Frodo takes the ring and has a dangerous strategy." ]
     } ],
-    "sentences" : [ "Frodo takes the ring and has a dangerous quest." ]
+    "sentences" : [ "Frodo takes the ring and has a dangerous strategy." ]
   }
 }, {
   "_id" : {

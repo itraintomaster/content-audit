@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d220"
   },
-  "title" : "Respuestas cortas",
+  "title" : "A: Are they ready? B: Yes, they are.",
   "instructions" : "Escribe la respuesta corta.",
-  "translation" : "Sí, lo somos.",
+  "translation" : "A: ¿Están listos? B: Sí, lo están.",
   "theoryId" : "a2.01.Present_Continuous_Use_Temporary_Meaning",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Are we heading to the correct building? B: Yes, we",
+      "text" : "A: Are they ready? B: Yes, they",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "are" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Are we heading to the correct building? B: Yes, we are." ]
+    "sentences" : [ "A: Are they ready? B: Yes, they are." ]
   }
 }, {
   "_id" : {

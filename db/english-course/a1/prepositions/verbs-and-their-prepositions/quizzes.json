@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e1"
   },
-  "title" : "Verbos y sus preposiciones",
+  "title" : "The house goes to Peter.",
   "instructions" : "Completa con la preposición correcta.",
-  "translation" : "La casa pertenece a Peter.",
+  "translation" : "La casa pasa a Peter.",
   "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The house belongs",
+      "text" : "The house goes",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "Peter.",
       "options" : null
     } ],
-    "sentences" : [ "The house belongs to Peter." ]
+    "sentences" : [ "The house goes to Peter." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e1"
   },
-  "title" : "Verbos y sus preposiciones",
+  "title" : "Who does this pen go to?",
   "instructions" : "Completa con la preposición correcta.",
-  "translation" : "¿A quién pertenece este bolígrafo?",
+  "translation" : "¿A quién va este bolígrafo?",
   "theoryId" : "a1.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Who does this pen belong",
+      "text" : "Who does this pen go",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "?",
       "options" : null
     } ],
-    "sentences" : [ "Who does this pen belong to?" ]
+    "sentences" : [ "Who does this pen go to?" ]
   }
 }, {
   "_id" : {

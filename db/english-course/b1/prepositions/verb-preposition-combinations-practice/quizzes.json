@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d376"
   },
-  "title" : "Verbos con persona",
+  "title" : "Someone stole a wallet from my grandma.",
   "instructions" : "Completar las oraciones con la preposición correcta. Puede haber varias respuestas correctas.",
-  "translation" : "Alguien le arrebató la cartera a mi abuela.",
+  "translation" : "Alguien le robó una cartera a mi abuela.",
   "theoryId" : "b1.17.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Someone snatched a wallet",
+      "text" : "Someone stole a wallet",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "from" ]
     }, {
       "kind" : "TEXT",
       "text" : "my grandma.",
       "options" : null
     } ],
-    "sentences" : [ "Someone snatched a wallet from my grandma." ]
+    "sentences" : [ "Someone stole a wallet from my grandma." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d376"
   },
-  "title" : "Verbos con persona",
+  "title" : "He's always worrying about his health.",
   "instructions" : "Completar las oraciones con la preposición correcta. Puede haber varias respuestas correctas.",
-  "translation" : "Él siempre se está quejando de su salud.",
+  "translation" : "Él siempre se está preocupando por su salud.",
   "theoryId" : "b1.17.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He's always moaning",
+      "text" : "He's always worrying",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
       "text" : "his health.",
       "options" : null
     } ],
-    "sentences" : [ "He's always moaning about his health." ]
+    "sentences" : [ "He's always worrying about his health." ]
   }
 }, {
   "_id" : {

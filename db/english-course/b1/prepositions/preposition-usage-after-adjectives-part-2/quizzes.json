@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d374"
   },
-  "title" : "Tras el adjetivo",
+  "title" : "They're hopeful of traveling to Spain this summer.",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Están cansados de viajar.",
+  "translation" : "Tienen esperanza de viajar a España este verano.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They're weary",
+      "text" : "They're hopeful",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "traveling.",
+      "text" : "traveling to Spain this summer.",
       "options" : null
     } ],
-    "sentences" : [ "They're weary of traveling." ]
+    "sentences" : [ "They're hopeful of traveling to Spain this summer." ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d374"
   },
-  "title" : "Tras el adjetivo",
+  "title" : "This toy is really bad for development.",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Este juguete es realmente malo para los niños pequeños.",
+  "translation" : "Este juguete es realmente malo para el desarrollo.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -565,10 +565,10 @@
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
-      "text" : "toddlers.",
+      "text" : "development.",
       "options" : null
     } ],
-    "sentences" : [ "This toy is really bad for toddlers." ]
+    "sentences" : [ "This toy is really bad for development." ]
   }
 }, {
   "_id" : {

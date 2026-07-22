@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a5"
   },
-  "title" : "Oraciones con $as ... as$",
+  "title" : "Candy is not as healthy as fruit.",
   "instructions" : "Crea oraciones usando $as ... as$ o $not as ... as$.",
-  "translation" : "Los dulces no son tan nutritivos como la fruta.",
+  "translation" : "Los dulces no son tan saludables como la fruta.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Candy is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "not as nutritious as" ]
+      "text" : null,
+      "options" : [ "not as healthy as" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / nutritious) fruit.",
+      "text" : "(not / healthy) fruit.",
       "options" : null
     } ],
-    "sentences" : [ "Candy is not as nutritious as fruit." ]
+    "sentences" : [ "Candy is not as healthy as fruit." ]
   }
 }, {
   "_id" : {

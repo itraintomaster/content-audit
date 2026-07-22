@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d251"
   },
-  "title" : "Planes y deseos",
+  "title" : "She wanted to stay at the hotel.",
   "instructions" : "Crea oraciones con $to + infinitive$.",
-  "translation" : "Ella esperaba quedarse en el hotel.",
+  "translation" : "Ella quería quedarse en el hotel.",
   "theoryId" : "a2.05.Verbs_Patterns_with_Infinitive_+_to",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She hoped",
+      "text" : "She wanted",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to stay" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) at the hotel.",
+      "text" : "(stay) at the hotel.",
       "options" : null
     } ],
-    "sentences" : [ "She hoped to stay at the hotel." ]
+    "sentences" : [ "She wanted to stay at the hotel." ]
   }
 }, {
   "_id" : {

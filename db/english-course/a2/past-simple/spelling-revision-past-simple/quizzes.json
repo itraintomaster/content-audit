@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d233"
   },
-  "title" : "Ortografía: repaso",
+  "title" : "They scurried to catch the bus.",
   "instructions" : "Escribe la forma en $past simple$.",
-  "translation" : "Se apresuraron para alcanzar el autobús.",
+  "translation" : "Se apresuraron para tomar el autobús.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "scurried" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(scurry) to reach the bus.",
+      "text" : "(scurry) to catch the bus.",
       "options" : null
     } ],
-    "sentences" : [ "They scurried to reach the bus." ]
+    "sentences" : [ "They scurried to catch the bus." ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d233"
   },
-  "title" : "Ortografía: repaso",
+  "title" : "He used the files from the computer.",
   "instructions" : "Escribe la forma en $past simple$.",
-  "translation" : "Él duplicó los archivos de la computadora.",
+  "translation" : "Él usó los archivos de la computadora.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "duplicated" ]
+      "text" : null,
+      "options" : [ "used" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(duplicate) the files from the computer.",
+      "text" : "(use) the files from the computer.",
       "options" : null
     } ],
-    "sentences" : [ "He duplicated the files from the computer." ]
+    "sentences" : [ "He used the files from the computer." ]
   }
 }, {
   "_id" : {
@@ -683,7 +683,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d233"
   },
-  "title" : "Ortografía: repaso",
+  "title" : "She loved the drink.",
   "instructions" : "Escribe la forma en $past simple$.",
   "translation" : "A ella le encantó la bebida.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "adored" ]
+      "text" : null,
+      "options" : [ "loved" ]
     }, {
       "kind" : "TEXT",
       "text" : "(love) the drink.",
       "options" : null
     } ],
-    "sentences" : [ "She adored the drink." ]
+    "sentences" : [ "She loved the drink." ]
   }
 }, {
   "_id" : {
@@ -839,7 +839,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d233"
   },
-  "title" : "Ortografía: repaso",
+  "title" : "We agreed to dress them.",
   "instructions" : "Escribe la forma en $past simple$.",
   "translation" : "Acordamos vestirlos.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
@@ -874,13 +874,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "concurred" ]
+      "options" : [ "agreed" ]
     }, {
       "kind" : "TEXT",
       "text" : "(agree) to dress them.",
       "options" : null
     } ],
-    "sentences" : [ "We concurred to dress them." ]
+    "sentences" : [ "We agreed to dress them." ]
   }
 }, {
   "_id" : {

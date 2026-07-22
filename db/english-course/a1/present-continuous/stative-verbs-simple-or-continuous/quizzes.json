@@ -475,7 +475,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a3"
   },
-  "title" : "Verbos de estado",
+  "title" : "They need a bus now.",
   "instructions" : "Si es posible, escribe la oración en $present continuous$. Si no, usa el $present simple$. No uses contracciones ($short forms$).",
   "translation" : "Ellos necesitan un autobús ahora.",
   "theoryId" : "a1.02.Stative_Verbs",
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "require" ]
+      "text" : null,
+      "options" : [ "need" ]
     }, {
       "kind" : "TEXT",
       "text" : "(need) a bus now.",
       "options" : null
     } ],
-    "sentences" : [ "They require a bus now." ]
+    "sentences" : [ "They need a bus now." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a3"
   },
-  "title" : "Verbos de estado",
+  "title" : "She knows everyone today.",
   "instructions" : "Si es posible, escribe la oración en $present continuous$. Si no, usa el $present simple$. No uses contracciones ($short forms$).",
-  "translation" : "Ella desprecia a todos hoy.",
+  "translation" : "Ella conoce a todos hoy.",
   "theoryId" : "a1.02.Stative_Verbs",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "despises" ]
+      "text" : null,
+      "options" : [ "knows" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(hate) everyone today.",
+      "text" : "(know) everyone today.",
       "options" : null
     } ],
-    "sentences" : [ "She despises everyone today." ]
+    "sentences" : [ "She knows everyone today." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a3"
   },
-  "title" : "Verbos de estado",
+  "title" : "She has two cats.",
   "instructions" : "Si es posible, escribe la oración en $present continuous$. Si no, usa el $present simple$. No uses contracciones ($short forms$).",
-  "translation" : "Ella posee dos gatos.",
+  "translation" : "Ella tiene dos gatos.",
   "theoryId" : "a1.02.Stative_Verbs",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "possesses" ]
+      "text" : null,
+      "options" : [ "has" ]
     }, {
       "kind" : "TEXT",
       "text" : "(have) two cats.",
       "options" : null
     } ],
-    "sentences" : [ "She possesses two cats." ]
+    "sentences" : [ "She has two cats." ]
   }
 }, {
   "_id" : {
@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a3"
   },
-  "title" : "Verbos de estado",
+  "title" : "He is making juice.",
   "instructions" : "Si es posible, escribe la oración en $present continuous$. Si no, usa el $present simple$. No uses contracciones ($short forms$).",
-  "translation" : "Él está sirviendo jugo.",
+  "translation" : "Él está haciendo jugo.",
   "theoryId" : "a1.02.Stative_Verbs",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is pouring" ]
+      "text" : null,
+      "options" : [ "is making" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(drink) juice.",
+      "text" : "(make) juice.",
       "options" : null
     } ],
-    "sentences" : [ "He is pouring juice." ]
+    "sentences" : [ "He is making juice." ]
   }
 } ]

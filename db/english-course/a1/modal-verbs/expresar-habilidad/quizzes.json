@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
-  "title" : "Expresar habilidad",
+  "title" : "You can understand people.",
   "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
-  "translation" : "Podrás entender a la gente.",
+  "translation" : "Puedes entender a la gente.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -250,13 +250,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "will be able to" ]
+      "options" : [ "can" ]
     }, {
       "kind" : "TEXT",
-      "text" : "understand people.",
+      "text" : "understand people. (now)",
       "options" : null
     } ],
-    "sentences" : [ "You will be able to understand people." ]
+    "sentences" : [ "You can understand people." ]
   }
 }, {
   "_id" : {

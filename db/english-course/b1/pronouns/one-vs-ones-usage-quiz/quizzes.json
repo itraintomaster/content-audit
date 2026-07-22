@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d344"
   },
-  "title" : "$One$ vs. $ones$: repaso",
+  "title" : "She bought flowers and gave her these lovely ones.",
   "instructions" : "Inserta $one$ o $ones$ según corresponda.",
-  "translation" : "Ella cultivó girasoles y le presentó estos hermosos.",
+  "translation" : "Ella compró flores y le dio estas hermosas.",
   "theoryId" : "b1.13.Each_Other",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She cultivated sunflowers and presented her with these lovely",
+      "text" : "She bought flowers and gave her these lovely",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "ones" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "She cultivated sunflowers and presented her with these lovely ones." ]
+    "sentences" : [ "She bought flowers and gave her these lovely ones." ]
   }
 }, {
   "_id" : {

@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d23d"
   },
-  "title" : "Preguntas",
+  "title" : "Have you washed the towel?",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Ha granizado?",
+  "translation" : "¿Has lavado la toalla?",
   "theoryId" : "a2.04.Present_Perfect_for_Life_Experience_With_Ever_and_Never_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -965,26 +965,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Has it hailed" ]
+      "text" : null,
+      "options" : [ "Have you washed" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(it / hail)?",
+      "text" : "(you / wash) the towel?",
       "options" : null
     } ],
-    "sentences" : [ "Has it hailed?" ]
+    "sentences" : [ "Have you washed the towel?" ]
   }
 }, {
   "_id" : {

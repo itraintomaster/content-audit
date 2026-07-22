@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bc"
   },
-  "title" : "Verbos irregulares 1",
+  "title" : "We wrote many letters yesterday.",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Escribimos muchos ensayos el año pasado.",
+  "translation" : "Escribimos muchas cartas ayer.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "wrote" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(write) many essays last year.",
+      "text" : "(write) many letters yesterday.",
       "options" : null
     } ],
-    "sentences" : [ "We wrote many essays last year." ]
+    "sentences" : [ "We wrote many letters yesterday." ]
   }
 }, {
   "_id" : {
@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bc"
   },
-  "title" : "Verbos irregulares 1",
+  "title" : "We remembered to close the door.",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Recordamos cerrar la puerta con llave.",
+  "translation" : "Recordamos cerrar la puerta.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "remembered" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(remember) to lock the door.",
+      "text" : "(remember) to close the door.",
       "options" : null
     } ],
-    "sentences" : [ "We remembered to lock the door." ]
+    "sentences" : [ "We remembered to close the door." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bc"
   },
-  "title" : "Verbos irregulares 1",
+  "title" : "They helped the man at the beach.",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Ellos ayudaron a la señora en la playa.",
+  "translation" : "Ellos ayudaron al hombre en la playa.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -773,10 +773,10 @@
       "options" : [ "helped" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(help) the lady at the beach.",
+      "text" : "(help) the man at the beach.",
       "options" : null
     } ],
-    "sentences" : [ "They helped the lady at the beach." ]
+    "sentences" : [ "They helped the man at the beach." ]
   }
 }, {
   "_id" : {

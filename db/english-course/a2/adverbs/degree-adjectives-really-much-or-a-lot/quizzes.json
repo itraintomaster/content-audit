@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2af"
   },
-  "title" : "Grado con verbos",
+  "title" : "He liked the fish a lot.",
   "instructions" : "Completá con $really$, $much$ o $a lot$.",
-  "translation" : "Él detestaba mucho el pescado.",
+  "translation" : "A él le gustó mucho el pescado.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He detested the fish",
+      "text" : "He liked the fish",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a lot" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "He detested the fish a lot." ]
+    "sentences" : [ "He liked the fish a lot." ]
   }
 }, {
   "_id" : {

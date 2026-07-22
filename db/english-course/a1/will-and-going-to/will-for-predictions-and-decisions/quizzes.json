@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ab"
   },
-  "title" : "Predicciones y decisiones",
+  "title" : "I won't make dinner tonight.",
   "instructions" : "Escribe oraciones utilizando $will$. Utiliza contracciones ($short forms$).",
-  "translation" : "Prometo que no cometeré el mismo error la próxima vez.",
+  "translation" : "No haré la cena esta noche.",
   "theoryId" : "a1.03.Will_Use_Prediction",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -609,7 +609,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I promise I",
+      "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -617,10 +617,10 @@
       "options" : [ "won't make" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / make) the same mistake next time.",
+      "text" : "(not / make) dinner tonight.",
       "options" : null
     } ],
-    "sentences" : [ "I promise I won't make the same mistake next time." ]
+    "sentences" : [ "I won't make dinner tonight." ]
   }
 }, {
   "_id" : {

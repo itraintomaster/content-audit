@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
-  "title" : "Respuestas cortas",
+  "title" : "A: Could you help these people? B: Yes, I can.",
   "instructions" : "Escribe la $short answer$ (respuesta corta).",
-  "translation" : "Sí, puedo",
+  "translation" : "A: ¿Podrías ayudar a esta gente? B: Sí, puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Could you take out the trash? B: Yes,",
+      "text" : "A: Could you help these people? B: Yes,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "I can" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Could you take out the trash? B: Yes, I can." ]
+    "sentences" : [ "A: Could you help these people? B: Yes, I can." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
-  "title" : "Respuestas cortas",
+  "title" : "A: Can you work today? B: No, I can't.",
   "instructions" : "Escribe la $short answer$ (respuesta corta).",
-  "translation" : "No, no puedo",
+  "translation" : "A: ¿Puedes trabajar hoy? B: No, no puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Can you take out the trash? B: No,",
+      "text" : "A: Can you work today? B: No,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "I can't" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Can you take out the trash? B: No, I can't." ]
+    "sentences" : [ "A: Can you work today? B: No, I can't." ]
   }
 }, {
   "_id" : {

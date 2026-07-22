@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d347"
   },
-  "title" : "¿Mismo referente?",
+  "title" : "Bella touched herself her / herself on the back.",
   "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Bella se dio una palmada en la espalda.",
+  "translation" : "Bella se tocó la espalda.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Bella patted",
+      "text" : "Bella touched",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "herself" ]
     }, {
       "kind" : "TEXT",
-      "text" : "her / herself on the back. (Bella patted Bella's back.)",
+      "text" : "her / herself on the back. (Bella touched Bella's back.)",
       "options" : null
     } ],
-    "sentences" : [ "Bella patted herself her / herself on the back." ]
+    "sentences" : [ "Bella touched herself her / herself on the back." ]
   }
 }, {
   "_id" : {

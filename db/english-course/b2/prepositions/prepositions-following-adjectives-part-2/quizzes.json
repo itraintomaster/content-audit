@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d4ac"
   },
-  "title" : "Tras adjetivos II",
+  "title" : "She's eternally grateful for your generosity and support.",
   "instructions" : "Escribe las preposiciones correctas.",
-  "translation" : "Ella está eternamente agradecida por tu generosidad.",
+  "translation" : "Ella está eternamente agradecida por tu generosidad y apoyo.",
   "theoryId" : "b2.15.Adjectives_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She's eternally thankful",
+      "text" : "She's eternally grateful",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
-      "text" : "your generosity.",
+      "text" : "your generosity and support.",
       "options" : null
     } ],
-    "sentences" : [ "She's eternally thankful for your generosity." ]
+    "sentences" : [ "She's eternally grateful for your generosity and support." ]
   }
 }, {
   "_id" : {

@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35d"
   },
-  "title" : "Orden de adjetivos",
+  "title" : "She prefers southern Italian trousers at work.",
   "instructions" : "Reordena los adjetivos en el orden correcto.",
-  "translation" : "Ella prefiere pantalones de lino italianos.",
+  "translation" : "Ella prefiere pantalones del sur de Italia en el trabajo.",
   "theoryId" : "b1.15.Order_of_Adjectives",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She prefers",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Italian linen" ]
+      "text" : null,
+      "options" : [ "southern Italian" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(Italian / linen) trousers.",
+      "text" : "(Italian / southern) trousers at work.",
       "options" : null
     } ],
-    "sentences" : [ "She prefers Italian linen trousers." ]
+    "sentences" : [ "She prefers southern Italian trousers at work." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35d"
   },
-  "title" : "Orden de adjetivos",
+  "title" : "The sofa had twin brown cushions upstairs.",
   "instructions" : "Reordena los adjetivos en el orden correcto.",
-  "translation" : "El sofá tenía cojines de terciopelo marrón.",
+  "translation" : "El sofá tenía cojines gemelos marrones arriba.",
   "theoryId" : "b1.15.Order_of_Adjectives",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The sofa had",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "brown velvet" ]
+      "text" : null,
+      "options" : [ "twin brown" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(velvet / brown) cushions.",
+      "text" : "(brown / twin) cushions upstairs.",
       "options" : null
     } ],
-    "sentences" : [ "The sofa had brown velvet cushions." ]
+    "sentences" : [ "The sofa had twin brown cushions upstairs." ]
   }
 }, {
   "_id" : {

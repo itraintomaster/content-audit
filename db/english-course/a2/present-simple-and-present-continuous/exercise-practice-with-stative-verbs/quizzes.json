@@ -423,9 +423,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d223"
   },
-  "title" : "Verbos estáticos",
+  "title" : "She isn't helping Tom.",
   "instructions" : "Si es posible, escribe la oración en presente continuo. Si no, usa el presente simple.",
-  "translation" : "Ella no está saliendo con Tom.",
+  "translation" : "Ella no está ayudando a Tom.",
   "theoryId" : "a2.01.Stative_Verbs",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "isn't dating" ]
+      "text" : null,
+      "options" : [ "isn't helping" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / date) Tom.",
+      "text" : "(not / help) Tom.",
       "options" : null
     } ],
-    "sentences" : [ "She isn't dating Tom." ]
+    "sentences" : [ "She isn't helping Tom." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d223"
   },
-  "title" : "Verbos estáticos",
+  "title" : "That stamp doesn't belong to me.",
   "instructions" : "Si es posible, escribe la oración en presente continuo. Si no, usa el presente simple.",
-  "translation" : "Ese libro no me pertenece.",
+  "translation" : "Esa estampilla no me pertenece.",
   "theoryId" : "a2.01.Stative_Verbs",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "That book",
+      "text" : "That stamp",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "doesn't pertain" ]
+      "text" : null,
+      "options" : [ "doesn't belong" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / pertain) to me.",
+      "text" : "(not / belong) to me.",
       "options" : null
     } ],
-    "sentences" : [ "That book doesn't pertain to me." ]
+    "sentences" : [ "That stamp doesn't belong to me." ]
   }
 }, {
   "_id" : {

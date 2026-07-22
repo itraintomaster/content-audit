@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a2"
   },
-  "title" : "Formar comparativos",
+  "title" : "This car is newer than my old car.",
   "instructions" : "Escribe la forma comparativa.",
-  "translation" : "Este coche es más lujoso que mi viejo coche.",
+  "translation" : "Este coche es más nuevo que mi viejo coche.",
   "theoryId" : "a2.11.Form_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This car is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more luxurious" ]
+      "text" : null,
+      "options" : [ "newer" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(luxurious) than my old car.",
+      "text" : "(new) than my old car.",
       "options" : null
     } ],
-    "sentences" : [ "This car is more luxurious than my old car." ]
+    "sentences" : [ "This car is newer than my old car." ]
   }
 }, {
   "_id" : {

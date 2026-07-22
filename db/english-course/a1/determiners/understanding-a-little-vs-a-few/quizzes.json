@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
-  "title" : "$A little$ vs $a few$",
+  "title" : "She bought a few books.",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
-  "translation" : "Ella compró unas cajas de jugo.",
+  "translation" : "Ella compró unos libros.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -45,10 +45,10 @@
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
-      "text" : "cartons of juice.",
+      "text" : "books.",
       "options" : null
     } ],
-    "sentences" : [ "She bought a few cartons of juice." ]
+    "sentences" : [ "She bought a few books." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
-  "title" : "$A little$ vs $a few$",
+  "title" : "He made a few friends.",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
-  "translation" : "Hizo algunos gestos.",
+  "translation" : "Hizo algunos amigos.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -201,10 +201,10 @@
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
-      "text" : "gestures.",
+      "text" : "friends.",
       "options" : null
     } ],
-    "sentences" : [ "He made a few gestures." ]
+    "sentences" : [ "He made a few friends." ]
   }
 }, {
   "_id" : {
@@ -891,9 +891,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
-  "title" : "$A little$ vs $a few$",
+  "title" : "She used a little salt.",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
-  "translation" : "Ella añadió un poco de sal al guiso.",
+  "translation" : "Ella usó un poco de sal.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She added",
+      "text" : "She used",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a little" ]
     }, {
       "kind" : "TEXT",
-      "text" : "salt to the stew.",
+      "text" : "salt.",
       "options" : null
     } ],
-    "sentences" : [ "She added a little salt to the stew." ]
+    "sentences" : [ "She used a little salt." ]
   }
 }, {
   "_id" : {

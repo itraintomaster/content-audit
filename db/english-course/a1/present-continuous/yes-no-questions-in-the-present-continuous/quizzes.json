@@ -807,9 +807,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39b"
   },
-  "title" : "Preguntas sí/no",
+  "title" : "Is it getting late?",
   "instructions" : "Formula preguntas de sí/no en $present continuous$.",
-  "translation" : "¿Está soplando (el viento)?",
+  "translation" : "¿Se está haciendo tarde?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -829,26 +829,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Is it blowing" ]
+      "text" : null,
+      "options" : [ "Is it getting" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(it / blow)?",
+      "text" : "(it / get) late?",
       "options" : null
     } ],
-    "sentences" : [ "Is it blowing?" ]
+    "sentences" : [ "Is it getting late?" ]
   }
 }, {
   "_id" : {
@@ -907,9 +903,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39b"
   },
-  "title" : "Preguntas sí/no",
+  "title" : "Is the boy playing football?",
   "instructions" : "Formula preguntas de sí/no en $present continuous$.",
-  "translation" : "¿Está granizando?",
+  "translation" : "¿El niño está jugando al fútbol?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -929,26 +925,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Is it hailing" ]
+      "text" : null,
+      "options" : [ "Is the boy playing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(it / hail)?",
+      "text" : "(the boy / play) football?",
       "options" : null
     } ],
-    "sentences" : [ "Is it hailing?" ]
+    "sentences" : [ "Is the boy playing football?" ]
   }
 }, {
   "_id" : {

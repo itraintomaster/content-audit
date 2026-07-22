@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3af"
   },
-  "title" : "Elegir la forma natural",
+  "title" : "They are going to make dinner tonight.",
   "instructions" : "¿Es más natural usar $will$ o $going to$? Escribe oraciones.",
-  "translation" : "Voy a comprar un coche nuevo el mes que viene. He estado ahorrando para ello.",
+  "translation" : "Van a hacer la cena esta noche.",
   "theoryId" : "a1.03.Will_or_Going_to_",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I",
+      "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'m going to buy|am going to buy" ]
+      "text" : null,
+      "options" : [ "are going to make|'re going to make" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(buy) a new car next month. I've been saving for it.",
+      "text" : "(make) dinner tonight.",
       "options" : null
     } ],
-    "sentences" : [ "I'm going to buy a new car next month. I've been saving for it.", "I am going to buy a new car next month. I've been saving for it." ]
+    "sentences" : [ "They are going to make dinner tonight.", "They 're going to make dinner tonight." ]
   }
 }, {
   "_id" : {
@@ -523,9 +523,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3af"
   },
-  "title" : "Elegir la forma natural",
+  "title" : "She isn't going to come.",
   "instructions" : "¿Es más natural usar $will$ o $going to$? Escribe oraciones.",
-  "translation" : "Ella no va a asistir a la fiesta.",
+  "translation" : "Ella no va a venir.",
   "theoryId" : "a1.03.Will_or_Going_to_",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -558,13 +558,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "isn't going to attend|is not going to attend|'s not going to attend" ]
+      "options" : [ "isn't going to come|is not going to come|'s not going to come" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / attend) the party.",
+      "text" : "(not / come).",
       "options" : null
     } ],
-    "sentences" : [ "She isn't going to attend the party.", "She is not going to attend the party.", "She 's not going to attend the party." ]
+    "sentences" : [ "She isn't going to come.", "She is not going to come.", "She 's not going to come." ]
   }
 }, {
   "_id" : {
@@ -835,9 +835,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3af"
   },
-  "title" : "Elegir la forma natural",
+  "title" : "I 'll get a taxi.",
   "instructions" : "¿Es más natural usar $will$ o $going to$? Escribe oraciones.",
-  "translation" : "La televisión está rota. Contactaré a un técnico.",
+  "translation" : "Tomaré un taxi.",
   "theoryId" : "a1.03.Will_or_Going_to_",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -857,26 +857,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The TV is broken. I",
+      "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll contact|will contact" ]
+      "text" : null,
+      "options" : [ "'ll get|will get" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(contact) a technician.",
+      "text" : "(get) a taxi.",
       "options" : null
     } ],
-    "sentences" : [ "The TV is broken. I'll contact a technician.", "The TV is broken. I will contact a technician." ]
+    "sentences" : [ "I 'll get a taxi.", "I will get a taxi." ]
   }
 }, {
   "_id" : {
@@ -939,9 +939,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3af"
   },
-  "title" : "Elegir la forma natural",
+  "title" : "I 'll take the blue dress.",
   "instructions" : "¿Es más natural usar $will$ o $going to$? Escribe oraciones.",
-  "translation" : "¿Qué elegir? Escogeré el vestido azul.",
+  "translation" : "Me llevaré el vestido azul.",
   "theoryId" : "a1.03.Will_or_Going_to_",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -961,26 +961,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "What to choose? I",
+      "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll pick|will pick" ]
+      "text" : null,
+      "options" : [ "'ll take|will take" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(pick) the blue dress.",
+      "text" : "(take) the blue dress.",
       "options" : null
     } ],
-    "sentences" : [ "What to choose? I'll pick the blue dress.", "What to choose? I will pick the blue dress." ]
+    "sentences" : [ "I 'll take the blue dress.", "I will take the blue dress." ]
   }
 }, {
   "_id" : {

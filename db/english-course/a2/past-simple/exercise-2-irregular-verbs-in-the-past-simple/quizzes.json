@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d238"
   },
-  "title" : "Irregulares: grupo 2",
+  "title" : "He got a new phone.",
   "instructions" : "Escribe la forma en $past simple$.",
-  "translation" : "Mordió la galleta por la mitad.",
+  "translation" : "Consiguió un teléfono nuevo.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "bit" ]
+      "text" : null,
+      "options" : [ "got" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(bite) the cookie in half.",
+      "text" : "(get) a new phone.",
       "options" : null
     } ],
-    "sentences" : [ "He bit the cookie in half." ]
+    "sentences" : [ "He got a new phone." ]
   }
 }, {
   "_id" : {

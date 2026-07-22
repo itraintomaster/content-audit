@@ -891,7 +891,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cf"
   },
-  "title" : "$Much$ o $many$",
+  "title" : "Do you have much juice left?",
   "instructions" : "Completa los espacios en blanco con $much$ o $many$.",
   "translation" : "¿Te queda mucho jugo?",
   "theoryId" : "a1.07.Much_Many",
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do you have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
-      "text" : "juice remaining?",
+      "text" : "juice left?",
       "options" : null
     } ],
-    "sentences" : [ "Do you have much juice remaining?" ]
+    "sentences" : [ "Do you have much juice left?" ]
   }
 }, {
   "_id" : {

@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
-  "title" : "Orden o simultaneidad",
+  "title" : "He painted the star and she mowed the grass. simultaneous",
   "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
-  "translation" : "Él pintó la estrella y ella cortó el césped.",
+  "translation" : "Él pintó la estrella y ella cortó el pasto.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -193,14 +193,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He painted the star and she mowed the lawn.",
+      "text" : "He painted the star and she mowed the grass.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
       "options" : [ "simultaneous" ]
     } ],
-    "sentences" : [ "He painted the star and she mowed the lawn. simultaneous" ]
+    "sentences" : [ "He painted the star and she mowed the grass. simultaneous" ]
   }
 }, {
   "_id" : {
@@ -731,9 +731,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
-  "title" : "Orden o simultaneidad",
+  "title" : "They read the instructions and built the toy. sequence",
   "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
-  "translation" : "Leyeron las instrucciones y armaron el juguete.",
+  "translation" : "Leyeron las instrucciones y construyeron el juguete.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -753,26 +753,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They read the instructions and assembled the toy.",
+      "text" : "They read the instructions and built the toy.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "sequence" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "They read the instructions and assembled the toy. sequence" ]
+    "sentences" : [ "They read the instructions and built the toy. sequence" ]
   }
 }, {
   "_id" : {
@@ -835,9 +831,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c0"
   },
-  "title" : "Orden o simultaneidad",
+  "title" : "She drank tea and looked at the river. simultaneous",
   "instructions" : "Determina si estos eventos ocurrieron uno después del otro (_sequence_) o al mismo tiempo (_simultaneous_). Escribe $sequence$ o $simultaneous$.",
-  "translation" : "Ella bebió té y contempló el río.",
+  "translation" : "Ella bebió té y miró el río.",
   "theoryId" : "b1.01.The_Past_Simple_for_Ordering_Actions",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -857,26 +853,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She drank tea and gazed at the river.",
+      "text" : "She drank tea and looked at the river.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "simultaneous" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "She drank tea and gazed at the river. simultaneous" ]
+    "sentences" : [ "She drank tea and looked at the river. simultaneous" ]
   }
 }, {
   "_id" : {

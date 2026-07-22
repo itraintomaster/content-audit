@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d2"
   },
-  "title" : "Sujeto u objeto",
+  "title" : "Dogs looked at he / him him.",
   "instructions" : "Selecciona el pronombre correcto.",
-  "translation" : "Los perros le ladraron.",
+  "translation" : "Los perros lo miraron.",
   "theoryId" : "a1.08.1_Subject_and_object_pronouns",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The dogs barked at he / him",
+      "text" : "Dogs looked at he / him",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "him" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "The dogs barked at he / him him." ]
+    "sentences" : [ "Dogs looked at he / him him." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d2"
   },
-  "title" : "Sujeto u objeto",
+  "title" : "The teacher saw she / her her.",
   "instructions" : "Selecciona el pronombre correcto.",
-  "translation" : "La maestra la elogió.",
+  "translation" : "La maestra la vio.",
   "theoryId" : "a1.08.1_Subject_and_object_pronouns",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The teacher praised she / her",
+      "text" : "The teacher saw she / her",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "her" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "The teacher praised she / her her." ]
+    "sentences" : [ "The teacher saw she / her her." ]
   }
 }, {
   "_id" : {

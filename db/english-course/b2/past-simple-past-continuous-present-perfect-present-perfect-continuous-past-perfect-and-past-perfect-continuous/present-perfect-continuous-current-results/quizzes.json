@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d409"
   },
-  "title" : "Efecto o experiencia",
+  "title" : "She 's been distributing leaflets all day. That's why she looks tired!",
   "instructions" : "Si la oración está explicando algo en el presente, usa el $present perfect continuous$. Si la oración está hablando sobre una experiencia de vida, usa el $present perfect simple$.",
-  "translation" : "Ella ha estado visitando a su tía. ¡Por eso se ve cansada!",
+  "translation" : "Ella ha estado repartiendo folletos todo el día. ¡Por eso se ve cansada!",
   "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
   "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s been visiting|has been visiting" ]
+      "text" : null,
+      "options" : [ "'s been distributing|has been distributing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(visit) her auntie. That's why she looks tired!",
+      "text" : "(distribute) leaflets all day. That's why she looks tired!",
       "options" : null
     } ],
-    "sentences" : [ "She's been visiting her auntie. That's why she looks tired!", "She has been visiting her auntie. That's why she looks tired!" ]
+    "sentences" : [ "She 's been distributing leaflets all day. That's why she looks tired!", "She has been distributing leaflets all day. That's why she looks tired!" ]
   }
 }, {
   "_id" : {

@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d48e"
   },
-  "title" : "Infinitivos y cláusulas",
+  "title" : "She's glad that she found her lost keys.",
   "instructions" : "Completa con $to$ o $that$.",
-  "translation" : "Está aterrorizada de que vaya a arruinar el examen.",
+  "translation" : "Está contenta de que encontró sus llaves perdidas.",
   "theoryId" : "b2.13.Adjective_Structures_with_to_+_infinitive_and_that_+_clause_",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She's terrified",
+      "text" : "She's glad",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "that" ]
     }, {
       "kind" : "TEXT",
-      "text" : "she'll botch the test.",
+      "text" : "she found her lost keys.",
       "options" : null
     } ],
-    "sentences" : [ "She's terrified that she'll botch the test." ]
+    "sentences" : [ "She's glad that she found her lost keys." ]
   }
 }, {
   "_id" : {

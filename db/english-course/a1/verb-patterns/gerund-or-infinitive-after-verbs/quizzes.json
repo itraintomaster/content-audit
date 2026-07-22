@@ -215,9 +215,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c2"
   },
-  "title" : "Gerundio o infinitivo",
+  "title" : "My dad needs to go home.",
   "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o $to + infinitive$.",
-  "translation" : "Mi papá espera llamar más tarde.",
+  "translation" : "Mi papá necesita ir a casa.",
   "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -245,18 +245,18 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "My dad hopes",
+      "text" : "My dad needs",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "to call" ]
+      "options" : [ "to go" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(call) later.",
+      "text" : "(go) home.",
       "options" : null
     } ],
-    "sentences" : [ "My dad hopes to call later." ]
+    "sentences" : [ "My dad needs to go home." ]
   }
 }, {
   "_id" : {
@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c2"
   },
-  "title" : "Gerundio o infinitivo",
+  "title" : "They want to finish on time.",
   "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o $to + infinitive$.",
-  "translation" : "Ellos desean terminar a tiempo.",
+  "translation" : "Ellos quieren terminar a tiempo.",
   "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They wish",
+      "text" : "They want",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to finish" ]
     }, {
       "kind" : "TEXT",
       "text" : "(finish) on time.",
       "options" : null
     } ],
-    "sentences" : [ "They wish to finish on time." ]
+    "sentences" : [ "They want to finish on time." ]
   }
 }, {
   "_id" : {
@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c2"
   },
-  "title" : "Gerundio o infinitivo",
+  "title" : "He needs to find a new house.",
   "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o $to + infinitive$.",
-  "translation" : "Él espera encontrar una nueva casa.",
+  "translation" : "Él necesita encontrar una nueva casa.",
   "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -401,7 +401,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He hopes",
+      "text" : "He needs",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -412,7 +412,7 @@
       "text" : "(find) a new house.",
       "options" : null
     } ],
-    "sentences" : [ "He hopes to find a new house." ]
+    "sentences" : [ "He needs to find a new house." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c2"
   },
-  "title" : "Gerundio o infinitivo",
+  "title" : "We stop getting up early!",
   "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o $to + infinitive$.",
-  "translation" : "¡Tememos levantarnos temprano!",
+  "translation" : "¡Dejamos de levantarnos temprano!",
   "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We dread",
+      "text" : "We stop",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "getting" ]
     }, {
       "kind" : "TEXT",
       "text" : "(get) up early!",
       "options" : null
     } ],
-    "sentences" : [ "We dread getting up early!" ]
+    "sentences" : [ "We stop getting up early!" ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c2"
   },
-  "title" : "Gerundio o infinitivo",
+  "title" : "Do you want to drink a juice?",
   "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o $to + infinitive$.",
-  "translation" : "¿Deseas beber un jugo?",
+  "translation" : "¿Quieres beber un jugo?",
   "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Do you wish",
+      "text" : "Do you want",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to drink" ]
     }, {
       "kind" : "TEXT",
       "text" : "(drink) a juice?",
       "options" : null
     } ],
-    "sentences" : [ "Do you wish to drink a juice?" ]
+    "sentences" : [ "Do you want to drink a juice?" ]
   }
 }, {
   "_id" : {

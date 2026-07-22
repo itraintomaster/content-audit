@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
-  "title" : "Países",
+  "title" : "He loves living in - Vietnam.",
   "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
-  "translation" : "A él le encanta residir en Vietnam.",
+  "translation" : "A él le encanta vivir en Vietnam.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He loves residing in",
+      "text" : "He loves living in",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "Vietnam.",
       "options" : null
     } ],
-    "sentences" : [ "He loves residing in - Vietnam." ]
+    "sentences" : [ "He loves living in - Vietnam." ]
   }
 }, {
   "_id" : {

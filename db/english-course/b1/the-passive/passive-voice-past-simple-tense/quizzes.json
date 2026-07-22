@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d313"
   },
-  "title" : "Pasado simple",
+  "title" : "The furniture was recycled (by my sister).",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice).",
-  "translation" : "Los muebles fueron pulidos.",
+  "translation" : "Mi hermana recicló los muebles. Los muebles fueron reciclados por mi hermana.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -289,26 +289,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "My sister polished the furniture.",
+      "text" : "My sister recycled the furniture.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The furniture was polished (by my sister)." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The furniture was recycled (by my sister)." ]
     } ],
-    "sentences" : [ "The furniture was polished (by my sister)." ]
+    "sentences" : [ "The furniture was recycled (by my sister)." ]
   }
 }, {
   "_id" : {

@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33f"
   },
-  "title" : "$Whose$: posesión",
+  "title" : "He helped the cat whose foot was bleeding.",
   "instructions" : "Crea una oración que incluya $whose$.",
-  "translation" : "Consoló al gato cuya pata estaba sangrando.",
+  "translation" : "Ayudó al gato cuya pata estaba sangrando.",
   "theoryId" : "b1.12.Whose_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -349,14 +349,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He comforted the cat. The cat's paw was bleeding.",
+      "text" : "He helped the cat. The cat's foot was bleeding.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "He comforted the cat whose paw was bleeding." ]
+      "options" : [ "He helped the cat whose foot was bleeding." ]
     } ],
-    "sentences" : [ "He comforted the cat whose paw was bleeding." ]
+    "sentences" : [ "He helped the cat whose foot was bleeding." ]
   }
 }, {
   "_id" : {

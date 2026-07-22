@@ -259,9 +259,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d252"
   },
-  "title" : "Finalidad",
+  "title" : "We watch movies to have fun.",
   "instructions" : "Transforma la oración para que incluya un infinitivo de propósito.",
-  "translation" : "Vemos películas para relajarnos.",
+  "translation" : "Vemos películas para divertirnos.",
   "theoryId" : "a2.05.Verbs_Patterns_with_Infinitive_+_to",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -281,26 +281,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We watch movies because we want to unwind.",
+      "text" : "We watch movies because we want to have fun.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We watch movies to unwind." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "We watch movies to have fun." ]
     } ],
-    "sentences" : [ "We watch movies to unwind." ]
+    "sentences" : [ "We watch movies to have fun." ]
   }
 }, {
   "_id" : {

@@ -259,7 +259,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a4"
   },
-  "title" : "Cosas que pasan ahora",
+  "title" : "I'm looking for my child.",
   "instructions" : "Escribe oraciones en $present continuous$ para hablar de cosas que están pasando ahora.",
   "translation" : "Estoy buscando a mi hijo.",
   "theoryId" : "a1.02.Present_Continuous_Use_Events_in_Progress",
@@ -289,14 +289,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I / search / for my child.",
+      "text" : "I / look / for my child.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "I'm searching for my child.|I am searching for my child." ]
+      "options" : [ "I'm looking for my child.|I am looking for my child." ]
     } ],
-    "sentences" : [ "I'm searching for my child.", "I am searching for my child." ]
+    "sentences" : [ "I'm looking for my child.", "I am looking for my child." ]
   }
 }, {
   "_id" : {
@@ -407,9 +407,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a4"
   },
-  "title" : "Cosas que pasan ahora",
+  "title" : "The dogs are playing together.",
   "instructions" : "Escribe oraciones en $present continuous$ para hablar de cosas que están pasando ahora.",
-  "translation" : "Los perros están ladrando juntos.",
+  "translation" : "Los perros están jugando juntos.",
   "theoryId" : "a1.02.Present_Continuous_Use_Events_in_Progress",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -437,14 +437,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The dogs / bark / together.",
+      "text" : "The dogs / play / together.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "The dogs are barking together." ]
+      "options" : [ "The dogs are playing together." ]
     } ],
-    "sentences" : [ "The dogs are barking together." ]
+    "sentences" : [ "The dogs are playing together." ]
   }
 }, {
   "_id" : {

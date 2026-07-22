@@ -523,9 +523,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d397"
   },
-  "title" : "Doble consonante y e",
+  "title" : "make - making",
   "instructions" : "¿Cuál es la forma $verb-ing$?",
-  "translation" : "cavando",
+  "translation" : "haciendo",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -545,26 +545,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "dig -",
+      "text" : "make -",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "digging" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "making" ]
     } ],
-    "sentences" : [ "dig - digging" ]
+    "sentences" : [ "make - making" ]
   }
 }, {
   "_id" : {

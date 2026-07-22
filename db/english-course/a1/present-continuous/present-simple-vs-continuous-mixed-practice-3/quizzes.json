@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a1"
   },
-  "title" : "Elige el tiempo: serie 3",
+  "title" : "Is she at the cafe?",
   "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$.",
-  "translation" : "¿Está ella en la panadería?",
+  "translation" : "¿Está ella en el café?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -393,26 +393,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Is she" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / be) at the bakery? (present simple)",
+      "text" : "(she / be) at the cafe? (present simple)",
       "options" : null
     } ],
-    "sentences" : [ "Is she at the bakery?" ]
+    "sentences" : [ "Is she at the cafe?" ]
   }
 }, {
   "_id" : {

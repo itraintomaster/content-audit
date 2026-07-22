@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d4b1"
   },
-  "title" : "Tras sustantivos II",
+  "title" : "They have a reliable source of income from their business.",
   "instructions" : "Escribe las preposiciones correctas.",
-  "translation" : "Ellos tienen odio a las cucarachas.",
+  "translation" : "Ellos tienen una fuente confiable de ingresos de su negocio.",
   "theoryId" : "b2.15.Nouns_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They have a hatred",
+      "text" : "They have a reliable source",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "cockroaches.",
+      "text" : "income from their business.",
       "options" : null
     } ],
-    "sentences" : [ "They have a hatred of cockroaches." ]
+    "sentences" : [ "They have a reliable source of income from their business." ]
   }
 }, {
   "_id" : {

@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
-  "title" : "$A$, $an$ o sin artículo",
+  "title" : "You are a man.",
   "instructions" : "Completa con $a$, $an$ o (-).",
-  "translation" : "Eres un prodigio.",
+  "translation" : "Eres un hombre.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "prodigy.",
+      "text" : "man.",
       "options" : null
     } ],
-    "sentences" : [ "You are a prodigy." ]
+    "sentences" : [ "You are a man." ]
   }
 }, {
   "_id" : {

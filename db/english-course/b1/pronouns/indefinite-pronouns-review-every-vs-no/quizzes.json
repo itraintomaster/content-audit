@@ -931,9 +931,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d346"
   },
-  "title" : "$Every$ vs. $No$: repaso",
+  "title" : "Everybody / Nobody enjoys paying for shaves. We all dislike it! Nobody",
   "instructions" : "Elige la palabra correcta.",
-  "translation" : "A nadie le gusta pagar impuestos. ¡A todos nos molesta!",
+  "translation" : "A nadie le gusta pagar por afeitadas. ¡A todos nos disgusta!",
   "theoryId" : "",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -953,26 +953,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Everybody / Nobody enjoys paying taxes. We all resent it!",
+      "text" : "Everybody / Nobody enjoys paying for shaves. We all dislike it!",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Nobody" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "Everybody / Nobody enjoys paying taxes. We all resent it! Nobody" ]
+    "sentences" : [ "Everybody / Nobody enjoys paying for shaves. We all dislike it! Nobody" ]
   }
 }, {
   "_id" : {

@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38a"
   },
-  "title" : "Negativas regulares",
+  "title" : "He does not drive to work.",
   "instructions" : "Escribe la forma negativa en presente simple. No uses contracciones (short forms).",
-  "translation" : "Él no conduce taxis.",
+  "translation" : "Él no conduce al trabajo.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do not drive" ]
+      "text" : null,
+      "options" : [ "does not drive" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / drive) taxis.",
+      "text" : "(not / drive) to work.",
       "options" : null
     } ],
-    "sentences" : [ "He do not drive taxis." ]
+    "sentences" : [ "He does not drive to work." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38a"
   },
-  "title" : "Negativas regulares",
+  "title" : "I do not do homework.",
   "instructions" : "Escribe la forma negativa en presente simple. No uses contracciones (short forms).",
-  "translation" : "No me importan los deberes.",
+  "translation" : "No hago los deberes.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do not mind" ]
+      "text" : null,
+      "options" : [ "do not do" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / mind) homework.",
+      "text" : "(not / do) homework.",
       "options" : null
     } ],
-    "sentences" : [ "I do not mind homework." ]
+    "sentences" : [ "I do not do homework." ]
   }
 }, {
   "_id" : {

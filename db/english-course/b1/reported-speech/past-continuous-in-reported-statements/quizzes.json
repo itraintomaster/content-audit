@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d321"
   },
-  "title" : "$Past Continuous$",
+  "title" : "I was preventing a problem. Robert said that he had been preventing a problem.",
   "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con $Robert said that$.",
-  "translation" : "Robert dijo que él había estado haciendo turismo.",
+  "translation" : "Yo estaba previniendo un problema. Robert dijo que él había estado previniendo un problema.",
   "theoryId" : "b1.10.How_to_Make_Reported_Speech",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I was sightseeing.",
+      "text" : "I was preventing a problem. Robert said that he",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Robert said that he had been sightseeing." ]
+      "text" : null,
+      "options" : [ "had been preventing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "a problem.",
       "options" : null
     } ],
-    "sentences" : [ "Robert said that he had been sightseeing." ]
+    "sentences" : [ "I was preventing a problem. Robert said that he had been preventing a problem." ]
   }
 }, {
   "_id" : {

@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d392"
   },
-  "title" : "$Be$ o $do$: actividad 1",
+  "title" : "I'm here. Verb in infinitive = be",
   "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: $be$, $do$, $have$, etc.",
-  "translation" : "Llego temprano. Verbo en infinitivo = ser/estar",
+  "translation" : "Estoy aquí. Verbo en infinitivo = ser/estar",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I am early. Verb in infinitive =",
+      "text" : "I'm here. Verb in infinitive =",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "be" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "I am early. Verb in infinitive = be" ]
+    "sentences" : [ "I'm here. Verb in infinitive = be" ]
   }
 }, {
   "_id" : {
@@ -423,9 +419,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d392"
   },
-  "title" : "$Be$ o $do$: actividad 1",
+  "title" : "Children play. Verb in infinitive = play",
   "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: $be$, $do$, $have$, etc.",
-  "translation" : "Nosotros poseemos dos motocicletas. Verbo en infinitivo = tener",
+  "translation" : "Los niños juegan. Verbo en infinitivo = jugar",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -445,26 +441,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We possess two motorcycles. Verb in infinitive =",
+      "text" : "Children play. Verb in infinitive =",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "have" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "play" ]
     } ],
-    "sentences" : [ "We possess two motorcycles. Verb in infinitive = have" ]
+    "sentences" : [ "Children play. Verb in infinitive = play" ]
   }
 }, {
   "_id" : {
@@ -579,9 +571,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d392"
   },
-  "title" : "$Be$ o $do$: actividad 1",
+  "title" : "Cows eat. Verb in infinitive = eat",
   "instructions" : "¿Cuál es el verbo? Escribe su forma infinitiva: $be$, $do$, $have$, etc.",
-  "translation" : "Las ovejas comen pasto. Verbo en infinitivo = comer",
+  "translation" : "Las vacas comen. Verbo en infinitivo = comer",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -609,14 +601,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Sheep eat grass. Verb in infinitive =",
+      "text" : "Cows eat. Verb in infinitive =",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
       "options" : [ "eat" ]
     } ],
-    "sentences" : [ "Sheep eat grass. Verb in infinitive = eat" ]
+    "sentences" : [ "Cows eat. Verb in infinitive = eat" ]
   }
 }, {
   "_id" : {

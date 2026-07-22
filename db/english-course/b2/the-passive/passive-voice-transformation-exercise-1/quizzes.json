@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d43e"
   },
-  "title" : "Agente explícito",
+  "title" : "The maintenance of the machines has been carried out by Robert.",
   "instructions" : "Transforma la oración activa a pasiva incluyendo $by$.",
-  "translation" : "El césped ha sido cortado por Robert.",
+  "translation" : "El mantenimiento de las máquinas ha sido realizado por Robert.",
   "theoryId" : "b2.07.The_Get_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -289,26 +289,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Robert has mowed the lawn.",
+      "text" : "Robert has carried out the maintenance of the machines.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The lawn has been mowed by Robert." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The maintenance of the machines has been carried out by Robert." ]
     } ],
-    "sentences" : [ "The lawn has been mowed by Robert." ]
+    "sentences" : [ "The maintenance of the machines has been carried out by Robert." ]
   }
 }, {
   "_id" : {

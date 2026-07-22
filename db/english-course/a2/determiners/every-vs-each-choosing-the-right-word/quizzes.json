@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26f"
   },
-  "title" : "General o individual",
+  "title" : "He bought each of the combs that the housewife sold.",
   "instructions" : "Si es posible, completa con $every$. Si no, completa con $each$.",
-  "translation" : "Inspeccionó cada uno de los pasteles que vendía el panadero.",
+  "translation" : "Compró cada uno de los peines que vendía el ama de casa.",
   "theoryId" : "a2.07.Every_Each_and_All",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He inspected",
+      "text" : "He bought",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "each" ]
     }, {
       "kind" : "TEXT",
-      "text" : "of the pastries that the baker sold.",
+      "text" : "of the combs that the housewife sold.",
       "options" : null
     } ],
-    "sentences" : [ "He inspected each of the pastries that the baker sold." ]
+    "sentences" : [ "He bought each of the combs that the housewife sold." ]
   }
 }, {
   "_id" : {

@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38e"
   },
-  "title" : "Cambios al final",
+  "title" : "The man washes the car.",
   "instructions" : "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
-  "translation" : "El hombre arregla el coche.",
+  "translation" : "El hombre lava el coche.",
   "theoryId" : "a1.01.Present_Simple_Spelling_Changes",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The man",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "fixes" ]
+      "text" : null,
+      "options" : [ "washes" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(fix) the car.",
+      "text" : "(wash) the car.",
       "options" : null
     } ],
-    "sentences" : [ "The man fixes the car." ]
+    "sentences" : [ "The man washes the car." ]
   }
 }, {
   "_id" : {
@@ -319,9 +319,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38e"
   },
-  "title" : "Cambios al final",
+  "title" : "The dog sees the cat.",
   "instructions" : "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
-  "translation" : "El perro persigue al gato.",
+  "translation" : "El perro ve al gato.",
   "theoryId" : "a1.01.Present_Simple_Spelling_Changes",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The dog",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "chases" ]
+      "text" : null,
+      "options" : [ "sees" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(chase) the cat.",
+      "text" : "(see) the cat.",
       "options" : null
     } ],
-    "sentences" : [ "The dog chases the cat." ]
+    "sentences" : [ "The dog sees the cat." ]
   }
 }, {
   "_id" : {
@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38e"
   },
-  "title" : "Cambios al final",
+  "title" : "The boy carries the wine.",
   "instructions" : "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
-  "translation" : "El panadero mezcla el vino.",
+  "translation" : "El niño lleva el vino.",
   "theoryId" : "a1.01.Present_Simple_Spelling_Changes",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -973,18 +973,18 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The baker",
+      "text" : "The boy",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "mixes" ]
+      "options" : [ "carries" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(mix) the wine.",
+      "text" : "(carry) the wine.",
       "options" : null
     } ],
-    "sentences" : [ "The baker mixes the wine." ]
+    "sentences" : [ "The boy carries the wine." ]
   }
 }, {
   "_id" : {

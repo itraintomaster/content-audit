@@ -59,9 +59,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d244"
   },
-  "title" : "Irregulares finales",
+  "title" : "He has driven a scooter.",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "Él ha conducido un tractor.",
+  "translation" : "Él ha conducido un scooter.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "has driven" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(drive) a tractor.",
+      "text" : "(drive) a scooter.",
       "options" : null
     } ],
-    "sentences" : [ "He has driven a tractor." ]
+    "sentences" : [ "He has driven a scooter." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d244"
   },
-  "title" : "Irregulares finales",
+  "title" : "Has she cooked curry?",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Ha florecido la flor?",
+  "translation" : "¿Ha cocinado curry ella?",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -757,26 +757,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Has the flower bloomed" ]
+      "text" : null,
+      "options" : [ "Has she cooked curry" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(the flower / bloom)?",
+      "text" : "(she / cook / curry)?",
       "options" : null
     } ],
-    "sentences" : [ "Has the flower bloomed?" ]
+    "sentences" : [ "Has she cooked curry?" ]
   }
 }, {
   "_id" : {

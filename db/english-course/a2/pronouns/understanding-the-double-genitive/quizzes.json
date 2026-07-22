@@ -471,9 +471,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d276"
   },
-  "title" : "Doble posesivo",
+  "title" : "Michael is an uncle of mine.",
   "instructions" : "Cambia la oración para que incluya $of$. Necesitas agregar $a$. Por ejemplo: Lucy is my friend -> Lucy is a friend of mine.",
-  "translation" : "Michael es un ídolo mío.",
+  "translation" : "Michael es un tío mío.",
   "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -493,26 +493,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Michael is my idol.",
+      "text" : "Michael is my uncle.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Michael is an idol of mine." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Michael is an uncle of mine." ]
     } ],
-    "sentences" : [ "Michael is an idol of mine." ]
+    "sentences" : [ "Michael is an uncle of mine." ]
   }
 }, {
   "_id" : {
@@ -679,9 +675,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d276"
   },
-  "title" : "Doble posesivo",
+  "title" : "Leonardo is a friend of his.",
   "instructions" : "Cambia la oración para que incluya $of$. Necesitas agregar $a$. Por ejemplo: Lucy is my friend -> Lucy is a friend of mine.",
-  "translation" : "Leonardo es un ídolo suyo.",
+  "translation" : "Leonardo es un amigo suyo.",
   "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -701,26 +697,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Leonardo is his idol.",
+      "text" : "Leonardo is his friend.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Leonardo is an idol of his." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Leonardo is a friend of his." ]
     } ],
-    "sentences" : [ "Leonardo is an idol of his." ]
+    "sentences" : [ "Leonardo is a friend of his." ]
   }
 }, {
   "_id" : {

@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d253"
   },
-  "title" : "Gerundio o infinitivo",
+  "title" : "I like skateboarding early.",
   "instructions" : "Escribe el verbo en la forma correcta.",
-  "translation" : "Anticipo andar en skate temprano.",
+  "translation" : "Me gusta andar en skate temprano.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -661,7 +661,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I anticipate",
+      "text" : "I like",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -672,7 +672,7 @@
       "text" : "(skateboard) early.",
       "options" : null
     } ],
-    "sentences" : [ "I anticipate skateboarding early." ]
+    "sentences" : [ "I like skateboarding early." ]
   }
 }, {
   "_id" : {
@@ -735,9 +735,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d253"
   },
-  "title" : "Gerundio o infinitivo",
+  "title" : "We wanted to arrive earlier.",
   "instructions" : "Escribe el verbo en la forma correcta.",
-  "translation" : "Esperábamos llegar antes.",
+  "translation" : "Queríamos llegar antes.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We hoped",
+      "text" : "We wanted",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to arrive" ]
     }, {
       "kind" : "TEXT",
       "text" : "(arrive) earlier.",
       "options" : null
     } ],
-    "sentences" : [ "We hoped to arrive earlier." ]
+    "sentences" : [ "We wanted to arrive earlier." ]
   }
 }, {
   "_id" : {
@@ -787,9 +787,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d253"
   },
-  "title" : "Gerundio o infinitivo",
+  "title" : "He tried to bring some drinks.",
   "instructions" : "Escribe el verbo en la forma correcta.",
-  "translation" : "Prometió traer algunas bebidas.",
+  "translation" : "Intentó traer algunas bebidas.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He vowed",
+      "text" : "He tried",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to bring" ]
     }, {
       "kind" : "TEXT",
       "text" : "(bring) some drinks.",
       "options" : null
     } ],
-    "sentences" : [ "He vowed to bring some drinks." ]
+    "sentences" : [ "He tried to bring some drinks." ]
   }
 }, {
   "_id" : {

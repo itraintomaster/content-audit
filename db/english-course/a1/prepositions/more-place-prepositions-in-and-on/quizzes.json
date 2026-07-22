@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3dd"
   },
-  "title" : "Lugar: repaso",
+  "title" : "The book was on a table.",
   "instructions" : "Completa con: in / on.",
-  "translation" : "El loro estaba en una percha.",
+  "translation" : "El libro estaba sobre una mesa.",
   "theoryId" : "a1.09.Prepositions_for_Places_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The parrot was",
+      "text" : "The book was",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
-      "text" : "a perch.",
+      "text" : "a table.",
       "options" : null
     } ],
-    "sentences" : [ "The parrot was on a perch." ]
+    "sentences" : [ "The book was on a table." ]
   }
 } ]

@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a6"
   },
-  "title" : "Estado vs. acción",
+  "title" : "Peter has that pencil.",
   "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$. Todas las oraciones hablan sobre el presente. No uses contracciones ($short forms$).",
-  "translation" : "Ese lápiz pertenece a Peter.",
+  "translation" : "Peter tiene ese lápiz.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "That pencil",
+      "text" : "Peter",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "belongs" ]
+      "text" : null,
+      "options" : [ "has" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(belong) to Peter.",
+      "text" : "(have) that pencil.",
       "options" : null
     } ],
-    "sentences" : [ "That pencil belongs to Peter." ]
+    "sentences" : [ "Peter has that pencil." ]
   }
 }, {
   "_id" : {

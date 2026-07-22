@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d7"
   },
-  "title" : "Tiempo: ejercicio 1",
+  "title" : "My game is in June.",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "Mi graduación es en junio.",
+  "translation" : "Mi partido es en junio.",
   "theoryId" : "a1.09.Prepositions_of_Time_1_at_in_on_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "My graduation is",
+      "text" : "My game is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "June.",
       "options" : null
     } ],
-    "sentences" : [ "My graduation is in June." ]
+    "sentences" : [ "My game is in June." ]
   }
 }, {
   "_id" : {

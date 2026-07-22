@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d46b"
   },
-  "title" : "Momentos",
+  "title" : "2020 was the year when the tragedy occurred and shocked the whole nation.",
   "instructions" : "Crea oraciones con $when$.",
-  "translation" : "2020 fue el año cuando comenzó la pandemia.",
+  "translation" : "2020 fue el año en que ocurrió la tragedia y conmocionó a toda la nación.",
   "theoryId" : "b2.10.Prepositions_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "2020 was the year. The pandemic started that year.",
+      "text" : "2020 was the year",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "2020 was the year when the pandemic started." ]
+      "text" : null,
+      "options" : [ "when" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "the tragedy occurred and shocked the whole nation.",
       "options" : null
     } ],
-    "sentences" : [ "2020 was the year. The pandemic started that year. 2020 was the year when the pandemic started." ]
+    "sentences" : [ "2020 was the year when the tragedy occurred and shocked the whole nation." ]
   }
 }, {
   "_id" : {

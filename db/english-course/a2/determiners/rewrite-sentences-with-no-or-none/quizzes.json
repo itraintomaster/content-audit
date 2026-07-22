@@ -951,9 +951,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26e"
   },
-  "title" : "Con $no$ o $none$",
+  "title" : "She listens to no music.",
   "instructions" : "Transforma la oración para que incluya $no$ o $none$. Por ejemplo: She doesn't drink any water -> She drinks no water.",
-  "translation" : "Ella no escucha podcasts.",
+  "translation" : "Ella no escucha música.",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -973,25 +973,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She doesn't listen to any podcasts.",
+      "text" : "She doesn't listen to any music.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She listens to no podcasts." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She listens to no music." ]
     } ],
-    "sentences" : [ "She listens to no podcasts." ]
+    "sentences" : [ "She listens to no music." ]
   }
 } ]

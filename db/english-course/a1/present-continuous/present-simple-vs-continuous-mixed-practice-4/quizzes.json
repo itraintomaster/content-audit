@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a2"
   },
-  "title" : "Mixto: 4",
+  "title" : "Are we ready?",
   "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$.",
-  "translation" : "¿Somos irlandeses?",
+  "translation" : "¿Estamos listos?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -1017,25 +1017,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Are we" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / be) Irish? (present simple)",
+      "text" : "(they / be) ready? (present simple)",
       "options" : null
     } ],
-    "sentences" : [ "Are we Irish?" ]
+    "sentences" : [ "Are we ready?" ]
   }
 } ]

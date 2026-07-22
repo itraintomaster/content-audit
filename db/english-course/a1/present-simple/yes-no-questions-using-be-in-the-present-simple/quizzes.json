@@ -363,9 +363,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
-  "title" : "$Be$: preguntas $yes / no$",
+  "title" : "Is she an adult?",
   "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
-  "translation" : "¿Ella es actriz?",
+  "translation" : "¿Ella es adulta?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -385,26 +385,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Is she" ]
     }, {
       "kind" : "TEXT",
-      "text" : "an actress? (She)",
+      "text" : "an adult? (She)",
       "options" : null
     } ],
-    "sentences" : [ "Is she an actress?" ]
+    "sentences" : [ "Is she an adult?" ]
   }
 }, {
   "_id" : {
@@ -675,9 +671,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
-  "title" : "$Be$: preguntas $yes / no$",
+  "title" : "Are you ready?",
   "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
-  "translation" : "¿Eres vegano?",
+  "translation" : "¿Estás listo?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -697,26 +693,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Are you" ]
     }, {
       "kind" : "TEXT",
-      "text" : "vegan? (You)",
+      "text" : "ready? (You)",
       "options" : null
     } ],
-    "sentences" : [ "Are you vegan?" ]
+    "sentences" : [ "Are you ready?" ]
   }
 }, {
   "_id" : {

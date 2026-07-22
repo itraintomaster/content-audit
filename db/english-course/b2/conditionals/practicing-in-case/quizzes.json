@@ -995,9 +995,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d484"
   },
-  "title" : "Práctica con $in case$",
+  "title" : "You should clean the house in case your brother comes over.",
   "instructions" : "Escribe una oración usando $in case$. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-  "translation" : "Deberías aspirar la casa en caso de que tu hermano venga.",
+  "translation" : "Deberías limpiar la casa en caso de que tu hermano venga.",
   "theoryId" : "b2.12.Words_Instead_of_If",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -1017,25 +1017,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Maybe your brother will come over - you should hoover the house.",
+      "text" : "Maybe your brother will come over - you should clean the house.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You should hoover the house in case your brother comes over." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You should clean the house in case your brother comes over." ]
     } ],
-    "sentences" : [ "You should hoover the house in case your brother comes over." ]
+    "sentences" : [ "You should clean the house in case your brother comes over." ]
   }
 } ]

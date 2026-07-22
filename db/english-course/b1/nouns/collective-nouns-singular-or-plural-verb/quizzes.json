@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d305"
   },
-  "title" : "Nombres colectivos",
+  "title" : "The couple has / have have won the championship.",
   "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "El equipo ha ganado el campeonato.",
+  "translation" : "La pareja ha ganado el campeonato.",
   "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The squad has / have",
+      "text" : "The couple has / have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "have" ]
     }, {
       "kind" : "TEXT",
       "text" : "won the championship. (UK)",
       "options" : null
     } ],
-    "sentences" : [ "The squad has / have have won the championship." ]
+    "sentences" : [ "The couple has / have have won the championship." ]
   }
 }, {
   "_id" : {

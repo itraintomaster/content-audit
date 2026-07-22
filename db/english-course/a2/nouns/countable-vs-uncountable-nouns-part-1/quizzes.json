@@ -363,9 +363,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
-  "title" : "Con artículo o guion",
+  "title" : "- juice is sweet.",
   "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
-  "translation" : "El jugo es refrescante.",
+  "translation" : "El jugo es dulce.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -385,26 +385,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "juice is refreshing.",
+      "text" : "juice is sweet.",
       "options" : null
     } ],
-    "sentences" : [ "- juice is refreshing." ]
+    "sentences" : [ "- juice is sweet." ]
   }
 }, {
   "_id" : {

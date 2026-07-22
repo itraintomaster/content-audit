@@ -203,9 +203,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38b"
   },
-  "title" : "Preguntas sí/no",
+  "title" : "Does she do the work?",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Ella lava la ropa?",
+  "translation" : "¿Ella hace el trabajo?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -225,26 +225,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Does she do" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / do) the laundry?",
+      "text" : "(she / do) the work?",
       "options" : null
     } ],
-    "sentences" : [ "Does she do the laundry?" ]
+    "sentences" : [ "Does she do the work?" ]
   }
 }, {
   "_id" : {

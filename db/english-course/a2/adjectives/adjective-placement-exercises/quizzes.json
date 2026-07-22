@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a0"
   },
-  "title" : "Posición del adjetivo",
+  "title" : "This is a colorful iced tea.",
   "instructions" : "Coloca los adjetivos en la oración.",
-  "translation" : "Este es un té helado refrescante.",
+  "translation" : "Este es un té helado colorido.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This is a",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "refreshing iced" ]
+      "text" : null,
+      "options" : [ "colorful iced" ]
     }, {
       "kind" : "TEXT",
-      "text" : "tea. (iced / refreshing)",
+      "text" : "tea. (iced / colorful)",
       "options" : null
     } ],
-    "sentences" : [ "This is a refreshing iced tea." ]
+    "sentences" : [ "This is a colorful iced tea." ]
   }
 }, {
   "_id" : {

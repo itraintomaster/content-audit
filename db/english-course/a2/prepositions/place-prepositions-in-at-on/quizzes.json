@@ -943,9 +943,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
-  "title" : "Lugar: $in$, $at$, $on$",
+  "title" : "He waited at the exit.",
   "instructions" : "Escribe $in$, $at$ u $on$.",
-  "translation" : "Él esperó en el paso de peatones.",
+  "translation" : "Él esperó en la salida.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He waited",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the crosswalk.",
+      "text" : "the exit.",
       "options" : null
     } ],
-    "sentences" : [ "He waited at the crosswalk." ]
+    "sentences" : [ "He waited at the exit." ]
   }
 }, {
   "_id" : {

@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d380"
   },
-  "title" : "Más de una opción válida",
+  "title" : "Could you copy the recipe from the magazine?",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "¿Podrías copiar el documento desde el USB?",
+  "translation" : "¿Podrías copiar la receta de la revista?",
   "theoryId" : "b1.17.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Could you copy the document",
+      "text" : "Could you copy the recipe",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "from" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the USB?",
+      "text" : "the magazine?",
       "options" : null
     } ],
-    "sentences" : [ "Could you copy the document from the USB?" ]
+    "sentences" : [ "Could you copy the recipe from the magazine?" ]
   }
 }, {
   "_id" : {

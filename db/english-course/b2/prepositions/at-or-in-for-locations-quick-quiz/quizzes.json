@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d4a5"
   },
-  "title" : "Punto o interior",
+  "title" : "I stood in the lane, by the old fence, when he arrived.",
   "instructions" : "Elige $in$ si realmente quieres enfatizar que algo está dentro. De lo contrario, elige $at$.",
-  "translation" : "Estaba de pie en la barbería, junto a los espejos, cuando él llegó.",
+  "translation" : "Estaba de pie en el sendero, junto a la vieja cerca, cuando él llegó.",
   "theoryId" : "b2.15.Adjectives_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I stood",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the barbershop, by the mirrors, when he arrived.",
+      "text" : "the lane, by the old fence, when he arrived.",
       "options" : null
     } ],
-    "sentences" : [ "I stood in the barbershop, by the mirrors, when he arrived." ]
+    "sentences" : [ "I stood in the lane, by the old fence, when he arrived." ]
   }
 }, {
   "_id" : {

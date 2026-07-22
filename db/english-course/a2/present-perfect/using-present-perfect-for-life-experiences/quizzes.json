@@ -159,9 +159,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d245"
   },
-  "title" : "Experiencias con $ever$",
+  "title" : "Have you ever cooked duck?",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Alguna vez has cocinado caracoles?",
+  "translation" : "¿Alguna vez has cocinado pato?",
   "theoryId" : "a2.04.Present_Perfect_for_Life_Experience_With_Ever_and_Never_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -181,26 +181,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Have you ever cooked" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / ever / cook) snails?",
+      "text" : "(you / ever / cook) duck?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever cooked snails?" ]
+    "sentences" : [ "Have you ever cooked duck?" ]
   }
 }, {
   "_id" : {

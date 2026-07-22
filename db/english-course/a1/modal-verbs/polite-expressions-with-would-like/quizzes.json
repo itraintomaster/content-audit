@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e7"
   },
-  "title" : "Cortesía con $would like$",
+  "title" : "I'd like a great milkshake.",
   "instructions" : "Haz que las oraciones sean más educadas utilizando $would like$.",
-  "translation" : "Me gustaría un batido de vainilla, por favor.",
+  "translation" : "Quiero un batido buenísimo. Me gustaría un batido buenísimo.",
   "theoryId" : "a1.10.Would_like_For_Politeness",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -133,26 +133,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I want a vanilla milkshake, please.",
+      "text" : "I want a great milkshake.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I'd like a vanilla milkshake, please.|I would like a vanilla milkshake, please." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "I'd like a great milkshake.|I would like a great milkshake." ]
     } ],
-    "sentences" : [ "I'd like a vanilla milkshake, please.", "I would like a vanilla milkshake, please." ]
+    "sentences" : [ "I'd like a great milkshake.", "I would like a great milkshake." ]
   }
 }, {
   "_id" : {

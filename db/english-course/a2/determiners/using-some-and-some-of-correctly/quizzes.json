@@ -835,9 +835,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d267"
   },
-  "title" : "Parte del conjunto",
+  "title" : "She cooked some of the ham.",
   "instructions" : "Completa con $some$ o $some of$.",
-  "translation" : "Ella cocinó algunos de los muffins de zanahoria.",
+  "translation" : "Ella cocinó parte del jamón.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -857,26 +857,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She cooked",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "some of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the carrot muffins.",
+      "text" : "the ham.",
       "options" : null
     } ],
-    "sentences" : [ "She cooked some of the carrot muffins." ]
+    "sentences" : [ "She cooked some of the ham." ]
   }
 }, {
   "_id" : {

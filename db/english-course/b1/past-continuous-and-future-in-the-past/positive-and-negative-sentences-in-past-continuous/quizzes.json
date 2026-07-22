@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2ce"
   },
-  "title" : "Afirmativas y negativas",
+  "title" : "It was not doubling/wasn't doubling in size last year.",
   "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-  "translation" : "No estaba granizando.",
+  "translation" : "No se estaba duplicando en tamaño el año pasado.",
   "theoryId" : "b1.03.Past_Continuous_Forms",
   "topicName" : "Past Continuous and Future in the Past",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was not hailing/wasn't hailing" ]
+      "text" : null,
+      "options" : [ "was not doubling/wasn't doubling" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / hail).",
+      "text" : "(not / double) in size last year.",
       "options" : null
     } ],
-    "sentences" : [ "It was not hailing/wasn't hailing." ]
+    "sentences" : [ "It was not doubling/wasn't doubling in size last year." ]
   }
 }, {
   "_id" : {
@@ -527,9 +527,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2ce"
   },
-  "title" : "Afirmativas y negativas",
+  "title" : "It was weighing heavily on my mind yesterday.",
   "instructions" : "Crea oraciones en *past continuous*, ya sean afirmativas o negativas.",
-  "translation" : "Estaba granizando.",
+  "translation" : "Me estaba pesando mucho en la mente ayer.",
   "theoryId" : "b1.03.Past_Continuous_Forms",
   "topicName" : "Past Continuous and Future in the Past",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "was hailing" ]
+      "text" : null,
+      "options" : [ "was weighing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(hail).",
+      "text" : "(weigh) heavily on my mind yesterday.",
       "options" : null
     } ],
-    "sentences" : [ "It was hailing." ]
+    "sentences" : [ "It was weighing heavily on my mind yesterday." ]
   }
 }, {
   "_id" : {

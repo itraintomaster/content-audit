@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25a"
   },
-  "title" : "$A$ / $an$ con oficios",
+  "title" : "I'm a policewoman.",
   "instructions" : "Elige $a$ / $an$ si es necesario. Si no, usa $-$.",
-  "translation" : "Soy programador.",
+  "translation" : "Soy policía.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I'm",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "programmer.",
+      "text" : "policewoman.",
       "options" : null
     } ],
-    "sentences" : [ "I'm a programmer." ]
+    "sentences" : [ "I'm a policewoman." ]
   }
 }, {
   "_id" : {

@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d391"
   },
-  "title" : "Describir hechos y rutinas",
+  "title" : "We don't have much time.",
   "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
-  "translation" : "No fumamos cigarros.",
+  "translation" : "No tenemos mucho tiempo.",
   "theoryId" : "a1.01.Present_Simple_Uses_For_the_Present",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "don't smoke" ]
+      "text" : null,
+      "options" : [ "don't have" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / smoke) cigars.",
+      "text" : "(not / have) much time.",
       "options" : null
     } ],
-    "sentences" : [ "We don't smoke cigars." ]
+    "sentences" : [ "We don't have much time." ]
   }
 }, {
   "_id" : {

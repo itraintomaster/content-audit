@@ -579,9 +579,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
-  "title" : "$Some$ y $any$",
+  "title" : "They bought some biscuits.",
   "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
-  "translation" : "Devoraron algunas galletas.",
+  "translation" : "Compraron algunas galletas.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They devoured",
+      "text" : "They bought",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
       "text" : "biscuits.",
       "options" : null
     } ],
-    "sentences" : [ "They devoured some biscuits." ]
+    "sentences" : [ "They bought some biscuits." ]
   }
 }, {
   "_id" : {
@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
-  "title" : "$Some$ y $any$",
+  "title" : "She had some meat.",
   "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
-  "translation" : "Ella compró carne.",
+  "translation" : "Ella comió algo de carne.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She purchased",
+      "text" : "She had",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
       "text" : "meat.",
       "options" : null
     } ],
-    "sentences" : [ "She purchased some meat." ]
+    "sentences" : [ "She had some meat." ]
   }
 }, {
   "_id" : {
@@ -839,9 +839,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
-  "title" : "$Some$ y $any$",
+  "title" : "I want some cheese.",
   "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
-  "translation" : "Deseo queso.",
+  "translation" : "Quiero queso.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I desire",
+      "text" : "I want",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
       "text" : "cheese.",
       "options" : null
     } ],
-    "sentences" : [ "I desire some cheese." ]
+    "sentences" : [ "I want some cheese." ]
   }
 }, {
   "_id" : {

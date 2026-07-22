@@ -211,9 +211,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a1"
   },
-  "title" : "Adjetivo + $to$ + infinitivo",
+  "title" : "They were worried to see the accident.",
   "instructions" : "Transforma las oraciones para que incluyan $adjective + to + infinitive$.",
-  "translation" : "Estaban horrorizados de ver el accidente.",
+  "translation" : "Estaban preocupados de ver el accidente.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -233,26 +233,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They saw the accident. They were horrified.",
+      "text" : "They saw the accident. They were worried.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They were horrified to see the accident." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "They were worried to see the accident." ]
     } ],
-    "sentences" : [ "They were horrified to see the accident." ]
+    "sentences" : [ "They were worried to see the accident." ]
   }
 }, {
   "_id" : {

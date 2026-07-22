@@ -371,9 +371,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29a"
   },
-  "title" : "Obligación",
+  "title" : "You must eat less fast food.",
   "instructions" : "Crea oraciones utilizando $must$, $have to$ o $have got to$.",
-  "translation" : "Debes comer menos comida basura.",
+  "translation" : "Debes comer menos comida rápida.",
   "theoryId" : "a2.10.Must_and_Have_Got_to_for_Obligation",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "must" ]
     }, {
       "kind" : "TEXT",
-      "text" : "eat less junk food. (must)",
+      "text" : "eat less fast food. (must)",
       "options" : null
     } ],
-    "sentences" : [ "You must eat less junk food." ]
+    "sentences" : [ "You must eat less fast food." ]
   }
 }, {
   "_id" : {

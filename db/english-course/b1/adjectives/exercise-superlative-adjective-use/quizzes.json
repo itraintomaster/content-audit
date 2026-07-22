@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35a"
   },
-  "title" : "Formar superlativos",
+  "title" : "He's the most careless of all the drivers.",
   "instructions" : "Completa las oraciones con la forma superlativa de los adjetivos. Recuerda usar $the$.",
-  "translation" : "Él es el más imprudente de todos los conductores.",
+  "translation" : "Él es el más descuidado de todos los conductores.",
   "theoryId" : "b1.15.Superlatives_with_the_Present_Perfect_Tense",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He's",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the most reckless" ]
+      "text" : null,
+      "options" : [ "the most careless" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(reckless) of all the drivers.",
+      "text" : "(careless) of all the drivers.",
       "options" : null
     } ],
-    "sentences" : [ "He's the most reckless of all the drivers." ]
+    "sentences" : [ "He's the most careless of all the drivers." ]
   }
 }, {
   "_id" : {

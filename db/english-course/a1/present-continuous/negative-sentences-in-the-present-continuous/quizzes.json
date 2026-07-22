@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39a"
   },
-  "title" : "Oraciones negativas",
+  "title" : "The children are not reading books now.",
   "instructions" : "Escribe oraciones negativas en $present continuous$. No uses contracciones ($short forms$).",
-  "translation" : "No está granizando.",
+  "translation" : "Los niños no están leyendo libros ahora.",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It",
+      "text" : "The children",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is not hailing" ]
+      "text" : null,
+      "options" : [ "are not reading" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(hail).",
+      "text" : "(read) books now.",
       "options" : null
     } ],
-    "sentences" : [ "It is not hailing." ]
+    "sentences" : [ "The children are not reading books now." ]
   }
 }, {
   "_id" : {

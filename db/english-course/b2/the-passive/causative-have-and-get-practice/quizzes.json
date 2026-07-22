@@ -631,9 +631,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d446"
   },
-  "title" : "Causativas",
+  "title" : "She didn't get the grass mowed this weekend.",
   "instructions" : "Crea una oración causativa con $have$ o $get$.",
-  "translation" : "Ella no hizo cortar el césped.",
+  "translation" : "Ella no hizo cortar el césped este fin de semana.",
   "theoryId" : "b2.07.The_Causative_with_Have_and_Get",
   "topicName" : "The passive",
   "difficulty" : {
@@ -653,26 +653,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She didn't arrange for someone to mow the lawn. (get)",
+      "text" : "She didn't arrange for someone to mow the grass this weekend. (get)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She didn't get the lawn mowed." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She didn't get the grass mowed this weekend." ]
     } ],
-    "sentences" : [ "She didn't get the lawn mowed." ]
+    "sentences" : [ "She didn't get the grass mowed this weekend." ]
   }
 }, {
   "_id" : {

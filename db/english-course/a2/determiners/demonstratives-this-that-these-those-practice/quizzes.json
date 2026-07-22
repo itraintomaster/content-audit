@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d264"
   },
-  "title" : "Demostrativos",
+  "title" : "I got this chain.",
   "instructions" : "Completa con $this$, $that$, $these$ o $those$.",
-  "translation" : "Rompí esta cadena.",
+  "translation" : "Conseguí esta cadena.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -193,7 +193,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I shattered",
+      "text" : "I got",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -204,7 +204,7 @@
       "text" : "chain (I have the chain).",
       "options" : null
     } ],
-    "sentences" : [ "I shattered this chain." ]
+    "sentences" : [ "I got this chain." ]
   }
 }, {
   "_id" : {
@@ -267,9 +267,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d264"
   },
-  "title" : "Demostrativos",
+  "title" : "He wants to trim those trees.",
   "instructions" : "Completa con $this$, $that$, $these$ o $those$.",
-  "translation" : "Él quiere recortar esos arbustos.",
+  "translation" : "Él quiere podar esos árboles.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He wants to trim",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "those" ]
     }, {
       "kind" : "TEXT",
-      "text" : "bushes (the bushes are at the end of the yard).",
+      "text" : "trees (over there).",
       "options" : null
     } ],
-    "sentences" : [ "He wants to trim those bushes ." ]
+    "sentences" : [ "He wants to trim those trees." ]
   }
 }, {
   "_id" : {
