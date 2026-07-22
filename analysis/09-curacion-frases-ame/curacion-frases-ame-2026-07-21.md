@@ -55,3 +55,22 @@ match exacto como en el fallback. Destacados: `able` C2→A2 ("be able to do sth
 - **Señal genuina intacta**: require, suppose queda en A2 solo si la oración es A1
   (el flag B1+ desaparece), purchase, bark, hop, hail, desire, snow/early/late siguen
   flaggeando donde corresponde.
+
+## Adenda 2026-07-22 — metalenguaje de etiquetas de ejercicio (topic `curated-metalang-2026-07-22`)
+
+Los quizzes de `b2/relative-clauses/relative-clauses-subject-or-object/` usan "Subject"/"Object"
+como respuesta del ejercicio, y los drills de countable/plural usan etiquetas análogas. El
+tokenizador taggea esas etiquetas sueltas de forma errática (subject→ADJ, object→VERB,
+plural→ADV/VERB) y el match caía en sentidos avanzados (subject adjetivo C1, object verbo B2).
+Mismo precedente que countable/uncountable/infinitive → A1:
+
+| lemma | POS | nivel | flags que elimina |
+|---|---|---|---|
+| subject | ADJ | A1 | 17 (etiqueta "Subject" taggeada ADJ → C1) |
+| object | VERB | A1 | 3 (sin usos verbales genuinos de "object" en el curso — verificado por grep) |
+| plural | NOUN | A1 | 2 (mistags ADV/VERB caen al fallback por lema) |
+| singular | NOUN | A1 | 2 |
+
+También se corrigió el typo real `sipp/sipps` → `sip/sips` en
+`a1/present-simple/affirmative-sentences-in-the-present-simple` (quiz 67fab6d59930102295341ec8),
+detectado de rebote como palabra fuera de catálogo.
