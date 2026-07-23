@@ -1,5 +1,11 @@
 # fix-log
 
+2026-07-23 — developer — eval_lexical: fallo de `lexis` bloquea (no soft-pasa), a diferencia de eval_length ante fallo de `tokens`.
+  why: el propio motivo de ser de este eval es detectar lo que ningún otro eval detectaba (caso live remitted→transferred sin flag); un soft-pass silencioso ante el fallo de SU PROPIA herramienta de detección reabriría exactamente ese hueco. eval_length puede permitirse soft-pass porque la longitud es un eje ortogonal y menos crítico a la seguridad léxica que motivó toda la feature.
+
+2026-07-23 — developer — Claves internas `eval7_distinct`/`eval8_global_distinct` (tally.sh) NO se renombraron pese a colisionar semánticamente con la numeración real de R007.
+  why: son numeración legacy de un draft anterior de REQUIREMENT.md (antes de insertar el criterio #6 y este #7 real); renombrarlas es refactor de código no pedido, fuera del alcance de "implementar el eval #7" y con blast radius sobre otros evals ya verdes en vivo. La nueva clave usa `eval_lexical_nonregression` (sin número) para no sumar una tercera colisión; el texto de feedback al retry SÍ dice "#7 no-regresión léxica" en prosa (lo que importa para el agente/humano que lee carry_forward.md).
+
 2026-07-22 — developer — Formato elegido para el input outOfCatalogWords: "<lemma> (frequency rank N)" / "<lemma> (no known frequency rank — likely a typo or non-word)".
   why: R013 deja el formato libre; elegido para que el test (assert contains "5432", ausencia de "null" crudo) pase naturalmente y para que el prompt de generate.md pueda mostrar la señal de rank sin parsear nada del lado del agente declarativo.
 

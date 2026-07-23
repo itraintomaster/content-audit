@@ -93,15 +93,27 @@ distinct_ok = bool(data.get("distinct_ok", True))
 # casi-idéntico a NINGÚN quiz del curso ni a otra propuesta pending del batch.
 # Default True: si la señal falta (eval no corrió / corpus ausente), no penaliza.
 global_distinct_ok = bool(data.get("global_distinct_ok", True))
+# lexical_ok lo publica eval_lexical (criterio #7 REAL de F-LASAG-R007,
+# no-regresión léxica): flags(candidato) ⊆ flags(original) vía `content-audit
+# lexis` (FEAT-CLEX). Default False: a diferencia de distinct/global_distinct,
+# si la señal falta el candidato NO quedó verificado — no se soft-pasa (ver
+# eval_lexical.sh, robustez ante fallo de la propia consulta lexis).
+lexical_ok = bool(data.get("lexical_ok", False))
 
 def passed(key):
     v = verdicts.get(key) or {}
     return bool(v.get("pass", False))
 
 # Bloqueantes: #1 sense, #2 solvable, #3 length, #5 translation, #6 finite-reuse,
-# #7 distinción. (#4 deseable.) #6 auto-pasa (N/A) cuando la respuesta no es de
-# conjunto finito o reutilizarla no daría un ejercicio válido — el juez lo emite
-# como pass:true. #7 auto-pasa cuando el ejercicio no tiene otros quizzes.
+# #7 no-regresión léxica (real). (#4 deseable.) #6 auto-pasa (N/A) cuando la
+# respuesta no es de conjunto finito o reutilizarla no daría un ejercicio válido
+# — el juez lo emite como pass:true.
+# `eval7_distinct`/`eval8_global_distinct`: numeración interna LEGACY, anterior
+# al catálogo actual de R007 — NO son ninguno de sus 7 criterios oficiales, son
+# gates de anti-duplicación adicionales. Se mantienen como bloqueantes propios
+# del grafo (auto-pasan cuando no hay con qué comparar), solo su nombre de clave
+# es confuso; no se renombran acá para no tocar código fuera del alcance de este
+# cambio (ver nota en eval_lexical.sh).
 blocking = {
     "eval1_sense":        passed("eval1_sense"),
     "eval2_solvable":     passed("eval2_solvable"),
@@ -110,6 +122,7 @@ blocking = {
     "eval6_finite_reuse": passed("eval6_finite_reuse"),
     "eval7_distinct":     distinct_ok,
     "eval8_global_distinct": global_distinct_ok,
+    "eval_lexical_nonregression": lexical_ok,
 }
 all_blocking_pass = all(blocking.values())
 blocking_passed_count = sum(1 for ok in blocking.values() if ok)
@@ -142,6 +155,10 @@ for _k in _failed:
             float(data.get("global_distinct_max_similarity", 0.0)) * 100,
             data.get("global_distinct_nearest_level", "") or "?",
             data.get("global_distinct_nearest", "") or "(unknown)")
+    if _k == "eval_lexical_nonregression":
+        _new = data.get("lexical_new_flags", "") or ""
+        _lex_err = data.get("lexical_error", "") or ""
+        _reason = _lex_err if _lex_err else ("introduces flagged word(s) absent from the original: " + _new if _new else "lexical regression detected")
     sys.stderr.write("[eval]   - %s: %s\n" % (_k, _reason or "(no reason)"))
 
 try:
@@ -233,6 +250,23 @@ if not all_blocking_pass:
         _msg += (". Generá una oración claramente DISTINTA (otro sujeto/objeto/contexto/vocabulario); "
                  "el curso no debe tener dos ejercicios prácticamente iguales.")
         lines.append(_msg)
+    if not lexical_ok:
+        _lex_err = data.get("lexical_error", "") or ""
+        _new = data.get("lexical_new_flags", "") or ""
+        if _lex_err:
+            # Fallo técnico de la propia consulta lexis (F-CLEX) — no es un
+            # reproche de contenido; no inventamos qué palabra está mal.
+            lines.append(f"- ⚠️ #7 no-regresión léxica: no se pudo verificar el análisis léxico del "
+                         f"candidato (problema técnico: {_lex_err}). Si los demás puntos de arriba "
+                         f"están resueltos, mantené tu candidato con ajustes mínimos.")
+        else:
+            _msg = "- ❌ #7 no-regresión léxica: el candidato introduce palabra(s) que el original NO tenía"
+            if _new:
+                _msg += f": {_new}"
+            _msg += (". Reemplazalas por vocabulario del nivel del quiz que colocacione con el resto de la "
+                     "oración — no alcanza con evitar la palabra fuera de catálogo si la reemplazás por una "
+                     "de un nivel superior.")
+            lines.append(_msg)
     if verdicts_readable:
         for key, label in [("eval1_sense","#1 sentido"),("eval2_solvable","#2 resoluble"),
                            ("eval5_translation","#5 traducción"),

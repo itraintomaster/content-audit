@@ -22,5 +22,5 @@ description: |
   route_verdict tras combinar con los demás evals en `tally`. SOFT-PASS VISIBLE si
   falta el corpus (no bloquea por fallo de infra).
 edges:
-  - { to: eval_quality }
+  - { to: eval_lexical }
 ---

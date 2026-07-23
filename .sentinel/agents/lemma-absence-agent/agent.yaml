@@ -30,7 +30,14 @@ description: |
         ──▶ eval_length  (script: no-regresión de longitud — bloqueante,
               determinista, eval #3)
         ──▶ eval_distinct (script: distinción vs los quizzes ya existentes del
-              ejercicio — bloqueante, determinista, eval #7)
+              ejercicio — bloqueante, determinista; numeración interna legacy
+              "eval #7" ANTERIOR al catálogo actual de R007, no es ninguno de
+              sus 7 criterios oficiales — ver eval_lexical más abajo)
+        ──▶ eval_global_distinct (script: distinción vs todo el curso —
+              bloqueante, determinista; misma nota de numeración legacy)
+        ──▶ eval_lexical (script: no-regresión léxica — bloqueante,
+              determinista, criterio #7 REAL de R007: flags(candidato) ⊆
+              flags(original) vía `content-audit lexis`, FEAT-CLEX)
         ──▶ eval_quality (llm_call: evals #1 oración con sentido, #2 quiz
               resoluble, #4 pragmatismo [score, deseable], #5 traducción
               fiel — bloqueantes salvo #4)
@@ -54,7 +61,10 @@ description: |
     - R004: presupuesto de tool por-run (max_tool_calls); agotarlo NO falla.
     - R005/R006/R012: las fallas de runtime las maneja el adaptador Java
       (un solo launch, categoría preservada) — NO viven en el grafo.
-    - R007: catálogo fijo de 5 evals con veredicto propio.
+    - R007: catálogo fijo de 5 evals LLM (eval_quality) con veredicto propio,
+      más los evals deterministas (eval_length #3, eval_lexical #7) y los
+      gates de anti-duplicación (eval_distinct/eval_global_distinct, numeración
+      interna legacy, fuera del catálogo numerado de R007).
     - R008: un veredicto bloqueante negativo dispara un nuevo run de
       generación, acotado por maxEvalRetries.
     - R009: al agotar reintentos, best-effort — se emite el mejor candidato
@@ -66,9 +76,10 @@ strategy: graph
 initial_node: load_context
 budgets:
   # Circuit breaker del grafo entero: el lazo generate ↔ eval ↔ route.
-  # Pase fresco ~12 nodos (load_context, route_curate, curate_lemmas, gate_curation,
+  # Pase fresco ~14 nodos (load_context, route_curate, curate_lemmas, gate_curation,
   # finalize_curation, generate, gate_candidate, eval_length, eval_distinct,
-  # eval_quality, tally, route_verdict); reintentos de eval saltean la curación (~10).
+  # eval_global_distinct, eval_lexical, eval_quality, tally, route_verdict);
+  # reintentos de eval saltean la curación (~12).
   # gate_curation↔curate puede sumar hasta curate.max_attempts vueltas extra. Debe ser HOLGADO
   # respecto a generate.max_attempts (=maxEvalRetries+1) para que la salida
   # best-effort (R009: generate `exhausted` → emit) se dispare ANTES que este
@@ -86,6 +97,7 @@ nodes:
   - ./nodes/eval_length.md
   - ./nodes/eval_distinct.md
   - ./nodes/eval_global_distinct.md
+  - ./nodes/eval_lexical.md
   - ./nodes/eval_quality.md
   - ./nodes/gate_verdicts.md
   - ./nodes/tally.md
@@ -102,7 +114,8 @@ dependencies:
   - taskId
   - cefrLevel
   - sentence          # oración original (baseline de longitud, eval #3)
-  - quizSentence      # quiz original fill-in-blank con [[lemma]]
+  - quizSentence      # quiz original fill-in-blank (DSL); baseline de flags
+                      # léxicos (eval_lexical, criterio #7 de R007)
   - translation       # traducción original al español
   - knowledgeTitle    # objetivo pedagógico del ejercicio
   - suggestedWords    # vocabulario preferido (coma-separado; puede ser "")
