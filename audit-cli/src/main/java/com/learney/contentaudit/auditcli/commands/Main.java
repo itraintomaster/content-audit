@@ -255,8 +255,14 @@ class Main {
         Path evpCatalogPath = Paths.get(projectRoot,
                 "analysis/recursos-compartidos/enriched_vocabulary_catalog.json");
         FileSystemEvpCatalog evpCatalog = new FileSystemEvpCatalog(evpCatalogPath);
+        // FEAT-CLEX: el emparejamiento lexico por oracion (F-LABS-R017-R020/R033-R036/R045)
+        // vive en SentenceLexicalScorer, unica fuente de verdad compartida por el analyzer
+        // (Grupo D) y por la consulta lexica del CLI (F-CLEX-R006).
+        com.learney.contentaudit.auditdomain.labs.SentenceLexicalScorer sentenceLexicalScorer =
+                new com.learney.contentaudit.auditdomain.labs.DefaultSentenceLexicalScorer(
+                        evpCatalog, new DefaultContentWordFilter(), lemmaAbsenceConfig);
         LemmaByLevelAbsenceAnalyzer lemmaAbsenceAnalyzer = new LemmaByLevelAbsenceAnalyzer(
-                evpCatalog, new DefaultContentWordFilter(), lemmaAbsenceConfig);
+                evpCatalog, new DefaultContentWordFilter(), lemmaAbsenceConfig, sentenceLexicalScorer);
 
         DefaultLemmaCountConfig lemmaCountConfig = (DefaultLemmaCountConfig) new DefaultLemmaCountConfigLoader().load(null);
         LemmaCountAnalyzer lemmaCountAnalyzer = new LemmaCountAnalyzer(
@@ -556,6 +562,16 @@ class Main {
         // as the audit does. Hand-wired helper (not a governed feature) — see TokensCmd Javadoc.
         cmd.addSubcommand("tokens", new picocli.CommandLine(
                 new TokensCmd(quizSentenceConverter, nlpTokenizer, sentenceLengthConfig)));
+
+        // lexis — F-CLEX: consulta lexica de solo lectura oracion+nivel -> palabras
+        // flaggeadas (mal ubicadas / fuera de catalogo), reutilizando el mismo pipeline
+        // lexico del audit via SentenceLexicalEvaluator (que delega en sentenceLexicalScorer,
+        // el mismo motor que ya usa lemmaAbsenceAnalyzer).
+        com.learney.contentaudit.auditdomain.lexicalflags.SentenceLexicalEvaluator sentenceLexicalEvaluator =
+                new com.learney.contentaudit.auditdomain.lexicalflags.DefaultSentenceLexicalEvaluator(
+                        sentenceLexicalScorer);
+        cmd.addSubcommand("lexis", new picocli.CommandLine(
+                new LexisCmd(quizSentenceConverter, nlpTokenizer, sentenceLexicalEvaluator)));
 
         // get-consolidated — build and format the consolidated view (F-CDIFF-R001, R013 detail 3)
         NodeFieldDiffer nodeFieldDiffer = new DefaultNodeFieldDifferFactory().create();

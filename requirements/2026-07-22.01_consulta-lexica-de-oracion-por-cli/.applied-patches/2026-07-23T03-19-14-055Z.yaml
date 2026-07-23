@@ -1,0 +1,18 @@
+code: FEAT-CLEX
+description: "FEAT-CLEX fix (wrong_visibility): SentenceLexicalScorer pasa a interface\
+  \ Java publica manteniendose en el package interno labs. El ocultamiento cross-modulo\
+  \ lo garantiza la visibility internal del PACKAGE labs, no la de la interface; visibility\
+  \ internal en la interface la hacia package-private y rompia el wiring desde el\
+  \ sibling package lexicalflags (DefaultSentenceLexicalEvaluator la recibe por requiresInject)\
+  \ y desde el composition root (Main)."
+modules:
+- name: audit-domain
+  packages:
+  - name: labs
+    interfaces:
+    - name: SentenceLexicalScorer
+      sealed: false
+      visibility: public
+      _change: modify
+    _change: modify
+  _change: modify

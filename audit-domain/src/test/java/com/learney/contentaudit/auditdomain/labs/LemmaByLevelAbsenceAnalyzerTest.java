@@ -6,6 +6,7 @@ import static org.mockito.Mockito.*;
 
 import com.learney.contentaudit.auditdomain.*;
 import java.util.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -27,8 +28,22 @@ public class LemmaByLevelAbsenceAnalyzerTest {
     @Mock
     private LemmaAbsenceConfig lemmaAbsenceConfig;
 
+    // FEAT-CLEX: el emparejamiento lexico por oracion se extrajo a SentenceLexicalScorer
+    // (unica fuente de verdad, F-CLEX-R006). El mock delega en el scorer real construido
+    // con los mismos colaboradores, preservando exactamente el comportamiento anterior.
+    @Mock
+    private SentenceLexicalScorer sentenceLexicalScorer;
+
     @InjectMocks
     private LemmaByLevelAbsenceAnalyzer sut;
+
+    @BeforeEach
+    void wireSentenceLexicalScorer() {
+        SentenceLexicalScorer real =
+                new DefaultSentenceLexicalScorer(evpCatalogPort, contentWordFilter, lemmaAbsenceConfig);
+        when(sentenceLexicalScorer.score(any(), any()))
+                .thenAnswer(invocation -> real.score(invocation.getArgument(0), invocation.getArgument(1)));
+    }
 
     /**
      * Niveles del curso (A1-B2). Tras la extension del enum con C1/C2 (F-LABS-R033),

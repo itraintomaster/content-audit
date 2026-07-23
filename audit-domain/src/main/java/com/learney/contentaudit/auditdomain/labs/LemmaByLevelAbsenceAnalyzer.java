@@ -23,7 +23,6 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -39,15 +38,18 @@ public class LemmaByLevelAbsenceAnalyzer implements ContentAnalyzer {
     private final ContentWordFilter contentWordFilter;
     private final LemmaAbsenceConfig lemmaAbsenceConfig;
 
-public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFilter contentWordFilter, LemmaAbsenceConfig lemmaAbsenceConfig) {
-    this.evpCatalogPort = evpCatalogPort;
-    this.contentWordFilter = contentWordFilter;
-    this.lemmaAbsenceConfig = lemmaAbsenceConfig;
-}
-
     // Accumulates present lemmas per CEFR level during traversal
     // Map<CefrLevel, Set<LemmaAndPos>>
     private final Map<CefrLevel, Set<LemmaAndPos>> presentLemmasByLevel = new EnumMap<>(CefrLevel.class);
+
+private final SentenceLexicalScorer sentenceLexicalScorer;
+
+public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFilter contentWordFilter, LemmaAbsenceConfig lemmaAbsenceConfig, SentenceLexicalScorer sentenceLexicalScorer) {
+    this.evpCatalogPort = evpCatalogPort;
+    this.contentWordFilter = contentWordFilter;
+    this.lemmaAbsenceConfig = lemmaAbsenceConfig;
+    this.sentenceLexicalScorer = sentenceLexicalScorer;
+}
 
     private static final String ANALYZER_NAME = "lemma-absence";
 
@@ -113,9 +115,6 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
     private static final CefrLevel[] COURSE_LEVELS = {
             CefrLevel.A1, CefrLevel.A2, CefrLevel.B1, CefrLevel.B2
     };
-
-    // F-LABS-R035.1: etiqueta POS de nombre propio (unico criterio de exclusion)
-    private static final String PROPER_NOUN_POS = "PROPN";
 
     private static final Set<CefrLevel> CRITICAL_LEVELS = new HashSet<>();
     static {
@@ -625,164 +624,16 @@ public LemmaByLevelAbsenceAnalyzer(EvpCatalogPort evpCatalogPort, ContentWordFil
         }
     }
 
+    // R017-R020, R033-R036, R038, R045: el emparejamiento lexico por oracion vive ahora
+    // en SentenceLexicalScorer (FEAT-CLEX), unica fuente de verdad compartida con la
+    // consulta lexica del CLI (F-CLEX-R006). El analyzer solo delega y reempaqueta.
     private QuizScoringResult scoreQuiz(AuditableQuiz quiz, CefrLevel sentenceLevel) {
         if (quiz == null || quiz.getTokens() == null) {
             return new QuizScoringResult(1.0, Collections.emptyList(), Collections.emptyList());
         }
-        double discountPerLevel = lemmaAbsenceConfig.getDiscountPerLevel();
-        double maxDiscount = 0.0;
-        int sentenceOrder = LEVEL_ORDER.get(sentenceLevel);
-        List<MisplacedLemma> typedMisplacedLemmas = new ArrayList<>();
-        List<OutOfCatalogWord> outOfCatalogWords = new ArrayList<>();
-        Set<String> seen = new HashSet<>();
-
-        for (NlpToken token : quiz.getTokens()) {
-            if (token == null || token.getLemma() == null || token.getLemma().isEmpty()) continue;
-            // R035: exclusiones ANTES de las bandas — nombres propios, tokens no
-            // alfabeticos y palabras funcionales no participan de la mal-ubicacion
-            if (isExcludedFromPlacement(token)) {
-                continue;
-            }
-            String observedPos = token.getPosTag();
-            String literalLemma = token.getLemma();
-            LemmaAndPos lp = new LemmaAndPos(literalLemma, observedPos);
-
-            // R036 paso 1: match exacto por lemma+POS — su nivel MANDA aunque otra POS
-            // del mismo lema tenga nivel menor (ej.: "record" verbo B1 en oracion A2
-            // penaliza via este paso, no se resuelve al A2 del sustantivo)
-            Optional<CefrLevel> expectedLevelOpt = evpCatalogPort.lookupLevel(lp);
-            if (expectedLevelOpt.isEmpty()) {
-                // R036 paso 2 (fallback por lema): menor nivel entre las POS disponibles
-                // del lema — beneficio de la duda, nunca penaliza mas
-                expectedLevelOpt = evpCatalogPort.lookupLevelByLemma(literalLemma);
-            }
-
-            // R045: si el lema literal agota los dos pasos de R036, reintentar ambos
-            // pasos con el lema normalizado a minusculas antes de declarar la palabra
-            // fuera de catalogo. Solo repliegue: si el literal resolvio, esto no corre.
-            if (expectedLevelOpt.isEmpty()) {
-                String lowerLemma = literalLemma.toLowerCase(Locale.ROOT);
-                if (!lowerLemma.equals(literalLemma)) {
-                    LemmaAndPos lowerLp = new LemmaAndPos(lowerLemma, observedPos);
-                    Optional<CefrLevel> lowerLevelOpt = evpCatalogPort.lookupLevel(lowerLp);
-                    if (lowerLevelOpt.isEmpty()) {
-                        lowerLevelOpt = evpCatalogPort.lookupLevelByLemma(lowerLemma);
-                    }
-                    if (lowerLevelOpt.isPresent()) {
-                        expectedLevelOpt = lowerLevelOpt;
-                        // La clave que resolvio (minuscula) pasa a ser la usada para el
-                        // MisplacedLemma reportado y las consultas de cocaRank/semanticCategory;
-                        // observedPos sigue siendo el del token.
-                        lp = lowerLp;
-                    }
-                }
-            }
-
-            if (expectedLevelOpt.isPresent()) {
-                CefrLevel expectedLevel = expectedLevelOpt.get();
-                int expectedOrder = LEVEL_ORDER.get(expectedLevel);
-                // R017: solo penalizan los lemas de nivel superior al de la oracion.
-                // Words from lower levels are normal reuse.
-                if (expectedOrder <= sentenceOrder) {
-                    continue;
-                }
-                // R018/R033: descuento lineal por distancia (C1=5, C2=6; piso 0.5)
-                int distance = expectedOrder - sentenceOrder;
-                double discount = discountPerLevel * distance;
-                if (discount > maxDiscount) {
-                    maxDiscount = discount;
-                }
-                String key = lp.getLemma() + "|" + lp.getPos();
-                if (seen.add(key)) {
-                    Optional<Integer> cocaRankOpt = evpCatalogPort.getCocaRank(lp);
-                    int cocaRank = cocaRankOpt.orElse(0);
-                    Optional<String> semanticCategoryOpt = evpCatalogPort.getSemanticCategory(lp);
-                    String semanticCategory = semanticCategoryOpt.orElse(null);
-                    // R038: observedPos = POS del token en la oracion (puede diferir de la
-                    // POS de catalogo cuando opero el fallback); discount = el aplicado
-                    MisplacedLemma typedMl = new MisplacedLemma(
-                            lp, expectedLevel, sentenceLevel,
-                            AbsenceType.APPEARS_TOO_EARLY, cocaRank, semanticCategory,
-                            observedPos, discount);
-                    typedMisplacedLemmas.add(typedMl);
-                }
-            } else {
-                // R034: fuera de catalogo bajo CUALQUIER categoria (fallback agotado) —
-                // bandas de frecuencia por nivel de la oracion. R038: nunca se le
-                // inventa un nivel CEFR; se registra como OutOfCatalogWord.
-                Integer frequencyRank = normalizeFrequencyRank(token.getFrequencyRank());
-                double discount = outOfCatalogDiscount(frequencyRank, sentenceLevel);
-                if (discount <= 0.0) {
-                    // Banda sin penalidad: palabra frecuente justificada (R020.2)
-                    continue;
-                }
-                if (discount > maxDiscount) {
-                    maxDiscount = discount;
-                }
-                String key = token.getLemma() + "|" + observedPos;
-                if (seen.add(key)) {
-                    outOfCatalogWords.add(new OutOfCatalogWord(
-                            token.getLemma(), observedPos, frequencyRank, discount));
-                }
-            }
-        }
-        // R019: score = 1.0 - maximo descuento; los descuentos de distancia (R018/R033)
-        // y de fuera-de-catalogo (R034) compiten en el MISMO maximo
-        double score = 1.0 - maxDiscount;
-        score = Math.max(0.0, Math.min(1.0, score));
-        return new QuizScoringResult(score, typedMisplacedLemmas, outOfCatalogWords);
-    }
-
-    // --- R035: exclusiones de la evaluacion de mal-ubicacion (antes de R034) ---
-    private boolean isExcludedFromPlacement(NlpToken token) {
-        // R035.1: nombre propio — la etiqueta POS del NLP es el UNICO criterio
-        if (PROPER_NOUN_POS.equals(token.getPosTag())) {
-            return true;
-        }
-        // R035.2: tokens no alfabeticos (numeros, simbolos, cifras con digitos)
-        if (!isAlphabetic(token)) {
-            return true;
-        }
-        // R035.3: palabras funcionales — ya excluidas por el filtro general de
-        // palabras de contenido (R001)
-        return !contentWordFilter.isContentWord(token);
-    }
-
-    // R035.2: un token entra a la evaluacion de mal-ubicacion (R033/R034) solo si tiene
-    // longitud >= 2 y TODOS sus caracteres son letras — sin digitos, sin puntuacion
-    // embebida, sin apostrofos. Mata los artefactos no lexicos observados: "b" (marcador
-    // de dialogo A:/B:), "i." (puntuacion embebida), "weren't" (artefacto de contraccion).
-    private static boolean isAlphabetic(NlpToken token) {
-        String text = token.getText() != null ? token.getText() : token.getLemma();
-        if (text == null || text.length() < 2) {
-            return false;
-        }
-        for (int i = 0; i < text.length(); i++) {
-            if (!Character.isLetter(text.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    // R034: rank <= 0 significa "sin ranking" en NlpToken; se normaliza a null
-    private static Integer normalizeFrequencyRank(Integer frequencyRank) {
-        return (frequencyRank == null || frequencyRank <= 0) ? null : frequencyRank;
-    }
-
-    // --- R034: bandas de frecuencia por nivel de la oracion ---
-    private double outOfCatalogDiscount(Integer frequencyRank, CefrLevel sentenceLevel) {
-        if (frequencyRank == null) {
-            // Sin ranking disponible: siempre banda de descuento fuerte
-            return lemmaAbsenceConfig.getOutOfCatalogStrongDiscount();
-        }
-        if (frequencyRank <= lemmaAbsenceConfig.getOutOfCatalogNoPenaltyRankBound(sentenceLevel)) {
-            return 0.0;
-        }
-        if (frequencyRank <= lemmaAbsenceConfig.getOutOfCatalogMildDiscountRankBound(sentenceLevel)) {
-            return lemmaAbsenceConfig.getOutOfCatalogMildDiscount();
-        }
-        return lemmaAbsenceConfig.getOutOfCatalogStrongDiscount();
+        SentenceLexicalScore result = sentenceLexicalScorer.score(quiz.getTokens(), sentenceLevel);
+        return new QuizScoringResult(
+                result.getScore(), result.getMisplacedLemmas(), result.getOutOfCatalogWords());
     }
 
     // --- R008/R024/R032: Compute level score relative to coverage target ---

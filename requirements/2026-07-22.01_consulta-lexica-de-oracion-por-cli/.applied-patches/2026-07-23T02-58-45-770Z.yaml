@@ -1,0 +1,150 @@
+code: FEAT-CLEX
+description: "FEAT-CLEX: consulta lexica de oracion por CLI (solo lectura). Extrae\
+  \ la evaluacion lexica por-oracion del audit (scoreQuiz) a un scorer interno compartido\
+  \ en audit-domain para garantizar paridad sin duplicacion (F-CLEX-R006), la proyecta\
+  \ a un carrier publico minimo (solo flags, F-CLEX-R003/R004/R005) y agrega el verbo\
+  \ CLI de solo lectura que la consume (F-CLEX-R001/R002/R007)."
+modules:
+- name: audit-domain
+  packages:
+  - name: labs
+    models:
+    - name: SentenceLexicalScore
+      type: record
+      fields:
+      - name: score
+        type: double
+        description: "Score de oracion (1.0 - max descuento, F-LABS-R019). Lo consume\
+          \ el analyzer; la consulta CLI lo descarta."
+      - name: misplacedLemmas
+        type: List<MisplacedLemma>
+        description: "Lemas mal ubicados para el nivel, con enriquecimiento completo\
+          \ (discount/cocaRank/semanticCategory) para diagnoses del audit."
+      - name: outOfCatalogWords
+        type: List<OutOfCatalogWord>
+        description: Palabras fuera de catalogo que penalizan en la banda del nivel
+          (F-LABS-R034).
+      _change: add
+    interfaces:
+    - name: SentenceLexicalScorer
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "score(List<NlpToken> tokens, CefrLevel sentenceLevel): SentenceLexicalScore"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultSentenceLexicalScorer
+      requiresInject:
+      - name: evpCatalogPort
+        type: EvpCatalogPort
+      - name: contentWordFilter
+        type: ContentWordFilter
+      - name: lemmaAbsenceConfig
+        type: LemmaAbsenceConfig
+      visibility: public
+      implements:
+      - SentenceLexicalScorer
+      _change: add
+    - name: LemmaByLevelAbsenceAnalyzer
+      requiresInject:
+      - name: sentenceLexicalScorer
+        type: SentenceLexicalScorer
+        _change: add
+      _change: modify
+    _change: modify
+  - name: lexicalflags
+    description: "Contrato y carrier publicos de la evaluacion lexica por-oracion\
+      \ reutilizada del audit: lista de palabras flaggeadas (mal ubicadas + fuera\
+      \ de catalogo penalizantes). Superficie minima para consumidores externos (audit-cli);\
+      \ no expone score, discount ni internals del scoring."
+    visibility: public
+    models:
+    - name: SentenceLexicalFlags
+      type: record
+      fields:
+      - name: misplacedWords
+        type: List<MisplacedWordFlag>
+        description: Palabras mal ubicadas para el nivel (F-CLEX-R003). Vacia + outOfCatalogWords
+          vacia => oracion limpia (F-CLEX-R005).
+      - name: outOfCatalogWords
+        type: List<OutOfCatalogFlag>
+        description: Palabras fuera de catalogo penalizantes en el nivel (F-CLEX-R004).
+      _change: add
+    - name: MisplacedWordFlag
+      type: record
+      fields:
+      - name: lemma
+        type: String
+        description: Lema de la palabra mal ubicada (F-CLEX-R003).
+      - name: pos
+        type: String
+        description: Categoria gramatical observada en la oracion (F-CLEX-R003).
+      - name: expectedLevel
+        type: CefrLevel
+        description: Nivel esperado del lema segun el catalogo (F-CLEX-R003).
+      - name: sentenceLevel
+        type: CefrLevel
+        description: Nivel de la oracion consultada (F-CLEX-R003).
+      _change: add
+    - name: OutOfCatalogFlag
+      type: record
+      fields:
+      - name: lemma
+        type: String
+        description: Lema de la palabra fuera de catalogo (F-CLEX-R004).
+      - name: pos
+        type: String
+        description: Categoria gramatical observada (F-CLEX-R004).
+      - name: frequencyRank
+        type: Integer
+        description: Rango de frecuencia como evidencia del flag; null cuando la palabra
+          no tiene ranking (F-CLEX-R004).
+      _change: add
+    interfaces:
+    - name: SentenceLexicalEvaluator
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "evaluate(List<NlpToken> tokens, CefrLevel sentenceLevel): SentenceLexicalFlags"
+      visibility: public
+      _change: add
+    implementations:
+    - name: DefaultSentenceLexicalEvaluator
+      requiresInject:
+      - name: sentenceLexicalScorer
+        type: SentenceLexicalScorer
+      visibility: public
+      implements:
+      - SentenceLexicalEvaluator
+      _change: add
+    _change: add
+  _change: modify
+- name: audit-cli
+  interfaces:
+  - name: LexisCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "queryLexis(String quizSentence, String mode, String level): Integer"
+    _change: add
+  packages:
+  - name: commands
+    implementations:
+    - name: LexisCmd
+      requiresInject:
+      - name: quizSentenceConverter
+        type: QuizSentenceConverter
+      - name: nlpTokenizer
+        type: NlpTokenizer
+      - name: sentenceLexicalEvaluator
+        type: SentenceLexicalEvaluator
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - LexisCommand
+      _change: add
+    _change: modify
+  _change: modify

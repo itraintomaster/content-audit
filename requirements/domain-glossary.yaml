@@ -417,7 +417,7 @@ terms:
 
   - name: Catálogo de evals de calidad
     technicalName: QualityEvalCatalog
-    definition: Conjunto fijo de evaluaciones de calidad —corrección y buena formación del candidato para el tipo de ejercicio original, resolubilidad, longitud dentro del rango esperado del nivel, pragmatismo, fidelidad de la traducción y reutilización de la respuesta finita del original cuando el ejercicio lo admite— al que se somete el candidato tras pasar el gate estructural, cada una con su propio veredicto e independientemente testeable.
+    definition: Conjunto fijo de evaluaciones de calidad —corrección y buena formación del candidato para el tipo de ejercicio original, resolubilidad, longitud dentro del rango esperado del nivel, pragmatismo, fidelidad de la traducción, reutilización de la respuesta finita del original cuando el ejercicio lo admite y no-regresión léxica (no introducir palabras mal ubicadas para el nivel ni fuera de catálogo ausentes en el original)— al que se somete el candidato tras pasar el gate estructural, cada una con su propio veredicto e independientemente testeable.
     aliases:
       - catálogo de evals
       - evals de calidad
@@ -471,6 +471,21 @@ terms:
       - reutilización de la respuesta finita
       - reutilización de la respuesta
       - eval de reutilización
+
+  - name: Eval de no-regresión léxica
+    technicalName: LexicalNonRegressionEval
+    definition: Evaluación determinista y bloqueante que exige que el candidato no introduzca palabras mal ubicadas para el nivel ni fuera de catálogo que la oración original no tuviera ya; se verifica reutilizando el mismo análisis léxico del audit (mismo tokenizador y catálogo) a través de una consulta que, dada una oración y un nivel, devuelve las palabras flaggeadas con su lema, nivel esperado y tipo, y comprobando que el conjunto de lemas flaggeados del candidato esté contenido en el de la oración original. Los flags preexistentes que la edición no tocó no bloquean; al reprobar, el feedback al reintento nombra la palabra infractora con su nivel.
+    aliases:
+      - no-regresión léxica
+      - eval #7
+      - eval de no-regresión léxica
+
+  - name: Consulta léxica del análisis
+    technicalName: LexicalAnalysisQuery
+    definition: Consulta determinista que, dada una oración de quiz y un nivel, devuelve la lista de palabras que el análisis del audit flaggearía —cada una con su lema, su nivel esperado y su tipo (mal ubicada para el nivel o fuera de catálogo)— reutilizando el mismo tokenizador y catálogo del audit, no una réplica aproximada; es el análogo léxico de la consulta de tokens que el eval de longitud reutiliza para medir la longitud real.
+    aliases:
+      - análisis léxico del audit
+      - consulta léxica
 
   - name: Reintento de generación por evals
     technicalName: EvalDrivenRegeneration

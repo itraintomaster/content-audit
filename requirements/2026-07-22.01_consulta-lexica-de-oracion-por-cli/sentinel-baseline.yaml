@@ -2058,28 +2058,6 @@ modules:
         description: "Descuento aplicado segun la banda de frecuencia del nivel de\
           \ la oracion (0.0 no ocurre: solo se registran palabras que generaron descuento).\
           \ Compite en el maximo de F-LABS-R019 (F-LABS-R038)."
-    - name: SentenceLexicalScore
-      type: record
-      fields:
-      - name: score
-        type: double
-        description: "Score de oracion (1.0 - max descuento, F-LABS-R019). Lo consume\
-          \ el analyzer; la consulta CLI lo descarta."
-      - name: misplacedLemmas
-        type: List<MisplacedLemma>
-        description: "Lemas mal ubicados para el nivel, con enriquecimiento completo\
-          \ (discount/cocaRank/semanticCategory) para diagnoses del audit."
-      - name: outOfCatalogWords
-        type: List<OutOfCatalogWord>
-        description: Palabras fuera de catalogo que penalizan en la banda del nivel
-          (F-LABS-R034).
-    interfaces:
-    - name: SentenceLexicalScorer
-      stereotype: port
-      sealed: false
-      exposes:
-      - signature: "score(List<NlpToken> tokens, CefrLevel sentenceLevel): SentenceLexicalScore"
-      visibility: public
     implementations:
     - name: LemmaByLevelAbsenceAnalyzer
       requiresInject:
@@ -2089,8 +2067,6 @@ modules:
         type: ContentWordFilter
       - name: lemmaAbsenceConfig
         type: LemmaAbsenceConfig
-      - name: sentenceLexicalScorer
-        type: SentenceLexicalScorer
       visibility: public
       handwrittenTests:
       - name: should return lemma-absence as analyzer name
@@ -2722,28 +2698,6 @@ modules:
       visibility: public
       implements:
       - ScoreAggregator
-    - name: DefaultSentenceLexicalScorer
-      requiresInject:
-      - name: evpCatalogPort
-        type: EvpCatalogPort
-      - name: contentWordFilter
-        type: ContentWordFilter
-      - name: lemmaAbsenceConfig
-        type: LemmaAbsenceConfig
-      visibility: public
-      handwrittenTests:
-      - name: should flag exactly the misplaced and out-of-catalog words the audit
-          reports for a representative sentence
-        traceability:
-          feature: FEAT-CLEX
-          rule: F-CLEX-R006
-      - name: should not flag words the audit justifies by phrase rebate or curated
-          metalanguage
-        traceability:
-          feature: FEAT-CLEX
-          rule: F-CLEX-R006
-      implements:
-      - SentenceLexicalScorer
   - name: auditnodeindex
     description: Implementacion del indice nodeId->AuditNode. Hidden behind AuditNodeIndexFactory;
       collaborators package-private.
@@ -2999,91 +2953,6 @@ modules:
           rule: F-LCOUNT-R019
       implements:
       - ContentAnalyzer
-  - name: lexicalflags
-    description: "Contrato y carrier publicos de la evaluacion lexica por-oracion\
-      \ reutilizada del audit: lista de palabras flaggeadas (mal ubicadas + fuera\
-      \ de catalogo penalizantes). Superficie minima para consumidores externos (audit-cli);\
-      \ no expone score, discount ni internals del scoring."
-    visibility: public
-    models:
-    - name: SentenceLexicalFlags
-      type: record
-      fields:
-      - name: misplacedWords
-        type: List<MisplacedWordFlag>
-        description: Palabras mal ubicadas para el nivel (F-CLEX-R003). Vacia + outOfCatalogWords
-          vacia => oracion limpia (F-CLEX-R005).
-      - name: outOfCatalogWords
-        type: List<OutOfCatalogFlag>
-        description: Palabras fuera de catalogo penalizantes en el nivel (F-CLEX-R004).
-    - name: MisplacedWordFlag
-      type: record
-      fields:
-      - name: lemma
-        type: String
-        description: Lema de la palabra mal ubicada (F-CLEX-R003).
-      - name: pos
-        type: String
-        description: Categoria gramatical observada en la oracion (F-CLEX-R003).
-      - name: expectedLevel
-        type: CefrLevel
-        description: Nivel esperado del lema segun el catalogo (F-CLEX-R003).
-      - name: sentenceLevel
-        type: CefrLevel
-        description: Nivel de la oracion consultada (F-CLEX-R003).
-    - name: OutOfCatalogFlag
-      type: record
-      fields:
-      - name: lemma
-        type: String
-        description: Lema de la palabra fuera de catalogo (F-CLEX-R004).
-      - name: pos
-        type: String
-        description: Categoria gramatical observada (F-CLEX-R004).
-      - name: frequencyRank
-        type: Integer
-        description: Rango de frecuencia como evidencia del flag; null cuando la palabra
-          no tiene ranking (F-CLEX-R004).
-    interfaces:
-    - name: SentenceLexicalEvaluator
-      stereotype: port
-      sealed: false
-      exposes:
-      - signature: "evaluate(List<NlpToken> tokens, CefrLevel sentenceLevel): SentenceLexicalFlags"
-      visibility: public
-    implementations:
-    - name: DefaultSentenceLexicalEvaluator
-      requiresInject:
-      - name: sentenceLexicalScorer
-        type: SentenceLexicalScorer
-      visibility: public
-      handwrittenTests:
-      - name: "should report each misplaced word with its lemma, POS, expected level\
-          \ and sentence level"
-        traceability:
-          feature: FEAT-CLEX
-          rule: F-CLEX-R003
-      - name: "should report each penalizing out-of-catalog word with its lemma, POS\
-          \ and frequency rank"
-        traceability:
-          feature: FEAT-CLEX
-          rule: F-CLEX-R004
-      - name: should report a null frequency rank for an out-of-catalog word without
-          ranking
-        traceability:
-          feature: FEAT-CLEX
-          rule: F-CLEX-R004
-      - name: should omit words justified for the level from the flags list
-        traceability:
-          feature: FEAT-CLEX
-          rule: F-CLEX-R005
-      - name: should return an empty flags list when the sentence is clean for the
-          level
-        traceability:
-          feature: FEAT-CLEX
-          rule: F-CLEX-R005
-      implements:
-      - SentenceLexicalEvaluator
 - name: course-domain
   description: "Domain module for course structure. Contains entity models representing\
     \ the 5-level hierarchy (Course > ROOT > Milestone > Topic > Knowledge > QuizTemplate),\
@@ -6209,11 +6078,6 @@ modules:
     sealed: true
     exposes:
     - signature: "setActive(String auditId, String planId): Integer"
-  - name: LexisCommand
-    stereotype: port
-    sealed: true
-    exposes:
-    - signature: "queryLexis(String quizSentence, String mode, String level): Integer"
   patterns:
   - type: Strategy
     implementations:
@@ -7418,43 +7282,6 @@ modules:
           rule: F-RCLA-R003e
       implements:
       - CorrectionContextJsonMapper
-    - name: LexisCmd
-      requiresInject:
-      - name: quizSentenceConverter
-        type: QuizSentenceConverter
-      - name: nlpTokenizer
-        type: NlpTokenizer
-      - name: sentenceLexicalEvaluator
-        type: SentenceLexicalEvaluator
-      types:
-      - Component
-      handwrittenTests:
-      - name: should return lexical flags for a loose sentence and level without requiring
-          a stored course or mutating state
-        traceability:
-          feature: FEAT-CLEX
-          rule: F-CLEX-R001
-      - name: should analyze the canonical filled sentence in FILL mode
-        traceability:
-          feature: FEAT-CLEX
-          rule: F-CLEX-R002
-      - name: should analyze only the answer sentence in REWRITE mode
-        traceability:
-          feature: FEAT-CLEX
-          rule: F-CLEX-R002
-      - name: should reject with a clear validation when the quizSentence does not
-          respect the DSL
-        traceability:
-          feature: FEAT-CLEX
-          rule: F-CLEX-R007
-      - name: should reject with a clear validation when the CEFR level is invalid
-        traceability:
-          feature: FEAT-CLEX
-          rule: F-CLEX-R007
-      externalImplements:
-      - java.util.concurrent.Callable<Integer>
-      implements:
-      - LexisCommand
   - name: formatting
     description: "Internal formatting infrastructure — report transformers, view models,\
       \ formatters, drill-down resolution, and proposal/preview rendering."
@@ -12126,13 +11953,6 @@ features:
     validation: AUTO_VALIDATED
     testModule: audit-cli
     testPackage: com.learney.contentaudit.journeys
-- id: FEAT-CLEX
-  code: F-CLEX
-  journeys:
-  - id: F-CLEX-J001
-    validation: AUTO_VALIDATED
-    testModule: audit-cli
-    testPackage: com.learney.contentaudit.auditcli.commands
 dependencies:
 - alias: langchain4j-openai
   artifact: dev.langchain4j:langchain4j-open-ai:1.13.0

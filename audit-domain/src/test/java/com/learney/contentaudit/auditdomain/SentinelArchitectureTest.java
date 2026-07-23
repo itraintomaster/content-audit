@@ -557,6 +557,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: OutOfCatalogWord - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditdomain.labs.SentenceLexicalScore");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SentenceLexicalScore - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.labs.SentenceLexicalScorer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SentenceLexicalScorer - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditdomain.labs.LemmaByLevelAbsenceAnalyzer");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaByLevelAbsenceAnalyzer - " + e.getMessage());
@@ -565,6 +575,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.labs.LemmaAbsenceScoreAggregator");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaAbsenceScoreAggregator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.labs.DefaultSentenceLexicalScorer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultSentenceLexicalScorer - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditdomain.auditnodeindex.DefaultAuditNodeIndexFactory");
@@ -620,6 +635,31 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzer");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaCountAnalyzer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lexicalflags.SentenceLexicalFlags");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SentenceLexicalFlags - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lexicalflags.MisplacedWordFlag");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: MisplacedWordFlag - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lexicalflags.OutOfCatalogFlag");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: OutOfCatalogFlag - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lexicalflags.SentenceLexicalEvaluator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SentenceLexicalEvaluator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.lexicalflags.DefaultSentenceLexicalEvaluator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultSentenceLexicalEvaluator - " + e.getMessage());
     }
   }
 }

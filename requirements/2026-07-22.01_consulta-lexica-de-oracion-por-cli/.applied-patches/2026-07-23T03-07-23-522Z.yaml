@@ -1,0 +1,81 @@
+code: FEAT-CLEX
+modules:
+- name: audit-domain
+  packages:
+  - name: lexicalflags
+    implementations:
+    - name: DefaultSentenceLexicalEvaluator
+      handwrittenTests:
+      - name: "should report each misplaced word with its lemma, POS, expected level\
+          \ and sentence level"
+        traceability:
+          feature: FEAT-CLEX
+          rule: F-CLEX-R003
+      - name: "should report each penalizing out-of-catalog word with its lemma, POS\
+          \ and frequency rank"
+        traceability:
+          feature: FEAT-CLEX
+          rule: F-CLEX-R004
+      - name: should report a null frequency rank for an out-of-catalog word without
+          ranking
+        traceability:
+          feature: FEAT-CLEX
+          rule: F-CLEX-R004
+      - name: should omit words justified for the level from the flags list
+        traceability:
+          feature: FEAT-CLEX
+          rule: F-CLEX-R005
+      - name: should return an empty flags list when the sentence is clean for the
+          level
+        traceability:
+          feature: FEAT-CLEX
+          rule: F-CLEX-R005
+  - name: labs
+    implementations:
+    - name: DefaultSentenceLexicalScorer
+      handwrittenTests:
+      - name: should flag exactly the misplaced and out-of-catalog words the audit
+          reports for a representative sentence
+        traceability:
+          feature: FEAT-CLEX
+          rule: F-CLEX-R006
+      - name: should not flag words the audit justifies by phrase rebate or curated
+          metalanguage
+        traceability:
+          feature: FEAT-CLEX
+          rule: F-CLEX-R006
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: LexisCmd
+      handwrittenTests:
+      - name: should return lexical flags for a loose sentence and level without requiring
+          a stored course or mutating state
+        traceability:
+          feature: FEAT-CLEX
+          rule: F-CLEX-R001
+      - name: should analyze the canonical filled sentence in FILL mode
+        traceability:
+          feature: FEAT-CLEX
+          rule: F-CLEX-R002
+      - name: should analyze only the answer sentence in REWRITE mode
+        traceability:
+          feature: FEAT-CLEX
+          rule: F-CLEX-R002
+      - name: should reject with a clear validation when the quizSentence does not
+          respect the DSL
+        traceability:
+          feature: FEAT-CLEX
+          rule: F-CLEX-R007
+      - name: should reject with a clear validation when the CEFR level is invalid
+        traceability:
+          feature: FEAT-CLEX
+          rule: F-CLEX-R007
+features:
+- id: FEAT-CLEX
+  journeys:
+  - id: F-CLEX-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
