@@ -123,6 +123,12 @@ Methods:
 
 - `setActive(String auditId, String planId): Integer`
 
+### LexisCommand (port) [sealed]
+
+Methods:
+
+- `queryLexis(String quizSentence, String mode, String level): Integer`
+
 ## Dependency Contracts
 
 The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.

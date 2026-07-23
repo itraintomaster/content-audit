@@ -1,4 +1,4 @@
-generatedAt: 2026-07-22T20:57:06.020612Z
+generatedAt: 2026-07-23T03:19:21.505123Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -4037,29 +4037,29 @@ features:
       module: revision-infrastructure
       implementation: DefaultAgentRuntimeErrorClassifier
   - ruleId: F-LASAG-R013
-    state: FAILING
+    state: PASSING
     tests:
     - name: should include the out-of-catalog words formatted with lemma and known-frequency-rank
         indication in the generation inputs
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceAgentGenerator
     - name: should render the out-of-catalog generation input item as none when the
         context has no out-of-catalog words
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceAgentGenerator
   - ruleId: F-LASAG-R014
     state: NO_TESTS
   - ruleId: F-LASAG-R015
-    state: FAILING
+    state: PASSING
     tests:
     - name: should emit exactly one QuizCandidate without exception when misplacedLemmas
         is empty but outOfCatalogWords is non-empty
       implemented: true
-      passing: false
+      passing: true
       module: revision-infrastructure
       implementation: LemmaAbsenceAgentGenerator
   journeysCoverage:
@@ -4070,7 +4070,7 @@ features:
       result: success
       state: DECLARED
       tests:
-      - name: path1_todosLosEvalsBloqueantes12356DanVeredictoPositivo_success
+      - name: path1_todosLosEvalsBloqueantes123567DanVeredictoPositivo_success
         implemented: false
         passing: false
         module: revision-infrastructure
@@ -4847,6 +4847,26 @@ features:
       passing: true
       module: audit-domain
       implementation: LemmaByLevelAbsenceAnalyzer
+  - ruleId: F-LABS-R046
+    state: PASSING
+    tests:
+    - name: should exclude curated metalanguage entries from the expected lemmas of
+        a level
+      implemented: true
+      passing: true
+      module: vocabulary-infrastructure
+      implementation: FileSystemEvpCatalog
+    - name: should still resolve the level of a curated metalanguage entry for misplacement
+        lookup
+      implemented: true
+      passing: true
+      module: vocabulary-infrastructure
+      implementation: FileSystemEvpCatalog
+    - name: should keep a non-metalanguage entry in the expected lemmas of its level
+      implemented: true
+      passing: true
+      module: vocabulary-infrastructure
+      implementation: FileSystemEvpCatalog
   - ruleId: F-LABS-R006
     state: PASSING
     tests:
@@ -6647,6 +6667,180 @@ features:
     violations:
     - lineCoverage 65% < 70%
     - mutationScore 50% < 60%
+- id: FEAT-CLEX
+  state: IMPLEMENTING
+  requirementFile: ./requirements/2026-07-22.01_consulta-lexica-de-oracion-por-cli/REQUIREMENT.md
+  rulesCoverage:
+  - ruleId: F-CLEX-R001
+    state: FAILING
+    tests:
+    - name: should return lexical flags for a loose sentence and level without requiring
+        a stored course or mutating state
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: LexisCmd
+  - ruleId: F-CLEX-R002
+    state: FAILING
+    tests:
+    - name: should analyze the canonical filled sentence in FILL mode
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: LexisCmd
+    - name: should analyze only the answer sentence in REWRITE mode
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: LexisCmd
+  - ruleId: F-CLEX-R003
+    state: FAILING
+    tests:
+    - name: "should report each misplaced word with its lemma, POS, expected level\
+        \ and sentence level"
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultSentenceLexicalEvaluator
+  - ruleId: F-CLEX-R004
+    state: FAILING
+    tests:
+    - name: "should report each penalizing out-of-catalog word with its lemma, POS\
+        \ and frequency rank"
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultSentenceLexicalEvaluator
+    - name: should report a null frequency rank for an out-of-catalog word without
+        ranking
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultSentenceLexicalEvaluator
+  - ruleId: F-CLEX-R005
+    state: FAILING
+    tests:
+    - name: should omit words justified for the level from the flags list
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultSentenceLexicalEvaluator
+    - name: should return an empty flags list when the sentence is clean for the level
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultSentenceLexicalEvaluator
+  - ruleId: F-CLEX-R006
+    state: FAILING
+    tests:
+    - name: should flag exactly the misplaced and out-of-catalog words the audit reports
+        for a representative sentence
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultSentenceLexicalScorer
+    - name: should not flag words the audit justifies by phrase rebate or curated
+        metalanguage
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultSentenceLexicalScorer
+  - ruleId: F-CLEX-R007
+    state: FAILING
+    tests:
+    - name: should reject with a clear validation when the quizSentence does not respect
+        the DSL
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: LexisCmd
+    - name: should reject with a clear validation when the CEFR level is invalid
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: LexisCmd
+  journeysCoverage:
+  - journeyId: F-CLEX-J001
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: failure
+      state: DECLARED
+      tests:
+      - name: path1_laQuizSentenceNoRespetaLaDSL_failure
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FClexJ001JourneyTest
+    - pathId: path-2
+      result: failure
+      state: DECLARED
+      tests:
+      - name: path2_elNivelCEFRNoEsValido_failure
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FClexJ001JourneyTest
+    - pathId: path-3
+      result: success
+      state: DECLARED
+      tests:
+      - name: path3_laQuizSentenceYElNivelCEFRSonValidos_alMenosUnaPalabraQuedaFlaggeadaMalUbicadaOFueraDeCatalogoPenalizante_success
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FClexJ001JourneyTest
+    - pathId: path-4
+      result: success
+      state: DECLARED
+      tests:
+      - name: path4_laQuizSentenceYElNivelCEFRSonValidos_ningunaPalabraQuedaFlaggeada_success
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FClexJ001JourneyTest
+  quality:
+    classes:
+    - com.learney.contentaudit.auditcli.commands.LexisCmd
+    - com.learney.contentaudit.auditdomain.labs.DefaultSentenceLexicalScorer
+    - com.learney.contentaudit.auditdomain.lexicalflags.DefaultSentenceLexicalEvaluator
+    thresholds:
+      lineCoverage: 70
+      branchCoverage: 60
+      mutationScore: 60
+      crapHotspotThreshold: 30
+      crapHotspotsMax: 5
+    coverage:
+      linesCovered: 0
+      linesMissed: 0
+      linesTotal: 0
+      lineCoveragePct: 0
+      branchesCovered: 0
+      branchesMissed: 0
+      branchesTotal: 0
+      branchCoveragePct: 0
+      blendPct: 0
+    mutation:
+      totalMutants: 0
+      killed: 0
+      survived: 0
+      noCoverage: 0
+      timedOut: 0
+      other: 0
+      mutationScorePct: 0
+      testStrengthPct: 0
+    crap:
+      totalMethods: 0
+      hotspots: 0
+      maxCrap: 0.0
+      averageCrap: 0.0
+      simple: 0
+      moderate: 0
+      high: 0
+      veryHigh: 0
+      healthPct: 0
+    healthScore: 0
+    verdict: PASSED
 - id: FEAT-KTLEN
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
@@ -18966,6 +19160,75 @@ elements:
   - name: LemmaAbsenceScoreAggregator
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/labs/LemmaAbsenceScoreAggregator.java
+  - name: DefaultSentenceLexicalScorer
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/labs/DefaultSentenceLexicalScorer.java
+    tests:
+    - name: should flag exactly the misplaced and out-of-catalog words the audit reports
+        for a representative sentence
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/DefaultSentenceLexicalScorerTest.java
+    - name: should not flag words the audit justifies by phrase rebate or curated
+        metalanguage
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/labs/DefaultSentenceLexicalScorerTest.java
+    testCleanViews:
+    - |
+      test: "should flag exactly the misplaced and out-of-catalog words the audit reports for a representative sentence"
+      trace: FEAT-CLEX / F-CLEX-R006
+
+      given:
+        cat = LemmaAndPos("cat", "NOUN")
+        catToken = NlpToken("cat", "cat", "NOUN", 500, false, false)
+        hailToken = NlpToken("hails", "hail", "VERB", 12000, false, false)
+        gadgetToken = NlpToken("gadget", "gadget", "NOUN", 6081, false, false)
+        result = sut.score(List.of(catToken, hailToken, gadgetToken), CefrLevel.A1)
+        misplaced = result.getMisplacedLemmas().get(0)
+        outOfCatalog = result.getOutOfCatalogWords().get(0)
+
+      mock:
+        evpCatalogPort.lookupLevel(cat) -> Optional.of(CefrLevel.A1)
+        evpCatalogPort.getCocaRank(cat) -> Optional.of(500)
+        evpCatalogPort.getSemanticCategory(cat) -> Optional.empty()
+        evpCatalogPort.lookupLevel(new LemmaAndPos("hail", "VERB")) -> Optional.empty()
+        evpCatalogPort.lookupLevelByLemma("hail") -> Optional.of(CefrLevel.C2)
+        evpCatalogPort.lookupLevel(new LemmaAndPos("gadget", "NOUN")) -> Optional.empty()
+        evpCatalogPort.lookupLevelByLemma("gadget") -> Optional.empty()
+
+      then:
+        result.getMisplacedLemmas() is not null
+        result.getMisplacedLemmas().size() == 1
+        misplaced.getLemmaAndPos().getLemma() == "hail"
+        misplaced.getExpectedLevel() == CefrLevel.C2
+        misplaced.getFoundInLevel() == CefrLevel.A1
+        result.getOutOfCatalogWords() is not null
+        result.getOutOfCatalogWords().size() == 1
+        outOfCatalog.getLemma() == "gadget"
+        outOfCatalog.getFrequencyRank() == 6081
+    - |
+      test: "should not flag words the audit justifies by phrase rebate or curated metalanguage"
+      trace: FEAT-CLEX / F-CLEX-R006
+
+      given:
+        live = LemmaAndPos("live", "VERB")
+        object = LemmaAndPos("object", "VERB")
+        liveToken = NlpToken("live", "live", "VERB", 200, false, false)
+        objectToken = NlpToken("object", "object", "VERB", 1302, false, false)
+        result = sut.score(List.of(liveToken, objectToken), CefrLevel.A1)
+
+      mock:
+        evpCatalogPort.lookupLevel(live) -> Optional.of(CefrLevel.A1)
+        evpCatalogPort.getCocaRank(live) -> Optional.of(200)
+        evpCatalogPort.getSemanticCategory(live) -> Optional.empty()
+        evpCatalogPort.lookupLevel(object) -> Optional.of(CefrLevel.A1)
+        evpCatalogPort.getCocaRank(object) -> Optional.of(1302)
+        evpCatalogPort.getSemanticCategory(object) -> Optional.empty()
+
+      then:
+        result.getMisplacedLemmas() is not null
+        result.getMisplacedLemmas().isEmpty() is true
+        result.getOutOfCatalogWords() is not null
+        result.getOutOfCatalogWords().isEmpty() is true
   - name: DefaultAuditNodeIndexFactory
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/auditnodeindex/DefaultAuditNodeIndexFactory.java
@@ -19759,6 +20022,130 @@ elements:
 
       then:
         analyzer.getName() == "lemma-count"
+  - name: DefaultSentenceLexicalEvaluator
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/lexicalflags/DefaultSentenceLexicalEvaluator.java
+    tests:
+    - name: "should report each misplaced word with its lemma, POS, expected level\
+        \ and sentence level"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lexicalflags/DefaultSentenceLexicalEvaluatorTest.java
+    - name: "should report each penalizing out-of-catalog word with its lemma, POS\
+        \ and frequency rank"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lexicalflags/DefaultSentenceLexicalEvaluatorTest.java
+    - name: should report a null frequency rank for an out-of-catalog word without
+        ranking
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lexicalflags/DefaultSentenceLexicalEvaluatorTest.java
+    - name: should omit words justified for the level from the flags list
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lexicalflags/DefaultSentenceLexicalEvaluatorTest.java
+    - name: should return an empty flags list when the sentence is clean for the level
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lexicalflags/DefaultSentenceLexicalEvaluatorTest.java
+    testCleanViews:
+    - |
+      test: "should report each misplaced word with its lemma, POS, expected level and sentence level"
+      trace: FEAT-CLEX / F-CLEX-R003
+
+      given:
+        misplaced = MisplacedLemma(new LemmaAndPos("hail", "NOUN"), CefrLevel.C2, CefrLevel.A1, AbsenceType.APPEARS_TOO_EARLY, 12000, null, "VERB", 0.5)
+        score = SentenceLexicalScore(0.5, List.of(misplaced), List.of())
+        token = NlpToken("hails", "hail", "VERB", 12000, false, false)
+        tokens = List.of(token)
+        flags = sut.evaluate(tokens, CefrLevel.A1)
+        flag = flags.getMisplacedWords().get(0)
+
+      mock:
+        sentenceLexicalScorer.score(tokens, CefrLevel.A1) -> score
+
+      then:
+        flags.getMisplacedWords() is not null
+        flags.getMisplacedWords().size() == 1
+        flag.getLemma() == "hail"
+        flag.getPos() == "VERB"
+        flag.getExpectedLevel() == CefrLevel.C2
+        flag.getSentenceLevel() == CefrLevel.A1
+    - |
+      test: "should report each penalizing out-of-catalog word with its lemma, POS and frequency rank"
+      trace: FEAT-CLEX / F-CLEX-R004
+
+      given:
+        outOfCatalog = OutOfCatalogWord("gadget", "NOUN", 6081, 0.3)
+        score = SentenceLexicalScore(0.7, List.of(), List.of(outOfCatalog))
+        token = NlpToken("gadget", "gadget", "NOUN", 6081, false, false)
+        tokens = List.of(token)
+        flags = sut.evaluate(tokens, CefrLevel.A1)
+        flag = flags.getOutOfCatalogWords().get(0)
+
+      mock:
+        sentenceLexicalScorer.score(tokens, CefrLevel.A1) -> score
+
+      then:
+        flags.getOutOfCatalogWords() is not null
+        flags.getOutOfCatalogWords().size() == 1
+        flag.getLemma() == "gadget"
+        flag.getPos() == "NOUN"
+        flag.getFrequencyRank() == 6081
+    - |
+      test: "should report a null frequency rank for an out-of-catalog word without ranking"
+      trace: FEAT-CLEX / F-CLEX-R004
+
+      given:
+        outOfCatalog = OutOfCatalogWord("whatsit", "NOUN", null, 0.3)
+        score = SentenceLexicalScore(0.7, List.of(), List.of(outOfCatalog))
+        token = NlpToken("whatsit", "whatsit", "NOUN", null, false, false)
+        tokens = List.of(token)
+        flags = sut.evaluate(tokens, CefrLevel.B2)
+
+      mock:
+        sentenceLexicalScorer.score(tokens, CefrLevel.B2) -> score
+
+      then:
+        flags.getOutOfCatalogWords() is not null
+        flags.getOutOfCatalogWords().size() == 1
+        flags.getOutOfCatalogWords().get(0).getFrequencyRank() is null
+    - |
+      test: "should omit words justified for the level from the flags list"
+      trace: FEAT-CLEX / F-CLEX-R005
+
+      given:
+        misplaced = MisplacedLemma(new LemmaAndPos("hail", "NOUN"), CefrLevel.C2, CefrLevel.A1, AbsenceType.APPEARS_TOO_EARLY, 12000, null, "VERB", 0.5)
+        outOfCatalog = OutOfCatalogWord("gadget", "NOUN", 6081, 0.3)
+        score = SentenceLexicalScore(0.5, List.of(misplaced), List.of(outOfCatalog))
+        catToken = NlpToken("cat", "cat", "NOUN", 500, false, false)
+        hailToken = NlpToken("hails", "hail", "VERB", 12000, false, false)
+        gadgetToken = NlpToken("gadget", "gadget", "NOUN", 6081, false, false)
+        tokens = List.of(catToken, hailToken, gadgetToken)
+        flags = sut.evaluate(tokens, CefrLevel.A1)
+
+      mock:
+        sentenceLexicalScorer.score(tokens, CefrLevel.A1) -> score
+
+      then:
+        flags.getMisplacedWords().size() == 1
+        flags.getMisplacedWords().get(0).getLemma() == "hail"
+        flags.getOutOfCatalogWords().size() == 1
+        flags.getOutOfCatalogWords().get(0).getLemma() == "gadget"
+    - |
+      test: "should return an empty flags list when the sentence is clean for the level"
+      trace: FEAT-CLEX / F-CLEX-R005
+
+      given:
+        score = SentenceLexicalScore(1.0, List.of(), List.of())
+        token = NlpToken("cat", "cat", "NOUN", 500, false, false)
+        tokens = List.of(token)
+        flags = sut.evaluate(tokens, CefrLevel.A1)
+
+      mock:
+        sentenceLexicalScorer.score(tokens, CefrLevel.A1) -> score
+
+      then:
+        flags.getMisplacedWords() is not null
+        flags.getMisplacedWords().isEmpty() is true
+        flags.getOutOfCatalogWords() is not null
+        flags.getOutOfCatalogWords().isEmpty() is true
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -29690,6 +30077,12 @@ elements:
     methods:
     - signature: "setActive(String auditId, String planId): Integer"
       status: EXISTS
+  - name: LexisCommand
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/LexisCommand.java
+    methods:
+    - signature: "queryLexis(String quizSentence, String mode, String level): Integer"
+      status: EXISTS
   implementations:
   - name: Main
     status: EXISTS
@@ -34061,6 +34454,143 @@ elements:
         payload.containsKey("outOfCatalogWords") is true
         rawList instanceof List is true
         ((List<?>) rawList).isEmpty() is true
+  - name: LexisCmd
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/LexisCmd.java
+    tests:
+    - name: should return lexical flags for a loose sentence and level without requiring
+        a stored course or mutating state
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/LexisCmdTest.java
+    - name: should analyze the canonical filled sentence in FILL mode
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/LexisCmdTest.java
+    - name: should analyze only the answer sentence in REWRITE mode
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/LexisCmdTest.java
+    - name: should reject with a clear validation when the quizSentence does not respect
+        the DSL
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/LexisCmdTest.java
+    - name: should reject with a clear validation when the CEFR level is invalid
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/LexisCmdTest.java
+    testCleanViews:
+    - |
+      test: "should return lexical flags for a loose sentence and level without requiring a stored course or mutating state"
+      trace: FEAT-CLEX / F-CLEX-R001
+
+      given:
+        quizSentence = "He ____ [sips] (sip) a lot of tea."
+        form = FormEntity("CLOZE", 1.0, "", "", List.of())
+        canonicalSentence = "He sips a lot of tea."
+        tokens = List.of(new NlpToken("sips", "sip", "VERB", 1200, false, false))
+        flags = SentenceLexicalFlags(List.of(new MisplacedWordFlag("sip", "VERB", CefrLevel.B1, CefrLevel.A1)), List.of())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        quizSentenceConverter.parse(quizSentence) -> form
+        quizSentenceConverter.toPlainSentences(form, SentenceMode.FILL) -> List.of(canonicalSentence)
+        nlpTokenizer.analyzeTokens(canonicalSentence) -> tokens
+        sentenceLexicalEvaluator.evaluate(tokens, CefrLevel.A1) -> flags
+
+      when:
+        sut.setOut(new PrintStream(outBuf))
+
+      then:
+        exit == 0
+        output.contains("sip") is true
+    - |
+      test: "should analyze the canonical filled sentence in FILL mode"
+      trace: FEAT-CLEX / F-CLEX-R002
+
+      given:
+        quizSentence = "He ____ [sips] (sip) a lot of tea."
+        form = FormEntity("CLOZE", 1.0, "", "", List.of())
+        canonicalFilled = "He sips a lot of tea."
+        tokens = List.of(new NlpToken("sips", "sip", "VERB", 1200, false, false))
+        exit = cmd.queryLexis(quizSentence, "FILL", "A1")
+
+      mock:
+        quizSentenceConverter.parse(quizSentence) -> form
+        quizSentenceConverter.toPlainSentences(form, SentenceMode.FILL) -> List.of(canonicalFilled)
+        nlpTokenizer.analyzeTokens(canonicalFilled) -> tokens
+        sentenceLexicalEvaluator.evaluate(tokens, CefrLevel.A1) -> new SentenceLexicalFlags(List.of(), List.of())
+
+      then:
+        exit == 0
+        verify: quizSentenceConverter.toPlainSentences(form, SentenceMode.FILL)
+        verify: nlpTokenizer.analyzeTokens(canonicalFilled)
+        verify: sentenceLexicalEvaluator.evaluate(tokens, CefrLevel.A1)
+    - |
+      test: "should analyze only the answer sentence in REWRITE mode"
+      trace: FEAT-CLEX / F-CLEX-R002
+
+      given:
+        quizSentence = "You should watch the DVD. ____ [Watch the DVD.]"
+        form = FormEntity("CLOZE", 1.0, "", "", List.of())
+        canonicalAnswerOnly = "Watch the DVD."
+        tokens = List.of(new NlpToken("watch", "watch", "VERB", 300, false, false))
+        exit = cmd.queryLexis(quizSentence, "REWRITE", "A1")
+
+      mock:
+        quizSentenceConverter.parse(quizSentence) -> form
+        quizSentenceConverter.toPlainSentences(form, SentenceMode.REWRITE) -> List.of(canonicalAnswerOnly)
+        nlpTokenizer.analyzeTokens(canonicalAnswerOnly) -> tokens
+        sentenceLexicalEvaluator.evaluate(tokens, CefrLevel.A1) -> new SentenceLexicalFlags(List.of(), List.of())
+
+      then:
+        exit == 0
+        verify: quizSentenceConverter.toPlainSentences(form, SentenceMode.REWRITE)
+        verify: nlpTokenizer.analyzeTokens(canonicalAnswerOnly)
+        verify: sentenceLexicalEvaluator.evaluate(tokens, CefrLevel.A1)
+    - |
+      test: "should reject with a clear validation when the quizSentence does not respect the DSL"
+      trace: FEAT-CLEX / F-CLEX-R007
+
+      given:
+        invalidDsl = "This has no cloze marker at all."
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+        combined = outBuf.toString() + errBuf.toString()
+
+      mock:
+        quizSentenceConverter.parse(invalidDsl) -> throws RuntimeException("quizSentence invalida: no respeta la DSL.")
+
+      when:
+        sut.setOut(new PrintStream(outBuf))
+
+      then:
+        0 != null
+        combined.toLowerCase().contains("dsl") || combined.toLowerCase().contains("invalid") is true
+        combined.trim().isEmpty() || !combined.trim().equals("[]") is true
+    - |
+      test: "should reject with a clear validation when the CEFR level is invalid"
+      trace: FEAT-CLEX / F-CLEX-R007
+
+      given:
+        quizSentence = "He ____ [sips] (sip) a lot of tea."
+        form = FormEntity("CLOZE", 1.0, "", "", List.of())
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        errBuf = ByteArrayOutputStream()
+        originalErr = System.err
+        combined = outBuf.toString() + errBuf.toString()
+
+      mock:
+        quizSentenceConverter.parse(quizSentence) -> form
+        quizSentenceConverter.toPlainSentences(form, SentenceMode.FILL) -> List.of("He sips a lot of tea.")
+
+      when:
+        sut.setOut(new PrintStream(outBuf))
+
+      then:
+        0 != null
+        combined.toLowerCase().contains("level") || combined.toLowerCase().contains("cefr") || combined.toLowerCase().contains("nivel") is true
   - name: TextReportFormatter
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/TextReportFormatter.java
@@ -35926,6 +36456,17 @@ elements:
         from the lemma only by letter case
       status: EXISTS
       testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalogTest.java
+    - name: should exclude curated metalanguage entries from the expected lemmas of
+        a level
+      status: EXISTS
+      testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalogTest.java
+    - name: should still resolve the level of a curated metalanguage entry for misplacement
+        lookup
+      status: EXISTS
+      testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalogTest.java
+    - name: should keep a non-metalanguage entry in the expected lemmas of its level
+      status: EXISTS
+      testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/evp/FileSystemEvpCatalogTest.java
     testCleanViews:
     - |
       test: "should retain C1 and C2 catalog entries at load and resolve their level for misplacement lookup"
@@ -36165,6 +36706,37 @@ elements:
 
       then:
         catalog.lookupLevel(new LemmaAndPos("dvd", "NOUN")) == Optional.of(CefrLevel.A1)
+    - |
+      test: "should exclude curated metalanguage entries from the expected lemmas of a level"
+      trace: FEAT-LABS / F-LABS-R046
+
+      given:
+        catalogPath = writeCatalog(entry("object", "object", "A1", "verb", "VERB", 1302, "curated-metalang-2026-07-22"))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.getExpectedLemmas(CefrLevel.A1).contains(new LemmaAndPos("object", "VERB")) is false
+    - |
+      test: "should still resolve the level of a curated metalanguage entry for misplacement lookup"
+      trace: FEAT-LABS / F-LABS-R046
+
+      given:
+        catalogPath = writeCatalog(entry("object", "object", "A1", "verb", "VERB", 1302, "curated-metalang-2026-07-22"))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevel(new LemmaAndPos("object", "VERB")) == Optional.of(CefrLevel.A1)
+        catalog.lookupLevelByLemma("object") == Optional.of(CefrLevel.A1)
+    - |
+      test: "should keep a non-metalanguage entry in the expected lemmas of its level"
+      trace: FEAT-LABS / F-LABS-R046
+
+      given:
+        catalogPath = writeCatalog(entry("cat", "cat", "A1", "NOUN", 800))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.getExpectedLemmas(CefrLevel.A1).contains(new LemmaAndPos("cat", "NOUN")) is true
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -43445,6 +44017,92 @@ elements:
 
       then:
         verify: launcher.launch(anyString(), anyMap(), any(), anyMap())
+    - |
+      test: "should include the out-of-catalog words formatted with lemma and known-frequency-rank indication in the generation inputs"
+      trace: FEAT-LASAG / F-LASAG-R013
+
+      given:
+        misplaced = Collections.singletonList(new MisplacedLemmaContext("run", "VERB", CefrLevel.B1, CefrLevel.A1, 3210, 1.5))
+        outOfCatalogWords = List.of(new OutOfCatalogWordContext("adore", "VERB", 5432, 3.5), new OutOfCatalogWordContext("sipps", "NOUN", null, 2.0))
+        successState = RunState.empty().withRunStatus(RunStatus.COMPLETED)
+        capturedInputs = AtomicReference<>()
+        launcher = mock(AgentRuntimeLauncher.class)
+        fixedResponse = LemmaAbsenceGeneratorResponse("She [[adores]] going to school every day.", "Ella adora ir a la escuela todos los días.")
+        parser = mock(AgentCandidateParser.class)
+        classifier = mock(AgentRuntimeErrorClassifier.class)
+        generator = generatorWith(lagenConfig(5), launcher, parser, classifier)
+        inputs = capturedInputs.get()
+        combinedInputs = String.join(" | ", inputs.values())
+
+      mock:
+        parser.parse(any(), anyString(), anyString()) -> fixedResponse
+
+      when:
+        sut.thenAnswer(invocation -> {
+          @SuppressWarnings("unchecked")
+          Map<String, String> inputs = invocation.getArgument(1);
+          capturedInputs.set(inputs);
+          return successState;
+      })
+
+      then:
+        inputs is not null
+        combinedInputs.contains("adore") is true
+        combinedInputs.contains("5432") is true
+        combinedInputs.contains("sipps") is true
+        combinedInputs.toLowerCase().contains("null") is false
+    - |
+      test: "should render the out-of-catalog generation input item as none when the context has no out-of-catalog words"
+      trace: FEAT-LASAG / F-LASAG-R013
+
+      given:
+        misplaced = Collections.singletonList(new MisplacedLemmaContext("run", "VERB", CefrLevel.B1, CefrLevel.A1, 3210, 1.5))
+        successState = RunState.empty().withRunStatus(RunStatus.COMPLETED)
+        capturedInputs = AtomicReference<>()
+        launcher = mock(AgentRuntimeLauncher.class)
+        fixedResponse = LemmaAbsenceGeneratorResponse("She [[runs]] to school every day.", "Ella corre a la escuela todos los días.")
+        parser = mock(AgentCandidateParser.class)
+        classifier = mock(AgentRuntimeErrorClassifier.class)
+        generator = generatorWith(lagenConfig(5), launcher, parser, classifier)
+        inputs = capturedInputs.get()
+        hasNoneValue = inputs.values().stream().anyMatch(value -> value != null && value.trim().equalsIgnoreCase("none"))
+
+      mock:
+        parser.parse(any(), anyString(), anyString()) -> fixedResponse
+
+      when:
+        sut.thenAnswer(invocation -> {
+          @SuppressWarnings("unchecked")
+          Map<String, String> inputs = invocation.getArgument(1);
+          capturedInputs.set(inputs);
+          return successState;
+      })
+
+      then:
+        inputs is not null
+        hasNoneValue is true
+    - |
+      test: "should emit exactly one QuizCandidate without exception when misplacedLemmas is empty but outOfCatalogWords is non-empty"
+      trace: FEAT-LASAG / F-LASAG-R015
+
+      given:
+        outOfCatalogWords = List.of(new OutOfCatalogWordContext("adore", "VERB", 5432, 3.5), new OutOfCatalogWordContext("sipps", "NOUN", null, 2.0))
+        successState = RunState.empty().withRunStatus(RunStatus.COMPLETED)
+        launcher = mock(AgentRuntimeLauncher.class)
+        fixedResponse = LemmaAbsenceGeneratorResponse("She [[adores]] going to school every day.", "Ella adora ir a la escuela todos los días.")
+        parser = mock(AgentCandidateParser.class)
+        classifier = mock(AgentRuntimeErrorClassifier.class)
+        generator = generatorWith(lagenConfig(5), launcher, parser, classifier)
+        result = generator.generate(contextWith(Collections.emptyList(), outOfCatalogWords))
+
+      mock:
+        launcher.launch(anyString(), anyMap(), any(), anyMap()) -> successState
+        parser.parse(any(), anyString(), anyString()) -> fixedResponse
+
+      then:
+        result is not null
+        result.getQuizSentence() is not null
+        result.getTranslation() is not null
   - name: DefaultAgentRuntimeLauncher
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/DefaultAgentRuntimeLauncher.java
@@ -43676,8 +44334,8 @@ elements:
     - branchCoverage 0% < 60%
     - crapHotspots 17 > 5
 testSummary:
-  total: 1063
-  passing: 1049
+  total: 1078
+  passing: 1064
   failing: 0
   notImplemented: 14
 qualitySummary:
@@ -44945,6 +45603,18 @@ patterns:
     nodeId: interface-audit-cli-SetActiveAnalysisCommand
   confidence: 0.9
 - id: stereo-96
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: LexisCommand is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: LexisCommand
+    nodeId: interface-audit-cli-LexisCommand
+  confidence: 0.9
+- id: stereo-97
   pattern: Value Object
   category: architectural
   source: detected
@@ -44956,7 +45626,7 @@ patterns:
     elementName: GetTasksFilter
     nodeId: model-audit-cli-GetTasksFilter
   confidence: 0.75
-- id: stereo-97
+- id: stereo-98
   pattern: Enum
   category: architectural
   source: detected
@@ -44968,7 +45638,7 @@ patterns:
     elementName: LagenMode
     nodeId: model-audit-cli-LagenMode
   confidence: 0.95
-- id: stereo-98
+- id: stereo-99
   pattern: Enum
   category: architectural
   source: detected
@@ -44980,7 +45650,7 @@ patterns:
     elementName: PlanStorageMode
     nodeId: model-audit-cli-PlanStorageMode
   confidence: 0.95
-- id: stereo-99
+- id: stereo-100
   pattern: Value Object
   category: architectural
   source: detected
@@ -44992,7 +45662,7 @@ patterns:
     elementName: EphemeralRenderOptions
     nodeId: model-audit-cli-EphemeralRenderOptions
   confidence: 0.75
-- id: stereo-100
+- id: stereo-101
   pattern: Value Object
   category: architectural
   source: detected
@@ -45004,7 +45674,7 @@ patterns:
     elementName: SuggestedLemmasFilter
     nodeId: model-audit-cli-SuggestedLemmasFilter
   confidence: 0.75
-- id: stereo-102
+- id: stereo-103
   pattern: Value Object
   category: architectural
   source: detected
@@ -45016,7 +45686,7 @@ patterns:
     elementName: NlpTokenizerConfig
     nodeId: model-nlp-infrastructure-NlpTokenizerConfig
   confidence: 0.75
-- id: stereo-103
+- id: stereo-104
   pattern: Port
   category: architectural
   source: detected
@@ -45028,7 +45698,7 @@ patterns:
     elementName: Reviser
     nodeId: interface-revision-domain-Reviser
   confidence: 0.9
-- id: stereo-104
+- id: stereo-105
   pattern: Port
   category: architectural
   source: detected
@@ -45040,7 +45710,7 @@ patterns:
     elementName: RevisionValidator
     nodeId: interface-revision-domain-RevisionValidator
   confidence: 0.9
-- id: stereo-105
+- id: stereo-106
   pattern: Port
   category: architectural
   source: detected
@@ -45052,7 +45722,7 @@ patterns:
     elementName: RevisionArtifactStore
     nodeId: interface-revision-domain-RevisionArtifactStore
   confidence: 0.9
-- id: stereo-106
+- id: stereo-107
   pattern: Port
   category: architectural
   source: detected
@@ -45064,7 +45734,7 @@ patterns:
     elementName: CourseElementLocator
     nodeId: interface-revision-domain-CourseElementLocator
   confidence: 0.9
-- id: stereo-107
+- id: stereo-108
   pattern: Port
   category: architectural
   source: detected
@@ -45076,7 +45746,7 @@ patterns:
     elementName: RevisionEngine
     nodeId: interface-revision-domain-RevisionEngine
   confidence: 0.9
-- id: stereo-110
+- id: stereo-111
   pattern: Port
   category: architectural
   source: detected
@@ -45088,7 +45758,7 @@ patterns:
     elementName: ProposalDecisionService
     nodeId: interface-revision-domain-ProposalDecisionService
   confidence: 0.9
-- id: stereo-112
+- id: stereo-113
   pattern: Port
   category: architectural
   source: detected
@@ -45100,7 +45770,7 @@ patterns:
     elementName: LemmaAbsenceProposalStrategy
     nodeId: interface-revision-domain-LemmaAbsenceProposalStrategy
   confidence: 0.9
-- id: stereo-113
+- id: stereo-114
   pattern: Service
   category: architectural
   source: detected
@@ -45112,7 +45782,7 @@ patterns:
     elementName: LemmaAbsenceProposalStrategyRegistry
     nodeId: interface-revision-domain-LemmaAbsenceProposalStrategyRegistry
   confidence: 0.9
-- id: stereo-114
+- id: stereo-115
   pattern: Service
   category: architectural
   source: detected
@@ -45124,7 +45794,7 @@ patterns:
     elementName: LemmaAbsenceProposalDeriver
     nodeId: interface-revision-domain-LemmaAbsenceProposalDeriver
   confidence: 0.9
-- id: stereo-115
+- id: stereo-116
   pattern: Port
   category: architectural
   source: detected
@@ -45136,7 +45806,7 @@ patterns:
     elementName: ImpactPreviewStore
     nodeId: interface-revision-domain-ImpactPreviewStore
   confidence: 0.9
-- id: stereo-116
+- id: stereo-117
   pattern: Port
   category: architectural
   source: detected
@@ -45148,7 +45818,7 @@ patterns:
     elementName: CorrectionContextOverrideParser
     nodeId: interface-revision-domain-CorrectionContextOverrideParser
   confidence: 0.9
-- id: stereo-117
+- id: stereo-118
   pattern: Port
   category: architectural
   source: detected
@@ -45160,7 +45830,7 @@ patterns:
     elementName: KnowledgeTitleProposalStrategy
     nodeId: interface-revision-domain-KnowledgeTitleProposalStrategy
   confidence: 0.9
-- id: stereo-118
+- id: stereo-119
   pattern: Service
   category: architectural
   source: detected
@@ -45172,7 +45842,7 @@ patterns:
     elementName: KnowledgeTitleProposalStrategyRegistry
     nodeId: interface-revision-domain-KnowledgeTitleProposalStrategyRegistry
   confidence: 0.9
-- id: stereo-119
+- id: stereo-120
   pattern: Service
   category: architectural
   source: detected
@@ -45184,7 +45854,7 @@ patterns:
     elementName: KnowledgeTitleProposalDeriver
     nodeId: interface-revision-domain-KnowledgeTitleProposalDeriver
   confidence: 0.9
-- id: stereo-120
+- id: stereo-121
   pattern: Enum
   category: architectural
   source: detected
@@ -45196,7 +45866,7 @@ patterns:
     elementName: RevisionVerdict
     nodeId: model-revision-domain-RevisionVerdict
   confidence: 0.95
-- id: stereo-121
+- id: stereo-122
   pattern: Enum
   category: architectural
   source: detected
@@ -45208,7 +45878,7 @@ patterns:
     elementName: RevisionOutcomeKind
     nodeId: model-revision-domain-RevisionOutcomeKind
   confidence: 0.95
-- id: stereo-122
+- id: stereo-123
   pattern: Value Object
   category: architectural
   source: detected
@@ -45220,7 +45890,7 @@ patterns:
     elementName: CourseElementSnapshot
     nodeId: model-revision-domain-CourseElementSnapshot
   confidence: 0.75
-- id: stereo-123
+- id: stereo-124
   pattern: Value Object
   category: architectural
   source: detected
@@ -45232,7 +45902,7 @@ patterns:
     elementName: RevisionProposal
     nodeId: model-revision-domain-RevisionProposal
   confidence: 0.75
-- id: stereo-124
+- id: stereo-125
   pattern: Value Object
   category: architectural
   source: detected
@@ -45244,7 +45914,7 @@ patterns:
     elementName: RevisionArtifact
     nodeId: model-revision-domain-RevisionArtifact
   confidence: 0.75
-- id: stereo-125
+- id: stereo-126
   pattern: Value Object
   category: architectural
   source: detected
@@ -45256,7 +45926,7 @@ patterns:
     elementName: RevisionOutcome
     nodeId: model-revision-domain-RevisionOutcome
   confidence: 0.75
-- id: stereo-126
+- id: stereo-127
   pattern: Value Object
   category: architectural
   source: detected
@@ -45268,7 +45938,7 @@ patterns:
     elementName: RevisionEngineConfig
     nodeId: model-revision-domain-RevisionEngineConfig
   confidence: 0.75
-- id: stereo-127
+- id: stereo-128
   pattern: Enum
   category: architectural
   source: detected
@@ -45280,7 +45950,7 @@ patterns:
     elementName: ApprovalMode
     nodeId: model-revision-domain-ApprovalMode
   confidence: 0.95
-- id: stereo-128
+- id: stereo-129
   pattern: Enum
   category: architectural
   source: detected
@@ -45292,7 +45962,7 @@ patterns:
     elementName: ProposalDecisionOutcomeKind
     nodeId: model-revision-domain-ProposalDecisionOutcomeKind
   confidence: 0.95
-- id: stereo-129
+- id: stereo-130
   pattern: Value Object
   category: architectural
   source: detected
@@ -45304,7 +45974,7 @@ patterns:
     elementName: ProposalDecisionOutcome
     nodeId: model-revision-domain-ProposalDecisionOutcome
   confidence: 0.75
-- id: stereo-130
+- id: stereo-131
   pattern: Value Object
   category: architectural
   source: detected
@@ -45316,7 +45986,7 @@ patterns:
     elementName: StrategyId
     nodeId: model-revision-domain-StrategyId
   confidence: 0.75
-- id: stereo-131
+- id: stereo-132
   pattern: Value Object
   category: architectural
   source: detected
@@ -45328,7 +45998,7 @@ patterns:
     elementName: LemmaAbsenceQuizCandidate
     nodeId: model-revision-domain-LemmaAbsenceQuizCandidate
   confidence: 0.75
-- id: stereo-132
+- id: stereo-133
   pattern: Value Object
   category: architectural
   source: detected
@@ -45340,7 +46010,7 @@ patterns:
     elementName: ConsolidatedViewBuilderConfig
     nodeId: model-revision-domain-ConsolidatedViewBuilderConfig
   confidence: 0.75
-- id: stereo-133
+- id: stereo-134
   pattern: Enum
   category: architectural
   source: detected
@@ -45352,7 +46022,7 @@ patterns:
     elementName: CorrectionContextSource
     nodeId: model-revision-domain-CorrectionContextSource
   confidence: 0.95
-- id: stereo-134
+- id: stereo-135
   pattern: Value Object
   category: architectural
   source: detected
@@ -45364,7 +46034,7 @@ patterns:
     elementName: CorrectionContextOverride
     nodeId: model-revision-domain-CorrectionContextOverride
   confidence: 0.75
-- id: anti-135
+- id: anti-136
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45376,7 +46046,7 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: anti-136
+- id: anti-137
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45388,7 +46058,7 @@ patterns:
     elementName: NlpTokenizer
     nodeId: interface-audit-domain-NlpTokenizer
   confidence: 0.9
-- id: anti-137
+- id: anti-138
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45400,7 +46070,7 @@ patterns:
     elementName: ContentWordFilter
     nodeId: interface-audit-domain-ContentWordFilter
   confidence: 0.9
-- id: anti-138
+- id: anti-139
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45412,7 +46082,7 @@ patterns:
     elementName: EvpCatalogPort
     nodeId: interface-audit-domain-EvpCatalogPort
   confidence: 0.9
-- id: anti-139
+- id: anti-140
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45424,7 +46094,7 @@ patterns:
     elementName: AuditableEntity
     nodeId: interface-audit-domain-AuditableEntity
   confidence: 0.9
-- id: anti-140
+- id: anti-141
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45436,7 +46106,7 @@ patterns:
     elementName: SelfDescribingConfig
     nodeId: interface-audit-domain-SelfDescribingConfig
   confidence: 0.9
-- id: anti-141
+- id: anti-142
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45448,7 +46118,7 @@ patterns:
     elementName: NodeDiagnoses
     nodeId: interface-audit-domain-NodeDiagnoses
   confidence: 0.9
-- id: anti-142
+- id: anti-143
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45460,7 +46130,7 @@ patterns:
     elementName: CourseDiagnoses
     nodeId: interface-audit-domain-CourseDiagnoses
   confidence: 0.9
-- id: anti-143
+- id: anti-144
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45472,7 +46142,7 @@ patterns:
     elementName: LevelDiagnoses
     nodeId: interface-audit-domain-LevelDiagnoses
   confidence: 0.9
-- id: anti-144
+- id: anti-145
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45484,7 +46154,7 @@ patterns:
     elementName: TopicDiagnoses
     nodeId: interface-audit-domain-TopicDiagnoses
   confidence: 0.9
-- id: anti-145
+- id: anti-146
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45496,7 +46166,7 @@ patterns:
     elementName: KnowledgeDiagnoses
     nodeId: interface-audit-domain-KnowledgeDiagnoses
   confidence: 0.9
-- id: anti-146
+- id: anti-147
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45508,7 +46178,7 @@ patterns:
     elementName: QuizDiagnoses
     nodeId: interface-audit-domain-QuizDiagnoses
   confidence: 0.9
-- id: anti-147
+- id: anti-148
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45520,7 +46190,7 @@ patterns:
     elementName: AuditNodeIndex
     nodeId: interface-audit-domain-AuditNodeIndex
   confidence: 0.9
-- id: anti-148
+- id: anti-149
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45532,7 +46202,7 @@ patterns:
     elementName: AuditNodeIndexFactory
     nodeId: interface-audit-domain-AuditNodeIndexFactory
   confidence: 0.9
-- id: anti-149
+- id: anti-150
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -45544,7 +46214,7 @@ patterns:
     elementName: audit-domain
     nodeId: module-audit-domain
   confidence: 0.85
-- id: anti-150
+- id: anti-151
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -45556,7 +46226,7 @@ patterns:
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.8
-- id: anti-151
+- id: anti-152
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -45568,7 +46238,7 @@ patterns:
     elementName: LemmaAbsenceConfig
     nodeId: interface-audit-domain-LemmaAbsenceConfig
   confidence: 0.8
-- id: anti-152
+- id: anti-153
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45580,7 +46250,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: anti-153
+- id: anti-154
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -45592,7 +46262,7 @@ patterns:
     elementName: course-domain
     nodeId: module-course-domain
   confidence: 0.85
-- id: anti-154
+- id: anti-155
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45604,7 +46274,7 @@ patterns:
     elementName: CorrectionContext
     nodeId: interface-refiner-domain-CorrectionContext
   confidence: 0.9
-- id: anti-155
+- id: anti-156
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45616,7 +46286,7 @@ patterns:
     elementName: SuggestedLemmaQueryPort
     nodeId: interface-refiner-domain-SuggestedLemmaQueryPort
   confidence: 0.9
-- id: anti-156
+- id: anti-157
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45628,7 +46298,7 @@ patterns:
     elementName: SuggestedLemmaQuerySession
     nodeId: interface-refiner-domain-SuggestedLemmaQuerySession
   confidence: 0.9
-- id: anti-157
+- id: anti-158
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45640,7 +46310,7 @@ patterns:
     elementName: SuggestedLemmaQuerySessionFactory
     nodeId: interface-refiner-domain-SuggestedLemmaQuerySessionFactory
   confidence: 0.9
-- id: anti-158
+- id: anti-159
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -45652,7 +46322,7 @@ patterns:
     elementName: refiner-domain
     nodeId: module-refiner-domain
   confidence: 0.85
-- id: anti-159
+- id: anti-160
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -45664,7 +46334,7 @@ patterns:
     elementName: audit-application
     nodeId: module-audit-application
   confidence: 0.85
-- id: anti-160
+- id: anti-161
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45676,7 +46346,7 @@ patterns:
     elementName: AnalyzeCommand
     nodeId: interface-audit-cli-AnalyzeCommand
   confidence: 0.9
-- id: anti-161
+- id: anti-162
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45688,7 +46358,7 @@ patterns:
     elementName: GetCommand
     nodeId: interface-audit-cli-GetCommand
   confidence: 0.9
-- id: anti-162
+- id: anti-163
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45700,7 +46370,7 @@ patterns:
     elementName: DeleteCommand
     nodeId: interface-audit-cli-DeleteCommand
   confidence: 0.9
-- id: anti-163
+- id: anti-164
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45712,7 +46382,7 @@ patterns:
     elementName: PruneCommand
     nodeId: interface-audit-cli-PruneCommand
   confidence: 0.9
-- id: anti-164
+- id: anti-165
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45724,7 +46394,7 @@ patterns:
     elementName: PlanCommand
     nodeId: interface-audit-cli-PlanCommand
   confidence: 0.9
-- id: anti-165
+- id: anti-166
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45736,7 +46406,7 @@ patterns:
     elementName: ReviseCommand
     nodeId: interface-audit-cli-ReviseCommand
   confidence: 0.9
-- id: anti-166
+- id: anti-167
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45748,7 +46418,7 @@ patterns:
     elementName: ConfigAnalyzerCommand
     nodeId: interface-audit-cli-ConfigAnalyzerCommand
   confidence: 0.9
-- id: anti-167
+- id: anti-168
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45760,7 +46430,7 @@ patterns:
     elementName: StatsAnalyzerCommand
     nodeId: interface-audit-cli-StatsAnalyzerCommand
   confidence: 0.9
-- id: anti-168
+- id: anti-169
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45772,7 +46442,7 @@ patterns:
     elementName: ApproveCommand
     nodeId: interface-audit-cli-ApproveCommand
   confidence: 0.9
-- id: anti-169
+- id: anti-170
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45784,7 +46454,7 @@ patterns:
     elementName: RejectCommand
     nodeId: interface-audit-cli-RejectCommand
   confidence: 0.9
-- id: anti-170
+- id: anti-171
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45796,7 +46466,7 @@ patterns:
     elementName: GetConsolidatedCommand
     nodeId: interface-audit-cli-GetConsolidatedCommand
   confidence: 0.9
-- id: anti-171
+- id: anti-172
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45808,19 +46478,31 @@ patterns:
     elementName: SetActiveAnalysisCommand
     nodeId: interface-audit-cli-SetActiveAnalysisCommand
   confidence: 0.9
-- id: anti-172
+- id: anti-173
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: LexisCommand has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-cli
+    elementName: LexisCommand
+    nodeId: interface-audit-cli-LexisCommand
+  confidence: 0.9
+- id: anti-174
   pattern: God Module
   category: anti-pattern
   source: detected
   severity: warning
-  description: "audit-cli is too large: 12 interfaces"
+  description: "audit-cli is too large: 13 interfaces"
   involvedElements:
   - type: module
     moduleName: audit-cli
     elementName: audit-cli
     nodeId: module-audit-cli
   confidence: 0.85
-- id: anti-173
+- id: anti-175
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45832,7 +46514,7 @@ patterns:
     elementName: NlpTokenizerFactory
     nodeId: interface-nlp-infrastructure-NlpTokenizerFactory
   confidence: 0.9
-- id: anti-174
+- id: anti-176
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45844,7 +46526,7 @@ patterns:
     elementName: Reviser
     nodeId: interface-revision-domain-Reviser
   confidence: 0.9
-- id: anti-175
+- id: anti-177
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45856,7 +46538,7 @@ patterns:
     elementName: RevisionValidator
     nodeId: interface-revision-domain-RevisionValidator
   confidence: 0.9
-- id: anti-176
+- id: anti-178
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45868,7 +46550,7 @@ patterns:
     elementName: RevisionValidatorResult
     nodeId: interface-revision-domain-RevisionValidatorResult
   confidence: 0.9
-- id: anti-177
+- id: anti-179
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45880,7 +46562,7 @@ patterns:
     elementName: CourseElementLocator
     nodeId: interface-revision-domain-CourseElementLocator
   confidence: 0.9
-- id: anti-178
+- id: anti-180
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45892,7 +46574,7 @@ patterns:
     elementName: RevisionEngine
     nodeId: interface-revision-domain-RevisionEngine
   confidence: 0.9
-- id: anti-179
+- id: anti-181
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45904,7 +46586,7 @@ patterns:
     elementName: RevisionEngineFactory
     nodeId: interface-revision-domain-RevisionEngineFactory
   confidence: 0.9
-- id: anti-180
+- id: anti-182
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45916,7 +46598,7 @@ patterns:
     elementName: RevisionValidatorFactory
     nodeId: interface-revision-domain-RevisionValidatorFactory
   confidence: 0.9
-- id: anti-181
+- id: anti-183
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45928,7 +46610,7 @@ patterns:
     elementName: ProposalDecisionService
     nodeId: interface-revision-domain-ProposalDecisionService
   confidence: 0.9
-- id: anti-182
+- id: anti-184
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45940,7 +46622,7 @@ patterns:
     elementName: ProposalDecisionServiceFactory
     nodeId: interface-revision-domain-ProposalDecisionServiceFactory
   confidence: 0.9
-- id: anti-183
+- id: anti-185
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45952,7 +46634,7 @@ patterns:
     elementName: LemmaAbsenceProposalStrategy
     nodeId: interface-revision-domain-LemmaAbsenceProposalStrategy
   confidence: 0.9
-- id: anti-184
+- id: anti-186
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45964,7 +46646,7 @@ patterns:
     elementName: LemmaAbsenceProposalStrategyRegistry
     nodeId: interface-revision-domain-LemmaAbsenceProposalStrategyRegistry
   confidence: 0.9
-- id: anti-185
+- id: anti-187
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45976,7 +46658,7 @@ patterns:
     elementName: LemmaAbsenceProposalDeriver
     nodeId: interface-revision-domain-LemmaAbsenceProposalDeriver
   confidence: 0.9
-- id: anti-186
+- id: anti-188
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -45988,7 +46670,7 @@ patterns:
     elementName: CorrectionContextOverrideParser
     nodeId: interface-revision-domain-CorrectionContextOverrideParser
   confidence: 0.9
-- id: anti-187
+- id: anti-189
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -46000,7 +46682,7 @@ patterns:
     elementName: KnowledgeTitleProposalStrategy
     nodeId: interface-revision-domain-KnowledgeTitleProposalStrategy
   confidence: 0.9
-- id: anti-188
+- id: anti-190
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -46012,7 +46694,7 @@ patterns:
     elementName: KnowledgeTitleProposalStrategyRegistry
     nodeId: interface-revision-domain-KnowledgeTitleProposalStrategyRegistry
   confidence: 0.9
-- id: anti-189
+- id: anti-191
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -46024,7 +46706,7 @@ patterns:
     elementName: KnowledgeTitleProposalDeriver
     nodeId: interface-revision-domain-KnowledgeTitleProposalDeriver
   confidence: 0.9
-- id: anti-190
+- id: anti-192
   pattern: God Module
   category: anti-pattern
   source: detected

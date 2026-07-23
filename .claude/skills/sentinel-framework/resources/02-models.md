@@ -795,6 +795,18 @@ new ActiveAnalysisSelection(String auditId, String planId)
 | `frequencyRank` | `Integer` |
 | `discount` | `double` |
 
+#### SentenceLexicalScore (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `score` | `double` |
+| `misplacedLemmas` | `List<MisplacedLemma>` |
+| `outOfCatalogWords` | `List<OutOfCatalogWord>` |
+
 #### LemmaCountStats (package: lemmacount)
 
 **Package:** `com.learney.contentaudit.auditdomain.lemmacount`
@@ -864,6 +876,42 @@ new ActiveAnalysisSelection(String auditId, String planId)
 | Field | Type |
 |-------|------|
 | `levelResult` | `LevelLemmaCountResult` |
+
+#### SentenceLexicalFlags (package: lexicalflags)
+
+**Package:** `com.learney.contentaudit.auditdomain.lexicalflags`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `misplacedWords` | `List<MisplacedWordFlag>` |
+| `outOfCatalogWords` | `List<OutOfCatalogFlag>` |
+
+#### MisplacedWordFlag (package: lexicalflags)
+
+**Package:** `com.learney.contentaudit.auditdomain.lexicalflags`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `lemma` | `String` |
+| `pos` | `String` |
+| `expectedLevel` | `CefrLevel` |
+| `sentenceLevel` | `CefrLevel` |
+
+#### OutOfCatalogFlag (package: lexicalflags)
+
+**Package:** `com.learney.contentaudit.auditdomain.lexicalflags`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `lemma` | `String` |
+| `pos` | `String` |
+| `frequencyRank` | `Integer` |
 
 ### Module: course-domain
 

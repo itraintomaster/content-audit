@@ -354,6 +354,15 @@ Examples:
 |--------|--------|
 | `classify(double meanInterval,LemmaRecurrenceConfig config): ExposureStatus` | (none) |
 
+#### SentenceLexicalScorer (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `score(List<NlpToken> tokens, CefrLevel sentenceLevel): SentenceLexicalScore` | (none) |
+
 #### LemmaCefrLevelResolver (package: lemmacount)
 
 **Package:** `com.learney.contentaudit.auditdomain.lemmacount`
@@ -362,6 +371,15 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `resolve(LemmaAndPos lemmaAndPos, Optional<CefrLevel> nlpCefr): Optional<CefrLevel>` | (none) |
+
+#### SentenceLexicalEvaluator (package: lexicalflags)
+
+**Package:** `com.learney.contentaudit.auditdomain.lexicalflags`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `evaluate(List<NlpToken> tokens, CefrLevel sentenceLevel): SentenceLexicalFlags` | (none) |
 
 ### Module: course-domain
 
@@ -602,6 +620,14 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `setActive(String auditId, String planId): Integer` | (none) |
+
+#### LexisCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `queryLexis(String quizSentence, String mode, String level): Integer` | (none) |
 
 #### EphemeralPlanRenderer (package: commands)
 

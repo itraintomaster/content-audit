@@ -72,6 +72,7 @@ The following interfaces are `sealed`. Only the listed classes may implement the
 - `RejectCommand` permits: (none declared)
 - `GetConsolidatedCommand` permits: (none declared)
 - `SetActiveAnalysisCommand` permits: (none declared)
+- `LexisCommand` permits: (none declared)
 - `LemmaAbsenceProposalStrategyRegistry` permits: (none declared)
 - `LemmaAbsenceProposalDeriver` permits: (none declared)
 - `KnowledgeTitleProposalStrategyRegistry` permits: (none declared)
@@ -272,7 +273,7 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 **Models:** GetTasksFilter, LagenMode, PlanStorageMode, EphemeralRenderOptions, SuggestedLemmasFilter
 
-**Interfaces:** AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand
+**Interfaces:** AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand, LexisCommand
 
 ### nlp-infrastructure
 

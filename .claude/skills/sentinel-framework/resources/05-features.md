@@ -369,6 +369,7 @@ enabling JUnit 5 tag-based filtering (e.g., run only tests for `FEAT-001`).
 | F-LABS-R043 | Las categorias gramaticales no de contenido rebajan el nivel del lema | critical | - |
 | F-LABS-R044 | Puente sustantivo-adverbio para expresiones temporales y locativas | major | - |
 | F-LABS-R039 | Presencia de lemas bajo cualquier categoria gramatical | critical | - |
+| F-LABS-R046 | Las entradas de metalenguaje curado no fijan lemas esperados por nivel | major | - |
 | F-LABS-R006 | Tipos de ausencia | critical | - |
 | F-LABS-R007 | Algoritmo de clasificacion de ausencia | critical | - |
 | F-LABS-R008 | Puntuacion de impacto por tipo de ausencia | major | - |
@@ -1321,4 +1322,34 @@ curso |
 - **F-KTLR-J001**: Revisar y aprobar una correccion de titulo de knowledge
 
 - **F-KTLR-J002**: La revision de quizzes sigue intacta
+
+### FEAT-CLEX: Consulta lexica de oracion por CLI [F-CLEX]
+
+> **Que**: Agrega una consulta de **solo lectura** del CLI que, dada una
+Oración de quiz (misma DSL que la consulta de tokens) y
+un Nivel CEFR, devuelve en JSON las palabras que el analisis de
+mal-ubicacion **flaggearia** para ese nivel: mal ubicadas para el nivel y fuera
+de catalogo penalizantes.
+
+**Por que**: El eval de no-regresion lexica del agente de lemma-absence
+(criterio #7 de F-LASAG-R007)
+necesita verificar candidatos con el **mismo** analisis lexico del audit, no una
+replica aproximada; hoy ese analisis solo corre sobre un curso persistido al
+auditarlo, nunca sobre una oracion suelta.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-CLEX-R001 | Nueva consulta lexica de oracion, de solo lectura | critical | No aplica. |
+| F-CLEX-R002 | Entrada: la DSL de quizSentence, incluido el modo de frase | major | No aplica. |
+| F-CLEX-R003 | Salida: cada palabra mal ubicada | major | No aplica. |
+| F-CLEX-R004 | Salida: cada palabra fuera de catalogo penalizante | major | No aplica. |
+| F-CLEX-R005 | La lista contiene solo flags; vacia significa oracion limpia | critical | No aplica. |
+| F-CLEX-R006 | Paridad exacta con el analisis del audit | critical | No aplica. |
+| F-CLEX-R007 | Errores: DSL invalida y nivel invalido | major | quizSentence invalida: no respeta la DSL. |
+
+**User Journeys:**
+
+- **F-CLEX-J001**: El agente consulta los flags lexicos de un candidato
 

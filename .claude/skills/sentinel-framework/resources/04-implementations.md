@@ -200,12 +200,27 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 | `evpCatalogPort` | `EvpCatalogPort` |
 | `contentWordFilter` | `ContentWordFilter` |
 | `lemmaAbsenceConfig` | `LemmaAbsenceConfig` |
+| `sentenceLexicalScorer` | `SentenceLexicalScorer` |
 
 #### LemmaAbsenceScoreAggregator (package: labs)
 
 **Package:** `com.learney.contentaudit.auditdomain.labs`
 **Visibility:** internal
 **Implements:** ScoreAggregator
+
+#### DefaultSentenceLexicalScorer (package: labs)
+
+**Package:** `com.learney.contentaudit.auditdomain.labs`
+**Visibility:** internal
+**Implements:** SentenceLexicalScorer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `evpCatalogPort` | `EvpCatalogPort` |
+| `contentWordFilter` | `ContentWordFilter` |
+| `lemmaAbsenceConfig` | `LemmaAbsenceConfig` |
 
 #### DefaultAuditNodeIndexFactory (package: auditnodeindex)
 
@@ -244,6 +259,18 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 | `contentWordFilter` | `ContentWordFilter` |
 | `lemmaCefrLevelResolver` | `LemmaCefrLevelResolver` |
 | `lemmaCountConfig` | `LemmaCountConfig` |
+
+#### DefaultSentenceLexicalEvaluator (package: lexicalflags)
+
+**Package:** `com.learney.contentaudit.auditdomain.lexicalflags`
+**Visibility:** public
+**Implements:** SentenceLexicalEvaluator
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `sentenceLexicalScorer` | `SentenceLexicalScorer` |
 
 ### Module: course-domain
 
@@ -810,6 +837,20 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 **Package:** `com.learney.contentaudit.auditcli.commands`
 **Visibility:** internal
 **Implements:** CorrectionContextJsonMapper
+
+#### LexisCmd (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** LexisCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `quizSentenceConverter` | `QuizSentenceConverter` |
+| `nlpTokenizer` | `NlpTokenizer` |
+| `sentenceLexicalEvaluator` | `SentenceLexicalEvaluator` |
 
 #### TextReportFormatter (package: formatting)
 
