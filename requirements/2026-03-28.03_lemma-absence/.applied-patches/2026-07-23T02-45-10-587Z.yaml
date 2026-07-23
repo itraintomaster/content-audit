@@ -1,0 +1,22 @@
+code: FEAT-LABS
+modules:
+- name: vocabulary-infrastructure
+  packages:
+  - name: evp
+    implementations:
+    - name: FileSystemEvpCatalog
+      handwrittenTests:
+      - name: should exclude curated metalanguage entries from the expected lemmas
+          of a level
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R046
+      - name: should still resolve the level of a curated metalanguage entry for misplacement
+          lookup
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R046
+      - name: should keep a non-metalanguage entry in the expected lemmas of its level
+        traceability:
+          feature: FEAT-LABS
+          rule: F-LABS-R046

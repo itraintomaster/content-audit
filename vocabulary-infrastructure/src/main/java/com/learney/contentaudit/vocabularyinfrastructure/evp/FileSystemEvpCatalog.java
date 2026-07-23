@@ -60,6 +60,10 @@ public class FileSystemEvpCatalog implements EvpCatalogPort {
     private static final Set<String> NON_CONTENT_POS =
             Set.of("DET", "PRON", "ADP", "CCONJ", "INTJ", "NUM", "AUX");
 
+    // F-LABS-R046: marca de proveniencia de las entradas de metalenguaje curado
+    // (etiquetas de consigna de drills como "countable", "subject", "object").
+    private static final String CURATED_METALANG_TOPIC_PREFIX = "curated-metalang-";
+
     public FileSystemEvpCatalog(Path catalogPath) {
         for (CefrLevel level : CefrLevel.values()) {
             expectedByLevel.put(level, new HashSet<>());
@@ -127,7 +131,16 @@ public class FileSystemEvpCatalog implements EvpCatalogPort {
                 boolean derivedForm = !phrasal && !evpPhraseCategory && word != null
                         && !isInflectionalVariant(word, lemma);
 
-                if (!derivedForm) {
+                // F-LABS-R046: las entradas de metalenguaje curado (identificadas por el
+                // prefijo de proveniencia curated-metalang- en el topic) no fijan lemas
+                // esperados por nivel -- asimetria inversa a R005/R040: se excluyen SOLO
+                // de expectedByLevel y conservan intacta su participacion en el resto de
+                // los indices (levelByLemma, lowestLevelByLemmaOnly, posTagsByLemma,
+                // techos/puente de R042-R044, cocaRanks, semanticCategories), que se
+                // pueblan mas abajo sin condicionar por esta bandera.
+                boolean curatedMetalanguage = topic != null && topic.startsWith(CURATED_METALANG_TOPIC_PREFIX);
+
+                if (!derivedForm && !curatedMetalanguage) {
                     expectedByLevel.get(level).add(lp);
                 }
 

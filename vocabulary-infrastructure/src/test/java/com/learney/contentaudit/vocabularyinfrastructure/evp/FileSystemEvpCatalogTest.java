@@ -77,6 +77,31 @@ public class FileSystemEvpCatalogTest {
                 + "}";
     }
 
+    /** Construye una entrada del catalogo enriquecido con topic parametrizable (R046). */
+    private String entry(String word, String lemma, String cefrLevel, String evpPartOfSpeech, String spacyPos, Integer frequencyRank, String topic) {
+        return "{"
+                + "\"word\":\"" + word + "\","
+                + "\"cefrLevel\":\"" + cefrLevel + "\","
+                + "\"topic\":\"" + topic + "\","
+                + "\"lemma\":\"" + lemma + "\","
+                + "\"highFrequencyForLevel\":false,"
+                + "\"difficultyScore\":1.0,"
+                + "\"summary\":\"Word: " + word + " | Level: " + cefrLevel + "\","
+                + "\"evpPartOfSpeech\":\"" + evpPartOfSpeech + "\","
+                + "\"spacyPosTag\":\"" + spacyPos + "\","
+                + "\"spacyTag\":\"" + spacyPos + "\","
+                + "\"isAlpha\":true,"
+                + "\"isStop\":false,"
+                + "\"namedEntity\":null,"
+                + "\"frequencyRank\":" + frequencyRank + ","
+                + "\"lemmaFrequency\":1000,"
+                + "\"wordFrequency\":1000,"
+                + "\"frequencyCategory\":\"MEDIUM\","
+                + "\"confidenceScore\":0.9,"
+                + "\"processingNotes\":\"\""
+                + "}";
+    }
+
     /** Escribe un catalogo con las entradas dadas y devuelve la ruta del archivo. */
     private Path writeCatalog(String... entries) throws IOException {
         String json = "{"
@@ -523,5 +548,62 @@ public class FileSystemEvpCatalogTest {
 
         assertEquals(Optional.of(CefrLevel.A1), catalog.lookupLevel(new LemmaAndPos("dvd", "NOUN")),
                 "R040: la variante de caja (DVD->dvd) debe fijar el nivel del match exacto, sin distincion de mayusculas/minusculas");
+    }
+
+    @Test
+    @DisplayName("should exclude curated metalanguage entries from the expected lemmas of a level")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R046")
+    public void shouldExcludeCuratedMetalanguageEntriesFromTheExpectedLemmasOfALevel() throws IOException {
+        // R046: "object" es una entrada de metalenguaje curado (etiqueta de consigna
+        // "object" en un drill), identificada por el prefijo de proveniencia
+        // curated-metalang-. No debe fijar un lema esperado para A1 (invariante 1):
+        // el par (object, VERB) no puede aparecer en el conjunto de lemas esperados.
+        Path catalogPath = writeCatalog(
+                entry("object", "object", "A1", "verb", "VERB", 1302, "curated-metalang-2026-07-22"));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertFalse(catalog.getExpectedLemmas(CefrLevel.A1).contains(new LemmaAndPos("object", "VERB")),
+                "R046: una entrada de metalenguaje curado no debe fijar un lema esperado para su nivel");
+    }
+
+    @Test
+    @DisplayName("should still resolve the level of a curated metalanguage entry for misplacement lookup")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R046")
+    public void shouldStillResolveTheLevelOfACuratedMetalanguageEntryForMisplacementLookup() throws IOException {
+        // R046 invariante 2: aunque "object" (metalenguaje curado, topic
+        // curated-metalang-) no fije un lema esperado, SI debe conservar su
+        // participacion en la consulta de nivel del Grupo D: tanto el match exacto
+        // como el fallback por lema deben resolver su nivel curado A1, para que la
+        // etiqueta de consigna no caiga a fuera de catalogo (R034).
+        Path catalogPath = writeCatalog(
+                entry("object", "object", "A1", "verb", "VERB", 1302, "curated-metalang-2026-07-22"));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.of(CefrLevel.A1), catalog.lookupLevel(new LemmaAndPos("object", "VERB")),
+                "R046: el match exacto debe seguir resolviendo el nivel curado de una entrada de metalenguaje");
+        assertEquals(Optional.of(CefrLevel.A1), catalog.lookupLevelByLemma("object"),
+                "R046: el fallback por lema debe seguir resolviendo el nivel curado de una entrada de metalenguaje");
+    }
+
+    @Test
+    @DisplayName("should keep a non-metalanguage entry in the expected lemmas of its level")
+    @Tag("FEAT-LABS")
+    @Tag("F-LABS-R046")
+    public void shouldKeepANonmetalanguageEntryInTheExpectedLemmasOfItsLevel() throws IOException {
+        // R046 guard: la exclusion de R046 solo alcanza a entradas cuyo topic tenga
+        // el prefijo curated-metalang-. Una entrada normal de vocabulario (topic
+        // "test", sin ese prefijo) debe seguir fijando su lema esperado, sin
+        // regresion en R001.
+        Path catalogPath = writeCatalog(
+                entry("cat", "cat", "A1", "NOUN", 800));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertTrue(catalog.getExpectedLemmas(CefrLevel.A1).contains(new LemmaAndPos("cat", "NOUN")),
+                "R046: una entrada sin proveniencia de metalenguaje curado debe seguir fijando su lema esperado");
     }
 }

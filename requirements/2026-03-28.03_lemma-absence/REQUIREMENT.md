@@ -59,7 +59,7 @@ Los niveles A1 y A2 se consideran **criticos** para la evaluacion de ausencia. L
 
 Las reglas se organizan en seis grupos segun la fase y el tema al que pertenecen:
 
-- **Grupo A - Identificacion de lemas ausentes (R001-R005, R039-R044)**: reglas que describen como se determinan los lemas esperados, presentes y ausentes para cada nivel CEFR, incluyendo como se interpreta el catalogo de vocabulario en toda consulta de nivel (que entradas fijan el nivel de un lema, que entradas solo pueden rebajarlo y que categoria gramatical rige el emparejamiento).
+- **Grupo A - Identificacion de lemas ausentes (R001-R005, R039-R046)**: reglas que describen como se determinan los lemas esperados, presentes y ausentes para cada nivel CEFR, incluyendo como se interpreta el catalogo de vocabulario en toda consulta de nivel (que entradas fijan el nivel de un lema, que entradas solo pueden rebajarlo, que categoria gramatical rige el emparejamiento y que entradas de metalenguaje curado quedan fuera de los lemas esperados aunque sigan resolviendo nivel para la mal-ubicacion).
 - **Grupo B - Clasificacion del tipo de ausencia (R006-R010)**: reglas que describen como se clasifica cada lema ausente segun donde aparece (o no) en el curso.
 - **Grupo C - Prioridad y enriquecimiento (R011-R016)**: reglas que describen como se asigna prioridad basada en frecuencia COCA y como se enriquece cada lema con informacion adicional.
 - **Grupo D - Scoring por oracion y vocabulario avanzado (R017-R020, R033-R038, R045)**: reglas que describen como se evalua el impacto de los lemas mal ubicados en cada oracion del curso, incluyendo el vocabulario de nivel superior al rango del curso (C1/C2), las palabras de contenido fuera de catalogo y la normalizacion a minusculas del lema del token como repliegue del emparejamiento.
@@ -77,6 +77,7 @@ Para cada nivel CEFR (A1, A2, B1, B2), se obtienen los **lemas esperados** del c
 
 1. **Solo lemas individuales**: se excluyen las frases multipalabra (entradas del EVP marcadas como frases). Solo participan lemas de una sola palabra.
 2. **Solo palabras de contenido**: se excluyen las palabras funcionales (articulos, preposiciones, conjunciones, pronombres, etc.) segun el filtro de palabras de contenido. Las excepciones de lemas funcionales criticos se manejan en R016.
+3. **Se excluyen las entradas de metalenguaje curado**: los terminos gramaticales curados unicamente para que la evaluacion de mal-ubicacion no penalice las etiquetas de consigna de los drills (identificados por el prefijo de proveniencia `curated-metalang-`) no fijan lemas esperados por nivel, aunque sigan resolviendo su nivel para la evaluacion de mal-ubicacion del Grupo D (R046).
 
 Cada lema esperado se identifica por el par **lema + parte de la oracion** (LemmaAndPos). Dos entradas con el mismo lema pero distinta parte de la oracion se tratan como lemas esperados independientes.
 
@@ -256,6 +257,29 @@ Consecuencias observables:
 Esta regla es la contracara en el Grupo A del fallback por lema de R036 (Grupo D), y elimina el riesgo de falsos "ausentes" por inconsistencia de etiquetas descrito en R015 (el lado de falsos positivos de DOUBT-POS-CONSISTENCY): la distincion por categoria gramatical del catalogo enriquecido no es lo bastante confiable como para fundar una ausencia.
 
 **Error**: N/A (esta regla describe el criterio de presencia)
+
+### Rule[F-LABS-R046] - Las entradas de metalenguaje curado no fijan lemas esperados por nivel
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+El catalogo enriquecido contiene **entradas curadas de metalenguaje**: terminos gramaticales (countable, uncountable, subject, object, plural, singular, infinitive, pm, ...) que aparecen como **etiquetas de consigna** en los drills del curso ("elige el sustantivo countable", "marca el subject de la oracion"). Se agregaron al catalogo con un unico proposito: que la evaluacion de mal-ubicacion del Grupo D **no penalice** esas etiquetas como vocabulario avanzado o fuera de catalogo. Su nivel curado (tipicamente A1) existe solo para que la consulta de nivel del emparejamiento las reconozca y la oracion no caiga a fuera de catalogo (R034).
+
+Estas entradas se identifican por su **marca de proveniencia de la curacion**: el topic con el prefijo `curated-metalang-` (por ejemplo `curated-metalang-2026-07-22`, que hoy cubre subject, object, plural, singular). El prefijo es la convencion hacia adelante para toda curacion de metalenguaje.
+
+El defecto detectado en vivo es que esas mismas filas, al estar en el catalogo con un nivel, tambien entraban en los **lemas esperados por nivel** (R001) y, por derivacion, en la clasificacion de ausencias, la cobertura y las **sugerencias de reemplazo** del flujo de revision. Un termino de metalenguaje jamas es un reemplazo valido de vocabulario ("My brother objected money" es absurdo) ni deberia contar como vocabulario que el curso "deberia" cubrir.
+
+Se corrige con una **asimetria inversa a la de R005/R040**: mientras que las frases (R005) y las formas derivadas (R040) se excluyen de **toda** consulta de nivel, las entradas de metalenguaje curado se excluyen **solo de la construccion de lemas esperados** y **conservan** su participacion en la consulta de nivel del emparejamiento de mal-ubicacion. Invariantes:
+
+1. Una entrada de metalenguaje curado **no entra** en el conjunto de lemas esperados de ningun nivel (R001). En consecuencia nunca se reporta como ausente (R003, Grupo B), nunca cuenta para la cobertura, los umbrales ni las metricas por nivel (Grupo E), nunca genera alertas ni recomendaciones (Grupo F) y —por derivacion, ya que las sugerencias se construyen sobre los lemas esperados/ausentes— nunca se ofrece como sugerencia de reemplazo.
+2. Una entrada de metalenguaje curado **sigue participando** de la consulta de nivel del Grupo D: un token cuyo lema coincide con la entrada resuelve su nivel curado en el emparejamiento (R017/R036), no se penaliza como fuera de catalogo (R034) y cuenta como presente bajo R039. Este es su unico proposito y se preserva intacto.
+
+Consecuencias observables (evidencia: prueba live del agente de revision, 2026-07-22):
+
+1. Para un quiz A1 que pedia verbos, el pool de sugerencias A1/VERB era exactamente `[object, smoke]`: "object" (topic `curated-metalang-2026-07-22`, verbo, reason APPEARS_TOO_LATE, cocaRank 1302) se ofrecia como reemplazo. Despues de R046 el pool es `[smoke]`: "object" verbo deja de contar como esperado/ausente en A1 y no se ofrece.
+2. La etiqueta "Subject" u "Object" en un drill B2 (o A1) sigue resolviendo su nivel curado en la consulta de mal-ubicacion y **no penaliza** la oracion: la consulta de nivel queda intacta.
+
+Las filas de metalenguaje mas antiguas (countable, uncountable, pm, infinitive) fueron **re-etiquetadas** al prefijo `curated-metalang-` (topic `curated-metalang-2026-07-22`) el 2026-07-22, de modo que R046 las cubre con el mismo mecanismo uniforme. En total quedan **8 filas de metalenguaje** bajo ese prefijo: las 4 curadas de origen (subject, object, plural, singular) mas las 4 re-etiquetadas (countable, uncountable, pm, infinitive). Ya no hay filas de metalenguaje bajo topics de proposito mixto. Ver Doubt[DOUBT-METALANG-PROVENANCE], resuelta.
+
+**Error**: N/A (esta regla describe un criterio de filtrado del catalogo para la construccion de lemas esperados)
 
 ---
 
@@ -1255,6 +1279,26 @@ Tras R041 las entradas del catalogo quedan bajo su categoria EVP declarada, pero
 - [ ] Opcion C: Puente restringido a una lista blanca manual de lemas temporales/locativos (tonight, home, today, tomorrow), evitando enmascarar los sustantivos avanzados. Descartada en principio: la feature evita listas blancas manuales (ver resolucion de Doubt[DOUBT-NOMBRES-PROPIOS]).
 
 **Answer**: Resuelto por el usuario el 2026-07-21: Opcion A. Se adopta el puente acotado NOUN-ADV (R044), que queda como regla firme del Grupo A. La clase 1 (R042) y la clase 2a de "much" (R043) son independientes de esta decision.
+
+### Doubt[DOUBT-METALANG-PROVENANCE] - Identificacion de las filas de metalenguaje curadas bajo topics de proposito mixto
+**Status**: RESOLVED
+
+R046 excluye de los lemas esperados las entradas de metalenguaje curado, identificadas por el prefijo de proveniencia `curated-metalang-`. Esa convencion cubre limpiamente la curacion nueva (topic `curated-metalang-2026-07-22`: subject, object, plural, singular). El problema son las filas de metalenguaje **mas antiguas**, curadas bajo topics compartidos con vocabulario legitimo y **sin** ninguna categoria de metalenguaje registrada en la entrada:
+
+| Termino de metalenguaje | Topic actual | Comparte topic con |
+|-------------------------|--------------|--------------------|
+| countable, uncountable, pm | `curated-ooc-2026-07-19` | 170 curaciones de vocabulario legitimo fuera de catalogo (cooky, excited, texte, ...) |
+| infinitive | `curated-ame-meta-2026-07-21` | vocabulario legitimo (cookie, store, canadian) |
+
+Verificado sobre el catalogo enriquecido (2026-07-22): todas las filas de `curated-ooc-2026-07-19` comparten el mismo conjunto de campos (cefrLevel, frequencyRank, lemma, spacyPosTag, topic, word); **no existe** una categoria "metalenguaje" que permita a R046 separar countable/uncountable/pm de las 170 curaciones legitimas del mismo topic. Es decir, esas filas **no son identificables** como metalenguaje por proveniencia tal como estan. (Nota: la premisa original de la tarea situaba "infinitive" en `curated-metalang-2026-07-22`; el catalogo real lo tiene bajo `curated-ame-meta-2026-07-21`, mezclado con vocabulario AmE legitimo — mismo problema.)
+
+**Pregunta**: como se cubren las filas de metalenguaje antiguas?
+
+- [x] Opcion A (recomendada): aplicar R046 hacia adelante via el prefijo `curated-metalang-`, y **re-etiquetar** las 4 filas de metalenguaje antiguas (countable, uncountable, pm, infinitive) a un topic `curated-metalang-*` para que R046 las cubra con un unico mecanismo uniforme.
+- [ ] Opcion B: extender R046 para reconocer ademas una marca de metalenguaje dentro de los topics antiguos — hoy **no es posible** sin agregar un campo o re-curar, porque esas filas no llevan ninguna marca que las distinga del vocabulario legitimo de su topic.
+- [ ] Opcion C: aplicar R046 solo hacia adelante y **aceptar la contaminacion residual** de countable/uncountable/pm/infinitive en los lemas esperados hasta una futura re-curacion.
+
+**Answer**: Resuelto por el usuario el 2026-07-22: Opcion A. Las 4 filas de metalenguaje antiguas (countable, uncountable, pm, infinitive) fueron re-etiquetadas al topic `curated-metalang-2026-07-22`. El catalogo enriquecido queda con 8 filas de metalenguaje (las 4 curadas de origen subject/object/plural/singular mas las 4 re-etiquetadas), todas bajo el prefijo `curated-metalang-`, sin residuos en topics de proposito mixto. R046 aplica sobre las 8 con el mismo mecanismo de proveniencia.
 
 ---
 
