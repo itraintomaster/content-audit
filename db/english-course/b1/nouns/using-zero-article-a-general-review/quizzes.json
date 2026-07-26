@@ -629,7 +629,7 @@
   },
   "title" : "General o específico",
   "instructions" : "Escribe $the$ o usa – si no necesitamos ningún artículo.",
-  "translation" : "Analicemos el lenguaje de las oraciones condicionales.",
+  "translation" : "Analicemos el efecto de la elección en nuestra industria.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -665,10 +665,10 @@
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
-      "text" : "language of conditional sentences.",
+      "text" : "effect of the election on our industry.",
       "options" : null
     } ],
-    "sentences" : [ "Let's analyze the language of conditional sentences." ]
+    "sentences" : [ "Let's analyze the effect of the election on our industry." ]
   }
 }, {
   "_id" : {
@@ -733,7 +733,7 @@
   },
   "title" : "General o específico",
   "instructions" : "Escribe $the$ o usa – si no necesitamos ningún artículo.",
-  "translation" : "Los perros están ladrando.",
+  "translation" : "Los perros están jugando en el parque hoy.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -753,26 +753,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
-      "text" : "dogs are barking.",
+      "text" : "dogs are playing in the park today.",
       "options" : null
     } ],
-    "sentences" : [ "The dogs are barking." ]
+    "sentences" : [ "The dogs are playing in the park today." ]
   }
 }, {
   "_id" : {

@@ -9,7 +9,7 @@
   },
   "title" : "Posición al final",
   "instructions" : "Colocá los adverbios en la posición correcta.",
-  "translation" : "Él bailó un tango en el piso de arriba.",
+  "translation" : "Él bailó un tango después.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -37,14 +37,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He danced a tango. (upstairs)",
+      "text" : "He danced a tango. (afterwards)",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "He danced a tango upstairs." ]
+      "options" : [ "He danced a tango afterwards." ]
     } ],
-    "sentences" : [ "He danced a tango. He danced a tango upstairs." ]
+    "sentences" : [ "He danced a tango afterwards." ]
   }
 }, {
   "_id" : {
@@ -729,7 +729,7 @@
   },
   "title" : "Posición al final",
   "instructions" : "Colocá los adverbios en la posición correcta.",
-  "translation" : "¡Cocinas horriblemente!",
+  "translation" : "¡Cocinas el pescado horriblemente!",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -749,26 +749,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You cook! (awfully)",
+      "text" : "You cook the fish! (awfully)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You cook awfully!" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You cook the fish awfully!" ]
     } ],
-    "sentences" : [ "You cook awfully!" ]
+    "sentences" : [ "You cook the fish awfully!" ]
   }
 }, {
   "_id" : {
@@ -781,7 +777,7 @@
   },
   "title" : "Posición al final",
   "instructions" : "Colocá los adverbios en la posición correcta.",
-  "translation" : "Ella habla ruso sin esfuerzo.",
+  "translation" : "Ella estudia ruso semanalmente.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -801,26 +797,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She speaks Russian. (effortlessly)",
+      "text" : "She studies Russian. (weekly)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She speaks Russian effortlessly." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She studies Russian weekly." ]
     } ],
-    "sentences" : [ "She speaks Russian effortlessly." ]
+    "sentences" : [ "She studies Russian weekly." ]
   }
 }, {
   "_id" : {

@@ -425,7 +425,7 @@
   },
   "title" : "Pasado continuo sin agente",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice). No agregues la persona que realizó la acción.",
-  "translation" : "Se estaba navegando por Internet.",
+  "translation" : "Se estaba usando Internet en la escuela.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -445,26 +445,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Someone was browsing the internet.",
+      "text" : "Someone was using the internet at school.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The internet was being browsed." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The internet was being used at school." ]
     } ],
-    "sentences" : [ "The internet was being browsed." ]
+    "sentences" : [ "The internet was being used at school." ]
   }
 }, {
   "_id" : {

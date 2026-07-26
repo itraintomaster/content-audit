@@ -9,7 +9,7 @@
   },
   "title" : "Posición del adjetivo",
   "instructions" : "Coloca los adjetivos en la oración.",
-  "translation" : "Un gran perro marrón ladró afuera.",
+  "translation" : "Un gran perro marrón jugó afuera.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -45,10 +45,10 @@
       "options" : [ "large brown" ]
     }, {
       "kind" : "TEXT",
-      "text" : "dog barked outside. (brown / large)",
+      "text" : "dog played outside. (brown / large)",
       "options" : null
     } ],
-    "sentences" : [ "A large brown dog barked outside." ]
+    "sentences" : [ "A large brown dog played outside." ]
   }
 }, {
   "_id" : {
@@ -113,7 +113,7 @@
   },
   "title" : "Posición del adjetivo",
   "instructions" : "Coloca los adjetivos en la oración.",
-  "translation" : "Encontramos un conejo blanco esponjoso.",
+  "translation" : "Encontramos un agradable conejo blanco.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We found a",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "fluffy white" ]
+      "text" : null,
+      "options" : [ "pleasant white" ]
     }, {
       "kind" : "TEXT",
-      "text" : "rabbit. (white / fluffy)",
+      "text" : "rabbit. (white / pleasant)",
       "options" : null
     } ],
-    "sentences" : [ "We found a fluffy white rabbit." ]
+    "sentences" : [ "We found a pleasant white rabbit." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a0"
   },
-  "title" : "This is a colorful iced tea.",
+  "title" : "Posición del adjetivo",
   "instructions" : "Coloca los adjetivos en la oración.",
-  "translation" : "Este es un té helado colorido.",
+  "translation" : "Bebimos un té indio dulce.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -193,18 +193,18 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "This is a",
+      "text" : "We drank a",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "colorful iced" ]
+      "options" : [ "sweet Indian" ]
     }, {
       "kind" : "TEXT",
-      "text" : "tea. (iced / colorful)",
+      "text" : "tea. (Indian / sweet)",
       "options" : null
     } ],
-    "sentences" : [ "This is a colorful iced tea." ]
+    "sentences" : [ "We drank a sweet Indian tea." ]
   }
 }, {
   "_id" : {
@@ -217,7 +217,7 @@
   },
   "title" : "Posición del adjetivo",
   "instructions" : "Coloca los adjetivos en la oración.",
-  "translation" : "Pidieron una sabrosa pizza picante.",
+  "translation" : "Pidieron una pizza con doble queso.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They ordered a",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "tasty spicy" ]
+      "text" : null,
+      "options" : [ "double cheese" ]
     }, {
       "kind" : "TEXT",
-      "text" : "pizza. (spicy / tasty)",
+      "text" : "pizza. (cheese / double)",
       "options" : null
     } ],
-    "sentences" : [ "They ordered a tasty spicy pizza." ]
+    "sentences" : [ "They ordered a double cheese pizza." ]
   }
 }, {
   "_id" : {
@@ -269,7 +269,7 @@
   },
   "title" : "Posición del adjetivo",
   "instructions" : "Coloca los adjetivos en la oración.",
-  "translation" : "El cielo tranquilo y nublado se veía hermoso.",
+  "translation" : "El cielo gris y nublado se veía hermoso.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -302,13 +302,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "calm cloudy" ]
+      "options" : [ "grey cloudy" ]
     }, {
       "kind" : "TEXT",
-      "text" : "sky looked beautiful. (cloudy / calm)",
+      "text" : "sky looked beautiful. (cloudy / grey)",
       "options" : null
     } ],
-    "sentences" : [ "The calm cloudy sky looked beautiful." ]
+    "sentences" : [ "The grey cloudy sky looked beautiful." ]
   }
 }, {
   "_id" : {
@@ -373,7 +373,7 @@
   },
   "title" : "Posición del adjetivo",
   "instructions" : "Coloca los adjetivos en la oración.",
-  "translation" : "Plantamos unas pequeñas rosas rojas.",
+  "translation" : "Compramos unas pequeñas rosas rojas.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We planted some",
+      "text" : "We bought some",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "small red" ]
     }, {
       "kind" : "TEXT",
       "text" : "roses. (small / red)",
       "options" : null
     } ],
-    "sentences" : [ "We planted some small red roses." ]
+    "sentences" : [ "We bought some small red roses." ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "Posición del adjetivo",
   "instructions" : "Coloca los adjetivos en la oración.",
-  "translation" : "Él recogió una fruta naranja madura.",
+  "translation" : "Él recogió una fruta naranja grande.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He picked a",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "ripe orange" ]
+      "text" : null,
+      "options" : [ "big orange" ]
     }, {
       "kind" : "TEXT",
-      "text" : "fruit. (orange / ripe)",
+      "text" : "fruit. (orange / big)",
       "options" : null
     } ],
-    "sentences" : [ "He picked a ripe orange fruit." ]
+    "sentences" : [ "He picked a big orange fruit." ]
   }
 }, {
   "_id" : {

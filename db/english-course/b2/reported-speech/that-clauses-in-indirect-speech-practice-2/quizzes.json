@@ -425,7 +425,7 @@
   },
   "title" : "Afirmaciones",
   "instructions" : "Transforma a $reported speech$. Usa $that$ + $clause$ con $backshifting$.",
-  "translation" : "El chico susurró que se había quedado dormido.",
+  "translation" : "El chico susurró que se había quedado dormido esa mañana.",
   "theoryId" : "b2.08.Reporting_Verbs_with_that",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -445,26 +445,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "“I overslept” (the boy whispered)",
+      "text" : "“I overslept this morning” (the boy whispered)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The boy whispered that he had overslept." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The boy whispered that he had overslept that morning." ]
     } ],
-    "sentences" : [ "The boy whispered that he had overslept." ]
+    "sentences" : [ "“I overslept this morning” The boy whispered that he had overslept that morning." ]
   }
 }, {
   "_id" : {

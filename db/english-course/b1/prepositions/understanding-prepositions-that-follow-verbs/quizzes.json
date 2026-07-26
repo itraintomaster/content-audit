@@ -61,7 +61,7 @@
   },
   "title" : "Más de una opción válida",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Por favor, proceda con el matrimonio como estaba planeado.",
+  "translation" : "Por favor, continúe con el matrimonio como estaba planeado.",
   "theoryId" : "b1.17.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -89,7 +89,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Please proceed",
+      "text" : "Please continue",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -100,7 +100,7 @@
       "text" : "the marriage as planned.",
       "options" : null
     } ],
-    "sentences" : [ "Please proceed with the marriage as planned." ]
+    "sentences" : [ "Please continue with the marriage as planned." ]
   }
 }, {
   "_id" : {
@@ -527,7 +527,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d380"
   },
-  "title" : "Could you copy the recipe from the magazine?",
+  "title" : "Más de una opción válida",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
   "translation" : "¿Podrías copiar la receta de la revista?",
   "theoryId" : "b1.17.Prepositions_After_Verbs",
@@ -581,7 +581,7 @@
   },
   "title" : "Más de una opción válida",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "La clase comenzó con un resumen del libro.",
+  "translation" : "La clase comenzó con un capítulo del libro.",
   "theoryId" : "b1.17.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The class started",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
-      "text" : "a summary of the book.",
+      "text" : "a chapter of the book.",
       "options" : null
     } ],
-    "sentences" : [ "The class started with a summary of the book." ]
+    "sentences" : [ "The class started with a chapter of the book." ]
   }
 }, {
   "_id" : {
@@ -789,7 +789,7 @@
   },
   "title" : "Más de una opción válida",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "No se estresa por las notas. No es esencial.",
+  "translation" : "No le importan las notas. No es esencial.",
   "theoryId" : "b1.17.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It doesn't stress",
+      "text" : "It doesn't care",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
       "text" : "the grades. It's not essential.",
       "options" : null
     } ],
-    "sentences" : [ "It doesn't stress about the grades. It's not essential." ]
+    "sentences" : [ "It doesn't care about the grades. It's not essential." ]
   }
 }, {
   "_id" : {

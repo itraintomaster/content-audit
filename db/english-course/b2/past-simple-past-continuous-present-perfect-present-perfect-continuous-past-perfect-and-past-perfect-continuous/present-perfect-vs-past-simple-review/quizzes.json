@@ -945,7 +945,7 @@
   },
   "title" : "Tiempo definido o indefinido",
   "instructions" : "Conjuga el verbo en $past simple$ o $present perfect$.",
-  "translation" : "Él ha esperado trabajar en Londres desde 2012.",
+  "translation" : "Él ha querido trabajar en Londres desde 2012.",
   "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
   "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "has hoped|'s hoped" ]
+      "text" : null,
+      "options" : [ "has wanted|'s wanted" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(hope) to work in London since 2012.",
+      "text" : "(want) to work in London since 2012.",
       "options" : null
     } ],
-    "sentences" : [ "He has hoped to work in London since 2012.", "He's hoped to work in London since 2012." ]
+    "sentences" : [ "He has wanted to work in London since 2012.", "He 's wanted to work in London since 2012." ]
   }
 }, {
   "_id" : {

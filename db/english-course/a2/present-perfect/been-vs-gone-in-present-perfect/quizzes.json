@@ -269,7 +269,7 @@
   },
   "title" : "$Been$ o $gone$",
   "instructions" : "Elige entre $been$ o $gone$.",
-  "translation" : "Él ha estado en la panadería. Aquí está el pan que compró.",
+  "translation" : "Él ha estado en la librería. Aquí está su libro.",
   "theoryId" : "a2.04.Present_Perfect_Use_Been_or_Gone_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He's",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "been" ]
     }, {
       "kind" : "TEXT",
-      "text" : "to the bakery. Here's the bread he bought.",
+      "text" : "to the bookshop. Here's his book.",
       "options" : null
     } ],
-    "sentences" : [ "He's been to the bakery. Here's the bread he bought." ]
+    "sentences" : [ "He's been to the bookshop. Here's his book." ]
   }
 }, {
   "_id" : {

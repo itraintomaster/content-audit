@@ -57,7 +57,7 @@
   },
   "title" : "Participios irregulares 5",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Has cerrado la puerta de golpe?",
+  "translation" : "¿Has cerrado la puerta principal?",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -77,26 +77,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Have you slammed" ]
+      "text" : null,
+      "options" : [ "Have you shut" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / slam) the front door?",
+      "text" : "(you / shut) the front door?",
       "options" : null
     } ],
-    "sentences" : [ "Have you slammed the front door?" ]
+    "sentences" : [ "Have you shut the front door?" ]
   }
 }, {
   "_id" : {
@@ -265,7 +261,7 @@
   },
   "title" : "Participios irregulares 5",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "Nosotros no hemos confundido la dirección.",
+  "translation" : "Nosotros no hemos anotado la dirección.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -298,13 +294,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "have not mistaken/haven't mistaken" ]
+      "options" : [ "have not written down/haven't written down" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / mistake) the address.",
+      "text" : "(not / write down) the address.",
       "options" : null
     } ],
-    "sentences" : [ "We have not mistaken/haven't mistaken the address." ]
+    "sentences" : [ "We have not written down/haven't written down the address." ]
   }
 }, {
   "_id" : {

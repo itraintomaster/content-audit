@@ -997,7 +997,7 @@
   },
   "title" : "Causas pasadas",
   "instructions" : "Escribe oraciones usando el $third conditional$.",
-  "translation" : "Si no me hubiera olvidado de apagar la estufa, la comida habría sido comestible.",
+  "translation" : "Si no me hubiera olvidado de apagar la estufa, la comida no se habría quemado.",
   "theoryId" : "b2.12.Third_Conditionals_Past_Unreal_Conditionals_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -1017,25 +1017,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I forgot to turn off the stove and so the food wasn't eatable.",
+      "text" : "I forgot to turn off the stove and so the food was burnt.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "If I hadn't forgotten to turn off the stove, the food would have been eatable.|If I had not forgotten to turn off the stove, the food would have been eatable." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "If I hadn't forgotten to turn off the stove, the food wouldn't have been burnt.|If I had not forgotten to turn off the stove, the food would not have been burnt." ]
     } ],
-    "sentences" : [ "If I hadn't forgotten to turn off the stove, the food would have been eatable.", "If I had not forgotten to turn off the stove, the food would have been eatable." ]
+    "sentences" : [ "If I hadn't forgotten to turn off the stove, the food wouldn't have been burnt.", "If I had not forgotten to turn off the stove, the food would not have been burnt." ]
   }
 } ]

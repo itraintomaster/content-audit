@@ -841,7 +841,7 @@
   },
   "title" : "Hábitos insistentes",
   "instructions" : "Crea oraciones con $past continuous$ o $past simple$. En este caso, debes usar el $past continuous$ con $always / forever / constantly$.",
-  "translation" : "Ella siempre perdía las llaves.",
+  "translation" : "Ella siempre se olvidaba las llaves en la oficina.",
   "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
   "topicName" : "Section 3",
   "difficulty" : {
@@ -861,26 +861,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She / forever / misplace keys.",
+      "text" : "She / forever / forget her keys at the office.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She was forever misplacing keys." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She was forever forgetting her keys at the office." ]
     } ],
-    "sentences" : [ "She was forever misplacing keys." ]
+    "sentences" : [ "She was forever forgetting her keys at the office." ]
   }
 }, {
   "_id" : {

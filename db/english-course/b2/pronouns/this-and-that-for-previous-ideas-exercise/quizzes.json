@@ -425,7 +425,7 @@
   },
   "title" : "Ideas previas",
   "instructions" : "Completa con $this$ o $That's why$.",
-  "translation" : "Por eso limito mi tiempo en ello.",
+  "translation" : "Las compras en línea pueden ser muy atractivas. Por eso limito mi tiempo en ellas.",
   "theoryId" : "b2.11.This_and_that_to_Talk_about_Previous_Ideas",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Social media can be very addictive.",
+      "text" : "Online shopping can be very attractive.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "That's why" ]
     }, {
       "kind" : "TEXT",
       "text" : "I limit my time on it.",
       "options" : null
     } ],
-    "sentences" : [ "Social media can be very addictive. That's why I limit my time on it." ]
+    "sentences" : [ "Online shopping can be very attractive. That's why I limit my time on it." ]
   }
 }, {
   "_id" : {
@@ -893,7 +893,7 @@
   },
   "title" : "Ideas previas",
   "instructions" : "Completa con $this$ o $That's why$.",
-  "translation" : "Por eso me encanta ir allí.",
+  "translation" : "París ofrece muchísimos rasgos históricos. Por eso me encanta ir allí.",
   "theoryId" : "b2.11.This_and_that_to_Talk_about_Previous_Ideas",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Paris offers so many historical landmarks.",
+      "text" : "Paris offers so many historical features.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "That's why" ]
     }, {
       "kind" : "TEXT",
       "text" : "I love going there.",
       "options" : null
     } ],
-    "sentences" : [ "Paris offers so many historical landmarks. That's why I love going there." ]
+    "sentences" : [ "Paris offers so many historical features. That's why I love going there." ]
   }
 }, {
   "_id" : {

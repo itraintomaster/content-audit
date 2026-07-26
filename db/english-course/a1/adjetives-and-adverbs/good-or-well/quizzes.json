@@ -113,7 +113,7 @@
   },
   "title" : "¿$Good$ o $well$?",
   "instructions" : "Elige entre $well$ o $good$.",
-  "translation" : "Mi padre hace buena pasta.",
+  "translation" : "Mi padre hace buen café.",
   "theoryId" : "a1.11.Well_or_Good_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "My father makes",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "good" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(good / well) pasta.",
+      "text" : "(good / well) coffee.",
       "options" : null
     } ],
-    "sentences" : [ "My father makes good pasta." ]
+    "sentences" : [ "My father makes good coffee." ]
   }
 }, {
   "_id" : {
@@ -217,7 +217,7 @@
   },
   "title" : "¿$Good$ o $well$?",
   "instructions" : "Elige entre $well$ o $good$.",
-  "translation" : "Mary habla bien portugués.",
+  "translation" : "Mary lee bien portugués.",
   "theoryId" : "a1.11.Well_or_Good_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Mary speaks Portuguese",
+      "text" : "Mary reads Portuguese",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "well" ]
     }, {
       "kind" : "TEXT",
       "text" : "(good / well).",
       "options" : null
     } ],
-    "sentences" : [ "Mary speaks Portuguese well." ]
+    "sentences" : [ "Mary reads Portuguese well." ]
   }
 }, {
   "_id" : {

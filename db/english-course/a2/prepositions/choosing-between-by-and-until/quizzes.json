@@ -9,7 +9,7 @@
   },
   "title" : "$By$ o $until$",
   "instructions" : "Elige $by$ o $until$.",
-  "translation" : "Él permanecerá en la oficina hasta las 6 pm.",
+  "translation" : "Él trabajará en la oficina hasta las 6 pm.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -37,7 +37,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He'll remain in the office",
+      "text" : "He'll work in the office",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -48,7 +48,7 @@
       "text" : "6 pm.",
       "options" : null
     } ],
-    "sentences" : [ "He'll remain in the office until 6 pm." ]
+    "sentences" : [ "He'll work in the office until 6 pm." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28a"
   },
-  "title" : "They resided in France until 2003; they moved to Germany.",
+  "title" : "$By$ o $until$",
   "instructions" : "Elige $by$ o $until$.",
-  "translation" : "Residieron en Francia hasta 2003; se mudaron a Alemania.",
+  "translation" : "Vivieron en Francia hasta 2003; se mudaron a Alemania.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -193,7 +193,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They resided in France",
+      "text" : "They lived in France",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -204,7 +204,7 @@
       "text" : "2003; they moved to Germany.",
       "options" : null
     } ],
-    "sentences" : [ "They resided in France until 2003; they moved to Germany." ]
+    "sentences" : [ "They lived in France until 2003; they moved to Germany." ]
   }
 }, {
   "_id" : {
@@ -321,7 +321,7 @@
   },
   "title" : "$By$ o $until$",
   "instructions" : "Elige $by$ o $until$.",
-  "translation" : "Él se aloja allí hasta el martes.",
+  "translation" : "Él se queda en la casa del abuelo hasta el martes.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He is lodging there",
+      "text" : "He is staying at granddad's house",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "until" ]
     }, {
       "kind" : "TEXT",
       "text" : "Tuesday.",
       "options" : null
     } ],
-    "sentences" : [ "He is lodging there until Tuesday." ]
+    "sentences" : [ "He is staying at granddad's house until Tuesday." ]
   }
 }, {
   "_id" : {

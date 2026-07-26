@@ -213,7 +213,7 @@
   },
   "title" : "Adverbios de modo",
   "instructions" : "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
-  "translation" : "Los niños jugaron tranquilamente.",
+  "translation" : "Los niños jugaron cuidadosamente.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -241,14 +241,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The children played. (quiet)",
+      "text" : "The children played. (careful)",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "The children played quietly." ]
+      "options" : [ "The children played carefully." ]
     } ],
-    "sentences" : [ "The children played quietly." ]
+    "sentences" : [ "The children played carefully." ]
   }
 }, {
   "_id" : {
@@ -261,7 +261,7 @@
   },
   "title" : "Adverbios de modo",
   "instructions" : "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
-  "translation" : "Los perros ladraron ruidosamente.",
+  "translation" : "Los perros se movieron ruidosamente.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -281,26 +281,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The dogs barked. (noisy)",
+      "text" : "The dogs moved. (noisy)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The dogs barked noisily." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The dogs moved noisily." ]
     } ],
-    "sentences" : [ "The dogs barked noisily." ]
+    "sentences" : [ "The dogs moved noisily." ]
   }
 }, {
   "_id" : {
@@ -365,7 +361,7 @@
   },
   "title" : "Adverbios de modo",
   "instructions" : "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
-  "translation" : "Ella arregló el problema fácilmente.",
+  "translation" : "Ella hizo el problema fácilmente.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -393,14 +389,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She fixed the problem. (easy)",
+      "text" : "She did the problem. (easy)",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "She fixed the problem easily." ]
+      "options" : [ "She did the problem easily." ]
     } ],
-    "sentences" : [ "She fixed the problem easily." ]
+    "sentences" : [ "She did the problem easily." ]
   }
 }, {
   "_id" : {
@@ -465,7 +461,7 @@
   },
   "title" : "Adverbios de modo",
   "instructions" : "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
-  "translation" : "Ella trató el tema claramente.",
+  "translation" : "Ella trató la lección claramente.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -493,14 +489,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She covered the topic. (clear)",
+      "text" : "She covered the lesson. (clear)",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "She covered the topic clearly." ]
+      "options" : [ "She covered the lesson clearly." ]
     } ],
-    "sentences" : [ "She covered the topic. She covered the topic clearly." ]
+    "sentences" : [ "She covered the lesson clearly." ]
   }
 }, {
   "_id" : {
@@ -565,7 +561,7 @@
   },
   "title" : "Adverbios de modo",
   "instructions" : "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
-  "translation" : "La tortuga se arrastró lentamente.",
+  "translation" : "El dinosaurio giró lentamente.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -585,26 +581,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The turtle crawled. (slow)",
+      "text" : "The dinosaur turned. (slow)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The turtle crawled slowly." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The dinosaur turned slowly." ]
     } ],
-    "sentences" : [ "The turtle crawled slowly." ]
+    "sentences" : [ "The dinosaur turned slowly." ]
   }
 }, {
   "_id" : {
@@ -617,7 +609,7 @@
   },
   "title" : "Adverbios de modo",
   "instructions" : "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
-  "translation" : "Él susurró en voz baja afuera.",
+  "translation" : "Él tocó la guitarra mal.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -645,14 +637,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He whispered outside. (quiet)",
+      "text" : "He played the guitar. (bad)",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "He whispered quietly outside." ]
+      "options" : [ "He played the guitar badly." ]
     } ],
-    "sentences" : [ "He whispered quietly outside." ]
+    "sentences" : [ "He played the guitar badly." ]
   }
 }, {
   "_id" : {
@@ -769,7 +761,7 @@
   },
   "title" : "Adverbios de modo",
   "instructions" : "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
-  "translation" : "Él se sentó quieto con calma.",
+  "translation" : "Él cantó la canción mal.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -797,14 +789,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He sat still. (calm)",
+      "text" : "He sang the song. (bad)",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "He sat still calmly." ]
+      "options" : [ "He sang the song badly." ]
     } ],
-    "sentences" : [ "He sat still. He sat still calmly." ]
+    "sentences" : [ "He sang the song badly." ]
   }
 }, {
   "_id" : {
@@ -865,7 +857,7 @@
   },
   "title" : "Adverbios de modo",
   "instructions" : "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
-  "translation" : "Mary dibuja imágenes libremente.",
+  "translation" : "Mary dibuja imágenes rápidamente.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -893,14 +885,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Mary draws pictures. (free)",
+      "text" : "Mary draws pictures. (quick)",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "Mary draws pictures freely." ]
+      "options" : [ "Mary draws pictures quickly." ]
     } ],
-    "sentences" : [ "Mary draws pictures. Mary draws pictures freely." ]
+    "sentences" : [ "Mary draws pictures quickly." ]
   }
 }, {
   "_id" : {
@@ -961,7 +953,7 @@
   },
   "title" : "Adverbios de modo",
   "instructions" : "Creá un adverbio a partir del adjetivo y agregalo a la oración.",
-  "translation" : "Tosí mal hoy.",
+  "translation" : "Dormí mal hoy.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -989,13 +981,13 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I coughed today. (bad)",
+      "text" : "I slept today. (bad)",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "I coughed badly today." ]
+      "options" : [ "I slept badly today." ]
     } ],
-    "sentences" : [ "I coughed badly today." ]
+    "sentences" : [ "I slept badly today." ]
   }
 } ]

@@ -269,7 +269,7 @@
   },
   "title" : "$Particularly$ y $Especially$",
   "instructions" : "Reescribe la oración para que incluya $particularly$ o $especially$.",
-  "translation" : "No estaba impresionado con nada, especialmente con el servicio.",
+  "translation" : "No estaba contento con nada, especialmente con el servicio.",
   "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -289,26 +289,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He wasn't impressed with anything, the service. (especially / before the thing it emphasises)",
+      "text" : "He wasn't happy with anything, the service. (especially / before the thing it emphasises)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He wasn't impressed with anything, especially the service." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He wasn't happy with anything, especially the service." ]
     } ],
-    "sentences" : [ "He wasn't impressed with anything, especially the service." ]
+    "sentences" : [ "He wasn't happy with anything, especially the service." ]
   }
 }, {
   "_id" : {
@@ -373,7 +369,7 @@
   },
   "title" : "$Particularly$ y $Especially$",
   "instructions" : "Reescribe la oración para que incluya $particularly$ o $especially$.",
-  "translation" : "Ignoraron todas las reglas, especialmente la última.",
+  "translation" : "Rompieron todas las reglas, especialmente la última.",
   "theoryId" : "b1.16.Adverbs_of_Focus_Particularly_Especially",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -393,26 +389,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They ignored all the rules, the last one. (especially / before the thing it emphasises)",
+      "text" : "They broke all the rules, the last one. (especially / before the thing it emphasises)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They ignored all the rules, especially the last one." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "They broke all the rules, especially the last one." ]
     } ],
-    "sentences" : [ "They ignored all the rules, especially the last one." ]
+    "sentences" : [ "They broke all the rules, especially the last one." ]
   }
 }, {
   "_id" : {

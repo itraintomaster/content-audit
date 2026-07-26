@@ -217,7 +217,7 @@
   },
   "title" : "Definir con $a$ / $an$",
   "instructions" : "Completa con $a$ / $an$ si es necesario. Si no necesitas un artículo, escribe $-$.",
-  "translation" : "Esa es una maceta para mis flores.",
+  "translation" : "Ese es un kit para mis flores.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -253,10 +253,10 @@
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "pot for my flowers.",
+      "text" : "kit for my flowers.",
       "options" : null
     } ],
-    "sentences" : [ "That's a pot for my flowers." ]
+    "sentences" : [ "That's a kit for my flowers." ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "Definir con $a$ / $an$",
   "instructions" : "Completa con $a$ / $an$ si es necesario. Si no necesitas un artículo, escribe $-$.",
-  "translation" : "Esa es una caja para el ático.",
+  "translation" : "Esa es una caja para la competencia.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "That is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "box for the attic.",
+      "text" : "box for the competition.",
       "options" : null
     } ],
-    "sentences" : [ "That is a box for the attic." ]
+    "sentences" : [ "That is a box for the competition." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "Definir con $a$ / $an$",
   "instructions" : "Completa con $a$ / $an$ si es necesario. Si no necesitas un artículo, escribe $-$.",
-  "translation" : "Esta es una cerradura.",
+  "translation" : "Esto es un mango.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "lock.",
+      "text" : "mango.",
       "options" : null
     } ],
-    "sentences" : [ "This is a lock." ]
+    "sentences" : [ "This is a mango." ]
   }
 }, {
   "_id" : {
@@ -737,7 +737,7 @@
   },
   "title" : "Definir con $a$ / $an$",
   "instructions" : "Completa con $a$ / $an$ si es necesario. Si no necesitas un artículo, escribe $-$.",
-  "translation" : "Este es un escáner.",
+  "translation" : "Este es un premio para el ganador.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "scanner.",
+      "text" : "prize for the winner.",
       "options" : null
     } ],
-    "sentences" : [ "This is a scanner." ]
+    "sentences" : [ "This is a prize for the winner." ]
   }
 }, {
   "_id" : {

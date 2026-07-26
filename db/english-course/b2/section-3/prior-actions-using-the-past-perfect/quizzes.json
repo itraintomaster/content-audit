@@ -389,19 +389,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'d baked|had baked" ]
     }, {
       "kind" : "TEXT",
@@ -409,14 +409,14 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "reached" ]
     }, {
       "kind" : "TEXT",
       "text" : "(reach) the house.",
       "options" : null
     } ],
-    "sentences" : [ "She'd baked a cake by the time they reached the house.", "She had baked a cake by the time they reached the house." ]
+    "sentences" : [ "She 'd baked a cake by the time they reached the house.", "She had baked a cake by the time they reached the house." ]
   }
 }, {
   "_id" : {
@@ -609,7 +609,7 @@
   },
   "title" : "Hechos anteriores",
   "instructions" : "Conjuga un verbo en $past simple$ y otro en $past perfect$. La acción en $past perfect$ terminó antes de que sucediera la acción en $past simple$.",
-  "translation" : "Para cuando contrataron a un fontanero, yo había arreglado la tubería.",
+  "translation" : "Para cuando llamaron a un fontanero, yo había arreglado la tubería.",
   "theoryId" : "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
   "topicName" : "Section 3",
   "difficulty" : {
@@ -629,34 +629,34 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "By the time they",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "engaged" ]
+      "text" : null,
+      "options" : [ "called" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(engage) a plumber, I",
+      "text" : "(call) a plumber, I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'d fixed|had fixed" ]
     }, {
       "kind" : "TEXT",
       "text" : "(fix) the pipe.",
       "options" : null
     } ],
-    "sentences" : [ "By the time they engaged a plumber, I'd fixed the pipe.", "By the time they engaged a plumber, I had fixed the pipe." ]
+    "sentences" : [ "By the time they called a plumber, I 'd fixed the pipe.", "By the time they called a plumber, I had fixed the pipe." ]
   }
 }, {
   "_id" : {
@@ -989,19 +989,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "When he",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "answered" ]
     }, {
       "kind" : "TEXT",
@@ -1009,14 +1009,14 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had buzzed" ]
+      "text" : null,
+      "options" : [ "had rung" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(buzz) already.",
+      "text" : "(ring) already.",
       "options" : null
     } ],
-    "sentences" : [ "When he answered the phone, it had buzzed already." ]
+    "sentences" : [ "When he answered the phone, it had rung already." ]
   }
 }, {
   "_id" : {

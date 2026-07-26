@@ -9,7 +9,7 @@
   },
   "title" : "Predicciones con $going to$",
   "instructions" : "Crea oraciones con $going to$ (estos son ejemplos de $going to$ para predicciones basadas en evidencia).",
-  "translation" : "¿Van a arreglar el coche?",
+  "translation" : "¿Qué es ese sonido? ¿Van a arrancar el coche?",
   "theoryId" : "a2.02.Going_to_Use_Prediction",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "What's that strange noise?",
+      "text" : "What's that sound?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Are they going to fix" ]
+      "text" : null,
+      "options" : [ "Are they going to start" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / fix) the car?",
+      "text" : "(they / start) the car?",
       "options" : null
     } ],
-    "sentences" : [ "What's that strange noise? Are they going to fix the car?" ]
+    "sentences" : [ "What's that sound? Are they going to start the car?" ]
   }
 }, {
   "_id" : {
@@ -61,7 +61,7 @@
   },
   "title" : "Predicciones con $going to$",
   "instructions" : "Crea oraciones con $going to$ (estos son ejemplos de $going to$ para predicciones basadas en evidencia).",
-  "translation" : "Está tan nublado que se va a formar una tormenta.",
+  "translation" : "Está tan nublado que va a venir una tormenta.",
   "theoryId" : "a2.02.Going_to_Use_Prediction",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -94,13 +94,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "is going to form|'s going to form" ]
+      "options" : [ "is going to come|'s going to come" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(form).",
+      "text" : "(come).",
       "options" : null
     } ],
-    "sentences" : [ "It's so cloudy that a storm is going to form.", "It's so cloudy that a storm 's going to form." ]
+    "sentences" : [ "It's so cloudy that a storm is going to come.", "It's so cloudy that a storm 's going to come." ]
   }
 }, {
   "_id" : {
@@ -217,7 +217,7 @@
   },
   "title" : "Predicciones con $going to$",
   "instructions" : "Crea oraciones con $going to$ (estos son ejemplos de $going to$ para predicciones basadas en evidencia).",
-  "translation" : "Parece que ese perro va a ladrar.",
+  "translation" : "Parece que ese perro va a venir.",
   "theoryId" : "a2.02.Going_to_Use_Prediction",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It seems like that dog",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is going to bark|'s going to bark" ]
+      "text" : null,
+      "options" : [ "is going to come|'s going to come" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(bark).",
+      "text" : "(come).",
       "options" : null
     } ],
-    "sentences" : [ "It seems like that dog is going to bark.", "It seems like that dog's going to bark." ]
+    "sentences" : [ "It seems like that dog is going to come.", "It seems like that dog 's going to come." ]
   }
 }, {
   "_id" : {
@@ -269,7 +269,7 @@
   },
   "title" : "Predicciones con $going to$",
   "instructions" : "Crea oraciones con $going to$ (estos son ejemplos de $going to$ para predicciones basadas en evidencia).",
-  "translation" : "¡Ese avión se va a estrellar!",
+  "translation" : "¡Ese avión va a girar!",
   "theoryId" : "a2.02.Going_to_Use_Prediction",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "That plane",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is going to crash|'s going to crash" ]
+      "text" : null,
+      "options" : [ "is going to turn|'s going to turn" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(crash)!",
+      "text" : "(turn)!",
       "options" : null
     } ],
-    "sentences" : [ "That plane is going to crash!", "That plane's going to crash!" ]
+    "sentences" : [ "That plane is going to turn!", "That plane 's going to turn!" ]
   }
 }, {
   "_id" : {
@@ -321,7 +321,7 @@
   },
   "title" : "Predicciones con $going to$",
   "instructions" : "Crea oraciones con $going to$ (estos son ejemplos de $going to$ para predicciones basadas en evidencia).",
-  "translation" : "¡Mira el sol! Va a chamuscar todo.",
+  "translation" : "¡Mira el sol! Va a matar todo.",
   "theoryId" : "a2.02.Going_to_Use_Prediction",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -354,13 +354,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "'s going to singe|is going to singe" ]
+      "options" : [ "'s going to kill|is going to kill" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(singe) everything.",
+      "text" : "(kill) everything.",
       "options" : null
     } ],
-    "sentences" : [ "Look at the sun! It 's going to singe everything.", "Look at the sun! It is going to singe everything." ]
+    "sentences" : [ "Look at the sun! It 's going to kill everything.", "Look at the sun! It is going to kill everything." ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "Predicciones con $going to$",
   "instructions" : "Crea oraciones con $going to$ (estos son ejemplos de $going to$ para predicciones basadas en evidencia).",
-  "translation" : "Parece que el mercado va a declinar.",
+  "translation" : "Parece que el mercado va a cambiar.",
   "theoryId" : "a2.02.Going_to_Use_Prediction",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -445,25 +445,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It seems like the market",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is going to decline|'s going to decline" ]
+      "text" : null,
+      "options" : [ "is going to change|'s going to change" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(decline).",
+      "text" : "(change).",
       "options" : null
     } ],
-    "sentences" : [ "It seems like the market is going to decline.", "It seems like the market's going to decline." ]
+    "sentences" : [ "It seems like the market is going to change.", "It seems like the market 's going to change." ]
   }
 } ]

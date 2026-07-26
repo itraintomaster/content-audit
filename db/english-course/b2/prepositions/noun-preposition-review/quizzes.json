@@ -789,7 +789,7 @@
   },
   "title" : "Sustantivo + preposición",
   "instructions" : "Escribe la preposición correcta.",
-  "translation" : "Ella concibió la idea de abrir una panadería.",
+  "translation" : "Ella consideró la posibilidad real de abrir una panadería.",
   "theoryId" : "b2.15.Nouns_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She conceived the notion",
+      "text" : "She considered the real prospect",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
       "text" : "opening a bakery.",
       "options" : null
     } ],
-    "sentences" : [ "She conceived the notion of opening a bakery." ]
+    "sentences" : [ "She considered the real prospect of opening a bakery." ]
   }
 }, {
   "_id" : {
@@ -893,7 +893,7 @@
   },
   "title" : "Sustantivo + preposición",
   "instructions" : "Escribe la preposición correcta.",
-  "translation" : "Ella entabló una conversación con su colega.",
+  "translation" : "Ella participó en una breve charla con su colega.",
   "theoryId" : "b2.15.Nouns_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She engaged in a talk",
+      "text" : "She took part in a short talk",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
       "text" : "her colleague.",
       "options" : null
     } ],
-    "sentences" : [ "She engaged in a talk with her colleague." ]
+    "sentences" : [ "She took part in a short talk with her colleague." ]
   }
 }, {
   "_id" : {

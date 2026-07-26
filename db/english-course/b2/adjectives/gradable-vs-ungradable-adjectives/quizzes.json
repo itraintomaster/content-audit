@@ -373,7 +373,7 @@
   },
   "title" : "Grados de énfasis",
   "instructions" : "Enfatiza los adjetivos añadiendo $very$ o $absolutely$.",
-  "translation" : "Ella estaba absolutamente destrozada.",
+  "translation" : "Ella estaba absolutamente destrozada después del examen final ayer por la tarde.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She was",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "absolutely" ]
     }, {
       "kind" : "TEXT",
-      "text" : "shattered.",
+      "text" : "shattered after the final exam yesterday evening.",
       "options" : null
     } ],
-    "sentences" : [ "She was absolutely shattered." ]
+    "sentences" : [ "She was absolutely shattered after the final exam yesterday evening." ]
   }
 }, {
   "_id" : {

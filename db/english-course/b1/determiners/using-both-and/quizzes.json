@@ -9,7 +9,7 @@
   },
   "title" : "$Both ... and$",
   "instructions" : "Añade $both$ a las oraciones.",
-  "translation" : "Tanto a David como a Emily les gusta la costa.",
+  "translation" : "Tanto David como Emily disfrutan de la belleza de la costa.",
   "theoryId" : "b1.08.Both…_And…",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "David and Emily enjoy the seaside.",
+      "text" : "David and Emily enjoy the beauty of the seaside.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Both David and Emily enjoy the seaside." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Both David and Emily enjoy the beauty of the seaside." ]
     } ],
-    "sentences" : [ "Both David and Emily enjoy the seaside." ]
+    "sentences" : [ "Both David and Emily enjoy the beauty of the seaside." ]
   }
 }, {
   "_id" : {
@@ -165,7 +161,7 @@
   },
   "title" : "$Both ... and$",
   "instructions" : "Añade $both$ a las oraciones.",
-  "translation" : "Tanto Francia como Alemania han aceptado el acuerdo.",
+  "translation" : "Tanto Francia como Alemania han aceptado el dinero en efectivo.",
   "theoryId" : "b1.08.Both…_And…",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -185,26 +181,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "France and Germany have accepted the deal.",
+      "text" : "France and Germany have accepted the cash.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Both France and Germany have accepted the deal." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Both France and Germany have accepted the cash." ]
     } ],
-    "sentences" : [ "Both France and Germany have accepted the deal." ]
+    "sentences" : [ "Both France and Germany have accepted the cash." ]
   }
 }, {
   "_id" : {

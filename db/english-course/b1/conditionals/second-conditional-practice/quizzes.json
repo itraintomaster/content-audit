@@ -509,19 +509,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "If I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "found" ]
     }, {
       "kind" : "TEXT",
@@ -529,14 +529,14 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would purchase" ]
+      "text" : null,
+      "options" : [ "would buy" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(purchase) a new coat.",
+      "text" : "(buy) a new coat.",
       "options" : null
     } ],
-    "sentences" : [ "If I found some money, I would purchase a new coat." ]
+    "sentences" : [ "If I found some money, I would buy a new coat." ]
   }
 }, {
   "_id" : {
@@ -1089,7 +1089,7 @@
   },
   "title" : "Segunda condicional",
   "instructions" : "Crea oraciones condicionales de tipo dos. Todas las oraciones son positivas.",
-  "translation" : "Me desmayaría ahora mismo si viera un fantasma.",
+  "translation" : "Gritaría ahora mismo si viera un fantasma.",
   "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -1109,34 +1109,34 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "would faint" ]
+      "text" : null,
+      "options" : [ "would scream" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(faint) right now if I",
+      "text" : "(scream) right now if I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "saw" ]
     }, {
       "kind" : "TEXT",
       "text" : "(see) a ghost.",
       "options" : null
     } ],
-    "sentences" : [ "I would faint right now if I saw a ghost." ]
+    "sentences" : [ "I would scream right now if I saw a ghost." ]
   }
 }, {
   "_id" : {

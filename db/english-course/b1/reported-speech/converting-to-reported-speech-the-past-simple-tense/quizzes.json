@@ -9,7 +9,7 @@
   },
   "title" : "$Past Simple$",
   "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Comienza con $Robert said that$. Para este ejercicio, siempre debes cambiar el tiempo verbal (tense).",
-  "translation" : "Robert dijo que los perros habían ladrado fuerte.",
+  "translation" : "Los perros ladraron fuerte. Robert dijo que los perros habían ladrado fuerte.",
   "theoryId" : "b1.10.How_to_Make_Reported_Speech",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The dogs barked loudly.",
+      "text" : "The dogs barked loudly. Robert said that the dogs",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Robert said that the dogs had barked loudly." ]
+      "text" : null,
+      "options" : [ "had barked" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "loudly.",
       "options" : null
     } ],
-    "sentences" : [ "Robert said that the dogs had barked loudly." ]
+    "sentences" : [ "The dogs barked loudly. Robert said that the dogs had barked loudly." ]
   }
 }, {
   "_id" : {

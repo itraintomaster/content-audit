@@ -529,7 +529,7 @@
   },
   "title" : "Contraste inicial",
   "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$.",
-  "translation" : "¿Están ellos parados junto a la puerta?",
+  "translation" : "¿Están ellos jugando junto a la puerta?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -549,26 +549,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Are they standing" ]
+      "text" : null,
+      "options" : [ "Are they playing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / stand) by the door? (present continuous)",
+      "text" : "(they / play) by the door? (present continuous)",
       "options" : null
     } ],
-    "sentences" : [ "Are they standing by the door?" ]
+    "sentences" : [ "Are they playing by the door?" ]
   }
 }, {
   "_id" : {
@@ -629,7 +625,7 @@
   },
   "title" : "Contraste inicial",
   "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$.",
-  "translation" : "¿Tengo suficiente dinero?",
+  "translation" : "¿Tengo algo de dinero?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -649,26 +645,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Do I have" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(I / have) enough money? (present simple)",
+      "text" : "(I / have) any money? (present simple)",
       "options" : null
     } ],
-    "sentences" : [ "Do I have enough money?" ]
+    "sentences" : [ "Do I have any money?" ]
   }
 }, {
   "_id" : {
@@ -701,26 +693,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "doesn't need|does not need" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / need) any help. (present simple)",
+      "text" : "(not / need) help.",
       "options" : null
     } ],
-    "sentences" : [ "He doesn't need any help.", "He does not need any help." ]
+    "sentences" : [ "He doesn't need help.", "He does not need help." ]
   }
 }, {
   "_id" : {

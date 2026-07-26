@@ -9,7 +9,7 @@
   },
   "title" : "$When$: el momento",
   "instructions" : "Crea relative clauses con $when$. Empieza con $that was the …$.",
-  "translation" : "Ese fue el año en que me gradué de la escuela secundaria.",
+  "translation" : "Ese fue el año en que terminé la escuela secundaria.",
   "theoryId" : "b1.12.When_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "year / I graduated high school",
+      "text" : "year / I finished high school",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "That was the year when I graduated high school." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "That was the year when I finished high school." ]
     } ],
-    "sentences" : [ "That was the year when I graduated high school." ]
+    "sentences" : [ "year / I finished high school That was the year when I finished high school." ]
   }
 }, {
   "_id" : {
@@ -61,7 +57,7 @@
   },
   "title" : "$When$: el momento",
   "instructions" : "Crea relative clauses con $when$. Empieza con $that was the …$.",
-  "translation" : "Ese fue el mes en que la empresa lanzó su producto.",
+  "translation" : "Ese fue el mes en que la empresa vendió su producto.",
   "theoryId" : "b1.12.When_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -81,26 +77,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "month / the company launched its product",
+      "text" : "month / the company sold its product",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "That was the month when the company launched its product." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "That was the month when the company sold its product." ]
     } ],
-    "sentences" : [ "That was the month when the company launched its product." ]
+    "sentences" : [ "month / the company sold its product That was the month when the company sold its product." ]
   }
 }, {
   "_id" : {
@@ -373,7 +365,7 @@
   },
   "title" : "$When$: el momento",
   "instructions" : "Crea relative clauses con $when$. Empieza con $that was the …$.",
-  "translation" : "Ese fue el mes en que florecieron las flores.",
+  "translation" : "Ese fue el mes en que aumentaron los precios.",
   "theoryId" : "b1.12.When_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -393,26 +385,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "month / the flowers bloomed",
+      "text" : "month / the prices increased",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "That was the month when the flowers bloomed." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "That was the month when the prices increased." ]
     } ],
-    "sentences" : [ "That was the month when the flowers bloomed." ]
+    "sentences" : [ "month / the prices increased That was the month when the prices increased." ]
   }
 }, {
   "_id" : {

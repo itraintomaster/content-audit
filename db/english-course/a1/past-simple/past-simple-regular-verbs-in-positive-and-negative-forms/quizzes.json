@@ -217,7 +217,7 @@
   },
   "title" : "Regulares: afirma y niega",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Nevó ayer.",
+  "translation" : "Ella detuvo el auto.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It",
+      "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "snowed" ]
+      "text" : null,
+      "options" : [ "stopped" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(snow) yesterday.",
+      "text" : "(stop) the car.",
       "options" : null
     } ],
-    "sentences" : [ "It snowed yesterday." ]
+    "sentences" : [ "She stopped the car." ]
   }
 }, {
   "_id" : {
@@ -269,7 +269,7 @@
   },
   "title" : "Regulares: afirma y niega",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Lloré.",
+  "translation" : "Miré.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "cried" ]
+      "text" : null,
+      "options" : [ "looked" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(cry).",
+      "text" : "(look).",
       "options" : null
     } ],
-    "sentences" : [ "I cried." ]
+    "sentences" : [ "I looked." ]
   }
 }, {
   "_id" : {
@@ -373,7 +373,7 @@
   },
   "title" : "Regulares: afirma y niega",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Él odiaba el tráfico.",
+  "translation" : "Él odiaba las compras.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "hated" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(hate) the traffic.",
+      "text" : "(hate) the shopping.",
       "options" : null
     } ],
-    "sentences" : [ "He hated the traffic." ]
+    "sentences" : [ "He hated the shopping." ]
   }
 }, {
   "_id" : {
@@ -529,7 +529,7 @@
   },
   "title" : "Regulares: afirma y niega",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Ella no lloró.",
+  "translation" : "Ella no llamó.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "didn't cry|did not cry" ]
+      "text" : null,
+      "options" : [ "didn't call|did not call" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / cry).",
+      "text" : "(not / call).",
       "options" : null
     } ],
-    "sentences" : [ "She didn't cry.", "She did not cry." ]
+    "sentences" : [ "She didn't call.", "She did not call." ]
   }
 }, {
   "_id" : {

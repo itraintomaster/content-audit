@@ -373,7 +373,7 @@
   },
   "title" : "Interrupciones con $when$",
   "instructions" : "Escribe oraciones en *past continuous*.",
-  "translation" : "Los perros no estaban ladrando cuando el hombre pasó.",
+  "translation" : "Los perros no se estaban hundiendo cuando el hombre pasó.",
   "theoryId" : "b1.03.Past_Continuous_Use_Interrupted_Actions_with_The_Past_Simple",
   "topicName" : "Past Continuous and Future in the Past",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The dogs",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "were not barking/weren't barking" ]
+      "text" : null,
+      "options" : [ "were not sinking/weren't sinking" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / bark) when the man walked by.",
+      "text" : "(not / sink) when the man walked by.",
       "options" : null
     } ],
-    "sentences" : [ "The dogs were not barking/weren't barking when the man walked by." ]
+    "sentences" : [ "The dogs were not sinking/weren't sinking when the man walked by." ]
   }
 }, {
   "_id" : {

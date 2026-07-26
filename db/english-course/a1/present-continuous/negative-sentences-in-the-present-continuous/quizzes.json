@@ -61,7 +61,7 @@
   },
   "title" : "Oraciones negativas",
   "instructions" : "Escribe oraciones negativas en $present continuous$. No uses contracciones ($short forms$).",
-  "translation" : "No está brillando.",
+  "translation" : "No está funcionando.",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is not shining" ]
+      "text" : null,
+      "options" : [ "is not working" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(shine).",
+      "text" : "(work).",
       "options" : null
     } ],
-    "sentences" : [ "It is not shining." ]
+    "sentences" : [ "It is not working." ]
   }
 }, {
   "_id" : {
@@ -165,7 +165,7 @@
   },
   "title" : "Oraciones negativas",
   "instructions" : "Escribe oraciones negativas en $present continuous$. No uses contracciones ($short forms$).",
-  "translation" : "Ella no está chateando con su amiga.",
+  "translation" : "Ella no está yendo con su amiga.",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is not chatting" ]
+      "text" : null,
+      "options" : [ "is not going" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(chat) with her friend.",
+      "text" : "(go) with her friend.",
       "options" : null
     } ],
-    "sentences" : [ "She is not chatting with her friend." ]
+    "sentences" : [ "She is not going with her friend." ]
   }
 }, {
   "_id" : {
@@ -267,7 +267,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39a"
   },
-  "title" : "The children are not reading books now.",
+  "title" : "Oraciones negativas",
   "instructions" : "Escribe oraciones negativas en $present continuous$. No uses contracciones ($short forms$).",
   "translation" : "Los niños no están leyendo libros ahora.",
   "theoryId" : "a1.02.Present_Continuous_Forms",
@@ -477,7 +477,7 @@
   },
   "title" : "Oraciones negativas",
   "instructions" : "Escribe oraciones negativas en $present continuous$. No uses contracciones ($short forms$).",
-  "translation" : "No estás preparando el desayuno.",
+  "translation" : "No estás desayunando.",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are not preparing" ]
+      "text" : null,
+      "options" : [ "are not having" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(prepare) breakfast.",
+      "text" : "(have) breakfast.",
       "options" : null
     } ],
-    "sentences" : [ "You are not preparing breakfast." ]
+    "sentences" : [ "You are not having breakfast." ]
   }
 }, {
   "_id" : {
@@ -945,7 +945,7 @@
   },
   "title" : "Oraciones negativas",
   "instructions" : "Escribe oraciones negativas en $present continuous$. No uses contracciones ($short forms$).",
-  "translation" : "No estoy descansando.",
+  "translation" : "Hoy no estoy jugando al fútbol.",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "am not resting" ]
+      "text" : null,
+      "options" : [ "am not playing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(rest).",
+      "text" : "(play) football today.",
       "options" : null
     } ],
-    "sentences" : [ "I am not resting." ]
+    "sentences" : [ "I am not playing football today." ]
   }
 }, {
   "_id" : {

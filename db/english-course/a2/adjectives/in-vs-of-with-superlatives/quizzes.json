@@ -217,7 +217,7 @@
   },
   "title" : "Superlativos: $in$ u $of$",
   "instructions" : "Elige $in$ o $of$.",
-  "translation" : "El jardín es la parte más pequeña del patio.",
+  "translation" : "El jardín es la parte más pequeña del parque.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The garden is the smallest part",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the yard.",
+      "text" : "the park.",
       "options" : null
     } ],
-    "sentences" : [ "The garden is the smallest part in the yard." ]
+    "sentences" : [ "The garden is the smallest part in the park." ]
   }
 }, {
   "_id" : {
@@ -321,7 +321,7 @@
   },
   "title" : "Superlativos: $in$ u $of$",
   "instructions" : "Elige $in$ o $of$.",
-  "translation" : "Es el valle más bajo de Gales.",
+  "translation" : "Es la colina más baja de Gales.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's the lowest valley",
+      "text" : "It's the lowest hill",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "Wales.",
       "options" : null
     } ],
-    "sentences" : [ "It's the lowest valley in Wales." ]
+    "sentences" : [ "It's the lowest hill in Wales." ]
   }
 }, {
   "_id" : {

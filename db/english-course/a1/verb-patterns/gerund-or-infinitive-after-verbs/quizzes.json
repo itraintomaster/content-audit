@@ -215,7 +215,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c2"
   },
-  "title" : "My dad needs to go home.",
+  "title" : "Gerundio o infinitivo",
   "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o $to + infinitive$.",
   "translation" : "Mi papá necesita ir a casa.",
   "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
@@ -267,7 +267,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c2"
   },
-  "title" : "They want to finish on time.",
+  "title" : "Gerundio o infinitivo",
   "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o $to + infinitive$.",
   "translation" : "Ellos quieren terminar a tiempo.",
   "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
@@ -371,7 +371,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c2"
   },
-  "title" : "He needs to find a new house.",
+  "title" : "Gerundio o infinitivo",
   "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o $to + infinitive$.",
   "translation" : "Él necesita encontrar una nueva casa.",
   "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
@@ -737,7 +737,7 @@
   },
   "title" : "Gerundio o infinitivo",
   "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o $to + infinitive$.",
-  "translation" : "A ella le apetece beber té.",
+  "translation" : "Ella terminó de beber té.",
   "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She fancies",
+      "text" : "She finished",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "drinking" ]
     }, {
       "kind" : "TEXT",
       "text" : "(drink) tea.",
       "options" : null
     } ],
-    "sentences" : [ "She fancies drinking tea." ]
+    "sentences" : [ "She finished drinking tea." ]
   }
 }, {
   "_id" : {
@@ -787,7 +787,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c2"
   },
-  "title" : "We stop getting up early!",
+  "title" : "Gerundio o infinitivo",
   "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o $to + infinitive$.",
   "translation" : "¡Dejamos de levantarnos temprano!",
   "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
@@ -841,7 +841,7 @@
   },
   "title" : "Gerundio o infinitivo",
   "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o $to + infinitive$.",
-  "translation" : "He terminado de jugar.",
+  "translation" : "He empezado a jugar.",
   "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -869,7 +869,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I have completed",
+      "text" : "I have started",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -880,7 +880,7 @@
       "text" : "(play).",
       "options" : null
     } ],
-    "sentences" : [ "I have completed playing." ]
+    "sentences" : [ "I have started playing." ]
   }
 }, {
   "_id" : {
@@ -943,7 +943,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c2"
   },
-  "title" : "Do you want to drink a juice?",
+  "title" : "Gerundio o infinitivo",
   "instructions" : "Completa con la forma gerundio (verbo+ing - puede que necesites cambiar la ortografía) o $to + infinitive$.",
   "translation" : "¿Quieres beber un jugo?",
   "theoryId" : "a1.05.Verb_Patterns_with_Gerunds_and_To_+_Infinitive",

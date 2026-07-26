@@ -217,7 +217,7 @@
   },
   "title" : "Regulares, ortografía y $be$",
   "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
-  "translation" : "Ellos no estaban en el estadio anoche.",
+  "translation" : "Ellos no estaban en el parque.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "weren't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / be) at the stadium last night.",
+      "text" : "(not / be) at the park.",
       "options" : null
     } ],
-    "sentences" : [ "They weren't at the stadium last night." ]
+    "sentences" : [ "They weren't at the park." ]
   }
 }, {
   "_id" : {
@@ -321,7 +321,7 @@
   },
   "title" : "Regulares, ortografía y $be$",
   "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
-  "translation" : "Ella era una estudiante diligente.",
+  "translation" : "La señorita Green era una buena estudiante.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She",
+      "text" : "Miss Green",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "was" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) a diligent student.",
+      "text" : "(be) a good student.",
       "options" : null
     } ],
-    "sentences" : [ "She was a diligent student." ]
+    "sentences" : [ "Miss Green was a good student." ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "Regulares, ortografía y $be$",
   "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
-  "translation" : "¿Qué rompió él?",
+  "translation" : "¿Qué tuvo él?",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "What",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "did he break" ]
+      "text" : null,
+      "options" : [ "did he have" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / break)?",
+      "text" : "(he / have)?",
       "options" : null
     } ],
-    "sentences" : [ "What did he break?" ]
+    "sentences" : [ "What did he have?" ]
   }
 }, {
   "_id" : {
@@ -529,7 +529,7 @@
   },
   "title" : "Regulares, ortografía y $be$",
   "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
-  "translation" : "¿Por qué llegó tan tarde?",
+  "translation" : "¿Por qué estaba cansado?",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "was he" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / be) so late?",
+      "text" : "(he / be) tired?",
       "options" : null
     } ],
-    "sentences" : [ "Why was he so late?" ]
+    "sentences" : [ "Why was he tired?" ]
   }
 }, {
   "_id" : {
@@ -579,7 +579,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ba"
   },
-  "title" : "Did you think about your ticket?",
+  "title" : "Regulares, ortografía y $be$",
   "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
   "translation" : "¿Pensaste en tu boleto?",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
@@ -781,7 +781,7 @@
   },
   "title" : "Regulares, ortografía y $be$",
   "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
-  "translation" : "¿Cuándo completaron el trabajo?",
+  "translation" : "¿Cuándo empezaron el trabajo?",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -814,13 +814,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "did they complete" ]
+      "options" : [ "did they start" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / complete) the work?",
+      "text" : "(they / start) the work?",
       "options" : null
     } ],
-    "sentences" : [ "When did they complete the work?" ]
+    "sentences" : [ "When did they start the work?" ]
   }
 }, {
   "_id" : {
@@ -881,7 +881,7 @@
   },
   "title" : "Regulares, ortografía y $be$",
   "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
-  "translation" : "Deseé que él se quedara.",
+  "translation" : "Me gustó que él se quedara.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -901,26 +901,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "wished" ]
+      "text" : null,
+      "options" : [ "liked" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(wish) that he would stay.",
+      "text" : "(like) that he would stay.",
       "options" : null
     } ],
-    "sentences" : [ "I wished that he would stay." ]
+    "sentences" : [ "I liked that he would stay." ]
   }
 }, {
   "_id" : {
@@ -933,7 +933,7 @@
   },
   "title" : "Regulares, ortografía y $be$",
   "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
-  "translation" : "Nevó un poco.",
+  "translation" : "Eso ayudó un poco.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -953,26 +953,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "snowed" ]
+      "text" : null,
+      "options" : [ "helped" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(snow) a little.",
+      "text" : "(help) a little.",
       "options" : null
     } ],
-    "sentences" : [ "It snowed a little." ]
+    "sentences" : [ "It helped a little." ]
   }
 }, {
   "_id" : {
@@ -985,7 +985,7 @@
   },
   "title" : "Regulares, ortografía y $be$",
   "instructions" : "Escribe oraciones en $past simple$. Este ejercicio incluye verbos regulares, verbos con cambios ortográficos y el verbo $be$. Usa las $short forms$ si es posible.",
-  "translation" : "Yo no estaba preparado para la lluvia.",
+  "translation" : "Yo no estaba listo para la lluvia.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -1021,9 +1021,9 @@
       "options" : [ "wasn't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / be) prepared for the rain.",
+      "text" : "(not / be) ready for the rain.",
       "options" : null
     } ],
-    "sentences" : [ "I wasn't prepared for the rain." ]
+    "sentences" : [ "I wasn't ready for the rain." ]
   }
 } ]

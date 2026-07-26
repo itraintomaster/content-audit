@@ -9,7 +9,7 @@
   },
   "title" : "$start$ o $beginning$",
   "instructions" : "Completa con $in$ o $at$.",
-  "translation" : "Los actores ensayaron mucho la obra pero, al principio, cometieron algunos errores.",
+  "translation" : "Los actores practicaron mucho la obra pero, al principio, cometieron algunos errores.",
   "theoryId" : "b2.15.Adjectives_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The actors rehearsed the play a lot but,",
+      "text" : "The actors practiced the play a lot but,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "the beginning, they made some errors.",
       "options" : null
     } ],
-    "sentences" : [ "The actors rehearsed the play a lot but, in the beginning, they made some errors." ]
+    "sentences" : [ "The actors practiced the play a lot but, in the beginning, they made some errors." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "$start$ o $beginning$",
   "instructions" : "Completa con $in$ o $at$.",
-  "translation" : "Pasaron mucho tiempo pensando pero, al principio, pidieron comida china para llevar.",
+  "translation" : "Al principio, pasaron mucho tiempo pensando, pero luego pidieron comida china para llevar.",
   "theoryId" : "b2.15.Adjectives_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -601,26 +601,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "They spent a lot of time thinking but,",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "in" ]
+      "text" : null,
+      "options" : [ "In" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the beginning, they ordered Chinese takeout.",
+      "text" : "the beginning, they spent a lot of time thinking, but later they ordered Chinese takeout.",
       "options" : null
     } ],
-    "sentences" : [ "They spent a lot of time thinking but, in the beginning, they ordered Chinese takeout." ]
+    "sentences" : [ "In the beginning, they spent a lot of time thinking, but later they ordered Chinese takeout." ]
   }
 }, {
   "_id" : {

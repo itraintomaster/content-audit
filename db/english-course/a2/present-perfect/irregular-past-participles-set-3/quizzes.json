@@ -113,7 +113,7 @@
   },
   "title" : "Participios irregulares 3",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "El árbol no ha brotado todavía.",
+  "translation" : "El árbol no ha crecido todavía.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The tree",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "has not sprouted/hasn't sprouted" ]
+      "text" : null,
+      "options" : [ "has not grown/hasn't grown" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / sprout) yet.",
+      "text" : "(not / grow) yet.",
       "options" : null
     } ],
-    "sentences" : [ "The tree has not sprouted/hasn't sprouted yet." ]
+    "sentences" : [ "The tree has not grown/hasn't grown yet." ]
   }
 }, {
   "_id" : {
@@ -785,7 +785,7 @@
   },
   "title" : "Participios irregulares 3",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿El perro ha perseguido al coche?",
+  "translation" : "¿El perro ha visto el coche?",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -805,26 +805,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Has the dog chased" ]
+      "text" : null,
+      "options" : [ "Has the dog seen" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(the dog / chase) the car?",
+      "text" : "(the dog / see) the car?",
       "options" : null
     } ],
-    "sentences" : [ "Has the dog chased the car?" ]
+    "sentences" : [ "Has the dog seen the car?" ]
   }
 }, {
   "_id" : {
@@ -1201,7 +1197,7 @@
   },
   "title" : "Participios irregulares 3",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "He vencido a mi hermana en el tenis.",
+  "translation" : "He visto a mi hermana en el tenis.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -1234,12 +1230,12 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "have beaten" ]
+      "options" : [ "have seen" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(beat) my sister at tennis.",
+      "text" : "(see) my sister at tennis.",
       "options" : null
     } ],
-    "sentences" : [ "I have beaten my sister at tennis." ]
+    "sentences" : [ "I have seen my sister at tennis." ]
   }
 } ]

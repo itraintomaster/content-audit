@@ -9,7 +9,7 @@
   },
   "title" : "Demostrativos",
   "instructions" : "Completa con $this$, $that$, $these$ o $those$.",
-  "translation" : "Él recogió estas bayas.",
+  "translation" : "Él recogió estas peras.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He picked",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "these" ]
     }, {
       "kind" : "TEXT",
-      "text" : "berries (the berries are close to you).",
+      "text" : "pears (the pears are in my hand).",
       "options" : null
     } ],
-    "sentences" : [ "He picked these berries ." ]
+    "sentences" : [ "He picked these pears." ]
   }
 }, {
   "_id" : {
@@ -113,7 +113,7 @@
   },
   "title" : "Demostrativos",
   "instructions" : "Completa con $this$, $that$, $these$ o $those$.",
-  "translation" : "Estos zapatos son elegantes.",
+  "translation" : "Estos zapatos son eléctricos.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -133,26 +133,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "These" ]
     }, {
       "kind" : "TEXT",
-      "text" : "shoes are stylish (I'm wearing the shoes).",
+      "text" : "shoes are electric (I'm wearing the shoes).",
       "options" : null
     } ],
-    "sentences" : [ "These shoes are stylish ." ]
+    "sentences" : [ "These shoes are electric." ]
   }
 }, {
   "_id" : {
@@ -163,7 +159,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d264"
   },
-  "title" : "I got this chain.",
+  "title" : "Demostrativos",
   "instructions" : "Completa con $this$, $that$, $these$ o $those$.",
   "translation" : "Conseguí esta cadena.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
@@ -267,9 +263,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d264"
   },
-  "title" : "He wants to trim those trees.",
+  "title" : "Demostrativos",
   "instructions" : "Completa con $this$, $that$, $these$ o $those$.",
-  "translation" : "Él quiere podar esos árboles.",
+  "translation" : "Él quiere pintar esas nubes (allá lejos).",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -297,7 +293,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He wants to trim",
+      "text" : "He wants to paint",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -305,10 +301,10 @@
       "options" : [ "those" ]
     }, {
       "kind" : "TEXT",
-      "text" : "trees (over there).",
+      "text" : "clouds (over there).",
       "options" : null
     } ],
-    "sentences" : [ "He wants to trim those trees." ]
+    "sentences" : [ "He wants to paint those clouds." ]
   }
 }, {
   "_id" : {
@@ -321,7 +317,7 @@
   },
   "title" : "Demostrativos",
   "instructions" : "Completa con $this$, $that$, $these$ o $those$.",
-  "translation" : "Esta naranja es jugosa.",
+  "translation" : "Esta naranja es dulce.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -341,26 +337,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "This" ]
     }, {
       "kind" : "TEXT",
-      "text" : "orange is juicy (I'm eating the orange).",
+      "text" : "orange is sweet (I'm eating the orange).",
       "options" : null
     } ],
-    "sentences" : [ "This orange is juicy ." ]
+    "sentences" : [ "This orange is sweet." ]
   }
 }, {
   "_id" : {
@@ -373,7 +365,7 @@
   },
   "title" : "Demostrativos",
   "instructions" : "Completa con $this$, $that$, $these$ o $those$.",
-  "translation" : "¿Michael nos dio estas servilletas?",
+  "translation" : "¿Michael nos dio estas bufandas?",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -393,26 +385,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Did Michael hand us",
+      "text" : "Did Michael give us",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "these" ]
     }, {
       "kind" : "TEXT",
-      "text" : "napkins (I'm holding the napkins).",
+      "text" : "scarves (I'm holding the scarves).",
       "options" : null
     } ],
-    "sentences" : [ "Did Michael hand us these napkins ." ]
+    "sentences" : [ "Did Michael give us these scarves." ]
   }
 }, {
   "_id" : {
@@ -789,7 +781,7 @@
   },
   "title" : "Demostrativos",
   "instructions" : "Completa con $this$, $that$, $these$ o $those$.",
-  "translation" : "Preferiría esas gomas de borrar, por favor.",
+  "translation" : "Preferiría esos rompecabezas, por favor.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -809,26 +801,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I'd prefer",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "those" ]
     }, {
       "kind" : "TEXT",
-      "text" : "erasers, please (the erasers are near you).",
+      "text" : "puzzles, please (the puzzles are near you).",
       "options" : null
     } ],
-    "sentences" : [ "I'd prefer those erasers, please ." ]
+    "sentences" : [ "I'd prefer those puzzles, please." ]
   }
 }, {
   "_id" : {
@@ -893,7 +885,7 @@
   },
   "title" : "Demostrativos",
   "instructions" : "Completa con $this$, $that$, $these$ o $those$.",
-  "translation" : "Esas copias pertenecen a Samuel.",
+  "translation" : "Esas pizarras pertenecen a Samuel.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -925,10 +917,10 @@
       "options" : [ "Those" ]
     }, {
       "kind" : "TEXT",
-      "text" : "copies belong to Samuel (the copies are near you).",
+      "text" : "blackboards belong to Samuel (the blackboards are near you).",
       "options" : null
     } ],
-    "sentences" : [ "Those copies belong to Samuel." ]
+    "sentences" : [ "Those blackboards belong to Samuel." ]
   }
 }, {
   "_id" : {
@@ -993,7 +985,7 @@
   },
   "title" : "Demostrativos",
   "instructions" : "Completa con $this$, $that$, $these$ o $those$.",
-  "translation" : "Compré estas manzanas hoy.",
+  "translation" : "Tomé estas manzanas hoy.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -1013,25 +1005,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I purchased",
+      "text" : "I took",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "these" ]
     }, {
       "kind" : "TEXT",
       "text" : "apples today (I'm close to the apples).",
       "options" : null
     } ],
-    "sentences" : [ "I purchased these apples today ." ]
+    "sentences" : [ "I took these apples today." ]
   }
 } ]

@@ -113,7 +113,7 @@
   },
   "title" : "Después de adjetivos",
   "instructions" : "Escribir la preposición correcta.",
-  "translation" : "¿Alguien es elegible para la competencia?",
+  "translation" : "¿Está alguien aquí listo para la competencia?",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Is anyone eligible",
+      "text" : "Is anyone here ready",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
       "text" : "the competition?",
       "options" : null
     } ],
-    "sentences" : [ "Is anyone eligible for the competition?" ]
+    "sentences" : [ "Is anyone here ready for the competition?" ]
   }
 }, {
   "_id" : {

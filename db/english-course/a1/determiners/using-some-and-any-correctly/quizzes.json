@@ -425,7 +425,7 @@
   },
   "title" : "$Some$ y $any$",
   "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
-  "translation" : "Necesitamos ayuda.",
+  "translation" : "Hicimos algunas preguntas.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We required",
+      "text" : "We asked",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
-      "text" : "help.",
+      "text" : "questions.",
       "options" : null
     } ],
-    "sentences" : [ "We required some help." ]
+    "sentences" : [ "We asked some questions." ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "$Some$ y $any$",
   "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
-  "translation" : "Él preparó el almuerzo.",
+  "translation" : "Él hizo algo de almuerzo.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He prepared",
+      "text" : "He made",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
       "text" : "lunch.",
       "options" : null
     } ],
-    "sentences" : [ "He prepared some lunch." ]
+    "sentences" : [ "He made some lunch." ]
   }
 }, {
   "_id" : {
@@ -579,7 +579,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
-  "title" : "They bought some biscuits.",
+  "title" : "$Some$ y $any$",
   "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
   "translation" : "Compraron algunas galletas.",
   "theoryId" : "a1.07.Some_and_Any",
@@ -631,7 +631,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
-  "title" : "She had some meat.",
+  "title" : "$Some$ y $any$",
   "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
   "translation" : "Ella comió algo de carne.",
   "theoryId" : "a1.07.Some_and_Any",
@@ -685,7 +685,7 @@
   },
   "title" : "$Some$ y $any$",
   "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
-  "translation" : "Necesitan ropa.",
+  "translation" : "Necesitan algo de ropa.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They require",
+      "text" : "They need",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
       "text" : "clothes.",
       "options" : null
     } ],
-    "sentences" : [ "They require some clothes." ]
+    "sentences" : [ "They need some clothes." ]
   }
 }, {
   "_id" : {
@@ -789,7 +789,7 @@
   },
   "title" : "$Some$ y $any$",
   "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
-  "translation" : "No necesito dulces.",
+  "translation" : "No quiero dulces.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I don't require",
+      "text" : "I don't want",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "any" ]
     }, {
       "kind" : "TEXT",
       "text" : "candies.",
       "options" : null
     } ],
-    "sentences" : [ "I don't require any candies." ]
+    "sentences" : [ "I don't want any candies." ]
   }
 }, {
   "_id" : {
@@ -839,7 +839,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cd"
   },
-  "title" : "I want some cheese.",
+  "title" : "$Some$ y $any$",
   "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
   "translation" : "Quiero queso.",
   "theoryId" : "a1.07.Some_and_Any",
@@ -893,7 +893,7 @@
   },
   "title" : "$Some$ y $any$",
   "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
-  "translation" : "Necesito sal.",
+  "translation" : "Uso un poco de sal.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I require",
+      "text" : "I use",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
       "text" : "salt.",
       "options" : null
     } ],
-    "sentences" : [ "I require some salt." ]
+    "sentences" : [ "I use some salt." ]
   }
 }, {
   "_id" : {
@@ -945,7 +945,7 @@
   },
   "title" : "$Some$ y $any$",
   "instructions" : "Completa los espacios en blanco con $some$ o $any$.",
-  "translation" : "Plantamos algunos árboles.",
+  "translation" : "Vimos algunos árboles.",
   "theoryId" : "a1.07.Some_and_Any",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -973,7 +973,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We planted",
+      "text" : "We saw",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -984,7 +984,7 @@
       "text" : "trees.",
       "options" : null
     } ],
-    "sentences" : [ "We planted some trees." ]
+    "sentences" : [ "We saw some trees." ]
   }
 }, {
   "_id" : {

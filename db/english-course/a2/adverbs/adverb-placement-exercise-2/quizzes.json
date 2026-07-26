@@ -909,7 +909,7 @@
   },
   "title" : "Posición: ejercicio 2",
   "instructions" : "Colocá el adverbio en la posición correcta.",
-  "translation" : "Desafortunadamente, no puedo asistir a la fiesta.",
+  "translation" : "Desafortunadamente, no puedo ir a la fiesta.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -929,26 +929,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I can't attend the party. (unfortunately)",
+      "text" : "I can't go to the party. (unfortunately)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Unfortunately, I can't attend the party." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Unfortunately, I can't go to the party." ]
     } ],
-    "sentences" : [ "Unfortunately, I can't attend the party." ]
+    "sentences" : [ "Unfortunately, I can't go to the party." ]
   }
 }, {
   "_id" : {

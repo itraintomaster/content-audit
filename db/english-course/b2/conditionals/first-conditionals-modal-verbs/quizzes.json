@@ -369,7 +369,7 @@
   },
   "title" : "Posibilidad futura",
   "instructions" : "Escribe oraciones condicionales reales en futuro, usando $might$ en la cláusula principal.",
-  "translation" : "Los perros podrían ladrar si no reciben una golosina.",
+  "translation" : "Los perros podrían ladrar si no reciben una inyección.",
   "theoryId" : "b2.12.Words_Instead_of_If",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -389,19 +389,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The dogs",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "might bark" ]
     }, {
       "kind" : "TEXT",
@@ -409,14 +409,14 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "don't get" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / get) a treat.",
+      "text" : "(not / get) a shot.",
       "options" : null
     } ],
-    "sentences" : [ "The dogs might bark if they don't get a treat." ]
+    "sentences" : [ "The dogs might bark if they don't get a shot." ]
   }
 }, {
   "_id" : {
@@ -1149,7 +1149,7 @@
   },
   "title" : "Posibilidad futura",
   "instructions" : "Escribe oraciones condicionales reales en futuro, usando $might$ en la cláusula principal.",
-  "translation" : "Si el espectáculo es interesante, el público podría aplaudir mucho.",
+  "translation" : "Si el espectáculo es interesante, el público podría animar mucho.",
   "theoryId" : "b2.12.Words_Instead_of_If",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -1169,19 +1169,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "If the show",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is" ]
     }, {
       "kind" : "TEXT",
@@ -1189,13 +1189,13 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "might applaud" ]
+      "text" : null,
+      "options" : [ "might cheer" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(applaud) a lot.",
+      "text" : "(cheer) a lot.",
       "options" : null
     } ],
-    "sentences" : [ "If the show is interesting, the audience might applaud a lot." ]
+    "sentences" : [ "If the show is interesting, the audience might cheer a lot." ]
   }
 } ]

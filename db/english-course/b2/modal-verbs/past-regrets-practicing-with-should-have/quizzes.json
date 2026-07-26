@@ -633,7 +633,7 @@
   },
   "title" : "Arrepentimientos",
   "instructions" : "Crea una oración usando $should(n't) + have + past participle$.",
-  "translation" : "Debería haberlos empezado ayer.",
+  "translation" : "Tengo muchas tareas. Debería haberlas empezado ayer.",
   "theoryId" : "",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I have a lot of chores. I",
+      "text" : "I have a lot of tasks. I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "should have started" ]
     }, {
       "kind" : "TEXT",
       "text" : "(do) them yesterday.",
       "options" : null
     } ],
-    "sentences" : [ "I have a lot of chores. I should have started them yesterday." ]
+    "sentences" : [ "I have a lot of tasks. I should have started them yesterday." ]
   }
 }, {
   "_id" : {
@@ -841,7 +841,7 @@
   },
   "title" : "Arrepentimientos",
   "instructions" : "Crea una oración usando $should(n't) + have + past participle$.",
-  "translation" : "No debería haberlo secado en la secadora.",
+  "translation" : "¡Mi camiseta está enorme! No debería haberla puesto en la secadora.",
   "theoryId" : "",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "My t-shirt is huge! I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "shouldn't have dried" ]
+      "text" : null,
+      "options" : [ "shouldn't have put" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / put) it in the dryer.",
       "options" : null
     } ],
-    "sentences" : [ "My t-shirt is huge! I shouldn't have dried it in the dryer." ]
+    "sentences" : [ "My t-shirt is huge! I shouldn't have put it in the dryer." ]
   }
 }, {
   "_id" : {

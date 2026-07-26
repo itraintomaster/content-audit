@@ -609,7 +609,7 @@
   },
   "title" : "Permiso general",
   "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
-  "translation" : "No se puede volar sin pasaporte.",
+  "translation" : "No se puede volar sin un billete.",
   "theoryId" : "",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -629,26 +629,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's not okay to fly without a passport.",
+      "text" : "It's not okay to fly without a ticket.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You can't fly without a passport." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You can't fly without a ticket." ]
     } ],
-    "sentences" : [ "You can't fly without a passport." ]
+    "sentences" : [ "You can't fly without a ticket." ]
   }
 }, {
   "_id" : {
@@ -661,7 +657,7 @@
   },
   "title" : "Permiso general",
   "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
-  "translation" : "No se puede cantar durante el espectáculo.",
+  "translation" : "No se puede cantar durante septiembre.",
   "theoryId" : "",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -689,14 +685,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's not okay to sing during the show.",
+      "text" : "It's not okay to sing during September.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "You can't sing during the show." ]
+      "options" : [ "You can't sing during September." ]
     } ],
-    "sentences" : [ "You can't sing during the show." ]
+    "sentences" : [ "You can't sing during September." ]
   }
 }, {
   "_id" : {
@@ -809,7 +805,7 @@
   },
   "title" : "Permiso general",
   "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
-  "translation" : "No te puedes parar aquí.",
+  "translation" : "No puedes esperar cerca de la puerta.",
   "theoryId" : "",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -829,26 +825,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's not okay to stand here.",
+      "text" : "It's not okay to wait near the door.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You can't stand here." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You can't wait near the door." ]
     } ],
-    "sentences" : [ "You can't stand here." ]
+    "sentences" : [ "You can't wait near the door." ]
   }
 }, {
   "_id" : {
@@ -961,7 +953,7 @@
   },
   "title" : "Permiso general",
   "instructions" : "Transforma las oraciones para que incluyan $can$ y $you$. Este es el uso general de $you$.",
-  "translation" : "Puedes traer niños al cine.",
+  "translation" : "Puedes llevar niños al cine.",
   "theoryId" : "",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -989,13 +981,13 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's okay to bring children into the cinema.",
+      "text" : "It's okay to take children into the cinema.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "You can bring children into the cinema." ]
+      "options" : [ "You can take children into the cinema." ]
     } ],
-    "sentences" : [ "You can bring children into the cinema." ]
+    "sentences" : [ "You can take children into the cinema." ]
   }
 } ]

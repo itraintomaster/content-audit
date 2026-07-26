@@ -61,7 +61,7 @@
   },
   "title" : "Pedidos: formal o informal",
   "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
-  "translation" : "¿Podría quedarme aquí?",
+  "translation" : "Petición amable: Quiero quedarme aquí. ¿Podría quedarme aquí?",
   "theoryId" : "a1.10.Can_and_Could_For_Ability",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -81,26 +81,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Polite request: I want to stand here.",
+      "text" : "Polite request: I want to stay here.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Could I stand here?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Could I stay here?" ]
     } ],
-    "sentences" : [ "Could I stand here?" ]
+    "sentences" : [ "Could I stay here?" ]
   }
 }, {
   "_id" : {
@@ -165,7 +161,7 @@
   },
   "title" : "Pedidos: formal o informal",
   "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
-  "translation" : "¿Puedes alimentar al gato?",
+  "translation" : "¿Puedes encontrar al gato?",
   "theoryId" : "a1.10.Can_and_Could_For_Ability",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -185,26 +181,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Informal request: I want you to feed the cat.",
+      "text" : "Informal request: I want you to find the cat.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Can you feed the cat?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Can you find the cat?" ]
     } ],
-    "sentences" : [ "Can you feed the cat?" ]
+    "sentences" : [ "Can you find the cat?" ]
   }
 }, {
   "_id" : {
@@ -217,7 +209,7 @@
   },
   "title" : "Pedidos: formal o informal",
   "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
-  "translation" : "¿Podrías alimentar al gato?",
+  "translation" : "¿Podrías cuidar al gato?",
   "theoryId" : "a1.10.Can_and_Could_For_Ability",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -237,26 +229,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Polite request: I want you to feed the cat.",
+      "text" : "Polite request: I want you to watch the cat.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Could you feed the cat?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Could you watch the cat?" ]
     } ],
-    "sentences" : [ "Could you feed the cat?" ]
+    "sentences" : [ "Could you watch the cat?" ]
   }
 }, {
   "_id" : {
@@ -369,7 +357,7 @@
   },
   "title" : "Pedidos: formal o informal",
   "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
-  "translation" : "¿Me puedes pasar el azúcar?",
+  "translation" : "¿Me puedes traer el azúcar?",
   "theoryId" : "a1.10.Can_and_Could_For_Ability",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -389,26 +377,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Informal request: I want you to pass me the sugar.",
+      "text" : "Informal request: I want you to get me the sugar.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Can you pass me the sugar?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Can you get me the sugar?" ]
     } ],
-    "sentences" : [ "Can you pass me the sugar?" ]
+    "sentences" : [ "Can you get me the sugar?" ]
   }
 }, {
   "_id" : {
@@ -523,7 +507,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e4"
   },
-  "title" : "Ask : Can I use your phone?",
+  "title" : "Pedidos: formal o informal",
   "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
   "translation" : "Pregunta: ¿Puedo usar tu teléfono?",
   "theoryId" : "a1.10.Can_and_Could_For_Ability",
@@ -777,7 +761,7 @@
   },
   "title" : "Pedidos: formal o informal",
   "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
-  "translation" : "¿Podrías pasarme el azúcar?",
+  "translation" : "¿Podrías darme el azúcar?",
   "theoryId" : "a1.10.Can_and_Could_For_Ability",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -797,26 +781,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Polite request: I want you to pass me the sugar.",
+      "text" : "Polite request: I want you to give me the sugar.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Could you pass me the sugar?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Could you give me the sugar?" ]
     } ],
-    "sentences" : [ "Could you pass me the sugar?" ]
+    "sentences" : [ "Could you give me the sugar?" ]
   }
 }, {
   "_id" : {
@@ -881,7 +861,7 @@
   },
   "title" : "Pedidos: formal o informal",
   "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
-  "translation" : "¿Puedo quedarme aquí?",
+  "translation" : "Petición informal: Quiero empezar ahora. ¿Puedo empezar ahora?",
   "theoryId" : "a1.10.Can_and_Could_For_Ability",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -901,26 +881,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Informal request: I want to stand here.",
+      "text" : "Informal request: I want to start now.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Can I stand here?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Can I start now?" ]
     } ],
-    "sentences" : [ "Can I stand here?" ]
+    "sentences" : [ "Can I start now?" ]
   }
 }, {
   "_id" : {
@@ -985,7 +961,7 @@
   },
   "title" : "Pedidos: formal o informal",
   "instructions" : "Transforma las oraciones para que incluyan $can$ o $could$.",
-  "translation" : "¿Podría probarme esta pollera?",
+  "translation" : "¿Podría ponerme esta pollera?",
   "theoryId" : "a1.10.Can_and_Could_For_Ability",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -1017,9 +993,9 @@
       "options" : [ "Could" ]
     }, {
       "kind" : "TEXT",
-      "text" : "I try on this skirt?",
+      "text" : "I put on this skirt?",
       "options" : null
     } ],
-    "sentences" : [ "Could I try on this skirt?" ]
+    "sentences" : [ "Could I put on this skirt?" ]
   }
 } ]

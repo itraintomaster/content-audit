@@ -477,7 +477,7 @@
   },
   "title" : "Negación e indefinidos",
   "instructions" : "Escribe $nothing$ o $anything$.",
-  "translation" : "Los adultos no vieron nada a la hora del té.",
+  "translation" : "Los adultos no vieron nada a medianoche.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -497,25 +497,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The adults saw",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "nothing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "at teatime.",
+      "text" : "at midnight.",
       "options" : null
     } ],
-    "sentences" : [ "The adults saw nothing at teatime." ]
+    "sentences" : [ "The adults saw nothing at midnight." ]
   }
 } ]

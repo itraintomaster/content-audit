@@ -945,7 +945,7 @@
   },
   "title" : "Verbos modales",
   "instructions" : "Transforma a $reported speech$. Cambia el $modal verb$ si es necesario. Comienza con $The teacher said that$.",
-  "translation" : "El profesor dijo que los niños deben hacer sus tareas.",
+  "translation" : "El profesor dijo que los niños deben hacer su trabajo.",
   "theoryId" : "b2.08.Reporting_Verbs_with_Questions",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -965,26 +965,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The children must do their chores.",
+      "text" : "The children must do their work.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The teacher said that the children must do their chores." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The teacher said that the children must do their work." ]
     } ],
-    "sentences" : [ "The teacher said that the children must do their chores." ]
+    "sentences" : [ "The teacher said that the children must do their work." ]
   }
 }, {
   "_id" : {

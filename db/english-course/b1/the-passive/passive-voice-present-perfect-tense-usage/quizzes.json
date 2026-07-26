@@ -365,7 +365,7 @@
   },
   "title" : "Presente perfecto",
   "instructions" : "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
-  "translation" : "Hemos sido engañados.",
+  "translation" : "El total ha sido declarado esta semana.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -385,26 +385,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Someone has cheated us.",
+      "text" : "Someone has declared the total this week.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We have been cheated." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The total has been declared this week." ]
     } ],
-    "sentences" : [ "We have been cheated." ]
+    "sentences" : [ "The total has been declared this week." ]
   }
 }, {
   "_id" : {

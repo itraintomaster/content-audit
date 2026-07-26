@@ -113,7 +113,7 @@
   },
   "title" : "Siempre plurales",
   "instructions" : "Escribe $correct$ o $not correct$.",
-  "translation" : "¿Dónde está el alicate?",
+  "translation" : "¿Dónde está el alicate en el garaje?",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -133,26 +133,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Where is the pliers?",
+      "text" : "Where is the pliers in the garage?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "not correct" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "Where is the pliers? not correct" ]
+    "sentences" : [ "Where is the pliers in the garage? not correct" ]
   }
 }, {
   "_id" : {
@@ -217,7 +213,7 @@
   },
   "title" : "Siempre plurales",
   "instructions" : "Escribe $correct$ o $not correct$.",
-  "translation" : "Tus leggings están en la lavadora.",
+  "translation" : "Tus leggings están en el ropero con las sandalias nuevas.",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -237,26 +233,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Your leggings is in the washing machine.",
+      "text" : "Your leggings is in the wardrobe with the new sandals.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "not correct" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "Your leggings is in the washing machine. not correct" ]
+    "sentences" : [ "Your leggings is in the wardrobe with the new sandals. not correct" ]
   }
 }, {
   "_id" : {
@@ -269,7 +261,7 @@
   },
   "title" : "Siempre plurales",
   "instructions" : "Escribe $correct$ o $not correct$.",
-  "translation" : "Ella tiene tres pantalones de montar.",
+  "translation" : "Ella tiene tres pantalones de montar en buen estado.",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -289,26 +281,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She owns three breeches.",
+      "text" : "She owns three breeches in good condition.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "not correct" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "She owns three breeches. not correct" ]
+    "sentences" : [ "She owns three breeches in good condition. not correct" ]
   }
 }, {
   "_id" : {
@@ -421,7 +409,7 @@
   },
   "title" : "Siempre plurales",
   "instructions" : "Escribe $correct$ o $not correct$.",
-  "translation" : "Necesito unas gafas.",
+  "translation" : "Necesito unas gafas para leer.",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -441,26 +429,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I need an eyeglasses.",
+      "text" : "I need an eyeglasses for reading.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "not correct" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "I need an eyeglasses. not correct" ]
+    "sentences" : [ "I need an eyeglasses for reading. not correct" ]
   }
 }, {
   "_id" : {

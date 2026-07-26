@@ -529,7 +529,7 @@
   },
   "title" : "Tras adjetivos, parte 1",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Por favor, sé más respetuoso conmigo.",
+  "translation" : "Por favor, sé más cortés conmigo en público.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Please be more respectful",
+      "text" : "Please be more polite",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "me.",
+      "text" : "me in public.",
       "options" : null
     } ],
-    "sentences" : [ "Please be more respectful to me." ]
+    "sentences" : [ "Please be more polite to me in public." ]
   }
 }, {
   "_id" : {
@@ -685,7 +685,7 @@
   },
   "title" : "Tras adjetivos, parte 1",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Ella tiene talento para el arte.",
+  "translation" : "Ella tiene talento para el arte moderno en la escuela.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She is talented",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
-      "text" : "art.",
+      "text" : "modern art in school.",
       "options" : null
     } ],
-    "sentences" : [ "She is talented at art." ]
+    "sentences" : [ "She is talented at modern art in school." ]
   }
 }, {
   "_id" : {

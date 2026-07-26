@@ -789,7 +789,7 @@
   },
   "title" : "$Will$ a $would$",
   "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con $Mary said that$.",
-  "translation" : "Mary dijo que las flores florecerían.",
+  "translation" : "Mary dijo que la diferencia importaría.",
   "theoryId" : "b1.10.How_to_Make_Reported_Speech",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -809,26 +809,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The flowers will bloom.",
+      "text" : "The difference will matter.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Mary said that the flowers would bloom." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Mary said that the difference would matter." ]
     } ],
-    "sentences" : [ "Mary said that the flowers would bloom." ]
+    "sentences" : [ "Mary said that the difference would matter." ]
   }
 }, {
   "_id" : {

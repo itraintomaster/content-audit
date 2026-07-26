@@ -289,24 +289,20 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The parents adore the dog that stays upstairs.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Subject" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
     "sentences" : [ "The parents adore the dog that stays upstairs. Subject" ]
   }
@@ -321,7 +317,7 @@
   },
   "title" : "Sujeto u objeto",
   "instructions" : "¿Es el $relative pronoun$ (that) el sujeto o el objeto de la $relative clause$?",
-  "translation" : "Ella acarició el caballo que estaba galopando. Sujeto",
+  "translation" : "Ella acarició suavemente el caballo que estaba galopando. Sujeto",
   "theoryId" : "b2.10.Prepositions_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -341,26 +337,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She stroked the horse that was galloping.",
+      "text" : "She gently stroked the horse that was galloping.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Subject" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "She stroked the horse that was galloping. Subject" ]
+    "sentences" : [ "She gently stroked the horse that was galloping. Subject" ]
   }
 }, {
   "_id" : {
@@ -789,7 +781,7 @@
   },
   "title" : "Sujeto u objeto",
   "instructions" : "¿Es el $relative pronoun$ (that) el sujeto o el objeto de la $relative clause$?",
-  "translation" : "Ellos inspeccionaron el auto que ella había reparado. Objeto",
+  "translation" : "Ellos revisaron el auto que ella había reparado. Objeto",
   "theoryId" : "b2.10.Prepositions_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -809,26 +801,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They inspected the car that she had repaired.",
+      "text" : "They checked the car that she had repaired.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Object" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "They inspected the car that she had repaired. Object" ]
+    "sentences" : [ "They checked the car that she had repaired. Object" ]
   }
 }, {
   "_id" : {

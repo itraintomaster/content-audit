@@ -721,7 +721,7 @@
   },
   "title" : "Pedidos educados",
   "instructions" : "Haz que las oraciones sean más educadas utilizando $you$ y la palabra entre paréntesis.",
-  "translation" : "¿Me prestarías algunos fondos?",
+  "translation" : "¿Me prestarías algo de tinta hoy?",
   "theoryId" : "b1.11.Modals_for_Politeness",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -741,26 +741,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Loan me some funds! (would)",
+      "text" : "Loan me some ink today! (would)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Would you loan me some funds?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Would you loan me some ink today?" ]
     } ],
-    "sentences" : [ "Would you loan me some funds?" ]
+    "sentences" : [ "Would you loan me some ink today?" ]
   }
 }, {
   "_id" : {

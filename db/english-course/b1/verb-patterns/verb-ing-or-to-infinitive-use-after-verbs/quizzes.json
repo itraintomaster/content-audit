@@ -321,7 +321,7 @@
   },
   "title" : "Después de otro verbo",
   "instructions" : "¿Necesitamos $to + infinitive$ o $verb+ing$?",
-  "translation" : "Esperábamos sacar la máxima nota en el examen.",
+  "translation" : "Esperábamos sacar la máxima nota en el examen final.",
   "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We expected",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to ace" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(ace) the test.",
+      "text" : "(ace) the final test.",
       "options" : null
     } ],
-    "sentences" : [ "We expected to ace the test." ]
+    "sentences" : [ "We expected to ace the final test." ]
   }
 }, {
   "_id" : {

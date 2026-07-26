@@ -61,7 +61,7 @@
   },
   "title" : "Cuantificadores y $of$",
   "instructions" : "Inserta la palabra $of$ donde sea necesario. Si no se requiere, escribe $-$.",
-  "translation" : "¡Guau, galletas! ¡Deseo algunas de estas!",
+  "translation" : "¡Guau, galletas! ¡Necesito algunas de estas!",
   "theoryId" : "b1.08.Such_and_Such_a",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Wow, cookies! I desire some",
+      "text" : "Wow, cookies! I need some",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
       "text" : "these!",
       "options" : null
     } ],
-    "sentences" : [ "Wow, cookies! I desire some of these!" ]
+    "sentences" : [ "Wow, cookies! I need some of these!" ]
   }
 }, {
   "_id" : {
@@ -217,7 +217,7 @@
   },
   "title" : "Cuantificadores y $of$",
   "instructions" : "Inserta la palabra $of$ donde sea necesario. Si no se requiere, escribe $-$.",
-  "translation" : "¿Posees alguna bebida?",
+  "translation" : "¿Tienes botas nuevas?",
   "theoryId" : "b1.08.Such_and_Such_a",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Do you possess any",
+      "text" : "Do you have any",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "beverages?",
+      "text" : "new boots?",
       "options" : null
     } ],
-    "sentences" : [ "Do you possess any - beverages?" ]
+    "sentences" : [ "Do you have any - new boots?" ]
   }
 }, {
   "_id" : {
@@ -269,7 +269,7 @@
   },
   "title" : "Cuantificadores y $of$",
   "instructions" : "Inserta la palabra $of$ donde sea necesario. Si no se requiere, escribe $-$.",
-  "translation" : "Hay numerosos juguetes diferentes, pero no quiero ninguno de ellos.",
+  "translation" : "Hay muchos juguetes diferentes, pero no quiero ninguno de ellos.",
   "theoryId" : "b1.08.Such_and_Such_a",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -297,7 +297,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "There are numerous different toys but I don't want any",
+      "text" : "There are many different toys but I don't want any",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -308,7 +308,7 @@
       "text" : "them.",
       "options" : null
     } ],
-    "sentences" : [ "There are numerous different toys but I don't want any of them." ]
+    "sentences" : [ "There are many different toys but I don't want any of them." ]
   }
 }, {
   "_id" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He didn't carry many",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "his items alongside.",
+      "text" : "his items with him.",
       "options" : null
     } ],
-    "sentences" : [ "He didn't carry many of his items alongside." ]
+    "sentences" : [ "He didn't carry many of his items with him." ]
   }
 }, {
   "_id" : {
@@ -653,19 +653,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do any",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",

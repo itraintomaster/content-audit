@@ -165,7 +165,7 @@
   },
   "title" : "Sentimientos y cualidades",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "¡Estoy harto de este programa!",
+  "translation" : "¡Estoy aburrido de este programa!",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I'm fed up",
+      "text" : "I'm bored",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of|with" ]
     }, {
       "kind" : "TEXT",
       "text" : "this show!",
       "options" : null
     } ],
-    "sentences" : [ "I'm fed up of this show!", "I'm fed up with this show!" ]
+    "sentences" : [ "I'm bored of this show!", "I'm bored with this show!" ]
   }
 }, {
   "_id" : {
@@ -217,7 +217,7 @@
   },
   "title" : "Sentimientos y cualidades",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Él es hábil para dibujar.",
+  "translation" : "Él es peor para dibujar.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He is skillful",
+      "text" : "He is worse",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
       "text" : "drawing.",
       "options" : null
     } ],
-    "sentences" : [ "He is skillful at drawing." ]
+    "sentences" : [ "He is worse at drawing." ]
   }
 }, {
   "_id" : {
@@ -269,7 +269,7 @@
   },
   "title" : "Sentimientos y cualidades",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Están impresionados con su hijo.",
+  "translation" : "Están preocupados por su hijo.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They are impressed",
+      "text" : "They are worried",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "of" ]
+      "text" : null,
+      "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
       "text" : "their son.",
       "options" : null
     } ],
-    "sentences" : [ "They are impressed of their son." ]
+    "sentences" : [ "They are worried about their son." ]
   }
 }, {
   "_id" : {
@@ -683,7 +683,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28e"
   },
-  "title" : "Is this car useful for shopping?",
+  "title" : "Sentimientos y cualidades",
   "instructions" : "Coloca las preposiciones correctas.",
   "translation" : "¿Es útil este coche para ir de compras?",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
@@ -891,7 +891,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d28e"
   },
-  "title" : "Mark was married to a teacher.",
+  "title" : "Sentimientos y cualidades",
   "instructions" : "Coloca las preposiciones correctas.",
   "translation" : "Mark estaba casado con una profesora.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
@@ -997,7 +997,7 @@
   },
   "title" : "Sentimientos y cualidades",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "¿Es factible que ellos visiten mañana?",
+  "translation" : "¿Está bien que ellos visiten mañana?",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Is it feasible",
+      "text" : "Is it ok",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
       "text" : "them to visit tomorrow?",
       "options" : null
     } ],
-    "sentences" : [ "Is it feasible for them to visit tomorrow?" ]
+    "sentences" : [ "Is it ok for them to visit tomorrow?" ]
   }
 } ]

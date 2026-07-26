@@ -7,7 +7,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a6"
   },
-  "title" : "That is the biggest cat that I've ever seen!",
+  "title" : "Formar superlativos",
   "instructions" : "Escribe la forma superlativa.",
   "translation" : "¡Ese es el gato más grande que he visto!",
   "theoryId" : "a2.11.Form_the_Superlative",
@@ -475,7 +475,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a6"
   },
-  "title" : "That is the cheapest car.",
+  "title" : "Formar superlativos",
   "instructions" : "Escribe la forma superlativa.",
   "translation" : "Ese es el coche más barato.",
   "theoryId" : "a2.11.Form_the_Superlative",
@@ -685,7 +685,7 @@
   },
   "title" : "Formar superlativos",
   "instructions" : "Escribe la forma superlativa.",
-  "translation" : "¡Eres el más equivocado!",
+  "translation" : "¡Eres el más singular!",
   "theoryId" : "a2.11.Form_the_Superlative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You are the",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "most mistaken" ]
+      "text" : null,
+      "options" : [ "most singular" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(mistaken)!",
+      "text" : "(singular)!",
       "options" : null
     } ],
-    "sentences" : [ "You are the most mistaken!" ]
+    "sentences" : [ "You are the most singular!" ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Formar superlativos",
   "instructions" : "Escribe la forma superlativa.",
-  "translation" : "¿Quién tiene el escritorio más ordenado?",
+  "translation" : "¿Quién tiene el escritorio más grande?",
   "theoryId" : "a2.11.Form_the_Superlative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -1017,26 +1017,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Who has the",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "tidiest" ]
+      "text" : null,
+      "options" : [ "largest" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(tidy) desk?",
+      "text" : "(large) desk?",
       "options" : null
     } ],
-    "sentences" : [ "Who has the tidiest desk?" ]
+    "sentences" : [ "Who has the largest desk?" ]
   }
 }, {
   "_id" : {
@@ -1047,7 +1047,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a6"
   },
-  "title" : "He was the worst with the glasses.",
+  "title" : "Formar superlativos",
   "instructions" : "Escribe la forma superlativa.",
   "translation" : "Él fue el peor con los vasos.",
   "theoryId" : "a2.11.Form_the_Superlative",

@@ -215,7 +215,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d47f"
   },
-  "title" : "If I were the Queen, I'd give an important statement.",
+  "title" : "Formal e informal",
   "instructions" : "¿Necesitamos $was$ o $were$?",
   "translation" : "Si yo fuera la Reina, daría una declaración importante.",
   "theoryId" : "b2.12.Mixed_Conditionals",
@@ -861,19 +861,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "If I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "were" ]
     }, {
       "kind" : "TEXT",

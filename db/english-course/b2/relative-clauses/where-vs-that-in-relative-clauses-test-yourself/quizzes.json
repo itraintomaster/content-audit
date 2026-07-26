@@ -61,7 +61,7 @@
   },
   "title" : "$where$ o $that$",
   "instructions" : "Inserta $where$ o $that$.",
-  "translation" : "¿Ese es el museo donde trabajaste como voluntario?",
+  "translation" : "¿Ese es el museo donde interpretaste el discurso del guía?",
   "theoryId" : "b2.10.Prepositions_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Is that the museum",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "where" ]
     }, {
       "kind" : "TEXT",
-      "text" : "you volunteered?",
+      "text" : "you interpreted the guide's speech?",
       "options" : null
     } ],
-    "sentences" : [ "Is that the museum where you volunteered?" ]
+    "sentences" : [ "Is that the museum where you interpreted the guide's speech?" ]
   }
 }, {
   "_id" : {

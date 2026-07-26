@@ -475,7 +475,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35a"
   },
-  "title" : "He's the most careless of all the drivers.",
+  "title" : "Formar superlativos",
   "instructions" : "Completa las oraciones con la forma superlativa de los adjetivos. Recuerda usar $the$.",
   "translation" : "Él es el más descuidado de todos los conductores.",
   "theoryId" : "b1.15.Superlatives_with_the_Present_Perfect_Tense",
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I think this photograph looks",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the most fake" ]
+      "text" : null,
+      "options" : [ "the most false" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(fake).",
+      "text" : "(false).",
       "options" : null
     } ],
-    "sentences" : [ "I think this photograph looks the most fake." ]
+    "sentences" : [ "I think this photograph looks the most false." ]
   }
 }, {
   "_id" : {

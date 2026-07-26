@@ -9,7 +9,7 @@
   },
   "title" : "Respuestas cortas",
   "instructions" : "Escribe la respuesta corta.",
-  "translation" : "Sí, lo es.",
+  "translation" : "A: ¿Emily está caminando? B: Sí, lo está.",
   "theoryId" : "a2.01.Present_Continuous_Use_Temporary_Meaning",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "A: Is Emily walking? B: Yes, she",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : ".",
-      "options" : null
     } ],
-    "sentences" : [ "A: Is Emily walking? B: Yes, she is." ]
+    "sentences" : [ "A: Is Emily walking? B: Yes, she is" ]
   }
 }, {
   "_id" : {
@@ -475,7 +471,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d220"
   },
-  "title" : "A: Are they ready? B: Yes, they are.",
+  "title" : "Respuestas cortas",
   "instructions" : "Escribe la respuesta corta.",
   "translation" : "A: ¿Están listos? B: Sí, lo están.",
   "theoryId" : "a2.01.Present_Continuous_Use_Temporary_Meaning",
@@ -633,7 +629,7 @@
   },
   "title" : "Respuestas cortas",
   "instructions" : "Escribe la respuesta corta.",
-  "translation" : "No, no lo son.",
+  "translation" : "¿Están floreciendo las flores? No, no lo están.",
   "theoryId" : "a2.01.Present_Continuous_Use_Temporary_Meaning",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -653,26 +649,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Are the flowers blooming? B: No, they",
+      "text" : "Are the flowers blooming? No, they",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "aren't" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Are the flowers blooming? B: No, they aren't." ]
+    "sentences" : [ "Are the flowers blooming? No, they aren't." ]
   }
 }, {
   "_id" : {

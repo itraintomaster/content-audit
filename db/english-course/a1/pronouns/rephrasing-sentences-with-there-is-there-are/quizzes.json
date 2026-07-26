@@ -257,7 +257,7 @@
   },
   "title" : "Oraciones más naturales",
   "instructions" : "Cambia estas oraciones (¡inusuales!) para que incluyan $there$.",
-  "translation" : "Hay un restaurante de comida india para llevar cerca de aquí.",
+  "translation" : "Hay un animal cerca de aquí.",
   "theoryId" : "a1.08.5_There_is_and_there_are",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -277,26 +277,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "An Indian takeaway is near here.",
+      "text" : "An animal is near here.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "There is an Indian takeaway near here." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "There is an animal near here." ]
     } ],
-    "sentences" : [ "There is an Indian takeaway near here." ]
+    "sentences" : [ "There is an animal near here." ]
   }
 }, {
   "_id" : {
@@ -307,7 +303,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d4"
   },
-  "title" : "There is a new place near here.",
+  "title" : "Oraciones más naturales",
   "instructions" : "Cambia estas oraciones (¡inusuales!) para que incluyan $there$.",
   "translation" : "Hay un lugar nuevo cerca de aquí.",
   "theoryId" : "a1.08.5_There_is_and_there_are",
@@ -357,7 +353,7 @@
   },
   "title" : "Oraciones más naturales",
   "instructions" : "Cambia estas oraciones (¡inusuales!) para que incluyan $there$.",
-  "translation" : "¿Hay agua en la botella?",
+  "translation" : "¿Hay agua en la taza?",
   "theoryId" : "a1.08.5_There_is_and_there_are",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -377,26 +373,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Is any water in the bottle?",
+      "text" : "Is any water in the cup?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Is there any water in the bottle?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Is there any water in the cup?" ]
     } ],
-    "sentences" : [ "Is there any water in the bottle?" ]
+    "sentences" : [ "Is there any water in the cup?" ]
   }
 }, {
   "_id" : {
@@ -513,7 +505,7 @@
   },
   "title" : "Oraciones más naturales",
   "instructions" : "Cambia estas oraciones (¡inusuales!) para que incluyan $there$.",
-  "translation" : "¿Hay una tienda de comestibles cerca de aquí?",
+  "translation" : "¿Hay una universidad cerca de aquí?",
   "theoryId" : "a1.08.5_There_is_and_there_are",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -533,26 +525,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Is a grocery store near here?",
+      "text" : "Is a university near here?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Is there a grocery store near here?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Is there a university near here?" ]
     } ],
-    "sentences" : [ "Is there a grocery store near here?" ]
+    "sentences" : [ "Is there a university near here?" ]
   }
 }, {
   "_id" : {
@@ -617,7 +605,7 @@
   },
   "title" : "Oraciones más naturales",
   "instructions" : "Cambia estas oraciones (¡inusuales!) para que incluyan $there$.",
-  "translation" : "¿Hay plátanos en tu lonchera?",
+  "translation" : "¿Hay plátanos en tu casa?",
   "theoryId" : "a1.08.5_There_is_and_there_are",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -637,26 +625,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Are bananas in your lunchbox?",
+      "text" : "Are bananas in your house?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Are there bananas in your lunchbox?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Are there bananas in your house?" ]
     } ],
-    "sentences" : [ "Are there bananas in your lunchbox?" ]
+    "sentences" : [ "Are there bananas in your house?" ]
   }
 }, {
   "_id" : {
@@ -765,7 +749,7 @@
   },
   "title" : "Oraciones más naturales",
   "instructions" : "Cambia estas oraciones (¡inusuales!) para que incluyan $there$.",
-  "translation" : "Hay un bolígrafo en mi bolsillo.",
+  "translation" : "Hay un bolígrafo en mi bolso.",
   "theoryId" : "a1.08.5_There_is_and_there_are",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -785,26 +769,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A pen is in my pocket.",
+      "text" : "A pen is in my bag.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "There is a pen in my pocket." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "There is a pen in my bag." ]
     } ],
-    "sentences" : [ "There is a pen in my pocket." ]
+    "sentences" : [ "There is a pen in my bag." ]
   }
 }, {
   "_id" : {
@@ -863,7 +843,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d4"
   },
-  "title" : "There is a plate on the book.",
+  "title" : "Oraciones más naturales",
   "instructions" : "Cambia estas oraciones (¡inusuales!) para que incluyan $there$.",
   "translation" : "Hay un plato sobre el libro.",
   "theoryId" : "a1.08.5_There_is_and_there_are",

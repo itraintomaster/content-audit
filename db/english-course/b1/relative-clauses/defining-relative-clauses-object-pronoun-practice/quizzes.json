@@ -997,7 +997,7 @@
   },
   "title" : "Pronombre objeto",
   "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa $that$ para personas y cosas.",
-  "translation" : "Llamaron al técnico que les inspiraba confianza.",
+  "translation" : "Llamaron a la modelo en la que confiaban.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -1017,25 +1017,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They called the repairman (they trusted the repairman).",
+      "text" : "They called the model (they trusted the model).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They called the repairman that they trusted." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "They called the model that they trusted." ]
     } ],
-    "sentences" : [ "They called the repairman that they trusted." ]
+    "sentences" : [ "They called the model that they trusted." ]
   }
 } ]

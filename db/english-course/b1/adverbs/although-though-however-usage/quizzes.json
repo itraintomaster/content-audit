@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She aced the test",
+      "text" : "She passed the test",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "though" ]
     }, {
       "kind" : "TEXT",
       "text" : "she hadn't studied.",
       "options" : null
     } ],
-    "sentences" : [ "She aced the test though she hadn't studied." ]
+    "sentences" : [ "She passed the test though she hadn't studied." ]
   }
 }, {
   "_id" : {

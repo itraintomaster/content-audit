@@ -9,7 +9,7 @@
   },
   "title" : "Gerundio obligatorio",
   "instructions" : "Crea oraciones con el gerundio.",
-  "translation" : "Consideraron cenar tarde.",
+  "translation" : "Dejaron de cenar tarde.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They considered",
+      "text" : "They stopped",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "eating" ]
     }, {
       "kind" : "TEXT",
       "text" : "(eat) dinner late.",
       "options" : null
     } ],
-    "sentences" : [ "They considered eating dinner late." ]
+    "sentences" : [ "They stopped eating dinner late." ]
   }
 }, {
   "_id" : {
@@ -113,7 +113,7 @@
   },
   "title" : "Gerundio obligatorio",
   "instructions" : "Crea oraciones con el gerundio.",
-  "translation" : "Propusieron tomar el tren.",
+  "translation" : "Seguían tomando el tren.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They proposed",
+      "text" : "They kept",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "catching" ]
     }, {
       "kind" : "TEXT",
       "text" : "(catch) the train.",
       "options" : null
     } ],
-    "sentences" : [ "They proposed catching the train." ]
+    "sentences" : [ "They kept catching the train." ]
   }
 }, {
   "_id" : {
@@ -165,7 +165,7 @@
   },
   "title" : "Gerundio obligatorio",
   "instructions" : "Crea oraciones con el gerundio.",
-  "translation" : "Practicamos la escritura de ensayos.",
+  "translation" : "Practicamos escribir adjetivos.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We practised",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "writing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(write) essays.",
+      "text" : "(write) adjectives.",
       "options" : null
     } ],
-    "sentences" : [ "We practised writing essays." ]
+    "sentences" : [ "We practised writing adjectives." ]
   }
 }, {
   "_id" : {
@@ -269,7 +269,7 @@
   },
   "title" : "Gerundio obligatorio",
   "instructions" : "Crea oraciones con el gerundio.",
-  "translation" : "Ella sugirió concertar la cita para el miércoles.",
+  "translation" : "Ella dejó de concertar la cita para el miércoles.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -297,7 +297,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She suggested",
+      "text" : "She stopped",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -308,7 +308,7 @@
       "text" : "(make) the appointment on Wednesday.",
       "options" : null
     } ],
-    "sentences" : [ "She suggested making the appointment on Wednesday." ]
+    "sentences" : [ "She stopped making the appointment on Wednesday." ]
   }
 }, {
   "_id" : {
@@ -321,7 +321,7 @@
   },
   "title" : "Gerundio obligatorio",
   "instructions" : "Crea oraciones con el gerundio.",
-  "translation" : "No me importa hacer snowboard en invierno.",
+  "translation" : "No me importa ir en invierno.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -354,13 +354,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "snowboarding" ]
+      "options" : [ "going" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(snowboard) in winter.",
+      "text" : "(go) in winter.",
       "options" : null
     } ],
-    "sentences" : [ "I don't mind snowboarding in winter." ]
+    "sentences" : [ "I don't mind going in winter." ]
   }
 }, {
   "_id" : {

@@ -113,7 +113,7 @@
   },
   "title" : "$Much$ o $many$",
   "instructions" : "Completa los espacios en blanco con $much$ o $many$.",
-  "translation" : "¿Requiere ella mucha agua?",
+  "translation" : "¿Necesita ella mucha agua?",
   "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -141,7 +141,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Does she require",
+      "text" : "Does she need",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -152,7 +152,7 @@
       "text" : "water?",
       "options" : null
     } ],
-    "sentences" : [ "Does she require much water?" ]
+    "sentences" : [ "Does she need much water?" ]
   }
 }, {
   "_id" : {
@@ -217,7 +217,7 @@
   },
   "title" : "$Much$ o $many$",
   "instructions" : "Completa los espacios en blanco con $much$ o $many$.",
-  "translation" : "No usan mucho jabón.",
+  "translation" : "No usan mucho papel.",
   "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They don't use",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
-      "text" : "soap.",
+      "text" : "paper.",
       "options" : null
     } ],
-    "sentences" : [ "They don't use much soap." ]
+    "sentences" : [ "They don't use much paper." ]
   }
 }, {
   "_id" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I don't own",
+      "text" : "I don't have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
       "text" : "hats.",
       "options" : null
     } ],
-    "sentences" : [ "I don't own many hats." ]
+    "sentences" : [ "I don't have many hats." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "$Much$ o $many$",
   "instructions" : "Completa los espacios en blanco con $much$ o $many$.",
-  "translation" : "Ella no lee muchos cómics.",
+  "translation" : "Ella no lee muchas historias.",
   "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She doesn't read",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
-      "text" : "comics.",
+      "text" : "stories.",
       "options" : null
     } ],
-    "sentences" : [ "She doesn't read many comics." ]
+    "sentences" : [ "She doesn't read many stories." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "$Much$ o $many$",
   "instructions" : "Completa los espacios en blanco con $much$ o $many$.",
-  "translation" : "¿Añade él mucha sal?",
+  "translation" : "¿Usa él mucha sal?",
   "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Does he add",
+      "text" : "Does he use",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
       "text" : "salt?",
       "options" : null
     } ],
-    "sentences" : [ "Does he add much salt?" ]
+    "sentences" : [ "Does he use much salt?" ]
   }
 }, {
   "_id" : {
@@ -891,7 +891,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3cf"
   },
-  "title" : "Do you have much juice left?",
+  "title" : "$Much$ o $many$",
   "instructions" : "Completa los espacios en blanco con $much$ o $many$.",
   "translation" : "¿Te queda mucho jugo?",
   "theoryId" : "a1.07.Much_Many",
@@ -945,7 +945,7 @@
   },
   "title" : "$Much$ o $many$",
   "instructions" : "Completa los espacios en blanco con $much$ o $many$.",
-  "translation" : "¿Preparas muchas galletas?",
+  "translation" : "¿Haces muchas galletas?",
   "theoryId" : "a1.07.Much_Many",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Do you prepare",
+      "text" : "Do you make",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
       "text" : "cookies?",
       "options" : null
     } ],
-    "sentences" : [ "Do you prepare many cookies?" ]
+    "sentences" : [ "Do you make many cookies?" ]
   }
 }, {
   "_id" : {

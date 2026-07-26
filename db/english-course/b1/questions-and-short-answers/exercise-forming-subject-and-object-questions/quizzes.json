@@ -321,7 +321,7 @@
   },
   "title" : "Sujeto y objeto",
   "instructions" : "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
-  "translation" : "¿Qué ardió ferozmente?",
+  "translation" : "¿Qué ardió ferozmente en el edificio viejo?",
   "theoryId" : "b1.05.Subject_and_Object_Questions",
   "topicName" : "Questions and short answers",
   "difficulty" : {
@@ -341,26 +341,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The fire blazed fiercely. (the fire)",
+      "text" : "The fire in the old building blazed fiercely. (the fire)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "What blazed fiercely?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "What blazed fiercely in the old building?" ]
     } ],
-    "sentences" : [ "What blazed fiercely?" ]
+    "sentences" : [ "What blazed fiercely in the old building?" ]
   }
 }, {
   "_id" : {
@@ -529,7 +525,7 @@
   },
   "title" : "Sujeto y objeto",
   "instructions" : "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
-  "translation" : "¿Qué persiguió el perro?",
+  "translation" : "El perro vio la araña en el jardín. (la araña) ¿Qué vio el perro en el jardín?",
   "theoryId" : "b1.05.Subject_and_Object_Questions",
   "topicName" : "Questions and short answers",
   "difficulty" : {
@@ -549,26 +545,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The dog chased the squirrel. (the squirrel)",
+      "text" : "The dog saw the spider in the garden. (the spider)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "What did the dog chase?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "What did the dog see in the garden?" ]
     } ],
-    "sentences" : [ "What did the dog chase?" ]
+    "sentences" : [ "What did the dog see in the garden?" ]
   }
 }, {
   "_id" : {
@@ -889,7 +881,7 @@
   },
   "title" : "Sujeto y objeto",
   "instructions" : "Crea una pregunta de sujeto u objeto a partir de la oración. La respuesta que buscas debe estar entre paréntesis.",
-  "translation" : "¿Qué estaba cremoso?",
+  "translation" : "¿Qué estaba muy cremoso en la cena de aniversario?",
   "theoryId" : "b1.05.Subject_and_Object_Questions",
   "topicName" : "Questions and short answers",
   "difficulty" : {
@@ -909,26 +901,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The dessert was creamy. (the dessert)",
+      "text" : "The dessert at the anniversary dinner was very creamy. (the dessert)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "What was creamy?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "What was very creamy at the anniversary dinner?" ]
     } ],
-    "sentences" : [ "What was creamy?" ]
+    "sentences" : [ "What was very creamy at the anniversary dinner?" ]
   }
 }, {
   "_id" : {

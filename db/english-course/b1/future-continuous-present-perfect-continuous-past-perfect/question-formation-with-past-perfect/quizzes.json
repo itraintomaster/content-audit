@@ -269,7 +269,7 @@
   },
   "title" : "Preguntas",
   "instructions" : "Escribe preguntas en $past perfect$.",
-  "translation" : "¿Cuándo había bebido ella el té?",
+  "translation" : "¿Cuándo había preparado ella el té caliente?",
   "theoryId" : "b1.04.Past_Perfect_Forms_2_Questions",
   "topicName" : "Future continuous / present perfect continuous / past perfect",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "When",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had she drunk" ]
+      "text" : null,
+      "options" : [ "had she made" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / drink) the tea?",
+      "text" : "(she / make) the hot tea?",
       "options" : null
     } ],
-    "sentences" : [ "When had she drunk the tea?" ]
+    "sentences" : [ "When had she made the hot tea?" ]
   }
 }, {
   "_id" : {

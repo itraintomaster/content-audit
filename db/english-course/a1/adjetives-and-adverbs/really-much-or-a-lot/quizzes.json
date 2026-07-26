@@ -217,7 +217,7 @@
   },
   "title" : "$Really$, $much$ o $a lot$",
   "instructions" : "Completa con $really$, $much$ o $a lot$.",
-  "translation" : "Te extraño mucho.",
+  "translation" : "Me gustas mucho.",
   "theoryId" : "a1.11.Adverbs_of_Manner",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I miss you",
+      "text" : "I like you",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a lot" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "I miss you a lot." ]
+    "sentences" : [ "I like you a lot." ]
   }
 }, {
   "_id" : {
@@ -737,7 +737,7 @@
   },
   "title" : "$Really$, $much$ o $a lot$",
   "instructions" : "Completa con $really$, $much$ o $a lot$.",
-  "translation" : "No les gustará mucho este plan.",
+  "translation" : "No les gustará mucho este domingo.",
   "theoryId" : "a1.11.Adverbs_of_Manner",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They won't like this plan",
+      "text" : "They won't like this Sunday",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "They won't like this plan much." ]
+    "sentences" : [ "They won't like this Sunday much." ]
   }
 }, {
   "_id" : {

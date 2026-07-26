@@ -577,7 +577,7 @@
   },
   "title" : "$Be$: formas mixtas",
   "instructions" : "Escribe oraciones en pasado simple con el verbo $be$.",
-  "translation" : "¿Era tarde por la noche?",
+  "translation" : "¿Hacía calor por la noche?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -597,26 +597,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Was it" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(it / be) late at night?",
+      "text" : "(it / be) hot at night?",
       "options" : null
     } ],
-    "sentences" : [ "Was it late at night?" ]
+    "sentences" : [ "Was it hot at night?" ]
   }
 }, {
   "_id" : {
@@ -733,7 +729,7 @@
   },
   "title" : "$Be$: formas mixtas",
   "instructions" : "Escribe oraciones en pasado simple con el verbo $be$.",
-  "translation" : "¿Estaba yo soñando?",
+  "translation" : "¿Estaba yo jugando?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -753,26 +749,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Was I" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(I / be) dreaming?",
+      "text" : "(I / be) playing?",
       "options" : null
     } ],
-    "sentences" : [ "Was I dreaming?" ]
+    "sentences" : [ "Was I playing?" ]
   }
 }, {
   "_id" : {
@@ -889,7 +881,7 @@
   },
   "title" : "$Be$: formas mixtas",
   "instructions" : "Escribe oraciones en pasado simple con el verbo $be$.",
-  "translation" : "¿Por qué estaban ellos en el estadio?",
+  "translation" : "¿Por qué estaban ellos en el parque?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -909,26 +901,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "were they" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / be) at the stadium?",
+      "text" : "(they / be) at the park?",
       "options" : null
     } ],
-    "sentences" : [ "Why were they at the stadium?" ]
+    "sentences" : [ "Why were they at the park?" ]
   }
 }, {
   "_id" : {

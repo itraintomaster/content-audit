@@ -161,7 +161,7 @@
   },
   "title" : "Frecuencia: parte 2",
   "instructions" : "Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.",
-  "translation" : "Como pizza una vez al mes.",
+  "translation" : "Como pizza todos los meses.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -181,26 +181,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I eat pizza. (once a month)",
+      "text" : "I eat pizza. (every month)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I eat pizza once a month." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "I eat pizza every month." ]
     } ],
-    "sentences" : [ "I eat pizza once a month." ]
+    "sentences" : [ "I eat pizza every month." ]
   }
 }, {
   "_id" : {
@@ -669,7 +665,7 @@
   },
   "title" : "Frecuencia: parte 2",
   "instructions" : "Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.",
-  "translation" : "Ellos nunca juegan videojuegos.",
+  "translation" : "Ellos nunca juegan juegos de pelota.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -689,26 +685,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They play video games. (never)",
+      "text" : "They play ball games. (never)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They never play video games." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "They never play ball games." ]
     } ],
-    "sentences" : [ "They never play video games." ]
+    "sentences" : [ "They never play ball games." ]
   }
 }, {
   "_id" : {
@@ -825,7 +817,7 @@
   },
   "title" : "Frecuencia: parte 2",
   "instructions" : "Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.",
-  "translation" : "Los niños se divierten en la playa cada verano.",
+  "translation" : "Enero siempre llega.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -853,14 +845,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The kids have fun at the beach. (every summer)",
+      "text" : "January comes. (always)",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "The kids have fun at the beach every summer." ]
+      "options" : [ "January always comes." ]
     } ],
-    "sentences" : [ "The kids have fun at the beach. The kids have fun at the beach every summer." ]
+    "sentences" : [ "January always comes." ]
   }
 }, {
   "_id" : {

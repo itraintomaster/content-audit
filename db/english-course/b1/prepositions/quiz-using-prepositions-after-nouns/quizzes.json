@@ -113,7 +113,7 @@
   },
   "title" : "Más de una opción válida",
   "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
-  "translation" : "¿Recibiste la factura por el servicio?",
+  "translation" : "¿Recibiste la factura por el servicio de emergencia?",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Did you receive the invoice",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the service?",
+      "text" : "the emergency service?",
       "options" : null
     } ],
-    "sentences" : [ "Did you receive the invoice for the service?" ]
+    "sentences" : [ "Did you receive the invoice for the emergency service?" ]
   }
 }, {
   "_id" : {
@@ -321,7 +321,7 @@
   },
   "title" : "Más de una opción válida",
   "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
-  "translation" : "Necesito una tarifa por la transacción.",
+  "translation" : "Necesito una tarifa por el alojamiento.",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -357,10 +357,10 @@
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the transaction.",
+      "text" : "the accommodation.",
       "options" : null
     } ],
-    "sentences" : [ "I need a fee for the transaction." ]
+    "sentences" : [ "I need a fee for the accommodation." ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "Más de una opción válida",
   "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
-  "translation" : "¿Experimentaste algún problema con la renovación?",
+  "translation" : "¿Experimentaste algún problema con la descripción?",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Did you experience any issues",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the renovation?",
+      "text" : "the description?",
       "options" : null
     } ],
-    "sentences" : [ "Did you experience any issues with the renovation?" ]
+    "sentences" : [ "Did you experience any issues with the description?" ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "Más de una opción válida",
   "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
-  "translation" : "Soy un novato en la cocina.",
+  "translation" : "Soy un novato en la cocina, pero quiero aprender.",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I'm a novice",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
-      "text" : "cooking.",
+      "text" : "cooking, but I want to learn.",
       "options" : null
     } ],
-    "sentences" : [ "I'm a novice at cooking." ]
+    "sentences" : [ "I'm a novice at cooking, but I want to learn." ]
   }
 }, {
   "_id" : {
@@ -893,7 +893,7 @@
   },
   "title" : "Más de una opción válida",
   "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
-  "translation" : "¿Conoces los detalles del evento?",
+  "translation" : "¿Conoces el beneficio del evento?",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Do you know the specifics",
+      "text" : "Do you know the benefit",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
       "text" : "the event?",
       "options" : null
     } ],
-    "sentences" : [ "Do you know the specifics of the event?" ]
+    "sentences" : [ "Do you know the benefit of the event?" ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Más de una opción válida",
   "instructions" : "Elegir la preposición correcta para completar cada oración. Múltiples respuestas pueden ser aceptables.",
-  "translation" : "¿Dónde está el control de mi teléfono?",
+  "translation" : "¿Dónde está la funda para mi teléfono?",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1025,7 +1025,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Where is the control",
+      "text" : "Where is the cover",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -1036,6 +1036,6 @@
       "text" : "my telephone?",
       "options" : null
     } ],
-    "sentences" : [ "Where is the control for my telephone?" ]
+    "sentences" : [ "Where is the cover for my telephone?" ]
   }
 } ]

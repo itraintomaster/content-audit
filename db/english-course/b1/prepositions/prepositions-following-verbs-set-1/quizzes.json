@@ -61,7 +61,7 @@
   },
   "title" : "Verbos con destinatario",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "El público aplaudió al payaso.",
+  "translation" : "El público se rió del payaso hoy.",
   "theoryId" : "b1.17.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The audience cheered",
+      "text" : "The audience laughed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the clown.",
+      "text" : "the clown today.",
       "options" : null
     } ],
-    "sentences" : [ "The audience cheered at the clown." ]
+    "sentences" : [ "The audience laughed at the clown today." ]
   }
 }, {
   "_id" : {
@@ -321,7 +321,7 @@
   },
   "title" : "Verbos con destinatario",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Él debatió el plan con su colega.",
+  "translation" : "Él discutió el plan con su colega.",
   "theoryId" : "b1.17.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He debated the plan",
+      "text" : "He discussed the plan",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
       "text" : "his colleague.",
       "options" : null
     } ],
-    "sentences" : [ "He debated the plan with his colleague." ]
+    "sentences" : [ "He discussed the plan with his colleague." ]
   }
 }, {
   "_id" : {
@@ -373,7 +373,7 @@
   },
   "title" : "Verbos con destinatario",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "¿Estás de acuerdo con Mary?",
+  "translation" : "¿Estás de acuerdo con Mary sobre la decisión final?",
   "theoryId" : "b1.17.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do you concur",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
-      "text" : "Mary?",
+      "text" : "Mary about the final decision?",
       "options" : null
     } ],
-    "sentences" : [ "Do you concur with Mary?" ]
+    "sentences" : [ "Do you concur with Mary about the final decision?" ]
   }
 }, {
   "_id" : {
@@ -579,7 +579,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d375"
   },
-  "title" : "He invited everyone to the conference today.",
+  "title" : "Verbos con destinatario",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
   "translation" : "Él invitó a todos a la conferencia hoy.",
   "theoryId" : "b1.17.Prepositions_After_Verbs",
@@ -737,7 +737,7 @@
   },
   "title" : "Verbos con destinatario",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Necesito hablar con mi supervisor.",
+  "translation" : "Necesito hablar con mi guardián.",
   "theoryId" : "b1.17.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I need to talk",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to|with" ]
     }, {
       "kind" : "TEXT",
-      "text" : "my supervisor.",
+      "text" : "my keeper.",
       "options" : null
     } ],
-    "sentences" : [ "I need to talk to my supervisor.", "I need to talk with my supervisor." ]
+    "sentences" : [ "I need to talk to my keeper.", "I need to talk with my keeper." ]
   }
 }, {
   "_id" : {

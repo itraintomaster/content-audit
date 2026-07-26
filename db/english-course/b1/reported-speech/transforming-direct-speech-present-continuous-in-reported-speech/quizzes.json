@@ -269,7 +269,7 @@
   },
   "title" : "$Present continuous$",
   "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con $Robert said that$.",
-  "translation" : "Robert dijo que los perros estaban persiguiendo ardillas.",
+  "translation" : "Robert dijo que los perros estaban siguiendo ardillas.",
   "theoryId" : "b1.10.How_to_Make_Reported_Speech",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -289,26 +289,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The dogs are chasing squirrels.",
+      "text" : "The dogs are following squirrels.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Robert said that the dogs were chasing squirrels." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Robert said that the dogs were following squirrels." ]
     } ],
-    "sentences" : [ "Robert said that the dogs were chasing squirrels." ]
+    "sentences" : [ "Robert said that the dogs were following squirrels." ]
   }
 }, {
   "_id" : {

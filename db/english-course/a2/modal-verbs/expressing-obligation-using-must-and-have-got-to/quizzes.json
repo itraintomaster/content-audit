@@ -113,7 +113,7 @@
   },
   "title" : "Obligación",
   "instructions" : "Crea oraciones utilizando $must$, $have to$ o $have got to$.",
-  "translation" : "Tienen que arreglar el coche. ¡Está roto!",
+  "translation" : "Tienen que revisar el coche. ¡Está roto!",
   "theoryId" : "a2.10.Must_and_Have_Got_to_for_Obligation",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "have got to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "fix the car. It is broken! (have got to)",
+      "text" : "check the car. It is broken! (have got to)",
       "options" : null
     } ],
-    "sentences" : [ "They have got to fix the car. It is broken!" ]
+    "sentences" : [ "They have got to check the car. It is broken!" ]
   }
 }, {
   "_id" : {
@@ -371,7 +371,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d29a"
   },
-  "title" : "You must eat less fast food.",
+  "title" : "Obligación",
   "instructions" : "Crea oraciones utilizando $must$, $have to$ o $have got to$.",
   "translation" : "Debes comer menos comida rápida.",
   "theoryId" : "a2.10.Must_and_Have_Got_to_for_Obligation",

@@ -581,7 +581,7 @@
   },
   "title" : "Formar comparativos",
   "instructions" : "Escribe la forma comparativa.",
-  "translation" : "Me gustaría una historia más apasionante.",
+  "translation" : "Me gustaría una historia más larga.",
   "theoryId" : "a2.11.Form_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I'd like a",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more gripping" ]
+      "text" : null,
+      "options" : [ "longer" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(gripping) story.",
+      "text" : "(long) story.",
       "options" : null
     } ],
-    "sentences" : [ "I'd like a more gripping story." ]
+    "sentences" : [ "I'd like a longer story." ]
   }
 }, {
   "_id" : {
@@ -787,7 +787,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a2"
   },
-  "title" : "This car is newer than my old car.",
+  "title" : "Formar comparativos",
   "instructions" : "Escribe la forma comparativa.",
   "translation" : "Este coche es más nuevo que mi viejo coche.",
   "theoryId" : "a2.11.Form_the_Comparative",
@@ -841,7 +841,7 @@
   },
   "title" : "Formar comparativos",
   "instructions" : "Escribe la forma comparativa.",
-  "translation" : "El ratón era más pequeño que la hormiga.",
+  "translation" : "El ratón era más pequeño que la serpiente.",
   "theoryId" : "a2.11.Form_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The mouse was",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "smaller" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(small) than the ant.",
+      "text" : "(small) than the snake.",
       "options" : null
     } ],
-    "sentences" : [ "The mouse was smaller than the ant." ]
+    "sentences" : [ "The mouse was smaller than the snake." ]
   }
 }, {
   "_id" : {
@@ -893,7 +893,7 @@
   },
   "title" : "Formar comparativos",
   "instructions" : "Escribe la forma comparativa.",
-  "translation" : "¡Por favor, sé más paciente!",
+  "translation" : "¡Por favor, sé más silencioso ahora!",
   "theoryId" : "a2.11.Form_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Please be",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more patient" ]
+      "text" : null,
+      "options" : [ "quieter" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(patient)!",
+      "text" : "(quiet) now!",
       "options" : null
     } ],
-    "sentences" : [ "Please be more patient!" ]
+    "sentences" : [ "Please be quieter now!" ]
   }
 }, {
   "_id" : {
@@ -945,7 +945,7 @@
   },
   "title" : "Formar comparativos",
   "instructions" : "Escribe la forma comparativa.",
-  "translation" : "¡Tu idea es más cómica que la mía!",
+  "translation" : "¡Tu idea es peor que la mía!",
   "theoryId" : "a2.11.Form_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -978,13 +978,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "more comic" ]
+      "options" : [ "worse" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(comic) than mine!",
+      "text" : "(bad) than mine!",
       "options" : null
     } ],
-    "sentences" : [ "Your idea is more comic than mine!" ]
+    "sentences" : [ "Your idea is worse than mine!" ]
   }
 }, {
   "_id" : {
@@ -1465,7 +1465,7 @@
   },
   "title" : "Formar comparativos",
   "instructions" : "Escribe la forma comparativa.",
-  "translation" : "¡La pesadilla parecía más aterradora que una serpiente!",
+  "translation" : "¡El sueño parecía peor que una serpiente!",
   "theoryId" : "a2.11.Form_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -1493,18 +1493,18 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The nightmare seemed",
+      "text" : "The dream seemed",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "more scary" ]
+      "options" : [ "worse" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(scary) than a snake!",
+      "text" : "(bad) than a snake!",
       "options" : null
     } ],
-    "sentences" : [ "The nightmare seemed more scary than a snake!" ]
+    "sentences" : [ "The dream seemed worse than a snake!" ]
   }
 }, {
   "_id" : {

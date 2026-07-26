@@ -111,7 +111,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d398"
   },
-  "title" : "He is writing a letter now.",
+  "title" : "Doble o sin $e$",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
   "translation" : "Él está escribiendo una carta ahora.",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
@@ -213,7 +213,7 @@
   },
   "title" : "Doble o sin $e$",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
-  "translation" : "conduciendo",
+  "translation" : "dando",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -233,26 +233,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "drive -",
+      "text" : "give -",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "driving" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "giving" ]
     } ],
-    "sentences" : [ "drive - driving" ]
+    "sentences" : [ "give - giving" ]
   }
 }, {
   "_id" : {
@@ -265,7 +261,7 @@
   },
   "title" : "Doble o sin $e$",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
-  "translation" : "bailando",
+  "translation" : "escribiendo",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -285,26 +281,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "dance -",
+      "text" : "write -",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "dancing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "writing" ]
     } ],
-    "sentences" : [ "dance - dancing" ]
+    "sentences" : [ "write - writing" ]
   }
 }, {
   "_id" : {
@@ -369,7 +361,7 @@
   },
   "title" : "Doble o sin $e$",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
-  "translation" : "atando",
+  "translation" : "gustando",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -389,26 +381,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "tie -",
+      "text" : "like -",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "tying" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "liking" ]
     } ],
-    "sentences" : [ "tie - tying" ]
+    "sentences" : [ "like - liking" ]
   }
 }, {
   "_id" : {
@@ -419,7 +407,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d398"
   },
-  "title" : "go - going",
+  "title" : "Doble o sin $e$",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
   "translation" : "yendo",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
@@ -517,7 +505,7 @@
   },
   "title" : "Doble o sin $e$",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
-  "translation" : "emocionando",
+  "translation" : "usando",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -537,26 +525,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "excite -",
+      "text" : "use -",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "exciting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "using" ]
     } ],
-    "sentences" : [ "excite - exciting" ]
+    "sentences" : [ "use - using" ]
   }
 }, {
   "_id" : {
@@ -569,7 +553,7 @@
   },
   "title" : "Doble o sin $e$",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
-  "translation" : "sonriendo",
+  "translation" : "parando",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -589,26 +573,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "grin -",
+      "text" : "stop -",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "grinning" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "stopping" ]
     } ],
-    "sentences" : [ "grin - grinning" ]
+    "sentences" : [ "stop - stopping" ]
   }
 }, {
   "_id" : {
@@ -619,7 +599,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d398"
   },
-  "title" : "I am having lunch.",
+  "title" : "Doble o sin $e$",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
   "translation" : "Estoy almorzando.",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
@@ -671,7 +651,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d398"
   },
-  "title" : "have - having",
+  "title" : "Doble o sin $e$",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
   "translation" : "teniendo",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
@@ -719,7 +699,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d398"
   },
-  "title" : "She is taking photos.",
+  "title" : "Doble o sin $e$",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
   "translation" : "Ella está sacando fotos.",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
@@ -773,7 +753,7 @@
   },
   "title" : "Doble o sin $e$",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
-  "translation" : "cortando",
+  "translation" : "nadando",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -793,26 +773,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "cut -",
+      "text" : "swim -",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "cutting" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "swimming" ]
     } ],
-    "sentences" : [ "cut - cutting" ]
+    "sentences" : [ "swim - swimming" ]
   }
 }, {
   "_id" : {
@@ -825,7 +801,7 @@
   },
   "title" : "Doble o sin $e$",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
-  "translation" : "creyendo",
+  "translation" : "cambiando",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -845,26 +821,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "believe -",
+      "text" : "change -",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "believing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "changing" ]
     } ],
-    "sentences" : [ "believe - believing" ]
+    "sentences" : [ "change - changing" ]
   }
 }, {
   "_id" : {
@@ -875,7 +847,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d398"
   },
-  "title" : "get - getting",
+  "title" : "Doble o sin $e$",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
   "translation" : "consiguiendo",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
@@ -925,7 +897,7 @@
   },
   "title" : "Doble o sin $e$",
   "instructions" : "¿Cuál es la forma $verb+ing$?",
-  "translation" : "esquiando",
+  "translation" : "cocinando",
   "theoryId" : "a1.02.Verb+ing_Spelling_Changes",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -945,26 +917,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "ski -",
+      "text" : "cook -",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "skiing" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "cooking" ]
     } ],
-    "sentences" : [ "ski - skiing" ]
+    "sentences" : [ "cook - cooking" ]
   }
 }, {
   "_id" : {

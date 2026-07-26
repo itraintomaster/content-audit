@@ -497,26 +497,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Will you hand" ]
+      "text" : null,
+      "options" : [ "Will you pass" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / hand) me that plate please?",
+      "text" : "(you / pass) me that plate please?",
       "options" : null
     } ],
-    "sentences" : [ "Will you hand me that plate please?" ]
+    "sentences" : [ "Will you pass me that plate please?" ]
   }
 }, {
   "_id" : {
@@ -841,7 +837,7 @@
   },
   "title" : "Usos sociales",
   "instructions" : "Crea una oración con $will / won't$ que sea una oferta, petición, rechazo o promesa. Utiliza las formas cortas si es posible.",
-  "translation" : "Te proporcionaré algo de comida.",
+  "translation" : "Te daré algo de comida.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -861,26 +857,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll provide" ]
+      "text" : null,
+      "options" : [ "'ll give" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(provide) you some food.",
+      "text" : "(give) you some food.",
       "options" : null
     } ],
-    "sentences" : [ "I'll provide you some food." ]
+    "sentences" : [ "I 'll give you some food." ]
   }
 }, {
   "_id" : {

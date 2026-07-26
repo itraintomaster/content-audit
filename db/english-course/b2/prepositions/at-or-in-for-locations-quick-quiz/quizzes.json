@@ -269,7 +269,7 @@
   },
   "title" : "Punto o interior",
   "instructions" : "Elige $in$ si realmente quieres enfatizar que algo está dentro. De lo contrario, elige $at$.",
-  "translation" : "Los conocimos en el estadio, en las gradas.",
+  "translation" : "Los conocimos en el estadio, en los asientos.",
   "theoryId" : "b2.15.Adjectives_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We knew them",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the stadium, in the stands.",
+      "text" : "the stadium, in the seats.",
       "options" : null
     } ],
-    "sentences" : [ "We knew them in the stadium, in the stands." ]
+    "sentences" : [ "We knew them in the stadium, in the seats." ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "Punto o interior",
   "instructions" : "Elige $in$ si realmente quieres enfatizar que algo está dentro. De lo contrario, elige $at$.",
-  "translation" : "Reunámonos en el museo.",
+  "translation" : "Reunámonos en el museo cerca de la entrada.",
   "theoryId" : "b2.15.Adjectives_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Let's convene",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the museum.",
+      "text" : "the museum near the entrance.",
       "options" : null
     } ],
-    "sentences" : [ "Let's convene at the museum." ]
+    "sentences" : [ "Let's convene at the museum near the entrance." ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "Punto o interior",
   "instructions" : "Elige $in$ si realmente quieres enfatizar que algo está dentro. De lo contrario, elige $at$.",
-  "translation" : "Saludé a John en la barbería.",
+  "translation" : "Saludé a John en la barbería cerca del borde de la ciudad esta mañana.",
   "theoryId" : "b2.15.Adjectives_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I greeted John",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the barbershop.",
+      "text" : "the barbershop near the edge of town this morning.",
       "options" : null
     } ],
-    "sentences" : [ "I greeted John at the barbershop." ]
+    "sentences" : [ "I greeted John at the barbershop near the edge of town this morning." ]
   }
 }, {
   "_id" : {
@@ -683,7 +683,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d4a5"
   },
-  "title" : "I stood in the lane, by the old fence, when he arrived.",
+  "title" : "Punto o interior",
   "instructions" : "Elige $in$ si realmente quieres enfatizar que algo está dentro. De lo contrario, elige $at$.",
   "translation" : "Estaba de pie en el sendero, junto a la vieja cerca, cuando él llegó.",
   "theoryId" : "b2.15.Adjectives_and_Prepositions",
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I waited",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the bakery, in the pastry aisle.",
+      "text" : "the bakery, in the cake aisle.",
       "options" : null
     } ],
-    "sentences" : [ "I waited in the bakery, in the pastry aisle." ]
+    "sentences" : [ "I waited in the bakery, in the cake aisle." ]
   }
 }, {
   "_id" : {
@@ -841,7 +841,7 @@
   },
   "title" : "Punto o interior",
   "instructions" : "Elige $in$ si realmente quieres enfatizar que algo está dentro. De lo contrario, elige $at$.",
-  "translation" : "Emily está en la barbería.",
+  "translation" : "Emily está en la barbería de la esquina, así que podemos encontrarnos con ella allí más tarde.",
   "theoryId" : "b2.15.Adjectives_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Emily is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the barbershop.",
+      "text" : "the barbershop on the corner, so we can meet her there later.",
       "options" : null
     } ],
-    "sentences" : [ "Emily is at the barbershop." ]
+    "sentences" : [ "Emily is at the barbershop on the corner, so we can meet her there later." ]
   }
 }, {
   "_id" : {

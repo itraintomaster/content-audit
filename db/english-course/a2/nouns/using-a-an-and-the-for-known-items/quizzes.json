@@ -113,7 +113,7 @@
   },
   "title" : "Elementos ya mencionados",
   "instructions" : "Completa con $a$, $an$, $the$ o $no article$ (-).",
-  "translation" : "Pedimos pizzas anoche. Mary entregó las pizzas.",
+  "translation" : "Pedimos pizzas anoche. Mary trajo las pizzas.",
   "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We ordered pizzas last night. Mary delivered",
+      "text" : "We ordered pizzas last night. Mary brought",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
       "text" : "pizzas.",
       "options" : null
     } ],
-    "sentences" : [ "We ordered pizzas last night. Mary delivered the pizzas." ]
+    "sentences" : [ "We ordered pizzas last night. Mary brought the pizzas." ]
   }
 }, {
   "_id" : {
@@ -165,7 +165,7 @@
   },
   "title" : "Elementos ya mencionados",
   "instructions" : "Completa con $a$, $an$, $the$ o $no article$ (-).",
-  "translation" : "Él escribió una canción para el musical. La canción era sobre el amor.",
+  "translation" : "Él escribió una canción. La canción era sobre bádminton.",
   "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He wrote a song for the musical.",
+      "text" : "He wrote a song.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
-      "text" : "song was about love.",
+      "text" : "song was about badminton.",
       "options" : null
     } ],
-    "sentences" : [ "He wrote a song for the musical. The song was about love." ]
+    "sentences" : [ "He wrote a song. The song was about badminton." ]
   }
 }, {
   "_id" : {
@@ -373,7 +373,7 @@
   },
   "title" : "Elementos ya mencionados",
   "instructions" : "Completa con $a$, $an$, $the$ o $no article$ (-).",
-  "translation" : "Ella fue a una panadería. La panadería vendía pan y pasteles.",
+  "translation" : "Ella fue a ver a un vendedor. El vendedor vendía pan.",
   "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She went to a bakery.",
+      "text" : "She went to a salesperson.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
-      "text" : "bakery sold bread and cakes.",
+      "text" : "salesperson sold bread.",
       "options" : null
     } ],
-    "sentences" : [ "She went to a bakery. The bakery sold bread and cakes." ]
+    "sentences" : [ "She went to a salesperson. The salesperson sold bread." ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "Elementos ya mencionados",
   "instructions" : "Completa con $a$, $an$, $the$ o $no article$ (-).",
-  "translation" : "Él compró una bicicleta. La bicicleta era azul.",
+  "translation" : "Él consiguió una bicicleta. La bicicleta era azul.",
   "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He purchased",
+      "text" : "He got",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
       "text" : "bicycle. The bicycle was blue.",
       "options" : null
     } ],
-    "sentences" : [ "He purchased a bicycle. The bicycle was blue." ]
+    "sentences" : [ "He got a bicycle. The bicycle was blue." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "Elementos ya mencionados",
   "instructions" : "Completa con $a$, $an$, $the$ o $no article$ (-).",
-  "translation" : "Los chefs cocinan sopa y guisos. Ellos hacen la sopa aquí.",
+  "translation" : "Los chefs cocinan sopa y guisos. Ellos hacen la sopa.",
   "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The chefs cook soup and stews. They make",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
-      "text" : "soup here.",
+      "text" : "soup.",
       "options" : null
     } ],
-    "sentences" : [ "The chefs cook soup and stews. They make the soup here." ]
+    "sentences" : [ "The chefs cook soup and stews. They make the soup." ]
   }
 }, {
   "_id" : {
@@ -685,7 +685,7 @@
   },
   "title" : "Elementos ya mencionados",
   "instructions" : "Completa con $a$, $an$, $the$ o $no article$ (-).",
-  "translation" : "Vi sangre. La sangre era asquerosa.",
+  "translation" : "Vi sangre. La sangre era roja.",
   "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -721,10 +721,10 @@
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "blood. The blood was disgusting.",
+      "text" : "blood. The blood was red.",
       "options" : null
     } ],
-    "sentences" : [ "I saw - blood. The blood was disgusting." ]
+    "sentences" : [ "I saw - blood. The blood was red." ]
   }
 }, {
   "_id" : {
@@ -841,7 +841,7 @@
   },
   "title" : "Elementos ya mencionados",
   "instructions" : "Completa con $a$, $an$, $the$ o $no article$ (-).",
-  "translation" : "Había hojas. Las hojas provenían de robles.",
+  "translation" : "Había monos. Los monos vinieron de árboles altos.",
   "theoryId" : "a2.06.A_and_The_for_Things_We_Have_Already_Talked_About",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -869,7 +869,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "There were leaves.",
+      "text" : "There were monkeys.",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -877,10 +877,10 @@
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
-      "text" : "leaves came from oak trees.",
+      "text" : "monkeys came from tall trees.",
       "options" : null
     } ],
-    "sentences" : [ "There were leaves. The leaves came from oak trees." ]
+    "sentences" : [ "There were monkeys. The monkeys came from tall trees." ]
   }
 }, {
   "_id" : {

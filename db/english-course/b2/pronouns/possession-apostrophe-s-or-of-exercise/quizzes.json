@@ -113,7 +113,7 @@
   },
   "title" : "Posesión",
   "instructions" : "Crea una oración posesiva. Usa $of$ o $apostrophe + s$.",
-  "translation" : "Calificaron las habilidades de los jugadores.",
+  "translation" : "Subestimaron seriamente las habilidades de los jugadores durante el partido final.",
   "theoryId" : "b2.11.Possessive_s_and_of",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They graded",
+      "text" : "They seriously underestimated",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the players' skills" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(skills that belong to the players).",
+      "text" : "(skills that belong to the players) during the final match.",
       "options" : null
     } ],
-    "sentences" : [ "They graded the players' skills." ]
+    "sentences" : [ "They seriously underestimated the players' skills during the final match." ]
   }
 }, {
   "_id" : {

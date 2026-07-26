@@ -477,7 +477,7 @@
   },
   "title" : "$Let$ y $make$: repaso",
   "instructions" : "Crea oraciones utilizando $let$ o $make$.",
-  "translation" : "La sequía hizo que las plantas murieran.",
+  "translation" : "La fuerte helada hizo que las plantas jóvenes murieran durante la noche.",
   "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -497,26 +497,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The plants died because of the drought.",
+      "text" : "The young plants died overnight because of the heavy frost.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The drought made the plants die." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The heavy frost made the young plants die overnight." ]
     } ],
-    "sentences" : [ "The drought made the plants die." ]
+    "sentences" : [ "The heavy frost made the young plants die overnight." ]
   }
 }, {
   "_id" : {
@@ -633,7 +629,7 @@
   },
   "title" : "$Let$ y $make$: repaso",
   "instructions" : "Crea oraciones utilizando $let$ o $make$.",
-  "translation" : "¡El panadero nos hizo probar el pan a todos!",
+  "translation" : "¡El panadero nos hizo probar el pan fresco a todos!",
   "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -653,26 +649,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The baker encouraged all of us to sample the bread.",
+      "text" : "The baker encouraged all of us to taste the fresh bread.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The baker made us all sample the bread!" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The baker made us all taste the fresh bread!" ]
     } ],
-    "sentences" : [ "The baker made us all sample the bread!" ]
+    "sentences" : [ "The baker made us all taste the fresh bread!" ]
   }
 }, {
   "_id" : {
@@ -893,7 +885,7 @@
   },
   "title" : "$Let$ y $make$: repaso",
   "instructions" : "Crea oraciones utilizando $let$ o $make$.",
-  "translation" : "El polen nos hizo estornudar.",
+  "translation" : "El polen de las flores del jardín nos hizo estornudar durante horas.",
   "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -913,26 +905,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We sneezed because of the pollen.",
+      "text" : "We sneezed for hours because of the pollen from the garden flowers.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The pollen made us sneeze." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The pollen from the garden flowers made us sneeze for hours." ]
     } ],
-    "sentences" : [ "The pollen made us sneeze." ]
+    "sentences" : [ "The pollen from the garden flowers made us sneeze for hours." ]
   }
 }, {
   "_id" : {

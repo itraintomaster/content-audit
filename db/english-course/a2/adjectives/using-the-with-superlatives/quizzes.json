@@ -217,7 +217,7 @@
   },
   "title" : "$The$ con superlativos",
   "instructions" : "Inserta $the$ o $-$ si el artículo no es necesario.",
-  "translation" : "Sarah obtuvo el puntaje más bajo en el examen.",
+  "translation" : "Sarah obtuvo la nota más baja en el examen.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -253,10 +253,10 @@
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
-      "text" : "lowest score in the test.",
+      "text" : "lowest mark in the test.",
       "options" : null
     } ],
-    "sentences" : [ "Sarah got the lowest score in the test." ]
+    "sentences" : [ "Sarah got the lowest mark in the test." ]
   }
 }, {
   "_id" : {
@@ -373,7 +373,7 @@
   },
   "title" : "$The$ con superlativos",
   "instructions" : "Inserta $the$ o $-$ si el artículo no es necesario.",
-  "translation" : "Esta camisa es la más fea.",
+  "translation" : "Esta camisa es peor.",
   "theoryId" : "a2.11.Use_the_Superlative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "This shirt is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "ugliest.",
+      "text" : "worse.",
       "options" : null
     } ],
-    "sentences" : [ "This shirt is - ugliest." ]
+    "sentences" : [ "This shirt is - worse." ]
   }
 }, {
   "_id" : {

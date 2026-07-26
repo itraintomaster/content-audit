@@ -477,7 +477,7 @@
   },
   "title" : "$If$ o $unless$",
   "instructions" : "Completa con $if$ o $unless$.",
-  "translation" : "Me gusta el helado a menos que sea de vainilla.",
+  "translation" : "Me gusta el helado a menos que sea de chocolate.",
   "theoryId" : "b1.14.Unless",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I like ice cream",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "unless" ]
     }, {
       "kind" : "TEXT",
-      "text" : "it's vanilla (I hate vanilla).",
+      "text" : "it's chocolate (I hate chocolate).",
       "options" : null
     } ],
-    "sentences" : [ "I like ice cream unless it's vanilla ." ]
+    "sentences" : [ "I like ice cream unless it's chocolate." ]
   }
 }, {
   "_id" : {
@@ -773,10 +773,10 @@
       "options" : [ "if" ]
     }, {
       "kind" : "TEXT",
-      "text" : "it gets enough energy.",
+      "text" : "they get enough energy.",
       "options" : null
     } ],
-    "sentences" : [ "The flowers bloom beautifully if it gets enough energy." ]
+    "sentences" : [ "The flowers bloom beautifully if they get enough energy." ]
   }
 }, {
   "_id" : {
@@ -893,7 +893,7 @@
   },
   "title" : "$If$ o $unless$",
   "instructions" : "Completa con $if$ o $unless$.",
-  "translation" : "Normalmente está tranquilo a menos que esté estresado. ¡Se enoja cuando está estresado!",
+  "translation" : "Normalmente está tranquilo a menos que esté dolorido. ¡Se enoja cuando está dolorido!",
   "theoryId" : "b1.14.Unless",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He's usually calm",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "unless" ]
     }, {
       "kind" : "TEXT",
-      "text" : "he's stressed. He gets angry when stressed!",
+      "text" : "he's sore. He gets angry when sore!",
       "options" : null
     } ],
-    "sentences" : [ "He's usually calm unless he's stressed. He gets angry when stressed!" ]
+    "sentences" : [ "He's usually calm unless he's sore. He gets angry when sore!" ]
   }
 }, {
   "_id" : {

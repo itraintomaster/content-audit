@@ -9,7 +9,7 @@
   },
   "title" : "Repaso mixto 2",
   "instructions" : "Escribe las oraciones en presente simple. Utiliza las formas cortas cuando sea posible.",
-  "translation" : "Nos gusta el sushi y la pizza.",
+  "translation" : "Nosotros hacemos sushi y pizza.",
   "theoryId" : "a2.01.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "like" ]
+      "text" : null,
+      "options" : [ "make" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(like) sushi and pizza.",
+      "text" : "(make) sushi and pizza.",
       "options" : null
     } ],
-    "sentences" : [ "We like sushi and pizza." ]
+    "sentences" : [ "We make sushi and pizza." ]
   }
 }, {
   "_id" : {

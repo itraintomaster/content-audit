@@ -9,7 +9,7 @@
   },
   "title" : "Efecto o experiencia",
   "instructions" : "Si la oración está explicando algo en el presente, usa el $present perfect continuous$. Si la oración está hablando sobre una experiencia de vida, usa el $present perfect simple$.",
-  "translation" : "He estado cocinando. Por eso la cocina está tan llena de humo.",
+  "translation" : "He estado cocinando. Por eso la cocina está tan caliente.",
   "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
   "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'ve been cooking|have been cooking" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(cook). That's why the kitchen is so smoky.",
+      "text" : "(cook). That's why the kitchen is so hot.",
       "options" : null
     } ],
-    "sentences" : [ "I've been cooking. That's why the kitchen is so smoky.", "I have been cooking. That's why the kitchen is so smoky." ]
+    "sentences" : [ "I 've been cooking. That's why the kitchen is so hot.", "I have been cooking. That's why the kitchen is so hot." ]
   }
 }, {
   "_id" : {
@@ -61,7 +61,7 @@
   },
   "title" : "Efecto o experiencia",
   "instructions" : "Si la oración está explicando algo en el presente, usa el $present perfect continuous$. Si la oración está hablando sobre una experiencia de vida, usa el $present perfect simple$.",
-  "translation" : "He cocinado paella.",
+  "translation" : "He cocinado paella tradicional para toda mi familia muchas veces.",
   "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
   "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'ve cooked|have cooked" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(cook) paella (in my life).",
+      "text" : "(cook) traditional paella for my whole family many times (in my life).",
       "options" : null
     } ],
-    "sentences" : [ "I've cooked paella .", "I have cooked paella ." ]
+    "sentences" : [ "I 've cooked traditional paella for my whole family many times.", "I have cooked traditional paella for my whole family many times." ]
   }
 }, {
   "_id" : {
@@ -267,7 +267,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d409"
   },
-  "title" : "She 's been distributing leaflets all day. That's why she looks tired!",
+  "title" : "Efecto o experiencia",
   "instructions" : "Si la oración está explicando algo en el presente, usa el $present perfect continuous$. Si la oración está hablando sobre una experiencia de vida, usa el $present perfect simple$.",
   "translation" : "Ella ha estado repartiendo folletos todo el día. ¡Por eso se ve cansada!",
   "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
@@ -581,7 +581,7 @@
   },
   "title" : "Efecto o experiencia",
   "instructions" : "Si la oración está explicando algo en el presente, usa el $present perfect continuous$. Si la oración está hablando sobre una experiencia de vida, usa el $present perfect simple$.",
-  "translation" : "Los trabajadores han construido un rascacielos.",
+  "translation" : "Los trabajadores han construido un rascacielos en el centro de la ciudad.",
   "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
   "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The workers",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "have built" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(build) a skyscraper (in their lives).",
+      "text" : "(build) a skyscraper in the city centre (in their lives).",
       "options" : null
     } ],
-    "sentences" : [ "The workers have built a skyscraper ." ]
+    "sentences" : [ "The workers have built a skyscraper in the city centre." ]
   }
 }, {
   "_id" : {

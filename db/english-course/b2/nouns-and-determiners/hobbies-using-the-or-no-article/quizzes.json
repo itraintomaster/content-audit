@@ -217,7 +217,7 @@
   },
   "title" : "Gustos y colecciones",
   "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
-  "translation" : "Ella adora las rosas.",
+  "translation" : "Ella adora las rosas de todos los colores en las exposiciones de jardines de primavera.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She adores",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "roses.",
+      "text" : "roses of every color in spring garden exhibitions.",
       "options" : null
     } ],
-    "sentences" : [ "She adores - roses." ]
+    "sentences" : [ "She adores - roses of every color in spring garden exhibitions." ]
   }
 }, {
   "_id" : {
@@ -269,7 +269,7 @@
   },
   "title" : "Gustos y colecciones",
   "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
-  "translation" : "Ella adora las rosas que crecen allí.",
+  "translation" : "Ella adora las rosas que crecen allí en verano.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She adores",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
-      "text" : "roses that grow there.",
+      "text" : "roses that grow there in summer.",
       "options" : null
     } ],
-    "sentences" : [ "She adores the roses that grow there." ]
+    "sentences" : [ "She adores the roses that grow there in summer." ]
   }
 }, {
   "_id" : {
@@ -601,19 +601,15 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
@@ -945,7 +941,7 @@
   },
   "title" : "Gustos y colecciones",
   "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
-  "translation" : "Sé mucho sobre la exploración espacial.",
+  "translation" : "Sé mucho sobre el desarrollo espacial hoy.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -965,26 +961,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I know a lot about",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "space exploration.",
+      "text" : "space development today.",
       "options" : null
     } ],
-    "sentences" : [ "I know a lot about - space exploration." ]
+    "sentences" : [ "I know a lot about - space development today." ]
   }
 }, {
   "_id" : {
@@ -997,7 +993,7 @@
   },
   "title" : "Gustos y colecciones",
   "instructions" : "Escribe $the$ si el sustantivo es específico o – si no se necesita artículo cuando el sustantivo es general.",
-  "translation" : "Sé mucho sobre la exploración del espacio.",
+  "translation" : "Sé mucho sobre la naturaleza del espacio.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -1017,25 +1013,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I know a lot about",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
-      "text" : "exploration of space.",
+      "text" : "nature of space.",
       "options" : null
     } ],
-    "sentences" : [ "I know a lot about the exploration of space." ]
+    "sentences" : [ "I know a lot about the nature of space." ]
   }
 } ]

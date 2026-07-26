@@ -111,7 +111,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d295"
   },
-  "title" : "I will be able to play guitar at the theater tomorrow.",
+  "title" : "Habilidad en tres tiempos",
   "instructions" : "Añade $can$ / $could$ / $will be able to$ a las oraciones.",
   "translation" : "Podré tocar la guitarra en el teatro mañana.",
   "theoryId" : "a2.10.Would_for_Imaginary_Situations",
@@ -163,7 +163,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d295"
   },
-  "title" : "He will be able to repair the car after your help.",
+  "title" : "Habilidad en tres tiempos",
   "instructions" : "Añade $can$ / $could$ / $will be able to$ a las oraciones.",
   "translation" : "Él podrá reparar el coche después de tu ayuda.",
   "theoryId" : "a2.10.Would_for_Imaginary_Situations",
@@ -217,7 +217,7 @@
   },
   "title" : "Habilidad en tres tiempos",
   "instructions" : "Añade $can$ / $could$ / $will be able to$ a las oraciones.",
-  "translation" : "Ella podrá bailar tango después de la práctica de la semana que viene.",
+  "translation" : "Ella podrá bailar tango después de la práctica.",
   "theoryId" : "a2.10.Would_for_Imaginary_Situations",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "will be able to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "dance tango after the practice next week.",
+      "text" : "dance tango after the practice.",
       "options" : null
     } ],
-    "sentences" : [ "She will be able to dance tango after the practice next week." ]
+    "sentences" : [ "She will be able to dance tango after the practice." ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "Habilidad en tres tiempos",
   "instructions" : "Añade $can$ / $could$ / $will be able to$ a las oraciones.",
-  "translation" : "Ellos podían escribir un diario después del bootcamp del año pasado.",
+  "translation" : "Ellos podían escribir un diario en una laptop el año pasado.",
   "theoryId" : "a2.10.Would_for_Imaginary_Situations",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -461,10 +461,10 @@
       "options" : [ "could" ]
     }, {
       "kind" : "TEXT",
-      "text" : "write a diary after the bootcamp last year.",
+      "text" : "write a diary on a laptop last year.",
       "options" : null
     } ],
-    "sentences" : [ "They could write a diary after the bootcamp last year." ]
+    "sentences" : [ "They could write a diary on a laptop last year." ]
   }
 }, {
   "_id" : {
@@ -683,9 +683,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d295"
   },
-  "title" : "Daddy will be able to sail after the camp next month.",
+  "title" : "Habilidad en tres tiempos",
   "instructions" : "Añade $can$ / $could$ / $will be able to$ a las oraciones.",
-  "translation" : "Papá podrá navegar después del campamento del mes que viene.",
+  "translation" : "Papá podrá jugar al bádminton el mes que viene.",
   "theoryId" : "a2.10.Would_for_Imaginary_Situations",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -721,10 +721,10 @@
       "options" : [ "will be able to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "sail after the camp next month.",
+      "text" : "play badminton next month.",
       "options" : null
     } ],
-    "sentences" : [ "Daddy will be able to sail after the camp next month." ]
+    "sentences" : [ "Daddy will be able to play badminton next month." ]
   }
 }, {
   "_id" : {
@@ -787,7 +787,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d295"
   },
-  "title" : "I will be able to bake cakes for my girlfriend soon.",
+  "title" : "Habilidad en tres tiempos",
   "instructions" : "Añade $can$ / $could$ / $will be able to$ a las oraciones.",
   "translation" : "Pronto podré hornear pasteles para mi novia.",
   "theoryId" : "a2.10.Would_for_Imaginary_Situations",
@@ -997,7 +997,7 @@
   },
   "title" : "Habilidad en tres tiempos",
   "instructions" : "Añade $can$ / $could$ / $will be able to$ a las oraciones.",
-  "translation" : "Robert puede levantar 100 kg. ¡Es genial!",
+  "translation" : "Robert puede sostener 100 kg. ¡Es genial!",
   "theoryId" : "a2.10.Would_for_Imaginary_Situations",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -1033,9 +1033,9 @@
       "options" : [ "can" ]
     }, {
       "kind" : "TEXT",
-      "text" : "lift 100kg. It's great!",
+      "text" : "hold 100kg. It's great!",
       "options" : null
     } ],
-    "sentences" : [ "Robert can lift 100kg. It's great!" ]
+    "sentences" : [ "Robert can hold 100kg. It's great!" ]
   }
 } ]

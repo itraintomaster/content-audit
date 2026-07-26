@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'s been repairing|has been repairing" ]
     }, {
       "kind" : "TEXT",
       "text" : "(repair) the bike. She's covered in grease and the bike is still broken.",
       "options" : null
     } ],
-    "sentences" : [ "She's been repairing the bike. She's covered in grease and the bike is still broken.", "She has been repairing the bike. She's covered in grease and the bike is still broken." ]
+    "sentences" : [ "She 's been repairing the bike. She's covered in grease and the bike is still broken.", "She has been repairing the bike. She's covered in grease and the bike is still broken." ]
   }
 }, {
   "_id" : {

@@ -401,10 +401,10 @@
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
-      "text" : "dogs that my neighbor owns run a lot.",
+      "text" : "dogs that my neighbor has run a lot.",
       "options" : null
     } ],
-    "sentences" : [ "The dogs that my neighbor owns run a lot." ]
+    "sentences" : [ "The dogs that my neighbor has run a lot." ]
   }
 }, {
   "_id" : {
@@ -665,7 +665,7 @@
   },
   "title" : "General o particular",
   "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
-  "translation" : "Desperdició el tiempo que tenía para estudiar.",
+  "translation" : "Usó el tiempo que tenía para estudiar.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -685,26 +685,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He wasted",
+      "text" : "He used",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
       "text" : "time that he had for studying.",
       "options" : null
     } ],
-    "sentences" : [ "He wasted the time that he had for studying." ]
+    "sentences" : [ "He used the time that he had for studying." ]
   }
 }, {
   "_id" : {
@@ -969,7 +969,7 @@
   },
   "title" : "General o particular",
   "instructions" : "Completa el espacio con $the$ (si estamos hablando de un sustantivo o grupo de sustantivos en particular) o $no article$ (-) (si estamos hablando en general).",
-  "translation" : "¿Asististe a las reuniones que estaban planificadas?",
+  "translation" : "¿Fuiste a las reuniones que estaban planificadas?",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -997,7 +997,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Did you attend",
+      "text" : "Did you go to",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -1008,6 +1008,6 @@
       "text" : "meetings that were planned?",
       "options" : null
     } ],
-    "sentences" : [ "Did you attend the meetings that were planned?" ]
+    "sentences" : [ "Did you go to the meetings that were planned?" ]
   }
 } ]

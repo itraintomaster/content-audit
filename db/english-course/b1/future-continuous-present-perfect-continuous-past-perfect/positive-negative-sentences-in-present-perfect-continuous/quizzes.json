@@ -165,7 +165,7 @@
   },
   "title" : "Forma afirmativa o negativa",
   "instructions" : "Escribe oraciones en el $present perfect continuous$.",
-  "translation" : "Peter no ha estado regando las plantas.",
+  "translation" : "Peter no ha estado cuidando las plantas.",
   "theoryId" : "b1.04.Present_Perfect_Continuous_Forms_1_Positive_and_Negative",
   "topicName" : "Future continuous / present perfect continuous / past perfect",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Peter",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "hasn't been watering" ]
+      "text" : null,
+      "options" : [ "hasn't been taking care of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / water) the plants.",
+      "text" : "(not / take care of) the plants.",
       "options" : null
     } ],
-    "sentences" : [ "Peter hasn't been watering the plants." ]
+    "sentences" : [ "Peter hasn't been taking care of the plants." ]
   }
 }, {
   "_id" : {
@@ -319,7 +319,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d9"
   },
-  "title" : "It 's been raining all afternoon today.",
+  "title" : "Forma afirmativa o negativa",
   "instructions" : "Escribe oraciones en el $present perfect continuous$.",
   "translation" : "Ha estado lloviendo toda la tarde de hoy.",
   "theoryId" : "b1.04.Present_Perfect_Continuous_Forms_1_Positive_and_Negative",
@@ -423,7 +423,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2d9"
   },
-  "title" : "It hasn't been snowing much here recently.",
+  "title" : "Forma afirmativa o negativa",
   "instructions" : "Escribe oraciones en el $present perfect continuous$.",
   "translation" : "No ha estado nevando mucho aquí últimamente.",
   "theoryId" : "b1.04.Present_Perfect_Continuous_Forms_1_Positive_and_Negative",

@@ -165,7 +165,7 @@
   },
   "title" : "Preposición final",
   "instructions" : "Crea oraciones informales con $relative clauses$. Omite el $relative pronoun$.",
-  "translation" : "Él es el actor que me fascina.",
+  "translation" : "Él es el actor que realmente me impresiona.",
   "theoryId" : "b2.10.Prepositions_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -185,26 +185,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He's the actor. I'm fascinated by the actor.",
+      "text" : "He's the actor. I'm really impressed by the actor.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He's the actor I'm fascinated by." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He's the actor I'm really impressed by." ]
     } ],
-    "sentences" : [ "He's the actor I'm fascinated by." ]
+    "sentences" : [ "He's the actor I'm really impressed by." ]
   }
 }, {
   "_id" : {

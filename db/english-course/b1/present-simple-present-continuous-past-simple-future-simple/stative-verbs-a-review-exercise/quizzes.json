@@ -477,7 +477,7 @@
   },
   "title" : "Verbos de estado",
   "instructions" : "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
-  "translation" : "Estamos de acuerdo con Jessica.",
+  "translation" : "Estamos de acuerdo con Jessica sobre el nuevo plan para el viaje.",
   "theoryId" : "b1.01.Present_Simple_with_Do_for_Emphasis",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "concur" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(concur) with Jessica.",
+      "text" : "(concur) with Jessica about the new plan for the trip.",
       "options" : null
     } ],
-    "sentences" : [ "We concur with Jessica." ]
+    "sentences" : [ "We concur with Jessica about the new plan for the trip." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "Verbos de estado",
   "instructions" : "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
-  "translation" : "La bicicleta pertenece a Peter.",
+  "translation" : "La bicicleta azul del garaje pertenece a Peter.",
   "theoryId" : "b1.01.Present_Simple_with_Do_for_Emphasis",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The bike",
+      "text" : "The blue bike in the garage",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "pertains" ]
     }, {
       "kind" : "TEXT",
       "text" : "(pertain) to Peter.",
       "options" : null
     } ],
-    "sentences" : [ "The bike pertains to Peter." ]
+    "sentences" : [ "The blue bike in the garage pertains to Peter." ]
   }
 }, {
   "_id" : {
@@ -945,7 +945,7 @@
   },
   "title" : "Verbos de estado",
   "instructions" : "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
-  "translation" : "Ellos poseen su vehículo.",
+  "translation" : "Ellos son dueños de su auto y su casa, así que no pagan alquiler.",
   "theoryId" : "b1.01.Present_Simple_with_Do_for_Emphasis",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "possess" ]
+      "text" : null,
+      "options" : [ "own" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(own) their vehicle.",
+      "text" : "their car and their house, so they pay no rent.",
       "options" : null
     } ],
-    "sentences" : [ "They possess their vehicle." ]
+    "sentences" : [ "They own their car and their house, so they pay no rent." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Verbos de estado",
   "instructions" : "Si es posible, utiliza el _present continuous_. Si no, utiliza el _present simple_.",
-  "translation" : "Él desea comer en casa.",
+  "translation" : "Él necesita comer en casa con su familia.",
   "theoryId" : "b1.01.Present_Simple_with_Do_for_Emphasis",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "desires" ]
+      "text" : null,
+      "options" : [ "needs" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(desire) to eat at home.",
+      "text" : "(need) to eat at home with his family.",
       "options" : null
     } ],
-    "sentences" : [ "He desires to eat at home." ]
+    "sentences" : [ "He needs to eat at home with his family." ]
   }
 } ]

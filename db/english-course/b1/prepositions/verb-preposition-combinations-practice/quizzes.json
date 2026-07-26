@@ -111,7 +111,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d376"
   },
-  "title" : "Someone stole a wallet from my grandma.",
+  "title" : "Verbos con persona",
   "instructions" : "Completar las oraciones con la preposición correcta. Puede haber varias respuestas correctas.",
   "translation" : "Alguien le robó una cartera a mi abuela.",
   "theoryId" : "b1.17.Prepositions_After_Verbs",
@@ -373,7 +373,7 @@
   },
   "title" : "Verbos con persona",
   "instructions" : "Completar las oraciones con la preposición correcta. Puede haber varias respuestas correctas.",
-  "translation" : "Él esperaba tener éxito.",
+  "translation" : "Él buscó el éxito en su nueva carrera.",
   "theoryId" : "b1.17.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He hoped",
+      "text" : "He looked",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
-      "text" : "success.",
+      "text" : "success in his new career.",
       "options" : null
     } ],
-    "sentences" : [ "He hoped for success." ]
+    "sentences" : [ "He looked for success in his new career." ]
   }
 }, {
   "_id" : {
@@ -839,7 +839,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d376"
   },
-  "title" : "He's always worrying about his health.",
+  "title" : "Verbos con persona",
   "instructions" : "Completar las oraciones con la preposición correcta. Puede haber varias respuestas correctas.",
   "translation" : "Él siempre se está preocupando por su salud.",
   "theoryId" : "b1.17.Prepositions_After_Verbs",

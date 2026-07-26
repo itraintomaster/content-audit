@@ -893,7 +893,7 @@
   },
   "title" : "Preguntas sobre duración",
   "instructions" : "Crea oraciones en $future perfect continuous$.",
-  "translation" : "¿Cuánto tiempo habrán estado los gatos ronroneando?",
+  "translation" : "¿Cuánto tiempo habrán estado los gatos ronroneando en el jardín?",
   "theoryId" : "b2.01.Future_Perfect_Continuous_Form",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
   "difficulty" : {
@@ -913,26 +913,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "How long / the cats / purr?",
+      "text" : "How long / the cats / purr in the garden?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "How long will the cats have been purring?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "How long will the cats have been purring in the garden?" ]
     } ],
-    "sentences" : [ "How long will the cats have been purring?" ]
+    "sentences" : [ "How long will the cats have been purring in the garden?" ]
   }
 }, {
   "_id" : {
@@ -945,7 +941,7 @@
   },
   "title" : "Preguntas sobre duración",
   "instructions" : "Crea oraciones en $future perfect continuous$.",
-  "translation" : "¿Cuánto tiempo habrá estado ella depurando software?",
+  "translation" : "¿Cuánto tiempo habrá estado ella depurando software en el trabajo?",
   "theoryId" : "b2.01.Future_Perfect_Continuous_Form",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
   "difficulty" : {
@@ -965,26 +961,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "How long / she / debug software?",
+      "text" : "How long / she / debug software at work?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "How long will she have been debugging software?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "How long will she have been debugging software at work?" ]
     } ],
-    "sentences" : [ "How long will she have been debugging software?" ]
+    "sentences" : [ "How long will she have been debugging software at work?" ]
   }
 }, {
   "_id" : {

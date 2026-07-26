@@ -163,7 +163,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bc"
   },
-  "title" : "We wrote many letters yesterday.",
+  "title" : "Verbos irregulares 1",
   "instructions" : "Escribe oraciones en $past simple$.",
   "translation" : "Escribimos muchas cartas ayer.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
@@ -529,7 +529,7 @@
   },
   "title" : "Verbos irregulares 1",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Él creía que tenía razón.",
+  "translation" : "Él dijo que tenía razón.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "believed" ]
+      "text" : null,
+      "options" : [ "said" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(believe) that he was right.",
+      "text" : "(say) that he was right.",
       "options" : null
     } ],
-    "sentences" : [ "He believed that he was right." ]
+    "sentences" : [ "He said that he was right." ]
   }
 }, {
   "_id" : {
@@ -579,7 +579,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bc"
   },
-  "title" : "We remembered to close the door.",
+  "title" : "Verbos irregulares 1",
   "instructions" : "Escribe oraciones en $past simple$.",
   "translation" : "Recordamos cerrar la puerta.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
@@ -633,7 +633,7 @@
   },
   "title" : "Verbos irregulares 1",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Ella vendió su coche.",
+  "translation" : "Ella tenía su coche.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sold" ]
+      "text" : null,
+      "options" : [ "had" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(sell) her car.",
+      "text" : "(have) her car.",
       "options" : null
     } ],
-    "sentences" : [ "She sold her car." ]
+    "sentences" : [ "She had her car." ]
   }
 }, {
   "_id" : {
@@ -735,7 +735,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bc"
   },
-  "title" : "They helped the man at the beach.",
+  "title" : "Verbos irregulares 1",
   "instructions" : "Escribe oraciones en $past simple$.",
   "translation" : "Ellos ayudaron al hombre en la playa.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
@@ -789,7 +789,7 @@
   },
   "title" : "Verbos irregulares 1",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Corté el césped.",
+  "translation" : "Vi el césped.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "cut" ]
+      "text" : null,
+      "options" : [ "saw" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(cut) the grass.",
+      "text" : "(see) the grass.",
       "options" : null
     } ],
-    "sentences" : [ "I cut the grass." ]
+    "sentences" : [ "I saw the grass." ]
   }
 }, {
   "_id" : {
@@ -893,7 +893,7 @@
   },
   "title" : "Verbos irregulares 1",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Pedimos pizza todo el día.",
+  "translation" : "Comimos pizza todo el día.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "ordered" ]
+      "text" : null,
+      "options" : [ "had" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(order) pizza all day.",
+      "text" : "(have) pizza all day.",
       "options" : null
     } ],
-    "sentences" : [ "We ordered pizza all day." ]
+    "sentences" : [ "We had pizza all day." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Verbos irregulares 1",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Envió un hermoso ramo de flores.",
+  "translation" : "Le envió hermosas flores a su madre.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -1017,26 +1017,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "sent" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(send) a beautiful bouquet of flowers.",
+      "text" : "(send) beautiful flowers to his mother.",
       "options" : null
     } ],
-    "sentences" : [ "He sent a beautiful bouquet of flowers." ]
+    "sentences" : [ "He sent beautiful flowers to his mother." ]
   }
 }, {
   "_id" : {
@@ -1049,7 +1049,7 @@
   },
   "title" : "Verbos irregulares 1",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "¡Hizo cuatro pinturas ayer!",
+  "translation" : "¡Hizo cuatro pasteles ayer!",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -1085,10 +1085,10 @@
       "options" : [ "made" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(make) four paintings yesterday!",
+      "text" : "(make) four cakes yesterday!",
       "options" : null
     } ],
-    "sentences" : [ "He made four paintings yesterday!" ]
+    "sentences" : [ "He made four cakes yesterday!" ]
   }
 }, {
   "_id" : {
@@ -1101,7 +1101,7 @@
   },
   "title" : "Verbos irregulares 1",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Pedí pizza para cenar.",
+  "translation" : "Comí pizza para cenar.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -1121,26 +1121,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "ordered" ]
+      "text" : null,
+      "options" : [ "had" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(order) pizza for dinner.",
+      "text" : "(have) pizza for dinner.",
       "options" : null
     } ],
-    "sentences" : [ "I ordered pizza for dinner." ]
+    "sentences" : [ "I had pizza for dinner." ]
   }
 }, {
   "_id" : {
@@ -1205,7 +1205,7 @@
   },
   "title" : "Verbos irregulares 1",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Ella me pasó la sal.",
+  "translation" : "Ella me dio la sal.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -1225,25 +1225,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "passed" ]
+      "text" : null,
+      "options" : [ "gave" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(pass) me the salt.",
+      "text" : "(give) me the salt.",
       "options" : null
     } ],
-    "sentences" : [ "She passed me the salt." ]
+    "sentences" : [ "She gave me the salt." ]
   }
 } ]

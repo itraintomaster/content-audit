@@ -529,7 +529,7 @@
   },
   "title" : "Pronombre: incluir u omitir",
   "instructions" : "¿Se necesita $that$? Inclúyelo solo si es necesario. De lo contrario, escribe $-$.",
-  "translation" : "Entrevistamos a los solicitantes que se postularon a la empresa.",
+  "translation" : "Entrevistamos a las personas que se postularon a la empresa.",
   "theoryId" : "b1.12.Dropping_The_Relative_Pronoun",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We interviewed the applicants",
+      "text" : "We interviewed the people",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "that" ]
     }, {
       "kind" : "TEXT",
       "text" : "applied to the company.",
       "options" : null
     } ],
-    "sentences" : [ "We interviewed the applicants that applied to the company." ]
+    "sentences" : [ "We interviewed the people that applied to the company." ]
   }
 }, {
   "_id" : {

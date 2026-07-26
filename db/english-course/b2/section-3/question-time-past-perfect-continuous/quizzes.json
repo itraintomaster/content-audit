@@ -633,7 +633,7 @@
   },
   "title" : "Interrogativas",
   "instructions" : "Escribe las oraciones en pasado perfecto continuo ($past perfect continuous tense$).",
-  "translation" : "¿Habías estado esperando ganar?",
+  "translation" : "¿Habías estado arriesgándolo todo para ganar el premio?",
   "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
   "topicName" : "Section 3",
   "difficulty" : {
@@ -653,26 +653,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You / hope to win?",
+      "text" : "You / risk everything to win the prize?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Had you been hoping to win?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Had you been risking everything to win the prize?" ]
     } ],
-    "sentences" : [ "Had you been hoping to win?" ]
+    "sentences" : [ "Had you been risking everything to win the prize?" ]
   }
 }, {
   "_id" : {

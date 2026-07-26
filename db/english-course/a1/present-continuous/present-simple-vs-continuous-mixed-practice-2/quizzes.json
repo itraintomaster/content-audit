@@ -425,7 +425,7 @@
   },
   "title" : "Serie B",
   "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$.",
-  "translation" : "¿Llego demasiado tarde?",
+  "translation" : "¿Soy demasiado grande?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -445,26 +445,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Am I" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(I / be) too late? (present simple)",
+      "text" : "(I / be) too big? (present simple)",
       "options" : null
     } ],
-    "sentences" : [ "Am I too late?" ]
+    "sentences" : [ "Am I too big?" ]
   }
 }, {
   "_id" : {
@@ -841,7 +837,7 @@
   },
   "title" : "Serie B",
   "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$.",
-  "translation" : "Él llega temprano.",
+  "translation" : "Él está primero.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -861,26 +857,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is|'s" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) early. (present simple)",
+      "text" : "(be) first. (present simple)",
       "options" : null
     } ],
-    "sentences" : [ "He is early.", "He's early." ]
+    "sentences" : [ "He is first.", "He 's first." ]
   }
 }, {
   "_id" : {
@@ -893,7 +889,7 @@
   },
   "title" : "Serie B",
   "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$.",
-  "translation" : "¿Por qué está llorando?",
+  "translation" : "¿Por qué se está yendo?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -913,26 +909,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is she crying" ]
+      "text" : null,
+      "options" : [ "is she leaving" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / cry)? (present continuous)",
+      "text" : "(she / leave)? (present continuous)",
       "options" : null
     } ],
-    "sentences" : [ "Why is she crying?" ]
+    "sentences" : [ "Why is she leaving?" ]
   }
 }, {
   "_id" : {

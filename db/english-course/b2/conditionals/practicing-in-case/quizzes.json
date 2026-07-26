@@ -133,24 +133,20 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Maybe we will get bored - let's play a game.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Let's play a game in case we get bored." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
     "sentences" : [ "Let's play a game in case we get bored." ]
   }
@@ -217,7 +213,7 @@
   },
   "title" : "Práctica con $in case$",
   "instructions" : "Escribe una oración usando $in case$. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
-  "translation" : "Compraremos cobertura adicional en caso de que granice.",
+  "translation" : "Compraremos cobertura adicional en caso de que nieve.",
   "theoryId" : "b2.12.Words_Instead_of_If",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -237,26 +233,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Maybe it will hail - we will buy extra cover.",
+      "text" : "Maybe it will snow - we will buy extra cover.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We will buy extra cover in case it hails." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "We will buy extra cover in case it snows." ]
     } ],
-    "sentences" : [ "We will buy extra cover in case it hails." ]
+    "sentences" : [ "We will buy extra cover in case it snows." ]
   }
 }, {
   "_id" : {
@@ -995,7 +987,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d484"
   },
-  "title" : "You should clean the house in case your brother comes over.",
+  "title" : "Práctica con $in case$",
   "instructions" : "Escribe una oración usando $in case$. Por ejemplo: Maybe it will rain - take your umbrella. → Take your umbrella in case it rains.",
   "translation" : "Deberías limpiar la casa en caso de que tu hermano venga.",
   "theoryId" : "b2.12.Words_Instead_of_If",

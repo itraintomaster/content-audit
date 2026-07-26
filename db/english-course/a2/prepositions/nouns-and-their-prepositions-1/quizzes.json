@@ -113,7 +113,7 @@
   },
   "title" : "Foto, pausa y regalo",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "¿Podemos hacer una pausa para el té?",
+  "translation" : "¿Podemos hacer una barbacoa para la cena?",
   "theoryId" : "a2.09.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Can we have a pause",
+      "text" : "Can we have a barbecue",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
       "text" : "tea?",
       "options" : null
     } ],
-    "sentences" : [ "Can we have a pause for tea?" ]
+    "sentences" : [ "Can we have a barbecue for tea?" ]
   }
 }, {
   "_id" : {
@@ -475,7 +475,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d292"
   },
-  "title" : "We used a plan of Berlin.",
+  "title" : "Foto, pausa y regalo",
   "instructions" : "Coloca las preposiciones correctas.",
   "translation" : "Usamos un plano de Berlín.",
   "theoryId" : "a2.09.Prepositions_After_Nouns",
@@ -633,7 +633,7 @@
   },
   "title" : "Foto, pausa y regalo",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Notamos un grupo de personas usando sombreros.",
+  "translation" : "Vimos un grupo de personas usando sombreros.",
   "theoryId" : "a2.09.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We noticed a group",
+      "text" : "We saw a group",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
       "text" : "people wearing hats.",
       "options" : null
     } ],
-    "sentences" : [ "We noticed a group of people wearing hats." ]
+    "sentences" : [ "We saw a group of people wearing hats." ]
   }
 }, {
   "_id" : {
@@ -683,7 +683,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d292"
   },
-  "title" : "She's a fan of the railway.",
+  "title" : "Foto, pausa y regalo",
   "instructions" : "Coloca las preposiciones correctas.",
   "translation" : "Ella es fanática del ferrocarril.",
   "theoryId" : "a2.09.Prepositions_After_Nouns",
@@ -787,7 +787,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d292"
   },
-  "title" : "This is an example of a very new fork.",
+  "title" : "Foto, pausa y regalo",
   "instructions" : "Coloca las preposiciones correctas.",
   "translation" : "Este es un ejemplo de un tenedor muy nuevo.",
   "theoryId" : "a2.09.Prepositions_After_Nouns",
@@ -841,7 +841,7 @@
   },
   "title" : "Foto, pausa y regalo",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Me sorprendió el costo del viaje.",
+  "translation" : "Me preocupó el costo del viaje.",
   "theoryId" : "a2.09.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -869,7 +869,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I was surprised by the cost",
+      "text" : "I was worried by the cost",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -880,7 +880,7 @@
       "text" : "the journey.",
       "options" : null
     } ],
-    "sentences" : [ "I was surprised by the cost of the journey." ]
+    "sentences" : [ "I was worried by the cost of the journey." ]
   }
 }, {
   "_id" : {

@@ -685,7 +685,7 @@
   },
   "title" : "Información nueva",
   "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
-  "translation" : "Él ordenó papas fritas.",
+  "translation" : "Él pidió champú.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He ordered",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "fries.",
+      "text" : "shampoo.",
       "options" : null
     } ],
-    "sentences" : [ "He ordered - fries." ]
+    "sentences" : [ "He ordered - shampoo." ]
   }
 }, {
   "_id" : {
@@ -737,7 +737,7 @@
   },
   "title" : "Información nueva",
   "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
-  "translation" : "Hay un río cerca.",
+  "translation" : "Hay un guía cerca.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "There is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "river closeby.",
+      "text" : "guide close by.",
       "options" : null
     } ],
-    "sentences" : [ "There is a river closeby." ]
+    "sentences" : [ "There is a guide close by." ]
   }
 }, {
   "_id" : {
@@ -789,7 +789,7 @@
   },
   "title" : "Información nueva",
   "instructions" : "Completa con $a$ o $no article$ (este ejercicio solo incluye cosas que el oyente NO conoce). Usa $-$ para $no article$.",
-  "translation" : "Hay una mosca en el dormitorio.",
+  "translation" : "Hay una estantería en el dormitorio.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "There is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "fly in the bedroom.",
+      "text" : "bookshelf in the bedroom.",
       "options" : null
     } ],
-    "sentences" : [ "There is a fly in the bedroom." ]
+    "sentences" : [ "There is a bookshelf in the bedroom." ]
   }
 }, {
   "_id" : {

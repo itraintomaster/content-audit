@@ -577,7 +577,7 @@
   },
   "title" : "Ofrecer o sugerir",
   "instructions" : "Transforma las oraciones en preguntas que incluyan la palabra $shall$.",
-  "translation" : "¿Vamos a comer algo?",
+  "translation" : "¿Vamos a comer un refrigerio?",
   "theoryId" : "b1.11.Modals_for_Politeness",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -597,26 +597,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Let's grab a bite to eat.",
+      "text" : "Let's grab a snack to eat.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Shall we grab a bite to eat?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Shall we grab a snack to eat?" ]
     } ],
-    "sentences" : [ "Shall we grab a bite to eat?" ]
+    "sentences" : [ "Shall we grab a snack to eat?" ]
   }
 }, {
   "_id" : {

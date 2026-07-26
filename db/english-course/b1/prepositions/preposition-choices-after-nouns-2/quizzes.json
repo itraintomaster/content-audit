@@ -113,7 +113,7 @@
   },
   "title" : "Más de una respuesta",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "¿Dónde está la puerta de entrada a la ciudad?",
+  "translation" : "¿Dónde está la entrada a la ciudad?",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Where is the gateway",
+      "text" : "Where is the entrance",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "the city?",
       "options" : null
     } ],
-    "sentences" : [ "Where is the gateway to the city?" ]
+    "sentences" : [ "Where is the entrance to the city?" ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Más de una respuesta",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Hicimos una pausa para el té.",
+  "translation" : "Hicimos un breve descanso para el té.",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We took a pause",
+      "text" : "We took a short break",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
       "text" : "tea.",
       "options" : null
     } ],
-    "sentences" : [ "We took a pause for tea." ]
+    "sentences" : [ "We took a short break for tea." ]
   }
 } ]

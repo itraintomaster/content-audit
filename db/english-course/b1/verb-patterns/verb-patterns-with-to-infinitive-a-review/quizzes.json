@@ -425,7 +425,7 @@
   },
   "title" : "$To + infinitive$: repaso",
   "instructions" : "Agrega $to + infinitive$ a las oraciones.",
-  "translation" : "Me ofrecí a protegerte en la entrada.",
+  "translation" : "Me ofrecí a ayudarte en la entrada.",
   "theoryId" : "b1.06.Make_and_Let_+_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -458,13 +458,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "to guard" ]
+      "options" : [ "to help" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(guard) you at the entrance.",
+      "text" : "(help) you at the entrance.",
       "options" : null
     } ],
-    "sentences" : [ "I offered to guard you at the entrance." ]
+    "sentences" : [ "I offered to help you at the entrance." ]
   }
 }, {
   "_id" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She went to a dietitian",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "to reduce" ]
+      "text" : null,
+      "options" : [ "to lose" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(reduce) weight.",
+      "text" : "(lose) weight.",
       "options" : null
     } ],
-    "sentences" : [ "She went to a dietitian to reduce weight." ]
+    "sentences" : [ "She went to a dietitian to lose weight." ]
   }
 }, {
   "_id" : {
@@ -631,7 +631,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2f8"
   },
-  "title" : "He came there this morning to vote.",
+  "title" : "$To + infinitive$: repaso",
   "instructions" : "Agrega $to + infinitive$ a las oraciones.",
   "translation" : "Él vino allí esta mañana para votar.",
   "theoryId" : "b1.06.Make_and_Let_+_Infinitive",
@@ -841,7 +841,7 @@
   },
   "title" : "$To + infinitive$: repaso",
   "instructions" : "Agrega $to + infinitive$ a las oraciones.",
-  "translation" : "Escribí una carta para aclarar.",
+  "translation" : "Escribí una carta para pedir ayuda.",
   "theoryId" : "b1.06.Make_and_Let_+_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I wrote a letter",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "to clarify" ]
+      "text" : null,
+      "options" : [ "to ask" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(clarify).",
+      "text" : "(ask) for help.",
       "options" : null
     } ],
-    "sentences" : [ "I wrote a letter to clarify." ]
+    "sentences" : [ "I wrote a letter to ask for help." ]
   }
 }, {
   "_id" : {

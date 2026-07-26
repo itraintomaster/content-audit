@@ -527,7 +527,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d394"
   },
-  "title" : "You need a new life.",
+  "title" : "Todas las formas 1",
   "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
   "translation" : "Necesitas una nueva vida.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
@@ -841,7 +841,7 @@
   },
   "title" : "Todas las formas 1",
   "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
-  "translation" : "Tenemos dos gatos.",
+  "translation" : "Vemos dos gatos.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "own" ]
+      "text" : null,
+      "options" : [ "see" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(have) two cats.",
+      "text" : "(see) two cats.",
       "options" : null
     } ],
-    "sentences" : [ "We own two cats." ]
+    "sentences" : [ "We see two cats." ]
   }
 }, {
   "_id" : {
@@ -945,7 +945,7 @@
   },
   "title" : "Todas las formas 1",
   "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
-  "translation" : "Ellos llegan temprano para el partido.",
+  "translation" : "Ellos llegan tarde para el partido.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -981,10 +981,10 @@
       "options" : [ "'re" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) early for the game.",
+      "text" : "(be) late for the game.",
       "options" : null
     } ],
-    "sentences" : [ "They 're early for the game." ]
+    "sentences" : [ "They 're late for the game." ]
   }
 }, {
   "_id" : {

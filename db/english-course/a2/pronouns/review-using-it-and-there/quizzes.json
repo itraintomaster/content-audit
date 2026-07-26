@@ -581,7 +581,7 @@
   },
   "title" : "Existencia y estado",
   "instructions" : "Escribe $it$ o $there$.",
-  "translation" : "Hay una araña en el baño.",
+  "translation" : "Hay una toalla en el baño.",
   "theoryId" : "a2.08.One_and_Ones",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -601,26 +601,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "There" ]
     }, {
       "kind" : "TEXT",
-      "text" : "is a spider in the bathroom.",
+      "text" : "is a towel in the bathroom.",
       "options" : null
     } ],
-    "sentences" : [ "There is a spider in the bathroom." ]
+    "sentences" : [ "There is a towel in the bathroom." ]
   }
 }, {
   "_id" : {
@@ -633,7 +629,7 @@
   },
   "title" : "Existencia y estado",
   "instructions" : "Escribe $it$ o $there$.",
-  "translation" : "Hay una panadería cerca de mi casa.",
+  "translation" : "Hay una rotonda cerca de mi casa.",
   "theoryId" : "a2.08.One_and_Ones",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -653,26 +649,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "There" ]
     }, {
       "kind" : "TEXT",
-      "text" : "is a bakery near my house.",
+      "text" : "is a roundabout near my house.",
       "options" : null
     } ],
-    "sentences" : [ "There is a bakery near my house." ]
+    "sentences" : [ "There is a roundabout near my house." ]
   }
 }, {
   "_id" : {

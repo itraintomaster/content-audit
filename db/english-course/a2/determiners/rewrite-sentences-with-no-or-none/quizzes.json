@@ -609,7 +609,7 @@
   },
   "title" : "Con $no$ o $none$",
   "instructions" : "Transforma la oración para que incluya $no$ o $none$. Por ejemplo: She doesn't drink any water -> She drinks no water.",
-  "translation" : "No requiero nada de su tiempo.",
+  "translation" : "No le quito nada de su tiempo.",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -637,14 +637,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I don't require any of his time.",
+      "text" : "I don't take any of his time.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "I require no time of his." ]
+      "options" : [ "I take no time of his." ]
     } ],
-    "sentences" : [ "I require no time of his." ]
+    "sentences" : [ "I take no time of his." ]
   }
 }, {
   "_id" : {
@@ -709,7 +709,7 @@
   },
   "title" : "Con $no$ o $none$",
   "instructions" : "Transforma la oración para que incluya $no$ o $none$. Por ejemplo: She doesn't drink any water -> She drinks no water.",
-  "translation" : "No entiendo ninguna de las reglas nacionales.",
+  "translation" : "No entiendo ningún juego nacional.",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -737,14 +737,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I don't understand any of the national rules.",
+      "text" : "I don't understand any of the national games.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "I understand none of the national rules." ]
+      "options" : [ "I understand no national games." ]
     } ],
-    "sentences" : [ "I understand none of the national rules." ]
+    "sentences" : [ "I understand no national games." ]
   }
 }, {
   "_id" : {
@@ -757,7 +757,7 @@
   },
   "title" : "Con $no$ o $none$",
   "instructions" : "Transforma la oración para que incluya $no$ o $none$. Por ejemplo: She doesn't drink any water -> She drinks no water.",
-  "translation" : "No deseo ningún collar.",
+  "translation" : "No tengo ningún collar.",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -785,14 +785,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I don't desire any necklace.",
+      "text" : "I don't have any necklace.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "I desire no necklace." ]
+      "options" : [ "I have no necklace." ]
     } ],
-    "sentences" : [ "I desire no necklace." ]
+    "sentences" : [ "I have no necklace." ]
   }
 }, {
   "_id" : {
@@ -853,7 +853,7 @@
   },
   "title" : "Con $no$ o $none$",
   "instructions" : "Transforma la oración para que incluya $no$ o $none$. Por ejemplo: She doesn't drink any water -> She drinks no water.",
-  "translation" : "No necesitamos ningún cinturón tuyo.",
+  "translation" : "No tenemos ningún cinturón tuyo.",
   "theoryId" : "a2.07.Not_Any_No_None",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -881,14 +881,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We don't require any belt of yours.",
+      "text" : "We don't have any belt of yours.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "We require no belt of yours." ]
+      "options" : [ "We have no belt of yours." ]
     } ],
-    "sentences" : [ "We require no belt of yours." ]
+    "sentences" : [ "We have no belt of yours." ]
   }
 }, {
   "_id" : {
@@ -951,7 +951,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26e"
   },
-  "title" : "She listens to no music.",
+  "title" : "Con $no$ o $none$",
   "instructions" : "Transforma la oración para que incluya $no$ o $none$. Por ejemplo: She doesn't drink any water -> She drinks no water.",
   "translation" : "Ella no escucha música.",
   "theoryId" : "a2.07.Not_Any_No_None",

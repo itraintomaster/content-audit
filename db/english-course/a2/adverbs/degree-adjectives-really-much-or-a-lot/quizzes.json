@@ -267,7 +267,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2af"
   },
-  "title" : "He liked the fish a lot.",
+  "title" : "Grado con verbos",
   "instructions" : "Completá con $really$, $much$ o $a lot$.",
   "translation" : "A él le gustó mucho el pescado.",
   "theoryId" : "",
@@ -373,7 +373,7 @@
   },
   "title" : "Grado con verbos",
   "instructions" : "Completá con $really$, $much$ o $a lot$.",
-  "translation" : "Necesito mucho dormir.",
+  "translation" : "Necesito mucha comida.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I need some sleep",
+      "text" : "I need",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a lot" ]
+      "text" : null,
+      "options" : [ "a lot of" ]
     }, {
       "kind" : "TEXT",
-      "text" : ".",
+      "text" : "food.",
       "options" : null
     } ],
-    "sentences" : [ "I need some sleep a lot." ]
+    "sentences" : [ "I need a lot of food." ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "Grado con verbos",
   "instructions" : "Completá con $really$, $much$ o $a lot$.",
-  "translation" : "No creo que acepten mucho esa oferta.",
+  "translation" : "No creo que les guste mucho esa oferta.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I don't believe they'll accept that offer",
+      "text" : "I don't believe they'll like that offer",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "much" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "I don't believe they'll accept that offer much." ]
+    "sentences" : [ "I don't believe they'll like that offer much." ]
   }
 }, {
   "_id" : {
@@ -529,7 +529,7 @@
   },
   "title" : "Grado con verbos",
   "instructions" : "Completá con $really$, $much$ o $a lot$.",
-  "translation" : "Los invitados te adorarán mucho.",
+  "translation" : "Los invitados te ayudarán mucho.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The guests will adore you",
+      "text" : "The guests will help you",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a lot" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "The guests will adore you a lot." ]
+    "sentences" : [ "The guests will help you a lot." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "Grado con verbos",
   "instructions" : "Completá con $really$, $much$ o $a lot$.",
-  "translation" : "Realmente admiro las pinturas.",
+  "translation" : "Realmente hago pinturas.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "really" ]
     }, {
       "kind" : "TEXT",
-      "text" : "admire paintings.",
+      "text" : "make paintings.",
       "options" : null
     } ],
-    "sentences" : [ "I really admire paintings." ]
+    "sentences" : [ "I really make paintings." ]
   }
 }, {
   "_id" : {

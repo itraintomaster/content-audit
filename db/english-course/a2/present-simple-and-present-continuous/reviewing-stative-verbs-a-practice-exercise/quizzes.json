@@ -789,7 +789,7 @@
   },
   "title" : "Verbos estáticos",
   "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "A ella le gusta esta bebida caliente.",
+  "translation" : "A ella le gusta este chile picante.",
   "theoryId" : "a2.01.Stative_Verbs",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "likes" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(like) this hot beverage.",
+      "text" : "(like) this hot chilli.",
       "options" : null
     } ],
-    "sentences" : [ "She likes this hot beverage." ]
+    "sentences" : [ "She likes this hot chilli." ]
   }
 }, {
   "_id" : {
@@ -945,7 +945,7 @@
   },
   "title" : "Verbos estáticos",
   "instructions" : "Todas estas oraciones están ocurriendo ahora. Por favor, usa el presente continuo si el verbo no es estático, o el presente simple si el verbo es estático.",
-  "translation" : "Estamos corriendo una maratón.",
+  "translation" : "Estamos corriendo en círculo.",
   "theoryId" : "a2.01.Stative_Verbs",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "are running" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(run) a marathon.",
+      "text" : "(run) in a circle.",
       "options" : null
     } ],
-    "sentences" : [ "We are running a marathon." ]
+    "sentences" : [ "We are running in a circle." ]
   }
 }, {
   "_id" : {

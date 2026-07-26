@@ -321,7 +321,7 @@
   },
   "title" : "Oraciones con $unless$",
   "instructions" : "Transforma las oraciones para que incluyan la palabra $unless$.",
-  "translation" : "Ella no beberá jugo a menos que esté recién exprimido.",
+  "translation" : "Ella no beberá jugo a menos que esté frío.",
   "theoryId" : "b1.14.Unless",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -341,26 +341,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She won't drink juice except if it's freshly squeezed.",
+      "text" : "She won't drink juice except if it's cold.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She won't drink juice unless it's freshly squeezed." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She won't drink juice unless it's cold." ]
     } ],
-    "sentences" : [ "She won't drink juice unless it's freshly squeezed." ]
+    "sentences" : [ "She won't drink juice unless it's cold." ]
   }
 }, {
   "_id" : {

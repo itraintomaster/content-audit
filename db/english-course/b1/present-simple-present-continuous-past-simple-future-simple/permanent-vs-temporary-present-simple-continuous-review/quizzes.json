@@ -165,7 +165,7 @@
   },
   "title" : "Sin pistas de tiempo",
   "instructions" : "Utiliza el _present simple_ si hablamos de algo permanente (en este caso, sin una palabra de tiempo). De lo contrario, utiliza el _present continuous_.",
-  "translation" : "Ella canta en el coro.",
+  "translation" : "Ella canta en la banda todos los fines de semana.",
   "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "sings" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(sing) in the choir.",
+      "text" : "(sing) in the band every weekend.",
       "options" : null
     } ],
-    "sentences" : [ "She sings in the choir." ]
+    "sentences" : [ "She sings in the band every weekend." ]
   }
 }, {
   "_id" : {

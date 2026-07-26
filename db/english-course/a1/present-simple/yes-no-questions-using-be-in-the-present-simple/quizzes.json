@@ -363,7 +363,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
-  "title" : "Is she an adult?",
+  "title" : "$Be$: preguntas $yes / no$",
   "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
   "translation" : "¿Ella es adulta?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
@@ -671,7 +671,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d386"
   },
-  "title" : "Are you ready?",
+  "title" : "$Be$: preguntas $yes / no$",
   "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
   "translation" : "¿Estás listo?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
@@ -821,7 +821,7 @@
   },
   "title" : "$Be$: preguntas $yes / no$",
   "instructions" : "Formula una pregunta $yes / no$ usando el verbo $be$.",
-  "translation" : "¿Llegué temprano?",
+  "translation" : "¿Soy marrón?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -841,26 +841,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Am I" ]
     }, {
       "kind" : "TEXT",
-      "text" : "early? (I)",
+      "text" : "brown? (I)",
       "options" : null
     } ],
-    "sentences" : [ "Am I early?" ]
+    "sentences" : [ "Am I brown?" ]
   }
 }, {
   "_id" : {

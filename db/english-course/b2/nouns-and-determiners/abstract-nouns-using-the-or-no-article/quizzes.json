@@ -217,7 +217,7 @@
   },
   "title" : "Abstractos cotidianos",
   "instructions" : "Escribe $the$ o usa – si no necesitamos un artículo.",
-  "translation" : "Siempre sobresalió en matemáticas en la escuela.",
+  "translation" : "Siempre le fue bien en matemáticas en la escuela.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He always excelled at",
+      "text" : "He always did well at",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "math at school.",
       "options" : null
     } ],
-    "sentences" : [ "He always excelled at - math at school." ]
+    "sentences" : [ "He always did well at - math at school." ]
   }
 }, {
   "_id" : {
@@ -321,7 +321,7 @@
   },
   "title" : "Abstractos cotidianos",
   "instructions" : "Escribe $the$ o usa – si no necesitamos un artículo.",
-  "translation" : "¿Crees que las redes sociales tuvieron un gran impacto en la cultura?",
+  "translation" : "¿Crees que los movimientos sociales tuvieron un gran impacto en la cultura?",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Do you think social media had a big impact on",
+      "text" : "Do you think social movements had a big impact on",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "culture?",
       "options" : null
     } ],
-    "sentences" : [ "Do you think social media had a big impact on - culture?" ]
+    "sentences" : [ "Do you think social movements had a big impact on - culture?" ]
   }
 }, {
   "_id" : {

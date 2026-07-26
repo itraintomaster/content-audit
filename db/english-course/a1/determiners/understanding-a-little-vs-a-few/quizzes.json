@@ -7,9 +7,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
-  "title" : "She bought a few books.",
+  "title" : "$A little$ vs $a few$",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
-  "translation" : "Ella compró unos libros.",
+  "translation" : "Ella compró un poco de comida.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -42,13 +42,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "a few" ]
+      "options" : [ "a little" ]
     }, {
       "kind" : "TEXT",
-      "text" : "books.",
+      "text" : "food.",
       "options" : null
     } ],
-    "sentences" : [ "She bought a few books." ]
+    "sentences" : [ "She bought a little food." ]
   }
 }, {
   "_id" : {
@@ -163,9 +163,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
-  "title" : "He made a few friends.",
+  "title" : "$A little$ vs $a few$",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
-  "translation" : "Hizo algunos amigos.",
+  "translation" : "Hizo algunos amigos en junio.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -201,10 +201,10 @@
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
-      "text" : "friends.",
+      "text" : "friends in June.",
       "options" : null
     } ],
-    "sentences" : [ "He made a few friends." ]
+    "sentences" : [ "He made a few friends in June." ]
   }
 }, {
   "_id" : {
@@ -217,7 +217,7 @@
   },
   "title" : "$A little$ vs $a few$",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
-  "translation" : "Requieren unas horas.",
+  "translation" : "Necesitan unas horas.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -245,7 +245,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They require",
+      "text" : "They need",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -256,7 +256,7 @@
       "text" : "hours.",
       "options" : null
     } ],
-    "sentences" : [ "They require a few hours." ]
+    "sentences" : [ "They need a few hours." ]
   }
 }, {
   "_id" : {
@@ -269,7 +269,7 @@
   },
   "title" : "$A little$ vs $a few$",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
-  "translation" : "Añade un poco de agua a mi té.",
+  "translation" : "Pon un poco de agua en mi té.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -297,7 +297,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Add",
+      "text" : "Put",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -308,7 +308,7 @@
       "text" : "water in my tea.",
       "options" : null
     } ],
-    "sentences" : [ "Add a little water in my tea." ]
+    "sentences" : [ "Put a little water in my tea." ]
   }
 }, {
   "_id" : {
@@ -321,7 +321,7 @@
   },
   "title" : "$A little$ vs $a few$",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
-  "translation" : "Mezcla un poco de agua con el cemento.",
+  "translation" : "Usa un poco de agua con el arroz.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Mix",
+      "text" : "Use",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a little" ]
     }, {
       "kind" : "TEXT",
-      "text" : "water with the cement.",
+      "text" : "water with the rice.",
       "options" : null
     } ],
-    "sentences" : [ "Mix a little water with the cement." ]
+    "sentences" : [ "Use a little water with the rice." ]
   }
 }, {
   "_id" : {
@@ -373,7 +373,7 @@
   },
   "title" : "$A little$ vs $a few$",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
-  "translation" : "Necesito un poco de tiempo para decidir.",
+  "translation" : "Necesito un poco de tiempo para pensar.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -401,7 +401,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I require",
+      "text" : "I need",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -409,10 +409,10 @@
       "options" : [ "a little" ]
     }, {
       "kind" : "TEXT",
-      "text" : "time to decide.",
+      "text" : "time to think.",
       "options" : null
     } ],
-    "sentences" : [ "I require a little time to decide." ]
+    "sentences" : [ "I need a little time to think." ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "$A little$ vs $a few$",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
-  "translation" : "Necesitamos un poco de sol. Salgamos.",
+  "translation" : "Necesitamos un poco de comida.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We need",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a little" ]
     }, {
       "kind" : "TEXT",
-      "text" : "sunshine. Let's go outside.",
+      "text" : "food.",
       "options" : null
     } ],
-    "sentences" : [ "We need a little sunshine. Let's go outside." ]
+    "sentences" : [ "We need a little food." ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "$A little$ vs $a few$",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
-  "translation" : "El granjero cría algunas vacas.",
+  "translation" : "La señorita Lee tiene algunas vacas.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -505,7 +505,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The farmer keeps",
+      "text" : "Miss Lee has",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -516,7 +516,7 @@
       "text" : "cows.",
       "options" : null
     } ],
-    "sentences" : [ "The farmer keeps a few cows." ]
+    "sentences" : [ "Miss Lee has a few cows." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "$A little$ vs $a few$",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
-  "translation" : "¿Podrías venderme unos escritorios?",
+  "translation" : "¿Podrías mostrarme unos escritorios?",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -609,7 +609,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Could you sell me",
+      "text" : "Could you show me",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -620,7 +620,7 @@
       "text" : "desks?",
       "options" : null
     } ],
-    "sentences" : [ "Could you sell me a few desks?" ]
+    "sentences" : [ "Could you show me a few desks?" ]
   }
 }, {
   "_id" : {
@@ -685,7 +685,7 @@
   },
   "title" : "$A little$ vs $a few$",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
-  "translation" : "Tengo algunas notas.",
+  "translation" : "Tengo algunos días.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -721,10 +721,10 @@
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
-      "text" : "notes.",
+      "text" : "days.",
       "options" : null
     } ],
-    "sentences" : [ "I've got a few notes." ]
+    "sentences" : [ "I've got a few days." ]
   }
 }, {
   "_id" : {
@@ -737,7 +737,7 @@
   },
   "title" : "$A little$ vs $a few$",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
-  "translation" : "Se postuló a algunos trabajos.",
+  "translation" : "Encontró algunos trabajos.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -765,7 +765,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He applied for",
+      "text" : "He found",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -776,7 +776,7 @@
       "text" : "jobs.",
       "options" : null
     } ],
-    "sentences" : [ "He applied for a few jobs." ]
+    "sentences" : [ "He found a few jobs." ]
   }
 }, {
   "_id" : {
@@ -789,7 +789,7 @@
   },
   "title" : "$A little$ vs $a few$",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
-  "translation" : "Gastó un poco de dinero.",
+  "translation" : "Tiene un poco de dinero.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -817,7 +817,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He spent",
+      "text" : "He has",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -828,7 +828,7 @@
       "text" : "money.",
       "options" : null
     } ],
-    "sentences" : [ "He spent a little money." ]
+    "sentences" : [ "He has a little money." ]
   }
 }, {
   "_id" : {
@@ -841,7 +841,7 @@
   },
   "title" : "$A little$ vs $a few$",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
-  "translation" : "Hay algunas universidades en el pueblo.",
+  "translation" : "Hay algunos lunes en junio.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -877,10 +877,10 @@
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
-      "text" : "universities in town.",
+      "text" : "Mondays in June.",
       "options" : null
     } ],
-    "sentences" : [ "There are a few universities in town." ]
+    "sentences" : [ "There are a few Mondays in June." ]
   }
 }, {
   "_id" : {
@@ -891,7 +891,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ce"
   },
-  "title" : "She used a little salt.",
+  "title" : "$A little$ vs $a few$",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
   "translation" : "Ella usó un poco de sal.",
   "theoryId" : "a1.07.A_Little_A_Few",
@@ -945,7 +945,7 @@
   },
   "title" : "$A little$ vs $a few$",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
-  "translation" : "¿Podrías esperar unos minutos?",
+  "translation" : "¿Podrías esperar unos segundos?",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -981,10 +981,10 @@
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
-      "text" : "minutes?",
+      "text" : "seconds?",
       "options" : null
     } ],
-    "sentences" : [ "Could you wait a few minutes?" ]
+    "sentences" : [ "Could you wait a few seconds?" ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "$A little$ vs $a few$",
   "instructions" : "Completa los espacios en blanco con $a little$ o $a few$.",
-  "translation" : "Tengo algunos dólares.",
+  "translation" : "Tengo algunos minutos.",
   "theoryId" : "a1.07.A_Little_A_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -1033,9 +1033,9 @@
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
-      "text" : "dollars.",
+      "text" : "minutes.",
       "options" : null
     } ],
-    "sentences" : [ "I have a few dollars." ]
+    "sentences" : [ "I have a few minutes." ]
   }
 } ]

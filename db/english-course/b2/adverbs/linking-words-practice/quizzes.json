@@ -581,7 +581,7 @@
   },
   "title" : "Conectores: práctica",
   "instructions" : "Elige la palabra de enlace correcta.",
-  "translation" : "El jardín floreció como resultado de su dedicación.",
+  "translation" : "El jardín creció como resultado de su estrategia.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The garden flourished",
+      "text" : "The garden grew",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "as a result of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(as / as a result of) her dedication.",
+      "text" : "(as / as a result of) her strategy.",
       "options" : null
     } ],
-    "sentences" : [ "The garden flourished as a result of her dedication." ]
+    "sentences" : [ "The garden grew as a result of her strategy." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "Conectores: práctica",
   "instructions" : "Elige la palabra de enlace correcta.",
-  "translation" : "Estábamos enfermos a causa del batido.",
+  "translation" : "Estábamos enfermos a causa del batido de fresa.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We were sick",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on account of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(since / on account of) the milkshake.",
+      "text" : "(since / on account of) the strawberry milkshake.",
       "options" : null
     } ],
-    "sentences" : [ "We were sick on account of the milkshake." ]
+    "sentences" : [ "We were sick on account of the strawberry milkshake." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Conectores: práctica",
   "instructions" : "Elige la palabra de enlace correcta.",
-  "translation" : "Las cosechas fracasaron como resultado de la sequía.",
+  "translation" : "Las cosechas fracasaron como resultado del calor.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The crops failed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "as a result of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(as / as a result of) the drought.",
+      "text" : "(as / as a result of) the heat.",
       "options" : null
     } ],
-    "sentences" : [ "The crops failed as a result of the drought." ]
+    "sentences" : [ "The crops failed as a result of the heat." ]
   }
 } ]

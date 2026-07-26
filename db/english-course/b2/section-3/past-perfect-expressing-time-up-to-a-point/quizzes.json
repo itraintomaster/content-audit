@@ -945,7 +945,7 @@
   },
   "title" : "Duración hasta un punto",
   "instructions" : "Escribe las oraciones en $past perfect$. Necesitas añadir $since$ o $for$.",
-  "translation" : "Habían sido amigos durante cinco años cuando se comprometieron.",
+  "translation" : "Habían sido amigos durante cinco años cuando se casaron.",
   "theoryId" : "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
   "topicName" : "Section 3",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'d been friends for five years when they got engaged|had been friends for five years when they got engaged" ]
+      "text" : null,
+      "options" : [ "'d been friends for five years|had been friends for five years" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be friends / five years) when they got engaged.",
+      "text" : "(be friends / five years) when they got married.",
       "options" : null
     } ],
-    "sentences" : [ "They'd been friends for five years when they got engaged when they got engaged.", "They had been friends for five years when they got engaged when they got engaged." ]
+    "sentences" : [ "They 'd been friends for five years when they got married.", "They had been friends for five years when they got married." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Duración hasta un punto",
   "instructions" : "Escribe las oraciones en $past perfect$. Necesitas añadir $since$ o $for$.",
-  "translation" : "Ella había esperado viajar al extranjero desde 2020.",
+  "translation" : "Ella había estado planeando viajar al extranjero desde principios de 2020.",
   "theoryId" : "b2.03.Past_Perfect_for_Things_Completed_Before_a_Point_in_the_Past",
   "topicName" : "Section 3",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'d hoped to travel abroad since 2020|had hoped to travel abroad since 2020" ]
+      "text" : null,
+      "options" : [ "had been" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(hope to travel abroad / 2020).",
+      "text" : "planning to travel abroad since early 2020 (plan to travel abroad / early 2020).",
       "options" : null
     } ],
-    "sentences" : [ "She'd hoped to travel abroad since 2020.", "She had hoped to travel abroad since 2020." ]
+    "sentences" : [ "She had been planning to travel abroad since early 2020." ]
   }
 } ]

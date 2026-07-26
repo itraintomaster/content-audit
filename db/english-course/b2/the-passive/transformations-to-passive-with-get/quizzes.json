@@ -321,7 +321,7 @@
   },
   "title" : "Con $get$",
   "instructions" : "Transforma las oraciones activas a pasivas usando $get$. Omite $by$.",
-  "translation" : "Las llaves a menudo se extravían.",
+  "translation" : "Las llaves de la puerta de entrada a menudo se pierden por la mañana.",
   "theoryId" : "b2.07.The_Get_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -341,26 +341,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Somebody often misplaces the keys.",
+      "text" : "Somebody often loses the front door keys in the morning.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The keys often get misplaced." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The front door keys often get lost in the morning." ]
     } ],
-    "sentences" : [ "The keys often get misplaced." ]
+    "sentences" : [ "The front door keys often get lost in the morning." ]
   }
 }, {
   "_id" : {

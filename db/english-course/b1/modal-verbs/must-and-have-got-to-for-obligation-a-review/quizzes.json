@@ -425,7 +425,7 @@
   },
   "title" : "Obligación: repaso",
   "instructions" : "Crea oraciones utilizando $must$, $have to$ o $have got to$. Si es posible, utiliza la forma corta.",
-  "translation" : "Los profesores tienen que corregir los exámenes.",
+  "translation" : "Los profesores tienen que revisar los exámenes.",
   "theoryId" : "b1.11.Must_for_Recommendations_and_Offers",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -445,26 +445,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The teachers / correct the exams. (have got to)",
+      "text" : "The teachers / check the exams. (have got to)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The teachers have got to correct the exams." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The teachers have got to check the exams." ]
     } ],
-    "sentences" : [ "The teachers have got to correct the exams." ]
+    "sentences" : [ "The teachers have got to check the exams." ]
   }
 }, {
   "_id" : {

@@ -61,7 +61,7 @@
   },
   "title" : "Irregulares: repaso 2",
   "instructions" : "Escribe la oración en present perfect.",
-  "translation" : "¿Ella se ha teñido el cabello?",
+  "translation" : "¿Ella se ha teñido el cabello para la fiesta?",
   "theoryId" : "b1.02.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -81,26 +81,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Has she dyed" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / dye) her hair?",
+      "text" : "(she / dye) her hair for the party?",
       "options" : null
     } ],
-    "sentences" : [ "Has she dyed her hair?" ]
+    "sentences" : [ "Has she dyed her hair for the party?" ]
   }
 }, {
   "_id" : {
@@ -217,7 +213,7 @@
   },
   "title" : "Irregulares: repaso 2",
   "instructions" : "Escribe la oración en present perfect.",
-  "translation" : "Él me ha reembolsado todo mi dinero.",
+  "translation" : "Él ha desperdiciado todo mi dinero.",
   "theoryId" : "b1.02.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -250,13 +246,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "'s refunded|has refunded" ]
+      "options" : [ "'s wasted|has wasted" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(refund) all of my money.",
+      "text" : "(waste) all of my money.",
       "options" : null
     } ],
-    "sentences" : [ "He 's refunded all of my money.", "He has refunded all of my money." ]
+    "sentences" : [ "He 's wasted all of my money.", "He has wasted all of my money." ]
   }
 }, {
   "_id" : {
@@ -477,7 +473,7 @@
   },
   "title" : "Irregulares: repaso 2",
   "instructions" : "Escribe la oración en present perfect.",
-  "translation" : "Ellos se han avergonzado delante de todos.",
+  "translation" : "Ellos se han encontrado delante de todos.",
   "theoryId" : "b1.02.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -510,13 +506,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "'ve embarrassed|have embarrassed" ]
+      "options" : [ "'ve found|have found" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(embarrass) themselves in front of everyone.",
+      "text" : "(find) themselves in front of everyone.",
       "options" : null
     } ],
-    "sentences" : [ "They 've embarrassed themselves in front of everyone.", "They have embarrassed themselves in front of everyone." ]
+    "sentences" : [ "They 've found themselves in front of everyone.", "They have found themselves in front of everyone." ]
   }
 }, {
   "_id" : {
@@ -529,7 +525,7 @@
   },
   "title" : "Irregulares: repaso 2",
   "instructions" : "Escribe la oración en present perfect.",
-  "translation" : "Él ha colocado los platos en el armario.",
+  "translation" : "Él ha puesto los platos en el armario.",
   "theoryId" : "b1.02.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -549,26 +545,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s placed|has placed" ]
+      "text" : null,
+      "options" : [ "'s put|has put" ]
     }, {
       "kind" : "TEXT",
       "text" : "(put) the plates in the cupboard.",
       "options" : null
     } ],
-    "sentences" : [ "He's placed the plates in the cupboard.", "He has placed the plates in the cupboard." ]
+    "sentences" : [ "He 's put the plates in the cupboard.", "He has put the plates in the cupboard." ]
   }
 }, {
   "_id" : {
@@ -579,7 +575,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c4"
   },
-  "title" : "Have you read the story this week?",
+  "title" : "Irregulares: repaso 2",
   "instructions" : "Escribe la oración en present perfect.",
   "translation" : "¿Has leído la historia esta semana?",
   "theoryId" : "b1.02.Present_Perfect_or_Past_Simple_",
@@ -887,7 +883,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c4"
   },
-  "title" : "Have you hidden my keys again?!",
+  "title" : "Irregulares: repaso 2",
   "instructions" : "Escribe la oración en present perfect.",
   "translation" : "¡¿Has escondido mis llaves otra vez?!",
   "theoryId" : "b1.02.Present_Perfect_or_Past_Simple_",

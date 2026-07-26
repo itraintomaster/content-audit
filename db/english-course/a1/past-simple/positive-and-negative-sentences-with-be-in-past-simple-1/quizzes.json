@@ -217,7 +217,7 @@
   },
   "title" : "Afirmar y negar (1)",
   "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. No uses $short forms$.",
-  "translation" : "Ella era británica.",
+  "translation" : "Ella fue primera.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "was" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) British.",
+      "text" : "(be) first.",
       "options" : null
     } ],
-    "sentences" : [ "She was British." ]
+    "sentences" : [ "She was first." ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "Afirmar y negar (1)",
   "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. No uses $short forms$.",
-  "translation" : "Ella no llegó temprano.",
+  "translation" : "Ella no llegó tarde.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "was not" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / be) early.",
+      "text" : "(not / be) late.",
       "options" : null
     } ],
-    "sentences" : [ "She was not early." ]
+    "sentences" : [ "She was not late." ]
   }
 }, {
   "_id" : {

@@ -61,7 +61,7 @@
   },
   "title" : "Formas plurales",
   "instructions" : "Escribe el sustantivo en plural.",
-  "translation" : "Él plantó algunas zanahorias.",
+  "translation" : "Él cultivó algunas zanahorias.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He planted some",
+      "text" : "He grew some",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "carrots" ]
     }, {
       "kind" : "TEXT",
       "text" : "(carrot).",
       "options" : null
     } ],
-    "sentences" : [ "He planted some carrots." ]
+    "sentences" : [ "He grew some carrots." ]
   }
 }, {
   "_id" : {
@@ -321,7 +321,7 @@
   },
   "title" : "Formas plurales",
   "instructions" : "Escribe el sustantivo en plural.",
-  "translation" : "Ella dirige un grupo para estudiantes.",
+  "translation" : "Ella tiene un grupo para estudiantes.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She leads a group for",
+      "text" : "She has a group for",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "students" ]
     }, {
       "kind" : "TEXT",
       "text" : "(student).",
       "options" : null
     } ],
-    "sentences" : [ "She leads a group for students." ]
+    "sentences" : [ "She has a group for students." ]
   }
 }, {
   "_id" : {

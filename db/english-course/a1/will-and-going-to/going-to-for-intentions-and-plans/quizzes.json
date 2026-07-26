@@ -269,7 +269,7 @@
   },
   "title" : "Intenciones y planes",
   "instructions" : "Escribe oraciones con $going to$ (estos son ejemplos del uso de $going to$ para planes e intenciones).",
-  "translation" : "Él va a vender su auto.",
+  "translation" : "Él va a llevar su auto.",
   "theoryId" : "a1.03.Going_to_Use_Plans_and_Intentions",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s going to sell|is going to sell" ]
+      "text" : null,
+      "options" : [ "'s going to take|is going to take" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(sell) his car.",
+      "text" : "(take) his car.",
       "options" : null
     } ],
-    "sentences" : [ "He's going to sell his car.", "He is going to sell his car." ]
+    "sentences" : [ "He 's going to take his car.", "He is going to take his car." ]
   }
 }, {
   "_id" : {
@@ -423,7 +423,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ae"
   },
-  "title" : "They 're going to run the business.",
+  "title" : "Intenciones y planes",
   "instructions" : "Escribe oraciones con $going to$ (estos son ejemplos del uso de $going to$ para planes e intenciones).",
   "translation" : "Ellos van a dirigir el negocio.",
   "theoryId" : "a1.03.Going_to_Use_Plans_and_Intentions",

@@ -269,7 +269,7 @@
   },
   "title" : "$Might$ y $Could$",
   "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
-  "translation" : "El museo podría estar lleno de gente.",
+  "translation" : "El museo podría estar lleno de gente esta tarde.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -289,26 +289,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The museum / be crowded.",
+      "text" : "The museum / be busy this afternoon.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The museum might be crowded.|The museum could be crowded." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The museum might be busy this afternoon.|The museum could be busy this afternoon." ]
     } ],
-    "sentences" : [ "The museum might be crowded.", "The museum could be crowded." ]
+    "sentences" : [ "The museum might be busy this afternoon.", "The museum could be busy this afternoon." ]
   }
 }, {
   "_id" : {
@@ -789,7 +785,7 @@
   },
   "title" : "$Might$ y $Could$",
   "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
-  "translation" : "Las puertas podrían estar abiertas.",
+  "translation" : "Las puertas podrían estar abiertas después de la reunión.",
   "theoryId" : "b1.11.Could_Might_etc",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -809,26 +805,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The doors / be unlocked.",
+      "text" : "The doors / be open after the meeting.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The doors might be unlocked.|The doors could be unlocked." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The doors might be open after the meeting.|The doors could be open after the meeting." ]
     } ],
-    "sentences" : [ "The doors might be unlocked.", "The doors could be unlocked." ]
+    "sentences" : [ "The doors might be open after the meeting.", "The doors could be open after the meeting." ]
   }
 }, {
   "_id" : {

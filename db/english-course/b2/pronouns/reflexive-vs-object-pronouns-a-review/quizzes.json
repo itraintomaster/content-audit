@@ -9,7 +9,7 @@
   },
   "title" : "Reflexivo u objeto",
   "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Él lo pellizcó.",
+  "translation" : "Él lo pellizcó durante el ensayo ruidoso antes de que se levantara el telón.",
   "theoryId" : "b2.11.Pronoun_or_Determiner_",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He pinched",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "him" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(him / himself). (Tom pinched Alan.)",
+      "text" : "(him / himself) during the noisy rehearsal before the curtain rose. (Tom pinched Alan.)",
       "options" : null
     } ],
-    "sentences" : [ "He pinched him." ]
+    "sentences" : [ "He pinched him during the noisy rehearsal before the curtain rose." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "Reflexivo u objeto",
   "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Los bebés se señalaron a sí mismos en la cuna.",
+  "translation" : "Los bebés se señalaron a sí mismos en la cuna pequeña.",
   "theoryId" : "b2.11.Pronoun_or_Determiner_",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The babies pointed at",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "themselves" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(them / themselves) in the crib.",
+      "text" : "(them / themselves) in the small crib.",
       "options" : null
     } ],
-    "sentences" : [ "The babies pointed at themselves in the crib." ]
+    "sentences" : [ "The babies pointed at themselves in the small crib." ]
   }
 }, {
   "_id" : {
@@ -893,7 +893,7 @@
   },
   "title" : "Reflexivo u objeto",
   "instructions" : "Elige el pronombre correcto.",
-  "translation" : "Mi hermano se mostró karate a sí mismo.",
+  "translation" : "Mi hermano se miró a sí mismo en el espejo después de la clase de karate.",
   "theoryId" : "b2.11.Pronoun_or_Determiner_",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "My brother showed",
+      "text" : "My brother looked at",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "himself" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(him / himself) karate. (My brother showed my brother karate.)",
+      "text" : "(him / himself) in the mirror after the karate lesson.",
       "options" : null
     } ],
-    "sentences" : [ "My brother showed himself karate." ]
+    "sentences" : [ "My brother looked at himself in the mirror after the karate lesson." ]
   }
 }, {
   "_id" : {

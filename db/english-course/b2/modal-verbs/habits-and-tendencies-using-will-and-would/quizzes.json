@@ -373,7 +373,7 @@
   },
   "title" : "Hábitos y tendencias",
   "instructions" : "Transforma las oraciones para que incluyan $will$ o $would$. Usa las formas cortas si es posible.",
-  "translation" : "El televisor funcionaría mal todo el tiempo.",
+  "translation" : "El viejo televisor funcionaba mal todo el tiempo cuando hacía frío.",
   "theoryId" : "",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -393,26 +393,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It was the TV's habit to malfunction all the time.",
+      "text" : "It was the old TV's habit to malfunction all the time in cold weather.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The TV would malfunction all the time." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The old TV would malfunction all the time in cold weather." ]
     } ],
-    "sentences" : [ "The TV would malfunction all the time." ]
+    "sentences" : [ "The old TV would malfunction all the time in cold weather." ]
   }
 }, {
   "_id" : {
@@ -477,7 +473,7 @@
   },
   "title" : "Hábitos y tendencias",
   "instructions" : "Transforma las oraciones para que incluyan $will$ o $would$. Usa las formas cortas si es posible.",
-  "translation" : "Las chicas a menudo estarán risueñas.",
+  "translation" : "Las chicas a menudo estarán risueñas en las fiestas de cumpleaños con sus amigas.",
   "theoryId" : "",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -497,26 +493,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's the girls' habit to often be giggly.",
+      "text" : "It's the girls' habit to often be giggly at birthday parties with their friends.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The girls will often be giggly." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The girls will often be giggly at birthday parties with their friends." ]
     } ],
-    "sentences" : [ "The girls will often be giggly." ]
+    "sentences" : [ "The girls will often be giggly at birthday parties with their friends." ]
   }
 }, {
   "_id" : {
@@ -789,7 +781,7 @@
   },
   "title" : "Hábitos y tendencias",
   "instructions" : "Transforma las oraciones para que incluyan $will$ o $would$. Usa las formas cortas si es posible.",
-  "translation" : "Ella siempre pedirá una limusina.",
+  "translation" : "Ella siempre pedirá una limusina para eventos de negocios importantes.",
   "theoryId" : "",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -809,26 +801,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's her habit to always order a limousine.",
+      "text" : "It's her habit to always order a limousine for important business events.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She'll always order a limousine." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She'll always order a limousine for important business events." ]
     } ],
-    "sentences" : [ "She'll always order a limousine." ]
+    "sentences" : [ "She'll always order a limousine for important business events." ]
   }
 }, {
   "_id" : {

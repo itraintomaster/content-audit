@@ -9,7 +9,7 @@
   },
   "title" : "Respuestas cortas",
   "instructions" : "Escribe la $short answer$ (respuesta corta).",
-  "translation" : "No, no puedo",
+  "translation" : "A: ¿Puedes llamar a la señorita Green? B: No, no puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Can you do me a favor? B: No,",
+      "text" : "A: Can you call Miss Green? B: No,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "I can't" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Can you do me a favor? B: No, I can't." ]
+    "sentences" : [ "A: Can you call Miss Green? B: No, I can't." ]
   }
 }, {
   "_id" : {
@@ -61,7 +61,7 @@
   },
   "title" : "Respuestas cortas",
   "instructions" : "Escribe la $short answer$ (respuesta corta).",
-  "translation" : "Sí, puedo",
+  "translation" : "¿Puedes vernos? Sí, puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Can you join us tonight? B: Yes,",
+      "text" : "Can you see us? Yes,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "I can" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Can you join us tonight? B: Yes, I can." ]
+    "sentences" : [ "Can you see us? Yes, I can." ]
   }
 }, {
   "_id" : {
@@ -113,7 +113,7 @@
   },
   "title" : "Respuestas cortas",
   "instructions" : "Escribe la $short answer$ (respuesta corta).",
-  "translation" : "Sí, puedo",
+  "translation" : "A: ¿Podrías venir el domingo? B: Sí, puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Could you do me a favor? B: Yes,",
+      "text" : "A: Could you come on Sunday? B: Yes,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "I can" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Could you do me a favor? B: Yes, I can." ]
+    "sentences" : [ "A: Could you come on Sunday? B: Yes, I can." ]
   }
 }, {
   "_id" : {
@@ -165,7 +165,7 @@
   },
   "title" : "Respuestas cortas",
   "instructions" : "Escribe la $short answer$ (respuesta corta).",
-  "translation" : "No, no puedo",
+  "translation" : "¿Puedes ayudarnos? No.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Could you join us tonight? B: No,",
+      "text" : "Can you help us?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I can't" ]
+      "text" : null,
+      "options" : [ "No" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Could you join us tonight? B: No, I can't." ]
+    "sentences" : [ "Can you help us? No." ]
   }
 }, {
   "_id" : {
@@ -267,7 +267,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
-  "title" : "A: Could you help these people? B: Yes, I can.",
+  "title" : "Respuestas cortas",
   "instructions" : "Escribe la $short answer$ (respuesta corta).",
   "translation" : "A: ¿Podrías ayudar a esta gente? B: Sí, puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
@@ -633,7 +633,7 @@
   },
   "title" : "Respuestas cortas",
   "instructions" : "Escribe la $short answer$ (respuesta corta).",
-  "translation" : "No, no puedo",
+  "translation" : "¿Puedes hacer pizza? No, no puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Could you order some pizza? B: No,",
+      "text" : "Can you make pizza? No,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "I can't" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Could you order some pizza? B: No, I can't." ]
+    "sentences" : [ "Can you make pizza? No, I can't." ]
   }
 }, {
   "_id" : {
@@ -685,7 +685,7 @@
   },
   "title" : "Respuestas cortas",
   "instructions" : "Escribe la $short answer$ (respuesta corta).",
-  "translation" : "Sí, puedo",
+  "translation" : "¿Puedes comprar pizza? Puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Can you order some pizza? B: Yes,",
+      "text" : "Can you buy pizza?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "I can" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Can you order some pizza? B: Yes, I can." ]
+    "sentences" : [ "Can you buy pizza? I can." ]
   }
 }, {
   "_id" : {
@@ -735,7 +735,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e5"
   },
-  "title" : "A: Can you work today? B: No, I can't.",
+  "title" : "Respuestas cortas",
   "instructions" : "Escribe la $short answer$ (respuesta corta).",
   "translation" : "A: ¿Puedes trabajar hoy? B: No, no puedo.",
   "theoryId" : "a1.10.Could_For_Polite_Requests",

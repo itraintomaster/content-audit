@@ -737,7 +737,7 @@
   },
   "title" : "Artículo singular",
   "instructions" : "Escribe $such$ o $such a$.",
-  "translation" : "Cantó canciones tan alegres.",
+  "translation" : "Cantó canciones tan alegres en el concierto de la escuela anoche.",
   "theoryId" : "",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He sang",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "such" ]
     }, {
       "kind" : "TEXT",
-      "text" : "joyful songs.",
+      "text" : "joyful songs at the school concert last night.",
       "options" : null
     } ],
-    "sentences" : [ "He sang such joyful songs." ]
+    "sentences" : [ "He sang such joyful songs at the school concert last night." ]
   }
 }, {
   "_id" : {
@@ -841,7 +841,7 @@
   },
   "title" : "Artículo singular",
   "instructions" : "Escribe $such$ o $such a$.",
-  "translation" : "Era un niño tan tonto.",
+  "translation" : "El gobierno aprobó una política tan tonta este año.",
   "theoryId" : "",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He was",
+      "text" : "The government approved",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "such a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "silly toddler.",
+      "text" : "silly policy this year.",
       "options" : null
     } ],
-    "sentences" : [ "He was such a silly toddler." ]
+    "sentences" : [ "The government approved such a silly policy this year." ]
   }
 }, {
   "_id" : {

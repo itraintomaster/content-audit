@@ -7,7 +7,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d389"
   },
-  "title" : "You see cats.",
+  "title" : "Afirmativas regulares",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
   "translation" : "Ves gatos.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
@@ -59,7 +59,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d389"
   },
-  "title" : "It comes every year.",
+  "title" : "Afirmativas regulares",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
   "translation" : "Viene cada año.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
@@ -113,7 +113,7 @@
   },
   "title" : "Afirmativas regulares",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
-  "translation" : "Él ordena el dormitorio.",
+  "translation" : "Él sale del dormitorio.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "tidies" ]
+      "text" : null,
+      "options" : [ "leaves" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(tidy) the bedroom.",
+      "text" : "(leave) the bedroom.",
       "options" : null
     } ],
-    "sentences" : [ "He tidies the bedroom." ]
+    "sentences" : [ "He leaves the bedroom." ]
   }
 }, {
   "_id" : {
@@ -163,7 +163,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d389"
   },
-  "title" : "They go to school every day.",
+  "title" : "Afirmativas regulares",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
   "translation" : "Ellos van a la escuela todos los días.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
@@ -215,7 +215,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d389"
   },
-  "title" : "We make clothes.",
+  "title" : "Afirmativas regulares",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
   "translation" : "Nosotros hacemos ropa.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
@@ -269,7 +269,7 @@
   },
   "title" : "Afirmativas regulares",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
-  "translation" : "Él sorbe mucho té.",
+  "translation" : "Él compra mucho té.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sips" ]
+      "text" : null,
+      "options" : [ "buys" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(sip) a lot of tea.",
+      "text" : "(buy) a lot of tea.",
       "options" : null
     } ],
-    "sentences" : [ "He sips a lot of tea." ]
+    "sentences" : [ "He buys a lot of tea." ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "Afirmativas regulares",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
-  "translation" : "Nosotros nos preparamos.",
+  "translation" : "Nosotros nos conocemos.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "prepare" ]
+      "text" : null,
+      "options" : [ "know" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(prepare) ourselves.",
+      "text" : "(know) ourselves.",
       "options" : null
     } ],
-    "sentences" : [ "We prepare ourselves." ]
+    "sentences" : [ "We know ourselves." ]
   }
 }, {
   "_id" : {
@@ -475,7 +475,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d389"
   },
-  "title" : "We want some food.",
+  "title" : "Afirmativas regulares",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
   "translation" : "Queremos algo de comida.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
@@ -631,7 +631,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d389"
   },
-  "title" : "He reads books.",
+  "title" : "Afirmativas regulares",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
   "translation" : "Él lee libros.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
@@ -718,13 +718,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "labor" ]
+      "options" : [ "work" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(labor) on the beach.",
+      "text" : "(work) on the beach.",
       "options" : null
     } ],
-    "sentences" : [ "They labor on the beach." ]
+    "sentences" : [ "They work on the beach." ]
   }
 }, {
   "_id" : {
@@ -735,7 +735,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d389"
   },
-  "title" : "She lives in London.",
+  "title" : "Afirmativas regulares",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
   "translation" : "Ella vive en Londres.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
@@ -787,7 +787,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d389"
   },
-  "title" : "You have two sisters.",
+  "title" : "Afirmativas regulares",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
   "translation" : "Tú tienes dos hermanas.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
@@ -839,7 +839,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d389"
   },
-  "title" : "I help my friends.",
+  "title" : "Afirmativas regulares",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
   "translation" : "Yo ayudo a mis amigos.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
@@ -891,7 +891,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d389"
   },
-  "title" : "It gets cold here.",
+  "title" : "Afirmativas regulares",
   "instructions" : "Escribe la forma afirmativa en presente simple.",
   "translation" : "Aquí hace frío.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",

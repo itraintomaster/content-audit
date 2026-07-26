@@ -165,7 +165,7 @@
   },
   "title" : "Con agente $by$: repaso",
   "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa $by$.",
-  "translation" : "Emily y Clara son enseñadas por Robert.",
+  "translation" : "Emily y Clara son protegidas por Robert.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -185,26 +185,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Robert teaches Emily and Clara.",
+      "text" : "Robert protects Emily and Clara.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Emily and Clara are taught by Robert." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Emily and Clara are protected by Robert." ]
     } ],
-    "sentences" : [ "Emily and Clara are taught by Robert." ]
+    "sentences" : [ "Emily and Clara are protected by Robert." ]
   }
 }, {
   "_id" : {
@@ -321,7 +317,7 @@
   },
   "title" : "Con agente $by$: repaso",
   "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa $by$.",
-  "translation" : "El baño está siendo limpiado por la empleada doméstica.",
+  "translation" : "El baño está siendo limpiado por el delincuente.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -341,26 +337,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The maid is cleaning the bathroom.",
+      "text" : "The criminal is cleaning the bathroom.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The bathroom is being cleaned by the maid." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The bathroom is being cleaned by the criminal." ]
     } ],
-    "sentences" : [ "The bathroom is being cleaned by the maid." ]
+    "sentences" : [ "The bathroom is being cleaned by the criminal." ]
   }
 }, {
   "_id" : {
@@ -629,7 +621,7 @@
   },
   "title" : "Con agente $by$: repaso",
   "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa $by$.",
-  "translation" : "Las ardillas están siendo perseguidas por los perros.",
+  "translation" : "Las ardillas están siendo seguidas por los perros.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -649,26 +641,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The dogs are chasing the squirrels.",
+      "text" : "The dogs are following the squirrels.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The squirrels are being chased by the dogs." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The squirrels are being followed by the dogs." ]
     } ],
-    "sentences" : [ "The squirrels are being chased by the dogs." ]
+    "sentences" : [ "The squirrels are being followed by the dogs." ]
   }
 }, {
   "_id" : {
@@ -937,7 +925,7 @@
   },
   "title" : "Con agente $by$: repaso",
   "instructions" : "Transforma las oraciones a la voz pasiva (passive voice). Usa $by$.",
-  "translation" : "Leo está siendo regañado por su madre.",
+  "translation" : "Leo está siendo favorecido por su madre.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -957,26 +945,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "His mother is scolding Leo.",
+      "text" : "His mother is favoring Leo.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Leo is being scolded by his mother." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Leo is being favored by his mother." ]
     } ],
-    "sentences" : [ "Leo is being scolded by his mother." ]
+    "sentences" : [ "Leo is being favored by his mother." ]
   }
 }, {
   "_id" : {

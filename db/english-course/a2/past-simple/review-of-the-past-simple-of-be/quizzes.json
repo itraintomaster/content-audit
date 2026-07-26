@@ -737,7 +737,7 @@
   },
   "title" : "$be$: repaso",
   "instructions" : "Escribe la forma en $past simple$ del verbo $be$. Utiliza $short forms$ si es posible.",
-  "translation" : "No estaba emocionado por la salida temprana.",
+  "translation" : "No estaba emocionado por el tranvía temprano.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "wasn't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / be) excited about the early finish.",
+      "text" : "(not / be) excited about the early tram.",
       "options" : null
     } ],
-    "sentences" : [ "I wasn't excited about the early finish." ]
+    "sentences" : [ "I wasn't excited about the early tram." ]
   }
 }, {
   "_id" : {

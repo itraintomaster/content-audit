@@ -1029,7 +1029,7 @@
   },
   "title" : "Condicionales mixtas",
   "instructions" : "Escribe oraciones condicionales mixtas de $third/second conditional$, donde la condición está en el pasado y el resultado en el presente.",
-  "translation" : "Si hubieras bebido agua, no estarías deshidratado.",
+  "translation" : "Si te hubieras recibido de médico, no estarías desempleado ahora.",
   "theoryId" : "b2.12.Mixed_Conditionals",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -1049,34 +1049,34 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "If you",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "had drunk" ]
+      "text" : null,
+      "options" : [ "had qualified" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(drink) water, you",
+      "text" : "(qualify) as a doctor, you",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "wouldn't be" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / be) dehydrated.",
+      "text" : "(not / be) unemployed now.",
       "options" : null
     } ],
-    "sentences" : [ "If you had drunk water, you wouldn't be dehydrated." ]
+    "sentences" : [ "If you had qualified as a doctor, you wouldn't be unemployed now." ]
   }
 }, {
   "_id" : {

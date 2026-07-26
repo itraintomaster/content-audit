@@ -521,7 +521,7 @@
   },
   "title" : "Preguntas: verbos regulares",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "¿Te envié un mensaje de texto anoche?",
+  "translation" : "¿Te llamé anoche?",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -541,26 +541,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Did I text" ]
+      "text" : null,
+      "options" : [ "Did I call" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(I / text) you last night?",
+      "text" : "(I / call) you last night?",
       "options" : null
     } ],
-    "sentences" : [ "Did I text you last night?" ]
+    "sentences" : [ "Did I call you last night?" ]
   }
 }, {
   "_id" : {
@@ -573,7 +569,7 @@
   },
   "title" : "Preguntas: verbos regulares",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "¿Pedimos suficiente pizza?",
+  "translation" : "¿Queríamos algo de pizza?",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -593,26 +589,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Did we order" ]
+      "text" : null,
+      "options" : [ "Did we want" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(we / order) enough pizza?",
+      "text" : "(we / want) some pizza?",
       "options" : null
     } ],
-    "sentences" : [ "Did we order enough pizza?" ]
+    "sentences" : [ "Did we want some pizza?" ]
   }
 }, {
   "_id" : {
@@ -729,7 +721,7 @@
   },
   "title" : "Preguntas: verbos regulares",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "¿Por qué lloró?",
+  "translation" : "¿Por qué preguntó?",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -749,26 +741,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "did he cry" ]
+      "text" : null,
+      "options" : [ "did he ask" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / cry)?",
+      "text" : "(he / ask)?",
       "options" : null
     } ],
-    "sentences" : [ "Why did he cry?" ]
+    "sentences" : [ "Why did he ask?" ]
   }
 }, {
   "_id" : {
@@ -781,7 +773,7 @@
   },
   "title" : "Preguntas: verbos regulares",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "¿Nevó?",
+  "translation" : "¿Funcionó?",
   "theoryId" : "a1.04.Past_Simple_Form_with_Regular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -801,26 +793,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Did it snow" ]
+      "text" : null,
+      "options" : [ "Did it work" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(it / snow)?",
+      "text" : "(it / work)?",
       "options" : null
     } ],
-    "sentences" : [ "Did it snow?" ]
+    "sentences" : [ "Did it work?" ]
   }
 }, {
   "_id" : {

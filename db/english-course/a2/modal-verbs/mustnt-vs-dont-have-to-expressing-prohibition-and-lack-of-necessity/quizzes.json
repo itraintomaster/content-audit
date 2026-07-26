@@ -425,7 +425,7 @@
   },
   "title" : "$Mustn$t$ o $don$t have to$",
   "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
-  "translation" : "No debes usar maquinaria si estás cansado.",
+  "translation" : "No debes usar tijeras si estás cansado.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -461,10 +461,10 @@
       "options" : [ "mustn't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "use machinery if you are tired.",
+      "text" : "use scissors if you are tired.",
       "options" : null
     } ],
-    "sentences" : [ "You mustn't use machinery if you are tired." ]
+    "sentences" : [ "You mustn't use scissors if you are tired." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "$Mustn$t$ o $don$t have to$",
   "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
-  "translation" : "Ella ya no tiene que pagar el alquiler. Es dueña de la casa.",
+  "translation" : "Ella no tiene que pagar alquiler. Vive en su casa.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "doesn't have to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "pay rent any more. She owns the house.",
+      "text" : "pay rent. She lives in her house.",
       "options" : null
     } ],
-    "sentences" : [ "She doesn't have to pay rent any more. She owns the house." ]
+    "sentences" : [ "She doesn't have to pay rent. She lives in her house." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "$Mustn$t$ o $don$t have to$",
   "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
-  "translation" : "No tenemos que reservar entradas con antelación para el museo.",
+  "translation" : "No tenemos que reservar entradas temprano para el museo.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "don't have to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "book tickets in advance for the museum.",
+      "text" : "book tickets early for the museum.",
       "options" : null
     } ],
-    "sentences" : [ "We don't have to book tickets in advance for the museum." ]
+    "sentences" : [ "We don't have to book tickets early for the museum." ]
   }
 }, {
   "_id" : {
@@ -945,7 +945,7 @@
   },
   "title" : "$Mustn$t$ o $don$t have to$",
   "instructions" : "Elige $mustn't$ o $don't / doesn't have to$.",
-  "translation" : "Los huéspedes no deben dejar sus maletas desatendidas.",
+  "translation" : "Los huéspedes no deben dejar sus maletas en el pasillo.",
   "theoryId" : "a2.10.Mustnt_and_Dont_Have_to",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -981,10 +981,10 @@
       "options" : [ "mustn't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "leave their suitcases unattended.",
+      "text" : "leave their suitcases in the hall.",
       "options" : null
     } ],
-    "sentences" : [ "The guests mustn't leave their suitcases unattended." ]
+    "sentences" : [ "The guests mustn't leave their suitcases in the hall." ]
   }
 }, {
   "_id" : {

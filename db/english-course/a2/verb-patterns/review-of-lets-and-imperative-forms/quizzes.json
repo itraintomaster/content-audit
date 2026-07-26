@@ -61,7 +61,7 @@
   },
   "title" : "Propuestas y consejos",
   "instructions" : "Transforma las oraciones para que usen $let's$ o el imperativo.",
-  "translation" : "No grites tan fuerte.",
+  "translation" : "No grites tanto.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -81,26 +81,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You shouldn't shout so loud.",
+      "text" : "You shouldn't shout so much.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Don't shout so loud." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Don't shout so much." ]
     } ],
-    "sentences" : [ "Don't shout so loud." ]
+    "sentences" : [ "Don't shout so much." ]
   }
 }, {
   "_id" : {
@@ -113,7 +109,7 @@
   },
   "title" : "Propuestas y consejos",
   "instructions" : "Transforma las oraciones para que usen $let's$ o el imperativo.",
-  "translation" : "No tomemos Coca-Cola esta noche.",
+  "translation" : "No tomemos cola esta noche.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -133,26 +129,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "How about not drinking coke tonight?",
+      "text" : "How about not drinking cola tonight?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Let's not drink coke tonight." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Let's not drink cola tonight." ]
     } ],
-    "sentences" : [ "Let's not drink coke tonight." ]
+    "sentences" : [ "Let's not drink cola tonight." ]
   }
 }, {
   "_id" : {
@@ -893,7 +885,7 @@
   },
   "title" : "Propuestas y consejos",
   "instructions" : "Transforma las oraciones para que usen $let's$ o el imperativo.",
-  "translation" : "No hagas clic en ese ícono todo el tiempo.",
+  "translation" : "No abras ese armario.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -921,14 +913,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You shouldn't click that icon all the time.",
+      "text" : "You shouldn't open that cupboard.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "Don't click that icon all the time." ]
+      "options" : [ "Don't open that cupboard." ]
     } ],
-    "sentences" : [ "Don't click that icon all the time." ]
+    "sentences" : [ "Don't open that cupboard." ]
   }
 }, {
   "_id" : {

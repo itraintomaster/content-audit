@@ -621,7 +621,7 @@
   },
   "title" : "Señalar objetos",
   "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
-  "translation" : "Esas galletas están sabrosas.",
+  "translation" : "Esas galletas son dulces.",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -641,26 +641,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Those" ]
     }, {
       "kind" : "TEXT",
-      "text" : "biscuits are tasty. (the biscuits are not beside me.)",
+      "text" : "biscuits are sweet. (the biscuits are not beside me.)",
       "options" : null
     } ],
-    "sentences" : [ "Those biscuits are tasty." ]
+    "sentences" : [ "Those biscuits are sweet." ]
   }
 }, {
   "_id" : {
@@ -845,26 +841,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Those" ]
     }, {
       "kind" : "TEXT",
-      "text" : "shoes really suit you.",
+      "text" : "shoes really look good on you.",
       "options" : null
     } ],
-    "sentences" : [ "Those shoes really suit you." ]
+    "sentences" : [ "Those shoes really look good on you." ]
   }
 }, {
   "_id" : {
@@ -981,7 +973,7 @@
   },
   "title" : "Señalar objetos",
   "instructions" : "Completa los espacios en blanco con $this$, $that$, $these$ o $those$.",
-  "translation" : "¿Me puedes pasar eso?",
+  "translation" : "¿Me puedes dar eso?",
   "theoryId" : "a1.07.This_That_These_Those",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -1001,25 +993,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Can you pass me",
+      "text" : "Can you give me",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "that" ]
     }, {
       "kind" : "TEXT",
       "text" : "? (I mean one thing near to the other person.)",
       "options" : null
     } ],
-    "sentences" : [ "Can you pass me that?" ]
+    "sentences" : [ "Can you give me that?" ]
   }
 } ]

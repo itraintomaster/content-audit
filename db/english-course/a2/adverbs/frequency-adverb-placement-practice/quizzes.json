@@ -477,7 +477,7 @@
   },
   "title" : "Frecuencia",
   "instructions" : "Si es posible, colocá el adverbio en el medio de la oración. Si no es posible, colocalo al final.",
-  "translation" : "Ella nunca está aburrida.",
+  "translation" : "Ella nunca tiene razón.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -497,26 +497,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She is bored. (never)",
+      "text" : "She is right. (never)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She is never bored." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She is never right." ]
     } ],
-    "sentences" : [ "She is never bored." ]
+    "sentences" : [ "She is never right." ]
   }
 }, {
   "_id" : {

@@ -9,7 +9,7 @@
   },
   "title" : "Forma plural",
   "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde $correct$ o $not correct$.",
-  "translation" : "¿Estos son tus auriculares? Correcto.",
+  "translation" : "¿Estos son tus auriculares en el escritorio junto a tu portátil? Correcto.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Are these your headphones?",
+      "text" : "Are these your headphones on the desk beside your laptop?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "correct" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "Are these your headphones? correct" ]
+    "sentences" : [ "Are these your headphones on the desk beside your laptop? correct" ]
   }
 }, {
   "_id" : {
@@ -269,7 +265,7 @@
   },
   "title" : "Forma plural",
   "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde $correct$ o $not correct$.",
-  "translation" : "¿Te gustaría este pijama? Incorrecto.",
+  "translation" : "¿Te gustaría este pijama para tu viaje largo? Incorrecto.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -289,26 +285,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Would you like this pajamas?",
+      "text" : "Would you like this pajamas for your long trip?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "not correct" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "Would you like this pajamas? not correct" ]
+    "sentences" : [ "Would you like this pajamas for your long trip? not correct" ]
   }
 }, {
   "_id" : {
@@ -321,7 +313,7 @@
   },
   "title" : "Forma plural",
   "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde $correct$ o $not correct$.",
-  "translation" : "¿De quién son estos binoculares? Correcto.",
+  "translation" : "¿De quién son estos binoculares en el estuche negro? Correcto.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -341,26 +333,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Whose are these binoculars?",
+      "text" : "Whose are these binoculars in the black case?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "correct" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "Whose are these binoculars? correct" ]
+    "sentences" : [ "Whose are these binoculars in the black case? correct" ]
   }
 }, {
   "_id" : {
@@ -425,7 +413,7 @@
   },
   "title" : "Forma plural",
   "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde $correct$ o $not correct$.",
-  "translation" : "El niño pequeño usaba un overol. Incorrecto.",
+  "translation" : "El fumador llevaba un overol a la fiesta. Incorrecto.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -445,26 +433,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The toddler wore a dungarees.",
+      "text" : "The smoker wore a dungarees to the party.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "not correct" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "The toddler wore a dungarees. not correct" ]
+    "sentences" : [ "The smoker wore a dungarees to the party. not correct" ]
   }
 }, {
   "_id" : {
@@ -527,7 +511,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d42f"
   },
-  "title" : "The man had a trousers and a jacket on. not correct",
+  "title" : "Forma plural",
   "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde $correct$ o $not correct$.",
   "translation" : "El hombre tenía puestos unos pantalones y una chaqueta. Incorrecto.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
@@ -577,7 +561,7 @@
   },
   "title" : "Forma plural",
   "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde $correct$ o $not correct$.",
-  "translation" : "Las pinzas están en el botiquín. Correcto.",
+  "translation" : "Las pinzas están en el pequeño kit de emergencias. Correcto.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -597,26 +581,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The tweezers are in the first-aid kit.",
+      "text" : "The tweezers are in the small disaster kit.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "correct" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "The tweezers are in the first-aid kit. correct" ]
+    "sentences" : [ "The tweezers are in the small disaster kit. correct" ]
   }
 }, {
   "_id" : {
@@ -733,7 +713,7 @@
   },
   "title" : "Forma plural",
   "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde $correct$ o $not correct$.",
-  "translation" : "Necesito un nuevo par de overoles. Correcto.",
+  "translation" : "Necesito un nuevo par de overoles para la clase. Correcto.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -753,26 +733,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I need a new pair of dungarees.",
+      "text" : "I need a new pair of dungarees for the class.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "correct" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "I need a new pair of dungarees. correct" ]
+    "sentences" : [ "I need a new pair of dungarees for the class. correct" ]
   }
 }, {
   "_id" : {
@@ -835,7 +811,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d42f"
   },
-  "title" : "The company built a new headquarter in the city. not correct",
+  "title" : "Forma plural",
   "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde $correct$ o $not correct$.",
   "translation" : "La empresa construyó una nueva sede en la ciudad. Incorrecto.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
@@ -937,7 +913,7 @@
   },
   "title" : "Forma plural",
   "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde $correct$ o $not correct$.",
-  "translation" : "Dame esas tenazas, por favor. Incorrecto.",
+  "translation" : "Dame esas tenazas del cajón de la cocina, por favor. Incorrecto.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -957,26 +933,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Give me that tongs, please.",
+      "text" : "Give me that tongs from the kitchen drawer, please.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "not correct" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "Give me that tongs, please. not correct" ]
+    "sentences" : [ "Give me that tongs from the kitchen drawer, please. not correct" ]
   }
 }, {
   "_id" : {
@@ -989,7 +961,7 @@
   },
   "title" : "Forma plural",
   "instructions" : "Determina si cada oración es gramaticalmente correcta con respecto a los sustantivos en plural. Responde $correct$ o $not correct$.",
-  "translation" : "Esos son unos pantalones maravillosos. Correcto.",
+  "translation" : "Esos son unos pantalones maravillosos para los actores en el nuevo local. Correcto.",
   "theoryId" : "b2.06.The_or_No_Article_for_Specific_and_General_-_Difficult_Cases",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -1009,25 +981,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Those are wonderful breeches.",
+      "text" : "Those are wonderful breeches for the actors at the new venue.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "correct" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "Those are wonderful breeches. correct" ]
+    "sentences" : [ "Those are wonderful breeches for the actors at the new venue. correct" ]
   }
 } ]

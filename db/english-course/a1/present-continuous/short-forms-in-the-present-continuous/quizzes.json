@@ -113,7 +113,7 @@
   },
   "title" : "Contracciones",
   "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
-  "translation" : "Él no está durmiendo ahora mismo.",
+  "translation" : "Él no está durmiendo ahora.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -133,26 +133,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He is not sleeping right now.",
+      "text" : "He is not sleeping now.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He isn't sleeping right now.|He's not sleeping right now." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He isn't sleeping now.|He's not sleeping now." ]
     } ],
-    "sentences" : [ "He isn't sleeping right now.", "He's not sleeping right now." ]
+    "sentences" : [ "He isn't sleeping now.", "He's not sleeping now." ]
   }
 }, {
   "_id" : {
@@ -217,7 +213,7 @@
   },
   "title" : "Contracciones",
   "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
-  "translation" : "No está nevando.",
+  "translation" : "No está funcionando.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -237,26 +233,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It is not snowing.",
+      "text" : "It is not working.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "It isn't snowing.|It's not snowing." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "It isn't working.|It's not working." ]
     } ],
-    "sentences" : [ "It isn't snowing.", "It's not snowing." ]
+    "sentences" : [ "It isn't working.", "It's not working." ]
   }
 }, {
   "_id" : {
@@ -529,7 +521,7 @@
   },
   "title" : "Contracciones",
   "instructions" : "Escribe la $short form$. Hay dos posibilidades para la forma negativa.",
-  "translation" : "Ellos están diciendo una mentira.",
+  "translation" : "Ellos están contando una historia.",
   "theoryId" : "a1.02.Present_Continuous_Short_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -549,26 +541,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They are telling a lie.",
+      "text" : "They are telling a story.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They're telling a lie." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "They're telling a story." ]
     } ],
-    "sentences" : [ "They're telling a lie." ]
+    "sentences" : [ "They're telling a story." ]
   }
 }, {
   "_id" : {

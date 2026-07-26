@@ -113,7 +113,7 @@
   },
   "title" : "Verbos frecuentes 1",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Nos invitaron a su fiesta de compromiso.",
+  "translation" : "Nos invitaron a su fiesta de patinaje.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They invited us",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "their engagement party.",
+      "text" : "their skate party.",
       "options" : null
     } ],
-    "sentences" : [ "They invited us to their engagement party." ]
+    "sentences" : [ "They invited us to their skate party." ]
   }
 }, {
   "_id" : {
@@ -217,7 +217,7 @@
   },
   "title" : "Verbos frecuentes 1",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Esta canción me recuerda a mi alma.",
+  "translation" : "Esta canción me hace pensar en mi alma.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -245,7 +245,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "This song reminds me",
+      "text" : "This song makes me think",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -256,7 +256,7 @@
       "text" : "my soul.",
       "options" : null
     } ],
-    "sentences" : [ "This song reminds me of my soul." ]
+    "sentences" : [ "This song makes me think of my soul." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Verbos frecuentes 1",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Ella siempre saluda a la gente.",
+  "translation" : "Ella siempre mira a la gente.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1025,7 +1025,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She always waves",
+      "text" : "She always looks",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -1036,6 +1036,6 @@
       "text" : "people.",
       "options" : null
     } ],
-    "sentences" : [ "She always waves at people." ]
+    "sentences" : [ "She always looks at people." ]
   }
 } ]

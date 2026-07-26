@@ -477,7 +477,7 @@
   },
   "title" : "Comparativo repetido",
   "instructions" : "Crea oraciones usando el tiempo presente continuo de $get$ combinado con un adjetivo comparativo repetido para mostrar énfasis en un cambio continuo.",
-  "translation" : "La obra de arte se está volviendo cada vez más colorida.",
+  "translation" : "El templo se está volviendo cada vez más colorido.",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The artwork",
+      "text" : "The temple",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is getting more and more colorful" ]
     }, {
       "kind" : "TEXT",
       "text" : "(colorful).",
       "options" : null
     } ],
-    "sentences" : [ "The artwork is getting more and more colorful." ]
+    "sentences" : [ "The temple is getting more and more colorful." ]
   }
 }, {
   "_id" : {
@@ -685,7 +685,7 @@
   },
   "title" : "Comparativo repetido",
   "instructions" : "Crea oraciones usando el tiempo presente continuo de $get$ combinado con un adjetivo comparativo repetido para mostrar énfasis en un cambio continuo.",
-  "translation" : "Las preguntas se vuelven cada vez más confusas.",
+  "translation" : "Las preguntas se vuelven cada vez más incómodas.",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The questions",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are getting more and more confusing" ]
+      "text" : null,
+      "options" : [ "are getting more and more uncomfortable" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(confusing).",
+      "text" : "(uncomfortable).",
       "options" : null
     } ],
-    "sentences" : [ "The questions are getting more and more confusing." ]
+    "sentences" : [ "The questions are getting more and more uncomfortable." ]
   }
 }, {
   "_id" : {
@@ -737,7 +737,7 @@
   },
   "title" : "Comparativo repetido",
   "instructions" : "Crea oraciones usando el tiempo presente continuo de $get$ combinado con un adjetivo comparativo repetido para mostrar énfasis en un cambio continuo.",
-  "translation" : "La cuerda se está poniendo cada vez más tensa ahora.",
+  "translation" : "La manga se está poniendo cada vez más ajustada ahora.",
   "theoryId" : "b1.15.Adjectives_That_Are_Only_Used_Predicatively",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -765,7 +765,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The rope",
+      "text" : "The sleeve",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -776,7 +776,7 @@
       "text" : "(tight) now.",
       "options" : null
     } ],
-    "sentences" : [ "The rope is getting tighter and tighter now." ]
+    "sentences" : [ "The sleeve is getting tighter and tighter now." ]
   }
 }, {
   "_id" : {

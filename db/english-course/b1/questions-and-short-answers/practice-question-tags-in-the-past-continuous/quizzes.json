@@ -685,7 +685,7 @@
   },
   "title" : "Pasado continuo",
   "instructions" : "Añade un $question tag$ a las oraciones.",
-  "translation" : "Los perros estaban ladrando en la calle, ¿verdad?",
+  "translation" : "Los perros estaban corriendo en la calle, ¿verdad?",
   "theoryId" : "b1.05.Question_Tags",
   "topicName" : "Questions and short answers",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The dogs were barking in the street,",
+      "text" : "The dogs were running in the street,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "weren't they" ]
     }, {
       "kind" : "TEXT",
       "text" : "?",
       "options" : null
     } ],
-    "sentences" : [ "The dogs were barking in the street, weren't they?" ]
+    "sentences" : [ "The dogs were running in the street, weren't they?" ]
   }
 }, {
   "_id" : {

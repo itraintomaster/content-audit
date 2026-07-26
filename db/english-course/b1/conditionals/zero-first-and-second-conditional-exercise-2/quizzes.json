@@ -89,19 +89,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Zero: They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "watch" ]
     }, {
       "kind" : "TEXT",
@@ -109,7 +109,7 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "are" ]
     }, {
       "kind" : "TEXT",
@@ -309,7 +309,7 @@
   },
   "title" : "Dos verbos por oración",
   "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si hace sol, tomamos zumo de naranja para el brunch.",
+  "translation" : "Si hace sol, hacemos zumo de naranja para el brunch.",
   "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -329,19 +329,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Zero: If it",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is" ]
     }, {
       "kind" : "TEXT",
@@ -349,14 +349,14 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "have" ]
+      "text" : null,
+      "options" : [ "make" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(have) orange juice for brunch.",
+      "text" : "(make) orange juice for brunch.",
       "options" : null
     } ],
-    "sentences" : [ "Zero: If it is sunny, we have orange juice for brunch." ]
+    "sentences" : [ "Zero: If it is sunny, we make orange juice for brunch." ]
   }
 }, {
   "_id" : {
@@ -609,7 +609,7 @@
   },
   "title" : "Dos verbos por oración",
   "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si ella no condujera tan despacio, no me sentiría tan impaciente.",
+  "translation" : "Si ella no condujera tan despacio, no me sentiría tan desafortunado.",
   "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -629,19 +629,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Second: If she",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "didn't drive" ]
     }, {
       "kind" : "TEXT",
@@ -649,14 +649,14 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "wouldn't feel" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / feel) so impatient.",
+      "text" : "(not / feel) so unlucky.",
       "options" : null
     } ],
-    "sentences" : [ "Second: If she didn't drive so slow, I wouldn't feel so impatient." ]
+    "sentences" : [ "Second: If she didn't drive so slow, I wouldn't feel so unlucky." ]
   }
 }, {
   "_id" : {

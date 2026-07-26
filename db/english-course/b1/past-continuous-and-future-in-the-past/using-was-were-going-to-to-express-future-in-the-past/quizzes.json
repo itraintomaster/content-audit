@@ -425,7 +425,7 @@
   },
   "title" : "Planes frustrados",
   "instructions" : "Crea oraciones utilizando $[was going to]$ o $[were going to]$.",
-  "translation" : "Los profesores iban a protestar esta mañana, pero el problema se resolvió.",
+  "translation" : "Los profesores iban a irse esta mañana, pero el problema se solucionó.",
   "theoryId" : "b1.03.Future_in_The_Past_with_Was_Were_Going_to_",
   "topicName" : "Past Continuous and Future in the Past",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The teachers",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "were going to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "protest this morning but the issue was resolved.",
+      "text" : "leave this morning but the issue was solved.",
       "options" : null
     } ],
-    "sentences" : [ "The teachers were going to protest this morning but the issue was resolved." ]
+    "sentences" : [ "The teachers were going to leave this morning but the issue was solved." ]
   }
 }, {
   "_id" : {

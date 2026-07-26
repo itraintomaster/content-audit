@@ -321,7 +321,7 @@
   },
   "title" : "Respuestas cortas: $be$/$do$",
   "instructions" : "Escribe la respuesta corta correcta. Utiliza las formas cortas cuando sea posible.",
-  "translation" : "No, no es así.\n",
+  "translation" : "¿Hago surf? No, no lo haces.",
   "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Do I exercise enough? B: No, you",
+      "text" : "Do I surf? No, you",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "don't" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Do I exercise enough? B: No, you don't." ]
+    "sentences" : [ "Do I surf? No, you don't." ]
   }
 }, {
   "_id" : {

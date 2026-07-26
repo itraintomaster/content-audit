@@ -893,7 +893,7 @@
   },
   "title" : "Certeza actual",
   "instructions" : "Crea oraciones usando $must$ o $can't$. Debes eliminar $I'm sure$.",
-  "translation" : "Las chicas deben estar aburridas.",
+  "translation" : "Las chicas deben estar aburridas después de la larga clase.",
   "theoryId" : "b2.09.Will_for_Present_Guesses_and_Will_and_Would_for_Habits_and_Tendencies",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -913,26 +913,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I'm sure the girls are bored.",
+      "text" : "I'm sure the girls are bored after the long lesson.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The girls must be bored." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The girls must be bored after the long lesson." ]
     } ],
-    "sentences" : [ "The girls must be bored." ]
+    "sentences" : [ "The girls must be bored after the long lesson." ]
   }
 }, {
   "_id" : {

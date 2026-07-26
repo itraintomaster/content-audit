@@ -165,7 +165,7 @@
   },
   "title" : "Verbos: mezcla",
   "instructions" : "Escribe las preposiciones correctas.",
-  "translation" : "¿Estás de acuerdo con él?",
+  "translation" : "¿Estás de acuerdo con él durante la breve discusión de hoy?",
   "theoryId" : "b2.15.Verbs_and_Different_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Do you concur",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
-      "text" : "him?",
+      "text" : "him during the brief discussion today?",
       "options" : null
     } ],
-    "sentences" : [ "Do you concur with him?" ]
+    "sentences" : [ "Do you concur with him during the brief discussion today?" ]
   }
 }, {
   "_id" : {
@@ -373,7 +373,7 @@
   },
   "title" : "Verbos: mezcla",
   "instructions" : "Escribe las preposiciones correctas.",
-  "translation" : "Apunto el dardo a la diana.",
+  "translation" : "Apuntó con cuidado el dardo a la diana durante el juego.",
   "theoryId" : "b2.15.Verbs_and_Different_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He aimed the dart",
+      "text" : "He carefully aimed the dart",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the bullseye.",
+      "text" : "the bullseye during the game.",
       "options" : null
     } ],
-    "sentences" : [ "He aimed the dart at the bullseye." ]
+    "sentences" : [ "He carefully aimed the dart at the bullseye during the game." ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "Verbos: mezcla",
   "instructions" : "Escribe las preposiciones correctas.",
-  "translation" : "Todos estuvieron de acuerdo con la hora de la reunión.",
+  "translation" : "Todos estuvieron de acuerdo con la hora de la reunión durante la breve discusión.",
   "theoryId" : "b2.15.Verbs_and_Different_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -497,25 +497,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Everyone concurred",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the meeting time.",
+      "text" : "the meeting time during the short discussion.",
       "options" : null
     } ],
-    "sentences" : [ "Everyone concurred about the meeting time." ]
+    "sentences" : [ "Everyone concurred about the meeting time during the short discussion." ]
   }
 } ]

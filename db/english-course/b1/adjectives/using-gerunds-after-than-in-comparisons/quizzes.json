@@ -165,7 +165,7 @@
   },
   "title" : "Gerundio tras $than$",
   "instructions" : "Completa con $comparative + than + gerund$.",
-  "translation" : "¡Cocinar es más emocionante que pedir comida para llevar!",
+  "translation" : "¡Cocinar comidas es más difícil que pedir comida para llevar!",
   "theoryId" : "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Cooking meals is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more exciting than ordering" ]
+      "text" : null,
+      "options" : [ "more challenging than ordering" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(exciting / order) takeout!",
+      "text" : "(challenging / order) takeout!",
       "options" : null
     } ],
-    "sentences" : [ "Cooking meals is more exciting than ordering takeout!" ]
+    "sentences" : [ "Cooking meals is more challenging than ordering takeout!" ]
   }
 }, {
   "_id" : {
@@ -269,7 +269,7 @@
   },
   "title" : "Gerundio tras $than$",
   "instructions" : "Completa con $comparative + than + gerund$.",
-  "translation" : "Estar en París es más emocionante que estar en un pueblo pequeño.",
+  "translation" : "Estar en París es más difícil que vivir en un pueblo pequeño.",
   "theoryId" : "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Being in Paris is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more thrilling than being" ]
+      "text" : null,
+      "options" : [ "harder than living" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(thrilling / be) in a small village.",
+      "text" : "(hard / live) in a small village.",
       "options" : null
     } ],
-    "sentences" : [ "Being in Paris is more thrilling than being in a small village." ]
+    "sentences" : [ "Being in Paris is harder than living in a small village." ]
   }
 }, {
   "_id" : {
@@ -321,7 +321,7 @@
   },
   "title" : "Gerundio tras $than$",
   "instructions" : "Completa con $comparative + than + gerund$.",
-  "translation" : "Un baño es más relajante que estar de pie bajo la ducha.",
+  "translation" : "Un baño es más relajante que usar la ducha.",
   "theoryId" : "b1.15.Comparatives_Ve_rb_+_ing_After_Than",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "A bath is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "more calming than standing" ]
+      "text" : null,
+      "options" : [ "more calming than using" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(calming / stand) under the shower.",
+      "text" : "(calming / use) the shower.",
       "options" : null
     } ],
-    "sentences" : [ "A bath is more calming than standing under the shower." ]
+    "sentences" : [ "A bath is more calming than using the shower." ]
   }
 }, {
   "_id" : {

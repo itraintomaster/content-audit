@@ -475,7 +475,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a3"
   },
-  "title" : "They need a bus now.",
+  "title" : "Verbos de estado",
   "instructions" : "Si es posible, escribe la oración en $present continuous$. Si no, usa el $present simple$. No uses contracciones ($short forms$).",
   "translation" : "Ellos necesitan un autobús ahora.",
   "theoryId" : "a1.02.Stative_Verbs",
@@ -633,7 +633,7 @@
   },
   "title" : "Verbos de estado",
   "instructions" : "Si es posible, escribe la oración en $present continuous$. Si no, usa el $present simple$. No uses contracciones ($short forms$).",
-  "translation" : "Él le cree al hombre.",
+  "translation" : "Él conoce al hombre.",
   "theoryId" : "a1.02.Stative_Verbs",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -666,13 +666,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "believes" ]
+      "options" : [ "knows" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(believe) the man.",
+      "text" : "(know) the man.",
       "options" : null
     } ],
-    "sentences" : [ "He believes the man." ]
+    "sentences" : [ "He knows the man." ]
   }
 }, {
   "_id" : {
@@ -735,7 +735,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a3"
   },
-  "title" : "She knows everyone today.",
+  "title" : "Verbos de estado",
   "instructions" : "Si es posible, escribe la oración en $present continuous$. Si no, usa el $present simple$. No uses contracciones ($short forms$).",
   "translation" : "Ella conoce a todos hoy.",
   "theoryId" : "a1.02.Stative_Verbs",
@@ -789,7 +789,7 @@
   },
   "title" : "Verbos de estado",
   "instructions" : "Si es posible, escribe la oración en $present continuous$. Si no, usa el $present simple$. No uses contracciones ($short forms$).",
-  "translation" : "Mary está soñando.",
+  "translation" : "Mary está yendo.",
   "theoryId" : "a1.02.Stative_Verbs",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Mary",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is dreaming" ]
+      "text" : null,
+      "options" : [ "is going" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(dream).",
+      "text" : "(go).",
       "options" : null
     } ],
-    "sentences" : [ "Mary is dreaming." ]
+    "sentences" : [ "Mary is going." ]
   }
 }, {
   "_id" : {
@@ -943,7 +943,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a3"
   },
-  "title" : "She has two cats.",
+  "title" : "Verbos de estado",
   "instructions" : "Si es posible, escribe la oración en $present continuous$. Si no, usa el $present simple$. No uses contracciones ($short forms$).",
   "translation" : "Ella tiene dos gatos.",
   "theoryId" : "a1.02.Stative_Verbs",
@@ -995,7 +995,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a3"
   },
-  "title" : "He is making juice.",
+  "title" : "Verbos de estado",
   "instructions" : "Si es posible, escribe la oración en $present continuous$. Si no, usa el $present simple$. No uses contracciones ($short forms$).",
   "translation" : "Él está haciendo jugo.",
   "theoryId" : "a1.02.Stative_Verbs",

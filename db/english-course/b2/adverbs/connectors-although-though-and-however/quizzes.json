@@ -893,7 +893,7 @@
   },
   "title" : "Contraste",
   "instructions" : "Agrega $though$ o $however$ a la oración.",
-  "translation" : "Aunque ordenamos nuestro jardín, todavía se veía descuidado.",
+  "translation" : "Aunque ordenamos bien nuestro jardín, todavía se veía descuidado.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -913,26 +913,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Though" ]
     }, {
       "kind" : "TEXT",
-      "text" : "we tidied our garden, it still looked overgrown.",
+      "text" : "we tidied our garden nicely, it still looked overgrown.",
       "options" : null
     } ],
-    "sentences" : [ "Though we tidied our garden, it still looked overgrown." ]
+    "sentences" : [ "Though we tidied our garden nicely, it still looked overgrown." ]
   }
 }, {
   "_id" : {

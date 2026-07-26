@@ -113,7 +113,7 @@
   },
   "title" : "Irregulares iniciales",
   "instructions" : "Escribe la forma en $past simple$.",
-  "translation" : "Ella cantó una canción de cuna.",
+  "translation" : "Ella le cantó una canción de cuna a su bebé.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "sang" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(sing) a lullaby.",
+      "text" : "(sing) a lullaby to her baby.",
       "options" : null
     } ],
-    "sentences" : [ "She sang a lullaby." ]
+    "sentences" : [ "She sang a lullaby to her baby." ]
   }
 }, {
   "_id" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "set" ]
+      "text" : null,
+      "options" : [ "went" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(set) out late.",
+      "text" : "(go) out late.",
       "options" : null
     } ],
-    "sentences" : [ "They set out late." ]
+    "sentences" : [ "They went out late." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "Irregulares iniciales",
   "instructions" : "Escribe la forma en $past simple$.",
-  "translation" : "Él gastó un poco de dinero patinando.",
+  "translation" : "Él gastó un poco de dinero en bádminton.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -617,10 +617,10 @@
       "options" : [ "spent" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(spend) a little money skating.",
+      "text" : "(spend) a little money on badminton.",
       "options" : null
     } ],
-    "sentences" : [ "He spent a little money skating." ]
+    "sentences" : [ "He spent a little money on badminton." ]
   }
 }, {
   "_id" : {
@@ -841,7 +841,7 @@
   },
   "title" : "Irregulares iniciales",
   "instructions" : "Escribe la forma en $past simple$.",
-  "translation" : "El bebé durmió profundamente.",
+  "translation" : "El bebé durmió profundamente anoche.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The baby",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "slept" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(sleep) soundly.",
+      "text" : "(sleep) soundly last night.",
       "options" : null
     } ],
-    "sentences" : [ "The baby slept soundly." ]
+    "sentences" : [ "The baby slept soundly last night." ]
   }
 }, {
   "_id" : {

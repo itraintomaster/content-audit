@@ -217,7 +217,7 @@
   },
   "title" : "Negativas con $be$",
   "instructions" : "Escribe una oración negativa usando el verbo $be$. No uses contracciones (short forms).",
-  "translation" : "Ellos no han llegado temprano.",
+  "translation" : "Ellos no son delgados.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "are not" ]
     }, {
       "kind" : "TEXT",
-      "text" : "early.",
+      "text" : "slim.",
       "options" : null
     } ],
-    "sentences" : [ "They are not early." ]
+    "sentences" : [ "They are not slim." ]
   }
 }, {
   "_id" : {
@@ -789,7 +789,7 @@
   },
   "title" : "Negativas con $be$",
   "instructions" : "Escribe una oración negativa usando el verbo $be$. No uses contracciones (short forms).",
-  "translation" : "Ellos no son británicos.",
+  "translation" : "Ellos no son blancos.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "are not" ]
     }, {
       "kind" : "TEXT",
-      "text" : "British.",
+      "text" : "white.",
       "options" : null
     } ],
-    "sentences" : [ "They are not British." ]
+    "sentences" : [ "They are not white." ]
   }
 }, {
   "_id" : {

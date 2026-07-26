@@ -1089,7 +1089,7 @@
   },
   "title" : "Tres tipos mezclados",
   "instructions" : "Escribe la forma verbal correcta, según el tipo de condicional.",
-  "translation" : "Si nieva, las carreteras se vuelven resbaladizas.",
+  "translation" : "Si nieva, las carreteras se vuelven peligrosas.",
   "theoryId" : "b1.14.Second_Conditionals_Future_Unreal_Conditionals_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -1109,19 +1109,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Zero: If it",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "snows" ]
     }, {
       "kind" : "TEXT",
@@ -1129,14 +1129,14 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "become" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) slippery.",
+      "text" : "(be) dangerous.",
       "options" : null
     } ],
-    "sentences" : [ "Zero: If it snows, the roads become slippery." ]
+    "sentences" : [ "Zero: If it snows , the roads become dangerous." ]
   }
 }, {
   "_id" : {

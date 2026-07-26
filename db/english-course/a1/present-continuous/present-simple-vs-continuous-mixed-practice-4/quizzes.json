@@ -165,7 +165,7 @@
   },
   "title" : "Mixto: 4",
   "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$.",
-  "translation" : "Él le está sosteniendo el brazo.",
+  "translation" : "Él le está tomando el brazo.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -198,13 +198,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "is holding" ]
+      "options" : [ "is taking" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / hold) her arm.",
+      "text" : "(he / take) her arm.",
       "options" : null
     } ],
-    "sentences" : [ "He is holding her arm." ]
+    "sentences" : [ "He is taking her arm." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "Mixto: 4",
   "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$.",
-  "translation" : "Está nevando.",
+  "translation" : "Está funcionando.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is snowing|'s snowing" ]
+      "text" : null,
+      "options" : [ "is working|'s working" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(snow). (present continuous)",
+      "text" : "(work). (present continuous)",
       "options" : null
     } ],
-    "sentences" : [ "It is snowing.", "It's snowing." ]
+    "sentences" : [ "It is working.", "It 's working." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "Mixto: 4",
   "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$.",
-  "translation" : "¿Nieva a menudo?",
+  "translation" : "¿Viene a menudo?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -653,26 +653,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Does it snow" ]
+      "text" : null,
+      "options" : [ "Does it come" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(it / snow) often? (present simple)",
+      "text" : "(it / come) often? (present simple)",
       "options" : null
     } ],
-    "sentences" : [ "Does it snow often?" ]
+    "sentences" : [ "Does it come often?" ]
   }
 }, {
   "_id" : {
@@ -685,7 +681,7 @@
   },
   "title" : "Mixto: 4",
   "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$.",
-  "translation" : "Como pasta todos los días.",
+  "translation" : "Como pan todos los días.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -721,10 +717,10 @@
       "options" : [ "eat" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(eat) pasta every day. (present simple)",
+      "text" : "(eat) bread every day. (present simple)",
       "options" : null
     } ],
-    "sentences" : [ "I eat pasta every day." ]
+    "sentences" : [ "I eat bread every day." ]
   }
 }, {
   "_id" : {
@@ -995,7 +991,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a2"
   },
-  "title" : "Are we ready?",
+  "title" : "Mixto: 4",
   "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$.",
   "translation" : "¿Estamos listos?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",

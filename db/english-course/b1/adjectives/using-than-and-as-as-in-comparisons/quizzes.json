@@ -113,7 +113,7 @@
   },
   "title" : "Grados de diferencia",
   "instructions" : "Crea oraciones comparativas usando $than$ o $as...as$. Considera usar modificadores como $a bit$, $a little$, $a lot$ o $much$ cuando sea apropiado.",
-  "translation" : "Ella es un poco más extrovertida que su hermana.",
+  "translation" : "Ella es un poco más poderosa que su hermana.",
   "theoryId" : "b1.15.Comparatives_Using_a_Clause_After_Than",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She's",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a bit more outgoing than" ]
+      "text" : null,
+      "options" : [ "a bit more powerful than" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(a bit / outgoing / than) her sister.",
+      "text" : "(a bit / powerful / than) her sister.",
       "options" : null
     } ],
-    "sentences" : [ "She's a bit more outgoing than her sister." ]
+    "sentences" : [ "She's a bit more powerful than her sister." ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "Grados de diferencia",
   "instructions" : "Crea oraciones comparativas usando $than$ o $as...as$. Considera usar modificadores como $a bit$, $a little$, $a lot$ o $much$ cuando sea apropiado.",
-  "translation" : "El perro es tan esponjoso como una nube.",
+  "translation" : "Este parque es tan natural como un bosque salvaje.",
   "theoryId" : "b1.15.Comparatives_Using_a_Clause_After_Than",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The dog is",
+      "text" : "This park is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "as fluffy as" ]
+      "text" : null,
+      "options" : [ "as natural as" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(fluffy / as) a cloud.",
+      "text" : "(natural / as) a wild forest.",
       "options" : null
     } ],
-    "sentences" : [ "The dog is as fluffy as a cloud." ]
+    "sentences" : [ "This park is as natural as a wild forest." ]
   }
 }, {
   "_id" : {

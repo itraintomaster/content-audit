@@ -217,7 +217,7 @@
   },
   "title" : "Adjetivos 3",
   "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
-  "translation" : "Ella le tiene un poco de miedo a las arañas.",
+  "translation" : "Ella le tiene un poco de miedo a los dolores de muelas.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She is a bit scared",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "spiders.",
+      "text" : "toothaches.",
       "options" : null
     } ],
-    "sentences" : [ "She is a bit scared of spiders." ]
+    "sentences" : [ "She is a bit scared of toothaches." ]
   }
 }, {
   "_id" : {
@@ -373,7 +373,7 @@
   },
   "title" : "Adjetivos 3",
   "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
-  "translation" : "Su opinión es opuesta a la mía.",
+  "translation" : "Su respuesta es opuesta a la mía.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -401,7 +401,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Her opinion is opposite",
+      "text" : "Her answer is opposite",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -412,7 +412,7 @@
       "text" : "mine.",
       "options" : null
     } ],
-    "sentences" : [ "Her opinion is opposite to mine." ]
+    "sentences" : [ "Her answer is opposite to mine." ]
   }
 }, {
   "_id" : {
@@ -737,7 +737,7 @@
   },
   "title" : "Adjetivos 3",
   "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
-  "translation" : "¿Estás emocionado por tu cumpleaños?",
+  "translation" : "¿Estás feliz por tu cumpleaños?",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Are you thrilled",
+      "text" : "Are you happy",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
       "text" : "your birthday?",
       "options" : null
     } ],
-    "sentences" : [ "Are you thrilled about your birthday?" ]
+    "sentences" : [ "Are you happy about your birthday?" ]
   }
 }, {
   "_id" : {
@@ -841,7 +841,7 @@
   },
   "title" : "Adjetivos 3",
   "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
-  "translation" : "¡Estábamos entusiasmados con el resultado!",
+  "translation" : "¡Estábamos entusiasmados con el partido!",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -877,10 +877,10 @@
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the result!",
+      "text" : "the game!",
       "options" : null
     } ],
-    "sentences" : [ "We were excited about the result!" ]
+    "sentences" : [ "We were excited about the game!" ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Adjetivos 3",
   "instructions" : "Coloca la preposición correcta (at / for / in / to / about / of).",
-  "translation" : "¡Esta fruta es rica en vitaminas!",
+  "translation" : "¡Esta fruta es rica en azúcar!",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1033,9 +1033,9 @@
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
-      "text" : "vitamins!",
+      "text" : "sugar!",
       "options" : null
     } ],
-    "sentences" : [ "This fruit is rich in vitamins!" ]
+    "sentences" : [ "This fruit is rich in sugar!" ]
   }
 } ]

@@ -269,7 +269,7 @@
   },
   "title" : "$For$,$since$,$during$,$while$",
   "instructions" : "Completar con $for$, $since$, $during$ o $while$.",
-  "translation" : "Dormí una siesta de treinta minutos.",
+  "translation" : "Toqué la guitarra durante treinta minutos.",
   "theoryId" : "",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I napped",
+      "text" : "I played the guitar",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
       "text" : "thirty minutes.",
       "options" : null
     } ],
-    "sentences" : [ "I napped for thirty minutes." ]
+    "sentences" : [ "I played the guitar for thirty minutes." ]
   }
 }, {
   "_id" : {

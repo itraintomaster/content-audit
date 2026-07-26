@@ -9,7 +9,7 @@
   },
   "title" : "Preguntas con $will$",
   "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ($wh$ questions) utilizando $will$.",
-  "translation" : "¿Completarás el trabajo?",
+  "translation" : "¿Harás el trabajo?",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -38,13 +38,13 @@
     "sentenceParts" : [ {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "Will you complete" ]
+      "options" : [ "Will you do" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / complete) the work?",
+      "text" : "(you / do) the work?",
       "options" : null
     } ],
-    "sentences" : [ "Will you complete the work?" ]
+    "sentences" : [ "Will you do the work?" ]
   }
 }, {
   "_id" : {
@@ -521,7 +521,7 @@
   },
   "title" : "Preguntas con $will$",
   "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ($wh$ questions) utilizando $will$.",
-  "translation" : "¿Se unirá a nosotros mañana?",
+  "translation" : "¿Nos verá mañana?",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -541,26 +541,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Will he join" ]
+      "text" : null,
+      "options" : [ "Will he see" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / join) us tomorrow?",
+      "text" : "(he / see) us tomorrow?",
       "options" : null
     } ],
-    "sentences" : [ "Will he join us tomorrow?" ]
+    "sentences" : [ "Will he see us tomorrow?" ]
   }
 }, {
   "_id" : {
@@ -833,7 +829,7 @@
   },
   "title" : "Preguntas con $will$",
   "instructions" : "Formula preguntas cerradas (yes/no) y preguntas abiertas ($wh$ questions) utilizando $will$.",
-  "translation" : "¿Nevará pronto?",
+  "translation" : "¿Irá pronto?",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -853,26 +849,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Will it snow" ]
+      "text" : null,
+      "options" : [ "Will it go" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(it / snow) soon?",
+      "text" : "(it / go) soon?",
       "options" : null
     } ],
-    "sentences" : [ "Will it snow soon?" ]
+    "sentences" : [ "Will it go soon?" ]
   }
 }, {
   "_id" : {

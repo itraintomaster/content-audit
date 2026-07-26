@@ -1049,19 +1049,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "If we",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "go" ]
     }, {
       "kind" : "TEXT",
@@ -1069,14 +1069,14 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "must take" ]
+      "text" : null,
+      "options" : [ "must bring" ]
     }, {
       "kind" : "TEXT",
-      "text" : "sunscreen. (go / must take)",
+      "text" : "sunscreen. (go / must bring)",
       "options" : null
     } ],
-    "sentences" : [ "If we go to the beach, we must take sunscreen." ]
+    "sentences" : [ "If we go to the beach, we must bring sunscreen." ]
   }
 }, {
   "_id" : {

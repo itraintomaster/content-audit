@@ -477,7 +477,7 @@
   },
   "title" : "Declaraciones",
   "instructions" : "Transforma a $reported speech$. Usa $that$ + $clause$ con $backshifting$.",
-  "translation" : "Él anticipó que Lisa llegaría.",
+  "translation" : "Él confesó que Lisa llegaría a la estación.",
   "theoryId" : "b2.08.Reporting_Verbs_with_that",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -497,26 +497,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "“Lisa will arrive” (he anticipated)",
+      "text" : "“Lisa will arrive at the station” (he confessed)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He anticipated that Lisa would arrive." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He confessed that Lisa would arrive at the station." ]
     } ],
-    "sentences" : [ "He anticipated that Lisa would arrive." ]
+    "sentences" : [ "“Lisa will arrive at the station” He confessed that Lisa would arrive at the station." ]
   }
 }, {
   "_id" : {

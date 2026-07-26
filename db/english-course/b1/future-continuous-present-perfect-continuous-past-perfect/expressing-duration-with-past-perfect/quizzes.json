@@ -61,7 +61,7 @@
   },
   "title" : "Marcadores de duración",
   "instructions" : "Responde las preguntas usando el $past perfect$. Debes agregar $since$ o $for$.",
-  "translation" : "Habíamos vivido en Londres durante dos años cuando nació mi hermano.",
+  "translation" : "Habíamos vivido en Londres durante dos años cuando mi hermano era pequeño.",
   "theoryId" : "b1.04.Past_Perfect_for_Time_Up_To_Then",
   "topicName" : "Future continuous / present perfect continuous / past perfect",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "had lived in London for two years" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(live / in London / two years) when my brother was born.",
+      "text" : "(live / in London / two years) when my brother was little.",
       "options" : null
     } ],
-    "sentences" : [ "We had lived in London for two years when my brother was born." ]
+    "sentences" : [ "We had lived in London for two years when my brother was little." ]
   }
 }, {
   "_id" : {

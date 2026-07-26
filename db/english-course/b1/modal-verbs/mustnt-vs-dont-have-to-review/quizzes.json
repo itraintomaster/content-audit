@@ -321,7 +321,7 @@
   },
   "title" : "Prohibido vs. no necesario",
   "instructions" : "Completa los espacios en blanco con $mustn't$ o $don't / doesn't have to$.",
-  "translation" : "¡No debo beber tantos refrescos! Realmente quiero estar más saludable.",
+  "translation" : "¡No debo beber tantos refrescos! Realmente quiero sentirme más saludable.",
   "theoryId" : "b1.11.Modals_for_Politeness",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "mustn't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "drink so many fizzy drinks! I really want to be healthier.",
+      "text" : "drink so many fizzy drinks! I really want to feel healthier.",
       "options" : null
     } ],
-    "sentences" : [ "I mustn't drink so many fizzy drinks! I really want to be healthier." ]
+    "sentences" : [ "I mustn't drink so many fizzy drinks! I really want to feel healthier." ]
   }
 }, {
   "_id" : {
@@ -373,7 +373,7 @@
   },
   "title" : "Prohibido vs. no necesario",
   "instructions" : "Completa los espacios en blanco con $mustn't$ o $don't / doesn't have to$.",
-  "translation" : "No tenemos que vestirnos formalmente. No importa lo que llevemos puesto.",
+  "translation" : "No tenemos que vestirnos perfectamente. No importa lo que llevemos puesto.",
   "theoryId" : "b1.11.Modals_for_Politeness",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "don't have to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "dress formally. It doesn't matter what we wear.",
+      "text" : "dress perfectly. It doesn't matter what we wear.",
       "options" : null
     } ],
-    "sentences" : [ "We don't have to dress formally. It doesn't matter what we wear." ]
+    "sentences" : [ "We don't have to dress perfectly. It doesn't matter what we wear." ]
   }
 }, {
   "_id" : {
@@ -877,10 +877,10 @@
       "options" : [ "mustn't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "eat coconuts. She's allergic to them.",
+      "text" : "have coconuts. She's allergic to them.",
       "options" : null
     } ],
-    "sentences" : [ "She mustn't eat coconuts. She's allergic to them." ]
+    "sentences" : [ "She mustn't have coconuts. She's allergic to them." ]
   }
 }, {
   "_id" : {

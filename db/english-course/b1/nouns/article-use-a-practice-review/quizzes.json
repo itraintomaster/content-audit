@@ -61,7 +61,7 @@
   },
   "title" : "Artículos: repaso",
   "instructions" : "Completa los espacios en blanco con $a$, $the$, o $-$ (sin artículo si no es necesario).",
-  "translation" : "Él bebió el jugo recién exprimido.",
+  "translation" : "Él bebió el jugo que estaba muy frío.",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He drank",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
-      "text" : "juice that was freshly squeezed.",
+      "text" : "juice that was very cold.",
       "options" : null
     } ],
-    "sentences" : [ "He drank the juice that was freshly squeezed." ]
+    "sentences" : [ "He drank the juice that was very cold." ]
   }
 }, {
   "_id" : {
@@ -685,7 +685,7 @@
   },
   "title" : "Artículos: repaso",
   "instructions" : "Completa los espacios en blanco con $a$, $the$, o $-$ (sin artículo si no es necesario).",
-  "translation" : "El pájaro con las plumas coloridas estaba en el árbol.",
+  "translation" : "El pájaro con las alas coloridas estaba en el árbol.",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -705,26 +705,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
-      "text" : "bird with the colorful feathers was on the tree.",
+      "text" : "bird with the colorful wings was on the tree.",
       "options" : null
     } ],
-    "sentences" : [ "The bird with the colorful feathers was on the tree." ]
+    "sentences" : [ "The bird with the colorful wings was on the tree." ]
   }
 }, {
   "_id" : {
@@ -893,7 +889,7 @@
   },
   "title" : "Artículos: repaso",
   "instructions" : "Completa los espacios en blanco con $a$, $the$, o $-$ (sin artículo si no es necesario).",
-  "translation" : "Ella compró las flores de la nueva florería.",
+  "translation" : "Ella compró las flores de la tienda nueva de su barrio.",
   "theoryId" : "b1.07.Nouns_That_Are_Always_Plural",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -913,26 +909,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She bought",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
-      "text" : "flowers from the new florist shop.",
+      "text" : "flowers from the new shop in her district.",
       "options" : null
     } ],
-    "sentences" : [ "She bought the flowers from the new florist shop." ]
+    "sentences" : [ "She bought the flowers from the new shop in her district." ]
   }
 }, {
   "_id" : {

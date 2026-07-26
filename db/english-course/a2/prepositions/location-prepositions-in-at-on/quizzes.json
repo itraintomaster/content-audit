@@ -737,7 +737,7 @@
   },
   "title" : "Situaciones cotidianas",
   "instructions" : "Escribe $in$, $at$ u $on$.",
-  "translation" : "Colgué el cuadro en la pared.",
+  "translation" : "Puse el cuadro en la pared.",
   "theoryId" : "",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I hung the painting",
+      "text" : "I put the painting",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
       "text" : "the wall.",
       "options" : null
     } ],
-    "sentences" : [ "I hung the painting on the wall." ]
+    "sentences" : [ "I put the painting on the wall." ]
   }
 }, {
   "_id" : {

@@ -737,7 +737,7 @@
   },
   "title" : "$Each other$: repaso",
   "instructions" : "Completa con $each other$ o $ourselves / yourselves / themselves$. Cuando escriba $you$, me refiero a más de una persona.",
-  "translation" : "Ustedes se alimentaban solos cuando eran pequeños.",
+  "translation" : "Ustedes se alimentaban solos todos los días cuando eran jóvenes.",
   "theoryId" : "b2.11.Reflexive_Pronouns_for_Emphasis",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You fed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "yourselves" ]
     }, {
       "kind" : "TEXT",
-      "text" : "when you were toddlers. (David fed David and Lizzie fed Lizzie.)",
+      "text" : "every day when you were young. (David fed David and Lizzie fed Lizzie.)",
       "options" : null
     } ],
-    "sentences" : [ "You fed yourselves when you were toddlers." ]
+    "sentences" : [ "You fed yourselves every day when you were young." ]
   }
 }, {
   "_id" : {

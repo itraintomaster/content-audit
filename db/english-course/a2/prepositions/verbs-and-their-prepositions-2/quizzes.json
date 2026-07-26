@@ -61,7 +61,7 @@
   },
   "title" : "Verbos frecuentes",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "¿Puedes perdonarme por mi error?",
+  "translation" : "¿Puedes odiarme por mi error?",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -89,7 +89,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Can you forgive me",
+      "text" : "Can you hate me",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -100,7 +100,7 @@
       "text" : "my mistake?",
       "options" : null
     } ],
-    "sentences" : [ "Can you forgive me for my mistake?" ]
+    "sentences" : [ "Can you hate me for my mistake?" ]
   }
 }, {
   "_id" : {
@@ -165,7 +165,7 @@
   },
   "title" : "Verbos frecuentes",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Él perdió demasiado tiempo en su coche.",
+  "translation" : "Él pasó demasiado tiempo en su tarea.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He wasted too much time",
+      "text" : "He spent too much time",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
-      "text" : "his car.",
+      "text" : "his homework.",
       "options" : null
     } ],
-    "sentences" : [ "He wasted too much time on his car." ]
+    "sentences" : [ "He spent too much time on his homework." ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "Verbos frecuentes",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Ella prefiere la música clásica a la música pop.",
+  "translation" : "Ella prefiere la música clásica a la música moderna.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She prefers classical music",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "pop music.",
+      "text" : "modern music.",
       "options" : null
     } ],
-    "sentences" : [ "She prefers classical music to pop music." ]
+    "sentences" : [ "She prefers classical music to modern music." ]
   }
 }, {
   "_id" : {
@@ -529,7 +529,7 @@
   },
   "title" : "Verbos frecuentes",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Nos quejamos al gerente por el impermeable malo.",
+  "translation" : "Hablamos con el gerente sobre el impermeable malo.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -557,7 +557,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We complained to the manager",
+      "text" : "We talked to the manager",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -568,7 +568,7 @@
       "text" : "the poor raincoat.",
       "options" : null
     } ],
-    "sentences" : [ "We complained to the manager about the poor raincoat." ]
+    "sentences" : [ "We talked to the manager about the poor raincoat." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "Verbos frecuentes",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Ellos miraron al lindo cachorro.",
+  "translation" : "Ellos miraron al lindo perro.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -617,10 +617,10 @@
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the cute puppy.",
+      "text" : "the cute dog.",
       "options" : null
     } ],
-    "sentences" : [ "They looked at the cute puppy." ]
+    "sentences" : [ "They looked at the cute dog." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "Verbos frecuentes",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Él cargó el auto con cajas.",
+  "translation" : "Él llenó el auto con cajas.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -661,7 +661,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He loaded the car",
+      "text" : "He filled the car",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -672,7 +672,7 @@
       "text" : "boxes.",
       "options" : null
     } ],
-    "sentences" : [ "He loaded the car with boxes." ]
+    "sentences" : [ "He filled the car with boxes." ]
   }
 }, {
   "_id" : {
@@ -685,7 +685,7 @@
   },
   "title" : "Verbos frecuentes",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Él sufrió de gripe.",
+  "translation" : "Él descargó desde Internet.",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He suffered",
+      "text" : "He downloaded",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "of" ]
+      "text" : null,
+      "options" : [ "from" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the flu.",
+      "text" : "the Internet.",
       "options" : null
     } ],
-    "sentences" : [ "He suffered of the flu." ]
+    "sentences" : [ "He downloaded from the Internet." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Verbos frecuentes",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "¿Podrías escribirle al fontanero sobre el grifo?",
+  "translation" : "¿Podrías escribirle al director de la escuela sobre la fotografía?",
   "theoryId" : "a2.09.Prepositions_After_Verbs",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Could you write to the plumber",
+      "text" : "Could you write to the headteacher",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the tap?",
+      "text" : "the photograph?",
       "options" : null
     } ],
-    "sentences" : [ "Could you write to the plumber about the tap?" ]
+    "sentences" : [ "Could you write to the headteacher about the photograph?" ]
   }
 } ]

@@ -529,7 +529,7 @@
   },
   "title" : "Futuro y obligación",
   "instructions" : "Transforma las oraciones para incluir la voz pasiva. No necesitas usar $by$.",
-  "translation" : "Los exámenes tienen que ser calificados.",
+  "translation" : "Los exámenes tienen que ser calificados en la escuela de idiomas.",
   "theoryId" : "b2.07.The_Get_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -549,26 +549,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Someone has to grade the exams.",
+      "text" : "Someone has to mark the exams at the language school.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The exams have to be graded." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The exams have to be marked at the language school." ]
     } ],
-    "sentences" : [ "The exams have to be graded." ]
+    "sentences" : [ "The exams have to be marked at the language school." ]
   }
 }, {
   "_id" : {
@@ -997,7 +993,7 @@
   },
   "title" : "Futuro y obligación",
   "instructions" : "Transforma las oraciones para incluir la voz pasiva. No necesitas usar $by$.",
-  "translation" : "El baño va a ser trapeado.",
+  "translation" : "Alguien va a trapear el piso del baño mañana por la mañana. → El piso del baño va a ser trapeado mañana por la mañana.",
   "theoryId" : "b2.07.The_Get_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -1017,25 +1013,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Someone is going to mop the bathroom.",
+      "text" : "Someone is going to mop the bathroom floor tomorrow morning.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The bathroom is going to be mopped." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The bathroom floor is going to be mopped tomorrow morning." ]
     } ],
-    "sentences" : [ "The bathroom is going to be mopped." ]
+    "sentences" : [ "The bathroom floor is going to be mopped tomorrow morning." ]
   }
 } ]

@@ -9,7 +9,7 @@
   },
   "title" : "Presente histórico",
   "instructions" : "Transforma las oraciones en pasado al $historic present$. Todas las oraciones hablan de algo en el pasado.",
-  "translation" : "Los vikingos saquean las costas y se llevan muchos tesoros.",
+  "translation" : "Los vikingos dañan las costas y se llevan muchos tesoros.",
   "theoryId" : "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The Vikings raided the coasts and took a lot of treasure.",
+      "text" : "The Vikings harmed the coasts and took a lot of treasure.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The Vikings raid the coasts and take a lot of treasure." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The Vikings harm the coasts and take a lot of treasure." ]
     } ],
-    "sentences" : [ "The Vikings raid the coasts and take a lot of treasure." ]
+    "sentences" : [ "The Vikings harm the coasts and take a lot of treasure." ]
   }
 }, {
   "_id" : {
@@ -685,7 +681,7 @@
   },
   "title" : "Presente histórico",
   "instructions" : "Transforma las oraciones en pasado al $historic present$. Todas las oraciones hablan de algo en el pasado.",
-  "translation" : "Llegan a la sala de conciertos y los músicos están ensayando.",
+  "translation" : "Llegan a la sala de conciertos y los músicos están tocando.",
   "theoryId" : "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
   "difficulty" : {
@@ -705,26 +701,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They got to the concert hall and the musicians were rehearsing.",
+      "text" : "They got to the concert hall and the musicians were playing.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They get to the concert hall and the musicians are rehearsing." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "They get to the concert hall and the musicians are playing." ]
     } ],
-    "sentences" : [ "They get to the concert hall and the musicians are rehearsing." ]
+    "sentences" : [ "They get to the concert hall and the musicians are playing." ]
   }
 }, {
   "_id" : {
@@ -787,9 +779,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3f6"
   },
-  "title" : "Frodo takes the ring and has a dangerous strategy.",
+  "title" : "Presente histórico",
   "instructions" : "Transforma las oraciones en pasado al $historic present$. Todas las oraciones hablan de algo en el pasado.",
-  "translation" : "Frodo toma el anillo y tiene una estrategia peligrosa.",
+  "translation" : "Frodo toma el anillo y tiene una suerte increíble en su viaje.",
   "theoryId" : "b2.01.The_Historic_Present_with_the_Present_Simple_and_Present_Continuous_",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
   "difficulty" : {
@@ -817,14 +809,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Frodo took the ring and had a dangerous strategy.",
+      "text" : "Frodo took the ring and had incredible luck on his journey.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "Frodo takes the ring and has a dangerous strategy." ]
+      "options" : [ "Frodo takes the ring and has incredible luck on his journey." ]
     } ],
-    "sentences" : [ "Frodo takes the ring and has a dangerous strategy." ]
+    "sentences" : [ "Frodo takes the ring and has incredible luck on his journey." ]
   }
 }, {
   "_id" : {

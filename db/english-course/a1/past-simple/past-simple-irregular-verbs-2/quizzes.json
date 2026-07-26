@@ -321,7 +321,7 @@
   },
   "title" : "Verbos irregulares 2",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Él ganó todo su dinero.",
+  "translation" : "Él recibió todo su dinero.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -354,13 +354,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "won" ]
+      "options" : [ "got" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(win) all his money.",
+      "text" : "(get) all his money.",
       "options" : null
     } ],
-    "sentences" : [ "He won all his money." ]
+    "sentences" : [ "He got all his money." ]
   }
 }, {
   "_id" : {
@@ -371,7 +371,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bd"
   },
-  "title" : "I felt that you knew.",
+  "title" : "Verbos irregulares 2",
   "instructions" : "Escribe oraciones en $past simple$.",
   "translation" : "Sentí que lo sabías.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
@@ -475,7 +475,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bd"
   },
-  "title" : "We had a party.",
+  "title" : "Verbos irregulares 2",
   "instructions" : "Escribe oraciones en $past simple$.",
   "translation" : "Tuvimos una fiesta.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
@@ -631,7 +631,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3bd"
   },
-  "title" : "She made a cake.",
+  "title" : "Verbos irregulares 2",
   "instructions" : "Escribe oraciones en $past simple$.",
   "translation" : "Ella hizo un pastel.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
@@ -685,7 +685,7 @@
   },
   "title" : "Verbos irregulares 2",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Nos cortamos el pelo corto.",
+  "translation" : "Teníamos el pelo corto.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "cut" ]
+      "text" : null,
+      "options" : [ "had" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(cut) our hair short.",
+      "text" : "(have) our hair short.",
       "options" : null
     } ],
-    "sentences" : [ "We cut our hair short." ]
+    "sentences" : [ "We had our hair short." ]
   }
 }, {
   "_id" : {
@@ -737,7 +737,7 @@
   },
   "title" : "Verbos irregulares 2",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Él mantuvo la puerta abierta.",
+  "translation" : "Él dejó la puerta abierta.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "held" ]
+      "text" : null,
+      "options" : [ "left" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(hold) the door open.",
+      "text" : "(leave) the door open.",
       "options" : null
     } ],
-    "sentences" : [ "He held the door open." ]
+    "sentences" : [ "He left the door open." ]
   }
 }, {
   "_id" : {
@@ -789,7 +789,7 @@
   },
   "title" : "Verbos irregulares 2",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Ella se convirtió en una cocinera famosa.",
+  "translation" : "Ella se convirtió en una profesora famosa.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -825,10 +825,10 @@
       "options" : [ "became" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(become) a famous cook.",
+      "text" : "(become) a famous teacher.",
       "options" : null
     } ],
-    "sentences" : [ "She became a famous cook." ]
+    "sentences" : [ "She became a famous teacher." ]
   }
 }, {
   "_id" : {
@@ -893,7 +893,7 @@
   },
   "title" : "Verbos irregulares 2",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Él perdió su vida.",
+  "translation" : "Él dio su vida.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -926,13 +926,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "lost" ]
+      "options" : [ "gave" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(lose) his life.",
+      "text" : "(give) his life.",
       "options" : null
     } ],
-    "sentences" : [ "He lost his life." ]
+    "sentences" : [ "He gave his life." ]
   }
 }, {
   "_id" : {
@@ -1153,7 +1153,7 @@
   },
   "title" : "Verbos irregulares 2",
   "instructions" : "Escribe oraciones en $past simple$.",
-  "translation" : "Lanzamos la pelota para el perro.",
+  "translation" : "Conseguimos la pelota para el perro.",
   "theoryId" : "a1.04.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -1173,26 +1173,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "threw" ]
+      "text" : null,
+      "options" : [ "got" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(throw) the ball for the dog.",
+      "text" : "(get) the ball for the dog.",
       "options" : null
     } ],
-    "sentences" : [ "We threw the ball for the dog." ]
+    "sentences" : [ "We got the ball for the dog." ]
   }
 }, {
   "_id" : {

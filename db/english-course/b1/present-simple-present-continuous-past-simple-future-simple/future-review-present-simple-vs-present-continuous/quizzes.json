@@ -217,7 +217,7 @@
   },
   "title" : "Futuro sin $will$",
   "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-  "translation" : "¿En qué te convertirás cuando califiques?",
+  "translation" : "¿Qué harás cuando termines la escuela?",
   "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -245,18 +245,18 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "What will you become when you",
+      "text" : "What will you do when you",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "qualify" ]
+      "options" : [ "finish" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(qualify)?",
+      "text" : "(finish) school?",
       "options" : null
     } ],
-    "sentences" : [ "What will you become when you qualify?" ]
+    "sentences" : [ "What will you do when you finish school?" ]
   }
 }, {
   "_id" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'m lodging|am lodging" ]
+      "text" : null,
+      "options" : [ "'m staying|am staying" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(lodge) in a hotel tonight.",
+      "text" : "(stay) in a hotel tonight.",
       "options" : null
     } ],
-    "sentences" : [ "I'm lodging in a hotel tonight.", "I am lodging in a hotel tonight." ]
+    "sentences" : [ "I 'm staying in a hotel tonight.", "I am staying in a hotel tonight." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "Futuro sin $will$",
   "instructions" : "Si es posible, utiliza el _present simple_. Si no, utiliza el _present continuous_.",
-  "translation" : "Lavaré la ropa tan pronto como Laura se despierte.",
+  "translation" : "Haré el lavado tan pronto como Laura se despierte.",
   "theoryId" : "b1.01.The_Present_Continuous_for_Habits_in_the_Present",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I'll do the laundry as soon as Laura",
+      "text" : "I'll do the washing as soon as Laura",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "wakes" ]
     }, {
       "kind" : "TEXT",
       "text" : "(wake) up.",
       "options" : null
     } ],
-    "sentences" : [ "I'll do the laundry as soon as Laura wakes up." ]
+    "sentences" : [ "I'll do the washing as soon as Laura wakes up." ]
   }
 }, {
   "_id" : {

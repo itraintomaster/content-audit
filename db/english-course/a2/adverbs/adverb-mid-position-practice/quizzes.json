@@ -409,7 +409,7 @@
   },
   "title" : "Posición media",
   "instructions" : "Colocá el adverbio en \"mid position\".",
-  "translation" : "Ella a veces va en bicicleta al trabajo.",
+  "translation" : "Ella a veces camina al trabajo.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -429,26 +429,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She cycles to work. (sometimes)",
+      "text" : "She walks to work. (sometimes)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She sometimes cycles to work." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She sometimes walks to work." ]
     } ],
-    "sentences" : [ "She sometimes cycles to work." ]
+    "sentences" : [ "She sometimes walks to work." ]
   }
 }, {
   "_id" : {
@@ -865,7 +861,7 @@
   },
   "title" : "Posición media",
   "instructions" : "Colocá el adverbio en \"mid position\".",
-  "translation" : "Él probablemente se está hundiendo.",
+  "translation" : "Él probablemente está acampando.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -893,14 +889,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He is sinking. (probably)",
+      "text" : "He is camping. (probably)",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "He is probably sinking." ]
+      "options" : [ "He is probably camping." ]
     } ],
-    "sentences" : [ "He is probably sinking." ]
+    "sentences" : [ "He is probably camping." ]
   }
 }, {
   "_id" : {

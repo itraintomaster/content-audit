@@ -269,7 +269,7 @@
   },
   "title" : "Cláusulas relativas",
   "instructions" : "Crea oraciones de relativo usando la voz pasiva y $by$. Si aparece $someone$, no uses $by$.",
-  "translation" : "Sarah eligió las manzanas que estaban guardadas en la despensa.",
+  "translation" : "El equipo reunió los recursos que estaban guardados en el sótano.",
   "theoryId" : "b2.07.The_Passive_with_by_in_a_Relative_Clause",
   "topicName" : "The passive",
   "difficulty" : {
@@ -289,26 +289,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Sarah chose the apples. Someone stored the apples in the pantry.",
+      "text" : "The team gathered the resources. Someone stored the resources in the basement.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Sarah chose the apples that were stored in the pantry." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The team gathered the resources that were stored in the basement." ]
     } ],
-    "sentences" : [ "Sarah chose the apples that were stored in the pantry." ]
+    "sentences" : [ "The team gathered the resources that were stored in the basement." ]
   }
 }, {
   "_id" : {
@@ -445,24 +441,20 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I wore a jacket. A tailor designed the jacket.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "I wore a jacket that was designed by a tailor." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
     "sentences" : [ "I wore a jacket that was designed by a tailor." ]
   }
@@ -705,24 +697,20 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He feeds stray cats. Someone abandoned the cats near the store.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "He feeds stray cats that were abandoned near the store." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
     "sentences" : [ "He feeds stray cats that were abandoned near the store." ]
   }

@@ -61,7 +61,7 @@
   },
   "title" : "$Who$ vs. $Whom$",
   "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
-  "translation" : "Ese es el artista con el que colabora Peter.",
+  "translation" : "Ese es el artista con el que trabaja Peter.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "That's the artist",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "whom" ]
     }, {
       "kind" : "TEXT",
-      "text" : "Peter collaborates with.",
+      "text" : "Peter works with.",
       "options" : null
     } ],
-    "sentences" : [ "That's the artist whom Peter collaborates with." ]
+    "sentences" : [ "That's the artist whom Peter works with." ]
   }
 }, {
   "_id" : {
@@ -217,7 +217,7 @@
   },
   "title" : "$Who$ vs. $Whom$",
   "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
-  "translation" : "¿Viste a las señoras a las que Martin contrata?",
+  "translation" : "¿Viste a las señoras a las que Martin lastima?",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -253,10 +253,10 @@
       "options" : [ "whom" ]
     }, {
       "kind" : "TEXT",
-      "text" : "Martin engages?",
+      "text" : "Martin injures?",
       "options" : null
     } ],
-    "sentences" : [ "Did you see the ladies whom Martin engages?" ]
+    "sentences" : [ "Did you see the ladies whom Martin injures?" ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "$Who$ vs. $Whom$",
   "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
-  "translation" : "Necesito reunirme con el técnico que arregló mi computadora antes.",
+  "translation" : "Necesito reunirme con el carnicero que cortó la carne antes.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I need to meet the technician",
+      "text" : "I need to meet the butcher",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "who" ]
     }, {
       "kind" : "TEXT",
-      "text" : "fixed my computer before.",
+      "text" : "cut the meat before.",
       "options" : null
     } ],
-    "sentences" : [ "I need to meet the technician who fixed my computer before." ]
+    "sentences" : [ "I need to meet the butcher who cut the meat before." ]
   }
 }, {
   "_id" : {
@@ -685,7 +685,7 @@
   },
   "title" : "$Who$ vs. $Whom$",
   "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
-  "translation" : "Contactamos al plomero que sugeriste.",
+  "translation" : "Contactamos al tonto que sugeriste ayer.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We contacted the plumber",
+      "text" : "We contacted the fool",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "whom" ]
     }, {
       "kind" : "TEXT",
-      "text" : "you suggested.",
+      "text" : "you suggested yesterday.",
       "options" : null
     } ],
-    "sentences" : [ "We contacted the plumber whom you suggested." ]
+    "sentences" : [ "We contacted the fool whom you suggested yesterday." ]
   }
 }, {
   "_id" : {
@@ -841,7 +841,7 @@
   },
   "title" : "$Who$ vs. $Whom$",
   "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
-  "translation" : "Visitamos al conductor al que supervisa Jenny.",
+  "translation" : "Visitamos al conductor al que Jenny ayuda.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We visited the driver",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "whom" ]
     }, {
       "kind" : "TEXT",
-      "text" : "Jenny supervises.",
+      "text" : "Jenny helps.",
       "options" : null
     } ],
-    "sentences" : [ "We visited the driver whom Jenny supervises." ]
+    "sentences" : [ "We visited the driver whom Jenny helps." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "$Who$ vs. $Whom$",
   "instructions" : "¿Necesitamos $who$ o $whom$ en la gramática tradicional?",
-  "translation" : "Quedaron en reunirse con el asesor al que también vemos.",
+  "translation" : "Quedaron en reunirse con el vendedor al que también vemos.",
   "theoryId" : "b1.12.Who_or_Whom_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They arranged to meet the advisor",
+      "text" : "They arranged to meet the seller",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "whom" ]
     }, {
       "kind" : "TEXT",
       "text" : "we also see.",
       "options" : null
     } ],
-    "sentences" : [ "They arranged to meet the advisor whom we also see." ]
+    "sentences" : [ "They arranged to meet the seller whom we also see." ]
   }
 } ]

@@ -61,7 +61,7 @@
   },
   "title" : "$Somewhere$ y $Nowhere$",
   "instructions" : "Escribe $somewhere$ o $nowhere$.",
-  "translation" : "Buscó sus llaves por todas partes. Revisó todos sus bolsos y bolsillos.",
+  "translation" : "Buscó sus llaves por todas partes.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She searched",
+      "text" : "She looked",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "everywhere" ]
     }, {
       "kind" : "TEXT",
-      "text" : "for her keys. She checked all her bags and pockets.",
+      "text" : "for her keys.",
       "options" : null
     } ],
-    "sentences" : [ "She searched everywhere for her keys. She checked all her bags and pockets." ]
+    "sentences" : [ "She looked everywhere for her keys." ]
   }
 }, {
   "_id" : {
@@ -317,7 +317,7 @@
   },
   "title" : "$Somewhere$ y $Nowhere$",
   "instructions" : "Escribe $somewhere$ o $nowhere$.",
-  "translation" : "Los animales no tenían dónde esconderse. La multitud los encontró.",
+  "translation" : "Los animales tenían algún lugar adonde ir. La multitud los encontró.",
   "theoryId" : "a2.08.Everything_Everywhere_Everybody_and_Nothing_Nobody_Nowhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -350,13 +350,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "nowhere" ]
+      "options" : [ "somewhere" ]
     }, {
       "kind" : "TEXT",
-      "text" : "to hide. The crowd found them.",
+      "text" : "to go. The crowd found them.",
       "options" : null
     } ],
-    "sentences" : [ "The animals had nowhere to hide. The crowd found them." ]
+    "sentences" : [ "The animals had somewhere to go. The crowd found them." ]
   }
 }, {
   "_id" : {

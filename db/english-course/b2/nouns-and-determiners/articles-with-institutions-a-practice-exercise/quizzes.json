@@ -113,7 +113,7 @@
   },
   "title" : "Instituciones",
   "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
-  "translation" : "Ellos residen cerca del teatro.",
+  "translation" : "Ellos residen cerca del teatro en la ciudad.",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They reside close to",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
-      "text" : "theatre.",
+      "text" : "theatre in the city.",
       "options" : null
     } ],
-    "sentences" : [ "They reside close to the theatre." ]
+    "sentences" : [ "They reside close to the theatre in the city." ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "Instituciones",
   "instructions" : "Elige $no article$ (-) si estamos hablando del propósito usual de la institución. De lo contrario, elige $the$.",
-  "translation" : "¿Cuándo empiezan los jóvenes la universidad en tu país?",
+  "translation" : "¿Cuándo empieza la gente la universidad en tu país?",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "When do youngsters begin",
+      "text" : "When do people begin",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "college in your country?",
       "options" : null
     } ],
-    "sentences" : [ "When do youngsters begin - college in your country?" ]
+    "sentences" : [ "When do people begin - college in your country?" ]
   }
 }, {
   "_id" : {

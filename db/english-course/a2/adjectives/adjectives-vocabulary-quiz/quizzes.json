@@ -61,7 +61,7 @@
   },
   "title" : "Vocabulario de adjetivos",
   "instructions" : "Selecciona el adjetivo apropiado para completar cada oración.",
-  "translation" : "¿Están emocionados por su viaje?",
+  "translation" : "¿Están listos para su viaje?",
   "theoryId" : "a2.11.Bored_and_Boring",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -94,13 +94,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "thrilled" ]
+      "options" : [ "ready" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(thrilled / thrilling) for their trip?",
+      "text" : "(ready / readily) for their trip?",
       "options" : null
     } ],
-    "sentences" : [ "Are they thrilled for their trip?" ]
+    "sentences" : [ "Are they ready for their trip?" ]
   }
 }, {
   "_id" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It's a very",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "thrilling" ]
+      "text" : null,
+      "options" : [ "exciting" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(thrilled / thrilling) adventure!",
+      "text" : "(excited / exciting) adventure!",
       "options" : null
     } ],
-    "sentences" : [ "It's a very thrilling adventure!" ]
+    "sentences" : [ "It's a very exciting adventure!" ]
   }
 }, {
   "_id" : {
@@ -217,7 +217,7 @@
   },
   "title" : "Vocabulario de adjetivos",
   "instructions" : "Selecciona el adjetivo apropiado para completar cada oración.",
-  "translation" : "Me sentí realmente molesto mientras el cliente se quejaba sin cesar.",
+  "translation" : "Me puse realmente preocupado mientras el cliente esperaba sin parar.",
   "theoryId" : "a2.11.Bored_and_Boring",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -250,13 +250,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "annoyed" ]
+      "options" : [ "worried" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(annoyed / annoying) as the customer complained endlessly.",
+      "text" : "(worried / worrying) as the customer waited endlessly.",
       "options" : null
     } ],
-    "sentences" : [ "I became really annoyed as the customer complained endlessly." ]
+    "sentences" : [ "I became really worried as the customer waited endlessly." ]
   }
 }, {
   "_id" : {
@@ -269,7 +269,7 @@
   },
   "title" : "Vocabulario de adjetivos",
   "instructions" : "Selecciona el adjetivo apropiado para completar cada oración.",
-  "translation" : "Esa fue una historia muy cautivadora.",
+  "translation" : "Mi abuela contó una historia muy cautivadora.",
   "theoryId" : "a2.11.Bored_and_Boring",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -297,7 +297,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "That was a very",
+      "text" : "My grandmother told a very",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -308,7 +308,7 @@
       "text" : "(captivated / captivating) story.",
       "options" : null
     } ],
-    "sentences" : [ "That was a very captivating story." ]
+    "sentences" : [ "My grandmother told a very captivating story." ]
   }
 }, {
   "_id" : {
@@ -321,7 +321,7 @@
   },
   "title" : "Vocabulario de adjetivos",
   "instructions" : "Selecciona el adjetivo apropiado para completar cada oración.",
-  "translation" : "¡Estoy tan encantado! ¡Recibí las mejores noticias hoy!",
+  "translation" : "¡Estoy tan feliz! ¡Recibí las mejores noticias hoy!",
   "theoryId" : "a2.11.Bored_and_Boring",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -354,13 +354,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "delighted" ]
+      "options" : [ "happy" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(delighted / delighting)! I received the best news today!",
+      "text" : "(happy / happily)! I received the best news today!",
       "options" : null
     } ],
-    "sentences" : [ "I am so delighted! I received the best news today!" ]
+    "sentences" : [ "I am so happy! I received the best news today!" ]
   }
 }, {
   "_id" : {
@@ -371,7 +371,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a9"
   },
-  "title" : "This is a boring job! I can't stand it!",
+  "title" : "Vocabulario de adjetivos",
   "instructions" : "Selecciona el adjetivo apropiado para completar cada oración.",
   "translation" : "¡Este es un trabajo aburrido! ¡No lo soporto!",
   "theoryId" : "a2.11.Bored_and_Boring",
@@ -425,7 +425,7 @@
   },
   "title" : "Vocabulario de adjetivos",
   "instructions" : "Selecciona el adjetivo apropiado para completar cada oración.",
-  "translation" : "Le apasiona la música, por eso se convierte en cantante.",
+  "translation" : "Él es bueno en la música, por eso se convierte en cantante.",
   "theoryId" : "a2.11.Bored_and_Boring",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -458,13 +458,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "passionate" ]
+      "options" : [ "good" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(passionate / passioning) about music, so he becomes a singer.",
+      "text" : "(good / well) at music, so he becomes a singer.",
       "options" : null
     } ],
-    "sentences" : [ "He is passionate about music, so he becomes a singer." ]
+    "sentences" : [ "He is good at music, so he becomes a singer." ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "Vocabulario de adjetivos",
   "instructions" : "Selecciona el adjetivo apropiado para completar cada oración.",
-  "translation" : "¡Nunca habían presenciado una actuación tan rígida!",
+  "translation" : "¡Nunca habían visto una actuación tan rígida!",
   "theoryId" : "a2.11.Bored_and_Boring",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -505,7 +505,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They had never witnessed such",
+      "text" : "They had never seen such",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -516,6 +516,6 @@
       "text" : "(wooden / wooding) acting!",
       "options" : null
     } ],
-    "sentences" : [ "They had never witnessed such wooden acting!" ]
+    "sentences" : [ "They had never seen such wooden acting!" ]
   }
 } ]

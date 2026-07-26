@@ -425,7 +425,7 @@
   },
   "title" : "$a little$ o $a little of$",
   "instructions" : "Completa con $a little$ o $a little of$.",
-  "translation" : "Necesitamos un poco de ayuda con este programa.",
+  "translation" : "Recibimos un poco de ayuda con este programa.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -453,7 +453,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We require",
+      "text" : "We get",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -464,7 +464,7 @@
       "text" : "help with this programme.",
       "options" : null
     } ],
-    "sentences" : [ "We require a little help with this programme." ]
+    "sentences" : [ "We get a little help with this programme." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "$a little$ o $a little of$",
   "instructions" : "Completa con $a little$ o $a little of$.",
-  "translation" : "Se derramó un poco del jugo.",
+  "translation" : "Cayó un poco del jugo.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -653,26 +653,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "A little of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the juice spilled.",
+      "text" : "the juice fell.",
       "options" : null
     } ],
-    "sentences" : [ "A little of the juice spilled." ]
+    "sentences" : [ "A little of the juice fell." ]
   }
 }, {
   "_id" : {
@@ -685,7 +681,7 @@
   },
   "title" : "$a little$ o $a little of$",
   "instructions" : "Completa con $a little$ o $a little of$.",
-  "translation" : "Ella nos sirvió un poco de té.",
+  "translation" : "Ella nos preparó un poco de té.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -705,26 +701,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She poured us",
+      "text" : "She made us",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a little" ]
     }, {
       "kind" : "TEXT",
       "text" : "tea.",
       "options" : null
     } ],
-    "sentences" : [ "She poured us a little tea." ]
+    "sentences" : [ "She made us a little tea." ]
   }
 }, {
   "_id" : {
@@ -997,7 +993,7 @@
   },
   "title" : "$a little$ o $a little of$",
   "instructions" : "Completa con $a little$ o $a little of$.",
-  "translation" : "Queda un poco de esperanza.",
+  "translation" : "Queda un poco de niebla.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -1017,25 +1013,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "There is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a little" ]
     }, {
       "kind" : "TEXT",
-      "text" : "hope left.",
+      "text" : "fog left.",
       "options" : null
     } ],
-    "sentences" : [ "There is a little hope left." ]
+    "sentences" : [ "There is a little fog left." ]
   }
 } ]

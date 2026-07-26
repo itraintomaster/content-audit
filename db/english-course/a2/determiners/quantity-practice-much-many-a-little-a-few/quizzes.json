@@ -373,7 +373,7 @@
   },
   "title" : "Contables e incontables",
   "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
-  "translation" : "¿Los profesores corrigieron muchos exámenes?",
+  "translation" : "¿Los profesores dieron muchos exámenes?",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Did the teachers correct",
+      "text" : "Did the teachers give",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
       "text" : "tests?",
       "options" : null
     } ],
-    "sentences" : [ "Did the teachers correct many tests?" ]
+    "sentences" : [ "Did the teachers give many tests?" ]
   }
 }, {
   "_id" : {
@@ -737,7 +737,7 @@
   },
   "title" : "Contables e incontables",
   "instructions" : "Completa con $much$, $many$, $a little$ o $a few$.",
-  "translation" : "No tengo muchas dudas sobre esto.",
+  "translation" : "No tengo muchas preguntas sobre esto.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I don't have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
-      "text" : "doubts about this.",
+      "text" : "questions about this.",
       "options" : null
     } ],
-    "sentences" : [ "I don't have many doubts about this." ]
+    "sentences" : [ "I don't have many questions about this." ]
   }
 }, {
   "_id" : {

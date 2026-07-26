@@ -419,7 +419,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d31b"
   },
-  "title" : "The team leader needs to be replaced.",
+  "title" : "Infinitivo",
   "instructions" : "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar $by$.",
   "translation" : "El líder del equipo necesita ser reemplazado.",
   "theoryId" : "b1.09.Passive_Infinitive_Introduction",
@@ -517,7 +517,7 @@
   },
   "title" : "Infinitivo",
   "instructions" : "Transforma las oraciones para que incluyan el infinitivo pasivo (passive infinitive). No necesitas usar $by$.",
-  "translation" : "Eso necesita ser verificado.",
+  "translation" : "El nuevo producto necesita ser publicitado.",
   "theoryId" : "b1.09.Passive_Infinitive_Introduction",
   "topicName" : "The passive",
   "difficulty" : {
@@ -537,26 +537,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Someone needs to verify that.",
+      "text" : "Someone needs to advertise the new product.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "That needs to be verified." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The new product needs to be advertised." ]
     } ],
-    "sentences" : [ "That needs to be verified." ]
+    "sentences" : [ "The new product needs to be advertised." ]
   }
 }, {
   "_id" : {

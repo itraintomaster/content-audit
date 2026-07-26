@@ -269,19 +269,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Tommy",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "will play" ]
     }, {
       "kind" : "TEXT",
@@ -289,14 +289,14 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "has completed" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(complete) his chores.",
+      "text" : "(complete) his tasks.",
       "options" : null
     } ],
-    "sentences" : [ "Tommy will play football after he has completed his chores." ]
+    "sentences" : [ "Tommy will play football after he has completed his tasks." ]
   }
 }, {
   "_id" : {

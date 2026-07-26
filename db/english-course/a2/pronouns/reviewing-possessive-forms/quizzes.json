@@ -9,7 +9,7 @@
   },
   "title" : "Posesivos: repaso",
   "instructions" : "Escribe la palabra correcta.",
-  "translation" : "Los cachorros son nuestros.",
+  "translation" : "Los neumáticos son nuestros.",
   "theoryId" : "a2.08.One_and_Ones",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The puppies are",
+      "text" : "The tyres are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "ours" ]
     }, {
       "kind" : "TEXT",
       "text" : "(our / ours).",
       "options" : null
     } ],
-    "sentences" : [ "The puppies are ours." ]
+    "sentences" : [ "The tyres are ours." ]
   }
 }, {
   "_id" : {

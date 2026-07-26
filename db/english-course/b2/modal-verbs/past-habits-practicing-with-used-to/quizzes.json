@@ -737,7 +737,7 @@
   },
   "title" : "Hábitos y estados pasados",
   "instructions" : "Transforma estas oraciones para que usen $used to$. Estas cosas son todos hábitos o estados en el pasado que ya no son verdad ahora.",
-  "translation" : "A las chicas les encantaban los ponis.",
+  "translation" : "A las chicas les encantaban las historias de fantasía después de la escuela.",
   "theoryId" : "b2.09.Should_Shouldn_t_Have_for_Past_Regrets",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -757,26 +757,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The girls loved ponies.",
+      "text" : "The girls loved fantasy stories after school.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The girls used to love ponies." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The girls used to love fantasy stories after school." ]
     } ],
-    "sentences" : [ "The girls used to love ponies." ]
+    "sentences" : [ "The girls used to love fantasy stories after school." ]
   }
 }, {
   "_id" : {

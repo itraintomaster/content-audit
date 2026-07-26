@@ -633,7 +633,7 @@
   },
   "title" : "$For$ y $since$: repaso",
   "instructions" : "Escribe oraciones con el $present perfect simple$ y agrega $for$ o $since$.",
-  "translation" : "He deseado un vestido nuevo desde el año pasado.",
+  "translation" : "He querido un vestido nuevo desde el año pasado.",
   "theoryId" : "b2.02.Present_Perfect_for_the_Future_with_Clauses_of_Time",
   "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
   "difficulty" : {
@@ -653,26 +653,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I / desire a new dress / last year.",
+      "text" : "I / want a new dress / last year.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I've desired a new dress since last year.|I have desired a new dress since last year." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "I've wanted a new dress since last year.|I have wanted a new dress since last year." ]
     } ],
-    "sentences" : [ "I've desired a new dress since last year.", "I have desired a new dress since last year." ]
+    "sentences" : [ "I've wanted a new dress since last year.", "I have wanted a new dress since last year." ]
   }
 }, {
   "_id" : {
@@ -685,7 +681,7 @@
   },
   "title" : "$For$ y $since$: repaso",
   "instructions" : "Escribe oraciones con el $present perfect simple$ y agrega $for$ o $since$.",
-  "translation" : "Hemos poseído esa casa desde 1998.",
+  "translation" : "Hemos vivido en esa casa con nuestra familia desde 1998.",
   "theoryId" : "b2.02.Present_Perfect_for_the_Future_with_Clauses_of_Time",
   "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
   "difficulty" : {
@@ -705,26 +701,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We / possess that house / 1998.",
+      "text" : "We / live in that house with our family / 1998.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We've possessed that house since 1998.|We have possessed that house since 1998." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "We've lived in that house with our family since 1998.|We have lived in that house with our family since 1998." ]
     } ],
-    "sentences" : [ "We've possessed that house since 1998.", "We have possessed that house since 1998." ]
+    "sentences" : [ "We've lived in that house with our family since 1998.", "We have lived in that house with our family since 1998." ]
   }
 }, {
   "_id" : {

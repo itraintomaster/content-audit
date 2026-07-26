@@ -111,7 +111,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38e"
   },
-  "title" : "The man washes the car.",
+  "title" : "Cambios al final",
   "instructions" : "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
   "translation" : "El hombre lava el coche.",
   "theoryId" : "a1.01.Present_Simple_Spelling_Changes",
@@ -165,7 +165,7 @@
   },
   "title" : "Cambios al final",
   "instructions" : "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
-  "translation" : "Mi mamá estira su brazo.",
+  "translation" : "Mi mamá lava su brazo.",
   "theoryId" : "a1.01.Present_Simple_Spelling_Changes",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -198,13 +198,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "stretches" ]
+      "options" : [ "washes" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(stretch) her arm.",
+      "text" : "(wash) her arm.",
       "options" : null
     } ],
-    "sentences" : [ "My mom stretches her arm." ]
+    "sentences" : [ "My mom washes her arm." ]
   }
 }, {
   "_id" : {
@@ -319,7 +319,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38e"
   },
-  "title" : "The dog sees the cat.",
+  "title" : "Cambios al final",
   "instructions" : "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
   "translation" : "El perro ve al gato.",
   "theoryId" : "a1.01.Present_Simple_Spelling_Changes",
@@ -425,7 +425,7 @@
   },
   "title" : "Cambios al final",
   "instructions" : "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
-  "translation" : "La niña copia las respuestas.",
+  "translation" : "La niña estudia las respuestas.",
   "theoryId" : "a1.01.Present_Simple_Spelling_Changes",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The girl",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "copies" ]
+      "text" : null,
+      "options" : [ "studies" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(copy) the answers.",
+      "text" : "(study) the answers.",
       "options" : null
     } ],
-    "sentences" : [ "The girl copies the answers." ]
+    "sentences" : [ "The girl studies the answers." ]
   }
 }, {
   "_id" : {
@@ -789,7 +789,7 @@
   },
   "title" : "Cambios al final",
   "instructions" : "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
-  "translation" : "La niña cruza la calle todos los días.",
+  "translation" : "La niña mira la calle todos los días.",
   "theoryId" : "a1.01.Present_Simple_Spelling_Changes",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The girl",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "crosses" ]
+      "text" : null,
+      "options" : [ "watches" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(cross) the road every day.",
+      "text" : "(watch) the road every day.",
       "options" : null
     } ],
-    "sentences" : [ "The girl crosses the road every day." ]
+    "sentences" : [ "The girl watches the road every day." ]
   }
 }, {
   "_id" : {
@@ -943,7 +943,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38e"
   },
-  "title" : "The boy carries the wine.",
+  "title" : "Cambios al final",
   "instructions" : "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
   "translation" : "El niño lleva el vino.",
   "theoryId" : "a1.01.Present_Simple_Spelling_Changes",

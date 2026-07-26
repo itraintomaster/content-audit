@@ -165,7 +165,7 @@
   },
   "title" : "$Whose$: posesión",
   "instructions" : "Crea una oración que incluya $whose$.",
-  "translation" : "El bebé cuyo sonajero se rompió se echó a reír.",
+  "translation" : "El bebé cuyo juguete se rompió se echó a reír.",
   "theoryId" : "b1.12.Whose_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -185,26 +185,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The baby began laughing. The baby's rattle broke.",
+      "text" : "The baby began laughing. The baby's toy broke.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The baby whose rattle broke began laughing." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The baby whose toy broke began laughing." ]
     } ],
-    "sentences" : [ "The baby whose rattle broke began laughing." ]
+    "sentences" : [ "The baby whose toy broke began laughing." ]
   }
 }, {
   "_id" : {
@@ -319,7 +315,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33f"
   },
-  "title" : "He helped the cat whose foot was bleeding.",
+  "title" : "$Whose$: posesión",
   "instructions" : "Crea una oración que incluya $whose$.",
   "translation" : "Ayudó al gato cuya pata estaba sangrando.",
   "theoryId" : "b1.12.Whose_in_Relative_Clauses",

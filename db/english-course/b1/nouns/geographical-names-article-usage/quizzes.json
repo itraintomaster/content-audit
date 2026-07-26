@@ -9,7 +9,7 @@
   },
   "title" : "Montañas y océanos: ¿$the$?",
   "instructions" : "Escribe $the$ o usa – si necesitamos $no article$.",
-  "translation" : "Ella escaló el Monte Kilimanjaro.",
+  "translation" : "Ella escaló el Monte Kilimanjaro el verano pasado.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She scaled",
+      "text" : "She climbed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "Mount Kilimanjaro.",
+      "text" : "Mount Kilimanjaro last summer.",
       "options" : null
     } ],
-    "sentences" : [ "She scaled - Mount Kilimanjaro." ]
+    "sentences" : [ "She climbed - Mount Kilimanjaro last summer." ]
   }
 }, {
   "_id" : {

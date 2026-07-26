@@ -425,7 +425,7 @@
   },
   "title" : "Respuestas cortas",
   "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
-  "translation" : "Sí, él lo hace.",
+  "translation" : "¿Necesita agua? Sí.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Does he need help? B: Yes, he",
+      "text" : "Does he need water? He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "does" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Does he need help? B: Yes, he does." ]
+    "sentences" : [ "Does he need water? He does." ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "Respuestas cortas",
   "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
-  "translation" : "No, no lo hago.",
+  "translation" : "¿Bebes agua? No, no lo hago.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Do you drink alcohol? B: No, I",
+      "text" : "Do you drink water? I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "don't" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Do you drink alcohol? B: No, I don't." ]
+    "sentences" : [ "Do you drink water? I don't." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "Respuestas cortas",
   "instructions" : "Escribe la respuesta corta. Utiliza $short forms$ si es posible.",
-  "translation" : "Sí, lo hace.",
+  "translation" : "¿Funciona? Sí.",
   "theoryId" : "a1.01.Present_Simple_Short_Answers",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Does it snow a lot here? B: Yes, it",
+      "text" : "Does it work? It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "does" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Does it snow a lot here? B: Yes, it does." ]
+    "sentences" : [ "Does it work? It does." ]
   }
 }, {
   "_id" : {

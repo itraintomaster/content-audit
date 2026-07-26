@@ -477,7 +477,7 @@
   },
   "title" : "Palabras desordenadas",
   "instructions" : "Crea oraciones en tiempo $future perfect$.",
-  "translation" : "¿Qué tan alto habrás escalado antes de la cumbre?",
+  "translation" : "¿Qué tan alto habrás escalado antes del pico?",
   "theoryId" : "b2.01.Future_Perfect_Simple",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
   "difficulty" : {
@@ -497,26 +497,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "How high / you / climb before the summit?",
+      "text" : "How high / you / climb before the peak?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "How high will you have climbed before the summit?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "How high will you have climbed before the peak?" ]
     } ],
-    "sentences" : [ "How high will you have climbed before the summit?" ]
+    "sentences" : [ "How high will you have climbed before the peak?" ]
   }
 }, {
   "_id" : {

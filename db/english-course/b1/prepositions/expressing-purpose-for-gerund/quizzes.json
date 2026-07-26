@@ -529,7 +529,7 @@
   },
   "title" : "Expresar propósito",
   "instructions" : "Cambiar las oraciones para incluir $for + verb+ing$.",
-  "translation" : "Esa canasta es para guardar la ropa.",
+  "translation" : "Esa canasta es para guardar carpetas viejas.",
   "theoryId" : "b1.17.For_To_Show_Purpose",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "That basket is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for keeping" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(keep) laundry.",
+      "text" : "(keep) old folders.",
       "options" : null
     } ],
-    "sentences" : [ "That basket is for keeping laundry." ]
+    "sentences" : [ "That basket is for keeping old folders." ]
   }
 }, {
   "_id" : {
@@ -841,7 +841,7 @@
   },
   "title" : "Expresar propósito",
   "instructions" : "Cambiar las oraciones para incluir $for + verb+ing$.",
-  "translation" : "El té es para beber.",
+  "translation" : "El té es para tomar con amigos.",
   "theoryId" : "b1.17.For_To_Show_Purpose",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The tea is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "for sipping" ]
+      "text" : null,
+      "options" : [ "for having" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(sip).",
+      "text" : "(have) with friends.",
       "options" : null
     } ],
-    "sentences" : [ "The tea is for sipping." ]
+    "sentences" : [ "The tea is for having with friends." ]
   }
 }, {
   "_id" : {

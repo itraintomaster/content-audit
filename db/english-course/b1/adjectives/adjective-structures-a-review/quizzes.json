@@ -217,7 +217,7 @@
   },
   "title" : "Infinitivo y cláusula",
   "instructions" : "Completa con $to$ o $that$.",
-  "translation" : "Estábamos contentos de beneficiarnos del descuento.",
+  "translation" : "Estábamos contentos de obtener el descuento.",
   "theoryId" : "b1.15.Order_of_Adjectives",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -253,10 +253,10 @@
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "benefit from the discount.",
+      "text" : "get the discount.",
       "options" : null
     } ],
-    "sentences" : [ "We were glad to benefit from the discount." ]
+    "sentences" : [ "We were glad to get the discount." ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "Infinitivo y cláusula",
   "instructions" : "Completa con $to$ o $that$.",
-  "translation" : "Me sorprendió que recordara mi cumpleaños.",
+  "translation" : "Me alegró que recordara mi cumpleaños.",
   "theoryId" : "b1.15.Order_of_Adjectives",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I was amazed",
+      "text" : "I was happy",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "that" ]
     }, {
       "kind" : "TEXT",
       "text" : "she remembered my birthday.",
       "options" : null
     } ],
-    "sentences" : [ "I was amazed that she remembered my birthday." ]
+    "sentences" : [ "I was happy that she remembered my birthday." ]
   }
 }, {
   "_id" : {
@@ -529,7 +529,7 @@
   },
   "title" : "Infinitivo y cláusula",
   "instructions" : "Completa con $to$ o $that$.",
-  "translation" : "Siempre es agradable relajarse.",
+  "translation" : "Siempre es agradable tomarse un descanso.",
   "theoryId" : "b1.15.Order_of_Adjectives",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It's always nice",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "unwind.",
+      "text" : "take a break.",
       "options" : null
     } ],
-    "sentences" : [ "It's always nice to unwind." ]
+    "sentences" : [ "It's always nice to take a break." ]
   }
 }, {
   "_id" : {

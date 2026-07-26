@@ -61,7 +61,7 @@
   },
   "title" : "Cortesía con $would like$",
   "instructions" : "Haz que las oraciones sean más educadas utilizando $would like$.",
-  "translation" : "¿Qué sabor te gustaría?",
+  "translation" : "¿Qué día te gustaría?",
   "theoryId" : "a1.10.Would_like_For_Politeness",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -81,26 +81,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Which flavor do you want?",
+      "text" : "Which day do you want?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Which flavor would you like?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Which day would you like?" ]
     } ],
-    "sentences" : [ "Which flavor would you like?" ]
+    "sentences" : [ "Which day would you like?" ]
   }
 }, {
   "_id" : {
@@ -111,9 +107,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e7"
   },
-  "title" : "I'd like a great milkshake.",
+  "title" : "Cortesía con $would like$",
   "instructions" : "Haz que las oraciones sean más educadas utilizando $would like$.",
-  "translation" : "Quiero un batido buenísimo. Me gustaría un batido buenísimo.",
+  "translation" : "Quieren una casa más grande. Les gustaría una casa más grande.",
   "theoryId" : "a1.10.Would_like_For_Politeness",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -141,14 +137,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I want a great milkshake.",
+      "text" : "They want a bigger house.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "I'd like a great milkshake.|I would like a great milkshake." ]
+      "options" : [ "They'd like a bigger house.|They would like a bigger house." ]
     } ],
-    "sentences" : [ "I'd like a great milkshake.", "I would like a great milkshake." ]
+    "sentences" : [ "They'd like a bigger house.", "They would like a bigger house." ]
   }
 }, {
   "_id" : {
@@ -317,7 +313,7 @@
   },
   "title" : "Cortesía con $would like$",
   "instructions" : "Haz que las oraciones sean más educadas utilizando $would like$.",
-  "translation" : "A ella le gustaría un poco de limonada.",
+  "translation" : "Ella quiere un poco de agua. A ella le gustaría un poco de agua.",
   "theoryId" : "a1.10.Would_like_For_Politeness",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -337,26 +333,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She wants some lemonade.",
+      "text" : "She wants some water.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She'd like some lemonade.|She would like some lemonade." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She would like some water." ]
     } ],
-    "sentences" : [ "She'd like some lemonade.", "She would like some lemonade." ]
+    "sentences" : [ "She would like some water." ]
   }
 }, {
   "_id" : {

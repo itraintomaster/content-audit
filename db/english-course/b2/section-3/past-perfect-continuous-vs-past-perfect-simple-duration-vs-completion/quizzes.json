@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'d settled|had settled" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(settle) the account before you volunteered to pay.",
+      "text" : "(settle) the account before you offered to pay.",
       "options" : null
     } ],
-    "sentences" : [ "She'd settled the account before you volunteered to pay.", "She had settled the account before you volunteered to pay." ]
+    "sentences" : [ "She 'd settled the account before you offered to pay.", "She had settled the account before you offered to pay." ]
   }
 }, {
   "_id" : {

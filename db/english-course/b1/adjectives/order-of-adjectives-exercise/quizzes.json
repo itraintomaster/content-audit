@@ -165,7 +165,7 @@
   },
   "title" : "Orden de adjetivos",
   "instructions" : "Reordena los adjetivos en el orden correcto.",
-  "translation" : "Bebió de una pequeña taza de cerámica amarilla.",
+  "translation" : "Bebió de una elegante taza pequeña de cerámica.",
   "theoryId" : "b1.15.Order_of_Adjectives",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He drank from a",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "small yellow ceramic" ]
+      "text" : null,
+      "options" : [ "stylish small ceramic" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(yellow / ceramic / small) cup.",
+      "text" : "(ceramic / small / stylish) cup.",
       "options" : null
     } ],
-    "sentences" : [ "He drank from a small yellow ceramic cup." ]
+    "sentences" : [ "He drank from a stylish small ceramic cup." ]
   }
 }, {
   "_id" : {
@@ -217,7 +217,7 @@
   },
   "title" : "Orden de adjetivos",
   "instructions" : "Reordena los adjetivos en el orden correcto.",
-  "translation" : "Tenía almohadas redondas y malolientes.",
+  "translation" : "Tenía almohadas redondas y malolientes sobre la cama vieja.",
   "theoryId" : "b1.15.Order_of_Adjectives",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It had",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "smelly round" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(smelly / round) pillows.",
+      "text" : "(smelly / round) pillows on the old bed.",
       "options" : null
     } ],
-    "sentences" : [ "It had smelly round pillows." ]
+    "sentences" : [ "It had smelly round pillows on the old bed." ]
   }
 }, {
   "_id" : {
@@ -529,7 +529,7 @@
   },
   "title" : "Orden de adjetivos",
   "instructions" : "Reordena los adjetivos en el orden correcto.",
-  "translation" : "Se comió el postre en un plato de porcelana blanca.",
+  "translation" : "Se comió el postre en un raro plato de porcelana.",
   "theoryId" : "b1.15.Order_of_Adjectives",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He ate the dessert on a",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "white porcelain" ]
+      "text" : null,
+      "options" : [ "rare porcelain" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(white / porcelain) dish.",
+      "text" : "(porcelain / rare) dish.",
       "options" : null
     } ],
-    "sentences" : [ "He ate the dessert on a white porcelain dish." ]
+    "sentences" : [ "He ate the dessert on a rare porcelain dish." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "Orden de adjetivos",
   "instructions" : "Reordena los adjetivos en el orden correcto.",
-  "translation" : "Compré una hermosa casa moderna.",
+  "translation" : "Conseguí una hermosa casa moderna hoy.",
   "theoryId" : "b1.15.Order_of_Adjectives",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I purchased a",
+      "text" : "I got a",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "gorgeous modern" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(modern / gorgeous) house.",
+      "text" : "(modern / gorgeous) house today.",
       "options" : null
     } ],
-    "sentences" : [ "I purchased a gorgeous modern house." ]
+    "sentences" : [ "I got a gorgeous modern house today." ]
   }
 }, {
   "_id" : {
@@ -683,7 +683,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35d"
   },
-  "title" : "She prefers southern Italian trousers at work.",
+  "title" : "Orden de adjetivos",
   "instructions" : "Reordena los adjetivos en el orden correcto.",
   "translation" : "Ella prefiere pantalones del sur de Italia en el trabajo.",
   "theoryId" : "b1.15.Order_of_Adjectives",
@@ -787,7 +787,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d35d"
   },
-  "title" : "The sofa had twin brown cushions upstairs.",
+  "title" : "Orden de adjetivos",
   "instructions" : "Reordena los adjetivos en el orden correcto.",
   "translation" : "El sofá tenía cojines gemelos marrones arriba.",
   "theoryId" : "b1.15.Order_of_Adjectives",

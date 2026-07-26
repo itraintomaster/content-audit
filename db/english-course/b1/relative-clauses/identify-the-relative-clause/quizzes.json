@@ -165,7 +165,7 @@
   },
   "title" : "Identificar la cláusula",
   "instructions" : "¿Cuál es la parte que corresponde a la relative clause?",
-  "translation" : "que residen en la planta baja",
+  "translation" : "Los vecinos que residen en la planta baja son amables. que residen en la planta baja",
   "theoryId" : "b1.12.Relative_Clauses_Introduction",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -185,24 +185,20 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The neighbors who reside downstairs are kind.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "who reside downstairs" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
     "sentences" : [ "The neighbors who reside downstairs are kind. who reside downstairs" ]
   }
@@ -289,26 +285,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He consulted a lawyer who comes from Spain.",
+      "text" : "He asked a lawyer who comes from Spain.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "who comes from Spain" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "He consulted a lawyer who comes from Spain. who comes from Spain" ]
+    "sentences" : [ "He asked a lawyer who comes from Spain. who comes from Spain" ]
   }
 }, {
   "_id" : {

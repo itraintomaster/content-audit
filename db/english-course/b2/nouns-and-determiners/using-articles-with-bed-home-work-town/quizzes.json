@@ -789,7 +789,7 @@
   },
   "title" : "Cama, casa, trabajo y ciudad",
   "instructions" : "Si es posible, usa $no article$ (-). De lo contrario, usa $the$.",
-  "translation" : "¿A qué hora empiezas a trabajar?",
+  "translation" : "¿A qué hora empiezas normalmente a trabajar por la mañana?",
   "theoryId" : "b2.06.The_and_No_Article_with_Bed_Home_Work_Town_",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "What time do you commence",
+      "text" : "What time do you usually start",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "work?",
+      "text" : "work in the morning?",
       "options" : null
     } ],
-    "sentences" : [ "What time do you commence - work?" ]
+    "sentences" : [ "What time do you usually start - work in the morning?" ]
   }
 }, {
   "_id" : {

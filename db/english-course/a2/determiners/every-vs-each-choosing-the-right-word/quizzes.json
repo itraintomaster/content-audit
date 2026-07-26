@@ -59,7 +59,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d26f"
   },
-  "title" : "He bought each of the combs that the housewife sold.",
+  "title" : "General o individual",
   "instructions" : "Si es posible, completa con $every$. Si no, completa con $each$.",
   "translation" : "Compró cada uno de los peines que vendía el ama de casa.",
   "theoryId" : "a2.07.Every_Each_and_All",
@@ -213,7 +213,7 @@
   },
   "title" : "General o individual",
   "instructions" : "Si es posible, completa con $every$. Si no, completa con $each$.",
-  "translation" : "Recogió los juguetes y puso cada uno de ellos en la caja de juguetes.",
+  "translation" : "Recogió los juguetes y guardó cada uno de ellos.",
   "theoryId" : "a2.07.Every_Each_and_All",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -233,26 +233,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She collected the toys and put",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "each" ]
     }, {
       "kind" : "TEXT",
-      "text" : "of them into the toybox.",
+      "text" : "of them away.",
       "options" : null
     } ],
-    "sentences" : [ "She collected the toys and put each of them into the toybox." ]
+    "sentences" : [ "She collected the toys and put each of them away." ]
   }
 }, {
   "_id" : {
@@ -369,7 +369,7 @@
   },
   "title" : "General o individual",
   "instructions" : "Si es posible, completa con $every$. Si no, completa con $each$.",
-  "translation" : "Besó a cada una de sus hijas antes de acostarse.",
+  "translation" : "Besó a cada uno de sus nietos antes de acostarse.",
   "theoryId" : "a2.07.Every_Each_and_All",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -389,26 +389,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She kissed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "each" ]
     }, {
       "kind" : "TEXT",
-      "text" : "of her daughters before bedtime.",
+      "text" : "of her grandchildren before bedtime.",
       "options" : null
     } ],
-    "sentences" : [ "She kissed each of her daughters before bedtime." ]
+    "sentences" : [ "She kissed each of her grandchildren before bedtime." ]
   }
 }, {
   "_id" : {
@@ -421,7 +421,7 @@
   },
   "title" : "General o individual",
   "instructions" : "Si es posible, completa con $every$. Si no, completa con $each$.",
-  "translation" : "Contó cada cigarrillo antes de guardarlo.",
+  "translation" : "Revisó cada cigarrillo antes de guardarlo.",
   "theoryId" : "a2.07.Every_Each_and_All",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -449,7 +449,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She counted",
+      "text" : "She checked",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -460,7 +460,7 @@
       "text" : "cigarette before she saved it.",
       "options" : null
     } ],
-    "sentences" : [ "She counted every cigarette before she saved it." ]
+    "sentences" : [ "She checked every cigarette before she saved it." ]
   }
 }, {
   "_id" : {
@@ -473,7 +473,7 @@
   },
   "title" : "General o individual",
   "instructions" : "Si es posible, completa con $every$. Si no, completa con $each$.",
-  "translation" : "No todos los animales están domesticados.",
+  "translation" : "No todos los sustantivos son plurales.",
   "theoryId" : "a2.07.Every_Each_and_All",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -493,25 +493,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Not",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "every" ]
     }, {
       "kind" : "TEXT",
-      "text" : "animal is domesticated.",
+      "text" : "noun is plural.",
       "options" : null
     } ],
-    "sentences" : [ "Not every animal is domesticated." ]
+    "sentences" : [ "Not every noun is plural." ]
   }
 } ]

@@ -217,7 +217,7 @@
   },
   "title" : "Práctica con $still$",
   "instructions" : "Modifica las oraciones para que incluyan $still$. Por ejemplo: $They used to eat a lot of meat and it's still true now (use the present simple)$ se convierte en $They still eat a lot of meat$.",
-  "translation" : "Todavía esperamos ir.",
+  "translation" : "Todavía estamos planeando ir allí después del almuerzo hoy.",
   "theoryId" : "b2.14.Easily_Confused_Adverbs_and_Adjectives",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -237,26 +237,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We were hoping to go earlier and it's also true now (use the present continuous).",
+      "text" : "We were planning to go there after lunch today, and it's also true now (use the present continuous).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We're still hoping to go." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "We're still planning to go there after lunch today." ]
     } ],
-    "sentences" : [ "We're still hoping to go." ]
+    "sentences" : [ "We're still planning to go there after lunch today." ]
   }
 }, {
   "_id" : {
@@ -581,7 +577,7 @@
   },
   "title" : "Práctica con $still$",
   "instructions" : "Modifica las oraciones para que incluyan $still$. Por ejemplo: $They used to eat a lot of meat and it's still true now (use the present simple)$ se convierte en $They still eat a lot of meat$.",
-  "translation" : "Susan todavía trabaja como cajera.",
+  "translation" : "Susan todavía trabaja como cajera en el supermercado.",
   "theoryId" : "b2.14.Easily_Confused_Adverbs_and_Adjectives",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -601,26 +597,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Susan used to work as a cashier and it's also true now (use the present simple).",
+      "text" : "Susan used to work as a cashier at the supermarket and it's also true now (use the present simple).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Susan still works as a cashier." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Susan still works as a cashier at the supermarket." ]
     } ],
-    "sentences" : [ "Susan still works as a cashier." ]
+    "sentences" : [ "Susan still works as a cashier at the supermarket." ]
   }
 }, {
   "_id" : {

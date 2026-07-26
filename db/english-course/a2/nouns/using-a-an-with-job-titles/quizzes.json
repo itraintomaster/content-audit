@@ -113,7 +113,7 @@
   },
   "title" : "$A$ / $an$ con oficios",
   "instructions" : "Elige $a$ / $an$ si es necesario. Si no, usa $-$.",
-  "translation" : "Eres carnicero.",
+  "translation" : "Eres profesor.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You're",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "butcher.",
+      "text" : "teacher.",
       "options" : null
     } ],
-    "sentences" : [ "You're a butcher." ]
+    "sentences" : [ "You're a teacher." ]
   }
 }, {
   "_id" : {
@@ -267,7 +267,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d25a"
   },
-  "title" : "I'm a policewoman.",
+  "title" : "$A$ / $an$ con oficios",
   "instructions" : "Elige $a$ / $an$ si es necesario. Si no, usa $-$.",
   "translation" : "Soy policía.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
@@ -685,7 +685,7 @@
   },
   "title" : "$A$ / $an$ con oficios",
   "instructions" : "Elige $a$ / $an$ si es necesario. Si no, usa $-$.",
-  "translation" : "Robert es juez.",
+  "translation" : "Robert es médico.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Robert is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "judge.",
+      "text" : "doctor.",
       "options" : null
     } ],
-    "sentences" : [ "Robert is a judge." ]
+    "sentences" : [ "Robert is a doctor." ]
   }
 }, {
   "_id" : {
@@ -893,7 +893,7 @@
   },
   "title" : "$A$ / $an$ con oficios",
   "instructions" : "Elige $a$ / $an$ si es necesario. Si no, usa $-$.",
-  "translation" : "Eres arquitecto.",
+  "translation" : "Eres artista.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You're",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "an" ]
     }, {
       "kind" : "TEXT",
-      "text" : "architect.",
+      "text" : "artist.",
       "options" : null
     } ],
-    "sentences" : [ "You're an architect." ]
+    "sentences" : [ "You're an artist." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "$A$ / $an$ con oficios",
   "instructions" : "Elige $a$ / $an$ si es necesario. Si no, usa $-$.",
-  "translation" : "Ella es cartera.",
+  "translation" : "Mi tía es empresaria.",
   "theoryId" : "a2.06.A_The_No_Article_for_Known_and_Unknown",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She's",
+      "text" : "My aunt is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "mailman.",
+      "text" : "businesswoman.",
       "options" : null
     } ],
-    "sentences" : [ "She's a mailman." ]
+    "sentences" : [ "My aunt is a businesswoman." ]
   }
 } ]

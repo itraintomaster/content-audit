@@ -465,7 +465,7 @@
   },
   "title" : "Preguntas sí/no",
   "instructions" : "Formula preguntas de sí/no en $present continuous$.",
-  "translation" : "¿Él está construyendo una pared?",
+  "translation" : "¿Él está usando una pared?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -494,13 +494,13 @@
     "sentenceParts" : [ {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "Is he building" ]
+      "options" : [ "Is he using" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / build) a wall?",
+      "text" : "(he / use) a wall?",
       "options" : null
     } ],
-    "sentences" : [ "Is he building a wall?" ]
+    "sentences" : [ "Is he using a wall?" ]
   }
 }, {
   "_id" : {
@@ -513,7 +513,7 @@
   },
   "title" : "Preguntas sí/no",
   "instructions" : "Formula preguntas de sí/no en $present continuous$.",
-  "translation" : "¿Estoy hablando demasiado rápido?",
+  "translation" : "¿Estoy debajo de ti?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -533,26 +533,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Am I speaking" ]
+      "text" : null,
+      "options" : [ "Am I" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(I / be) too fast?",
+      "text" : "below you?",
       "options" : null
     } ],
-    "sentences" : [ "Am I speaking too fast?" ]
+    "sentences" : [ "Am I below you?" ]
   }
 }, {
   "_id" : {
@@ -807,7 +803,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39b"
   },
-  "title" : "Is it getting late?",
+  "title" : "Preguntas sí/no",
   "instructions" : "Formula preguntas de sí/no en $present continuous$.",
   "translation" : "¿Se está haciendo tarde?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
@@ -903,7 +899,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d39b"
   },
-  "title" : "Is the boy playing football?",
+  "title" : "Preguntas sí/no",
   "instructions" : "Formula preguntas de sí/no en $present continuous$.",
   "translation" : "¿El niño está jugando al fútbol?",
   "theoryId" : "a1.02.Present_Continuous_Forms",

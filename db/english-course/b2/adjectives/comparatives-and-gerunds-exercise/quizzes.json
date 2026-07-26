@@ -9,7 +9,7 @@
   },
   "title" : "Contraste de acciones",
   "instructions" : "Completa con $comparative + than + gerund$.",
-  "translation" : "El café es más estimulante que beber té.",
+  "translation" : "El café por la mañana es más estimulante que beber té.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Coffee is",
+      "text" : "Coffee in the morning is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "more stimulating than drinking" ]
     }, {
       "kind" : "TEXT",
       "text" : "(stimulating / drink) tea.",
       "options" : null
     } ],
-    "sentences" : [ "Coffee is more stimulating than drinking tea." ]
+    "sentences" : [ "Coffee in the morning is more stimulating than drinking tea." ]
   }
 }, {
   "_id" : {

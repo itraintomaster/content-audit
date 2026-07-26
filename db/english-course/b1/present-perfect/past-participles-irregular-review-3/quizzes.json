@@ -735,7 +735,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c5"
   },
-  "title" : "His religion has meant that he can't do sport.",
+  "title" : "Irregulares: repaso 3",
   "instructions" : "Escribe la oración en present perfect.",
   "translation" : "Su religión ha significado que no puede hacer deporte.",
   "theoryId" : "b1.02.Present_Perfect_or_Past_Simple_",
@@ -997,7 +997,7 @@
   },
   "title" : "Irregulares: repaso 3",
   "instructions" : "Escribe la oración en present perfect.",
-  "translation" : "Ella ha pateado la pelota a los arbustos.",
+  "translation" : "Ella ha pateado la pelota hacia la zona.",
   "theoryId" : "b1.02.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -1017,26 +1017,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'s kicked|has kicked" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(kick) the ball into the bushes.",
+      "text" : "(kick) the ball into the zone.",
       "options" : null
     } ],
-    "sentences" : [ "She's kicked the ball into the bushes.", "She has kicked the ball into the bushes." ]
+    "sentences" : [ "She 's kicked the ball into the zone.", "She has kicked the ball into the zone." ]
   }
 }, {
   "_id" : {

@@ -629,7 +629,7 @@
   },
   "title" : "$Already$ y $yet$",
   "instructions" : "Escribe una oración en present perfect usando $yet$ o $already$.",
-  "translation" : "Ella aún no ha bebido el vino.",
+  "translation" : "Ella aún no ha probado el vino.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -649,26 +649,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She hasn't drunk the wine yet / She has not drunk the wine yet" ]
+      "text" : null,
+      "options" : [ "She hasn't tried the wine yet / She has not tried the wine yet" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / not / drink / the wine).",
+      "text" : "(she / not / try / the wine).",
       "options" : null
     } ],
-    "sentences" : [ "She hasn't drunk the wine yet / She has not drunk the wine yet." ]
+    "sentences" : [ "She hasn't tried the wine yet / She has not tried the wine yet." ]
   }
 }, {
   "_id" : {

@@ -473,7 +473,7 @@
   },
   "title" : "Presente simple",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice).",
-  "translation" : "El doctor examina al paciente. El paciente es examinado por el doctor.",
+  "translation" : "El doctor ve al paciente. El paciente es visto por el doctor.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -501,14 +501,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The doctor examines the patient.",
+      "text" : "The doctor sees the patient.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "The patient is examined by the doctor." ]
+      "options" : [ "The patient is seen by the doctor." ]
     } ],
-    "sentences" : [ "The patient is examined by the doctor." ]
+    "sentences" : [ "The patient is seen by the doctor." ]
   }
 }, {
   "_id" : {
@@ -985,7 +985,7 @@
   },
   "title" : "Presente simple",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice).",
-  "translation" : "Ella es detenida.",
+  "translation" : "Ella es arrestada.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -1005,25 +1005,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The security guard detains her.",
+      "text" : "The security guard arrests her.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She is detained (by the security guard)." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She is arrested (by the security guard)." ]
     } ],
-    "sentences" : [ "She is detained (by the security guard)." ]
+    "sentences" : [ "She is arrested (by the security guard)." ]
   }
 } ]

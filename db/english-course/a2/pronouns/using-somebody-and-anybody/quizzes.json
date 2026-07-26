@@ -9,7 +9,7 @@
   },
   "title" : "Personas indefinidas",
   "instructions" : "Escribe $somebody$ o $anybody$.",
-  "translation" : "Hay alguien tocando la ventana.",
+  "translation" : "Hay alguien abriendo la ventana.",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "There's",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "somebody" ]
     }, {
       "kind" : "TEXT",
-      "text" : "knocking the window.",
+      "text" : "opening the window.",
       "options" : null
     } ],
-    "sentences" : [ "There's somebody knocking the window." ]
+    "sentences" : [ "There's somebody opening the window." ]
   }
 }, {
   "_id" : {
@@ -113,7 +113,7 @@
   },
   "title" : "Personas indefinidas",
   "instructions" : "Escribe $somebody$ o $anybody$.",
-  "translation" : "Notamos a alguien caminando muy lento.",
+  "translation" : "Vimos a alguien caminando muy lento.",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We noticed",
+      "text" : "We saw",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "somebody" ]
     }, {
       "kind" : "TEXT",
       "text" : "walking too slow.",
       "options" : null
     } ],
-    "sentences" : [ "We noticed somebody walking too slow." ]
+    "sentences" : [ "We saw somebody walking too slow." ]
   }
 }, {
   "_id" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I'm searching for",
+      "text" : "I'm looking for",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "somebody" ]
     }, {
       "kind" : "TEXT",
       "text" : "that lives around.",
       "options" : null
     } ],
-    "sentences" : [ "I'm searching for somebody that lives around." ]
+    "sentences" : [ "I'm looking for somebody that lives around." ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "Personas indefinidas",
   "instructions" : "Escribe $somebody$ o $anybody$.",
-  "translation" : "¡Hay alguien en la entrada principal!",
+  "translation" : "¡Hay alguien en la entrada este!",
   "theoryId" : "a2.08.Something_Somebody_Somewhere_and_Anything_Anybody_Anywhere",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -497,25 +497,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "There's",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "somebody" ]
     }, {
       "kind" : "TEXT",
-      "text" : "at the main entrance!",
+      "text" : "at the east entrance!",
       "options" : null
     } ],
-    "sentences" : [ "There's somebody at the main entrance!" ]
+    "sentences" : [ "There's somebody at the east entrance!" ]
   }
 } ]

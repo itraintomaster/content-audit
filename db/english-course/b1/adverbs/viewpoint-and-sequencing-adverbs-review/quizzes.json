@@ -619,7 +619,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d366"
   },
-  "title" : "Worse, they couldn't dance well.",
+  "title" : "Opinión y secuencia",
   "instructions" : "Coloca el adverbio en la posición $front$.",
   "translation" : "Peor aún, ellos no pudieron bailar bien.",
   "theoryId" : "b1.16.Adverbs_for_Linking_So_Therefore",
@@ -869,7 +869,7 @@
   },
   "title" : "Opinión y secuencia",
   "instructions" : "Coloca el adverbio en la posición $front$.",
-  "translation" : "Afortunadamente, él no chocó el coche.",
+  "translation" : "Sinceramente, él no chocó el coche.",
   "theoryId" : "b1.16.Adverbs_for_Linking_So_Therefore",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -889,26 +889,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He didn't crash the car. (thankfully)",
+      "text" : "He didn't crash the car. (honestly)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Thankfully, he didn't crash the car." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Honestly, he didn't crash the car." ]
     } ],
-    "sentences" : [ "Thankfully, he didn't crash the car." ]
+    "sentences" : [ "Honestly, he didn't crash the car." ]
   }
 }, {
   "_id" : {
@@ -921,7 +917,7 @@
   },
   "title" : "Opinión y secuencia",
   "instructions" : "Coloca el adverbio en la posición $front$.",
-  "translation" : "Desafortunadamente, él se rompió la pierna.",
+  "translation" : "Desafortunadamente, él se rompió la pierna ayer.",
   "theoryId" : "b1.16.Adverbs_for_Linking_So_Therefore",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -941,26 +937,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He broke his leg. (unluckily)",
+      "text" : "He broke his leg yesterday. (unluckily)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Unluckily, he broke his leg." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Unluckily, he broke his leg yesterday." ]
     } ],
-    "sentences" : [ "Unluckily, he broke his leg." ]
+    "sentences" : [ "Unluckily, he broke his leg yesterday." ]
   }
 }, {
   "_id" : {

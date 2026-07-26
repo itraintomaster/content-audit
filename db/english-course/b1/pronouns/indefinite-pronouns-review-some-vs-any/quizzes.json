@@ -793,26 +793,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She purchased something / anything at the market.",
+      "text" : "She bought something / anything at the market.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "something" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "She purchased something / anything at the market. something" ]
+    "sentences" : [ "She bought something / anything at the market. something" ]
   }
 }, {
   "_id" : {
@@ -877,7 +873,7 @@
   },
   "title" : "$Some$ vs. $Any$",
   "instructions" : "Elige la palabra correcta.",
-  "translation" : "No hemos bebido nada.",
+  "translation" : "No hemos lamentado nada.",
   "theoryId" : "",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -897,26 +893,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We haven't drunk something / anything.",
+      "text" : "We haven't regretted something / anything.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "anything" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "We haven't drunk something / anything. anything" ]
+    "sentences" : [ "We haven't regretted something / anything. anything" ]
   }
 }, {
   "_id" : {

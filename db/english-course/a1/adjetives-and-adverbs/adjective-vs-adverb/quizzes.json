@@ -9,7 +9,7 @@
   },
   "title" : "Adjetivo o adverbio",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ella cantó en voz baja.",
+  "translation" : "Ella cantó mal.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -42,13 +42,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "quietly" ]
+      "options" : [ "badly" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(quiet / quietly).",
+      "text" : "(bad / badly).",
       "options" : null
     } ],
-    "sentences" : [ "She sang quietly." ]
+    "sentences" : [ "She sang badly." ]
   }
 }, {
   "_id" : {
@@ -113,7 +113,7 @@
   },
   "title" : "Adjetivo o adverbio",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Él cerró la puerta ruidosamente.",
+  "translation" : "Él cerró la puerta con fuerza.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He closed the door",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "noisily" ]
+      "text" : null,
+      "options" : [ "hard" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(noisy / noisily).",
+      "text" : "(hard / hardly).",
       "options" : null
     } ],
-    "sentences" : [ "He closed the door noisily." ]
+    "sentences" : [ "He closed the door hard." ]
   }
 }, {
   "_id" : {
@@ -217,7 +217,7 @@
   },
   "title" : "Adjetivo o adverbio",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Ellos susurraron alegremente.",
+  "translation" : "Ellos se sintieron felices.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -245,18 +245,18 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They whispered",
+      "text" : "They felt",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "happily" ]
+      "options" : [ "happy" ]
     }, {
       "kind" : "TEXT",
       "text" : "(happy / happily).",
       "options" : null
     } ],
-    "sentences" : [ "They whispered happily." ]
+    "sentences" : [ "They felt happy." ]
   }
 }, {
   "_id" : {
@@ -373,7 +373,7 @@
   },
   "title" : "Adjetivo o adverbio",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Thomas tocó la guitarra maravillosamente.",
+  "translation" : "Thomas tocó la guitarra bien.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Thomas played the guitar",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "wonderfully" ]
+      "text" : null,
+      "options" : [ "well" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(wonderful / wonderfully).",
+      "text" : "(good / well).",
       "options" : null
     } ],
-    "sentences" : [ "Thomas played the guitar wonderfully." ]
+    "sentences" : [ "Thomas played the guitar well." ]
   }
 }, {
   "_id" : {
@@ -631,7 +631,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ea"
   },
-  "title" : "She dances well.",
+  "title" : "Adjetivo o adverbio",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
   "translation" : "Ella baila bien.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
@@ -685,7 +685,7 @@
   },
   "title" : "Adjetivo o adverbio",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Él dibuja casas habilidosas.",
+  "translation" : "Él dibuja casas diferentes.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -718,13 +718,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "skillful" ]
+      "options" : [ "different" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(skillful / skillfully) houses.",
+      "text" : "(different / differently) houses.",
       "options" : null
     } ],
-    "sentences" : [ "He draws skillful houses." ]
+    "sentences" : [ "He draws different houses." ]
   }
 }, {
   "_id" : {
@@ -945,7 +945,7 @@
   },
   "title" : "Adjetivo o adverbio",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "La música cambió abruptamente.",
+  "translation" : "La música cambió lentamente.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The music changed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "abruptly" ]
+      "text" : null,
+      "options" : [ "slowly" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(abrupt / abruptly).",
+      "text" : "(slow / slowly).",
       "options" : null
     } ],
-    "sentences" : [ "The music changed abruptly." ]
+    "sentences" : [ "The music changed slowly." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Adjetivo o adverbio",
   "instructions" : "Elige entre el adjetivo o el adverbio.",
-  "translation" : "Por favor, habla claramente.",
+  "translation" : "Por favor, habla bien.",
   "theoryId" : "a1.11.Adjective_or_Adverb_",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -1030,12 +1030,12 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "clearly" ]
+      "options" : [ "well" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(clear / clearly).",
+      "text" : "(good / well).",
       "options" : null
     } ],
-    "sentences" : [ "Please speak clearly." ]
+    "sentences" : [ "Please speak well." ]
   }
 } ]

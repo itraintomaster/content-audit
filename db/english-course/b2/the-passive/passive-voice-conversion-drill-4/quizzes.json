@@ -61,7 +61,7 @@
   },
   "title" : "Agente explícito",
   "instructions" : "Transforma la oración activa a pasiva incluyendo $by$.",
-  "translation" : "El gato había sido salvado por el bombero.",
+  "translation" : "El gato había sido salvado del árbol por el bombero.",
   "theoryId" : "b2.07.The_Get_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -81,26 +81,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The fireman had saved the cat.",
+      "text" : "The fireman had saved the cat from the tree.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The cat had been saved by the fireman." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The cat had been saved from the tree by the fireman." ]
     } ],
-    "sentences" : [ "The cat had been saved by the fireman." ]
+    "sentences" : [ "The cat had been saved from the tree by the fireman." ]
   }
 }, {
   "_id" : {

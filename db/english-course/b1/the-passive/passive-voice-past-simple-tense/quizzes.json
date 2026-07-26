@@ -267,7 +267,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d313"
   },
-  "title" : "The furniture was recycled (by my sister).",
+  "title" : "Pasado simple",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice).",
   "translation" : "Mi hermana recicló los muebles. Los muebles fueron reciclados por mi hermana.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
@@ -577,7 +577,7 @@
   },
   "title" : "Pasado simple",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice).",
-  "translation" : "Las ardillas fueron perseguidas.",
+  "translation" : "Los perros persiguieron a las ardillas. Las ardillas fueron perseguidas por los perros.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -597,26 +597,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The dogs chased the squirrels.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The squirrels were chased (by the dogs)." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The squirrels were chased by the dogs." ]
     } ],
-    "sentences" : [ "The squirrels were chased (by the dogs)." ]
+    "sentences" : [ "The squirrels were chased by the dogs." ]
   }
 }, {
   "_id" : {

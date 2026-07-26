@@ -425,7 +425,7 @@
   },
   "title" : "$Present Perfect$",
   "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con $Robert said that$.",
-  "translation" : "Robert dijo que John había aprendido los verbos modales.",
+  "translation" : "Robert dijo que John había mostrado interés en los verbos modales.",
   "theoryId" : "b1.10.How_to_Make_Reported_Speech",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -445,26 +445,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "John has learned modal verbs.",
+      "text" : "John has shown interest in modal verbs.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Robert said that John had learned modal verbs." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Robert said that John had shown interest in modal verbs." ]
     } ],
-    "sentences" : [ "Robert said that John had learned modal verbs." ]
+    "sentences" : [ "Robert said that John had shown interest in modal verbs." ]
   }
 }, {
   "_id" : {
@@ -525,7 +521,7 @@
   },
   "title" : "$Present Perfect$",
   "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con $Robert said that$.",
-  "translation" : "Robert dijo que había aspirado la sala de estar.",
+  "translation" : "Robert dijo que había exhibido las fotos en la sala de estar.",
   "theoryId" : "b1.10.How_to_Make_Reported_Speech",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -545,26 +541,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I have vacuumed the living room.",
+      "text" : "I have displayed the photos in the living room.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Robert said that he had vacuumed the living room." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Robert said that he had displayed the photos in the living room." ]
     } ],
-    "sentences" : [ "Robert said that he had vacuumed the living room." ]
+    "sentences" : [ "Robert said that he had displayed the photos in the living room." ]
   }
 }, {
   "_id" : {
@@ -577,7 +569,7 @@
   },
   "title" : "$Present Perfect$",
   "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con $Robert said that$.",
-  "translation" : "Robert dijo que David había recibido una beca.",
+  "translation" : "Robert dijo que David había recibido una bienvenida.",
   "theoryId" : "b1.10.How_to_Make_Reported_Speech",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -597,26 +589,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "David has received a scholarship.",
+      "text" : "David has received a welcome.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Robert said that David had received a scholarship." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Robert said that David had received a welcome." ]
     } ],
-    "sentences" : [ "Robert said that David had received a scholarship." ]
+    "sentences" : [ "Robert said that David had received a welcome." ]
   }
 }, {
   "_id" : {
@@ -941,7 +929,7 @@
   },
   "title" : "$Present Perfect$",
   "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con $Robert said that$.",
-  "translation" : "Robert dijo que la panadería había abierto.",
+  "translation" : "La tienda ha abierto. Robert dijo que la tienda había abierto.",
   "theoryId" : "b1.10.How_to_Make_Reported_Speech",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -961,26 +949,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The bakery has opened.",
+      "text" : "The shop has opened.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Robert said that the bakery had opened." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Robert said that the shop had opened." ]
     } ],
-    "sentences" : [ "Robert said that the bakery had opened." ]
+    "sentences" : [ "Robert said that the shop had opened." ]
   }
 }, {
   "_id" : {
@@ -993,7 +977,7 @@
   },
   "title" : "$Present Perfect$",
   "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con $Robert said that$.",
-  "translation" : "Robert dijo que el tráfico había empeorado.",
+  "translation" : "Robert dijo que el tráfico había empezado.",
   "theoryId" : "b1.10.How_to_Make_Reported_Speech",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -1013,25 +997,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The traffic has worsened.",
+      "text" : "The traffic has started.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Robert said that the weather had worsened." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Robert said that the traffic had started." ]
     } ],
-    "sentences" : [ "Robert said that the weather had worsened." ]
+    "sentences" : [ "Robert said that the traffic had started." ]
   }
 } ]

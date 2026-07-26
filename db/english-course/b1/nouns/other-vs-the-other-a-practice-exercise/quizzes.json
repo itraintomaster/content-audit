@@ -477,7 +477,7 @@
   },
   "title" : "Con o sin artículo",
   "instructions" : "Escribe $other$ si es posible. De lo contrario, escribe $the other$.",
-  "translation" : "Necesito otra azúcar. Esta está rancia.",
+  "translation" : "Necesito otra azúcar. Esta está húmeda.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I require some",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "other" ]
     }, {
       "kind" : "TEXT",
-      "text" : "sugar. This one is stale.",
+      "text" : "sugar. This one is humid.",
       "options" : null
     } ],
-    "sentences" : [ "I require some other sugar. This one is stale." ]
+    "sentences" : [ "I require some other sugar. This one is humid." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "Con o sin artículo",
   "instructions" : "Escribe $other$ si es posible. De lo contrario, escribe $the other$.",
-  "translation" : "Podríamos comprar la otra casa.",
+  "translation" : "Podríamos comprar la otra casa hoy.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We could purchase",
+      "text" : "We could buy",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the other" ]
     }, {
       "kind" : "TEXT",
-      "text" : "house.",
+      "text" : "house today.",
       "options" : null
     } ],
-    "sentences" : [ "We could purchase the other house." ]
+    "sentences" : [ "We could buy the other house today." ]
   }
 }, {
   "_id" : {
@@ -893,7 +893,7 @@
   },
   "title" : "Con o sin artículo",
   "instructions" : "Escribe $other$ si es posible. De lo contrario, escribe $the other$.",
-  "translation" : "Busquemos otro queso. Ese tipo es insípido.",
+  "translation" : "Busquemos otro queso. Ese tipo es flojo.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Let's find",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "other" ]
     }, {
       "kind" : "TEXT",
-      "text" : "cheese. That kind is tasteless.",
+      "text" : "cheese. That kind is weak.",
       "options" : null
     } ],
-    "sentences" : [ "Let's find other cheese. That kind is tasteless." ]
+    "sentences" : [ "Let's find other cheese. That kind is weak." ]
   }
 }, {
   "_id" : {
@@ -945,7 +945,7 @@
   },
   "title" : "Con o sin artículo",
   "instructions" : "Escribe $other$ si es posible. De lo contrario, escribe $the other$.",
-  "translation" : "¿Puedo tomar la otra cuchara? Esta está sucia.",
+  "translation" : "¿Puedo usar el otro grifo? Este está sucio.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "May I take",
+      "text" : "May I use",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the other" ]
     }, {
       "kind" : "TEXT",
-      "text" : "spoon? This one is unclean.",
+      "text" : "tap? This one is unclean.",
       "options" : null
     } ],
-    "sentences" : [ "May I take the other spoon? This one is unclean." ]
+    "sentences" : [ "May I use the other tap? This one is unclean." ]
   }
 }, {
   "_id" : {

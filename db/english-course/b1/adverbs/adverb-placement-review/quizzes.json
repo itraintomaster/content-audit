@@ -213,7 +213,7 @@
   },
   "title" : "Posición: repaso",
   "instructions" : "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición $mid$.",
-  "translation" : "Realmente no entiendo la física cuántica.",
+  "translation" : "Realmente no entiendo la física básica.",
   "theoryId" : "b1.16.Adverbs_of_Focus_Even",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -233,26 +233,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I don't understand quantum physics. (really)",
+      "text" : "I don't understand basic physics. (really)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I don't really understand quantum physics." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "I don't really understand basic physics." ]
     } ],
-    "sentences" : [ "I don't really understand quantum physics." ]
+    "sentences" : [ "I don't really understand basic physics." ]
   }
 }, {
   "_id" : {
@@ -317,7 +313,7 @@
   },
   "title" : "Posición: repaso",
   "instructions" : "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición $mid$.",
-  "translation" : "Quizás podríamos pedir comida para llevar.",
+  "translation" : "Quizás podríamos pedir comida para llevar para la cena de esta noche.",
   "theoryId" : "b1.16.Adverbs_of_Focus_Even",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -337,26 +333,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We could order takeout. (perhaps)",
+      "text" : "We could order takeout for dinner tonight. (perhaps)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We could perhaps order takeout." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "We could perhaps order takeout for dinner tonight." ]
     } ],
-    "sentences" : [ "We could perhaps order takeout." ]
+    "sentences" : [ "We could perhaps order takeout for dinner tonight." ]
   }
 }, {
   "_id" : {
@@ -629,7 +621,7 @@
   },
   "title" : "Posición: repaso",
   "instructions" : "Reescribe la oración colocando el adverbio en el lugar más común. Si hay más de una posición posible, utiliza la posición $mid$.",
-  "translation" : "Él baila con gracia.",
+  "translation" : "Él baila con gracia con su pareja en la boda.",
   "theoryId" : "b1.16.Adverbs_of_Focus_Even",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -649,26 +641,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He dances. (gracefully)",
+      "text" : "He dances with his partner at the wedding. (gracefully)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He dances gracefully." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He dances gracefully with his partner at the wedding." ]
     } ],
-    "sentences" : [ "He dances gracefully." ]
+    "sentences" : [ "He dances gracefully with his partner at the wedding." ]
   }
 }, {
   "_id" : {

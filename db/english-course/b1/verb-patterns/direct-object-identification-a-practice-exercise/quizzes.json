@@ -373,7 +373,7 @@
   },
   "title" : "Con o sin objeto",
   "instructions" : "Usa $us + to + infinitive$ si se requiere un objeto directo. De lo contrario, usa $to + infinitive$.",
-  "translation" : "Él nos desafió a jugar ajedrez.",
+  "translation" : "Él nos pidió que jugáramos ajedrez hoy.",
   "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He challenged",
+      "text" : "He asked",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "us to play" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(play) chess.",
+      "text" : "(play) chess today.",
       "options" : null
     } ],
-    "sentences" : [ "He challenged us to play chess." ]
+    "sentences" : [ "He asked us to play chess today." ]
   }
 }, {
   "_id" : {
@@ -529,7 +529,7 @@
   },
   "title" : "Con o sin objeto",
   "instructions" : "Usa $us + to + infinitive$ si se requiere un objeto directo. De lo contrario, usa $to + infinitive$.",
-  "translation" : "Nos instruyeron para servirnos la comida nosotros mismos.",
+  "translation" : "Nos dijeron que nos sirviéramos la comida nosotros mismos.",
   "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They instructed",
+      "text" : "They told",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "us to serve" ]
     }, {
       "kind" : "TEXT",
       "text" : "(serve) food ourselves.",
       "options" : null
     } ],
-    "sentences" : [ "They instructed us to serve food ourselves." ]
+    "sentences" : [ "They told us to serve food ourselves." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "Con o sin objeto",
   "instructions" : "Usa $us + to + infinitive$ si se requiere un objeto directo. De lo contrario, usa $to + infinitive$.",
-  "translation" : "Ella anticipa tener éxito en la vida.",
+  "translation" : "Ella se esfuerza mucho por tener éxito en la vida.",
   "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She anticipates",
+      "text" : "She tries hard",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to succeed" ]
     }, {
       "kind" : "TEXT",
       "text" : "(succeed) in life.",
       "options" : null
     } ],
-    "sentences" : [ "She anticipates to succeed in life." ]
+    "sentences" : [ "She tries hard to succeed in life." ]
   }
 }, {
   "_id" : {

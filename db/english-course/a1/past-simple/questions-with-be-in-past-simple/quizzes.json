@@ -373,7 +373,7 @@
   },
   "title" : "Preguntas con $be$",
   "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
-  "translation" : "¿Estaban ruidosos afuera?",
+  "translation" : "¿Estaban seguros afuera?",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -393,26 +393,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Were they" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / be) noisy outside?",
+      "text" : "(they / be) safe outside?",
       "options" : null
     } ],
-    "sentences" : [ "Were they noisy outside?" ]
+    "sentences" : [ "Were they safe outside?" ]
   }
 }, {
   "_id" : {
@@ -935,7 +931,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b3"
   },
-  "title" : "Why was it boring?",
+  "title" : "Preguntas con $be$",
   "instructions" : "Escribe preguntas en pasado simple con el verbo $be$: preguntas de tipo $yes/no$ y preguntas $wh$.",
   "translation" : "¿Por qué era aburrido?",
   "theoryId" : "a1.04.Past_Simple_with_Be",

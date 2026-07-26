@@ -165,7 +165,7 @@
   },
   "title" : "Países",
   "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
-  "translation" : "Edimburgo está situado en Escocia.",
+  "translation" : "Edimburgo está en Escocia.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Edinburgh is situated in",
+      "text" : "Edinburgh is in",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the" ]
+      "text" : null,
+      "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "Scotland.",
       "options" : null
     } ],
-    "sentences" : [ "Edinburgh is situated in the Scotland." ]
+    "sentences" : [ "Edinburgh is in - Scotland." ]
   }
 }, {
   "_id" : {
@@ -269,7 +269,7 @@
   },
   "title" : "Países",
   "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
-  "translation" : "Hicimos un recorrido por Austria.",
+  "translation" : "Viajamos por Austria.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We toured around",
+      "text" : "We travelled around",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "Austria.",
       "options" : null
     } ],
-    "sentences" : [ "We toured around - Austria." ]
+    "sentences" : [ "We travelled around - Austria." ]
   }
 }, {
   "_id" : {
@@ -321,7 +321,7 @@
   },
   "title" : "Países",
   "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
-  "translation" : "Ellos son originarios de Madrid, en España.",
+  "translation" : "Ellos son de Madrid, en España.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They originate from Madrid in",
+      "text" : "They come from Madrid in",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "Spain.",
       "options" : null
     } ],
-    "sentences" : [ "They originate from Madrid in - Spain." ]
+    "sentences" : [ "They come from Madrid in - Spain." ]
   }
 }, {
   "_id" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They toured around",
+      "text" : "They went around",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "the" ]
+      "text" : null,
+      "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "Argentina.",
       "options" : null
     } ],
-    "sentences" : [ "They toured around the Argentina." ]
+    "sentences" : [ "They went around - Argentina." ]
   }
 }, {
   "_id" : {
@@ -683,7 +683,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d260"
   },
-  "title" : "He loves living in - Vietnam.",
+  "title" : "Países",
   "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
   "translation" : "A él le encanta vivir en Vietnam.",
   "theoryId" : "a2.06.Article_with_Countries",
@@ -737,7 +737,7 @@
   },
   "title" : "Países",
   "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
-  "translation" : "Texas está ubicado en los Emiratos Árabes Unidos.",
+  "translation" : "Texas no está en los Emiratos Árabes Unidos.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Texas is located in",
+      "text" : "Texas is not in",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
       "text" : "United Arab Emirates.",
       "options" : null
     } ],
-    "sentences" : [ "Texas is located in the United Arab Emirates." ]
+    "sentences" : [ "Texas is not in the United Arab Emirates." ]
   }
 }, {
   "_id" : {
@@ -945,7 +945,7 @@
   },
   "title" : "Países",
   "instructions" : "Inserta $the$ si es necesario; de lo contrario, usa $-$.",
-  "translation" : "Él desea ir a las Islas Británicas.",
+  "translation" : "Él planea nadar en el Océano Índico.",
   "theoryId" : "a2.06.Article_with_Countries",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He desires to go to",
+      "text" : "He plans to swim in",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
-      "text" : "British Islands.",
+      "text" : "Indian Ocean.",
       "options" : null
     } ],
-    "sentences" : [ "He desires to go to the British Islands." ]
+    "sentences" : [ "He plans to swim in the Indian Ocean." ]
   }
 }, {
   "_id" : {

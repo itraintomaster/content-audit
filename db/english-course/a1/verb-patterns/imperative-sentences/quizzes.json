@@ -61,7 +61,7 @@
   },
   "title" : "Oraciones imperativas",
   "instructions" : "Transforma estas oraciones a imperativo.",
-  "translation" : "Agrega la sal a la sopa.",
+  "translation" : "Lleva la sal a la sopa.",
   "theoryId" : "a1.05.Verb_Patterns_with_Infinitives_Without_To",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -81,26 +81,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You should add the salt to the soup.",
+      "text" : "You should take the salt to the soup.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Add the salt to the soup." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Take the salt to the soup." ]
     } ],
-    "sentences" : [ "Add the salt to the soup." ]
+    "sentences" : [ "Take the salt to the soup." ]
   }
 }, {
   "_id" : {
@@ -113,7 +109,7 @@
   },
   "title" : "Oraciones imperativas",
   "instructions" : "Transforma estas oraciones a imperativo.",
-  "translation" : "No pierdas tu dinero.",
+  "translation" : "No lleves tu dinero.",
   "theoryId" : "a1.05.Verb_Patterns_with_Infinitives_Without_To",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -141,14 +137,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You shouldn't lose your money.",
+      "text" : "You shouldn't take your money.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "Don't lose your money.|Do not lose your money." ]
+      "options" : [ "Don't take your money.|Do not take your money." ]
     } ],
-    "sentences" : [ "Don't lose your money.", "Do not lose your money." ]
+    "sentences" : [ "Don't take your money.", "Do not take your money." ]
   }
 }, {
   "_id" : {
@@ -181,26 +177,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You shouldn't stand up.",
+      "text" : "You shouldn't get up.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Don't stand up.|Do not stand up." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Don't get up.|Do not get up." ]
     } ],
-    "sentences" : [ "Don't stand up.", "Do not stand up." ]
+    "sentences" : [ "Don't get up.", "Do not get up." ]
   }
 }, {
   "_id" : {
@@ -265,7 +257,7 @@
   },
   "title" : "Oraciones imperativas",
   "instructions" : "Transforma estas oraciones a imperativo.",
-  "translation" : "No hagas tanto desorden.",
+  "translation" : "No hagas una pregunta así.",
   "theoryId" : "a1.05.Verb_Patterns_with_Infinitives_Without_To",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -293,14 +285,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You shouldn't make such a mess.",
+      "text" : "You shouldn't ask such a question.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "Don't make such a mess.|Do not make such a mess." ]
+      "options" : [ "Don't ask such a question.|Do not ask such a question." ]
     } ],
-    "sentences" : [ "Don't make such a mess.", "Do not make such a mess." ]
+    "sentences" : [ "Don't ask such a question.", "Do not ask such a question." ]
   }
 }, {
   "_id" : {
@@ -365,7 +357,7 @@
   },
   "title" : "Oraciones imperativas",
   "instructions" : "Transforma estas oraciones a imperativo.",
-  "translation" : "Levántate.",
+  "translation" : "Mira hacia arriba.",
   "theoryId" : "a1.05.Verb_Patterns_with_Infinitives_Without_To",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -385,26 +377,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You should stand up.",
+      "text" : "You should look up.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Stand up." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Look up." ]
     } ],
-    "sentences" : [ "Stand up." ]
+    "sentences" : [ "Look up." ]
   }
 }, {
   "_id" : {
@@ -617,7 +605,7 @@
   },
   "title" : "Oraciones imperativas",
   "instructions" : "Transforma estas oraciones a imperativo.",
-  "translation" : "Levanta el brazo.",
+  "translation" : "Muestra el brazo.",
   "theoryId" : "a1.05.Verb_Patterns_with_Infinitives_Without_To",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -645,14 +633,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You should raise your arm.",
+      "text" : "You should show your arm.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "Raise your arm." ]
+      "options" : [ "Show your arm." ]
     } ],
-    "sentences" : [ "Raise your arm." ]
+    "sentences" : [ "Show your arm." ]
   }
 }, {
   "_id" : {
@@ -665,7 +653,7 @@
   },
   "title" : "Oraciones imperativas",
   "instructions" : "Transforma estas oraciones a imperativo.",
-  "translation" : "No pidas más bebidas.",
+  "translation" : "No tomes más bebidas.",
   "theoryId" : "a1.05.Verb_Patterns_with_Infinitives_Without_To",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -685,26 +673,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You shouldn't order any more drinks.",
+      "text" : "You shouldn't have any more drinks.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Don't order any more drinks.|Do not order any more drinks." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Don't have any more drinks.|Do not have any more drinks." ]
     } ],
-    "sentences" : [ "Don't order any more drinks.", "Do not order any more drinks." ]
+    "sentences" : [ "Don't have any more drinks.", "Do not have any more drinks." ]
   }
 }, {
   "_id" : {
@@ -717,7 +701,7 @@
   },
   "title" : "Oraciones imperativas",
   "instructions" : "Transforma estas oraciones a imperativo.",
-  "translation" : "No juegues tan cerca del fuego.",
+  "translation" : "No juegues cerca de la puerta.",
   "theoryId" : "a1.05.Verb_Patterns_with_Infinitives_Without_To",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -737,26 +721,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You shouldn't play so close to the fire.",
+      "text" : "You shouldn't play close to the door.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Don't play so close to the fire.|Do not play so close to the fire." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Don't play close to the door.|Do not play close to the door." ]
     } ],
-    "sentences" : [ "Don't play so close to the fire.", "Do not play so close to the fire." ]
+    "sentences" : [ "Don't play close to the door.", "Do not play close to the door." ]
   }
 }, {
   "_id" : {
@@ -817,7 +797,7 @@
   },
   "title" : "Oraciones imperativas",
   "instructions" : "Transforma estas oraciones a imperativo.",
-  "translation" : "No te subas a la mesa.",
+  "translation" : "No estés sobre la mesa.",
   "theoryId" : "a1.05.Verb_Patterns_with_Infinitives_Without_To",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -837,26 +817,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You shouldn't climb on the table.",
+      "text" : "You shouldn't be on the table.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Don't climb on the table.|Do not climb on the table." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Don't be on the table.|Do not be on the table." ]
     } ],
-    "sentences" : [ "Don't climb on the table.", "Do not climb on the table." ]
+    "sentences" : [ "Don't be on the table.", "Do not be on the table." ]
   }
 }, {
   "_id" : {
@@ -869,7 +845,7 @@
   },
   "title" : "Oraciones imperativas",
   "instructions" : "Transforma estas oraciones a imperativo.",
-  "translation" : "Gira a la derecha.",
+  "translation" : "Ve al parque.",
   "theoryId" : "a1.05.Verb_Patterns_with_Infinitives_Without_To",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -889,26 +865,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You should turn to the right.",
+      "text" : "You should go to the park.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Turn to the right." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Go to the park." ]
     } ],
-    "sentences" : [ "Turn to the right." ]
+    "sentences" : [ "Go to the park." ]
   }
 }, {
   "_id" : {
@@ -969,7 +941,7 @@
   },
   "title" : "Oraciones imperativas",
   "instructions" : "Transforma estas oraciones a imperativo.",
-  "translation" : "¡Salva una vida!",
+  "translation" : "¡Consigue una vida!",
   "theoryId" : "a1.05.Verb_Patterns_with_Infinitives_Without_To",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -997,13 +969,13 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You should save a life!",
+      "text" : "You should get a life!",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "Save a life!" ]
+      "options" : [ "Get a life!" ]
     } ],
-    "sentences" : [ "Save a life!" ]
+    "sentences" : [ "Get a life!" ]
   }
 } ]

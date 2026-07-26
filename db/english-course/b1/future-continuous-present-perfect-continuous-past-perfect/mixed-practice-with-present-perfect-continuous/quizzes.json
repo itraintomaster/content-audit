@@ -369,7 +369,7 @@
   },
   "title" : "Repaso mixto",
   "instructions" : "Escribe oraciones en $present perfect continuous$.",
-  "translation" : "No hemos estado comiendo hamburguesas.",
+  "translation" : "No hemos estado comiendo hamburguesas este mes.",
   "theoryId" : "b1.04.Present_Perfect_Continuous_Forms_3_Mixed",
   "topicName" : "Future continuous / present perfect continuous / past perfect",
   "difficulty" : {
@@ -389,26 +389,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "we / not / eat hamburgers.",
+      "text" : "we / not / eat hamburgers this month.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "We haven't been eating hamburgers." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "We haven't been eating hamburgers this month." ]
     } ],
-    "sentences" : [ "We haven't been eating hamburgers." ]
+    "sentences" : [ "We haven't been eating hamburgers this month." ]
   }
 }, {
   "_id" : {

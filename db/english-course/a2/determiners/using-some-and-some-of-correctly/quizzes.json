@@ -373,7 +373,7 @@
   },
   "title" : "Parte del conjunto",
   "instructions" : "Completa con $some$ o $some of$.",
-  "translation" : "¡Tus perros son agradables! Algunos de los nuestros son juguetones.",
+  "translation" : "¡Tus perros son agradables! Algunos de los nuestros son peores.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Your dogs are nice!",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Some of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "ours are playful.",
+      "text" : "ours are worse.",
       "options" : null
     } ],
-    "sentences" : [ "Your dogs are nice! Some of ours are playful." ]
+    "sentences" : [ "Your dogs are nice! Some of ours are worse." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "Parte del conjunto",
   "instructions" : "Completa con $some$ o $some of$.",
-  "translation" : "Derramé un poco de sal sobre la mesa.",
+  "translation" : "Puse un poco de sal sobre la mesa.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I spilled",
+      "text" : "I put",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "some" ]
     }, {
       "kind" : "TEXT",
       "text" : "salt on the table.",
       "options" : null
     } ],
-    "sentences" : [ "I spilled some salt on the table." ]
+    "sentences" : [ "I put some salt on the table." ]
   }
 }, {
   "_id" : {
@@ -835,7 +835,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d267"
   },
-  "title" : "She cooked some of the ham.",
+  "title" : "Parte del conjunto",
   "instructions" : "Completa con $some$ o $some of$.",
   "translation" : "Ella cocinó parte del jamón.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",

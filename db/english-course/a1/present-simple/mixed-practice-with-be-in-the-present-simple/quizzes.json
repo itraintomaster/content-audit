@@ -9,7 +9,7 @@
   },
   "title" : "Formas con $be$",
   "instructions" : "Escribe oraciones en presente simple con el verbo $be$.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "¿Por qué llega temprano?",
+  "translation" : "¿Por qué está aquí?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is he" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / be) early?",
+      "text" : "(he / be) here?",
       "options" : null
     } ],
-    "sentences" : [ "Why is he early?" ]
+    "sentences" : [ "Why is he here?" ]
   }
 }, {
   "_id" : {
@@ -833,7 +833,7 @@
   },
   "title" : "Formas con $be$",
   "instructions" : "Escribe oraciones en presente simple con el verbo $be$.  Puede ser afirmativa, negativa o una pregunta.",
-  "translation" : "Llegas temprano.",
+  "translation" : "Eres mi favorito.",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -853,26 +853,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "are" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) early.",
+      "text" : "(be) my favourite.",
       "options" : null
     } ],
-    "sentences" : [ "You are early." ]
+    "sentences" : [ "You are my favourite." ]
   }
 }, {
   "_id" : {

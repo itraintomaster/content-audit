@@ -341,26 +341,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "If everything is normal, the cinemas aren't crowded. Nobody watches movies at this hour.",
+      "text" : "If everything is normal, the cinemas aren't full. Nobody watches movies at this hour.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The cinemas shouldn't be crowded. Nobody watches movies at this hour." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The cinemas shouldn't be full. Nobody watches movies at this hour." ]
     } ],
-    "sentences" : [ "The cinemas shouldn't be crowded. Nobody watches movies at this hour." ]
+    "sentences" : [ "The cinemas shouldn't be full. Nobody watches movies at this hour." ]
   }
 }, {
   "_id" : {
@@ -893,7 +889,7 @@
   },
   "title" : "Deducciones actuales",
   "instructions" : "Crea oraciones con $should$.",
-  "translation" : "El aire acondicionado debería estar encendido en este momento.",
+  "translation" : "Si todo está normal, el satélite debería estar sobre nosotros en este momento.",
   "theoryId" : "b2.09.Should_for_Guesses_about_the_Present",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -913,26 +909,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "If everything is normal, the air conditioner is on at the moment.",
+      "text" : "If everything is normal, the satellite is above us at the moment.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The air conditioner should be on at the moment." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The satellite should be above us at the moment." ]
     } ],
-    "sentences" : [ "The air conditioner should be on at the moment." ]
+    "sentences" : [ "The satellite should be above us at the moment." ]
   }
 }, {
   "_id" : {

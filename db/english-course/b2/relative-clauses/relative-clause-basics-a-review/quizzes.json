@@ -529,7 +529,7 @@
   },
   "title" : "Ubicación exacta",
   "instructions" : "¿Qué parte de la oración es la $relative clause$?",
-  "translation" : "que florecen temprano",
+  "translation" : "Me gusta el hecho que importa en este ejemplo.",
   "theoryId" : "b2.10.Prepositions_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I love flowers that bloom early.",
+      "text" : "I like the fact",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "that bloom early" ]
+      "text" : null,
+      "options" : [ "that" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "matters in this example.",
       "options" : null
     } ],
-    "sentences" : [ "I love flowers that bloom early. that bloom early" ]
+    "sentences" : [ "I like the fact that matters in this example." ]
   }
 }, {
   "_id" : {
@@ -893,7 +893,7 @@
   },
   "title" : "Ubicación exacta",
   "instructions" : "¿Qué parte de la oración es la $relative clause$?",
-  "translation" : "que llevas puesto",
+  "translation" : "que obtuviste",
   "theoryId" : "b2.10.Prepositions_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -913,26 +913,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The jewelry that you wear is very sparkly.",
+      "text" : "The jewelry that you obtained is very sparkly.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "that you wear" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "that you obtained" ]
     } ],
-    "sentences" : [ "The jewelry that you wear is very sparkly. that you wear" ]
+    "sentences" : [ "The jewelry that you obtained is very sparkly. that you obtained" ]
   }
 }, {
   "_id" : {
@@ -945,7 +941,7 @@
   },
   "title" : "Ubicación exacta",
   "instructions" : "¿Qué parte de la oración es la $relative clause$?",
-  "translation" : "que tenía una llanta ponchada",
+  "translation" : "que tenía un pedal roto",
   "theoryId" : "b2.10.Prepositions_in_Relative_Clauses",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -965,25 +961,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I repaired the bicycle that had a flat tire.",
+      "text" : "I repaired the bicycle that had a broken pedal.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "that had a flat tire" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "that had a broken pedal" ]
     } ],
-    "sentences" : [ "I repaired the bicycle that had a flat tire. that had a flat tire" ]
+    "sentences" : [ "I repaired the bicycle that had a broken pedal. that had a broken pedal" ]
   }
 } ]

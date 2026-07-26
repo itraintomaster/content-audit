@@ -113,7 +113,7 @@
   },
   "title" : "Objetos y sustancias",
   "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
-  "translation" : "Deseamos un barco.",
+  "translation" : "Tenemos un barco.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We desire",
+      "text" : "We have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
       "text" : "boat.",
       "options" : null
     } ],
-    "sentences" : [ "We desire a boat." ]
+    "sentences" : [ "We have a boat." ]
   }
 }, {
   "_id" : {
@@ -217,7 +217,7 @@
   },
   "title" : "Objetos y sustancias",
   "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
-  "translation" : "Ellos requerían información.",
+  "translation" : "Ellos necesitaban información.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They required",
+      "text" : "They needed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "information.",
       "options" : null
     } ],
-    "sentences" : [ "They required - information." ]
+    "sentences" : [ "They needed - information." ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "Objetos y sustancias",
   "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
-  "translation" : "Compré una falda.",
+  "translation" : "Conseguí una falda.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I purchased",
+      "text" : "I got",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
       "text" : "skirt.",
       "options" : null
     } ],
-    "sentences" : [ "I purchased a skirt." ]
+    "sentences" : [ "I got a skirt." ]
   }
 }, {
   "_id" : {
@@ -841,7 +841,7 @@
   },
   "title" : "Objetos y sustancias",
   "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
-  "translation" : "¿La formación es buena en tu empresa?",
+  "translation" : "¿La formación es importante en tu empresa?",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -877,10 +877,10 @@
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "training good in your company?",
+      "text" : "training important in your company?",
       "options" : null
     } ],
-    "sentences" : [ "Is - training good in your company?" ]
+    "sentences" : [ "Is - training important in your company?" ]
   }
 }, {
   "_id" : {

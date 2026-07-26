@@ -893,7 +893,7 @@
   },
   "title" : "Ya o todavía no",
   "instructions" : "Escribe oraciones con el $present perfect simple$ y agrega $yet$ o $already$. Usa $yet$ para oraciones negativas y preguntas, y $already$ para oraciones positivas.",
-  "translation" : "¿Los niños ya han hecho sus tareas?",
+  "translation" : "¿Los niños ya han hecho sus evaluaciones esta semana?",
   "theoryId" : "b2.02.Present_Perfect_for_Things_with_a_Present_Result",
   "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
   "difficulty" : {
@@ -913,26 +913,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The children / do their chores?",
+      "text" : "The children / do their assessments this week?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Have the children done their chores yet?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Have the children done their assessments this week yet?" ]
     } ],
-    "sentences" : [ "Have the children done their chores yet?" ]
+    "sentences" : [ "Have the children done their assessments this week yet?" ]
   }
 }, {
   "_id" : {

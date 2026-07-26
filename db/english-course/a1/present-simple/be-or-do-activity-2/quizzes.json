@@ -9,7 +9,7 @@
   },
   "title" : "$Be$ o $do$: actividad 2",
   "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es $be$, debes usar $am / is / are$ y si el verbo no es $be$, debes usar $do / does$.",
-  "translation" : "¿Llegué temprano?",
+  "translation" : "Soy nuevo. ¿Soy nuevo?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I'm early.",
+      "text" : "I'm new.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Am I early?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Am I new?" ]
     } ],
-    "sentences" : [ "Am I early?" ]
+    "sentences" : [ "Am I new?" ]
   }
 }, {
   "_id" : {
@@ -441,26 +437,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We own two cats.",
+      "text" : "We have two cats.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Do we own two cats?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Do we have two cats?" ]
     } ],
-    "sentences" : [ "Do we own two cats?" ]
+    "sentences" : [ "Do we have two cats?" ]
   }
 }, {
   "_id" : {
@@ -625,7 +617,7 @@
   },
   "title" : "$Be$ o $do$: actividad 2",
   "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es $be$, debes usar $am / is / are$ y si el verbo no es $be$, debes usar $do / does$.",
-  "translation" : "¿Ella está en el estadio?",
+  "translation" : "Ella está en la fiesta. ¿Ella está en la fiesta?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -645,26 +637,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She's at the stadium.",
+      "text" : "She's at the party.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Is she at the stadium?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Is she at the party?" ]
     } ],
-    "sentences" : [ "Is she at the stadium?" ]
+    "sentences" : [ "Is she at the party?" ]
   }
 }, {
   "_id" : {
@@ -877,7 +865,7 @@
   },
   "title" : "$Be$ o $do$: actividad 2",
   "instructions" : "Formula preguntas a partir de estas oraciones. Recuerda, si el verbo es $be$, debes usar $am / is / are$ y si el verbo no es $be$, debes usar $do / does$.",
-  "translation" : "¿Ellos pasan tiempo en la casa?",
+  "translation" : "¿Ellos tienen tiempo en la casa?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -905,14 +893,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They pass time in the house.",
+      "text" : "They have time in the house.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "Do they pass time in the house?" ]
+      "options" : [ "Do they have time in the house?" ]
     } ],
-    "sentences" : [ "Do they pass time in the house?" ]
+    "sentences" : [ "Do they have time in the house?" ]
   }
 }, {
   "_id" : {

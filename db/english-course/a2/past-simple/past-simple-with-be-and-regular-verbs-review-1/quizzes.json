@@ -341,26 +341,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Did you search" ]
+      "text" : null,
+      "options" : [ "Did you look" ]
     }, {
       "kind" : "TEXT",
       "text" : "(you / look) for the keys?",
       "options" : null
     } ],
-    "sentences" : [ "Did you search for the keys?" ]
+    "sentences" : [ "Did you look for the keys?" ]
   }
 }, {
   "_id" : {
@@ -633,7 +629,7 @@
   },
   "title" : "$be$ y verbos: repaso 1",
   "instructions" : "Escribe la forma en $past simple$.",
-  "translation" : "Fui en bicicleta a la playa.",
+  "translation" : "Caminé a la playa.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -653,26 +649,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "cycled" ]
+      "text" : null,
+      "options" : [ "walked" ]
     }, {
       "kind" : "TEXT",
       "text" : "(walk) to the beach.",
       "options" : null
     } ],
-    "sentences" : [ "I cycled to the beach." ]
+    "sentences" : [ "I walked to the beach." ]
   }
 }, {
   "_id" : {

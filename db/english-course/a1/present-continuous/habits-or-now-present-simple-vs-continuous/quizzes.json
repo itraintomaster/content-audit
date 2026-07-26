@@ -57,7 +57,7 @@
   },
   "title" : "¿Hábito o ahora?",
   "instructions" : "Elige entre $present simple$ o $present continuous$.",
-  "translation" : "¿Está el médico hablando con el cocinero?",
+  "translation" : "¿Está el médico hablando con el profesor?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -89,10 +89,10 @@
       "options" : [ "Is the doctor talking" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(the doctor / talk) to the cook?",
+      "text" : "(the doctor / talk) to the teacher?",
       "options" : null
     } ],
-    "sentences" : [ "Is the doctor talking to the cook?" ]
+    "sentences" : [ "Is the doctor talking to the teacher?" ]
   }
 }, {
   "_id" : {
@@ -365,7 +365,7 @@
   },
   "title" : "¿Hábito o ahora?",
   "instructions" : "Elige entre $present simple$ o $present continuous$.",
-  "translation" : "Peter escribe a su amigo por correspondencia todos los meses.",
+  "translation" : "Peter escribe a su amigo todos los meses.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -385,26 +385,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Peter",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "writes" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(write) to his penfriend every month.",
+      "text" : "(write) to his friend every month.",
       "options" : null
     } ],
-    "sentences" : [ "Peter writes to his penfriend every month." ]
+    "sentences" : [ "Peter writes to his friend every month." ]
   }
 }, {
   "_id" : {
@@ -833,7 +833,7 @@
   },
   "title" : "¿Hábito o ahora?",
   "instructions" : "Elige entre $present simple$ o $present continuous$.",
-  "translation" : "Él visita la playa dos veces a la semana.",
+  "translation" : "Él visita la playa los domingos.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -869,10 +869,10 @@
       "options" : [ "visits" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(visit) the beach twice a week.",
+      "text" : "(visit) the beach on Sundays.",
       "options" : null
     } ],
-    "sentences" : [ "He visits the beach twice a week." ]
+    "sentences" : [ "He visits the beach on Sundays." ]
   }
 }, {
   "_id" : {

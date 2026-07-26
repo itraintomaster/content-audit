@@ -421,7 +421,7 @@
   },
   "title" : "Peticiones más educadas",
   "instructions" : "Transforma estas oraciones en peticiones más educadas utilizando $would like$.",
-  "translation" : "Me gustaría unas papas fritas.",
+  "translation" : "Me gustaría un poco de agua.",
   "theoryId" : "",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -441,26 +441,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I want some fries.",
+      "text" : "I want some water.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I would like some fries." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "I would like some water." ]
     } ],
-    "sentences" : [ "I would like some fries." ]
+    "sentences" : [ "I would like some water." ]
   }
 }, {
   "_id" : {

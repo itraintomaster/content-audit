@@ -7,7 +7,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d238"
   },
-  "title" : "He got a new phone.",
+  "title" : "Irregulares: grupo 2",
   "instructions" : "Escribe la forma en $past simple$.",
   "translation" : "Consiguió un teléfono nuevo.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
@@ -269,7 +269,7 @@
   },
   "title" : "Irregulares: grupo 2",
   "instructions" : "Escribe la forma en $past simple$.",
-  "translation" : "Tiró la basura.",
+  "translation" : "Tiró la raqueta.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "threw" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(throw) the garbage.",
+      "text" : "(throw) the racket.",
       "options" : null
     } ],
-    "sentences" : [ "She threw the garbage." ]
+    "sentences" : [ "She threw the racket." ]
   }
 }, {
   "_id" : {
@@ -1101,7 +1101,7 @@
   },
   "title" : "Irregulares: grupo 2",
   "instructions" : "Escribe la forma en $past simple$.",
-  "translation" : "Puso la mesa.",
+  "translation" : "Ella consiguió la silla.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -1121,26 +1121,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "set" ]
+      "text" : null,
+      "options" : [ "got" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(set) the table.",
+      "text" : "(get) the chair.",
       "options" : null
     } ],
-    "sentences" : [ "She set the table." ]
+    "sentences" : [ "She got the chair." ]
   }
 }, {
   "_id" : {

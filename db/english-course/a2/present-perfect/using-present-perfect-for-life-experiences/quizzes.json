@@ -159,7 +159,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d245"
   },
-  "title" : "Have you ever cooked duck?",
+  "title" : "Experiencias con $ever$",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "¿Alguna vez has cocinado pato?",
   "theoryId" : "a2.04.Present_Perfect_for_Life_Experience_With_Ever_and_Never_",
@@ -261,7 +261,7 @@
   },
   "title" : "Experiencias con $ever$",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Alguna vez ella ha probado la cerveza?",
+  "translation" : "¿Alguna vez ella ha probado cerveza?",
   "theoryId" : "a2.04.Present_Perfect_for_Life_Experience_With_Ever_and_Never_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -281,26 +281,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Has she ever tasted" ]
+      "text" : null,
+      "options" : [ "Has she ever tried" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / ever / taste) beer?",
+      "text" : "(she / ever / try) beer?",
       "options" : null
     } ],
-    "sentences" : [ "Has she ever tasted beer?" ]
+    "sentences" : [ "Has she ever tried beer?" ]
   }
 }, {
   "_id" : {
@@ -517,7 +513,7 @@
   },
   "title" : "Experiencias con $ever$",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Alguna vez has practicado pilates?",
+  "translation" : "¿Alguna vez has hecho pilates?",
   "theoryId" : "a2.04.Present_Perfect_for_Life_Experience_With_Ever_and_Never_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -537,26 +533,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Have you ever practiced" ]
+      "text" : null,
+      "options" : [ "Have you ever done" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / ever / practice) pilates?",
+      "text" : "(you / ever / do) pilates?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever practiced pilates?" ]
+    "sentences" : [ "Have you ever done pilates?" ]
   }
 }, {
   "_id" : {
@@ -569,7 +561,7 @@
   },
   "title" : "Experiencias con $ever$",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Alguna vez has visto polo?",
+  "translation" : "¿Alguna vez has jugado al polo?",
   "theoryId" : "a2.04.Present_Perfect_for_Life_Experience_With_Ever_and_Never_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -589,26 +581,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Have you ever watched" ]
+      "text" : null,
+      "options" : [ "Have you ever played" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / ever / watch) polo?",
+      "text" : "(you / ever / play) polo?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever watched polo?" ]
+    "sentences" : [ "Have you ever played polo?" ]
   }
 }, {
   "_id" : {
@@ -969,7 +957,7 @@
   },
   "title" : "Experiencias con $ever$",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Alguna vez hemos colaborado antes?",
+  "translation" : "¿Alguna vez nos hemos conocido antes?",
   "theoryId" : "a2.04.Present_Perfect_for_Life_Experience_With_Ever_and_Never_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -989,25 +977,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Have we ever collaborated" ]
+      "text" : null,
+      "options" : [ "Have we ever met" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(we / ever / speak) before?",
+      "text" : "(we / ever / meet) before?",
       "options" : null
     } ],
-    "sentences" : [ "Have we ever collaborated before?" ]
+    "sentences" : [ "Have we ever met before?" ]
   }
 } ]

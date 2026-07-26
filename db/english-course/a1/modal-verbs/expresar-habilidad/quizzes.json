@@ -9,7 +9,7 @@
   },
   "title" : "Expresar habilidad",
   "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
-  "translation" : "Pronto ella podrá bailar.",
+  "translation" : "El domingo ella puede bailar.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -37,18 +37,18 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Soon she",
+      "text" : "Sunday she",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "will be able to" ]
+      "options" : [ "can" ]
     }, {
       "kind" : "TEXT",
       "text" : "dance.",
       "options" : null
     } ],
-    "sentences" : [ "Soon she will be able to dance." ]
+    "sentences" : [ "Sunday she can dance." ]
   }
 }, {
   "_id" : {
@@ -215,7 +215,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3e3"
   },
-  "title" : "You can understand people.",
+  "title" : "Expresar habilidad",
   "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
   "translation" : "Puedes entender a la gente.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
@@ -373,7 +373,7 @@
   },
   "title" : "Expresar habilidad",
   "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
-  "translation" : "No puedo conducir una moto.",
+  "translation" : "No puedo andar en bicicleta.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "can't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not) ride a motorbike. (now)",
+      "text" : "(not) ride a bike. (now)",
       "options" : null
     } ],
-    "sentences" : [ "I can't ride a motorbike." ]
+    "sentences" : [ "I can't ride a bike." ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "Expresar habilidad",
   "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
-  "translation" : "Ellos no podrán terminar el examen mañana.",
+  "translation" : "Ellos no pueden terminar el examen.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "won't be able to" ]
+      "text" : null,
+      "options" : [ "can't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not) finish the test tomorrow.",
+      "text" : "(not) finish the test.",
       "options" : null
     } ],
-    "sentences" : [ "They won't be able to finish the test tomorrow." ]
+    "sentences" : [ "They can't finish the test." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "Expresar habilidad",
   "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
-  "translation" : "Él podía usar palillos chinos cuando era pequeño.",
+  "translation" : "Él podía usar palillos chinos cuando era niño.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "could" ]
     }, {
       "kind" : "TEXT",
-      "text" : "use chopsticks when he was small.",
+      "text" : "use chopsticks as a child.",
       "options" : null
     } ],
-    "sentences" : [ "He could use chopsticks when he was small." ]
+    "sentences" : [ "He could use chopsticks as a child." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "Expresar habilidad",
   "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
-  "translation" : "Podré ayudar a la gente.",
+  "translation" : "Puedo ayudar a la gente.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -666,13 +666,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "will be able to" ]
+      "options" : [ "can" ]
     }, {
       "kind" : "TEXT",
       "text" : "help people.",
       "options" : null
     } ],
-    "sentences" : [ "I will be able to help people." ]
+    "sentences" : [ "I can help people." ]
   }
 }, {
   "_id" : {
@@ -685,7 +685,7 @@
   },
   "title" : "Expresar habilidad",
   "instructions" : "Elige la opción correcta entre $can$, $can't$, $could$, $couldn't$, $will be able to$ o $won't be able to$.",
-  "translation" : "Ella no puede arreglar coches.",
+  "translation" : "Ella no puede hacer coches.",
   "theoryId" : "a1.10.Modal_Verbs_Introduction",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "can't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not) fix cars. (now)",
+      "text" : "(not) make cars. (now)",
       "options" : null
     } ],
-    "sentences" : [ "She can't fix cars." ]
+    "sentences" : [ "She can't make cars." ]
   }
 }, {
   "_id" : {

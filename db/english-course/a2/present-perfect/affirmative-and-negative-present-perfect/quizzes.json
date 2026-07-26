@@ -113,7 +113,7 @@
   },
   "title" : "Afirmativas y negativas",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "Tú has ido en bicicleta a la tienda.",
+  "translation" : "Tú has caminado a la tienda.",
   "theoryId" : "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "have cycled" ]
+      "text" : null,
+      "options" : [ "have walked" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(cycle) to the shop.",
+      "text" : "(walk) to the shop.",
       "options" : null
     } ],
-    "sentences" : [ "You have cycled to the shop." ]
+    "sentences" : [ "You have walked to the shop." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "Afirmativas y negativas",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "Ha avanzado mucho.",
+  "translation" : "Ha cambiado mucho.",
   "theoryId" : "a2.04.Present_Perfect_Forms_With_Regular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -614,13 +614,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "has advanced" ]
+      "options" : [ "has changed" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(advance) a lot.",
+      "text" : "(change) a lot.",
       "options" : null
     } ],
-    "sentences" : [ "It has advanced a lot." ]
+    "sentences" : [ "It has changed a lot." ]
   }
 }, {
   "_id" : {

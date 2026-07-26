@@ -685,7 +685,7 @@
   },
   "title" : "Afirmar, negar, preguntar",
   "instructions" : "Crea oraciones en tiempo $future perfect continuous$.",
-  "translation" : "¿Los profesores habrán estado calificando exámenes todo el año?",
+  "translation" : "¿Los profesores habrán estado corrigiendo exámenes todo el año?",
   "theoryId" : "b2.01.Future_Perfect_Continuous_Form",
   "topicName" : "Present simple, present continuous, future simple, future continuous, future perfect, future perfect continuous",
   "difficulty" : {
@@ -705,26 +705,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The teachers / grade papers all year?",
+      "text" : "The teachers / mark papers all year?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Will the teachers have been grading papers all year?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Will the teachers have been marking papers all year?" ]
     } ],
-    "sentences" : [ "Will the teachers have been grading papers all year?" ]
+    "sentences" : [ "Will the teachers have been marking papers all year?" ]
   }
 }, {
   "_id" : {

@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Do you recollect",
+      "text" : "Do you remember",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "(- / yourself) the occasion we first met?",
       "options" : null
     } ],
-    "sentences" : [ "Do you recollect - the occasion we first met?" ]
+    "sentences" : [ "Do you remember - the occasion we first met?" ]
   }
 }, {
   "_id" : {

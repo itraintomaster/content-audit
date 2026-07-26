@@ -425,7 +425,7 @@
   },
   "title" : "Orden de adjetivos",
   "instructions" : "Ordena los adjetivos en el orden correcto.",
-  "translation" : "Ella colocó el libro sobre la mesa redonda de madera.",
+  "translation" : "Ella puso el libro sobre la mesa redonda de madera.",
   "theoryId" : "b2.13.Adjective_Structures_with_to_+_infinitive_and_that_+_clause_",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She placed the book on the",
+      "text" : "She put the book on the",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "round wooden" ]
     }, {
       "kind" : "TEXT",
       "text" : "(round / wooden) table.",
       "options" : null
     } ],
-    "sentences" : [ "She placed the book on the round wooden table." ]
+    "sentences" : [ "She put the book on the round wooden table." ]
   }
 }, {
   "_id" : {
@@ -529,7 +529,7 @@
   },
   "title" : "Orden de adjetivos",
   "instructions" : "Ordena los adjetivos en el orden correcto.",
-  "translation" : "Él podó el alto árbol verde.",
+  "translation" : "Él podó el alto árbol verde en el jardín.",
   "theoryId" : "b2.13.Adjective_Structures_with_to_+_infinitive_and_that_+_clause_",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He trimmed the",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "tall green" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(tall / green) tree.",
+      "text" : "(tall / green) tree in the garden.",
       "options" : null
     } ],
-    "sentences" : [ "He trimmed the tall green tree." ]
+    "sentences" : [ "He trimmed the tall green tree in the garden." ]
   }
 }, {
   "_id" : {
@@ -893,7 +893,7 @@
   },
   "title" : "Orden de adjetivos",
   "instructions" : "Ordena los adjetivos en el orden correcto.",
-  "translation" : "La pequeña nube blanca se alejó flotando.",
+  "translation" : "La pequeña nube blanca se alejó flotando después de la tormenta.",
   "theoryId" : "b2.13.Adjective_Structures_with_to_+_infinitive_and_that_+_clause_",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "small white" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(white / small) cloud drifted away.",
+      "text" : "(white / small) cloud floated away after the storm.",
       "options" : null
     } ],
-    "sentences" : [ "The small white cloud drifted away." ]
+    "sentences" : [ "The small white cloud floated away after the storm." ]
   }
 }, {
   "_id" : {

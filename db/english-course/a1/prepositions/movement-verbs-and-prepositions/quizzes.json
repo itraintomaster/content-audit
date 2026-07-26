@@ -945,7 +945,7 @@
   },
   "title" : "Verbos de movimiento",
   "instructions" : "Elige in, to o -",
-  "translation" : "Ella cabalgó hasta el estadio.",
+  "translation" : "Ella fue en bicicleta al parque.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She rode",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the stadium.",
+      "text" : "the park.",
       "options" : null
     } ],
-    "sentences" : [ "She rode to the stadium." ]
+    "sentences" : [ "She rode to the park." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Verbos de movimiento",
   "instructions" : "Elige in, to o -",
-  "translation" : "Caminamos hasta Brighton.",
+  "translation" : "Corrimos hasta Brighton.",
   "theoryId" : "a1.09.Prepositions_with_Verbs_of_Movement",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We hiked",
+      "text" : "We ran",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "Brighton.",
       "options" : null
     } ],
-    "sentences" : [ "We hiked to Brighton." ]
+    "sentences" : [ "We ran to Brighton." ]
   }
 } ]

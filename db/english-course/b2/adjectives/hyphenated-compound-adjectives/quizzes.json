@@ -113,7 +113,7 @@
   },
   "title" : "Compuestos con guion",
   "instructions" : "¿Necesitamos un guion con los adjetivos compuestos? Elige las palabras correctas.",
-  "translation" : "Consideraba que la decoración era un poco moderna.",
+  "translation" : "Consideraba que la decoración era un poco moderna para su propio gusto.",
   "theoryId" : "b2.13.Adjectives_That_Only_Go_Before_Nouns",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She considered the decor a bit",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "new fashioned" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(new fashioned / new-fashioned).",
+      "text" : "(new fashioned / new-fashioned) for her own taste.",
       "options" : null
     } ],
-    "sentences" : [ "She considered the decor a bit new fashioned." ]
+    "sentences" : [ "She considered the decor a bit new fashioned for her own taste." ]
   }
 }, {
   "_id" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "My grandad is a bit of an",
+      "text" : "My grandad is a bit of a",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "new-fashioned" ]
     }, {
       "kind" : "TEXT",
       "text" : "(new fashioned / new-fashioned) person. He likes modern things.",
       "options" : null
     } ],
-    "sentences" : [ "My grandad is a bit of an new-fashioned person. He likes modern things." ]
+    "sentences" : [ "My grandad is a bit of a new-fashioned person. He likes modern things." ]
   }
 }, {
   "_id" : {

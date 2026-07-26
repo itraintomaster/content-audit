@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "This film begins at 8 and ends at 10.This film goes",
+      "text" : "This film goes",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "from 8 to|until|till 10" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "This film begins at 8 and ends at 10.This film goes from 8 to.", "This film begins at 8 and ends at 10.This film goes until.", "This film begins at 8 and ends at 10.This film goes till 10." ]
+    "sentences" : [ "This film goes from 8 to.", "This film goes until.", "This film goes till 10." ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "Rangos temporales",
   "instructions" : "Crea oraciones usando $from$ ... $to / until / till$.",
-  "translation" : "Sophie leyó de 2 a 5 de la tarde.",
+  "translation" : "Estudiamos de lunes a viernes.",
   "theoryId" : "a1.09.Prepositions_of_Time_2_from_to_until_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Sophie started reading at 2pm and finished at 5pm.Sophie read",
+      "text" : "We study from Monday",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "from 2pm to|until|till 5pm" ]
+      "text" : null,
+      "options" : [ "to|till|until" ]
     }, {
       "kind" : "TEXT",
-      "text" : ".",
+      "text" : "Friday.",
       "options" : null
     } ],
-    "sentences" : [ "Sophie started reading at 2pm and finished at 5pm.Sophie read from 2pm to.", "Sophie started reading at 2pm and finished at 5pm.Sophie read until.", "Sophie started reading at 2pm and finished at 5pm.Sophie read till 5pm." ]
+    "sentences" : [ "We study from Monday to Friday.", "We study from Monday till Friday.", "We study from Monday until Friday." ]
   }
 }, {
   "_id" : {

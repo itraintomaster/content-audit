@@ -425,7 +425,7 @@
   },
   "title" : "Adverbios: uso clásico",
   "instructions" : "Transforma las oraciones contemporáneas a gramática clásica.",
-  "translation" : "Ella abordó el problema lo más astutamente.",
+  "translation" : "Ella abordó el problema complejo lo más astutamente en el trabajo.",
   "theoryId" : "b2.14.Easily_Confused_Adverbs_and_Adjectives",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -445,26 +445,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She approached the problem the cleverest.",
+      "text" : "She approached the complex problem the cleverest at work.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She approached the problem the most cleverly." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She approached the complex problem the most cleverly at work." ]
     } ],
-    "sentences" : [ "She approached the problem the most cleverly." ]
+    "sentences" : [ "She approached the complex problem the most cleverly at work." ]
   }
 }, {
   "_id" : {

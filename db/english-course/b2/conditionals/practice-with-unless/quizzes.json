@@ -789,7 +789,7 @@
   },
   "title" : "Práctica con $unless$",
   "instructions" : "Completa los espacios en blanco con $if$ o $unless$.",
-  "translation" : "Ellos deberían usar suéteres si hace frío.",
+  "translation" : "Ellos deberían usar suéteres si la temperatura es baja.",
   "theoryId" : "b2.12.Words_Instead_of_If",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They ought to wear sweaters",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "if" ]
     }, {
       "kind" : "TEXT",
-      "text" : "it's chilly.",
+      "text" : "the temperature is low.",
       "options" : null
     } ],
-    "sentences" : [ "They ought to wear sweaters if it's chilly." ]
+    "sentences" : [ "They ought to wear sweaters if the temperature is low." ]
   }
 }, {
   "_id" : {

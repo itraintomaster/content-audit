@@ -269,7 +269,7 @@
   },
   "title" : "Después del sustantivo",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Esta es la historia de una niña y su gato.",
+  "translation" : "Este es el asesinato de una niña y su gato.",
   "theoryId" : "b1.17.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "This is the tale",
+      "text" : "This is the murder",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "about|of" ]
+      "text" : null,
+      "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
       "text" : "a girl and her cat.",
       "options" : null
     } ],
-    "sentences" : [ "This is the tale about a girl and her cat.", "This is the tale of a girl and her cat." ]
+    "sentences" : [ "This is the murder of a girl and her cat." ]
   }
 }, {
   "_id" : {

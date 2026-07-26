@@ -685,7 +685,7 @@
   },
   "title" : "No tras un verbo",
   "instructions" : "¿Necesitamos $to + infinitive$ o $verb+ing$?",
-  "translation" : "Él va a la panadería a comprar pan.",
+  "translation" : "Él va a la tienda a comprar pan.",
   "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He's going to the bakery",
+      "text" : "He's going to the shop",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to get" ]
     }, {
       "kind" : "TEXT",
       "text" : "(get) bread.",
       "options" : null
     } ],
-    "sentences" : [ "He's going to the bakery to get bread." ]
+    "sentences" : [ "He's going to the shop to get bread." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "No tras un verbo",
   "instructions" : "¿Necesitamos $to + infinitive$ o $verb+ing$?",
-  "translation" : "Escuchó música para relajarse.",
+  "translation" : "Escuchó música para descansar un poco después del trabajo.",
   "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He listened to music",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "to unwind" ]
+      "text" : null,
+      "options" : [ "to get" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(unwind).",
+      "text" : "(get) some rest after work.",
       "options" : null
     } ],
-    "sentences" : [ "He listened to music to unwind." ]
+    "sentences" : [ "He listened to music to get some rest after work." ]
   }
 } ]

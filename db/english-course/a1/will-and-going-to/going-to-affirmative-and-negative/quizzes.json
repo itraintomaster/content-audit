@@ -113,7 +113,7 @@
   },
   "title" : "Afirmativa y negativa",
   "instructions" : "Escribe oraciones usando las formas afirmativas y negativas de $be going to$.",
-  "translation" : "Voy a jugar videojuegos más tarde.",
+  "translation" : "Voy a jugar juegos más tarde.",
   "theoryId" : "a1.03.Going_to_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'m going to play|am going to play" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(play) videogames later.",
+      "text" : "(play) games later.",
       "options" : null
     } ],
-    "sentences" : [ "I'm going to play videogames later.", "I am going to play videogames later." ]
+    "sentences" : [ "I 'm going to play games later.", "I am going to play games later." ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "Afirmativa y negativa",
   "instructions" : "Escribe oraciones usando las formas afirmativas y negativas de $be going to$.",
-  "translation" : "Ella va a pedir un vestido nuevo.",
+  "translation" : "Ella va a conseguir un vestido.",
   "theoryId" : "a1.03.Going_to_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'s going to order|is going to order" ]
+      "text" : null,
+      "options" : [ "'s going to get|is going to get" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(order) a new dress.",
+      "text" : "(get) a dress.",
       "options" : null
     } ],
-    "sentences" : [ "She's going to order a new dress.", "She is going to order a new dress." ]
+    "sentences" : [ "She 's going to get a dress.", "She is going to get a dress." ]
   }
 }, {
   "_id" : {
@@ -529,7 +529,7 @@
   },
   "title" : "Afirmativa y negativa",
   "instructions" : "Escribe oraciones usando las formas afirmativas y negativas de $be going to$.",
-  "translation" : "Ella no va a beber limonada.",
+  "translation" : "Ella no va a beber agua.",
   "theoryId" : "a1.03.Going_to_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'s not going to drink|is not going to drink|isn't going to drink" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / drink) lemonade.",
+      "text" : "(not / drink) water.",
       "options" : null
     } ],
-    "sentences" : [ "She's not going to drink lemonade.", "She is not going to drink lemonade.", "She isn't going to drink lemonade." ]
+    "sentences" : [ "She 's not going to drink water.", "She is not going to drink water.", "She isn't going to drink water." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "Afirmativa y negativa",
   "instructions" : "Escribe oraciones usando las formas afirmativas y negativas de $be going to$.",
-  "translation" : "No va a nevar.",
+  "translation" : "No va a empezar.",
   "theoryId" : "a1.03.Going_to_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "isn't going to snow|is not going to snow|'s not going to snow" ]
+      "text" : null,
+      "options" : [ "isn't going to start|is not going to start|'s not going to start" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / snow).",
+      "text" : "(not / start).",
       "options" : null
     } ],
-    "sentences" : [ "It isn't going to snow.", "It is not going to snow.", "It's not going to snow." ]
+    "sentences" : [ "It isn't going to start.", "It is not going to start.", "It 's not going to start." ]
   }
 }, {
   "_id" : {

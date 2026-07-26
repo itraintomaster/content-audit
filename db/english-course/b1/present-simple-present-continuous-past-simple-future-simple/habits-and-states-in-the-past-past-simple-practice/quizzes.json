@@ -141,7 +141,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "State:",
+      "text" : "Fact:",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -152,7 +152,7 @@
       "text" : "(they / be) tired after the tournament?",
       "options" : null
     } ],
-    "sentences" : [ "State: Were they tired after the tournament?" ]
+    "sentences" : [ "Fact: Were they tired after the tournament?" ]
   }
 }, {
   "_id" : {
@@ -297,7 +297,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "State: He",
+      "text" : "Fact: He",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -308,7 +308,7 @@
       "text" : "(blame) everyone there for the mistake.",
       "options" : null
     } ],
-    "sentences" : [ "State: He blamed everyone there for the mistake." ]
+    "sentences" : [ "Fact: He blamed everyone there for the mistake." ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "Hábitos y estados pasados",
   "instructions" : "Utiliza el _past simple_ para hablar de hábitos y estados en el pasado.",
-  "translation" : "Mi madre no era independiente entonces.",
+  "translation" : "Hecho: Mi madre no era independiente entonces.",
   "theoryId" : "b1.01.The_Past_Simple_for_Past_Habits_and_States",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -505,7 +505,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "State: My mother",
+      "text" : "Fact: My mother",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -516,7 +516,7 @@
       "text" : "(not / be) independent then.",
       "options" : null
     } ],
-    "sentences" : [ "State: My mother wasn't independent then.", "State: My mother was not independent then." ]
+    "sentences" : [ "Fact: My mother wasn't independent then.", "Fact: My mother was not independent then." ]
   }
 }, {
   "_id" : {

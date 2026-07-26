@@ -785,7 +785,7 @@
   },
   "title" : "Práctica con $even$",
   "instructions" : "Modifica la oración para que incluya $even$. Coloca $even$ antes del comparativo, si hay un comparativo. De lo contrario, coloca $even$ en la posición $mid$.",
-  "translation" : "Su salsa es incluso más picante que la mía.",
+  "translation" : "Su salsa verde es incluso más picante que la mía.",
   "theoryId" : "b1.16.Adverbs_of_Focus_Even",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -805,26 +805,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Their salsa is hotter than mine.",
+      "text" : "Their green salsa is hotter than mine.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Their salsa is even hotter than mine." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Their green salsa is even hotter than mine." ]
     } ],
-    "sentences" : [ "Their salsa is even hotter than mine." ]
+    "sentences" : [ "Their green salsa is even hotter than mine." ]
   }
 }, {
   "_id" : {
@@ -837,7 +833,7 @@
   },
   "title" : "Práctica con $even$",
   "instructions" : "Modifica la oración para que incluya $even$. Coloca $even$ antes del comparativo, si hay un comparativo. De lo contrario, coloca $even$ en la posición $mid$.",
-  "translation" : "Esta escultura es incluso más política que la anterior que vimos.",
+  "translation" : "Esta escultura es incluso más política que la gigante que vimos.",
   "theoryId" : "b1.16.Adverbs_of_Focus_Even",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -865,14 +861,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "This sculpture is more political than the prior one we saw.",
+      "text" : "This sculpture is more political than the giant one we saw.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "This sculpture is even more political than the prior one we saw." ]
+      "options" : [ "This sculpture is even more political than the giant one we saw." ]
     } ],
-    "sentences" : [ "This sculpture is even more political than the prior one we saw." ]
+    "sentences" : [ "This sculpture is even more political than the giant one we saw." ]
   }
 }, {
   "_id" : {
@@ -937,7 +933,7 @@
   },
   "title" : "Práctica con $even$",
   "instructions" : "Modifica la oración para que incluya $even$. Coloca $even$ antes del comparativo, si hay un comparativo. De lo contrario, coloca $even$ en la posición $mid$.",
-  "translation" : "¡Están incluso más tensos que nosotros!",
+  "translation" : "¡Están incluso más vivos que nosotros!",
   "theoryId" : "b1.16.Adverbs_of_Focus_Even",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -965,14 +961,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They are more tense than us!",
+      "text" : "They are more alive than us!",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "They are even more tense than us!" ]
+      "options" : [ "They are even more alive than us!" ]
     } ],
-    "sentences" : [ "They are even more tense than us!" ]
+    "sentences" : [ "They are even more alive than us!" ]
   }
 }, {
   "_id" : {

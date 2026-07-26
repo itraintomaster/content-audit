@@ -265,7 +265,7 @@
   },
   "title" : "Consejos con $ought to$",
   "instructions" : "Crea oraciones con $ought to$ o $shouldn't$.",
-  "translation" : "Él no debería comer tanta comida chatarra.",
+  "translation" : "Él come demasiada azúcar. Él no debería comer demasiada azúcar.",
   "theoryId" : "b1.11.Ought_to_for_Advice",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -285,26 +285,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I don't think it's a good idea for him to eat so much junk food.",
+      "text" : "He eats too much sugar.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He shouldn't eat so much junk food." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He shouldn't eat too much sugar." ]
     } ],
-    "sentences" : [ "He shouldn't eat so much junk food." ]
+    "sentences" : [ "He shouldn't eat too much sugar." ]
   }
 }, {
   "_id" : {
@@ -469,7 +465,7 @@
   },
   "title" : "Consejos con $ought to$",
   "instructions" : "Crea oraciones con $ought to$ o $shouldn't$.",
-  "translation" : "Ella debería regar sus plantas regularmente.",
+  "translation" : "Ella debería cuidar sus plantas regularmente.",
   "theoryId" : "b1.11.Ought_to_for_Advice",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -489,26 +485,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I think it's a good idea for her to water her plants regularly.",
+      "text" : "I think it's a good idea for her to care for her plants regularly.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She ought to water her plants regularly." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She ought to care for her plants regularly." ]
     } ],
-    "sentences" : [ "She ought to water her plants regularly." ]
+    "sentences" : [ "She ought to care for her plants regularly." ]
   }
 }, {
   "_id" : {
@@ -573,7 +565,7 @@
   },
   "title" : "Consejos con $ought to$",
   "instructions" : "Crea oraciones con $ought to$ o $shouldn't$.",
-  "translation" : "No deberías andar en bicicleta sin casco.",
+  "translation" : "No creo que sea buena idea ir en bicicleta sin luz. No deberías ir en bicicleta sin luz.",
   "theoryId" : "b1.11.Ought_to_for_Advice",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -593,26 +585,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I don't think it's a good idea for you to cycle without a helmet.",
+      "text" : "I don't think it's a good idea to cycle without a light.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "You shouldn't cycle without a helmet." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "You shouldn't cycle without a light." ]
     } ],
-    "sentences" : [ "You shouldn't cycle without a helmet." ]
+    "sentences" : [ "You shouldn't cycle without a light." ]
   }
 }, {
   "_id" : {
@@ -933,7 +921,7 @@
   },
   "title" : "Consejos con $ought to$",
   "instructions" : "Crea oraciones con $ought to$ o $shouldn't$.",
-  "translation" : "Ella debería aplicarse lápiz labial.",
+  "translation" : "Creo que es una buena idea que ella solicite acceso hoy.",
   "theoryId" : "b1.11.Ought_to_for_Advice",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -953,26 +941,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I think it's a good idea for her to apply lipstick.",
+      "text" : "I think it's a good idea for her to apply for access today.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She ought to apply lipstick." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She ought to apply for access today." ]
     } ],
-    "sentences" : [ "She ought to apply lipstick." ]
+    "sentences" : [ "She ought to apply for access today." ]
   }
 }, {
   "_id" : {

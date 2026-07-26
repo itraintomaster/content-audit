@@ -893,7 +893,7 @@
   },
   "title" : "Reacción inesperada",
   "instructions" : "Crea preguntas negativas.",
-  "translation" : "¿No estarán los profesores vigilando el examen?",
+  "translation" : "¿No estarán los profesores vigilando el examen mañana por la mañana?",
   "theoryId" : "b2.04.Negative_Questions",
   "topicName" : "Negatives and questions",
   "difficulty" : {
@@ -913,26 +913,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I'm surprised that the teachers won't be invigilating the test.",
+      "text" : "I'm surprised that the teachers won't be invigilating the test tomorrow morning.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Won't the teachers be invigilating the test?|Will the teachers not be invigilating the test?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Won't the teachers be invigilating the test tomorrow morning?|Will the teachers not be invigilating the test tomorrow morning?" ]
     } ],
-    "sentences" : [ "Won't the teachers be invigilating the test?", "Will the teachers not be invigilating the test?" ]
+    "sentences" : [ "Won't the teachers be invigilating the test tomorrow morning?", "Will the teachers not be invigilating the test tomorrow morning?" ]
   }
 }, {
   "_id" : {

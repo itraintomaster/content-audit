@@ -113,7 +113,7 @@
   },
   "title" : "Palabras $wh$",
   "instructions" : "Formula preguntas $wh$ en $present continuous$.",
-  "translation" : "¿Por qué te ríes?",
+  "translation" : "¿Por qué estás leyendo esta oración?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "are you laughing" ]
+      "text" : null,
+      "options" : [ "are you reading" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / laugh)?",
+      "text" : "(you / read) this sentence?",
       "options" : null
     } ],
-    "sentences" : [ "Why are you laughing?" ]
+    "sentences" : [ "Why are you reading this sentence?" ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "Palabras $wh$",
   "instructions" : "Formula preguntas $wh$ en $present continuous$.",
-  "translation" : "¿Por qué está nevando?",
+  "translation" : "¿Por qué está empezando?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is it snowing" ]
+      "text" : null,
+      "options" : [ "is it starting" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(it / rain)?",
+      "text" : "(it / start)?",
       "options" : null
     } ],
-    "sentences" : [ "Why is it snowing?" ]
+    "sentences" : [ "Why is it starting?" ]
   }
 }, {
   "_id" : {
@@ -789,7 +789,7 @@
   },
   "title" : "Palabras $wh$",
   "instructions" : "Formula preguntas $wh$ en $present continuous$.",
-  "translation" : "¿Por qué está llorando él?",
+  "translation" : "¿A dónde están yendo?",
   "theoryId" : "a1.02.Present_Continuous_Forms",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Why",
+      "text" : "Where",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is he crying" ]
+      "text" : null,
+      "options" : [ "are they going" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / sleep)?",
+      "text" : "(they / go)?",
       "options" : null
     } ],
-    "sentences" : [ "Why is he crying?" ]
+    "sentences" : [ "Where are they going?" ]
   }
 }, {
   "_id" : {

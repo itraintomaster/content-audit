@@ -165,7 +165,7 @@
   },
   "title" : "Adverbios de cantidad",
   "instructions" : "Crea oraciones usando $much / a lot / a little / a bit$ y un comparativo.",
-  "translation" : "La ensalada es un poco más sabrosa que la pasta.",
+  "translation" : "La ensalada es un poco peor que la pasta.",
   "theoryId" : "a2.11.Use_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Salad is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a bit tastier" ]
+      "text" : null,
+      "options" : [ "a bit worse" ]
     }, {
       "kind" : "TEXT",
-      "text" : "than pasta. (a bit / tasty)",
+      "text" : "than pasta. (a bit / bad)",
       "options" : null
     } ],
-    "sentences" : [ "Salad is a bit tastier than pasta." ]
+    "sentences" : [ "Salad is a bit worse than pasta." ]
   }
 }, {
   "_id" : {
@@ -497,25 +497,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Fruits are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a little sweeter" ]
+      "text" : null,
+      "options" : [ "a bit sweeter" ]
     }, {
       "kind" : "TEXT",
-      "text" : "than vegetables. (a little / sweet)",
+      "text" : "than vegetables. (a bit / sweet)",
       "options" : null
     } ],
-    "sentences" : [ "Fruits are a little sweeter than vegetables." ]
+    "sentences" : [ "Fruits are a bit sweeter than vegetables." ]
   }
 } ]

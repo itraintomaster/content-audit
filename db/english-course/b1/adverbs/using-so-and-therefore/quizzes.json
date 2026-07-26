@@ -265,7 +265,7 @@
   },
   "title" : "$So$ y $therefore$",
   "instructions" : "Modifica las oraciones para que incluyan $so$ o $therefore$ y no $because$.",
-  "translation" : "Practicó a diario. Por lo tanto, se volvió experto en el piano.",
+  "translation" : "Practicó a diario. Por lo tanto, mejoró su habilidad con el piano.",
   "theoryId" : "b1.16.Adverbs_for_Linking_So_Therefore",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -285,26 +285,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Because he practiced daily, he became proficient at the piano.",
+      "text" : "Because he practiced daily, he improved his ability at the piano.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He practiced daily. Therefore, he became proficient at the piano." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He practiced daily. Therefore, he improved his ability at the piano." ]
     } ],
-    "sentences" : [ "He practiced daily. Therefore, he became proficient at the piano." ]
+    "sentences" : [ "He practiced daily. Therefore, he improved his ability at the piano." ]
   }
 }, {
   "_id" : {
@@ -369,7 +365,7 @@
   },
   "title" : "$So$ y $therefore$",
   "instructions" : "Modifica las oraciones para que incluyan $so$ o $therefore$ y no $because$.",
-  "translation" : "Regaba las plantas con regularidad, así que crecieron hermosamente.",
+  "translation" : "Cuidaba las plantas con regularidad, así que crecieron hermosamente.",
   "theoryId" : "b1.16.Adverbs_for_Linking_So_Therefore",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -389,26 +385,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Because she watered the plants regularly, they grew beautifully.",
+      "text" : "Because she looked after the plants regularly, they grew beautifully.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She watered the plants regularly so they grew beautifully." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She looked after the plants regularly so they grew beautifully." ]
     } ],
-    "sentences" : [ "She watered the plants regularly so they grew beautifully." ]
+    "sentences" : [ "She looked after the plants regularly so they grew beautifully." ]
   }
 }, {
   "_id" : {

@@ -61,7 +61,7 @@
   },
   "title" : "Palabras de cantidad",
   "instructions" : "Crea oraciones usando $a$ + palabra de cantidad + $of$ + sustantivo incontable.",
-  "translation" : "¿Puedes untar un cuarto de mantequilla?",
+  "translation" : "¿Puedes conseguir un cuarto de mantequilla?",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -89,7 +89,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Can you spread",
+      "text" : "Can you get",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -100,7 +100,7 @@
       "text" : "(quarter / butter)?",
       "options" : null
     } ],
-    "sentences" : [ "Can you spread a quarter of butter?" ]
+    "sentences" : [ "Can you get a quarter of butter?" ]
   }
 }, {
   "_id" : {
@@ -111,9 +111,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d258"
   },
-  "title" : "He had a piece of cheddar.",
+  "title" : "Palabras de cantidad",
   "instructions" : "Crea oraciones usando $a$ + palabra de cantidad + $of$ + sustantivo incontable.",
-  "translation" : "Tenía un pedazo de queso cheddar.",
+  "translation" : "Tomó un vaso de limonada.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -146,13 +146,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "a piece of cheddar" ]
+      "options" : [ "a glass of lemonade" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(piece / cheddar).",
+      "text" : "(glass / lemonade).",
       "options" : null
     } ],
-    "sentences" : [ "He had a piece of cheddar." ]
+    "sentences" : [ "He had a glass of lemonade." ]
   }
 }, {
   "_id" : {
@@ -165,7 +165,7 @@
   },
   "title" : "Palabras de cantidad",
   "instructions" : "Crea oraciones usando $a$ + palabra de cantidad + $of$ + sustantivo incontable.",
-  "translation" : "Necesitan un saco de cemento.",
+  "translation" : "Necesitan un kilo de chile.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They require",
+      "text" : "They need",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "a sack of cement" ]
+      "text" : null,
+      "options" : [ "a kilo of chilli" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(sack / cement).",
+      "text" : "(kilo / chilli).",
       "options" : null
     } ],
-    "sentences" : [ "They require a sack of cement." ]
+    "sentences" : [ "They need a kilo of chilli." ]
   }
 }, {
   "_id" : {
@@ -269,7 +269,7 @@
   },
   "title" : "Palabras de cantidad",
   "instructions" : "Crea oraciones usando $a$ + palabra de cantidad + $of$ + sustantivo incontable.",
-  "translation" : "¡Deseo una taza de té!",
+  "translation" : "¡Tengo una taza de té!",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I desire",
+      "text" : "I have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a mug of tea" ]
     }, {
       "kind" : "TEXT",
       "text" : "(mug / tea)!",
       "options" : null
     } ],
-    "sentences" : [ "I desire a mug of tea!" ]
+    "sentences" : [ "I have a mug of tea!" ]
   }
 }, {
   "_id" : {
@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d258"
   },
-  "title" : "He gulped a litre of milk.",
+  "title" : "Palabras de cantidad",
   "instructions" : "Crea oraciones usando $a$ + palabra de cantidad + $of$ + sustantivo incontable.",
-  "translation" : "Se tragó un litro de leche.",
+  "translation" : "Él bebió un litro de leche.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -505,7 +505,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He gulped",
+      "text" : "He drank",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -516,6 +516,6 @@
       "text" : "(litre / milk).",
       "options" : null
     } ],
-    "sentences" : [ "He gulped a litre of milk." ]
+    "sentences" : [ "He drank a litre of milk." ]
   }
 } ]

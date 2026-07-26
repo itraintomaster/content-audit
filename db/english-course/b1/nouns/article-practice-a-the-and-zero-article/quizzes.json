@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They purchased a baseball bat and",
+      "text" : "They bought a baseball bat and",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "baseballs. The balls were red and white.",
       "options" : null
     } ],
-    "sentences" : [ "They purchased a baseball bat and - baseballs. The balls were red and white." ]
+    "sentences" : [ "They bought a baseball bat and - baseballs. The balls were red and white." ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "Primera o segunda mención",
   "instructions" : "Inserta $a$, $the$ o usa – si no se necesita ningún artículo.",
-  "translation" : "Coloqué carteles y dibujos en mi puerta. Mi hermana creó los dibujos.",
+  "translation" : "Puse carteles y dibujos en mi puerta. Mi hermana creó los dibujos.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I placed posters and",
+      "text" : "I put posters and",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "drawings on my door. My sister created the drawings.",
       "options" : null
     } ],
-    "sentences" : [ "I placed posters and - drawings on my door. My sister created the drawings." ]
+    "sentences" : [ "I put posters and - drawings on my door. My sister created the drawings." ]
   }
 }, {
   "_id" : {
@@ -789,7 +789,7 @@
   },
   "title" : "Primera o segunda mención",
   "instructions" : "Inserta $a$, $the$ o usa – si no se necesita ningún artículo.",
-  "translation" : "El supermercado es moderno.",
+  "translation" : "Hay un circo y un supermercado cerca del parque. El supermercado es moderno.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -809,19 +809,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "There's a bakery and",
+      "text" : "There's a circus and",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
@@ -829,14 +829,14 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
       "text" : "grocery store is modern.",
       "options" : null
     } ],
-    "sentences" : [ "There's a bakery and a grocery store near the park. The grocery store is modern." ]
+    "sentences" : [ "There's a circus and a grocery store near the park. The grocery store is modern." ]
   }
 }, {
   "_id" : {
@@ -847,7 +847,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d301"
   },
-  "title" : "I broke a vase and cups. The cups matched.",
+  "title" : "Primera o segunda mención",
   "instructions" : "Inserta $a$, $the$ o usa – si no se necesita ningún artículo.",
   "translation" : "Rompí un jarrón y tazas. Las tazas hacían juego.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
@@ -953,7 +953,7 @@
   },
   "title" : "Primera o segunda mención",
   "instructions" : "Inserta $a$, $the$ o usa – si no se necesita ningún artículo.",
-  "translation" : "Las lámparas siguen brillando.",
+  "translation" : "Elegimos lámparas para nuestro dormitorio cuando hicimos cambios. Las lámparas siguen brillando.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -973,26 +973,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We selected lamps for our bedroom when we renovated.",
+      "text" : "We selected lamps for our bedroom when we made changes.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "The" ]
     }, {
       "kind" : "TEXT",
       "text" : "lamps are still shining.",
       "options" : null
     } ],
-    "sentences" : [ "We selected lamps for our bedroom when we renovated. The lamps are still shining." ]
+    "sentences" : [ "We selected lamps for our bedroom when we made changes. The lamps are still shining." ]
   }
 }, {
   "_id" : {

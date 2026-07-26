@@ -113,7 +113,7 @@
   },
   "title" : "Tras el adjetivo",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "Ella es realmente muy buena pintando retratos.",
+  "translation" : "Ella es realmente muy buena pintando paisajes.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -149,10 +149,10 @@
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
-      "text" : "painting portraits.",
+      "text" : "painting landscapes.",
       "options" : null
     } ],
-    "sentences" : [ "She is really great at painting portraits." ]
+    "sentences" : [ "She is really great at painting landscapes." ]
   }
 }, {
   "_id" : {
@@ -475,7 +475,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d374"
   },
-  "title" : "They're hopeful of traveling to Spain this summer.",
+  "title" : "Tras el adjetivo",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
   "translation" : "Tienen esperanza de viajar a España este verano.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
@@ -527,7 +527,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d374"
   },
-  "title" : "This toy is really bad for development.",
+  "title" : "Tras el adjetivo",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
   "translation" : "Este juguete es realmente malo para el desarrollo.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
@@ -581,7 +581,7 @@
   },
   "title" : "Tras el adjetivo",
   "instructions" : "Escribir la preposición correcta. A veces, hay más de una respuesta correcta.",
-  "translation" : "A ella le apasiona bailar.",
+  "translation" : "Ella está equivocada sobre bailar en público en la escuela.",
   "theoryId" : "b1.17.Prepositions_After_Adjectives",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She's passionate",
+      "text" : "She's incorrect",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
-      "text" : "dancing.",
+      "text" : "dancing in public at school.",
       "options" : null
     } ],
-    "sentences" : [ "She's passionate about dancing." ]
+    "sentences" : [ "She's incorrect about dancing in public at school." ]
   }
 }, {
   "_id" : {

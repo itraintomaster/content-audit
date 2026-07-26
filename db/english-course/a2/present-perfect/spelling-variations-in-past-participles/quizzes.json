@@ -261,7 +261,7 @@
   },
   "title" : "Ortografía del participio",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "No siempre he confiado en ti.",
+  "translation" : "No siempre me has caído bien.",
   "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -281,26 +281,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "have not always trusted|haven't always trusted" ]
+      "text" : null,
+      "options" : [ "have not always liked|haven't always liked" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / always / trust) you.",
+      "text" : "(not / always / like) you.",
       "options" : null
     } ],
-    "sentences" : [ "I have not always trusted you.", "I haven't always trusted you." ]
+    "sentences" : [ "I have not always liked you.", "I haven't always liked you." ]
   }
 }, {
   "_id" : {
@@ -417,7 +417,7 @@
   },
   "title" : "Ortografía del participio",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Siempre te ha gustado más el vino que la cerveza?",
+  "translation" : "¿Siempre has preferido el vino en vez de la cerveza?",
   "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -437,26 +437,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Have you always fancied" ]
+      "text" : null,
+      "options" : [ "Have you always preferred" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / always / fancy) wine instead of beer?",
+      "text" : "(you / always / prefer) wine instead of beer?",
       "options" : null
     } ],
-    "sentences" : [ "Have you always fancied wine instead of beer?" ]
+    "sentences" : [ "Have you always preferred wine instead of beer?" ]
   }
 }, {
   "_id" : {
@@ -833,7 +829,7 @@
   },
   "title" : "Ortografía del participio",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "No han emparejado las palabras con las imágenes.",
+  "translation" : "No han puesto las palabras con las imágenes.",
   "theoryId" : "a2.04.Past_Participle_Spelling_Changes",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -866,13 +862,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "have not matched|haven't matched" ]
+      "options" : [ "have not put|haven't put" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / match) the words with the pictures.",
+      "text" : "(not / put) the words with the pictures.",
       "options" : null
     } ],
-    "sentences" : [ "They have not matched the words with the pictures.", "They haven't matched the words with the pictures." ]
+    "sentences" : [ "They have not put the words with the pictures.", "They haven't put the words with the pictures." ]
   }
 }, {
   "_id" : {

@@ -341,26 +341,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The teachers are going to speak to the principal.",
+      "text" : "The teachers are going to speak to the head teacher.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that the teachers were going to speak to the principal." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "John said that the teachers were going to speak to the head teacher." ]
     } ],
-    "sentences" : [ "John said that the teachers were going to speak to the principal." ]
+    "sentences" : [ "John said that the teachers were going to speak to the head teacher." ]
   }
 }, {
   "_id" : {
@@ -685,7 +681,7 @@
   },
   "title" : "$be going to$",
   "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Siempre comienza con $John said that$.",
-  "translation" : "John dijo que el perro iba a ladrar.",
+  "translation" : "John dijo que el perro iba a dormir.",
   "theoryId" : "b1.10.How_to_Make_Reported_Speech",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -705,26 +701,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The dog is going to bark.",
+      "text" : "The dog is going to sleep.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John said that the dog was going to bark." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "John said that the dog was going to sleep." ]
     } ],
-    "sentences" : [ "John said that the dog was going to bark." ]
+    "sentences" : [ "John said that the dog was going to sleep." ]
   }
 }, {
   "_id" : {

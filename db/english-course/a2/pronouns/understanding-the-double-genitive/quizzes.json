@@ -161,7 +161,7 @@
   },
   "title" : "Doble posesivo",
   "instructions" : "Cambia la oración para que incluya $of$. Necesitas agregar $a$. Por ejemplo: Lucy is my friend -> Lucy is a friend of mine.",
-  "translation" : "Él es un fontanero nuestro.",
+  "translation" : "Él es un cliente de ellos.",
   "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -181,26 +181,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He is our plumber.",
+      "text" : "He is their customer.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He is a plumber of ours." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He is a customer of theirs." ]
     } ],
-    "sentences" : [ "He is a plumber of ours." ]
+    "sentences" : [ "He is a customer of theirs." ]
   }
 }, {
   "_id" : {
@@ -471,7 +467,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d276"
   },
-  "title" : "Michael is an uncle of mine.",
+  "title" : "Doble posesivo",
   "instructions" : "Cambia la oración para que incluya $of$. Necesitas agregar $a$. Por ejemplo: Lucy is my friend -> Lucy is a friend of mine.",
   "translation" : "Michael es un tío mío.",
   "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
@@ -675,7 +671,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d276"
   },
-  "title" : "Leonardo is a friend of his.",
+  "title" : "Doble posesivo",
   "instructions" : "Cambia la oración para que incluya $of$. Necesitas agregar $a$. Por ejemplo: Lucy is my friend -> Lucy is a friend of mine.",
   "translation" : "Leonardo es un amigo suyo.",
   "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
@@ -877,7 +873,7 @@
   },
   "title" : "Doble posesivo",
   "instructions" : "Cambia la oración para que incluya $of$. Necesitas agregar $a$. Por ejemplo: Lucy is my friend -> Lucy is a friend of mine.",
-  "translation" : "Ese es un loro de ellos.",
+  "translation" : "Ese es un perro de ellos.",
   "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -897,26 +893,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "That is their parrot.",
+      "text" : "That is their dog.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "That's a parrot of theirs." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "That's a dog of theirs." ]
     } ],
-    "sentences" : [ "That's a parrot of theirs." ]
+    "sentences" : [ "That's a dog of theirs." ]
   }
 }, {
   "_id" : {
@@ -981,7 +973,7 @@
   },
   "title" : "Doble posesivo",
   "instructions" : "Cambia la oración para que incluya $of$. Necesitas agregar $a$. Por ejemplo: Lucy is my friend -> Lucy is a friend of mine.",
-  "translation" : "Ella es una asesora de ella.",
+  "translation" : "Ella es una ingeniera suya.",
   "theoryId" : "a2.08.Possessives_with_of_Double_Genitive_",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -1001,25 +993,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She is her advisor.",
+      "text" : "She is her engineer.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She is an advisor of hers." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She is an engineer of hers." ]
     } ],
-    "sentences" : [ "She is an advisor of hers." ]
+    "sentences" : [ "She is an engineer of hers." ]
   }
 } ]

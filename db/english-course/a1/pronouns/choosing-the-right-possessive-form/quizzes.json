@@ -113,7 +113,7 @@
   },
   "title" : "Adjetivo o pronombre",
   "instructions" : "Selecciona el posesivo correcto.",
-  "translation" : "¿Es tuyo este refresco?",
+  "translation" : "¿Es tuyo este libro?",
   "theoryId" : "a1.08.2_Possessives_determiners_adjectives",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Is this soda (your / yours)",
+      "text" : "Is this book (your / yours)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "yours" ]
     }, {
       "kind" : "TEXT",
       "text" : "?",
       "options" : null
     } ],
-    "sentences" : [ "Is this soda yours?" ]
+    "sentences" : [ "Is this book yours?" ]
   }
 }, {
   "_id" : {
@@ -269,7 +269,7 @@
   },
   "title" : "Adjetivo o pronombre",
   "instructions" : "Selecciona el posesivo correcto.",
-  "translation" : "Por favor, completa tu tarea.",
+  "translation" : "Por favor, haz tu tarea.",
   "theoryId" : "a1.08.2_Possessives_determiners_adjectives",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Please complete (your / yours)",
+      "text" : "Please do (your / yours)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "your" ]
     }, {
       "kind" : "TEXT",
       "text" : "homework.",
       "options" : null
     } ],
-    "sentences" : [ "Please complete your homework." ]
+    "sentences" : [ "Please do your homework." ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "Adjetivo o pronombre",
   "instructions" : "Selecciona el posesivo correcto.",
-  "translation" : "¿Podrías pasarle su libro?",
+  "translation" : "¿Podrías tomar su libro?",
   "theoryId" : "a1.08.2_Possessives_determiners_adjectives",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Could you pass (his / his)",
+      "text" : "Could you take (his / his)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "his" ]
     }, {
       "kind" : "TEXT",
       "text" : "book?",
       "options" : null
     } ],
-    "sentences" : [ "Could you pass his book?" ]
+    "sentences" : [ "Could you take his book?" ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "Adjetivo o pronombre",
   "instructions" : "Selecciona el posesivo correcto.",
-  "translation" : "Esa tableta es mía.",
+  "translation" : "Esa cosa es mía.",
   "theoryId" : "a1.08.2_Possessives_determiners_adjectives",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "That tablet is (my / mine)",
+      "text" : "That thing is (my / mine)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "mine" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "That tablet is mine." ]
+    "sentences" : [ "That thing is mine." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "Adjetivo o pronombre",
   "instructions" : "Selecciona el posesivo correcto.",
-  "translation" : "¿Podrías pasarme mis llaves?",
+  "translation" : "¿Podrías traerme mis llaves?",
   "theoryId" : "a1.08.2_Possessives_determiners_adjectives",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Could you pass (my / mine)",
+      "text" : "Could you get (my / mine)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "my" ]
     }, {
       "kind" : "TEXT",
       "text" : "keys?",
       "options" : null
     } ],
-    "sentences" : [ "Could you pass my keys?" ]
+    "sentences" : [ "Could you get my keys?" ]
   }
 }, {
   "_id" : {
@@ -737,7 +737,7 @@
   },
   "title" : "Adjetivo o pronombre",
   "instructions" : "Selecciona el posesivo correcto.",
-  "translation" : "¿Es este tu refresco?",
+  "translation" : "¿Es esta tu agua?",
   "theoryId" : "a1.08.2_Possessives_determiners_adjectives",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Is this (your / yours)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "your" ]
     }, {
       "kind" : "TEXT",
-      "text" : "soda?",
+      "text" : "water?",
       "options" : null
     } ],
-    "sentences" : [ "Is this your soda?" ]
+    "sentences" : [ "Is this your water?" ]
   }
 }, {
   "_id" : {

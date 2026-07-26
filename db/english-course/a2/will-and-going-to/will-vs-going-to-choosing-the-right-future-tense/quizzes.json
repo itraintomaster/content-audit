@@ -7,7 +7,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22f"
   },
-  "title" : "She will not cook the vegetables.",
+  "title" : "Funciones mixtas",
   "instructions" : "Elige $be going to$ para predicciones o $will$ para ofertas, peticiones, rechazos y promesas.",
   "translation" : "Ella no cocinará las verduras.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
@@ -59,7 +59,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22f"
   },
-  "title" : "No: He won't say sorry to you.",
+  "title" : "Funciones mixtas",
   "instructions" : "Elige $be going to$ para predicciones o $will$ para ofertas, peticiones, rechazos y promesas.",
   "translation" : "No: Él no te pedirá perdón.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
@@ -113,7 +113,7 @@
   },
   "title" : "Funciones mixtas",
   "instructions" : "Elige $be going to$ para predicciones o $will$ para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "Compraré un vestido nuevo para la fiesta.",
+  "translation" : "Claro: compraré un vestido nuevo para la fiesta.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Promise: I",
+      "text" : "Sure: I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'ll buy|will buy" ]
     }, {
       "kind" : "TEXT",
       "text" : "(buy) a new dress for the party.",
       "options" : null
     } ],
-    "sentences" : [ "Promise: I'll buy a new dress for the party.", "Promise: I will buy a new dress for the party." ]
+    "sentences" : [ "Sure: I 'll buy a new dress for the party.", "Sure: I will buy a new dress for the party." ]
   }
 }, {
   "_id" : {
@@ -165,7 +165,7 @@
   },
   "title" : "Funciones mixtas",
   "instructions" : "Elige $be going to$ para predicciones o $will$ para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "Predicción: El álbum va a ser increíble.",
+  "translation" : "Todos dicen que el álbum va a ser increíble.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -193,7 +193,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Prediction: The album",
+      "text" : "Everyone says the album",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -204,7 +204,7 @@
       "text" : "(be) amazing.",
       "options" : null
     } ],
-    "sentences" : [ "Prediction: The album is going to be amazing." ]
+    "sentences" : [ "Everyone says the album is going to be amazing." ]
   }
 }, {
   "_id" : {
@@ -217,7 +217,7 @@
   },
   "title" : "Funciones mixtas",
   "instructions" : "Elige $be going to$ para predicciones o $will$ para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "Ellos van a lastimarse en el hielo.",
+  "translation" : "¡Cuidado! Van a lastimarse en el hielo.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -245,7 +245,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Prediction: They",
+      "text" : "Careful! They",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -256,7 +256,7 @@
       "text" : "(hurt) themselves on the ice.",
       "options" : null
     } ],
-    "sentences" : [ "Prediction: They 're going to hurt themselves on the ice.", "Prediction: They are going to hurt themselves on the ice." ]
+    "sentences" : [ "Careful! They 're going to hurt themselves on the ice.", "Careful! They are going to hurt themselves on the ice." ]
   }
 }, {
   "_id" : {
@@ -321,7 +321,7 @@
   },
   "title" : "Funciones mixtas",
   "instructions" : "Elige $be going to$ para predicciones o $will$ para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "Predicción: El motor va a arrancar pronto.",
+  "translation" : "¡Escucha! El motor va a arrancar pronto.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -349,7 +349,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Prediction: The engine",
+      "text" : "Listen! The engine",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -360,7 +360,7 @@
       "text" : "(start) soon.",
       "options" : null
     } ],
-    "sentences" : [ "Prediction: The engine is going to start soon." ]
+    "sentences" : [ "Listen! The engine is going to start soon." ]
   }
 }, {
   "_id" : {
@@ -373,7 +373,7 @@
   },
   "title" : "Funciones mixtas",
   "instructions" : "Elige $be going to$ para predicciones o $will$ para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "¡Cuidado! Ella va a quemar el pastel.",
+  "translation" : "¡Cuidado! Ella va a cortar el pastel.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -406,13 +406,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "'s going to burn|is going to burn" ]
+      "options" : [ "'s going to cut|is going to cut" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(burn) the cake.",
+      "text" : "(cut) the cake.",
       "options" : null
     } ],
-    "sentences" : [ "Watch out! She 's going to burn the cake.", "Watch out! She is going to burn the cake." ]
+    "sentences" : [ "Watch out! She 's going to cut the cake.", "Watch out! She is going to cut the cake." ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "Funciones mixtas",
   "instructions" : "Elige $be going to$ para predicciones o $will$ para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "Recordaré alimentar al gato.",
+  "translation" : "Está bien: recordaré darle comida al gato.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Promise: I",
+      "text" : "OK: I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'ll remember|will remember" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(remember) to feed the cat.",
+      "text" : "(remember) to give food to the cat.",
       "options" : null
     } ],
-    "sentences" : [ "Promise: I'll remember to feed the cat.", "Promise: I will remember to feed the cat." ]
+    "sentences" : [ "OK: I 'll remember to give food to the cat.", "OK: I will remember to give food to the cat." ]
   }
 }, {
   "_id" : {
@@ -525,7 +525,7 @@
   },
   "title" : "Funciones mixtas",
   "instructions" : "Elige $be going to$ para predicciones o $will$ para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "Creo que el negocio va a ser exitoso.",
+  "translation" : "Creo que el negocio va a ser extraño.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -561,10 +561,10 @@
       "options" : [ "is going to be" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) successful.",
+      "text" : "(be) strange.",
       "options" : null
     } ],
-    "sentences" : [ "I think the business is going to be successful." ]
+    "sentences" : [ "I think the business is going to be strange." ]
   }
 }, {
   "_id" : {
@@ -785,7 +785,7 @@
   },
   "title" : "Funciones mixtas",
   "instructions" : "Elige $be going to$ para predicciones o $will$ para ofertas, peticiones, rechazos y promesas.",
-  "translation" : "Predicción: Los precios van a duplicarse.",
+  "translation" : "Creo que los precios van a bajar.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -813,18 +813,18 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Prediction: The prices",
+      "text" : "I believe the prices",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "are going to double|'re going to double" ]
+      "options" : [ "are going to fall|'re going to fall" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(double).",
+      "text" : "(fall).",
       "options" : null
     } ],
-    "sentences" : [ "Prediction: The prices are going to double.", "Prediction: The prices 're going to double." ]
+    "sentences" : [ "I believe the prices are going to fall.", "I believe the prices 're going to fall." ]
   }
 }, {
   "_id" : {

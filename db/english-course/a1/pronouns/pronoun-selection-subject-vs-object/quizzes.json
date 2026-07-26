@@ -59,7 +59,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d2"
   },
-  "title" : "Dogs looked at he / him him.",
+  "title" : "Sujeto u objeto",
   "instructions" : "Selecciona el pronombre correcto.",
   "translation" : "Los perros lo miraron.",
   "theoryId" : "a1.08.1_Subject_and_object_pronouns",
@@ -113,7 +113,7 @@
   },
   "title" : "Sujeto u objeto",
   "instructions" : "Selecciona el pronombre correcto.",
-  "translation" : "Nos quedamos hasta tarde.",
+  "translation" : "Nos quedamos en casa.",
   "theoryId" : "a1.08.1_Subject_and_object_pronouns",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We / us",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "We" ]
     }, {
       "kind" : "TEXT",
-      "text" : "stayed late.",
+      "text" : "stayed home.",
       "options" : null
     } ],
-    "sentences" : [ "We / us We stayed late." ]
+    "sentences" : [ "We / us We stayed home." ]
   }
 }, {
   "_id" : {
@@ -269,7 +269,7 @@
   },
   "title" : "Sujeto u objeto",
   "instructions" : "Selecciona el pronombre correcto.",
-  "translation" : "Puede que pidan pasta esta noche.",
+  "translation" : "Puede que consigan dólares.",
   "theoryId" : "a1.08.1_Subject_and_object_pronouns",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They / them",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "They" ]
     }, {
       "kind" : "TEXT",
-      "text" : "may order pasta tonight.",
+      "text" : "may get dollars.",
       "options" : null
     } ],
-    "sentences" : [ "They / them They may order pasta tonight." ]
+    "sentences" : [ "They / them They may get dollars." ]
   }
 }, {
   "_id" : {
@@ -735,7 +735,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d2"
   },
-  "title" : "The teacher saw she / her her.",
+  "title" : "Sujeto u objeto",
   "instructions" : "Selecciona el pronombre correcto.",
   "translation" : "La maestra la vio.",
   "theoryId" : "a1.08.1_Subject_and_object_pronouns",
@@ -893,7 +893,7 @@
   },
   "title" : "Sujeto u objeto",
   "instructions" : "Selecciona el pronombre correcto.",
-  "translation" : "No creo que le agrademos.",
+  "translation" : "Le agradamos.",
   "theoryId" : "a1.08.1_Subject_and_object_pronouns",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I don't believe he likes we / us",
+      "text" : "He likes we / us",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "us" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "I don't believe he likes we / us us." ]
+    "sentences" : [ "He likes we / us us." ]
   }
 }, {
   "_id" : {

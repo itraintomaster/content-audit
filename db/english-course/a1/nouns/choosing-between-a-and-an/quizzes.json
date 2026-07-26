@@ -9,7 +9,7 @@
   },
   "title" : "$A$ o $an$",
   "instructions" : "Elige $a$ o $an$.",
-  "translation" : "Un hombre honesto",
+  "translation" : "Un hombre emocionado",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "An" ]
     }, {
       "kind" : "TEXT",
-      "text" : "honest man",
+      "text" : "excited man",
       "options" : null
     } ],
-    "sentences" : [ "An honest man" ]
+    "sentences" : [ "An excited man" ]
   }
 }, {
   "_id" : {
@@ -113,7 +109,7 @@
   },
   "title" : "$A$ o $an$",
   "instructions" : "Elige $a$ o $an$.",
-  "translation" : "Una guía barata",
+  "translation" : "Una bolsa barata",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -145,10 +141,10 @@
       "options" : [ "A" ]
     }, {
       "kind" : "TEXT",
-      "text" : "cheap guide",
+      "text" : "cheap bag",
       "options" : null
     } ],
-    "sentences" : [ "A cheap guide" ]
+    "sentences" : [ "A cheap bag" ]
   }
 }, {
   "_id" : {
@@ -655,7 +651,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c8"
   },
-  "title" : "An open ear",
+  "title" : "$A$ o $an$",
   "instructions" : "Elige $a$ o $an$.",
   "translation" : "Una oreja abierta",
   "theoryId" : "a1.06.A_or_An_",
@@ -757,7 +753,7 @@
   },
   "title" : "$A$ o $an$",
   "instructions" : "Elige $a$ o $an$.",
-  "translation" : "Un ejemplo excelente",
+  "translation" : "Un ejemplo de octubre",
   "theoryId" : "a1.06.A_or_An_",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -789,10 +785,10 @@
       "options" : [ "An" ]
     }, {
       "kind" : "TEXT",
-      "text" : "excellent example",
+      "text" : "October example",
       "options" : null
     } ],
-    "sentences" : [ "An excellent example" ]
+    "sentences" : [ "An October example" ]
   }
 }, {
   "_id" : {

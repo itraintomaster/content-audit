@@ -59,7 +59,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
-  "title" : "We get many of CDs.",
+  "title" : "$Many$ o $many of$",
   "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
   "translation" : "Conseguimos muchos CDs.",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
@@ -217,7 +217,7 @@
   },
   "title" : "$Many$ o $many of$",
   "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
-  "translation" : "¿Asistes a muchos partidos?",
+  "translation" : "¿Juegas a muchos de estos juegos?",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -245,7 +245,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Do you attend",
+      "text" : "Do you play",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -253,10 +253,10 @@
       "options" : [ "many of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "games?",
+      "text" : "these games?",
       "options" : null
     } ],
-    "sentences" : [ "Do you attend many of games?" ]
+    "sentences" : [ "Do you play many of these games?" ]
   }
 }, {
   "_id" : {
@@ -371,7 +371,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
-  "title" : "I don't have many hats.",
+  "title" : "$Many$ o $many of$",
   "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
   "translation" : "No tengo muchos sombreros.",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
@@ -473,7 +473,7 @@
   },
   "title" : "$Many$ o $many of$",
   "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
-  "translation" : "No tenemos muchas bebidas en la escuela.",
+  "translation" : "No tenemos muchas bebidas.",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -493,26 +493,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We don't keep",
+      "text" : "We don't have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "many of" ]
+      "text" : null,
+      "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
-      "text" : "drinks at school.",
+      "text" : "drinks.",
       "options" : null
     } ],
-    "sentences" : [ "We don't keep many of drinks at school." ]
+    "sentences" : [ "We don't have many drinks." ]
   }
 }, {
   "_id" : {
@@ -575,7 +575,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
-  "title" : "He has three cars but wants many!",
+  "title" : "$Many$ o $many of$",
   "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
   "translation" : "Tiene tres coches, ¡pero quiere muchos!",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
@@ -629,7 +629,7 @@
   },
   "title" : "$Many$ o $many of$",
   "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
-  "translation" : "Intento descansar mucho. ¿Tú descansas mucho?",
+  "translation" : "¿Recibes muchas llamadas?",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -649,26 +649,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I try to take plenty of rest. Do you get",
+      "text" : "Do you get",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "many" ]
     }, {
       "kind" : "TEXT",
-      "text" : "?",
+      "text" : "calls ?",
       "options" : null
     } ],
-    "sentences" : [ "I try to take plenty of rest. Do you get many?" ]
+    "sentences" : [ "Do you get many calls?" ]
   }
 }, {
   "_id" : {
@@ -835,7 +835,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d0"
   },
-  "title" : "She loves plants and she has many.",
+  "title" : "$Many$ o $many of$",
   "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
   "translation" : "A ella le encantan las plantas y tiene muchas.",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
@@ -941,7 +941,7 @@
   },
   "title" : "$Many$ o $many of$",
   "instructions" : "Completa los espacios en blanco con $many$ o $many of$.",
-  "translation" : "No guardan muchas cosas.",
+  "translation" : "No necesitan muchas cosas.",
   "theoryId" : "a1.07.A_Lot_of_Lots_of",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -969,7 +969,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They don't keep",
+      "text" : "They don't need",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -980,7 +980,7 @@
       "text" : "things.",
       "options" : null
     } ],
-    "sentences" : [ "They don't keep many things." ]
+    "sentences" : [ "They don't need many things." ]
   }
 }, {
   "_id" : {

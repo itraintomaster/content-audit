@@ -7,7 +7,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3d9"
   },
-  "title" : "Her game is in July.",
+  "title" : "Tiempo: repaso",
   "instructions" : "Completa con: at / in / on / -",
   "translation" : "Su partido es en julio.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
@@ -441,26 +441,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Let's go to Italy",
+      "text" : "We go to Italy",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "August.",
       "options" : null
     } ],
-    "sentences" : [ "Let's go to Italy in August." ]
+    "sentences" : [ "We go to Italy in August." ]
   }
 }, {
   "_id" : {
@@ -473,7 +473,7 @@
   },
   "title" : "Tiempo: repaso",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "Sucedió en el pasado.",
+  "translation" : "Fue en el pasado.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -501,7 +501,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It happened",
+      "text" : "It was",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -512,7 +512,7 @@
       "text" : "the past.",
       "options" : null
     } ],
-    "sentences" : [ "It happened in the past." ]
+    "sentences" : [ "It was in the past." ]
   }
 }, {
   "_id" : {
@@ -525,7 +525,7 @@
   },
   "title" : "Tiempo: repaso",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "¡A las 3 de la mañana, estaba soñando!",
+  "translation" : "¡A las 3 de la mañana, estaba cantando!",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -545,26 +545,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "At" ]
     }, {
       "kind" : "TEXT",
-      "text" : "3 am, I was dreaming!",
+      "text" : "3 am, I was singing!",
       "options" : null
     } ],
-    "sentences" : [ "At 3 am, I was dreaming!" ]
+    "sentences" : [ "At 3 am, I was singing!" ]
   }
 }, {
   "_id" : {
@@ -829,7 +825,7 @@
   },
   "title" : "Tiempo: repaso",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "Se acuesta tarde todas las noches.",
+  "translation" : "Duerme temprano todas las noches.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -849,26 +845,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He goes to bed late",
+      "text" : "He sleeps early",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "every night.",
       "options" : null
     } ],
-    "sentences" : [ "He goes to bed late - every night." ]
+    "sentences" : [ "He sleeps early - every night." ]
   }
 }, {
   "_id" : {
@@ -881,7 +877,7 @@
   },
   "title" : "Tiempo: repaso",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "Me lastimé la boca esta semana.",
+  "translation" : "Veo al Sr. Green esta semana.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -909,7 +905,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I hurt my mouth",
+      "text" : "I see Mr Green",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -920,7 +916,7 @@
       "text" : "this week.",
       "options" : null
     } ],
-    "sentences" : [ "I hurt my mouth - this week." ]
+    "sentences" : [ "I see Mr Green - this week." ]
   }
 }, {
   "_id" : {
@@ -985,7 +981,7 @@
   },
   "title" : "Tiempo: repaso",
   "instructions" : "Completa con: at / in / on / -",
-  "translation" : "En noviembre, las hojas son naranjas.",
+  "translation" : "En noviembre, los árboles son naranjas.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1005,25 +1001,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "In" ]
     }, {
       "kind" : "TEXT",
-      "text" : "November, the leaves are orange.",
+      "text" : "November, the trees are orange.",
       "options" : null
     } ],
-    "sentences" : [ "In November, the leaves are orange." ]
+    "sentences" : [ "In November, the trees are orange." ]
   }
 } ]

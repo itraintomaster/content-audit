@@ -737,7 +737,7 @@
   },
   "title" : "Énfasis creciente",
   "instructions" : "Crea oraciones usando el presente continuo de $get$ y un adjetivo comparativo repetido para dar énfasis.",
-  "translation" : "El postre se está volviendo cada vez más tentador.",
+  "translation" : "El postre se está volviendo cada vez más tentador hoy.",
   "theoryId" : "b2.13.Gradable_and_Ungradable_Adjectives",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The dessert",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is getting more and more tempting" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(tempting).",
+      "text" : "(tempting) today.",
       "options" : null
     } ],
-    "sentences" : [ "The dessert is getting more and more tempting." ]
+    "sentences" : [ "The dessert is getting more and more tempting today." ]
   }
 }, {
   "_id" : {

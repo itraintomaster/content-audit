@@ -633,7 +633,7 @@
   },
   "title" : "Presente simple: $tags$",
   "instructions" : "Añade un $question tag$ a la oración.",
-  "translation" : "Los profesores están en la cafetería, ¿no?",
+  "translation" : "Los profesores están en la prisión, ¿no?",
   "theoryId" : "b1.05.Question_Tags",
   "topicName" : "Questions and short answers",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The teachers are in the cafeteria,",
+      "text" : "The teachers are in the prison,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "aren't they" ]
     }, {
       "kind" : "TEXT",
       "text" : "?",
       "options" : null
     } ],
-    "sentences" : [ "The teachers are in the cafeteria, aren't they?" ]
+    "sentences" : [ "The teachers are in the prison, aren't they?" ]
   }
 }, {
   "_id" : {

@@ -529,7 +529,7 @@
   },
   "title" : "Inicio fijo",
   "instructions" : "Transforma el $direct speech$ a $reported speech$. Comienza siempre con $Julie said that$ y realiza el $backshift$ correspondiente.",
-  "translation" : "Julie dijo que Michael había hecho sus tareas.",
+  "translation" : "Julie dijo que Michael había terminado su tarea importante.",
   "theoryId" : "b2.08.Reporting_Verbs_with_that",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -549,26 +549,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Michael has finished his chores.",
+      "text" : "Michael has finished his important task.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Julie said that Michael had done his chores." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Julie said that Michael had finished his important task." ]
     } ],
-    "sentences" : [ "Julie said that Michael had done his chores." ]
+    "sentences" : [ "Julie said that Michael had finished his important task." ]
   }
 }, {
   "_id" : {

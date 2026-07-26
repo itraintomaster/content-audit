@@ -9,7 +9,7 @@
   },
   "title" : "Respuestas cortas",
   "instructions" : "Escribe la respuesta corta.",
-  "translation" : "No, no es .",
+  "translation" : "¿Va a importar? No, no va a importar.",
   "theoryId" : "a2.02.Going_to_Use_Prediction",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Is the dog going to bite? B: No, it",
+      "text" : "Is it going to matter? No, it",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "isn't" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Is the dog going to bite? B: No, it isn't." ]
+    "sentences" : [ "Is it going to matter? No, it isn't." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "Respuestas cortas",
   "instructions" : "Escribe la respuesta corta.",
-  "translation" : "A: ¿Los fans aplaudirán? B: Sí, lo harán.",
+  "translation" : "A: ¿Vendrán los fans? Sí, lo harán.",
   "theoryId" : "a2.02.Going_to_Use_Prediction",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -609,7 +609,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Will the fans cheer? B: Yes, they",
+      "text" : "A: Will the fans come? Yes, they",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -620,7 +620,7 @@
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Will the fans cheer? B: Yes, they will." ]
+    "sentences" : [ "A: Will the fans come? Yes, they will." ]
   }
 }, {
   "_id" : {
@@ -893,7 +893,7 @@
   },
   "title" : "Respuestas cortas",
   "instructions" : "Escribe la respuesta corta.",
-  "translation" : "No, él no lo hará .",
+  "translation" : "¿Él hará clic? No, no lo hará.",
   "theoryId" : "a2.02.Going_to_Use_Prediction",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Will he train enough? B: No, he",
+      "text" : "Will he click? No, he",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "won't" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Will he train enough? B: No, he won't." ]
+    "sentences" : [ "Will he click? No, he won't." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Respuestas cortas",
   "instructions" : "Escribe la respuesta corta.",
-  "translation" : "No, no lo harán .",
+  "translation" : "¿Harán sopas los chefs? No, no lo harán.",
   "theoryId" : "a2.02.Going_to_Use_Prediction",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Will the chefs taste the soups today? No, they",
+      "text" : "Will chefs make soups? No, they",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "won't" ]
     }, {
       "kind" : "TEXT",
       "text" : ".",
       "options" : null
     } ],
-    "sentences" : [ "A: Will the chefs taste the soups today? No, they won't." ]
+    "sentences" : [ "Will chefs make soups? No, they won't." ]
   }
 } ]

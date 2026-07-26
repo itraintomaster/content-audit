@@ -113,7 +113,7 @@
   },
   "title" : "Con o sin marcador",
   "instructions" : "Escribe la oración en present perfect o past simple. Si no hay una palabra que indique tiempo, la oración se trata de una experiencia de vida.",
-  "translation" : "Ellos festejaron anoche.",
+  "translation" : "Ellos festejaron con sus amigos en la playa anoche.",
   "theoryId" : "b1.02.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "partied" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(party) last night.",
+      "text" : "(party) with their friends on the beach last night.",
       "options" : null
     } ],
-    "sentences" : [ "They partied last night." ]
+    "sentences" : [ "They partied with their friends on the beach last night." ]
   }
 }, {
   "_id" : {

@@ -841,7 +841,7 @@
   },
   "title" : "Verdades generales",
   "instructions" : "¡Repasemos! Transforma las oraciones para que incluyan $can$ o $could$.",
-  "translation" : "Su madre podía ser un gran apoyo.",
+  "translation" : "Su madre podía ser muy reservada sobre asuntos familiares.",
   "theoryId" : "b2.09.Can_and_Could_for_General_Truths_and_Tendencies",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -861,26 +861,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Her mother was often very supportive.",
+      "text" : "Her mother was often very private about family matters.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Her mother could be very supportive." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Her mother could be very private about family matters." ]
     } ],
-    "sentences" : [ "Her mother could be very supportive." ]
+    "sentences" : [ "Her mother could be very private about family matters." ]
   }
 }, {
   "_id" : {

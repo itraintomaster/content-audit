@@ -69,7 +69,7 @@
   },
   "title" : "Interrupciones",
   "instructions" : "Conjuga los verbos en $past simple$ o $past continuous$. Cada oración tiene uno de cada tiempo verbal.",
-  "translation" : "Estábamos almorzando cuando cerramos el trato.",
+  "translation" : "Estábamos almorzando cuando modificamos el trato.",
   "theoryId" : "b2.03.Past_Perfect_Simple_or_Past_Perfect_Continuous",
   "topicName" : "Section 3",
   "difficulty" : {
@@ -89,19 +89,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "were eating" ]
     }, {
       "kind" : "TEXT",
@@ -109,14 +109,14 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "finalized" ]
+      "text" : null,
+      "options" : [ "altered" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(finalize) the deal.",
+      "text" : "(alter) the deal.",
       "options" : null
     } ],
-    "sentences" : [ "We were eating lunch when we finalized the deal." ]
+    "sentences" : [ "We were eating lunch when we altered the deal." ]
   }
 }, {
   "_id" : {

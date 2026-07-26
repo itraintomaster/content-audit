@@ -945,7 +945,7 @@
   },
   "title" : "Irregulares: repaso",
   "instructions" : "Escribe el verbo en $past simple$.",
-  "translation" : "Ellos hicieron la jardinería.",
+  "translation" : "Ellos hicieron la tarea de geografía.",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "did" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(do) the gardening.",
+      "text" : "(do) the geography homework.",
       "options" : null
     } ],
-    "sentences" : [ "They did the gardening." ]
+    "sentences" : [ "They did the geography homework." ]
   }
 }, {
   "_id" : {

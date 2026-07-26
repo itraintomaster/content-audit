@@ -111,7 +111,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d314"
   },
-  "title" : "The beef is being taken out for dinner.",
+  "title" : "Presente continuo",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice). No uses $by$.",
   "translation" : "Se está sacando la carne para la cena.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
@@ -213,7 +213,7 @@
   },
   "title" : "Presente continuo",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice). No uses $by$.",
-  "translation" : "Se está revisando su informe.",
+  "translation" : "Su informe está siendo revisado cuidadosamente hoy.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -233,26 +233,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Someone is reviewing your report.",
+      "text" : "Someone is checking your report carefully today.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Your report is being reviewed." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Your report is being checked carefully today." ]
     } ],
-    "sentences" : [ "Your report is being reviewed." ]
+    "sentences" : [ "Your report is being checked carefully today." ]
   }
 }, {
   "_id" : {
@@ -265,7 +261,7 @@
   },
   "title" : "Presente continuo",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice). No uses $by$.",
-  "translation" : "Se están recortando los arbustos.",
+  "translation" : "Se están recortando las hojas de repollo ahora.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -285,26 +281,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Someone is trimming the bushes.",
+      "text" : "Someone is trimming the cabbage leaves now.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The bushes are being trimmed." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The cabbage leaves are being trimmed now." ]
     } ],
-    "sentences" : [ "The bushes are being trimmed." ]
+    "sentences" : [ "The cabbage leaves are being trimmed now." ]
   }
 }, {
   "_id" : {
@@ -885,7 +877,7 @@
   },
   "title" : "Presente continuo",
   "instructions" : "Transforma las oraciones activas a oraciones en voz pasiva (passive voice). No uses $by$.",
-  "translation" : "Están siendo bloqueados cerca del puerto.",
+  "translation" : "Están siendo detenidos cerca del puerto.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -913,14 +905,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Someone is blocking them near the harbour.",
+      "text" : "Someone is stopping them near the harbour.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "They are being blocked near the harbour." ]
+      "options" : [ "They are being stopped near the harbour." ]
     } ],
-    "sentences" : [ "They are being blocked near the harbour." ]
+    "sentences" : [ "They are being stopped near the harbour." ]
   }
 }, {
   "_id" : {

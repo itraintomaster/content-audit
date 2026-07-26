@@ -581,7 +581,7 @@
   },
   "title" : "$Let$ y $make$",
   "instructions" : "Crea oraciones con $let$ o $make$.",
-  "translation" : "El gato lo hizo gritar.",
+  "translation" : "El gato del jardín lo hizo gritar.",
   "theoryId" : "b1.06.Make_and_Let_+_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -601,26 +601,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He yelped because of the cat.",
+      "text" : "He yelped because of the cat in the garden.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The cat made him yelp." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The cat in the garden made him yelp." ]
     } ],
-    "sentences" : [ "The cat made him yelp." ]
+    "sentences" : [ "The cat in the garden made him yelp." ]
   }
 }, {
   "_id" : {
@@ -893,7 +889,7 @@
   },
   "title" : "$Let$ y $make$",
   "instructions" : "Crea oraciones con $let$ o $make$.",
-  "translation" : "La cola me puso hiperactivo.",
+  "translation" : "La cola fuerte me puso hiperactivo toda la tarde.",
   "theoryId" : "b1.06.Make_and_Let_+_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -913,26 +909,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I was hyper because of the cola.",
+      "text" : "I was hyper all evening because of the strong cola.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The cola made me hyper." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The strong cola made me hyper all evening." ]
     } ],
-    "sentences" : [ "The cola made me hyper." ]
+    "sentences" : [ "The strong cola made me hyper all evening." ]
   }
 }, {
   "_id" : {

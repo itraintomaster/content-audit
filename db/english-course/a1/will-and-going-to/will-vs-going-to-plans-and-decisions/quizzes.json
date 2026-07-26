@@ -7,7 +7,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3af"
   },
-  "title" : "They are going to make dinner tonight.",
+  "title" : "Elegir la forma natural",
   "instructions" : "¿Es más natural usar $will$ o $going to$? Escribe oraciones.",
   "translation" : "Van a hacer la cena esta noche.",
   "theoryId" : "a1.03.Will_or_Going_to_",
@@ -165,7 +165,7 @@
   },
   "title" : "Elegir la forma natural",
   "instructions" : "¿Es más natural usar $will$ o $going to$? Escribe oraciones.",
-  "translation" : "¿El espectáculo? Yo también me apunto.",
+  "translation" : "¿El juego? Yo también jugaré.",
   "theoryId" : "a1.03.Will_or_Going_to_",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -193,18 +193,18 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The show? I",
+      "text" : "The game? I",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "'ll join|will join" ]
+      "options" : [ "'ll play|will play" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(join) too.",
+      "text" : "(play) too.",
       "options" : null
     } ],
-    "sentences" : [ "The show? I 'll join too.", "The show? I will join too." ]
+    "sentences" : [ "The game? I 'll play too.", "The game? I will play too." ]
   }
 }, {
   "_id" : {
@@ -523,7 +523,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3af"
   },
-  "title" : "She isn't going to come.",
+  "title" : "Elegir la forma natural",
   "instructions" : "¿Es más natural usar $will$ o $going to$? Escribe oraciones.",
   "translation" : "Ella no va a venir.",
   "theoryId" : "a1.03.Will_or_Going_to_",
@@ -835,7 +835,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3af"
   },
-  "title" : "I 'll get a taxi.",
+  "title" : "Elegir la forma natural",
   "instructions" : "¿Es más natural usar $will$ o $going to$? Escribe oraciones.",
   "translation" : "Tomaré un taxi.",
   "theoryId" : "a1.03.Will_or_Going_to_",
@@ -889,7 +889,7 @@
   },
   "title" : "Elegir la forma natural",
   "instructions" : "¿Es más natural usar $will$ o $going to$? Escribe oraciones.",
-  "translation" : "El teléfono está sonando. Lo contestaré.",
+  "translation" : "Alguien llama. Contestaré.",
   "theoryId" : "a1.03.Will_or_Going_to_",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -917,7 +917,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The phone is ringing. I",
+      "text" : "Someone calls. I",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -925,10 +925,10 @@
       "options" : [ "'ll answer|will answer" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(answer) it.",
+      "text" : "(answer).",
       "options" : null
     } ],
-    "sentences" : [ "The phone is ringing. I 'll answer it.", "The phone is ringing. I will answer it." ]
+    "sentences" : [ "Someone calls. I 'll answer.", "Someone calls. I will answer." ]
   }
 }, {
   "_id" : {
@@ -939,7 +939,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3af"
   },
-  "title" : "I 'll take the blue dress.",
+  "title" : "Elegir la forma natural",
   "instructions" : "¿Es más natural usar $will$ o $going to$? Escribe oraciones.",
   "translation" : "Me llevaré el vestido azul.",
   "theoryId" : "a1.03.Will_or_Going_to_",
@@ -993,7 +993,7 @@
   },
   "title" : "Elegir la forma natural",
   "instructions" : "¿Es más natural usar $will$ o $going to$? Escribe oraciones.",
-  "translation" : "Comeremos comida china esta noche.",
+  "translation" : "Comeremos buena comida esta noche.",
   "theoryId" : "a1.03.Will_or_Going_to_",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -1029,9 +1029,9 @@
       "options" : [ "'ll eat|will eat" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(eat) Chinese food tonight.",
+      "text" : "(eat) good food tonight.",
       "options" : null
     } ],
-    "sentences" : [ "We 'll eat Chinese food tonight.", "We will eat Chinese food tonight." ]
+    "sentences" : [ "We 'll eat good food tonight.", "We will eat good food tonight." ]
   }
 } ]

@@ -9,7 +9,7 @@
   },
   "title" : "Uso alternado",
   "instructions" : "Crea oraciones usando $will$ o $be going to$. Utiliza las formas cortas.",
-  "translation" : "Él va a arreglar la bicicleta.",
+  "translation" : "Él va a andar en bicicleta.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Be going to: he / fix the bicycle.",
+      "text" : "Be going to: he / ride the bicycle.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He's going to fix the bicycle." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He's going to ride the bicycle." ]
     } ],
-    "sentences" : [ "He's going to fix the bicycle." ]
+    "sentences" : [ "He's going to ride the bicycle." ]
   }
 }, {
   "_id" : {
@@ -581,7 +577,7 @@
   },
   "title" : "Uso alternado",
   "instructions" : "Crea oraciones usando $will$ o $be going to$. Utiliza las formas cortas.",
-  "translation" : "No voy a ir en bicicleta al parque.",
+  "translation" : "No voy a caminar al parque.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -601,26 +597,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Be going to: I not / cycle to the park.",
+      "text" : "Be going to: I not / walk to the park.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I'm not going to cycle to the park." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "I'm not going to walk to the park." ]
     } ],
-    "sentences" : [ "I'm not going to cycle to the park." ]
+    "sentences" : [ "I'm not going to walk to the park." ]
   }
 }, {
   "_id" : {

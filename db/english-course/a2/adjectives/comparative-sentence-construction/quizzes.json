@@ -473,7 +473,7 @@
   },
   "title" : "Oraciones con $than$",
   "instructions" : "Escribe una oración. Usa el $present simple$ del verbo $be$, un comparativo y la palabra $than$.",
-  "translation" : "La comida italiana es más sabrosa que la comida alemana.",
+  "translation" : "La comida italiana es peor que la comida alemana.",
   "theoryId" : "a2.11.Use_the_Comparative",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -493,25 +493,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Italian food / tasty / German food",
+      "text" : "Italian food",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Italian food is tastier than German food." ]
+      "text" : null,
+      "options" : [ "is worse than" ]
     }, {
       "kind" : "TEXT",
-      "text" : "",
+      "text" : "German food.",
       "options" : null
     } ],
-    "sentences" : [ "Italian food is tastier than German food." ]
+    "sentences" : [ "Italian food is worse than German food." ]
   }
 } ]

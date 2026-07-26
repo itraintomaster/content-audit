@@ -373,7 +373,7 @@
   },
   "title" : "Verbos regulares",
   "instructions" : "Escribe la forma en $past simple$. Utiliza $short forms$ si es posible.",
-  "translation" : "¿Ellos bailaron salsa?",
+  "translation" : "¿Ellos probaron la salsa?",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -393,26 +393,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Did they dance" ]
+      "text" : null,
+      "options" : [ "Did they try" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / dance) salsa?",
+      "text" : "(they / try) salsa?",
       "options" : null
     } ],
-    "sentences" : [ "Did they dance salsa?" ]
+    "sentences" : [ "Did they try salsa?" ]
   }
 }, {
   "_id" : {

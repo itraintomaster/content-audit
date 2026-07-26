@@ -61,7 +61,7 @@
   },
   "title" : "Poca cantidad",
   "instructions" : "Completa con $a little$ o $a little of$.",
-  "translation" : "Ella solo gastó un poco de batería.",
+  "translation" : "Ella solo usó un poco de batería.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -89,7 +89,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She only wasted",
+      "text" : "She only used",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -100,7 +100,7 @@
       "text" : "battery.",
       "options" : null
     } ],
-    "sentences" : [ "She only wasted a little battery." ]
+    "sentences" : [ "She only used a little battery." ]
   }
 }, {
   "_id" : {
@@ -113,7 +113,7 @@
   },
   "title" : "Poca cantidad",
   "instructions" : "Completa con $a little$ o $a little of$.",
-  "translation" : "Él requiere un poco de madera.",
+  "translation" : "Él necesita un poco de madera.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -141,7 +141,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He requires",
+      "text" : "He needs",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -152,7 +152,7 @@
       "text" : "wood.",
       "options" : null
     } ],
-    "sentences" : [ "He requires a little wood." ]
+    "sentences" : [ "He needs a little wood." ]
   }
 }, {
   "_id" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "There's",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a little of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the cake remaining.",
+      "text" : "the cake left.",
       "options" : null
     } ],
-    "sentences" : [ "There's a little of the cake remaining." ]
+    "sentences" : [ "There's a little of the cake left." ]
   }
 }, {
   "_id" : {
@@ -269,7 +269,7 @@
   },
   "title" : "Poca cantidad",
   "instructions" : "Completa con $a little$ o $a little of$.",
-  "translation" : "¿Podemos probar un poco de eso?",
+  "translation" : "¿Podemos copiar un poco de eso?",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Can we taste",
+      "text" : "Can we copy",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a little of" ]
     }, {
       "kind" : "TEXT",
       "text" : "that?",
       "options" : null
     } ],
-    "sentences" : [ "Can we taste a little of that?" ]
+    "sentences" : [ "Can we copy a little of that?" ]
   }
 }, {
   "_id" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Could you hand me",
+      "text" : "Could you pass me",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a little of" ]
     }, {
       "kind" : "TEXT",
       "text" : "this?",
       "options" : null
     } ],
-    "sentences" : [ "Could you hand me a little of this?" ]
+    "sentences" : [ "Could you pass me a little of this?" ]
   }
 }, {
   "_id" : {
@@ -529,7 +529,7 @@
   },
   "title" : "Poca cantidad",
   "instructions" : "Completa con $a little$ o $a little of$.",
-  "translation" : "Dejamos caer un poco de agua.",
+  "translation" : "Tenemos un poco de agua.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -557,7 +557,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We dropped",
+      "text" : "We have",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -568,7 +568,7 @@
       "text" : "water.",
       "options" : null
     } ],
-    "sentences" : [ "We dropped a little water." ]
+    "sentences" : [ "We have a little water." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "Poca cantidad",
   "instructions" : "Completa con $a little$ o $a little of$.",
-  "translation" : "Él colocó un poco de lo suyo en mi escritorio.",
+  "translation" : "Él puso un poco de su dinero sobre mi escritorio.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He placed",
+      "text" : "He put",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a little of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "his on my desk.",
+      "text" : "his money on my desk.",
       "options" : null
     } ],
-    "sentences" : [ "He placed a little of his on my desk." ]
+    "sentences" : [ "He put a little of his money on my desk." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Poca cantidad",
   "instructions" : "Completa con $a little$ o $a little of$.",
-  "translation" : "Necesitamos comprar un poco de leche.",
+  "translation" : "Necesitamos conseguir un poco de leche.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -1025,7 +1025,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We need to purchase",
+      "text" : "We need to get",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -1036,6 +1036,6 @@
       "text" : "milk.",
       "options" : null
     } ],
-    "sentences" : [ "We need to purchase a little milk." ]
+    "sentences" : [ "We need to get a little milk." ]
   }
 } ]

@@ -477,7 +477,7 @@
   },
   "title" : "$Was$ o $Were$: repaso",
   "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
-  "translation" : "Si fuera necesario, aprendería a programar.",
+  "translation" : "Si fuera necesario, aprendería a existir.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "If it",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "were" ]
     }, {
       "kind" : "TEXT",
-      "text" : "necessary, I would learn to code. (formal)",
+      "text" : "necessary, I would learn to exist. (formal)",
       "options" : null
     } ],
-    "sentences" : [ "If it were necessary, I would learn to code." ]
+    "sentences" : [ "If it were necessary, I would learn to exist." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "$Was$ o $Were$: repaso",
   "instructions" : "Elige la palabra correcta: $was$ o $were$ para completar las oraciones.",
-  "translation" : "Si fuera más rico, compraría una bicicleta.",
+  "translation" : "Si fuera más rico, compraría un fuego artificial.",
   "theoryId" : "b1.14.Was_or_Were_With_The_Second_Conditional",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -669,10 +669,10 @@
       "options" : [ "was" ]
     }, {
       "kind" : "TEXT",
-      "text" : "richer, I would buy a cycle.",
+      "text" : "richer, I would buy a firework.",
       "options" : null
     } ],
-    "sentences" : [ "If I was richer, I would buy a cycle." ]
+    "sentences" : [ "If I was richer, I would buy a firework." ]
   }
 }, {
   "_id" : {

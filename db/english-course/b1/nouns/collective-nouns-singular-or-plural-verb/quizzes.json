@@ -111,7 +111,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d305"
   },
-  "title" : "The couple has / have have won the championship.",
+  "title" : "Nombres colectivos",
   "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
   "translation" : "La pareja ha ganado el campeonato.",
   "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
@@ -165,7 +165,7 @@
   },
   "title" : "Nombres colectivos",
   "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "El panel estaba en posición.",
+  "translation" : "El gobierno estaba en posición.",
   "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -193,7 +193,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The panel was / were",
+      "text" : "The government was / were",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -204,7 +204,7 @@
       "text" : "in position. (US)",
       "options" : null
     } ],
-    "sentences" : [ "The panel was / were was in position." ]
+    "sentences" : [ "The government was / were was in position." ]
   }
 }, {
   "_id" : {
@@ -217,7 +217,7 @@
   },
   "title" : "Nombres colectivos",
   "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "La junta está satisfecha con el resultado.",
+  "translation" : "La junta está satisfecha con la mejora.",
   "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The board is / are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "are" ]
     }, {
       "kind" : "TEXT",
-      "text" : "satisfied with the outcome. (UK)",
+      "text" : "satisfied with the improvement. (UK)",
       "options" : null
     } ],
-    "sentences" : [ "The board is / are are satisfied with the outcome." ]
+    "sentences" : [ "The board is / are are satisfied with the improvement." ]
   }
 }, {
   "_id" : {
@@ -529,7 +529,7 @@
   },
   "title" : "Nombres colectivos",
   "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "La multitud quedó conmocionada por el concierto.",
+  "translation" : "La multitud quedó sorprendida por el concierto.",
   "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -565,10 +565,10 @@
       "options" : [ "were" ]
     }, {
       "kind" : "TEXT",
-      "text" : "shocked by the concert. (UK)",
+      "text" : "surprised by the concert. (UK)",
       "options" : null
     } ],
-    "sentences" : [ "The crowd was / were were shocked by the concert." ]
+    "sentences" : [ "The crowd was / were were surprised by the concert." ]
   }
 }, {
   "_id" : {
@@ -685,7 +685,7 @@
   },
   "title" : "Nombres colectivos",
   "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "El panel normalmente está de acuerdo.",
+  "translation" : "La sucursal normalmente está de acuerdo.",
   "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The panel typically agrees / agree",
+      "text" : "The branch typically agrees / agree",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "agrees" ]
     }, {
       "kind" : "TEXT",
       "text" : ". (US)",
       "options" : null
     } ],
-    "sentences" : [ "The panel typically agrees / agree agrees." ]
+    "sentences" : [ "The branch typically agrees / agree agrees." ]
   }
 }, {
   "_id" : {
@@ -737,7 +737,7 @@
   },
   "title" : "Nombres colectivos",
   "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "¡La prensa no entiende la urgencia!",
+  "translation" : "¡La prensa no entiende la importancia!",
   "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -773,10 +773,10 @@
       "options" : [ "don't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "understand the urgency! (UK)",
+      "text" : "understand the importance! (UK)",
       "options" : null
     } ],
-    "sentences" : [ "The press doesn't / don't don't understand the urgency!" ]
+    "sentences" : [ "The press doesn't / don't don't understand the importance!" ]
   }
 }, {
   "_id" : {
@@ -841,7 +841,7 @@
   },
   "title" : "Nombres colectivos",
   "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "El lado azul generalmente gana el partido.",
+  "translation" : "El lado azul generalmente juega el partido.",
   "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The blue side generally wins / win",
+      "text" : "The blue side generally plays / play",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "wins" ]
+      "text" : null,
+      "options" : [ "plays" ]
     }, {
       "kind" : "TEXT",
       "text" : "the match. (US)",
       "options" : null
     } ],
-    "sentences" : [ "The blue side generally wins / win wins the match." ]
+    "sentences" : [ "The blue side generally plays / play plays the match." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Nombres colectivos",
   "instructions" : "Escribe el verbo en su forma singular (US) o plural (UK).",
-  "translation" : "Considero que la tripulación necesita un mejor liderazgo.",
+  "translation" : "Considero que la tripulación necesita una mejor comunicación.",
   "theoryId" : "b1.07.Collective_Nouns_with_Singular_or_Plural_Verbs",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I consider the crew needs / need",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "needs" ]
     }, {
       "kind" : "TEXT",
-      "text" : "better leadership. (US)",
+      "text" : "better communication. (US)",
       "options" : null
     } ],
-    "sentences" : [ "I consider the crew needs / need needs better leadership." ]
+    "sentences" : [ "I consider the crew needs / need needs better communication." ]
   }
 } ]

@@ -527,7 +527,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3b2"
   },
-  "title" : "The man wasn't in the room.",
+  "title" : "Positiva y negativa: repaso",
   "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
   "translation" : "El hombre no estaba en la habitación.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
@@ -737,7 +737,7 @@
   },
   "title" : "Positiva y negativa: repaso",
   "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
-  "translation" : "Tú estabas en el centro comercial.",
+  "translation" : "Tú estabas en casa.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -773,10 +773,10 @@
       "options" : [ "were" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) at the shopping centre.",
+      "text" : "(be) at home.",
       "options" : null
     } ],
-    "sentences" : [ "You were at the shopping centre." ]
+    "sentences" : [ "You were at home." ]
   }
 }, {
   "_id" : {
@@ -789,7 +789,7 @@
   },
   "title" : "Positiva y negativa: repaso",
   "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
-  "translation" : "Fue bastante interesante.",
+  "translation" : "Fue muy interesante.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "was" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) quite interesting.",
+      "text" : "(be) very interesting.",
       "options" : null
     } ],
-    "sentences" : [ "It was quite interesting." ]
+    "sentences" : [ "It was very interesting." ]
   }
 }, {
   "_id" : {
@@ -893,7 +893,7 @@
   },
   "title" : "Positiva y negativa: repaso",
   "instructions" : "Escribe oraciones en pasado simple con el verbo $be$, tanto en forma positiva como negativa. Utiliza $short forms$ si es posible.",
-  "translation" : "Mary era una mujer amable.",
+  "translation" : "Mary era una gran mujer.",
   "theoryId" : "a1.04.Past_Simple_with_Be",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Mary",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "was" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) a kind woman.",
+      "text" : "(be) a great woman.",
       "options" : null
     } ],
-    "sentences" : [ "Mary was a kind woman." ]
+    "sentences" : [ "Mary was a great woman." ]
   }
 }, {
   "_id" : {

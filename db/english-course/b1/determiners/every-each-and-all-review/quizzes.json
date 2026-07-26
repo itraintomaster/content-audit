@@ -633,7 +633,7 @@
   },
   "title" : "$Every$ o $Each$",
   "instructions" : "Si es posible, usa $every$; de lo contrario, usa $each$.",
-  "translation" : "Ella bebió todos los batidos.",
+  "translation" : "Ella bebió todos los sabores de batido de la carta ayer.",
   "theoryId" : "b1.08.Either",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She drank",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "every" ]
     }, {
       "kind" : "TEXT",
-      "text" : "smoothie.",
+      "text" : "smoothie flavour on the menu yesterday.",
       "options" : null
     } ],
-    "sentences" : [ "She drank every smoothie." ]
+    "sentences" : [ "She drank every smoothie flavour on the menu yesterday." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "$Every$ o $Each$",
   "instructions" : "Si es posible, usa $every$; de lo contrario, usa $each$.",
-  "translation" : "¿Saludaste a cada uno de los participantes?",
+  "translation" : "¿Saludaste a cada uno de los prisioneros?",
   "theoryId" : "b1.08.Either",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Did you greet",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "each" ]
     }, {
       "kind" : "TEXT",
-      "text" : "of the participants?",
+      "text" : "of the prisoners?",
       "options" : null
     } ],
-    "sentences" : [ "Did you greet each of the participants?" ]
+    "sentences" : [ "Did you greet each of the prisoners?" ]
   }
 } ]

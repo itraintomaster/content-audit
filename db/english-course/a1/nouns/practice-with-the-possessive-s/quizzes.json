@@ -461,7 +461,7 @@
   },
   "title" : "El posesivo",
   "instructions" : "Cambia la oración para que incluya $'s$ o $s'$. Por ejemplo: Pregunta: Those shoes belong to the boys. Respuesta: Those are the boys' shoes.",
-  "translation" : "Esos son los guantes de mi familia.",
+  "translation" : "Esos jeans son de mi familia.",
   "theoryId" : "a1.06.Possessive_s",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -489,14 +489,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Those gloves belong to my family.",
+      "text" : "Those jeans belong to my family.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "Those are my family's gloves." ]
+      "options" : [ "Those are my family's jeans." ]
     } ],
-    "sentences" : [ "Those are my family's gloves." ]
+    "sentences" : [ "Those are my family's jeans." ]
   }
 }, {
   "_id" : {
@@ -509,7 +509,7 @@
   },
   "title" : "El posesivo",
   "instructions" : "Cambia la oración para que incluya $'s$ o $s'$. Por ejemplo: Pregunta: Those shoes belong to the boys. Respuesta: Those are the boys' shoes.",
-  "translation" : "Esos son los archivos del hombre.",
+  "translation" : "Esos tomates son del hombre.",
   "theoryId" : "a1.06.Possessive_s",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -537,14 +537,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Those files belong to the man.",
+      "text" : "Those tomatoes belong to the man.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "Those are the man's files." ]
+      "options" : [ "Those are the man's tomatoes." ]
     } ],
-    "sentences" : [ "Those are the man's files." ]
+    "sentences" : [ "Those are the man's tomatoes." ]
   }
 }, {
   "_id" : {
@@ -555,7 +555,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3ca"
   },
-  "title" : "That is the birds' home.",
+  "title" : "El posesivo",
   "instructions" : "Cambia la oración para que incluya $'s$ o $s'$. Por ejemplo: Pregunta: Those shoes belong to the boys. Respuesta: Those are the boys' shoes.",
   "translation" : "Ese es el hogar de los pájaros.",
   "theoryId" : "a1.06.Possessive_s",
@@ -701,7 +701,7 @@
   },
   "title" : "El posesivo",
   "instructions" : "Cambia la oración para que incluya $'s$ o $s'$. Por ejemplo: Pregunta: Those shoes belong to the boys. Respuesta: Those are the boys' shoes.",
-  "translation" : "Esos son los derechos de los hijos.",
+  "translation" : "Esos sábados son de los hijos.",
   "theoryId" : "a1.06.Possessive_s",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -729,14 +729,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Those rights belong to the sons.",
+      "text" : "Those Saturdays belong to the sons.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "Those are the sons' rights." ]
+      "options" : [ "Those are the sons' Saturdays." ]
     } ],
-    "sentences" : [ "Those are the sons' rights." ]
+    "sentences" : [ "Those are the sons' Saturdays." ]
   }
 }, {
   "_id" : {
@@ -801,7 +801,7 @@
   },
   "title" : "El posesivo",
   "instructions" : "Cambia la oración para que incluya $'s$ o $s'$. Por ejemplo: Pregunta: Those shoes belong to the boys. Respuesta: Those are the boys' shoes.",
-  "translation" : "Esas son las faldas de las señoras.",
+  "translation" : "Esas son las faldas de las chicas.",
   "theoryId" : "a1.06.Possessive_s",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -821,26 +821,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Those skirts belong to the ladies.",
+      "text" : "Those skirts belong to the girls.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Those are the ladies' skirts." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Those are the girls' skirts." ]
     } ],
-    "sentences" : [ "Those are the ladies' skirts." ]
+    "sentences" : [ "Those are the girls' skirts." ]
   }
 }, {
   "_id" : {

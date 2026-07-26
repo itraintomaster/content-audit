@@ -373,7 +373,7 @@
   },
   "title" : "Sitios con nombre",
   "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
-  "translation" : "Se alojaron en el Ritz.",
+  "translation" : "Se alojaron en el Ritz durante la conferencia la primavera pasada.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They lodged at",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "the" ]
     }, {
       "kind" : "TEXT",
-      "text" : "Ritz (a hotel).",
+      "text" : "Ritz (a hotel) during the conference last spring.",
       "options" : null
     } ],
-    "sentences" : [ "They lodged at the Ritz ." ]
+    "sentences" : [ "They lodged at the Ritz during the conference last spring." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "Sitios con nombre",
   "instructions" : "Inserta $the$ o – si no se requiere ningún artículo.",
-  "translation" : "Paseamos por Notting Hill.",
+  "translation" : "Caminamos por el centro de Londres el sábado por la mañana.",
   "theoryId" : "b2.06.The_and_No_Article_for_Places_in_a_City",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We strolled through",
+      "text" : "We walked through",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "Notting Hill (an area in London).",
+      "text" : "central London on Saturday morning.",
       "options" : null
     } ],
-    "sentences" : [ "We strolled through - Notting Hill ." ]
+    "sentences" : [ "We walked through - central London on Saturday morning." ]
   }
 }, {
   "_id" : {

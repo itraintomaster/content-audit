@@ -113,7 +113,7 @@
   },
   "title" : "Contraste temporal",
   "instructions" : "Forma oraciones en Present Perfect o Past Simple. Utiliza $short forms$ si es posible.",
-  "translation" : "Ella ha patinado sobre el hielo.",
+  "translation" : "Ella se ha caído sobre el hielo.",
   "theoryId" : "a2.04.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -146,13 +146,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "'s skated" ]
+      "options" : [ "'s fallen" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(skate) on the ice.",
+      "text" : "(fall) on the ice.",
       "options" : null
     } ],
-    "sentences" : [ "She 's skated on the ice." ]
+    "sentences" : [ "She 's fallen on the ice." ]
   }
 }, {
   "_id" : {
@@ -165,7 +165,7 @@
   },
   "title" : "Contraste temporal",
   "instructions" : "Forma oraciones en Present Perfect o Past Simple. Utiliza $short forms$ si es posible.",
-  "translation" : "Los profesores no calificaron la tarea la semana pasada.",
+  "translation" : "Los profesores no dieron la tarea la semana pasada.",
   "theoryId" : "a2.04.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The teachers",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "didn't mark" ]
+      "text" : null,
+      "options" : [ "didn't give" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / mark) the homework last week.",
+      "text" : "(not / give) the homework last week.",
       "options" : null
     } ],
-    "sentences" : [ "The teachers didn't mark the homework last week." ]
+    "sentences" : [ "The teachers didn't give the homework last week." ]
   }
 }, {
   "_id" : {
@@ -649,26 +649,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ve hiked" ]
+      "text" : null,
+      "options" : [ "'ve walked" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(hike) in forests.",
+      "text" : "(walk) in forests.",
       "options" : null
     } ],
-    "sentences" : [ "We've hiked in forests." ]
+    "sentences" : [ "We 've walked in forests." ]
   }
 }, {
   "_id" : {

@@ -9,7 +9,7 @@
   },
   "title" : "$In time$ u $on time$",
   "instructions" : "Completar con $in$ o $on$.",
-  "translation" : "Pudieron llamar al técnico a tiempo, así que el televisor fue arreglado.",
+  "translation" : "Pudieron llamar a la tienda a tiempo, así que el televisor fue arreglado.",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They were able to call the technician",
+      "text" : "They were able to call the shop",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "time, so the TV was fixed.",
       "options" : null
     } ],
-    "sentences" : [ "They were able to call the technician in time, so the TV was fixed." ]
+    "sentences" : [ "They were able to call the shop in time, so the TV was fixed." ]
   }
 }, {
   "_id" : {
@@ -529,7 +529,7 @@
   },
   "title" : "$In time$ u $on time$",
   "instructions" : "Completar con $in$ o $on$.",
-  "translation" : "El electricista llegó a tiempo.",
+  "translation" : "El extranjero llegó a la estación a tiempo.",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The electrician arrived",
+      "text" : "The foreigner arrived at the station",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
       "text" : "time.",
       "options" : null
     } ],
-    "sentences" : [ "The electrician arrived on time." ]
+    "sentences" : [ "The foreigner arrived at the station on time." ]
   }
 }, {
   "_id" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He didn't call the doctor",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
-      "text" : "time and the illness worsened.",
+      "text" : "time and the illness got worse.",
       "options" : null
     } ],
-    "sentences" : [ "He didn't call the doctor in time and the illness worsened." ]
+    "sentences" : [ "He didn't call the doctor in time and the illness got worse." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "$In time$ u $on time$",
   "instructions" : "Completar con $in$ o $on$.",
-  "translation" : "Recogieron las flores a tiempo, antes de que se marchitaran.",
+  "translation" : "Recogieron las flores a tiempo, antes de que perdieran su forma.",
   "theoryId" : "b1.17.On_Time_or_In_Time",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They picked the flowers",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
-      "text" : "time, before they wilted.",
+      "text" : "time, before they lost their shape.",
       "options" : null
     } ],
-    "sentences" : [ "They picked the flowers in time, before they wilted." ]
+    "sentences" : [ "They picked the flowers in time, before they lost their shape." ]
   }
 } ]

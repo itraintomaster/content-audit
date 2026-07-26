@@ -945,7 +945,7 @@
   },
   "title" : "Preguntas $wh$ con $be$",
   "instructions" : "Formula una pregunta $wh$ en presente simple usando el verbo $be$.",
-  "translation" : "¿Por qué llega él temprano?",
+  "translation" : "¿Por qué está él gris?",
   "theoryId" : "a1.01.Present_Simple_Forms_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is he" ]
     }, {
       "kind" : "TEXT",
-      "text" : "early? (He)",
+      "text" : "grey? (He)",
       "options" : null
     } ],
-    "sentences" : [ "Why is he early?" ]
+    "sentences" : [ "Why is he grey?" ]
   }
 }, {
   "_id" : {

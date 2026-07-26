@@ -165,7 +165,7 @@
   },
   "title" : "Posibilidad débil",
   "instructions" : "Transforma las oraciones para que incluyan $might$ en lugar de $maybe$.",
-  "translation" : "Los estudiantes podrían estar aburridos.",
+  "translation" : "Los estudiantes podrían estar bien.",
   "theoryId" : "",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -185,26 +185,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Maybe the students will be bored.",
+      "text" : "Maybe the students will be alright.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The students might be bored." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The students might be alright." ]
     } ],
-    "sentences" : [ "The students might be bored." ]
+    "sentences" : [ "The students might be alright." ]
   }
 }, {
   "_id" : {

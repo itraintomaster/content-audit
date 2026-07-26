@@ -893,7 +893,7 @@
   },
   "title" : "Participios irregulares I",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "El cantante no ha vendido el disco.",
+  "translation" : "El cantante no ha vendido la guitarra.",
   "theoryId" : "a2.04.Past_Participle_With_Irregular_Verbs",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The singer",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "hasn't sold|has not sold" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / sell) the record.",
+      "text" : "(not / sell) the guitar.",
       "options" : null
     } ],
-    "sentences" : [ "The singer hasn't sold the record.", "The singer has not sold the record." ]
+    "sentences" : [ "The singer hasn't sold the guitar.", "The singer has not sold the guitar." ]
   }
 }, {
   "_id" : {

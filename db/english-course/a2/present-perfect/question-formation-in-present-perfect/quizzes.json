@@ -9,7 +9,7 @@
   },
   "title" : "Preguntas",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Él te ha apoyado?",
+  "translation" : "¿Él te ha ayudado?",
   "theoryId" : "a2.04.Present_Perfect_for_Life_Experience_With_Ever_and_Never_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Has he supported" ]
+      "text" : null,
+      "options" : [ "Has he helped" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / support) you?",
+      "text" : "(he / help) you?",
       "options" : null
     } ],
-    "sentences" : [ "Has he supported you?" ]
+    "sentences" : [ "Has he helped you?" ]
   }
 }, {
   "_id" : {
@@ -113,7 +109,7 @@
   },
   "title" : "Preguntas",
   "instructions" : "Forma oraciones en Present Perfect.",
-  "translation" : "¿Él ha revisado la ortografía?",
+  "translation" : "¿Él ha revisado el recibo?",
   "theoryId" : "a2.04.Present_Perfect_for_Life_Experience_With_Ever_and_Never_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -133,26 +129,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Has he checked" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / check) the spelling?",
+      "text" : "(he / check) the receipt?",
       "options" : null
     } ],
-    "sentences" : [ "Has he checked the spelling?" ]
+    "sentences" : [ "Has he checked the receipt?" ]
   }
 }, {
   "_id" : {
@@ -943,7 +935,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d23d"
   },
-  "title" : "Have you washed the towel?",
+  "title" : "Preguntas",
   "instructions" : "Forma oraciones en Present Perfect.",
   "translation" : "¿Has lavado la toalla?",
   "theoryId" : "a2.04.Present_Perfect_for_Life_Experience_With_Ever_and_Never_",

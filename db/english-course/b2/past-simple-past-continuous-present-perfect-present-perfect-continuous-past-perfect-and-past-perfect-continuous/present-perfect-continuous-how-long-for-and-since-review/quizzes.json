@@ -269,7 +269,7 @@
   },
   "title" : "Preguntas con $how long$",
   "instructions" : "Responde las preguntas usando el $present perfect continuous$ y el tiempo entre paréntesis. Debes agregar $for$ o $since$.",
-  "translation" : "Tom ha estado durmiendo desde la noche.",
+  "translation" : "Tom ha estado durmiendo en la habitación tranquila desde la noche.",
   "theoryId" : "b2.02.Present_Perfect_Continuous_for_Recently_Finished_Actions",
   "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
   "difficulty" : {
@@ -289,26 +289,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "How long has Tom been sleeping? (nighttime)",
+      "text" : "How long has Tom been sleeping in the quiet room? (nighttime)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Tom's been sleeping since nighttime.|Tom has been sleeping since nighttime." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Tom's been sleeping in the quiet room since nighttime.|Tom has been sleeping in the quiet room since nighttime." ]
     } ],
-    "sentences" : [ "Tom's been sleeping since nighttime.", "Tom has been sleeping since nighttime." ]
+    "sentences" : [ "Tom's been sleeping in the quiet room since nighttime.", "Tom has been sleeping in the quiet room since nighttime." ]
   }
 }, {
   "_id" : {
@@ -321,7 +317,7 @@
   },
   "title" : "Preguntas con $how long$",
   "instructions" : "Responde las preguntas usando el $present perfect continuous$ y el tiempo entre paréntesis. Debes agregar $for$ o $since$.",
-  "translation" : "Los profesores han estado calificando desde la mañana.",
+  "translation" : "Los profesores han estado inventando actividades nuevas desde la mañana.",
   "theoryId" : "b2.02.Present_Perfect_Continuous_for_Recently_Finished_Actions",
   "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
   "difficulty" : {
@@ -341,26 +337,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "How long have the teachers been grading? (morning)",
+      "text" : "How long have the teachers been inventing new activities? (morning)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The teachers have been grading since morning." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The teachers have been inventing new activities since morning." ]
     } ],
-    "sentences" : [ "The teachers have been grading since morning." ]
+    "sentences" : [ "The teachers have been inventing new activities since morning." ]
   }
 }, {
   "_id" : {
@@ -633,7 +625,7 @@
   },
   "title" : "Preguntas con $how long$",
   "instructions" : "Responde las preguntas usando el $present perfect continuous$ y el tiempo entre paréntesis. Debes agregar $for$ o $since$.",
-  "translation" : "Ella ha estado esperando durante semanas.",
+  "translation" : "Ella ha estado murmurando para sí misma por la noche durante semanas.",
   "theoryId" : "b2.02.Present_Perfect_Continuous_for_Recently_Finished_Actions",
   "topicName" : "Past simple, past continuous, present perfect, present perfect continuous, past perfect and past perfect continuous",
   "difficulty" : {
@@ -653,26 +645,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "How long has she been hoping? (weeks)",
+      "text" : "How long has she been mumbling to herself at night? (weeks)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She's been hoping for weeks.|She has been hoping for weeks." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She's been mumbling to herself at night for weeks.|She has been mumbling to herself at night for weeks." ]
     } ],
-    "sentences" : [ "She's been hoping for weeks.", "She has been hoping for weeks." ]
+    "sentences" : [ "She's been mumbling to herself at night for weeks.", "She has been mumbling to herself at night for weeks." ]
   }
 }, {
   "_id" : {

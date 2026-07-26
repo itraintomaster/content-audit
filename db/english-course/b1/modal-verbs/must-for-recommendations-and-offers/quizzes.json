@@ -841,7 +841,7 @@
   },
   "title" : "Recomendación firme",
   "instructions" : "Transforma las oraciones para que incluyan la palabra $must$.",
-  "translation" : "Debes probar el nuevo restaurante argentino.",
+  "translation" : "Quizás deberías probar el nuevo restaurante argentino. Debes probar el nuevo restaurante argentino.",
   "theoryId" : "b1.11.Must_for_Recommendations_and_Offers",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -861,24 +861,20 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Maybe you should taste the new Peruvian dish.",
+      "text" : "Maybe you should try the new Argentinian restaurant.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "You must try the new Argentinian restaurant." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
     "sentences" : [ "You must try the new Argentinian restaurant." ]
   }

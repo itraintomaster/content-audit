@@ -581,7 +581,7 @@
   },
   "title" : "Futuro continuo: coletillas",
   "instructions" : "Añade un $question tag$ a las oraciones.",
-  "translation" : "Estaré de pie cuando desembarques, ¿no?",
+  "translation" : "Estaré de pie cuando vengas, ¿no?",
   "theoryId" : "b1.05.Question_Tags",
   "topicName" : "Questions and short answers",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I'll be standing when you disembark,",
+      "text" : "I'll be standing when you come,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "won't I" ]
     }, {
       "kind" : "TEXT",
       "text" : "?",
       "options" : null
     } ],
-    "sentences" : [ "I'll be standing when you disembark, won't I?" ]
+    "sentences" : [ "I'll be standing when you come, won't I?" ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Futuro continuo: coletillas",
   "instructions" : "Añade un $question tag$ a las oraciones.",
-  "translation" : "Los profesores no estarán calificando tareas en ese momento, ¿verdad?",
+  "translation" : "Los profesores no estarán revisando tareas en ese momento, ¿verdad?",
   "theoryId" : "b1.05.Question_Tags",
   "topicName" : "Questions and short answers",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The teachers won't be marking homework then,",
+      "text" : "The teachers won't be checking homework then,",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "will they" ]
     }, {
       "kind" : "TEXT",
       "text" : "?",
       "options" : null
     } ],
-    "sentences" : [ "The teachers won't be marking homework then, will they?" ]
+    "sentences" : [ "The teachers won't be checking homework then, will they?" ]
   }
 } ]

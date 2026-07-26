@@ -997,7 +997,7 @@
   },
   "title" : "Dos conectores",
   "instructions" : "Escribe oraciones condicionales. ¿Dónde necesitamos $provided that$ o $as long as$?",
-  "translation" : "Se sintieron aliviados siempre y cuando sus padres llegaran sanos y salvos.",
+  "translation" : "Escaparán siempre y cuando sus padres los ayuden.",
   "theoryId" : "b2.12.Words_Instead_of_If",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -1017,25 +1017,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They were relieved / their parents arrived safely. (as long as)",
+      "text" : "They will escape / their parents help them. (as long as)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They were relieved as long as their parents arrived safely." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "They will escape as long as their parents help them.|They'll escape as long as their parents help them." ]
     } ],
-    "sentences" : [ "They were relieved as long as their parents arrived safely." ]
+    "sentences" : [ "They will escape as long as their parents help them.", "They'll escape as long as their parents help them." ]
   }
 } ]

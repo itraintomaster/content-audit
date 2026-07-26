@@ -217,7 +217,7 @@
   },
   "title" : "Futuro simple",
   "instructions" : "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
-  "translation" : "Se le dará propina a la camarera.",
+  "translation" : "La camarera será abordada en la entrada.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -237,26 +237,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They will tip the waitress.",
+      "text" : "They will approach the waitress at the entrance.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The waitress will be tipped." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The waitress will be approached at the entrance." ]
     } ],
-    "sentences" : [ "The waitress will be tipped." ]
+    "sentences" : [ "The waitress will be approached at the entrance." ]
   }
 }, {
   "_id" : {
@@ -319,7 +315,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d319"
   },
-  "title" : "The court will be emptied this morning.",
+  "title" : "Futuro simple",
   "instructions" : "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
   "translation" : "El juzgado será desalojado esta mañana.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
@@ -573,7 +569,7 @@
   },
   "title" : "Futuro simple",
   "instructions" : "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
-  "translation" : "Se podarán los árboles.",
+  "translation" : "Se podarán los árboles en el jardín.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -593,26 +589,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He will prune the trees.",
+      "text" : "He will prune the trees in the garden.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The trees will be pruned." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The trees will be pruned in the garden." ]
     } ],
-    "sentences" : [ "The trees will be pruned." ]
+    "sentences" : [ "The trees will be pruned in the garden." ]
   }
 }, {
   "_id" : {

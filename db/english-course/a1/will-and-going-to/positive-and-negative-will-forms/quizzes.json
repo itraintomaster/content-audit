@@ -631,7 +631,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a8"
   },
-  "title" : "I will find people on the beach.",
+  "title" : "Afirmativas y negativas",
   "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de $will$. No uses contracciones.",
   "translation" : "Encontraré gente en la playa.",
   "theoryId" : "a1.03.Will_Forms",
@@ -685,7 +685,7 @@
   },
   "title" : "Afirmativas y negativas",
   "instructions" : "Escribe oraciones en futuro simple usando las formas afirmativas y negativas de $will$. No uses contracciones.",
-  "translation" : "No perderé la llave.",
+  "translation" : "No tendré la llave.",
   "theoryId" : "a1.03.Will_Forms",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "will not lose" ]
+      "text" : null,
+      "options" : [ "will not have" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / lose) the key.",
+      "text" : "(not / have) the key.",
       "options" : null
     } ],
-    "sentences" : [ "I will not lose the key." ]
+    "sentences" : [ "I will not have the key." ]
   }
 }, {
   "_id" : {

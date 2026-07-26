@@ -113,7 +113,7 @@
   },
   "title" : "Adjetivo o adverbio: repaso",
   "instructions" : "Elegí la palabra correcta.",
-  "translation" : "Los pájaros cantaron dulcemente.",
+  "translation" : "Los pájaros coloridos parecían felices en el jardín.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The birds sang",
+      "text" : "The colorful birds looked",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sweetly" ]
+      "text" : null,
+      "options" : [ "happy" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(sweet / sweetly).",
+      "text" : "(happy / happily) in the garden.",
       "options" : null
     } ],
-    "sentences" : [ "The birds sang sweetly." ]
+    "sentences" : [ "The colorful birds looked happy in the garden." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Adjetivo o adverbio: repaso",
   "instructions" : "Elegí la palabra correcta.",
-  "translation" : "Dormimos profundamente.",
+  "translation" : "Anoche dormimos profundamente.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We slept",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "soundly" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(sound / soundly).",
+      "text" : "(sound / soundly) last night.",
       "options" : null
     } ],
-    "sentences" : [ "We slept soundly." ]
+    "sentences" : [ "We slept soundly last night." ]
   }
 } ]

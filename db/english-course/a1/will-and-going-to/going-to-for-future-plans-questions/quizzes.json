@@ -829,7 +829,7 @@
   },
   "title" : "Preguntas $yes/no$ y $wh$",
   "instructions" : "Crea preguntas cerradas (yes/no) y preguntas abiertas ($wh$ questions) utilizando $going to$.",
-  "translation" : "¿Van a pedir pizza?",
+  "translation" : "¿Van a comer pizza?",
   "theoryId" : "",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -849,26 +849,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Are they going to order" ]
+      "text" : null,
+      "options" : [ "Are they going to have" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / order) pizza?",
+      "text" : "(they / have) pizza?",
       "options" : null
     } ],
-    "sentences" : [ "Are they going to order pizza?" ]
+    "sentences" : [ "Are they going to have pizza?" ]
   }
 }, {
   "_id" : {
@@ -881,7 +877,7 @@
   },
   "title" : "Preguntas $yes/no$ y $wh$",
   "instructions" : "Crea preguntas cerradas (yes/no) y preguntas abiertas ($wh$ questions) utilizando $going to$.",
-  "translation" : "¿Va a necesitar ayuda él?",
+  "translation" : "¿Va él a necesitar un bolígrafo?",
   "theoryId" : "",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -901,26 +897,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Is he going to need" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / need) help?",
+      "text" : "(he / need) a pen?",
       "options" : null
     } ],
-    "sentences" : [ "Is he going to need help?" ]
+    "sentences" : [ "Is he going to need a pen?" ]
   }
 }, {
   "_id" : {
@@ -933,7 +925,7 @@
   },
   "title" : "Preguntas $yes/no$ y $wh$",
   "instructions" : "Crea preguntas cerradas (yes/no) y preguntas abiertas ($wh$ questions) utilizando $going to$.",
-  "translation" : "¿Vamos a jugar videojuegos?",
+  "translation" : "¿Vamos a jugar juegos de cartas?",
   "theoryId" : "",
   "topicName" : "'Will' and 'Going to'",
   "difficulty" : {
@@ -953,26 +945,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Are we going to play" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(we / play) video games?",
+      "text" : "(we / play) card games?",
       "options" : null
     } ],
-    "sentences" : [ "Are we going to play video games?" ]
+    "sentences" : [ "Are we going to play card games?" ]
   }
 }, {
   "_id" : {

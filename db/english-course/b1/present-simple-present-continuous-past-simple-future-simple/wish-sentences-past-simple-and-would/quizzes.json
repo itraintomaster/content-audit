@@ -477,7 +477,7 @@
   },
   "title" : "Deseos hipotéticos",
   "instructions" : "Escribe oraciones que comiencen con $I wish that$. Utiliza $would$ o $wouldn't$ si ves $(would)$.",
-  "translation" : "Ojalá mis compañeros de piso no fueran tan desordenados.",
+  "translation" : "Ojalá mis compañeros de piso no fueran tan posesivos.",
   "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -497,26 +497,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "My flatmates are so untidy. (would)",
+      "text" : "My flatmates are so possessive. (would)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I wish that my flatmates wouldn't be so untidy." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "I wish that my flatmates wouldn't be so possessive." ]
     } ],
-    "sentences" : [ "I wish that my flatmates wouldn't be so untidy." ]
+    "sentences" : [ "I wish that my flatmates wouldn't be so possessive." ]
   }
 }, {
   "_id" : {
@@ -737,7 +733,7 @@
   },
   "title" : "Deseos hipotéticos",
   "instructions" : "Escribe oraciones que comiencen con $I wish that$. Utiliza $would$ o $wouldn't$ si ves $(would)$.",
-  "translation" : "Ojalá mi hija no usara las redes sociales.",
+  "translation" : "Ojalá mi hija no usara ese método.",
   "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -757,26 +753,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "My daughter uses social media. (would)",
+      "text" : "My daughter uses that method. (would)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I wish that my daughter wouldn't use social media." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "I wish that my daughter wouldn't use that method." ]
     } ],
-    "sentences" : [ "I wish that my daughter wouldn't use social media." ]
+    "sentences" : [ "I wish that my daughter wouldn't use that method." ]
   }
 }, {
   "_id" : {
@@ -841,7 +833,7 @@
   },
   "title" : "Deseos hipotéticos",
   "instructions" : "Escribe oraciones que comiencen con $I wish that$. Utiliza $would$ o $wouldn't$ si ves $(would)$.",
-  "translation" : "Ojalá ella lavara la ropa.",
+  "translation" : "Ojalá ella lavara los platos.",
   "theoryId" : "b1.01.The_Past_Simple_and_Would_with_Wish_",
   "topicName" : "Present simple / present continuous / past simple / future simple",
   "difficulty" : {
@@ -861,26 +853,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She doesn't do the laundry. (would)",
+      "text" : "She doesn't do the dishes. (would)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I wish that she would do the laundry." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "I wish that she would do the dishes." ]
     } ],
-    "sentences" : [ "I wish that she would do the laundry." ]
+    "sentences" : [ "I wish that she would do the dishes." ]
   }
 }, {
   "_id" : {

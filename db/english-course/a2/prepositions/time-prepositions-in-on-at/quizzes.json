@@ -61,7 +61,7 @@
   },
   "title" : "Tiempo: $in$, $on$, $at$",
   "instructions" : "Escribe $in$, $on$ o $at$. Si no necesitas una preposición, escribe $-$.",
-  "translation" : "Ella nació en el siglo XX.",
+  "translation" : "Ella creció en el siglo XX.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She was born",
+      "text" : "She grew up",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "the 20th century.",
       "options" : null
     } ],
-    "sentences" : [ "She was born in the 20th century." ]
+    "sentences" : [ "She grew up in the 20th century." ]
   }
 }, {
   "_id" : {
@@ -269,7 +269,7 @@
   },
   "title" : "Tiempo: $in$, $on$, $at$",
   "instructions" : "Escribe $in$, $on$ o $at$. Si no necesitas una preposición, escribe $-$.",
-  "translation" : "Se divorciaron en mayo.",
+  "translation" : "Vinieron en mayo.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -289,26 +289,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They divorced",
+      "text" : "They came",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "May.",
       "options" : null
     } ],
-    "sentences" : [ "They divorced in May." ]
+    "sentences" : [ "They came in May." ]
   }
 }, {
   "_id" : {
@@ -789,7 +789,7 @@
   },
   "title" : "Tiempo: $in$, $on$, $at$",
   "instructions" : "Escribe $in$, $on$ o $at$. Si no necesitas una preposición, escribe $-$.",
-  "translation" : "Los visitamos en su aniversario.",
+  "translation" : "Los visitamos en su cumpleaños.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We visited them",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "on" ]
     }, {
       "kind" : "TEXT",
-      "text" : "their anniversary.",
+      "text" : "their birthday.",
       "options" : null
     } ],
-    "sentences" : [ "We visited them on their anniversary." ]
+    "sentences" : [ "We visited them on their birthday." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Tiempo: $in$, $on$, $at$",
   "instructions" : "Escribe $in$, $on$ o $at$. Si no necesitas una preposición, escribe $-$.",
-  "translation" : "Él nació en 1998.",
+  "translation" : "Él consiguió un trabajo en 1998.",
   "theoryId" : "a2.09.Prepositions_of_Time_1_Until_By_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He was born",
+      "text" : "He got a job",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "1998.",
       "options" : null
     } ],
-    "sentences" : [ "He was born in 1998." ]
+    "sentences" : [ "He got a job in 1998." ]
   }
 } ]

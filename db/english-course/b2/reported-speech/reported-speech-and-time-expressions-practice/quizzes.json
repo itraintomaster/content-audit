@@ -9,7 +9,7 @@
   },
   "title" : "Cambios temporales",
   "instructions" : "Transforma a $reported speech$ y cambia las $time expressions$ como lo harías en un examen. Comienza con $Peter said that$.",
-  "translation" : "Peter dijo que el profesor estaba dando una conferencia a los estudiantes ese día.",
+  "translation" : "Peter dijo que el profesor estaba supervisando a los estudiantes ese día.",
   "theoryId" : "b2.08.Reporting_Verbs_with_that",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The teacher is lecturing the students today.",
+      "text" : "The teacher is supervising the students today.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter said that the teacher was lecturing the students that day." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Peter said that the teacher was supervising the students that day." ]
     } ],
-    "sentences" : [ "Peter said that the teacher was lecturing the students that day." ]
+    "sentences" : [ "Peter said that the teacher was supervising the students that day." ]
   }
 }, {
   "_id" : {

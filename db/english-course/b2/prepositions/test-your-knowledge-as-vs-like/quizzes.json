@@ -61,7 +61,7 @@
   },
   "title" : "Oficio, semejanza",
   "instructions" : "Escribe $as$ si estamos hablando de la profesión de alguien. Escribe $like$ si estamos hablando de algo que es similar a otra cosa.",
-  "translation" : "Los pájaros cantaban como sirenas.",
+  "translation" : "Los pájaros cantaban como cuernos fuera de la ventana al amanecer.",
   "theoryId" : "b2.15.Adjectives_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The birds sang",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "like" ]
     }, {
       "kind" : "TEXT",
-      "text" : "sirens.",
+      "text" : "horns outside the window at dawn.",
       "options" : null
     } ],
-    "sentences" : [ "The birds sang like sirens." ]
+    "sentences" : [ "The birds sang like horns outside the window at dawn." ]
   }
 }, {
   "_id" : {
@@ -373,7 +373,7 @@
   },
   "title" : "Oficio, semejanza",
   "instructions" : "Escribe $as$ si estamos hablando de la profesión de alguien. Escribe $like$ si estamos hablando de algo que es similar a otra cosa.",
-  "translation" : "Ella durmió como un tronco.",
+  "translation" : "Ella durmió como un bebé después del largo vuelo.",
   "theoryId" : "b2.15.Adjectives_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She slept",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "like" ]
     }, {
       "kind" : "TEXT",
-      "text" : "a log.",
+      "text" : "a baby after the long flight.",
       "options" : null
     } ],
-    "sentences" : [ "She slept like a log." ]
+    "sentences" : [ "She slept like a baby after the long flight." ]
   }
 }, {
   "_id" : {
@@ -529,7 +529,7 @@
   },
   "title" : "Oficio, semejanza",
   "instructions" : "Escribe $as$ si estamos hablando de la profesión de alguien. Escribe $like$ si estamos hablando de algo que es similar a otra cosa.",
-  "translation" : "Daniel solía trabajar como desarrollador web.",
+  "translation" : "Daniel solía trabajar como diseñador web en Madrid.",
   "theoryId" : "b2.15.Adjectives_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Daniel used to work",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "as" ]
     }, {
       "kind" : "TEXT",
-      "text" : "a web developer.",
+      "text" : "a web designer in Madrid.",
       "options" : null
     } ],
-    "sentences" : [ "Daniel used to work as a web developer." ]
+    "sentences" : [ "Daniel used to work as a web designer in Madrid." ]
   }
 }, {
   "_id" : {
@@ -737,7 +737,7 @@
   },
   "title" : "Oficio, semejanza",
   "instructions" : "Escribe $as$ si estamos hablando de la profesión de alguien. Escribe $like$ si estamos hablando de algo que es similar a otra cosa.",
-  "translation" : "El baño olía a lavanda.",
+  "translation" : "El baño olía a lavanda después de que se fueron los invitados.",
   "theoryId" : "b2.15.Adjectives_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The bathroom smelled",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "like" ]
     }, {
       "kind" : "TEXT",
-      "text" : "lavender.",
+      "text" : "lavender after the guests left.",
       "options" : null
     } ],
-    "sentences" : [ "The bathroom smelled like lavender." ]
+    "sentences" : [ "The bathroom smelled like lavender after the guests left." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Oficio, semejanza",
   "instructions" : "Escribe $as$ si estamos hablando de la profesión de alguien. Escribe $like$ si estamos hablando de algo que es similar a otra cosa.",
-  "translation" : "Ellos trabajarán como salvavidas durante las vacaciones.",
+  "translation" : "Ellos trabajarán como salvavidas en la piscina durante las vacaciones de verano.",
   "theoryId" : "b2.15.Adjectives_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They'll work",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "as" ]
     }, {
       "kind" : "TEXT",
-      "text" : "lifeguards during the vacation.",
+      "text" : "lifeguards at the pool during the summer vacation.",
       "options" : null
     } ],
-    "sentences" : [ "They'll work as lifeguards during the vacation." ]
+    "sentences" : [ "They'll work as lifeguards at the pool during the summer vacation." ]
   }
 } ]

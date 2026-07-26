@@ -113,7 +113,7 @@
   },
   "title" : "Planes y horarios",
   "instructions" : "Escribe una oración usando el presente simple o el presente continuo.",
-  "translation" : "John cena fuera esta noche.",
+  "translation" : "John come fuera esta noche.",
   "theoryId" : "a2.01.Present_Continuous_Use_For_the_Future",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -133,26 +133,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "John / dine / out tonight.",
+      "text" : "John / eat / out tonight.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "John is dining out tonight." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "John is eating out tonight." ]
     } ],
-    "sentences" : [ "John is dining out tonight." ]
+    "sentences" : [ "John is eating out tonight." ]
   }
 }, {
   "_id" : {

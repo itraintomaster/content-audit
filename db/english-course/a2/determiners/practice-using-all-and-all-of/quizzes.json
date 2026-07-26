@@ -265,7 +265,7 @@
   },
   "title" : "Grupo entero",
   "instructions" : "Si es posible, completa con $all$. De lo contrario, completa con $all of$.",
-  "translation" : "No a todos los hombres les gusta pescar.",
+  "translation" : "No a todos los hombres les gusta cocinar.",
   "theoryId" : "a2.07.Every_Each_and_All",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -285,26 +285,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Not",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "all" ]
     }, {
       "kind" : "TEXT",
-      "text" : "men enjoy fishing.",
+      "text" : "men enjoy cooking.",
       "options" : null
     } ],
-    "sentences" : [ "Not all men enjoy fishing." ]
+    "sentences" : [ "Not all men enjoy cooking." ]
   }
 }, {
   "_id" : {
@@ -317,7 +317,7 @@
   },
   "title" : "Grupo entero",
   "instructions" : "Si es posible, completa con $all$. De lo contrario, completa con $all of$.",
-  "translation" : "Ella pulió todos mis vasos.",
+  "translation" : "Ella pulió todos mis anteojos de sol.",
   "theoryId" : "a2.07.Every_Each_and_All",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -337,26 +337,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She polished",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "all" ]
     }, {
       "kind" : "TEXT",
-      "text" : "my glasses.",
+      "text" : "my sunglasses.",
       "options" : null
     } ],
-    "sentences" : [ "She polished all my glasses." ]
+    "sentences" : [ "She polished all my sunglasses." ]
   }
 }, {
   "_id" : {
@@ -493,25 +493,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I require",
+      "text" : "I need",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "all of" ]
     }, {
       "kind" : "TEXT",
       "text" : "you to stay here.",
       "options" : null
     } ],
-    "sentences" : [ "I require all of you to stay here." ]
+    "sentences" : [ "I need all of you to stay here." ]
   }
 } ]

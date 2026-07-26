@@ -423,7 +423,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d223"
   },
-  "title" : "She isn't helping Tom.",
+  "title" : "Verbos estáticos",
   "instructions" : "Si es posible, escribe la oración en presente continuo. Si no, usa el presente simple.",
   "translation" : "Ella no está ayudando a Tom.",
   "theoryId" : "a2.01.Stative_Verbs",
@@ -529,7 +529,7 @@
   },
   "title" : "Verbos estáticos",
   "instructions" : "Si es posible, escribe la oración en presente continuo. Si no, usa el presente simple.",
-  "translation" : "¿Estás corriendo una maratón?",
+  "translation" : "¿Estás corriendo hacia el ascensor?",
   "theoryId" : "a2.01.Stative_Verbs",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -549,26 +549,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Are you running" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / run) a marathon?",
+      "text" : "(you / run) to the lift?",
       "options" : null
     } ],
-    "sentences" : [ "Are you running a marathon?" ]
+    "sentences" : [ "Are you running to the lift?" ]
   }
 }, {
   "_id" : {
@@ -581,7 +577,7 @@
   },
   "title" : "Verbos estáticos",
   "instructions" : "Si es posible, escribe la oración en presente continuo. Si no, usa el presente simple.",
-  "translation" : "¿Confías en él?",
+  "translation" : "¿Te gusta él?",
   "theoryId" : "a2.01.Stative_Verbs",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -601,26 +597,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Do you trust" ]
+      "text" : null,
+      "options" : [ "Do you like" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / trust) him?",
+      "text" : "(you / like) him?",
       "options" : null
     } ],
-    "sentences" : [ "Do you trust him?" ]
+    "sentences" : [ "Do you like him?" ]
   }
 }, {
   "_id" : {
@@ -735,7 +727,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d223"
   },
-  "title" : "That stamp doesn't belong to me.",
+  "title" : "Verbos estáticos",
   "instructions" : "Si es posible, escribe la oración en presente continuo. Si no, usa el presente simple.",
   "translation" : "Esa estampilla no me pertenece.",
   "theoryId" : "a2.01.Stative_Verbs",

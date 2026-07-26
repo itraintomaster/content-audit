@@ -629,7 +629,7 @@
   },
   "title" : "Adverbios de frecuencia",
   "instructions" : "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo $be$.",
-  "translation" : "Nunca me acuesto tarde.",
+  "translation" : "Nunca me acuesto a las 6 a.m.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -649,26 +649,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I go to bed late. (never)",
+      "text" : "I go to bed at 6 a.m. (never)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "I never go to bed late." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "I never go to bed at 6 a.m." ]
     } ],
-    "sentences" : [ "I never go to bed late." ]
+    "sentences" : [ "I never go to bed at 6 a.m." ]
   }
 }, {
   "_id" : {
@@ -781,7 +777,7 @@
   },
   "title" : "Adverbios de frecuencia",
   "instructions" : "Coloca el adverbio en el lugar correcto. Recuerda, va antes del verbo principal pero después del verbo $be$.",
-  "translation" : "Él nunca llega temprano.",
+  "translation" : "Él nunca es el primero.",
   "theoryId" : "a1.11.Adverbs_of_Frequency",
   "topicName" : "Adjetives and Adverbs",
   "difficulty" : {
@@ -801,26 +797,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He is early. (never)",
+      "text" : "He is first. (never)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He is never early." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He is never first." ]
     } ],
-    "sentences" : [ "He is never early." ]
+    "sentences" : [ "He is never first." ]
   }
 }, {
   "_id" : {

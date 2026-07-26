@@ -217,7 +217,7 @@
   },
   "title" : "Finalidad: repaso",
   "instructions" : "Transforma las oraciones para que incluyan $for + verb+ing$.",
-  "translation" : "Esto es para preparar té.",
+  "translation" : "Esta máquina nueva es para preparar té delicioso todas las mañanas.",
   "theoryId" : "b2.15.Verbs_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "This is",
+      "text" : "This new machine is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for brewing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(brew) tea.",
+      "text" : "(brew) delicious tea every morning.",
       "options" : null
     } ],
-    "sentences" : [ "This is for brewing tea." ]
+    "sentences" : [ "This new machine is for brewing delicious tea every morning." ]
   }
 }, {
   "_id" : {

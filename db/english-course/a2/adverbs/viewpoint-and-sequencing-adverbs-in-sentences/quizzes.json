@@ -733,7 +733,7 @@
   },
   "title" : "Secuencia y opinión",
   "instructions" : "Agregá los adverbios a las oraciones.",
-  "translation" : "Primero, agregue el azúcar a la mezcla.",
+  "translation" : "Primero, agregue el azúcar al bol.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -753,26 +753,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Add the sugar into the mix. (first)",
+      "text" : "Add the sugar into the bowl. (first)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "First, add the sugar into the mix." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "First, add the sugar into the bowl." ]
     } ],
-    "sentences" : [ "First, add the sugar into the mix." ]
+    "sentences" : [ "First, add the sugar into the bowl." ]
   }
 }, {
   "_id" : {

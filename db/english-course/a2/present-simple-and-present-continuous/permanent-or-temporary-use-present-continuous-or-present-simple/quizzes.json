@@ -633,7 +633,7 @@
   },
   "title" : "Permanente o temporal",
   "instructions" : "Elige entre el presente simple o el presente continuo.",
-  "translation" : "Ella está entrenando para conducir en este momento.",
+  "translation" : "Ella está aprendiendo a conducir en este momento.",
   "theoryId" : "a2.01.Present_Continuous_Use_Temporary_Meaning",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "is training" ]
+      "text" : null,
+      "options" : [ "is learning" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(train) to drive at the moment.",
+      "text" : "(learn) to drive at the moment.",
       "options" : null
     } ],
-    "sentences" : [ "She is training to drive at the moment." ]
+    "sentences" : [ "She is learning to drive at the moment." ]
   }
 }, {
   "_id" : {
@@ -737,7 +737,7 @@
   },
   "title" : "Permanente o temporal",
   "instructions" : "Elige entre el presente simple o el presente continuo.",
-  "translation" : "Ella canta en el coro.",
+  "translation" : "Mi abuelo lee un libro de texto todos los días de semana.",
   "theoryId" : "a2.01.Present_Continuous_Use_Temporary_Meaning",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She",
+      "text" : "My granddad",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "sings" ]
+      "text" : null,
+      "options" : [ "reads" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(sing) in the choir.",
+      "text" : "(read) a textbook every weekday.",
       "options" : null
     } ],
-    "sentences" : [ "She sings in the choir." ]
+    "sentences" : [ "My granddad reads a textbook every weekday." ]
   }
 }, {
   "_id" : {

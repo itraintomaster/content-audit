@@ -581,7 +581,7 @@
   },
   "title" : "Verbo + preposición: repaso",
   "instructions" : "Inserta la preposición que falta.",
-  "translation" : "Él persistió con la tarea.",
+  "translation" : "Él continuó con la tarea después de un breve descanso.",
   "theoryId" : "b2.15.Verbs_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He persisted",
+      "text" : "He continued",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "with" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the task.",
+      "text" : "the task after a short break.",
       "options" : null
     } ],
-    "sentences" : [ "He persisted with the task." ]
+    "sentences" : [ "He continued with the task after a short break." ]
   }
 }, {
   "_id" : {
@@ -945,7 +945,7 @@
   },
   "title" : "Verbo + preposición: repaso",
   "instructions" : "Inserta la preposición que falta.",
-  "translation" : "¿Has sabido algo del antiguo inquilino?",
+  "translation" : "¿Has sabido algo del antiguo juzgado cerca del río?",
   "theoryId" : "b2.15.Verbs_and_Prepositions",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Have you known",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "about" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the old tenant?",
+      "text" : "the old court near the river?",
       "options" : null
     } ],
-    "sentences" : [ "Have you known about the old tenant?" ]
+    "sentences" : [ "Have you known about the old court near the river?" ]
   }
 }, {
   "_id" : {

@@ -165,7 +165,7 @@
   },
   "title" : "Contracciones",
   "instructions" : "Escribe oraciones usando $short forms$ (también llamadas contracciones).",
-  "translation" : "Eres muy amable.",
+  "translation" : "Eres muy agradable.",
   "theoryId" : "a1.01.Present_Simple_Short_Forms",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -185,26 +185,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "You're" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(You are) very kind.",
+      "text" : "(You are) very nice.",
       "options" : null
     } ],
-    "sentences" : [ "You're very kind." ]
+    "sentences" : [ "You're very nice." ]
   }
 }, {
   "_id" : {
@@ -373,7 +369,7 @@
   },
   "title" : "Contracciones",
   "instructions" : "Escribe oraciones usando $short forms$ (también llamadas contracciones).",
-  "translation" : "Ella no quiere ninguna ayuda.",
+  "translation" : "Ella no quiere comida.",
   "theoryId" : "a1.01.Present_Simple_Short_Forms",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -393,26 +389,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "doesn't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(does not) want any help.",
+      "text" : "(does not) want any food.",
       "options" : null
     } ],
-    "sentences" : [ "She doesn't want any help." ]
+    "sentences" : [ "She doesn't want any food." ]
   }
 }, {
   "_id" : {
@@ -629,7 +625,7 @@
   },
   "title" : "Contracciones",
   "instructions" : "Escribe oraciones usando $short forms$ (también llamadas contracciones).",
-  "translation" : "No nieva mucho.",
+  "translation" : "No tiene mucho.",
   "theoryId" : "a1.01.Present_Simple_Short_Forms",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -649,26 +645,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "doesn't" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(does not) snow much.",
+      "text" : "(does not) have much.",
       "options" : null
     } ],
-    "sentences" : [ "It doesn't snow much." ]
+    "sentences" : [ "It doesn't have much." ]
   }
 }, {
   "_id" : {

@@ -113,7 +113,7 @@
   },
   "title" : "Generalizaciones",
   "instructions" : "Cambia las oraciones para que incluyan $a/an$ y un sustantivo singular.",
-  "translation" : "Un contador debe ser meticuloso.",
+  "translation" : "Los contadores deben ser honestos y cuidadosos con el dinero.",
   "theoryId" : "b2.06.A_an_+_Singular_Noun_to_Generalise",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -133,26 +133,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Accountants should be meticulous.",
+      "text" : "Accountants should be honest and careful with money.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "An accountant should be meticulous." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "An accountant should be honest and careful with money." ]
     } ],
-    "sentences" : [ "An accountant should be meticulous." ]
+    "sentences" : [ "An accountant should be honest and careful with money." ]
   }
 }, {
   "_id" : {

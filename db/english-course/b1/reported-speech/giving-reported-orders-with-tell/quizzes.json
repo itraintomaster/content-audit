@@ -945,7 +945,7 @@
   },
   "title" : "Órdenes con $tell$",
   "instructions" : "Transforma las oraciones a $reported orders$. Comienza con $he told me$.",
-  "translation" : "Me dijo que me apartara.",
+  "translation" : "Me dijo que pisara muy suavemente.",
   "theoryId" : "b1.10.Reported_Orders_with_Tell",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -965,26 +965,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Step aside!",
+      "text" : "Step very softly!",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He told me to step aside." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He told me to step very softly." ]
     } ],
-    "sentences" : [ "He told me to step aside." ]
+    "sentences" : [ "He told me to step very softly." ]
   }
 }, {
   "_id" : {

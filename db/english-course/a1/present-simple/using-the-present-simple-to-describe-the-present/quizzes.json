@@ -97,10 +97,10 @@
       "options" : [ "goes" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(go) round the world.",
+      "text" : "(go) around the world.",
       "options" : null
     } ],
-    "sentences" : [ "The sun goes round the world." ]
+    "sentences" : [ "The sun goes around the world." ]
   }
 }, {
   "_id" : {
@@ -321,7 +321,7 @@
   },
   "title" : "Describir hechos y rutinas",
   "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
-  "translation" : "No voy al teatro a menudo.",
+  "translation" : "No voy al parque.",
   "theoryId" : "a1.01.Present_Simple_Uses_For_the_Present",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "don't go" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / go) to the theater often.",
+      "text" : "(not / go) to the park.",
       "options" : null
     } ],
-    "sentences" : [ "I don't go to the theater often." ]
+    "sentences" : [ "I don't go to the park." ]
   }
 }, {
   "_id" : {
@@ -579,7 +579,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d391"
   },
-  "title" : "We don't have much time.",
+  "title" : "Describir hechos y rutinas",
   "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
   "translation" : "No tenemos mucho tiempo.",
   "theoryId" : "a1.01.Present_Simple_Uses_For_the_Present",
@@ -633,7 +633,7 @@
   },
   "title" : "Describir hechos y rutinas",
   "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
-  "translation" : "Nieva mucho en el campo.",
+  "translation" : "Llueve mucho en el campo.",
   "theoryId" : "a1.01.Present_Simple_Uses_For_the_Present",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -666,13 +666,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "snows" ]
+      "options" : [ "rains" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(snow) a lot in the country.",
+      "text" : "(rain) a lot in the country.",
       "options" : null
     } ],
-    "sentences" : [ "It snows a lot in the country." ]
+    "sentences" : [ "It rains a lot in the country." ]
   }
 }, {
   "_id" : {
@@ -737,7 +737,7 @@
   },
   "title" : "Describir hechos y rutinas",
   "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
-  "translation" : "¿Dónde venden ropa?",
+  "translation" : "¿Dónde consiguen ropa?",
   "theoryId" : "a1.01.Present_Simple_Uses_For_the_Present",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Where",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do they sell" ]
+      "text" : null,
+      "options" : [ "do they get" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / sell) clothes?",
+      "text" : "(they / get) clothes?",
       "options" : null
     } ],
-    "sentences" : [ "Where do they sell clothes?" ]
+    "sentences" : [ "Where do they get clothes?" ]
   }
 }, {
   "_id" : {
@@ -893,7 +893,7 @@
   },
   "title" : "Describir hechos y rutinas",
   "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
-  "translation" : "Mary siempre compra los sábados.",
+  "translation" : "Mary siempre corre los sábados.",
   "theoryId" : "a1.01.Present_Simple_Uses_For_the_Present",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Mary always",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "shops" ]
+      "text" : null,
+      "options" : [ "runs" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(shop) on Saturdays.",
+      "text" : "(run) on Saturdays.",
       "options" : null
     } ],
-    "sentences" : [ "Mary always shops on Saturdays." ]
+    "sentences" : [ "Mary always runs on Saturdays." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Describir hechos y rutinas",
   "instructions" : "Escribe oraciones en presente simple. Utiliza $short forms$ si es posible.",
-  "translation" : "En Italia, la gente come mucha pasta.",
+  "translation" : "En Italia, la gente come pan.",
   "theoryId" : "a1.01.Present_Simple_Uses_For_the_Present",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "In Italy, people",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "eat" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(eat) a lot of pasta.",
+      "text" : "(eat) bread.",
       "options" : null
     } ],
-    "sentences" : [ "In Italy, people eat a lot of pasta." ]
+    "sentences" : [ "In Italy, people eat bread." ]
   }
 } ]

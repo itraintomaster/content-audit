@@ -633,7 +633,7 @@
   },
   "title" : "Cambio de significado",
   "instructions" : "Coloca el verbo en gerundio o $to + infinitive$.",
-  "translation" : "Intenté parar un taxi, pero aun así llegué tarde a la cita.",
+  "translation" : "Intenté tomar un taxi, pero aun así llegué tarde a la cita.",
   "theoryId" : "b2.05.Verbs_That_Change_Their_Meaning_with_Gerunds_Infinitives",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I tried",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "hailing" ]
+      "text" : null,
+      "options" : [ "catching" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(hail) a cab but I was still late for the appointment. (I hailed the cab but it didn't help.)",
+      "text" : "(catch) a cab but I was still late for the appointment.",
       "options" : null
     } ],
-    "sentences" : [ "I tried hailing a cab but I was still late for the appointment." ]
+    "sentences" : [ "I tried catching a cab but I was still late for the appointment." ]
   }
 }, {
   "_id" : {

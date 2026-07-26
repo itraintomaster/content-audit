@@ -165,7 +165,7 @@
   },
   "title" : "Incontables",
   "instructions" : "Completa con $much$ o $much of$.",
-  "translation" : "¿Ella usa mucho de su propio aceite de oliva?",
+  "translation" : "¿Ella usa mucho de su propio aceite de cocina?",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Does she use",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "much of" ]
     }, {
       "kind" : "TEXT",
-      "text" : "her own olive oil?",
+      "text" : "her own cooking oil?",
       "options" : null
     } ],
-    "sentences" : [ "Does she use much of her own olive oil?" ]
+    "sentences" : [ "Does she use much of her own cooking oil?" ]
   }
 }, {
   "_id" : {
@@ -317,7 +317,7 @@
   },
   "title" : "Incontables",
   "instructions" : "Completa con $much$ o $much of$.",
-  "translation" : "No derramamos mucho de su té.",
+  "translation" : "No tomamos mucho de su té.",
   "theoryId" : "a2.07.Using_of_with_Some_Any_Much_Many_More_Most_a_Little_a_Few",
   "topicName" : "Determiners",
   "difficulty" : {
@@ -337,26 +337,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We didn't spill",
+      "text" : "We didn't have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "much of" ]
     }, {
       "kind" : "TEXT",
       "text" : "her tea.",
       "options" : null
     } ],
-    "sentences" : [ "We didn't spill much of her tea." ]
+    "sentences" : [ "We didn't have much of her tea." ]
   }
 }, {
   "_id" : {

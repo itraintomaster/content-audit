@@ -59,7 +59,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38c"
   },
-  "title" : "How do we get home?",
+  "title" : "Preguntas $wh$ con verbos",
   "instructions" : "Formula preguntas en presente simple.",
   "translation" : "¿Cómo llegamos a casa?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
@@ -163,7 +163,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38c"
   },
-  "title" : "What book does he like?",
+  "title" : "Preguntas $wh$ con verbos",
   "instructions" : "Formula preguntas en presente simple.",
   "translation" : "¿Qué libro le gusta a él?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
@@ -217,7 +217,7 @@
   },
   "title" : "Preguntas $wh$ con verbos",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿A quién contacto?",
+  "translation" : "¿A quién llamo?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Who",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do I contact" ]
+      "text" : null,
+      "options" : [ "do I call" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(I / contact)?",
+      "text" : "(I / call)?",
       "options" : null
     } ],
-    "sentences" : [ "Who do I contact?" ]
+    "sentences" : [ "Who do I call?" ]
   }
 }, {
   "_id" : {
@@ -269,7 +269,7 @@
   },
   "title" : "Preguntas $wh$ con verbos",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Cuándo limpia ella su departamento?",
+  "translation" : "¿Cuándo limpia ella su casa?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -305,10 +305,10 @@
       "options" : [ "does she clean" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / clean) her flat?",
+      "text" : "(she / clean) her house?",
       "options" : null
     } ],
-    "sentences" : [ "When does she clean her flat?" ]
+    "sentences" : [ "When does she clean her house?" ]
   }
 }, {
   "_id" : {
@@ -373,7 +373,7 @@
   },
   "title" : "Preguntas $wh$ con verbos",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Por qué bebe él tanta soda?",
+  "translation" : "¿Por qué bebe él tanta agua?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "does he drink" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(he / drink) so much soda?",
+      "text" : "(he / drink) that much water?",
       "options" : null
     } ],
-    "sentences" : [ "Why does he drink so much soda?" ]
+    "sentences" : [ "Why does he drink that much water?" ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "Preguntas $wh$ con verbos",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Por qué duermen ellos tan tarde?",
+  "translation" : "¿Por qué duermen ellos aquí?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Why",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "do they sleep" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / sleep) so late?",
+      "text" : "(they / sleep) here?",
       "options" : null
     } ],
-    "sentences" : [ "Why do they sleep so late?" ]
+    "sentences" : [ "Why do they sleep here?" ]
   }
 }, {
   "_id" : {
@@ -527,7 +527,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38c"
   },
-  "title" : "Where does it come from?",
+  "title" : "Preguntas $wh$ con verbos",
   "instructions" : "Formula preguntas en presente simple.",
   "translation" : "¿De dónde viene?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
@@ -789,7 +789,7 @@
   },
   "title" : "Preguntas $wh$ con verbos",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿Cuándo regresan ellos?",
+  "translation" : "¿Cuándo van ellos?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "When",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "do they return" ]
+      "text" : null,
+      "options" : [ "do they go" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / return)?",
+      "text" : "(they / go)?",
       "options" : null
     } ],
-    "sentences" : [ "When do they return?" ]
+    "sentences" : [ "When do they go?" ]
   }
 }, {
   "_id" : {
@@ -841,7 +841,7 @@
   },
   "title" : "Preguntas $wh$ con verbos",
   "instructions" : "Formula preguntas en presente simple.",
-  "translation" : "¿A qué hora nos duchamos?",
+  "translation" : "¿A qué hora nos vamos?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -874,13 +874,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "do we shower" ]
+      "options" : [ "do we go" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(we / shower)?",
+      "text" : "(we / go)?",
       "options" : null
     } ],
-    "sentences" : [ "What time do we shower?" ]
+    "sentences" : [ "What time do we go?" ]
   }
 }, {
   "_id" : {
@@ -995,7 +995,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d38c"
   },
-  "title" : "Where do you live?",
+  "title" : "Preguntas $wh$ con verbos",
   "instructions" : "Formula preguntas en presente simple.",
   "translation" : "¿Dónde vives?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",

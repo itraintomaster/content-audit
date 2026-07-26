@@ -945,7 +945,7 @@
   },
   "title" : "Tiempos mixtos",
   "instructions" : "Crea la forma pasiva (passive voice). No agregues la persona que realizó la acción.",
-  "translation" : "El césped estaba siendo cortado.",
+  "translation" : "El idioma estaba siendo estudiado todas las noches.",
   "theoryId" : "b1.09.How_to_Make_the_Passive",
   "topicName" : "The passive",
   "difficulty" : {
@@ -965,26 +965,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I was mowing the lawn.",
+      "text" : "I was studying the language every evening.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The lawn was being mowed." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The language was being studied every evening." ]
     } ],
-    "sentences" : [ "The lawn was being mowed." ]
+    "sentences" : [ "The language was being studied every evening." ]
   }
 }, {
   "_id" : {

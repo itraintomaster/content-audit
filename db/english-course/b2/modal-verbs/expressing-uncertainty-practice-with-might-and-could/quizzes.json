@@ -165,7 +165,7 @@
   },
   "title" : "Posibilidad incierta",
   "instructions" : "Crea oraciones que demuestren que no estás seguro. Elige $might$ o $could$ (ambos son correctos).",
-  "translation" : "Los pubs podrían estar llenos.",
+  "translation" : "Los pubs podrían ser visibles desde la calle principal.",
   "theoryId" : "b2.09.Might_Have_and_Could_Have_for_Logical_Necessity_in_the_Past",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -185,26 +185,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The pubs / be crowded.",
+      "text" : "The pubs / be visible from the main road.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The pubs could be crowded.|The pubs might be crowded." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The pubs could be visible from the main road.|The pubs might be visible from the main road." ]
     } ],
-    "sentences" : [ "The pubs could be crowded.", "The pubs might be crowded." ]
+    "sentences" : [ "The pubs could be visible from the main road.", "The pubs might be visible from the main road." ]
   }
 }, {
   "_id" : {

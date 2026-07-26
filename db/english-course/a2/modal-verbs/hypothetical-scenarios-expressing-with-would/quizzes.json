@@ -107,7 +107,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d299"
   },
-  "title" : "I'd hate to be in your shoes.",
+  "title" : "Oraciones hipotéticas",
   "instructions" : "Construye una oración usando $would$ que describa un escenario hipotético. Utiliza la forma abreviada $'d$ cuando sea apropiado.",
   "translation" : "Odiaría estar en tu lugar.",
   "theoryId" : "a2.10.Would_for_Imaginary_Situations",
@@ -365,7 +365,7 @@
   },
   "title" : "Oraciones hipotéticas",
   "instructions" : "Construye una oración usando $would$ que describa un escenario hipotético. Utiliza la forma abreviada $'d$ cuando sea apropiado.",
-  "translation" : "A mi abuelo le encantaría este viaje.",
+  "translation" : "Mi abuelo haría este viaje.",
   "theoryId" : "a2.10.Would_for_Imaginary_Situations",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -385,26 +385,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "My grandfather / adore this trip.",
+      "text" : "My grandfather / take this trip.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "My grandfather would adore this trip." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "My grandfather would take this trip." ]
     } ],
-    "sentences" : [ "My grandfather would adore this trip." ]
+    "sentences" : [ "My grandfather would take this trip." ]
   }
 }, {
   "_id" : {
@@ -973,7 +969,7 @@
   },
   "title" : "Oraciones hipotéticas",
   "instructions" : "Construye una oración usando $would$ que describa un escenario hipotético. Utiliza la forma abreviada $'d$ cuando sea apropiado.",
-  "translation" : "¿Bailaría ella en el baile de graduación?",
+  "translation" : "¿Bailaría ella en el espectáculo?",
   "theoryId" : "a2.10.Would_for_Imaginary_Situations",
   "topicName" : "Modal Verbs",
   "difficulty" : {
@@ -993,25 +989,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She / dance / at the prom?",
+      "text" : "She / dance / at the show?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Would she dance at the prom?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Would she dance at the show?" ]
     } ],
-    "sentences" : [ "Would she dance at the prom?" ]
+    "sentences" : [ "Would she dance at the show?" ]
   }
 } ]

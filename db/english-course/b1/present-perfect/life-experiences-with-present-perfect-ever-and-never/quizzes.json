@@ -475,9 +475,9 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2c6"
   },
-  "title" : "Have you ever seen a meteor shower?",
+  "title" : "Experiencias de vida",
   "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa $ever$ en preguntas y $never$ en oraciones negativas.",
-  "translation" : "¿Alguna vez has visto una lluvia de meteoritos?",
+  "translation" : "¿Alguna vez has visto una lluvia de meteoritos de noche?",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -509,10 +509,10 @@
       "options" : [ "Have you ever seen" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / ever / see) a meteor shower?",
+      "text" : "(you / ever / see) a meteor shower at night?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever seen a meteor shower?" ]
+    "sentences" : [ "Have you ever seen a meteor shower at night?" ]
   }
 }, {
   "_id" : {
@@ -525,7 +525,7 @@
   },
   "title" : "Experiencias de vida",
   "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa $ever$ en preguntas y $never$ en oraciones negativas.",
-  "translation" : "Ella ha completado un triatlón.",
+  "translation" : "Ella ha completado un triatlón difícil este año.",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -545,26 +545,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'s completed|has completed" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(complete) a triathlon.",
+      "text" : "(complete) a difficult triathlon this year.",
       "options" : null
     } ],
-    "sentences" : [ "She's completed a triathlon.", "She has completed a triathlon." ]
+    "sentences" : [ "She 's completed a difficult triathlon this year.", "She has completed a difficult triathlon this year." ]
   }
 }, {
   "_id" : {
@@ -681,7 +681,7 @@
   },
   "title" : "Experiencias de vida",
   "instructions" : "Escribe oraciones en present perfect para hablar sobre experiencias de vida. Usa $ever$ en preguntas y $never$ en oraciones negativas.",
-  "translation" : "¿Alguna vez has probado caracoles?",
+  "translation" : "¿Alguna vez has probado caracoles en un restaurante francés?",
   "theoryId" : "b1.02.Present_Perfect_Use_Just_Yet_and_Already",
   "topicName" : "Present perfect",
   "difficulty" : {
@@ -701,26 +701,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Have you ever tasted" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(you / ever / taste) snails?",
+      "text" : "(you / ever / taste) snails in a French restaurant?",
       "options" : null
     } ],
-    "sentences" : [ "Have you ever tasted snails?" ]
+    "sentences" : [ "Have you ever tasted snails in a French restaurant?" ]
   }
 }, {
   "_id" : {

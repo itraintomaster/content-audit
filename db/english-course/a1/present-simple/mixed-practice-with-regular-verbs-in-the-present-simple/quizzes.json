@@ -269,7 +269,7 @@
   },
   "title" : "Verbos regulares mixtos",
   "instructions" : "Escribe oraciones en presente simple. No uses contracciones (short forms).",
-  "translation" : "¿Cómo viajan ellos tanto tiempo?",
+  "translation" : "¿Cómo viajan ellos el lunes?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -305,10 +305,10 @@
       "options" : [ "do they travel" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / travel) so long?",
+      "text" : "(they / travel) on Monday?",
       "options" : null
     } ],
-    "sentences" : [ "How do they travel so long?" ]
+    "sentences" : [ "How do they travel on Monday?" ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "Verbos regulares mixtos",
   "instructions" : "Escribe oraciones en presente simple. No uses contracciones (short forms).",
-  "translation" : "Él no alquila la casa.",
+  "translation" : "A él no le gusta la casa.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "does not rent" ]
+      "text" : null,
+      "options" : [ "does not like" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / rent) the house.",
+      "text" : "(not / like) the house.",
       "options" : null
     } ],
-    "sentences" : [ "He does not rent the house." ]
+    "sentences" : [ "He does not like the house." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "Verbos regulares mixtos",
   "instructions" : "Escribe oraciones en presente simple. No uses contracciones (short forms).",
-  "translation" : "Extraño a mi familia.",
+  "translation" : "Amo a mi familia.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "miss" ]
+      "text" : null,
+      "options" : [ "love" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(miss) my family.",
+      "text" : "(love) my family.",
       "options" : null
     } ],
-    "sentences" : [ "I miss my family." ]
+    "sentences" : [ "I love my family." ]
   }
 }, {
   "_id" : {
@@ -685,7 +685,7 @@
   },
   "title" : "Verbos regulares mixtos",
   "instructions" : "Escribe oraciones en presente simple. No uses contracciones (short forms).",
-  "translation" : "Nosotros revisamos la hora.",
+  "translation" : "Necesitamos saber la hora.",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -718,13 +718,13 @@
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "check" ]
+      "options" : [ "need" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(check) the time.",
+      "text" : "(need) the time.",
       "options" : null
     } ],
-    "sentences" : [ "We check the time." ]
+    "sentences" : [ "We need the time." ]
   }
 }, {
   "_id" : {
@@ -737,7 +737,7 @@
   },
   "title" : "Verbos regulares mixtos",
   "instructions" : "Escribe oraciones en presente simple. No uses contracciones (short forms).",
-  "translation" : "¿Ella canta karaoke a menudo?",
+  "translation" : "¿Ella canta a menudo los domingos?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -757,26 +757,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Does she sing" ]
+      "text" : null,
+      "options" : [ "Does she often sing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(she / sing) karaoke often?",
+      "text" : "(she / often / sing) on Sunday?",
       "options" : null
     } ],
-    "sentences" : [ "Does she sing karaoke often?" ]
+    "sentences" : [ "Does she often sing on Sunday?" ]
   }
 }, {
   "_id" : {
@@ -841,7 +837,7 @@
   },
   "title" : "Verbos regulares mixtos",
   "instructions" : "Escribe oraciones en presente simple. No uses contracciones (short forms).",
-  "translation" : "¿Ellos necesitan ayuda?",
+  "translation" : "¿Necesitan eso?",
   "theoryId" : "a1.01.Present_Simple_Forms_All_Verbs_Except_Be",
   "topicName" : "Present Simple",
   "difficulty" : {
@@ -861,26 +857,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Do they need" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(they / need) help?",
+      "text" : "(they / need) that?",
       "options" : null
     } ],
-    "sentences" : [ "Do they need help?" ]
+    "sentences" : [ "Do they need that?" ]
   }
 }, {
   "_id" : {

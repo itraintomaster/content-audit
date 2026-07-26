@@ -269,7 +269,7 @@
   },
   "title" : "Énfasis puntual",
   "instructions" : "Reescribe la oración para que incluya $particularly$ o $especially$. Debes colocarlos ya sea en la posición media o directamente antes de aquello que enfatizan.",
-  "translation" : "Le encantan los aperitivos salados, particularmente las palomitas de maíz.",
+  "translation" : "Le encantan los aperitivos salados después del trabajo, particularmente las palomitas de maíz.",
   "theoryId" : "b2.14.Easily_Confused_Adverbs_and_Adjectives",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -289,26 +289,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He loves salty snacks, popcorn. (particularly / before the thing it emphasises)",
+      "text" : "He loves salty snacks after work, popcorn. (particularly / before the thing it emphasises)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He loves salty snacks, particularly popcorn." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He loves salty snacks after work, particularly popcorn." ]
     } ],
-    "sentences" : [ "He loves salty snacks, particularly popcorn." ]
+    "sentences" : [ "He loves salty snacks after work, particularly popcorn." ]
   }
 }, {
   "_id" : {
@@ -997,7 +993,7 @@
   },
   "title" : "Énfasis puntual",
   "instructions" : "Reescribe la oración para que incluya $particularly$ o $especially$. Debes colocarlos ya sea en la posición media o directamente antes de aquello que enfatizan.",
-  "translation" : "Los profesores asignaron tareas difíciles, particularmente a Alex.",
+  "translation" : "Los profesores dieron tareas muy difíciles particularmente a Alex.",
   "theoryId" : "b2.14.Easily_Confused_Adverbs_and_Adjectives",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -1017,25 +1013,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The teachers assigned difficult homework, Alex. (particularly / before the thing it emphasises)",
+      "text" : "The teachers gave very difficult homework to Alex. (particularly / before the thing it emphasises)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The teachers assigned difficult homework, particularly Alex." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The teachers gave very difficult homework particularly to Alex." ]
     } ],
-    "sentences" : [ "The teachers assigned difficult homework, particularly Alex." ]
+    "sentences" : [ "The teachers gave very difficult homework particularly to Alex." ]
   }
 } ]

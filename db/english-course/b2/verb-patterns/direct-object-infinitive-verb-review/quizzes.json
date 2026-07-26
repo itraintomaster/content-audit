@@ -685,7 +685,7 @@
   },
   "title" : "Objeto directo",
   "instructions" : "¿Necesitamos un objeto directo? Agrega $us + to + infinitive$ solo si es necesario. De lo contrario, usa $to + infinitive$.",
-  "translation" : "Él esperaba ganar el juego.",
+  "translation" : "Él quería ganar el juego en el torneo.",
   "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He hoped",
+      "text" : "He wanted",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to win" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(win) the game.",
+      "text" : "(win) the game in the tournament.",
       "options" : null
     } ],
-    "sentences" : [ "He hoped to win the game." ]
+    "sentences" : [ "He wanted to win the game in the tournament." ]
   }
 }, {
   "_id" : {

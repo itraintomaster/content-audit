@@ -9,7 +9,7 @@
   },
   "title" : "Países con o sin $the$",
   "instructions" : "Inserta $the$ o usa – si no se necesita ningún artículo.",
-  "translation" : "Una vez residimos en España.",
+  "translation" : "Una vez residimos felizmente en España.",
   "theoryId" : "b1.07.The_and_No_Article_with_Geographical_Names",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We once resided in",
+      "text" : "We once resided happily in",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "Spain.",
       "options" : null
     } ],
-    "sentences" : [ "We once resided in - Spain." ]
+    "sentences" : [ "We once resided happily in - Spain." ]
   }
 }, {
   "_id" : {

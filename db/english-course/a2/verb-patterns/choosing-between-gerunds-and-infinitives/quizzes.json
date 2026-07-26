@@ -61,7 +61,7 @@
   },
   "title" : "Gerundio o infinitivo",
   "instructions" : "Escribe el verbo en la forma correcta.",
-  "translation" : "¡Te ofreciste como voluntario para cocinar!",
+  "translation" : "¡Pediste cocinar!",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "You volunteered",
+      "text" : "You asked",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to cook" ]
     }, {
       "kind" : "TEXT",
       "text" : "(cook)!",
       "options" : null
     } ],
-    "sentences" : [ "You volunteered to cook!" ]
+    "sentences" : [ "You asked to cook!" ]
   }
 }, {
   "_id" : {
@@ -477,7 +477,7 @@
   },
   "title" : "Gerundio o infinitivo",
   "instructions" : "Escribe el verbo en la forma correcta.",
-  "translation" : "Considerarán construir una nueva fábrica.",
+  "translation" : "Empezarán a construir una nueva fábrica.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They will consider",
+      "text" : "They will begin",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "building" ]
     }, {
       "kind" : "TEXT",
       "text" : "(build) a new factory.",
       "options" : null
     } ],
-    "sentences" : [ "They will consider building a new factory." ]
+    "sentences" : [ "They will begin building a new factory." ]
   }
 }, {
   "_id" : {
@@ -529,7 +529,7 @@
   },
   "title" : "Gerundio o infinitivo",
   "instructions" : "Escribe el verbo en la forma correcta.",
-  "translation" : "Consideramos ir a la playa.",
+  "translation" : "Probamos ir a la playa.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We considered",
+      "text" : "We tried",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "going" ]
     }, {
       "kind" : "TEXT",
       "text" : "(go) to the beach.",
       "options" : null
     } ],
-    "sentences" : [ "We considered going to the beach." ]
+    "sentences" : [ "We tried going to the beach." ]
   }
 }, {
   "_id" : {
@@ -581,7 +581,7 @@
   },
   "title" : "Gerundio o infinitivo",
   "instructions" : "Escribe el verbo en la forma correcta.",
-  "translation" : "Propusieron robar un coche.",
+  "translation" : "Recordaron haber robado un coche.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -609,7 +609,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They proposed",
+      "text" : "They remembered",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -620,7 +620,7 @@
       "text" : "(steal) a car.",
       "options" : null
     } ],
-    "sentences" : [ "They proposed stealing a car." ]
+    "sentences" : [ "They remembered stealing a car." ]
   }
 }, {
   "_id" : {
@@ -631,7 +631,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d253"
   },
-  "title" : "I like skateboarding early.",
+  "title" : "Gerundio o infinitivo",
   "instructions" : "Escribe el verbo en la forma correcta.",
   "translation" : "Me gusta andar en skate temprano.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
@@ -735,7 +735,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d253"
   },
-  "title" : "We wanted to arrive earlier.",
+  "title" : "Gerundio o infinitivo",
   "instructions" : "Escribe el verbo en la forma correcta.",
   "translation" : "Queríamos llegar antes.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
@@ -787,7 +787,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d253"
   },
-  "title" : "He tried to bring some drinks.",
+  "title" : "Gerundio o infinitivo",
   "instructions" : "Escribe el verbo en la forma correcta.",
   "translation" : "Intentó traer algunas bebidas.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
@@ -841,7 +841,7 @@
   },
   "title" : "Gerundio o infinitivo",
   "instructions" : "Escribe el verbo en la forma correcta.",
-  "translation" : "No pueden evitar pensar en su hija.",
+  "translation" : "No pueden dejar de pensar en su hija.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -861,26 +861,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They can't avoid",
+      "text" : "They can't stop",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "thinking" ]
     }, {
       "kind" : "TEXT",
       "text" : "(think) about their daughter.",
       "options" : null
     } ],
-    "sentences" : [ "They can't avoid thinking about their daughter." ]
+    "sentences" : [ "They can't stop thinking about their daughter." ]
   }
 }, {
   "_id" : {

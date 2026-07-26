@@ -61,7 +61,7 @@
   },
   "title" : "¿Mismo referente?",
   "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Los perros se lamieron.",
+  "translation" : "Los perros se lavaron.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The dogs licked",
+      "text" : "The dogs washed",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "themselves" ]
     }, {
       "kind" : "TEXT",
       "text" : "them / themselves.",
       "options" : null
     } ],
-    "sentences" : [ "The dogs licked themselves them / themselves." ]
+    "sentences" : [ "The dogs washed themselves them / themselves." ]
   }
 }, {
   "_id" : {
@@ -165,7 +165,7 @@
   },
   "title" : "¿Mismo referente?",
   "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Se tropezó.",
+  "translation" : "Se lastimó por accidente.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He tripped",
+      "text" : "He hurt",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "himself" ]
     }, {
       "kind" : "TEXT",
-      "text" : "him / himself. (There was nothing else there.)",
+      "text" : "him / himself by accident. (There was nothing else there.)",
       "options" : null
     } ],
-    "sentences" : [ "He tripped himself him / himself." ]
+    "sentences" : [ "He hurt himself him / himself by accident." ]
   }
 }, {
   "_id" : {
@@ -423,7 +423,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d347"
   },
-  "title" : "Bella touched herself her / herself on the back.",
+  "title" : "¿Mismo referente?",
   "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
   "translation" : "Bella se tocó la espalda.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
@@ -945,7 +945,7 @@
   },
   "title" : "¿Mismo referente?",
   "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Ella se salpicó con el agua.",
+  "translation" : "Ella se echó el agua encima.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -965,26 +965,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She splashed the water on",
+      "text" : "She poured the water on",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "herself" ]
     }, {
       "kind" : "TEXT",
-      "text" : "her / herself. (Sophie splashed the water on Sophie.)",
+      "text" : "her / herself.",
       "options" : null
     } ],
-    "sentences" : [ "She splashed the water on herself her / herself." ]
+    "sentences" : [ "She poured the water on herself her / herself." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "¿Mismo referente?",
   "instructions" : "Elige el pronombre correcto. Este ejercicio trata sobre la diferencia entre los object pronouns y los reflexive pronouns.",
-  "translation" : "Se pellizcó la pierna.",
+  "translation" : "Él le pellizcó la pierna. (George pellizcó a Anthony.)",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -1017,19 +1017,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He pinched",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "him" ]
     }, {
       "kind" : "TEXT",

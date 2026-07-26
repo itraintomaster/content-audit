@@ -113,7 +113,7 @@
   },
   "title" : "Sustantivos: parte 2",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "Deberías guardar la garantía de tu portátil.",
+  "translation" : "Deberías guardar la garantía de tu teclado.",
   "theoryId" : "a2.09.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You should keep the warranty",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "for" ]
     }, {
       "kind" : "TEXT",
-      "text" : "your laptop.",
+      "text" : "your keyboard.",
       "options" : null
     } ],
-    "sentences" : [ "You should keep the warranty for your laptop." ]
+    "sentences" : [ "You should keep the warranty for your keyboard." ]
   }
 }, {
   "_id" : {
@@ -373,7 +373,7 @@
   },
   "title" : "Sustantivos: parte 2",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "¿Conoces la respuesta a la pregunta 5?",
+  "translation" : "¿Sabes la respuesta a la pregunta del Dr. Brown?",
   "theoryId" : "a2.09.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -409,10 +409,10 @@
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "question 5?",
+      "text" : "Dr Brown's question?",
       "options" : null
     } ],
-    "sentences" : [ "Do you know the answer to question 5?" ]
+    "sentences" : [ "Do you know the answer to Dr Brown's question?" ]
   }
 }, {
   "_id" : {
@@ -425,7 +425,7 @@
   },
   "title" : "Sustantivos: parte 2",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "La universidad ofrece programas de Matemáticas, Física y Química.",
+  "translation" : "La universidad tiene programas de Matemáticas, Física y Química.",
   "theoryId" : "a2.09.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The university provides programs",
+      "text" : "The university has programs",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "Math, Physics and Chemistry.",
       "options" : null
     } ],
-    "sentences" : [ "The university provides programs in Math, Physics and Chemistry." ]
+    "sentences" : [ "The university has programs in Math, Physics and Chemistry." ]
   }
 }, {
   "_id" : {
@@ -601,26 +601,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Do you have the specifics",
+      "text" : "Do you have the details",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "of" ]
     }, {
       "kind" : "TEXT",
       "text" : "the flight?",
       "options" : null
     } ],
-    "sentences" : [ "Do you have the specifics of the flight?" ]
+    "sentences" : [ "Do you have the details of the flight?" ]
   }
 }, {
   "_id" : {
@@ -737,7 +737,7 @@
   },
   "title" : "Sustantivos: parte 2",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "¿Tienes un catálogo de filetes?",
+  "translation" : "¿Tienes un kilogramo de filetes?",
   "theoryId" : "a2.09.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -765,7 +765,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Do you have a catalog",
+      "text" : "Do you have a kilogram",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -776,7 +776,7 @@
       "text" : "steaks?",
       "options" : null
     } ],
-    "sentences" : [ "Do you have a catalog of steaks?" ]
+    "sentences" : [ "Do you have a kilogram of steaks?" ]
   }
 }, {
   "_id" : {
@@ -893,7 +893,7 @@
   },
   "title" : "Sustantivos: parte 2",
   "instructions" : "Coloca las preposiciones correctas.",
-  "translation" : "¿Dónde está la entrada al jardín?",
+  "translation" : "¿Dónde está la llave del cajón?",
   "theoryId" : "a2.09.Prepositions_After_Nouns",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Where's the gateway",
+      "text" : "Where's the key",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the garden?",
+      "text" : "the drawer?",
       "options" : null
     } ],
-    "sentences" : [ "Where's the gateway to the garden?" ]
+    "sentences" : [ "Where's the key to the drawer?" ]
   }
 }, {
   "_id" : {

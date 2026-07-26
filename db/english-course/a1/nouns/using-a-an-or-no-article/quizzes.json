@@ -373,7 +373,7 @@
   },
   "title" : "$A$, $an$ o sin artículo",
   "instructions" : "Completa con $a$, $an$ o (-).",
-  "translation" : "Esa es una pizza sabrosa.",
+  "translation" : "Esa es una pizza estupenda.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -393,26 +393,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "That is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "tasty pizza.",
+      "text" : "great pizza.",
       "options" : null
     } ],
-    "sentences" : [ "That is - tasty pizza." ]
+    "sentences" : [ "That is - great pizza." ]
   }
 }, {
   "_id" : {
@@ -579,7 +579,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3c9"
   },
-  "title" : "You are a man.",
+  "title" : "$A$, $an$ o sin artículo",
   "instructions" : "Completa con $a$, $an$ o (-).",
   "translation" : "Eres un hombre.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
@@ -737,7 +737,7 @@
   },
   "title" : "$A$, $an$ o sin artículo",
   "instructions" : "Completa con $a$, $an$ o (-).",
-  "translation" : "Paul y Emily son arquitectos.",
+  "translation" : "Paul y Emily son niños.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -757,26 +757,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Paul and Emily are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "architects.",
+      "text" : "children.",
       "options" : null
     } ],
-    "sentences" : [ "Paul and Emily are - architects." ]
+    "sentences" : [ "Paul and Emily are - children." ]
   }
 }, {
   "_id" : {
@@ -893,7 +893,7 @@
   },
   "title" : "$A$, $an$ o sin artículo",
   "instructions" : "Completa con $a$, $an$ o (-).",
-  "translation" : "Ellos son vegetarianos.",
+  "translation" : "Ellos son personas amables.",
   "theoryId" : "a1.06.A_An_with_Jobs_and_To_Say_What_Something_Is",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -913,26 +913,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They are",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "vegetarians.",
+      "text" : "nice people.",
       "options" : null
     } ],
-    "sentences" : [ "They are - vegetarians." ]
+    "sentences" : [ "They are - nice people." ]
   }
 }, {
   "_id" : {

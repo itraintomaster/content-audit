@@ -81,26 +81,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Let's grab",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a few" ]
     }, {
       "kind" : "TEXT",
-      "text" : "drinks and chill on the porch.",
+      "text" : "drinks and relax on the porch.",
       "options" : null
     } ],
-    "sentences" : [ "Let's grab a few drinks and chill on the porch." ]
+    "sentences" : [ "Let's grab a few drinks and relax on the porch." ]
   }
 }, {
   "_id" : {

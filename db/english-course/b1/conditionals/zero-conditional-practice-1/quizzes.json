@@ -9,7 +9,7 @@
   },
   "title" : "Condicional cero: práctica 1",
   "instructions" : "Crea oraciones condicionales de tipo cero (condicionales reales presentes).",
-  "translation" : "Si calientas mantequilla, se ablanda.",
+  "translation" : "Si congelas agua, se convierte en hielo.",
   "theoryId" : "b1.14.Zero_Conditionals_Present_Real_Conditionals_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -29,34 +29,34 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "If you",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "heat" ]
+      "text" : null,
+      "options" : [ "freeze" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(heat) butter, it",
+      "text" : "(freeze) water, it",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "softens" ]
+      "text" : null,
+      "options" : [ "turns" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(soften).",
+      "text" : "(turn) to ice.",
       "options" : null
     } ],
-    "sentences" : [ "If you heat butter, it softens." ]
+    "sentences" : [ "If you freeze water, it turns to ice." ]
   }
 }, {
   "_id" : {
@@ -249,7 +249,7 @@
   },
   "title" : "Condicional cero: práctica 1",
   "instructions" : "Crea oraciones condicionales de tipo cero (condicionales reales presentes).",
-  "translation" : "No obtienes diez si multiplicas cinco por tres.",
+  "translation" : "No recibes diez si sumas cinco y tres.",
   "theoryId" : "b1.14.Zero_Conditionals_Present_Real_Conditionals_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -269,19 +269,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "You",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "don't receive" ]
     }, {
       "kind" : "TEXT",
@@ -289,14 +289,14 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "multiply" ]
+      "text" : null,
+      "options" : [ "add" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(multiply) five and three.",
+      "text" : "(add) five and three.",
       "options" : null
     } ],
-    "sentences" : [ "You don't receive ten if you multiply five and three." ]
+    "sentences" : [ "You don't receive ten if you add five and three." ]
   }
 }, {
   "_id" : {
@@ -549,7 +549,7 @@
   },
   "title" : "Condicional cero: práctica 1",
   "instructions" : "Crea oraciones condicionales de tipo cero (condicionales reales presentes).",
-  "translation" : "Los ferris se cancelan si hay tormenta.",
+  "translation" : "Los ferris se cancelan si llueve.",
   "theoryId" : "b1.14.Zero_Conditionals_Present_Real_Conditionals_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -569,19 +569,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The ferries",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "are" ]
     }, {
       "kind" : "TEXT",
@@ -589,14 +589,14 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) stormy.",
+      "text" : "(be) rainy.",
       "options" : null
     } ],
-    "sentences" : [ "The ferries are cancelled if it is stormy." ]
+    "sentences" : [ "The ferries are cancelled if it is rainy." ]
   }
 }, {
   "_id" : {
@@ -849,7 +849,7 @@
   },
   "title" : "Condicional cero: práctica 1",
   "instructions" : "Crea oraciones condicionales de tipo cero (condicionales reales presentes).",
-  "translation" : "Si ella está estresada, no contesta el teléfono.",
+  "translation" : "Si ella está preocupada, no contesta el teléfono.",
   "theoryId" : "b1.14.Zero_Conditionals_Present_Real_Conditionals_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -869,34 +869,34 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "If she",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "is" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) stressed, she",
+      "text" : "(be) worried, she",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "doesn't answer" ]
     }, {
       "kind" : "TEXT",
       "text" : "(not / answer) the phone.",
       "options" : null
     } ],
-    "sentences" : [ "If she is stressed, she doesn't answer the phone." ]
+    "sentences" : [ "If she is worried, she doesn't answer the phone." ]
   }
 }, {
   "_id" : {
@@ -909,7 +909,7 @@
   },
   "title" : "Condicional cero: práctica 1",
   "instructions" : "Crea oraciones condicionales de tipo cero (condicionales reales presentes).",
-  "translation" : "Los estudiantes se emocionan si llueve durante el recreo.",
+  "translation" : "Los estudiantes se emocionan si consiguen tiempo extra durante el recreo.",
   "theoryId" : "b1.14.Zero_Conditionals_Present_Real_Conditionals_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -929,34 +929,34 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The students",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "are" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(be) excited if it",
+      "text" : "(be) excited if they",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "rains" ]
+      "text" : null,
+      "options" : [ "get" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(rain) during recess.",
+      "text" : "(get) extra time during recess.",
       "options" : null
     } ],
-    "sentences" : [ "The students are excited if it rains during recess." ]
+    "sentences" : [ "The students are excited if they get extra time during recess." ]
   }
 }, {
   "_id" : {

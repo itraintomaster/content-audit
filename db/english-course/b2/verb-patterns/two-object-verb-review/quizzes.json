@@ -581,7 +581,7 @@
   },
   "title" : "Verbos con dos objetos",
   "instructions" : "Cambia la oración para que incluya $to$ o $for$. Por ejemplo: I sent him a card → I sent a card to him.",
-  "translation" : "Ellos narraron la leyenda a la audiencia.",
+  "translation" : "Ellos narraron la antigua leyenda a la audiencia anoche.",
   "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -601,26 +601,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "They narrated the audience the legend.",
+      "text" : "They narrated the audience the ancient legend last night.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "They narrated the legend to the audience." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "They narrated the ancient legend to the audience last night." ]
     } ],
-    "sentences" : [ "They narrated the legend to the audience." ]
+    "sentences" : [ "They narrated the ancient legend to the audience last night." ]
   }
 }, {
   "_id" : {
@@ -633,7 +629,7 @@
   },
   "title" : "Verbos con dos objetos",
   "instructions" : "Cambia la oración para que incluya $to$ o $for$. Por ejemplo: I sent him a card → I sent a card to him.",
-  "translation" : "Él aseguró una beca para su sobrino.",
+  "translation" : "Él consiguió un trabajo en la empresa para su sobrino.",
   "theoryId" : "b2.05.Sense_Verbs_+_Object_+_Gerund_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -653,26 +649,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He secured his nephew a scholarship.",
+      "text" : "He secured his nephew a job at the firm.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He secured a scholarship for his nephew." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He secured a job at the firm for his nephew." ]
     } ],
-    "sentences" : [ "He secured a scholarship for his nephew." ]
+    "sentences" : [ "He secured a job at the firm for his nephew." ]
   }
 }, {
   "_id" : {

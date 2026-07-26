@@ -425,7 +425,7 @@
   },
   "title" : "Uno más o el que queda",
   "instructions" : "Si es posible, escribe $another$. De lo contrario, escribe $the other$.",
-  "translation" : "Ella desea otro gato.",
+  "translation" : "Ella necesita otro gato para hacerle compañía.",
   "theoryId" : "b1.07.Other_The_Other_Another",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She desires",
+      "text" : "She needs",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "another" ]
     }, {
       "kind" : "TEXT",
-      "text" : "cat.",
+      "text" : "cat to keep her company.",
       "options" : null
     } ],
-    "sentences" : [ "She desires another cat." ]
+    "sentences" : [ "She needs another cat to keep her company." ]
   }
 }, {
   "_id" : {

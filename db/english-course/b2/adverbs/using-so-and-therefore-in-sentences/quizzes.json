@@ -685,7 +685,7 @@
   },
   "title" : "Consecuencia",
   "instructions" : "Incluye $so$ o $therefore$ en la oración.",
-  "translation" : "Por lo tanto, necesitan mejorar.",
+  "translation" : "Los atletas rindieron mal. Por lo tanto, necesitan mejorar.",
   "theoryId" : "",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The athletes performed poorly.",
+      "text" : "The athletes performed badly.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Therefore" ]
     }, {
       "kind" : "TEXT",
       "text" : ", they need to improve.",
       "options" : null
     } ],
-    "sentences" : [ "The athletes performed poorly. Therefore, they need to improve." ]
+    "sentences" : [ "The athletes performed badly. Therefore , they need to improve." ]
   }
 }, {
   "_id" : {
@@ -943,7 +943,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d499"
   },
-  "title" : "He studies continuously, so he achieves good grades.",
+  "title" : "Consecuencia",
   "instructions" : "Incluye $so$ o $therefore$ en la oración.",
   "translation" : "Él estudia continuamente, así que obtiene buenas calificaciones.",
   "theoryId" : "",

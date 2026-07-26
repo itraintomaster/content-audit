@@ -319,7 +319,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d2a5"
   },
-  "title" : "Candy is not as healthy as fruit.",
+  "title" : "Oraciones con $as ... as$",
   "instructions" : "Crea oraciones usando $as ... as$ o $not as ... as$.",
   "translation" : "Los dulces no son tan saludables como la fruta.",
   "theoryId" : "a2.11.Adjectives_Structures",
@@ -425,7 +425,7 @@
   },
   "title" : "Oraciones con $as ... as$",
   "instructions" : "Crea oraciones usando $as ... as$ o $not as ... as$.",
-  "translation" : "La pizza es tan sabrosa como la pasta.",
+  "translation" : "La pizza es tan buena como la pasta.",
   "theoryId" : "a2.11.Adjectives_Structures",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "Pizza is",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "as tasty as" ]
+      "text" : null,
+      "options" : [ "as good as" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(tasty) pasta.",
+      "text" : "(good) pasta.",
       "options" : null
     } ],
-    "sentences" : [ "Pizza is as tasty as pasta." ]
+    "sentences" : [ "Pizza is as good as pasta." ]
   }
 }, {
   "_id" : {

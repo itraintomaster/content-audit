@@ -683,7 +683,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d321"
   },
-  "title" : "I was preventing a problem. Robert said that he had been preventing a problem.",
+  "title" : "$Past Continuous$",
   "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con $Robert said that$.",
   "translation" : "Yo estaba previniendo un problema. Robert dijo que él había estado previniendo un problema.",
   "theoryId" : "b1.10.How_to_Make_Reported_Speech",
@@ -941,7 +941,7 @@
   },
   "title" : "$Past Continuous$",
   "instructions" : "Transforma las oraciones a estilo indirecto (reported speech). Robert dice todo el discurso directo. Comienza con $Robert said that$.",
-  "translation" : "Robert dijo que el gato había estado maullando.",
+  "translation" : "Robert dijo que el gato había estado corriendo.",
   "theoryId" : "b1.10.How_to_Make_Reported_Speech",
   "topicName" : "Reported speech",
   "difficulty" : {
@@ -961,26 +961,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The cat was meowing.",
+      "text" : "The cat was running.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Robert said that the cat had been meowing." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Robert said that the cat had been running." ]
     } ],
-    "sentences" : [ "Robert said that the cat had been meowing." ]
+    "sentences" : [ "Robert said that the cat had been running." ]
   }
 }, {
   "_id" : {

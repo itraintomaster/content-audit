@@ -217,7 +217,7 @@
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
-  "translation" : "Los estudiantes repasaron los apuntes antes del examen.",
+  "translation" : "Los estudiantes leyeron los apuntes antes del examen.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The students reviewed the notes",
+      "text" : "The students read the notes",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "before" ]
     }, {
       "kind" : "TEXT",
       "text" : "(after / to / before) the test.",
       "options" : null
     } ],
-    "sentences" : [ "The students reviewed the notes before the test." ]
+    "sentences" : [ "The students read the notes before the test." ]
   }
 }, {
   "_id" : {
@@ -423,7 +423,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d283"
   },
-  "title" : "After studying, you should take a break!",
+  "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
   "translation" : "Después de estudiar, ¡deberías tomar un descanso!",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
@@ -525,7 +525,7 @@
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
-  "translation" : "Después de viajar, descansó en el hotel.",
+  "translation" : "Después de viajar, se quedó en el hotel.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -545,26 +545,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "After" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(after / from / to) traveling, he rested at the hotel.",
+      "text" : "(after / from / to) traveling, he stayed at the hotel.",
       "options" : null
     } ],
-    "sentences" : [ "After traveling, he rested at the hotel." ]
+    "sentences" : [ "After traveling, he stayed at the hotel." ]
   }
 }, {
   "_id" : {
@@ -889,7 +885,7 @@
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
-  "translation" : "La sala de conciertos es fotografiada de 9 p. m. a 1 a. m.",
+  "translation" : "La sala de conciertos está reservada de 9 p. m. a 1 a. m.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -917,7 +913,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The concert hall is photographed",
+      "text" : "The concert hall is booked",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -928,7 +924,7 @@
       "text" : "(to / from / after) 9pm to 1am.",
       "options" : null
     } ],
-    "sentences" : [ "The concert hall is photographed from 9pm to 1am." ]
+    "sentences" : [ "The concert hall is booked from 9pm to 1am." ]
   }
 }, {
   "_id" : {
@@ -941,7 +937,7 @@
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
-  "translation" : "Entrenamos en Roma del 2000 al 2005.",
+  "translation" : "Trabajamos en Roma del 2000 al 2005.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -961,26 +957,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We trained in Rome from 2000",
+      "text" : "We worked in Rome from 2000",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "to" ]
     }, {
       "kind" : "TEXT",
       "text" : "(to / from / after) 2005.",
       "options" : null
     } ],
-    "sentences" : [ "We trained in Rome from 2000 to 2005." ]
+    "sentences" : [ "We worked in Rome from 2000 to 2005." ]
   }
 }, {
   "_id" : {
@@ -993,7 +989,7 @@
   },
   "title" : "Con $from/to/after/before$",
   "instructions" : "Elige la preposición correcta.",
-  "translation" : "Unta salsa sobre la pasta antes de comer.",
+  "translation" : "Pon salsa sobre la pasta antes de comer.",
   "theoryId" : "a2.09.Prepositions_of_Time_2_For_Since_During_While_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -1013,25 +1009,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Spread sauce on the pasta",
+      "text" : "Put sauce on the pasta",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "before" ]
     }, {
       "kind" : "TEXT",
       "text" : "(to / before / from) eating.",
       "options" : null
     } ],
-    "sentences" : [ "Spread sauce on the pasta before eating." ]
+    "sentences" : [ "Put sauce on the pasta before eating." ]
   }
 } ]

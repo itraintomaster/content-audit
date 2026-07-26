@@ -749,34 +749,34 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'d been anticipating|had been anticipating" ]
+      "text" : null,
+      "options" : [ "'d been expecting|had been expecting" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(anticipate) it for weeks when the concert finally",
+      "text" : "(expect) it for weeks when the concert finally",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "started" ]
     }, {
       "kind" : "TEXT",
       "text" : "(start).",
       "options" : null
     } ],
-    "sentences" : [ "We'd been anticipating it for weeks when the concert finally started.", "We had been anticipating it for weeks when the concert finally started." ]
+    "sentences" : [ "We 'd been expecting it for weeks when the concert finally started.", "We had been expecting it for weeks when the concert finally started." ]
   }
 }, {
   "_id" : {
@@ -789,7 +789,7 @@
   },
   "title" : "Duración previa",
   "instructions" : "Utiliza el $past perfect continuous$ para expresar $how long$. De lo contrario, utiliza el $past simple$.",
-  "translation" : "Ella había estado corriendo en la cinta durante un rato cuando empezó a sudar.",
+  "translation" : "Ella había estado corriendo en la cinta durante un rato cuando bajó la velocidad.",
   "theoryId" : "b2.03.Past_Perfect_Continuous_for_Time_up_to_Then",
   "topicName" : "Section 3",
   "difficulty" : {
@@ -809,19 +809,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "She",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'d been running|had been running" ]
     }, {
       "kind" : "TEXT",
@@ -829,14 +829,14 @@
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "began" ]
+      "text" : null,
+      "options" : [ "lowered" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(begin) to sweat.",
+      "text" : "(lower) the speed.",
       "options" : null
     } ],
-    "sentences" : [ "She'd been running on the treadmill for a while when she began to sweat.", "She had been running on the treadmill for a while when she began to sweat." ]
+    "sentences" : [ "She 'd been running on the treadmill for a while when she lowered the speed.", "She had been running on the treadmill for a while when she lowered the speed." ]
   }
 }, {
   "_id" : {

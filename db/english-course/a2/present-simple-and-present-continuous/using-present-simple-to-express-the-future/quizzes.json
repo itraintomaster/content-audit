@@ -9,7 +9,7 @@
   },
   "title" : "Futuro y horarios",
   "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "El autobús sale mañana.",
+  "translation" : "El tren sale mañana.",
   "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -29,26 +29,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The bus",
+      "text" : "The train",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "departs" ]
+      "text" : null,
+      "options" : [ "leaves" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(depart) tomorrow.",
+      "text" : "(leave) tomorrow.",
       "options" : null
     } ],
-    "sentences" : [ "The bus departs tomorrow." ]
+    "sentences" : [ "The train leaves tomorrow." ]
   }
 }, {
   "_id" : {
@@ -165,7 +165,7 @@
   },
   "title" : "Futuro y horarios",
   "instructions" : "Escribe las oraciones en presente simple.",
-  "translation" : "Me iré a dormir cuando haya silencio.",
+  "translation" : "Me iré a la cama cuando haya silencio.",
   "theoryId" : "a2.01.Present_Simple_Use_For_the_Future",
   "topicName" : "Present simple and Present Continuous",
   "difficulty" : {
@@ -185,26 +185,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I'll go to sleep when it",
+      "text" : "I'll go to bed when it",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "becomes" ]
     }, {
       "kind" : "TEXT",
       "text" : "(become) quiet.",
       "options" : null
     } ],
-    "sentences" : [ "I'll go to sleep when it becomes quiet." ]
+    "sentences" : [ "I'll go to bed when it becomes quiet." ]
   }
 }, {
   "_id" : {

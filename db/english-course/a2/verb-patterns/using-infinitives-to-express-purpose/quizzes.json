@@ -61,7 +61,7 @@
   },
   "title" : "Finalidad",
   "instructions" : "Transforma la oración para que incluya un infinitivo de propósito.",
-  "translation" : "Ella fue a la playa a tomar el sol.",
+  "translation" : "Ella fue a la playa a nadar.",
   "theoryId" : "a2.05.Verbs_Patterns_with_Infinitive_+_to",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -81,26 +81,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She went to the beach because she wanted to sunbathe.",
+      "text" : "She went to the beach because she wanted to swim.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She went to the beach to sunbathe." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She went to the beach to swim." ]
     } ],
-    "sentences" : [ "She went to the beach to sunbathe." ]
+    "sentences" : [ "She went to the beach to swim." ]
   }
 }, {
   "_id" : {
@@ -209,7 +205,7 @@
   },
   "title" : "Finalidad",
   "instructions" : "Transforma la oración para que incluya un infinitivo de propósito.",
-  "translation" : "Él monta en bicicleta todos los días para mantenerse sano.",
+  "translation" : "Él camina todos los días para mantenerse sano.",
   "theoryId" : "a2.05.Verbs_Patterns_with_Infinitive_+_to",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -229,26 +225,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He cycles every day because he wants to remain healthy.",
+      "text" : "He walks every day because he wants to keep healthy.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He cycles every day to remain healthy." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He walks every day to keep healthy." ]
     } ],
-    "sentences" : [ "He cycles every day to remain healthy." ]
+    "sentences" : [ "He walks every day to keep healthy." ]
   }
 }, {
   "_id" : {
@@ -259,7 +251,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d252"
   },
-  "title" : "We watch movies to have fun.",
+  "title" : "Finalidad",
   "instructions" : "Transforma la oración para que incluya un infinitivo de propósito.",
   "translation" : "Vemos películas para divertirnos.",
   "theoryId" : "a2.05.Verbs_Patterns_with_Infinitive_+_to",
@@ -517,7 +509,7 @@
   },
   "title" : "Finalidad",
   "instructions" : "Transforma la oración para que incluya un infinitivo de propósito.",
-  "translation" : "Ella bebe agua para mantenerse hidratada.",
+  "translation" : "Él bebe leche para crecer fuerte.",
   "theoryId" : "a2.05.Verbs_Patterns_with_Infinitive_+_to",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -537,26 +529,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She drinks water because she wants to stay hydrated.",
+      "text" : "He drinks milk because he wants to grow strong.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She drinks water to stay hydrated." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He drinks milk to grow strong." ]
     } ],
-    "sentences" : [ "She drinks water to stay hydrated." ]
+    "sentences" : [ "He drinks milk to grow strong." ]
   }
 }, {
   "_id" : {

@@ -9,7 +9,7 @@
   },
   "title" : "Gerundio como sujeto",
   "instructions" : "Crea oraciones que tengan un gerundio como sujeto.",
-  "translation" : "Cantar no está permitido en clase.",
+  "translation" : "Cantar no está bien en clase.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -41,10 +41,10 @@
       "options" : [ "Singing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(sing) is not allowed in class.",
+      "text" : "(sing) is not okay in class.",
       "options" : null
     } ],
-    "sentences" : [ "Singing is not allowed in class." ]
+    "sentences" : [ "Singing is not okay in class." ]
   }
 }, {
   "_id" : {
@@ -177,26 +177,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Studying" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(study) is required to pass the exam.",
+      "text" : "(study) is needed to pass the exam.",
       "options" : null
     } ],
-    "sentences" : [ "Studying is required to pass the exam." ]
+    "sentences" : [ "Studying is needed to pass the exam." ]
   }
 }, {
   "_id" : {
@@ -209,7 +205,7 @@
   },
   "title" : "Gerundio como sujeto",
   "instructions" : "Crea oraciones que tengan un gerundio como sujeto.",
-  "translation" : "Bailar es muy entretenido.",
+  "translation" : "Bailar es muy popular.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -229,26 +225,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Dancing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(dance) is very entertaining.",
+      "text" : "(dance) is very popular.",
       "options" : null
     } ],
-    "sentences" : [ "Dancing is very entertaining." ]
+    "sentences" : [ "Dancing is very popular." ]
   }
 }, {
   "_id" : {
@@ -261,7 +253,7 @@
   },
   "title" : "Gerundio como sujeto",
   "instructions" : "Crea oraciones que tengan un gerundio como sujeto.",
-  "translation" : "Leer muchos libros puede hacerte sabio.",
+  "translation" : "Leer muchos libros puede hacerte feliz.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -281,26 +273,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Reading" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(read) a lot of books can make you knowledgeable.",
+      "text" : "(read) a lot of books can make you happy.",
       "options" : null
     } ],
-    "sentences" : [ "Reading a lot of books can make you knowledgeable." ]
+    "sentences" : [ "Reading a lot of books can make you happy." ]
   }
 }, {
   "_id" : {
@@ -313,7 +301,7 @@
   },
   "title" : "Gerundio como sujeto",
   "instructions" : "Crea oraciones que tengan un gerundio como sujeto.",
-  "translation" : "Descansar es muy importante.",
+  "translation" : "Grabar historias es muy importante.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -342,13 +330,13 @@
     "sentenceParts" : [ {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "Resting" ]
+      "options" : [ "Recording" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(rest) is very important.",
+      "text" : "(record) stories is very important.",
       "options" : null
     } ],
-    "sentences" : [ "Resting is very important." ]
+    "sentences" : [ "Recording stories is very important." ]
   }
 }, {
   "_id" : {
@@ -381,26 +369,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Hiking" ]
+      "text" : null,
+      "options" : [ "Walking" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(hike) in the mountains is wonderful.",
+      "text" : "(walk) in the mountains is wonderful.",
       "options" : null
     } ],
-    "sentences" : [ "Hiking in the mountains is wonderful." ]
+    "sentences" : [ "Walking in the mountains is wonderful." ]
   }
 }, {
   "_id" : {
@@ -413,7 +397,7 @@
   },
   "title" : "Gerundio como sujeto",
   "instructions" : "Crea oraciones que tengan un gerundio como sujeto.",
-  "translation" : "Esquiar es realmente desafiante.",
+  "translation" : "Esquiar es realmente difícil.",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -433,25 +417,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "Skiing" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(ski) is really challenging.",
+      "text" : "(ski) is really hard.",
       "options" : null
     } ],
-    "sentences" : [ "Skiing is really challenging." ]
+    "sentences" : [ "Skiing is really hard." ]
   }
 } ]

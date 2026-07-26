@@ -321,7 +321,7 @@
   },
   "title" : "Hábitos con $used to$",
   "instructions" : "Transforma estas oraciones para que utilicen $used to$.",
-  "translation" : "Los perros solían ladrar por la noche.",
+  "translation" : "Los perros solían llorar por la noche.",
   "theoryId" : "b1.11.Used_To_+_Infinitive",
   "topicName" : "Modal verbs",
   "difficulty" : {
@@ -341,26 +341,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "The dogs had the habit of barking at night.",
+      "text" : "The dogs had the habit of crying at night.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "The dogs used to bark at night." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "The dogs used to cry at night." ]
     } ],
-    "sentences" : [ "The dogs used to bark at night." ]
+    "sentences" : [ "The dogs used to cry at night." ]
   }
 }, {
   "_id" : {

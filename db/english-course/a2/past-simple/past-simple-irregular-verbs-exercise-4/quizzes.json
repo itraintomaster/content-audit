@@ -1205,7 +1205,7 @@
   },
   "title" : "Irregulares IV",
   "instructions" : "Escribe la forma en $past simple$.",
-  "translation" : "¡Necesitábamos hacer más ejercicio!",
+  "translation" : "¡Necesitábamos caminar más!",
   "theoryId" : "a2.03.Past_Simple_Form_with_Irregular_Verbs",
   "topicName" : "Past Simple",
   "difficulty" : {
@@ -1225,25 +1225,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "needed" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(need) to exercise more!",
+      "text" : "(need) to walk more!",
       "options" : null
     } ],
-    "sentences" : [ "We needed to exercise more!" ]
+    "sentences" : [ "We needed to walk more!" ]
   }
 } ]

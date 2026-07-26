@@ -61,7 +61,7 @@
   },
   "title" : "Orden en la frase",
   "instructions" : "Modifica las oraciones para que incluyan $quite$ o $enough$.",
-  "translation" : "Él es una persona bastante habladora.",
+  "translation" : "Él es una persona bastante culpable en esta historia corta.",
   "theoryId" : "b2.14.Word_Order_with_Quite_and_Enough_",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -81,26 +81,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He is a talkative person. (quite)",
+      "text" : "He is a guilty person in this short story. (quite)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He is quite a talkative person." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He is quite a guilty person in this short story." ]
     } ],
-    "sentences" : [ "He is quite a talkative person." ]
+    "sentences" : [ "He is quite a guilty person in this short story." ]
   }
 }, {
   "_id" : {

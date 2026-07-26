@@ -841,7 +841,7 @@
   },
   "title" : "Práctica con $still$",
   "instructions" : "Modifica las oraciones para que incluyan $still$. Por ejemplo: $They used to eat a lot of meat and it's still true now (use the present simple)$ = $They still eat a lot of meat.$",
-  "translation" : "Él todavía fuma cigarros.",
+  "translation" : "Él todavía fuma cigarrillos todos los días después del trabajo.",
   "theoryId" : "b1.16.Adverbs_of_Time_Still",
   "topicName" : "Adverbs",
   "difficulty" : {
@@ -861,26 +861,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He used to smoke cigars and it's also true now. (use the present simple)",
+      "text" : "He used to smoke cigarettes every day after work and it's also true now. (use the present simple)",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He still smokes cigars." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He still smokes cigarettes every day after work." ]
     } ],
-    "sentences" : [ "He still smokes cigars." ]
+    "sentences" : [ "He still smokes cigarettes every day after work." ]
   }
 }, {
   "_id" : {

@@ -321,7 +321,7 @@
   },
   "title" : "Elige el tiempo: serie 3",
   "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$.",
-  "translation" : "No nieva a menudo.",
+  "translation" : "No funciona a menudo.",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",
   "topicName" : "Present Continuous",
   "difficulty" : {
@@ -341,26 +341,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "It",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "doesn't snow|does not snow" ]
+      "text" : null,
+      "options" : [ "doesn't work|does not work" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(not / snow) often. (present simple)",
+      "text" : "(not / work) often. (present simple)",
       "options" : null
     } ],
-    "sentences" : [ "It doesn't snow often.", "It does not snow often." ]
+    "sentences" : [ "It doesn't work often.", "It does not work often." ]
   }
 }, {
   "_id" : {
@@ -371,7 +371,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3a1"
   },
-  "title" : "Is she at the cafe?",
+  "title" : "Elige el tiempo: serie 3",
   "instructions" : "Escribe las oraciones en $present simple$ o $present continuous$.",
   "translation" : "¿Está ella en el café?",
   "theoryId" : "a1.02.Present_Simple_or_Present_Continuous_",

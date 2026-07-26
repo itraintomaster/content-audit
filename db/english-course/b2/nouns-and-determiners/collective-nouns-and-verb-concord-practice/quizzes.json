@@ -477,7 +477,7 @@
   },
   "title" : "Colectivos",
   "instructions" : "Elige la forma correcta del verbo, ya sea en singular (US) o plural (UK).",
-  "translation" : "¿Sabes si el panel ha comenzado?",
+  "translation" : "¿Sabes si el equipo ya ha comenzado?",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -497,26 +497,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Do you know if the panel",
+      "text" : "Do you know if the team",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "have" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(has / have) started? (UK)",
+      "text" : "(has / have) already started? (UK)",
       "options" : null
     } ],
-    "sentences" : [ "Do you know if the panel have started?" ]
+    "sentences" : [ "Do you know if the team have already started?" ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "Colectivos",
   "instructions" : "Elige la forma correcta del verbo, ya sea en singular (US) o plural (UK).",
-  "translation" : "Mi equipo ha actuado bien.",
+  "translation" : "Mi asociación local ha rendido bien en el torneo.",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "My squad",
+      "text" : "My local association",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "have" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(has / have) performed well. (UK)",
+      "text" : "(has / have) performed well in the tournament. (UK)",
       "options" : null
     } ],
-    "sentences" : [ "My squad have performed well." ]
+    "sentences" : [ "My local association have performed well in the tournament." ]
   }
 }, {
   "_id" : {
@@ -997,7 +997,7 @@
   },
   "title" : "Colectivos",
   "instructions" : "Elige la forma correcta del verbo, ya sea en singular (US) o plural (UK).",
-  "translation" : "El jurado ha llegado a un veredicto.",
+  "translation" : "El jurado ha llegado a un acuerdo tras largas discusiones.",
   "theoryId" : "b2.06.Articles_with_Institutions_Church_School_University_Hospital_",
   "topicName" : "Nouns and determiners",
   "difficulty" : {
@@ -1017,25 +1017,25 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "The jury",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "has" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(has / have) reached a verdict. (US)",
+      "text" : "(has / have) reached a compromise after long discussions. (US)",
       "options" : null
     } ],
-    "sentences" : [ "The jury has reached a verdict." ]
+    "sentences" : [ "The jury has reached a compromise after long discussions." ]
   }
 } ]

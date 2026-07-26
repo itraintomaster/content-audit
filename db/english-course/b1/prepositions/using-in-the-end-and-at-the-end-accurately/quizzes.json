@@ -9,7 +9,7 @@
   },
   "title" : "$In the end$ o $at the end$",
   "instructions" : "Completar con $in$ o $at$.",
-  "translation" : "Al final, decidí ignorar su comentario.",
+  "translation" : "Al final, decidí responder a su comentario.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "In" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the end, I chose to ignore his comment.",
+      "text" : "the end, I chose to answer his comment.",
       "options" : null
     } ],
-    "sentences" : [ "In the end, I chose to ignore his comment." ]
+    "sentences" : [ "In the end, I chose to answer his comment." ]
   }
 }, {
   "_id" : {
@@ -113,7 +109,7 @@
   },
   "title" : "$In the end$ o $at the end$",
   "instructions" : "Completar con $in$ o $at$.",
-  "translation" : "Buscamos mucho, pero al final nos decidimos por una pizza.",
+  "translation" : "Buscamos mucho, pero al final elegimos una pizza.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -133,26 +129,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We searched around a lot but",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the end, we settled for a pizza.",
+      "text" : "the end, we went for a pizza.",
       "options" : null
     } ],
-    "sentences" : [ "We searched around a lot but in the end, we settled for a pizza." ]
+    "sentences" : [ "We searched around a lot but in the end, we went for a pizza." ]
   }
 }, {
   "_id" : {
@@ -477,7 +473,7 @@
   },
   "title" : "$In the end$ o $at the end$",
   "instructions" : "Completar con $in$ o $at$.",
-  "translation" : "Espero planear un viaje corto al final de la primavera.",
+  "translation" : "Estoy tratando de planear un viaje corto al final de la primavera.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -497,26 +493,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I'm hoping to plan a short trip",
+      "text" : "I'm trying to plan a short trip",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "at" ]
     }, {
       "kind" : "TEXT",
       "text" : "the end of the spring.",
       "options" : null
     } ],
-    "sentences" : [ "I'm hoping to plan a short trip at the end of the spring." ]
+    "sentences" : [ "I'm trying to plan a short trip at the end of the spring." ]
   }
 }, {
   "_id" : {
@@ -893,7 +889,7 @@
   },
   "title" : "$In the end$ o $at the end$",
   "instructions" : "Completar con $in$ o $at$.",
-  "translation" : "Al final del programa, decidió buscar un papel en el teatro.",
+  "translation" : "Al final del programa, decidió encontrar un papel en el teatro.",
   "theoryId" : "b1.17.At_The_End_or_In_the_End",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -925,10 +921,10 @@
       "options" : [ "At" ]
     }, {
       "kind" : "TEXT",
-      "text" : "the end of the program, he decided to pursue a role in theatre.",
+      "text" : "the end of the program, he decided to find a role in theatre.",
       "options" : null
     } ],
-    "sentences" : [ "At the end of the program, he decided to pursue a role in theatre." ]
+    "sentences" : [ "At the end of the program, he decided to find a role in theatre." ]
   }
 }, {
   "_id" : {
@@ -961,26 +957,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Did you figure out what the solution was",
+      "text" : "Did you find out what the solution was",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "in" ]
     }, {
       "kind" : "TEXT",
       "text" : "the end?",
       "options" : null
     } ],
-    "sentences" : [ "Did you figure out what the solution was in the end?" ]
+    "sentences" : [ "Did you find out what the solution was in the end?" ]
   }
 }, {
   "_id" : {

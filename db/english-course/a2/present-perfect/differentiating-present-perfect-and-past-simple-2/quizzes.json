@@ -837,7 +837,7 @@
   },
   "title" : "Vivencias y momentos",
   "instructions" : "Forma oraciones en Present Perfect o Past Simple. Utiliza $short forms$ si es posible.",
-  "translation" : "Hemos nadado en ese lago.",
+  "translation" : "Hemos estado en ese lago.",
   "theoryId" : "a2.04.Present_Perfect_or_Past_Simple_",
   "topicName" : "Present Perfect",
   "difficulty" : {
@@ -857,26 +857,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "We",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ve swum" ]
+      "text" : null,
+      "options" : [ "'ve been" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(swim) in that lake.",
+      "text" : "(be) in that lake.",
       "options" : null
     } ],
-    "sentences" : [ "We've swum in that lake." ]
+    "sentences" : [ "We 've been in that lake." ]
   }
 }, {
   "_id" : {

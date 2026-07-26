@@ -373,7 +373,7 @@
   },
   "title" : "$No$ + gerundio",
   "instructions" : "¡No está permitido! Escribe $no + verbo+ing$.",
-  "translation" : "¡No cazar!",
+  "translation" : "¡No trepar árboles!",
   "theoryId" : "a2.05.Verb_Patterns_with_Gerunds_Verb_+_ing_",
   "topicName" : "Verb Patterns",
   "difficulty" : {
@@ -393,26 +393,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "It's not okay to hunt.",
+      "text" : "It's not okay to shin up trees.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "No hunting!" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "No shinning up trees!" ]
     } ],
-    "sentences" : [ "No hunting!" ]
+    "sentences" : [ "No shinning up trees!" ]
   }
 }, {
   "_id" : {

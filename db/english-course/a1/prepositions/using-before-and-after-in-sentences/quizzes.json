@@ -9,7 +9,7 @@
   },
   "title" : "$Before$ y $after$",
   "instructions" : "Transforma las oraciones para que incluyan la forma $verb-ing$.",
-  "translation" : "Ella almorzó antes de ir de compras.",
+  "translation" : "Ella almorzó antes de ir a trabajar.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
   "topicName" : "Prepositions",
   "difficulty" : {
@@ -29,26 +29,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She ate lunch before she went shopping.",
+      "text" : "She ate lunch before she went to work.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "She ate lunch before going shopping." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "She ate lunch before going to work." ]
     } ],
-    "sentences" : [ "She ate lunch before going shopping." ]
+    "sentences" : [ "She ate lunch before going to work." ]
   }
 }, {
   "_id" : {
@@ -59,7 +55,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3db"
   },
-  "title" : "The dog ran after seeing the cat.",
+  "title" : "$Before$ y $after$",
   "instructions" : "Transforma las oraciones para que incluyan la forma $verb-ing$.",
   "translation" : "El perro corrió después de ver al gato.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",
@@ -459,7 +455,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d3db"
   },
-  "title" : "They went home after finishing their work.",
+  "title" : "$Before$ y $after$",
   "instructions" : "Transforma las oraciones para que incluyan la forma $verb-ing$.",
   "translation" : "Ellos fueron a casa después de terminar su trabajo.",
   "theoryId" : "a1.09.Prepositions_of_Time_3_before_and_after_",

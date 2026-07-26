@@ -113,7 +113,7 @@
   },
   "title" : "Formación del gerundio",
   "instructions" : "Agrega un gerundio ($verb+ing$) a la oración.",
-  "translation" : "Pintar es su mayor alegría en la vida.",
+  "translation" : "Pintar es su mayor amor en la vida.",
   "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -145,10 +145,10 @@
       "options" : [ "Painting" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(paint) is his greatest joy in life.",
+      "text" : "(paint) is his greatest love in life.",
       "options" : null
     } ],
-    "sentences" : [ "Painting is his greatest joy in life." ]
+    "sentences" : [ "Painting is his greatest love in life." ]
   }
 }, {
   "_id" : {
@@ -525,7 +525,7 @@
   },
   "title" : "Formación del gerundio",
   "instructions" : "Agrega un gerundio ($verb+ing$) a la oración.",
-  "translation" : "El senderismo se está volviendo más popular.",
+  "translation" : "Correr se está volviendo más popular entre los jóvenes.",
   "theoryId" : "b1.06.Verbs_with_a_Direct_Object_and_to_+_Infinitive",
   "topicName" : "Verb patterns",
   "difficulty" : {
@@ -545,26 +545,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
-    }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Hiking" ]
+      "text" : null,
+      "options" : [ "Running" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(hike) is getting more trendy.",
+      "text" : "(run) is getting more trendy among young people.",
       "options" : null
     } ],
-    "sentences" : [ "Hiking is getting more trendy." ]
+    "sentences" : [ "Running is getting more trendy among young people." ]
   }
 }, {
   "_id" : {
@@ -857,19 +853,19 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He devotes a lot of time",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "teaching" ]
     }, {
       "kind" : "TEXT",

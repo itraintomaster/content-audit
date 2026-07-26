@@ -309,7 +309,7 @@
   },
   "title" : "Futuros reales",
   "instructions" : "Practica la construcción de oraciones condicionales de tipo uno (condicionales reales futuras).",
-  "translation" : "Si los conductores exceden el límite de velocidad, recibirán una multa.",
+  "translation" : "Si los conductores superan el límite de velocidad, recibirán una multa.",
   "theoryId" : "b1.14.First_Conditionals_Future_Real_Conditionals_",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -329,34 +329,34 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "If the drivers",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "exceed" ]
+      "text" : null,
+      "options" : [ "go" ]
     }, {
       "kind" : "TEXT",
-      "text" : "(exceed) the speed limit, they",
+      "text" : "(go) over the speed limit, they",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "will receive" ]
     }, {
       "kind" : "TEXT",
       "text" : "(receive) a ticket.",
       "options" : null
     } ],
-    "sentences" : [ "If the drivers exceed the speed limit, they will receive a ticket." ]
+    "sentences" : [ "If the drivers go over the speed limit, they will receive a ticket." ]
   }
 }, {
   "_id" : {

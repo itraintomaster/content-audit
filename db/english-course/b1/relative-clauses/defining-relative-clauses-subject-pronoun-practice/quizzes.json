@@ -367,7 +367,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d33b"
   },
-  "title" : "We phoned the employer who runs the school.",
+  "title" : "Pronombre sujeto",
   "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa $who$ para personas y $that$ para cosas.",
   "translation" : "Llamamos al empleador que dirige la escuela.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
@@ -677,7 +677,7 @@
   },
   "title" : "Pronombre sujeto",
   "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa $who$ para personas y $that$ para cosas.",
-  "translation" : "Él colabora con el artista que es nuestro vecino.",
+  "translation" : "Él conoce al artista que es nuestro vecino.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -697,26 +697,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He collaborates with the artist (the artist is our neighbor).",
+      "text" : "He knows the artist (the artist is our neighbor).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He collaborates with the artist who is our neighbor." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He knows the artist who is our neighbor." ]
     } ],
-    "sentences" : [ "He collaborates with the artist who is our neighbor." ]
+    "sentences" : [ "He knows the artist who is our neighbor." ]
   }
 }, {
   "_id" : {
@@ -989,7 +985,7 @@
   },
   "title" : "Pronombre sujeto",
   "instructions" : "Añade una relative clause a las oraciones. Para este ejercicio, usa $who$ para personas y $that$ para cosas.",
-  "translation" : "Consultó al abogado que se ocupa de los divorcios.",
+  "translation" : "Fue a ver al abogado que se ocupa de los divorcios.",
   "theoryId" : "b1.12.Defining_Relative_Clauses_with_The_Pronoun_as_The_Subject_and_The_Object",
   "topicName" : "Relative clauses",
   "difficulty" : {
@@ -1009,25 +1005,21 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He consulted the solicitor (the solicitor deals with divorces).",
+      "text" : "He saw the lawyer (the lawyer deals with divorces).",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "He consulted the solicitor who deals with divorces." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "He saw the lawyer who deals with divorces." ]
     } ],
-    "sentences" : [ "He consulted the solicitor who deals with divorces." ]
+    "sentences" : [ "He saw the lawyer who deals with divorces." ]
   }
 } ]

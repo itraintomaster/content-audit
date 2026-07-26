@@ -425,7 +425,7 @@
   },
   "title" : "Asombro",
   "instructions" : "Crea preguntas negativas.",
-  "translation" : "¿No le gusta el arroz a Mary?",
+  "translation" : "¿No le gusta a Mary el arroz del nuevo restaurante?",
   "theoryId" : "b2.04.Negative_Questions",
   "topicName" : "Negatives and questions",
   "difficulty" : {
@@ -445,26 +445,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I'm surprised that Mary doesn't like rice.",
+      "text" : "I'm surprised that Mary doesn't like the rice at the new restaurant.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Doesn't Mary like rice?|Does Mary not like rice?" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Doesn't Mary like the rice at the new restaurant?|Does Mary not like the rice at the new restaurant?" ]
     } ],
-    "sentences" : [ "Doesn't Mary like rice?", "Does Mary not like rice?" ]
+    "sentences" : [ "Doesn't Mary like the rice at the new restaurant?", "Does Mary not like the rice at the new restaurant?" ]
   }
 }, {
   "_id" : {

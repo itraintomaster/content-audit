@@ -217,7 +217,7 @@
   },
   "title" : "$If so$ e $if not$: repaso",
   "instructions" : "Elige $If so$ o $If not$.",
-  "translation" : "Si es así",
+  "translation" : "¿Te gustaría un té orgánico? Si es así, preparemos una taza.",
   "theoryId" : "b2.12.Words_Instead_of_If",
   "topicName" : "Conditionals",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Would you like tea?",
+      "text" : "Would you like some organic tea?",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "If so" ]
     }, {
       "kind" : "TEXT",
       "text" : ", let's brew a cup.",
       "options" : null
     } ],
-    "sentences" : [ "Would you like tea? If so, let's brew a cup." ]
+    "sentences" : [ "Would you like some organic tea? If so , let's brew a cup." ]
   }
 }, {
   "_id" : {

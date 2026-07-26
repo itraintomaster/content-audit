@@ -317,7 +317,7 @@
   },
   "title" : "Con artículo o guion",
   "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
-  "translation" : "El sueño es medicina.",
+  "translation" : "El bádminton es medicina.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -349,10 +349,10 @@
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "sleep is medicine.",
+      "text" : "badminton is medicine.",
       "options" : null
     } ],
-    "sentences" : [ "- sleep is medicine." ]
+    "sentences" : [ "- badminton is medicine." ]
   }
 }, {
   "_id" : {
@@ -363,7 +363,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d256"
   },
-  "title" : "- juice is sweet.",
+  "title" : "Con artículo o guion",
   "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
   "translation" : "El jugo es dulce.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
@@ -433,26 +433,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Do you own",
+      "text" : "Do you have",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
       "text" : "cat?",
       "options" : null
     } ],
-    "sentences" : [ "Do you own a cat?" ]
+    "sentences" : [ "Do you have a cat?" ]
   }
 }, {
   "_id" : {
@@ -465,7 +465,7 @@
   },
   "title" : "Con artículo o guion",
   "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
-  "translation" : "Necesito una tableta.",
+  "translation" : "Necesito un mango.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -485,26 +485,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I require",
+      "text" : "I need",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
-      "text" : "tablet.",
+      "text" : "mango.",
       "options" : null
     } ],
-    "sentences" : [ "I require a tablet." ]
+    "sentences" : [ "I need a mango." ]
   }
 }, {
   "_id" : {
@@ -517,7 +517,7 @@
   },
   "title" : "Con artículo o guion",
   "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
-  "translation" : "Él compró un coche.",
+  "translation" : "Él consiguió un coche.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -537,26 +537,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He purchased",
+      "text" : "He got",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "a" ]
     }, {
       "kind" : "TEXT",
       "text" : "car.",
       "options" : null
     } ],
-    "sentences" : [ "He purchased a car." ]
+    "sentences" : [ "He got a car." ]
   }
 }, {
   "_id" : {
@@ -777,7 +777,7 @@
   },
   "title" : "Con artículo o guion",
   "instructions" : "¿Estos sustantivos son contables o incontables? Escribe $a$ si el sustantivo es contable, y escribe $-$ si el sustantivo es incontable. (No usamos $a$ con sustantivos incontables).",
-  "translation" : "La moda es más importante que la comodidad.",
+  "translation" : "La moda es más importante que la joyería.",
   "theoryId" : "a2.06.Using_No_Article_to_Talk_in_General",
   "topicName" : "Nouns",
   "difficulty" : {
@@ -809,10 +809,10 @@
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
-      "text" : "fashion is more important than comfort.",
+      "text" : "fashion is more important than jewellery.",
       "options" : null
     } ],
-    "sentences" : [ "- fashion is more important than comfort." ]
+    "sentences" : [ "- fashion is more important than jewellery." ]
   }
 }, {
   "_id" : {
@@ -897,26 +897,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I require",
+      "text" : "I need",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "-" ]
     }, {
       "kind" : "TEXT",
       "text" : "advice.",
       "options" : null
     } ],
-    "sentences" : [ "I require - advice." ]
+    "sentences" : [ "I need - advice." ]
   }
 }, {
   "_id" : {

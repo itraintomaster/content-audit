@@ -113,7 +113,7 @@
   },
   "title" : "Adjetivos compuestos",
   "instructions" : "Elige un adjetivo compuesto de la lista para completar la oración. (English-speaking / well-known / well-educated / part-time / middle-aged / good-looking / last-minute / never-ending / slow-moving / old-fashioned)",
-  "translation" : "Tiene muebles antiguos en su casa. Parece que son de los años 70.",
+  "translation" : "Tiene muebles desmontables en su casa.",
   "theoryId" : "b1.15.Compound_Adjectives",
   "topicName" : "Adjectives",
   "difficulty" : {
@@ -133,26 +133,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He has",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "old-fashioned" ]
+      "text" : null,
+      "options" : [ "flat-pack" ]
     }, {
       "kind" : "TEXT",
-      "text" : "furniture in his house. It looks like it's from the 70s.",
+      "text" : "furniture in his house.",
       "options" : null
     } ],
-    "sentences" : [ "He has old-fashioned furniture in his house. It looks like it's from the 70s." ]
+    "sentences" : [ "He has flat-pack furniture in his house." ]
   }
 }, {
   "_id" : {
@@ -319,7 +319,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d363"
   },
-  "title" : "All the teachers are well-trained. They all hold doctorate degrees.",
+  "title" : "Adjetivos compuestos",
   "instructions" : "Elige un adjetivo compuesto de la lista para completar la oración. (English-speaking / well-known / well-educated / part-time / middle-aged / good-looking / last-minute / never-ending / slow-moving / old-fashioned)",
   "translation" : "Todos los profesores están bien formados. Todos tienen doctorados.",
   "theoryId" : "b1.15.Compound_Adjectives",

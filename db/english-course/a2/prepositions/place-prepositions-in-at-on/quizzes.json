@@ -401,7 +401,7 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "We searched for the discount",
+      "text" : "We looked for the discount",
       "options" : null
     }, {
       "kind" : "CLOZE",
@@ -412,7 +412,7 @@
       "text" : "the website.",
       "options" : null
     } ],
-    "sentences" : [ "We searched for the discount on the website." ]
+    "sentences" : [ "We looked for the discount on the website." ]
   }
 }, {
   "_id" : {
@@ -943,7 +943,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d284"
   },
-  "title" : "He waited at the exit.",
+  "title" : "Lugar: $in$, $at$, $on$",
   "instructions" : "Escribe $in$, $at$ u $on$.",
   "translation" : "Él esperó en la salida.",
   "theoryId" : "a2.09.Prepositions_After_Adjectives",

@@ -61,7 +61,7 @@
   },
   "title" : "Espontáneo o previsto",
   "instructions" : "Elige $will$ para decisiones espontáneas o $be going to$ para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-  "translation" : "Susan va a hornear un pastel. Lo organizó antes.",
+  "translation" : "Susan va a hornear un pastel. Lo planeó.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -97,10 +97,10 @@
       "options" : [ "is going to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "bake a cake. She arranged it earlier.",
+      "text" : "bake a cake. She planned it.",
       "options" : null
     } ],
-    "sentences" : [ "Susan is going to bake a cake. She arranged it earlier." ]
+    "sentences" : [ "Susan is going to bake a cake. She planned it." ]
   }
 }, {
   "_id" : {
@@ -217,7 +217,7 @@
   },
   "title" : "Espontáneo o previsto",
   "instructions" : "Elige $will$ para decisiones espontáneas o $be going to$ para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-  "translation" : "A: ¿Podrías llevarme? B: ¡Claro! Lo haré con gusto.",
+  "translation" : "¿Podrías ayudarme? Traeré los libros.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -237,26 +237,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: Could you drop me off? B: Sure! I",
+      "text" : "Could you help me? I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'ll|will" ]
+      "text" : null,
+      "options" : [ "will|'ll" ]
     }, {
       "kind" : "TEXT",
-      "text" : "do it gladly.",
+      "text" : "bring the books.",
       "options" : null
     } ],
-    "sentences" : [ "A: Could you drop me off? B: Sure! I'll do it gladly.", "A: Could you drop me off? B: Sure! I will do it gladly." ]
+    "sentences" : [ "Could you help me? I will bring the books.", "Could you help me? I 'll bring the books." ]
   }
 }, {
   "_id" : {
@@ -371,7 +371,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d22c"
   },
-  "title" : "We 're going to paint the house this year. We got the paint.",
+  "title" : "Espontáneo o previsto",
   "instructions" : "Elige $will$ para decisiones espontáneas o $be going to$ para planes preestablecidos. Utiliza contracciones cuando sea posible.",
   "translation" : "Vamos a pintar la casa este año. Conseguimos la pintura.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
@@ -425,7 +425,7 @@
   },
   "title" : "Espontáneo o previsto",
   "instructions" : "Elige $will$ para decisiones espontáneas o $be going to$ para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-  "translation" : "A: Me siento exhausto. B: Prepararé un poco de té.",
+  "translation" : "Me siento peor. Prepararé té.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -445,26 +445,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: I feel exhausted. B: I",
+      "text" : "I feel worse. I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'ll|will" ]
     }, {
       "kind" : "TEXT",
-      "text" : "make some tea.",
+      "text" : "make tea.",
       "options" : null
     } ],
-    "sentences" : [ "A: I feel exhausted. B: I'll make some tea.", "A: I feel exhausted. B: I will make some tea." ]
+    "sentences" : [ "I feel worse. I 'll make tea.", "I feel worse. I will make tea." ]
   }
 }, {
   "_id" : {
@@ -529,7 +529,7 @@
   },
   "title" : "Espontáneo o previsto",
   "instructions" : "Elige $will$ para decisiones espontáneas o $be going to$ para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-  "translation" : "A: Está muy oscuro aquí. B: Encenderé la luz.",
+  "translation" : "Está oscuro. Encenderé la lámpara.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -549,26 +549,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "A: It's really dark in here. B: I",
+      "text" : "It's dark. I",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'ll|will" ]
     }, {
       "kind" : "TEXT",
-      "text" : "switch on the light.",
+      "text" : "switch on the lamp.",
       "options" : null
     } ],
-    "sentences" : [ "A: It's really dark in here. B: I'll switch on the light.", "A: It's really dark in here. B: I will switch on the light." ]
+    "sentences" : [ "It's dark. I 'll switch on the lamp.", "It's dark. I will switch on the lamp." ]
   }
 }, {
   "_id" : {
@@ -633,7 +633,7 @@
   },
   "title" : "Espontáneo o previsto",
   "instructions" : "Elige $will$ para decisiones espontáneas o $be going to$ para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-  "translation" : "Él se va a convertir en ingeniero después de terminar la universidad. Siempre le ha apasionado.",
+  "translation" : "Él se va a convertir en ingeniero después de terminar la universidad.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -653,26 +653,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'s going to|is going to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "become an engineer after he finishes college. He's always been passionate about it.",
+      "text" : "become an engineer after he finishes college.",
       "options" : null
     } ],
-    "sentences" : [ "He's going to become an engineer after he finishes college. He's always been passionate about it.", "He is going to become an engineer after he finishes college. He's always been passionate about it." ]
+    "sentences" : [ "He 's going to become an engineer after he finishes college.", "He is going to become an engineer after he finishes college." ]
   }
 }, {
   "_id" : {
@@ -685,7 +685,7 @@
   },
   "title" : "Espontáneo o previsto",
   "instructions" : "Elige $will$ para decisiones espontáneas o $be going to$ para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-  "translation" : "Van a comprar una casa nueva pronto. Firmaron los papeles.",
+  "translation" : "Van a comprar un auto nuevo.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -705,26 +705,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "They",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "'re going to|are going to" ]
+      "text" : null,
+      "options" : [ "are going to|'re going to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "buy a new house soon. They signed the papers.",
+      "text" : "buy a new car.",
       "options" : null
     } ],
-    "sentences" : [ "They're going to buy a new house soon. They signed the papers.", "They are going to buy a new house soon. They signed the papers." ]
+    "sentences" : [ "They are going to buy a new car.", "They 're going to buy a new car." ]
   }
 }, {
   "_id" : {
@@ -789,7 +789,7 @@
   },
   "title" : "Espontáneo o previsto",
   "instructions" : "Elige $will$ para decisiones espontáneas o $be going to$ para planes preestablecidos. Utiliza contracciones cuando sea posible.",
-  "translation" : "Él va a ir al concierto. Compró las entradas el mes pasado.",
+  "translation" : "Él va a salir. Reservó entradas para el concierto.",
   "theoryId" : "a2.02.Will_Use_Offers_Requests_Refusals_Promises",
   "topicName" : "'Will' and 'Going To'",
   "difficulty" : {
@@ -809,26 +809,26 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
       "text" : "He",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "'s going to|is going to" ]
     }, {
       "kind" : "TEXT",
-      "text" : "go to the concert. He purchased the tickets last month.",
+      "text" : "go out. He booked concert tickets.",
       "options" : null
     } ],
-    "sentences" : [ "He's going to go to the concert. He purchased the tickets last month.", "He is going to go to the concert. He purchased the tickets last month." ]
+    "sentences" : [ "He 's going to go out. He booked concert tickets.", "He is going to go out. He booked concert tickets." ]
   }
 }, {
   "_id" : {

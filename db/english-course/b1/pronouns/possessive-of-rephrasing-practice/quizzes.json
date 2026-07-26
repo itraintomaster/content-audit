@@ -425,7 +425,7 @@
   },
   "title" : "Reformulación posesiva",
   "instructions" : "Reescribe la oración para que incluya la preposición $of$. Necesitas añadir la palabra $a$. Por ejemplo: Lucy is my friend -> Lucy is a friend of mine.",
-  "translation" : "Él es un fiel campeón de ellos.",
+  "translation" : "Él es un campeón discapacitado de ellos.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -453,14 +453,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He is their loyal champion.",
+      "text" : "He is their disabled champion.",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
-      "options" : [ "He is a loyal champion of theirs." ]
+      "options" : [ "He is a disabled champion of theirs." ]
     } ],
-    "sentences" : [ "He is a loyal champion of theirs." ]
+    "sentences" : [ "He is a disabled champion of theirs." ]
   }
 }, {
   "_id" : {
@@ -785,7 +785,7 @@
   },
   "title" : "Reformulación posesiva",
   "instructions" : "Reescribe la oración para que incluya la preposición $of$. Necesitas añadir la palabra $a$. Por ejemplo: Lucy is my friend -> Lucy is a friend of mine.",
-  "translation" : "Peter es un ídolo mío.",
+  "translation" : "Peter es un antiguo amante mío.",
   "theoryId" : "b1.13.Reflexive_Pronouns",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -805,26 +805,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Peter is my idol.",
+      "text" : "Peter is my former lover.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
-      "options" : [ "Peter is an idol of mine." ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
+      "text" : null,
+      "options" : [ "Peter is a former lover of mine." ]
     } ],
-    "sentences" : [ "Peter is an idol of mine." ]
+    "sentences" : [ "Peter is a former lover of mine." ]
   }
 }, {
   "_id" : {

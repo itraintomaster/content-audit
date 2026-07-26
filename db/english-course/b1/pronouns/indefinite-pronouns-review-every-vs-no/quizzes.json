@@ -61,7 +61,7 @@
   },
   "title" : "$Every$ vs. $No$: repaso",
   "instructions" : "Elige la palabra correcta.",
-  "translation" : "¡Nada es tan urgente como mantenerse hidratado! ¡Es lo más importante!",
+  "translation" : "¡Nada es tan urgente como mantenerse hidratado! ¡Bebé agua ahora mismo!",
   "theoryId" : "",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -89,14 +89,14 @@
     "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "Everything / Nothing is as urgent as staying hydrated! It's the most important thing!",
+      "text" : "Everything / Nothing is as urgent as staying hydrated! Drink water right now!",
       "options" : null
     }, {
       "kind" : "CLOZE",
       "text" : null,
       "options" : [ "Nothing" ]
     } ],
-    "sentences" : [ "Everything / Nothing is as urgent as staying hydrated! It's the most important thing! Nothing" ]
+    "sentences" : [ "Everything / Nothing is as urgent as staying hydrated! Drink water right now! Nothing" ]
   }
 }, {
   "_id" : {
@@ -213,7 +213,7 @@
   },
   "title" : "$Every$ vs. $No$: repaso",
   "instructions" : "Elige la palabra correcta.",
-  "translation" : "No vio a nadie durante su viaje. Fue muy desolador.",
+  "translation" : "No vio a nadie durante su viaje. Toda la población se había ido.",
   "theoryId" : "",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -233,26 +233,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "He saw everybody / nobody during his journey. It was very desolate.",
+      "text" : "He saw everybody / nobody during his journey. The whole population had left.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "nobody" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "He saw everybody / nobody during his journey. It was very desolate. nobody" ]
+    "sentences" : [ "He saw everybody / nobody during his journey. The whole population had left. nobody" ]
   }
 }, {
   "_id" : {
@@ -465,7 +461,7 @@
   },
   "title" : "$Every$ vs. $No$: repaso",
   "instructions" : "Elige la palabra correcta.",
-  "translation" : "¡Ella pierde sus documentos en todas partes! Es muy desorganizada.",
+  "translation" : "¡Ella pierde sus recetas médicas en todas partes! Es muy desorganizada.",
   "theoryId" : "",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -485,26 +481,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "She loses her documents everywhere / nowhere! She's so disorganized.",
+      "text" : "She loses her prescriptions everywhere / nowhere! She's so disorganized.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "everywhere" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "She loses her documents everywhere / nowhere! She's so disorganized. everywhere" ]
+    "sentences" : [ "She loses her prescriptions everywhere / nowhere! She's so disorganized. everywhere" ]
   }
 }, {
   "_id" : {
@@ -881,7 +873,7 @@
   },
   "title" : "$Every$ vs. $No$: repaso",
   "instructions" : "Elige la palabra correcta.",
-  "translation" : "No prohibí a nadie entrar en nuestra habitación. No me gusta tener amigos cerca.",
+  "translation" : "No invité a nadie a entrar en nuestra habitación. No me gusta tener amigos cerca.",
   "theoryId" : "",
   "topicName" : "Pronouns",
   "difficulty" : {
@@ -901,26 +893,22 @@
   "miniTheory" : "",
   "successMessage" : "",
   "form" : {
-    "kind" : "CLOZE",
+    "kind" : null,
     "incidence" : {
-      "$numberDouble" : "1.0"
+      "$numberDouble" : "0.0"
     },
-    "label" : "",
-    "name" : "",
+    "label" : null,
+    "name" : null,
     "sentenceParts" : [ {
       "kind" : "TEXT",
-      "text" : "I forbade everybody / nobody to enter our room. I dislike having friends around.",
+      "text" : "I invited everybody / nobody to enter our room. I dislike having friends around.",
       "options" : null
     }, {
       "kind" : "CLOZE",
-      "text" : "",
+      "text" : null,
       "options" : [ "nobody" ]
-    }, {
-      "kind" : "TEXT",
-      "text" : "",
-      "options" : null
     } ],
-    "sentences" : [ "I forbade everybody / nobody to enter our room. I dislike having friends around. nobody" ]
+    "sentences" : [ "I invited everybody / nobody to enter our room. I dislike having friends around. nobody" ]
   }
 }, {
   "_id" : {
@@ -931,7 +919,7 @@
   "knowledgeId" : {
     "$oid" : "6814dafa7d73e7209a13d346"
   },
-  "title" : "Everybody / Nobody enjoys paying for shaves. We all dislike it! Nobody",
+  "title" : "$Every$ vs. $No$: repaso",
   "instructions" : "Elige la palabra correcta.",
   "translation" : "A nadie le gusta pagar por afeitadas. ¡A todos nos disgusta!",
   "theoryId" : "",
