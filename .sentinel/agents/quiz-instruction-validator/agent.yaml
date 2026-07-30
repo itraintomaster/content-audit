@@ -1,0 +1,36 @@
+name: quiz-instruction-validator
+description: |
+  Juez standalone para UN quiz de inglés. Recibe contexto pedagógico y el quiz
+  completo (JSON o string JSON), reconstruye todas las respuestas aceptadas y
+  decide si el quiz cumple literalmente TODAS las restricciones explícitas de
+  sus instrucciones, además de gramática, significado y resolubilidad.
+
+  Flujo:
+
+      evaluate (llm_call: juicio lingüístico estructurado)
+        ──▶ gate_verdict (gate: esquema estricto + invariantes; failed reintenta)
+        ──▶ emit (script: artifact quizInstructionVerdict)
+
+  El presupuesto del grafo y max_attempts acotan el retry. Si el juez agota los
+  intentos sin producir JSON válido, emit genera un veredicto conservador de
+  infraestructura con confidence=0, sin promover una salida malformada.
+kind: agent
+strategy: graph
+initial_node: evaluate
+budgets:
+  max_iterations: 8
+nodes:
+  - ./nodes/evaluate.md
+  - ./nodes/gate_verdict.md
+  - ./nodes/emit.md
+goal:
+  required_artifacts:
+    - quizInstructionVerdict
+  required_nodes_done:
+    - emit
+dependencies:
+  - cefrLevel
+  - topic
+  - title
+  - instructions
+  - quiz
