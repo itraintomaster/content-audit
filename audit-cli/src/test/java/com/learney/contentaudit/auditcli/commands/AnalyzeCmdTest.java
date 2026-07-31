@@ -28,10 +28,12 @@ import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
@@ -96,7 +98,7 @@ public class AnalyzeCmdTest {
     public void shouldPrintAnErrorAndReturnNonzeroExitCodeWhenInvokedWithACoursePathThatDoesNotExistOnDisk() {
         // R002: non-existent path → auditRunner.runAudit throws RuntimeException → non-zero exit
         AuditRunner auditRunner = mock(AuditRunner.class);
-        when(auditRunner.runAudit(any(Path.class), any())).thenThrow(
+        when(auditRunner.runAudit(any(Path.class), ArgumentMatchers.<Set<String>>any())).thenThrow(
                 new RuntimeException("File not found: /nonexistent/course"));
 
         FormatterRegistry formatterRegistry = mock(FormatterRegistry.class);
@@ -133,7 +135,7 @@ public class AnalyzeCmdTest {
         // R003: default format is "text" — formatter for "text" key is invoked and output goes to stdout
         AuditRunner auditRunner = mock(AuditRunner.class);
         AuditReport report = new AuditReport(new AuditNode());
-        when(auditRunner.runAudit(any(Path.class), any())).thenReturn(report);
+        when(auditRunner.runAudit(any(Path.class), ArgumentMatchers.<Set<String>>any())).thenReturn(report);
 
         ReportFormatter textFormatter = mock(ReportFormatter.class);
         when(textFormatter.format(any(), any())).thenReturn("PLAIN TEXT REPORT");
@@ -180,7 +182,7 @@ public class AnalyzeCmdTest {
         // R003: --format json → formatter for "json" key is invoked and output goes to stdout
         AuditRunner auditRunner = mock(AuditRunner.class);
         AuditReport report = new AuditReport(new AuditNode());
-        when(auditRunner.runAudit(any(Path.class), any())).thenReturn(report);
+        when(auditRunner.runAudit(any(Path.class), ArgumentMatchers.<Set<String>>any())).thenReturn(report);
 
         ReportFormatter jsonFormatter = mock(ReportFormatter.class);
         when(jsonFormatter.format(any(), any())).thenReturn("{\"score\": 0.85}");
@@ -227,7 +229,7 @@ public class AnalyzeCmdTest {
         // R004: successful audit → exit code 0, regardless of score (even if score is 0.0)
         AuditRunner auditRunner = mock(AuditRunner.class);
         AuditReport report = new AuditReport(new AuditNode());
-        when(auditRunner.runAudit(any(Path.class), any())).thenReturn(report);
+        when(auditRunner.runAudit(any(Path.class), ArgumentMatchers.<Set<String>>any())).thenReturn(report);
 
         ReportFormatter textFormatter = mock(ReportFormatter.class);
         when(textFormatter.format(any(), any())).thenReturn("Score: 0.00 (very poor)");
@@ -269,7 +271,7 @@ public class AnalyzeCmdTest {
     public void shouldReturnANonzeroExitCodeWhenAuditRunnerThrowsARuntimeExceptionDuringTheAuditPipelineAndPrintADescriptiveErrorMessageToStderr() {
         // R004 + J003: RuntimeException in audit pipeline → non-zero exit + error message on stderr
         AuditRunner auditRunner = mock(AuditRunner.class);
-        when(auditRunner.runAudit(any(Path.class), any())).thenThrow(
+        when(auditRunner.runAudit(any(Path.class), ArgumentMatchers.<Set<String>>any())).thenThrow(
                 new RuntimeException("malformed JSON in course file"));
 
         FormatterRegistry formatterRegistry = mock(FormatterRegistry.class);
@@ -299,5 +301,37 @@ public class AnalyzeCmdTest {
                 "R004: a descriptive error message must appear on stderr when the audit pipeline fails");
         assertTrue(errOutput.contains("Error") || errOutput.contains("malformed") || errOutput.contains("audit"),
                 "R004: stderr must contain a descriptive message; got: " + errOutput);
+    }
+
+    @Test
+    @DisplayName("should exclude the quiz instruction analysis from the run when the user asks to exclude analyzers")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R011")
+    public void shouldExcludeTheQuizInstructionAnalysisFromTheRunWhenTheUserAsksToExcludeAnalyzers() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should carry the instruction budget the user asked for into the run policy of the judge")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R006")
+    public void shouldCarryTheInstructionBudgetTheUserAskedForIntoTheRunPolicyOfTheJudge() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should ask for re evaluation with its scope when the user requests to judge again")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R012")
+    public void shouldAskForReEvaluationWithItsScopeWhenTheUserRequestsToJudgeAgain() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should neither exclude nor narrow the quiz instruction analysis when the user passes no analyzer option")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R001")
+    public void shouldNeitherExcludeNorNarrowTheQuizInstructionAnalysisWhenTheUserPassesNoAnalyzerOption() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

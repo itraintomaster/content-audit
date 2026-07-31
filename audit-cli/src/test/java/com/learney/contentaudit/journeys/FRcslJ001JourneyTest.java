@@ -56,7 +56,7 @@ public class FRcslJ001JourneyTest {
      */
     private AuditNode buildTree(DefaultLevelDiagnoses milestoneDiagnoses) {
         // Quiz entity — the sentence that is too long
-        AuditableQuiz quizEntity = new AuditableQuiz(Collections.emptyList(), "quiz-001", "Quiz 1", "Q001", "El rapido zorro marron salta sobre el perro perezoso hoy aqui", List.of("The quick brown fox jumps over the lazy dog today here"), null);
+        AuditableQuiz quizEntity = new AuditableQuiz(Collections.emptyList(), "quiz-001", "Quiz 1", "Q001", "El rapido zorro marron salta sobre el perro perezoso hoy aqui", List.of("The quick brown fox jumps over the lazy dog today here"), null, null, null);
 
         // SentenceLengthDiagnosis: tokenCount=15, range=[5,8], delta=+7 (15-8=7)
         SentenceLengthDiagnosis slDiagnosis = new SentenceLengthDiagnosis(
@@ -77,7 +77,7 @@ public class FRcslJ001JourneyTest {
                 true,
                 "knowledge-001",
                 "Knowledge 1",
-                "K001", null);
+                "K001", null, null);
 
         DefaultKnowledgeDiagnoses knowledgeDiagnoses = new DefaultKnowledgeDiagnoses();
 

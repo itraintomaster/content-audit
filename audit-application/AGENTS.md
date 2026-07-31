@@ -3,6 +3,16 @@
 
 **This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
 
+## Models
+
+### AuditRunRequest (`record`)
+
+| Field | Type |
+|-------|------|
+| includedAnalyzers | `Set<String>` |
+| excludedAnalyzers | `Set<String>` |
+| evaluationPolicies | `Map<String,EvaluationRunPolicy>` |
+
 ## Interfaces
 
 ### AuditRunner (service)
@@ -11,6 +21,7 @@ Methods:
 
 - `runAudit(Path coursePath,Set<String> analyzerNames): AuditReport`
 - `runDetailedAudit(Path coursePath,String analyzerName): AuditNode`
+- `runAudit(Path coursePath,AuditRunRequest request): AuditReport`
 
 ### AnalyzerRegistry (service)
 
@@ -53,6 +64,8 @@ Methods:
 - should propagate QuizTemplateEntity sentences verbatim to AuditableQuiz sentences without modification → FEAT-DBSENT/F-DBSENT-R002
 - should not invoke QuizSentenceConverter.toPlainSentences for any quiz of the audited course → FEAT-DBSENT/F-DBSENT-R002
 - should stamp the canonical sentence at index 0 of QuizTemplateEntity sentences as the NLP batch key for the AuditableQuiz tokens → FEAT-DBSENT/F-DBSENT-R002
+- should carry every sentence part and every accepted option of the quiz template into the auditable quiz → FEAT-QINST/F-QINST-R009
+- should carry the knowledge instructions and the topic name into the auditable knowledge → FEAT-QINST/F-QINST-R009
 
 ### DefaultSentenceLengthConfig
 
@@ -73,6 +86,7 @@ Methods:
 - `auditEngine`: `AuditEngine`
 - `allAnalyzers`: `List<ContentAnalyzer>`
 - `scoreAggregator`: `ScoreAggregator`
+- `evaluationAnalyzerFactories`: `List<EvaluationAnalyzerFactory>`
 
 **Tests that must pass:**
 
@@ -87,6 +101,13 @@ Methods:
 - should expose a public runAudit(Path coursePath) method on the AuditRunner contract that returns the AuditReport produced after loading the course mapping it to AuditableCourse and running the audit engine → FEAT-CLI/F-CLI-R005
 - should expose lemma-count diagnoses in the AuditReport when runAudit is invoked with both lemma-count and lemma-absence analyzers so downstream consumers can read the underexposure signal per level → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R001
 - should expose lemma-count diagnoses in the AuditReport when runDetailedAudit is invoked with both lemma-count and lemma-absence analyzers so downstream consumers can read the underexposure signal per level → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R001
+- should include the quiz instruction analysis when the audit request says nothing about analyzers → FEAT-QINST/F-QINST-R001
+- should report quiz instruction score, diagnoses and coverage on an audit asked with no options → FEAT-QINST/F-QINST-R001
+- should not build the quiz instruction analyzer when the request excludes it → FEAT-QINST/F-QINST-R011
+- should leave the report without quiz instruction score, diagnosis or coverage when the analysis is excluded → FEAT-QINST/F-QINST-R011
+- should not run the quiz instruction analysis when the request narrows the audit to other analyzers → FEAT-QINST/F-QINST-R011
+- should finish the audit and keep the results of the other analyzers when the quiz instruction judge fails → FEAT-QINST/F-QINST-R007
+- should hand the quiz instruction analyzer the run policy the request declared for its judge → FEAT-QINST/F-QINST-R006
 
 ### DefaultCocaBucketsConfig
 
@@ -215,6 +236,17 @@ Methods:
 - should reject a non-numeric string as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
 - should reject an empty string as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
 
+### DefaultQuizInstructionConfig
+
+**Implements:** QuizInstructionConfig
+
+**Types:** Component
+
+**Tests that must pass:**
+
+- should default the run budget to 500 new judge queries → FEAT-QINST/F-QINST-R006
+- should map the severities none, minor, major and critical to the scores 1.0, 0.6, 0.3 and 0.0 → FEAT-QINST/F-QINST-R002
+
 ## Dependency Contracts
 
 The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.
@@ -247,6 +279,7 @@ The following models and interfaces are available from dependencies. You can use
 | label | `String` |
 | code | `String` |
 | sentenceMode | `SentenceMode` |
+| topicName | `String` |
 
 ### AuditableTopic (`record`)
 
@@ -277,6 +310,8 @@ The following models and interfaces are available from dependencies. You can use
 | translation | `String` |
 | sentences | `List<String>` |
 | quizSentence | `String` |
+| instructions | `String` |
+| sentenceParts | `List<SentencePartEntity>` |
 
 ### CefrLevel (`enum`)
 
@@ -498,6 +533,7 @@ Methods:
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>`
 - `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>`
 - `getLemmaCountDiagnosis(): Optional<LemmaCountCourseDiagnosis>`
+- `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>`
 
 ### LevelDiagnoses (port)
 
@@ -526,6 +562,7 @@ Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
 - `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
+- `getQuizInstructionDiagnosis(): Optional<QuizInstructionDiagnosis>`
 
 ### AuditReportStore (port)
 
@@ -567,6 +604,26 @@ Methods:
 Methods:
 
 - `getThreshold(): int`
+
+### EvaluationAnalyzerFactory (factory)
+
+Methods:
+
+- `evaluatorId(): String`
+- `create(EvaluationRunPolicy policy): ContentAnalyzer`
+
+### QuizInstructionVerdictReader (port)
+
+Methods:
+
+- `read(String payload): QuizInstructionVerdict`
+
+### QuizInstructionConfig (port)
+
+Methods:
+
+- `getDefaultMaxNewEvaluations(): int`
+- `getScoreFor(InstructionSeverity severity): double`
 
 ### From course-domain
 
@@ -731,6 +788,127 @@ Methods:
 Methods:
 
 - `validate(CourseEntity course): void`
+
+### From evaluation-ledger-domain
+
+## Models
+
+### EvaluationKey (`record`)
+
+| Field | Type |
+|-------|------|
+| evaluatorId | `String` |
+| evaluatorVersion | `String` |
+| contentFingerprint | `String` |
+
+### EvaluationSubject (`record`)
+
+| Field | Type |
+|-------|------|
+| subjectRef | `String` |
+| content | `Map<String,String>` |
+
+### EvaluationRecord (`record`)
+
+| Field | Type |
+|-------|------|
+| key | `EvaluationKey` |
+| payload | `String` |
+| subjectRef | `String` |
+| recordedAt | `Instant` |
+
+### EvaluationEmitted (`record`)
+
+| Field | Type |
+|-------|------|
+| payload | `String` |
+
+### EvaluationNotEmitted (`record`)
+
+| Field | Type |
+|-------|------|
+| kind | `EvaluationFailureKind` |
+| reason | `String` |
+
+### EvaluationFailureKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| OUTPUT_UNUSABLE | `null` |
+| EVALUATOR_UNAVAILABLE | `null` |
+
+### EvaluationResolutionKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| REUSED | `null` |
+| EVALUATED | `null` |
+| PENDING | `null` |
+| FAILED | `null` |
+
+### EvaluationResolution (`record`)
+
+| Field | Type |
+|-------|------|
+| kind | `EvaluationResolutionKind` |
+| payload | `String` |
+
+### EvaluationCoverage (`record`)
+
+| Field | Type |
+|-------|------|
+| reached | `int` |
+| withResult | `int` |
+| evaluatedInRun | `int` |
+| reused | `int` |
+| pending | `int` |
+| failed | `int` |
+
+### EvaluationRunPolicy (`record`)
+
+| Field | Type |
+|-------|------|
+| maxNewEvaluations | `int` |
+| reevaluate | `boolean` |
+| reevaluationScope | `String` |
+
+### EvaluationOutcome (port)
+
+### EvaluationLedger (port)
+
+Methods:
+
+- `find(EvaluationKey key): Optional<EvaluationRecord>`
+- `append(EvaluationRecord record): void`
+- `history(String evaluatorId,String contentFingerprint): List<EvaluationRecord>`
+
+### ContentFingerprinter (port)
+
+Methods:
+
+- `fingerprint(Map<String,String> content): String`
+
+### Evaluator (port)
+
+Methods:
+
+- `evaluatorId(): String`
+- `evaluatorVersion(): String`
+- `evaluate(EvaluationSubject subject): EvaluationOutcome`
+
+### EvaluationSession (port)
+
+Methods:
+
+- `resolve(EvaluationSubject subject): EvaluationResolution`
+- `resolveForced(EvaluationSubject subject): EvaluationResolution`
+- `coverage(): EvaluationCoverage`
+
+### EvaluationSessionFactory (factory)
+
+Methods:
+
+- `open(EvaluationRunPolicy policy,Evaluator evaluator): EvaluationSession`
 
 ### From refiner-domain
 

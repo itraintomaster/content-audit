@@ -181,9 +181,9 @@ public class CocaBucketsAnalyzerTest {
         // Add a knowledge and quiz under a topic
         AuditNode milestone = root.getChildren().get(0);
         AuditNode topic = milestone.getChildren().get(0);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "l", "c", null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "title", "instructions", true, "k1", "l", "c", null, null);
         AuditNode knowledgeNode = buildNode(AuditTarget.KNOWLEDGE, knowledge, topic);
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "label", "code", null, List.of("sentence"), null, null, null);
         AuditNode quizNode = buildNode(AuditTarget.QUIZ, quiz, knowledgeNode);
 
         sut.onKnowledge(knowledgeNode);
@@ -265,9 +265,9 @@ public class CocaBucketsAnalyzerTest {
         for (int i = 0; i < top4kCount; i++)
             tokens.add(new NlpToken("rare", "rare", "NOUN", 5000, false, false));
 
-        AuditableQuiz quiz = new AuditableQuiz(tokens, "q1", "Q", null, null, List.of("s"), null);
+        AuditableQuiz quiz = new AuditableQuiz(tokens, "q1", "Q", null, null, List.of("s"), null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(quiz), "K", "Complete", true, "k1", "K", "K", null);
+                List.of(quiz), "K", "Complete", true, "k1", "K", "K", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t1", "T", "T");
         AuditableMilestone ms = new AuditableMilestone(List.of(topic), "A1", "A1", null);
         AuditableCourse course = new AuditableCourse(List.of(ms));
@@ -636,9 +636,9 @@ public class CocaBucketsAnalyzerTest {
 
         java.util.List<AuditableTopic> topics = new java.util.ArrayList<>();
         for (int i = 0; i < topicCount; i++) {
-            AuditableQuiz quiz = new AuditableQuiz(tokens, "q" + i, "Q", null, null, List.of("s"), null);
+            AuditableQuiz quiz = new AuditableQuiz(tokens, "q" + i, "Q", null, null, List.of("s"), null, null, null);
             AuditableKnowledge k = new AuditableKnowledge(
-                    List.of(quiz), "K" + i, "C", true, "k" + i, "K" + i, null, null);
+                    List.of(quiz), "K" + i, "C", true, "k" + i, "K" + i, null, null, null);
             topics.add(new AuditableTopic(List.of(k), "t" + i, "T" + i, "T" + i));
         }
         AuditableMilestone ms = new AuditableMilestone(topics, "A1", "A1", null);

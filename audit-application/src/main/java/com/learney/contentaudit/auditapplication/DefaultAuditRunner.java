@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditapplication;
+import com.learney.contentaudit.auditdomain.EvaluationAnalyzerFactory;
 
 import com.learney.contentaudit.auditdomain.AuditEngine;
 import com.learney.contentaudit.auditdomain.AuditNode;
@@ -29,12 +30,15 @@ public class DefaultAuditRunner implements AuditRunner {
 
     private final ScoreAggregator scoreAggregator;
 
-public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMapper courseToAuditableMapper, AuditEngine auditEngine, List<ContentAnalyzer> allAnalyzers, ScoreAggregator scoreAggregator) {
+private final List<EvaluationAnalyzerFactory> evaluationAnalyzerFactories;
+
+public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMapper courseToAuditableMapper, AuditEngine auditEngine, List<ContentAnalyzer> allAnalyzers, ScoreAggregator scoreAggregator, List<EvaluationAnalyzerFactory> evaluationAnalyzerFactories) {
     this.courseRepository = courseRepository;
     this.courseToAuditableMapper = courseToAuditableMapper;
     this.auditEngine = auditEngine;
     this.allAnalyzers = allAnalyzers;
     this.scoreAggregator = scoreAggregator;
+    this.evaluationAnalyzerFactories = evaluationAnalyzerFactories;
 }
 
     @Override
@@ -50,6 +54,11 @@ public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMa
                 .toList();
         IAuditEngine filteredEngine = new IAuditEngine(filtered, scoreAggregator);
         return filteredEngine.runAudit(auditableCourse);
+    }
+
+    @Override
+    public AuditReport runAudit(Path coursePath, AuditRunRequest request) {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     @Override

@@ -132,7 +132,7 @@ public class FKtlrJ001JourneyTest {
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Present Simple Affirmative Sentences With Third Person Singular Verbs",
                 "Completa la oracion con la forma correcta del verbo en presente simple.",
-                true, KNOWLEDGE_ID, "Present Simple", "PS1", null);
+                true, KNOWLEDGE_ID, "Present Simple", "PS1", null, null);
 
         AuditNode courseNode = buildCourseNode();
         AuditNode topicNode = buildNode(courseNode, AuditTarget.TOPIC, topic, new DefaultTopicDiagnoses());

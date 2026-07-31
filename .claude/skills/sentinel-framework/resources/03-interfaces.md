@@ -210,6 +210,7 @@ Examples:
 | `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>` | (none) |
 | `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>` | (none) |
 | `getLemmaCountDiagnosis(): Optional<LemmaCountCourseDiagnosis>` | (none) |
+| `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>` | (none) |
 
 #### LevelDiagnoses (port)
 
@@ -246,6 +247,7 @@ Examples:
 |--------|--------|
 | `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>` | (none) |
 | `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>` | (none) |
+| `getQuizInstructionDiagnosis(): Optional<QuizInstructionDiagnosis>` | (none) |
 
 #### AuditReportStore (port)
 
@@ -307,6 +309,34 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `getThreshold(): int` | (none) |
+
+#### EvaluationAnalyzerFactory (factory)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `evaluatorId(): String` | (none) |
+| `create(EvaluationRunPolicy policy): ContentAnalyzer` | (none) |
+
+#### QuizInstructionVerdictReader (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `read(String payload): QuizInstructionVerdict` | (none) |
+
+#### QuizInstructionConfig (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implemented by:** DefaultQuizInstructionConfig (audit-application)
+
+| Method | Throws |
+|--------|--------|
+| `getDefaultMaxNewEvaluations(): int` | (none) |
+| `getScoreFor(InstructionSeverity severity): double` | (none) |
 
 #### TokenClassifier (package: coca)
 
@@ -380,6 +410,33 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `evaluate(List<NlpToken> tokens, CefrLevel sentenceLevel): SentenceLexicalFlags` | (none) |
+
+#### QuizInstructionSubjectBuilder (package: quizinstructionengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstructionengine`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `build(AuditNode quizNode): EvaluationSubject` | (none) |
+
+#### QuizInstructionScorer (package: quizinstructionengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstructionengine`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `score(QuizInstructionVerdict verdict): double` | (none) |
+
+#### QuizInstructionScopeMatcher (package: quizinstructionengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstructionengine`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `matches(AuditNode quizNode,String reevaluationScope): boolean` | (none) |
 
 ### Module: course-domain
 
@@ -501,6 +558,7 @@ Examples:
 |--------|--------|
 | `runAudit(Path coursePath,Set<String> analyzerNames): AuditReport` | (none) |
 | `runDetailedAudit(Path coursePath,String analyzerName): AuditNode` | (none) |
+| `runAudit(Path coursePath,AuditRunRequest request): AuditReport` | (none) |
 
 #### AnalyzerRegistry (service)
 
@@ -525,13 +583,14 @@ Examples:
 
 ### Module: audit-cli
 
-#### AnalyzeCommand [SEALED] (port)
+#### AnalyzeCommand (port)
 
 **Package:** `com.learney.contentaudit.auditcli`
 
 | Method | Throws |
 |--------|--------|
 | `analyze(String coursePath, String format, String level, String topic, String knowledge, List<String> analyzers, boolean detailed): Integer` | (none) |
+| `analyze(String coursePath,AnalyzeOptions options): Integer` | (none) |
 
 #### GetCommand [SEALED] (port)
 
@@ -792,6 +851,15 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `resolve(Map<String,String> env): LagenConfig` | (none) |
+
+#### QuizInstructionJudgeConfigResolver (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `resolve(): QuizInstructionJudgeConfig` | (none) |
 
 ### Module: nlp-infrastructure
 
@@ -1187,4 +1255,95 @@ Examples:
 |--------|--------|
 | `classify(RunState runState): LlmGenerationFailureCategory` | (none) |
 | `classify(Throwable cause): LlmGenerationFailureCategory` | (none) |
+
+### Module: evaluation-ledger-domain
+
+#### EvaluationOutcome (port)
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+
+#### EvaluationLedger (port)
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+
+**Implemented by:** FileSystemEvaluationLedger (evaluation-ledger-infrastructure)
+
+| Method | Throws |
+|--------|--------|
+| `find(EvaluationKey key): Optional<EvaluationRecord>` | (none) |
+| `append(EvaluationRecord record): void` | (none) |
+| `history(String evaluatorId,String contentFingerprint): List<EvaluationRecord>` | (none) |
+
+#### ContentFingerprinter (port)
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+
+| Method | Throws |
+|--------|--------|
+| `fingerprint(Map<String,String> content): String` | (none) |
+
+#### Evaluator (port)
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+
+| Method | Throws |
+|--------|--------|
+| `evaluatorId(): String` | (none) |
+| `evaluatorVersion(): String` | (none) |
+| `evaluate(EvaluationSubject subject): EvaluationOutcome` | (none) |
+
+#### EvaluationSession (port)
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+
+| Method | Throws |
+|--------|--------|
+| `resolve(EvaluationSubject subject): EvaluationResolution` | (none) |
+| `resolveForced(EvaluationSubject subject): EvaluationResolution` | (none) |
+| `coverage(): EvaluationCoverage` | (none) |
+
+#### EvaluationSessionFactory (factory)
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+
+| Method | Throws |
+|--------|--------|
+| `open(EvaluationRunPolicy policy,Evaluator evaluator): EvaluationSession` | (none) |
+
+### Module: agent-runtime-infrastructure
+
+#### AgentGraphRunner (port)
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure`
+
+| Method | Throws |
+|--------|--------|
+| `run(String agentName,Map<String,String> inputs,ChatModel chatModel,Map<String,Object> tools): RunState` | (none) |
+
+#### AgentGraphRunnerFactory (factory)
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure`
+
+| Method | Throws |
+|--------|--------|
+| `create(AgentGraphRunnerConfig config): AgentGraphRunner` | (none) |
+
+### Module: quiz-instruction-infrastructure
+
+#### QuizInstructionJudgeFactory (factory)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure`
+
+| Method | Throws |
+|--------|--------|
+| `create(QuizInstructionJudgeConfig config,AgentGraphRunner agentGraphRunner): Evaluator` | (none) |
+
+#### QuizInstructionJudgeVersionResolver (package: instructionjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `resolve(QuizInstructionJudgeConfig config): String` | (none) |
 

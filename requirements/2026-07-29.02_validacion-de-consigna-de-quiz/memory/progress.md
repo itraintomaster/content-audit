@@ -7,3 +7,9 @@
   why: pedido explicito del usuario — el patron se va a repetir con otros evaluadores costosos.
 
 2026-07-29 — analyst — Proximo paso: resolver DOUBT-QUIZ-COMPLETO (bloqueante) con @architect/usuario antes de avanzar a arquitectura. Las otras 4 dudas (escala de severidad, confianza, presupuesto por defecto, alcance de ejercicios) no cambian la forma de ninguna regla; DOUBT-ALCANCE-EJERCICIOS conviene medirla antes de la primera pasada completa porque cambia cuanto se paga.
+
+2026-07-30 — qa-tester — Diseno de cobertura propuesto: 66 handwrittenTests sobre 14 impls + placement de las 3 journeys (J001/J002 -> audit-domain.quizinstructionengine, J003 -> audit-application). Patch en architectural_patch.yaml, SIN aplicar. Las 14 reglas quedan con test explicito propio (sin cobertura transitiva).
+  why: J001/J002 van a quizinstructionengine porque QuizInstructionAnalyzer y los tres colaboradores (scorer, subjectBuilder, scopeMatcher) son package-private: solo la factory es publica. J003 va a audit-application porque su punto de entrada es AuditRunner.runAudit(path, AuditRunRequest) y ahi conviven DefaultAuditRunner y DefaultQuizInstructionConfig; el mapeo de flags del CLI queda cubierto por handwrittenTests sobre AnalyzeCmd.
+
+2026-07-30 — qa-tester — R010 se cubre por la mitad "no reutiliza" (analyzer + version resolver). La mitad "no borra" NO se duplico sobre FileSystemEvaluationLedger a proposito.
+  why: es literalmente el append-only de F-EVCOST-R006 y esa impl la cubre el qa-tester de EVCOST en paralelo; tagear ahi desde este patch arriesga colision al aplicar dos patches sobre la misma implementacion.

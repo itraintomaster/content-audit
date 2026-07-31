@@ -146,7 +146,7 @@ public class DispatchingCorrectionContextResolverTest {
         com.learney.contentaudit.auditdomain.AuditableKnowledge knowledge =
                 new com.learney.contentaudit.auditdomain.AuditableKnowledge(
                         java.util.List.of(), "Present Perfect", "Complete the sentence.",
-                        true, "know-d-1", "Present Perfect", "PP1", null);
+                        true, "know-d-1", "Present Perfect", "PP1", null, null);
         com.learney.contentaudit.auditdomain.AuditableTopic topic =
                 new com.learney.contentaudit.auditdomain.AuditableTopic(
                         java.util.List.of(knowledge), "topic-d-1", "Verb Tenses", "VT");

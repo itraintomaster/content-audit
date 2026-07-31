@@ -703,4 +703,20 @@ public class CourseToAuditableMapperTest {
         // R002: analyzeTokensBatch must have been invoked with sentences.get(0) as the key, not a derived string
         verify(nlpTokenizer).analyzeTokensBatch(List.of(canonicalSentence));
     }
+
+    @Test
+    @DisplayName("should carry every sentence part and every accepted option of the quiz template into the auditable quiz")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R009")
+    public void shouldCarryEverySentencePartAndEveryAcceptedOptionOfTheQuizTemplateIntoTheAuditableQuiz() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should carry the knowledge instructions and the topic name into the auditable knowledge")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R009")
+    public void shouldCarryTheKnowledgeInstructionsAndTheTopicNameIntoTheAuditableKnowledge() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

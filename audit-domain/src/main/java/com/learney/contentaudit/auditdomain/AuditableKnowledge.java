@@ -26,11 +26,14 @@ public class AuditableKnowledge implements AuditableEntity {
 
     private SentenceMode sentenceMode;
 
+    private String topicName;
+
     public AuditableKnowledge() {
     }
 
     public AuditableKnowledge(List<AuditableQuiz> quizzes, String title, String instructions,
-            boolean isSentence, String id, String label, String code, SentenceMode sentenceMode) {
+            boolean isSentence, String id, String label, String code, SentenceMode sentenceMode,
+            String topicName) {
         this.quizzes = quizzes;
         this.title = title;
         this.instructions = instructions;
@@ -39,6 +42,7 @@ public class AuditableKnowledge implements AuditableEntity {
         this.label = label;
         this.code = code;
         this.sentenceMode = sentenceMode;
+        this.topicName = topicName;
     }
 
     public List<AuditableQuiz> getQuizzes() {
@@ -105,6 +109,14 @@ public class AuditableKnowledge implements AuditableEntity {
         this.sentenceMode = sentenceMode;
     }
 
+    public String getTopicName() {
+        return this.topicName;
+    }
+
+    public void setTopicName(String topicName) {
+        this.topicName = topicName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -117,11 +129,12 @@ public class AuditableKnowledge implements AuditableEntity {
                     && Objects.equals(this.id, that.id)
                     && Objects.equals(this.label, that.label)
                     && Objects.equals(this.code, that.code)
-                    && Objects.equals(this.sentenceMode, that.sentenceMode);
+                    && Objects.equals(this.sentenceMode, that.sentenceMode)
+                    && Objects.equals(this.topicName, that.topicName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(quizzes, title, instructions, isSentence, id, label, code, sentenceMode);
+        return Objects.hash(quizzes, title, instructions, isSentence, id, label, code, sentenceMode, topicName);
     }
 }

@@ -273,6 +273,75 @@ anteriores siguen consultables.
 
 </details>
 
+<a id="F-EVCOST-R009"></a>
+### Rule[F-EVCOST-R009] - Ante una falla, la corrida distingue si fallo ese contenido o fallo el servicio
+**Severity**: critical | **Validation**: VALIDATED
+
+> Cuando el evaluador no llega a pronunciarse, el sistema distingue **de donde
+> viene la falla**. Si es atribuible a **ese contenido puntual** —el evaluador
+> respondio, pero su salida no es utilizable—, la corrida **sigue** consultando por
+> el contenido restante. Si es atribuible al **servicio** —caido, tiempo de espera
+> agotado, autenticacion rechazada, credito agotado—, la corrida **deja de
+> consultar** al evaluador y todo el contenido restante queda pendiente. En ninguno
+> de los dos casos se aborta el analisis: la corrida termina con lo que alcanzo a
+> evaluar.
+
+<details><summary>Detalle</summary>
+
+[F-EVCOST-R005](#F-EVCOST-R005) ya exige que una falla **no se registre** y que el
+contenido vuelva a estar pendiente. Es correcto y necesario, pero no dice nada
+sobre **seguir o cortar**: una implementacion que ante un servicio caido insiste
+con los 11.500 contenidos restantes cumple R005 sin objecion. Esta regla cubre
+exactamente ese hueco.
+
+Las dos mitades se sostienen por razones distintas y opuestas:
+
+- **Cortar ante la falla del servicio.** Sin corte, una auditoria sobre ~11.500
+  ejercicios le pega 11.500 veces a un servicio que ya se sabe caido: tarda lo
+  mismo que una corrida completa y no produce ni un solo resultado. Con corte, la
+  corrida termina rapido, con cobertura parcial honesta y sin desperdiciar nada.
+- **No cortar ante la falla de un contenido.** Si un solo contenido problematico
+  detuviera la corrida, un unico elemento con el que el evaluador tropieza dejaria
+  pendiente a todo lo que viene despues, y cada corrida siguiente volveria a
+  tropezar con el mismo. El gasto ya hecho se conservaria, pero el avance seria
+  nulo.
+
+**El criterio es el origen de la falla, no su gravedad aparente.** Una salida
+inutilizable puede verse alarmante y sin embargo afecta solo a ese contenido; un
+tiempo de espera agotado puede verse trivial y sin embargo indica que el servicio
+no esta respondiendo. Clasificar por como se ve el sintoma, y no por que lo
+produjo, rompe las dos mitades a la vez.
+
+**Cortar consultas no es abortar el analisis.** La corrida deja de preguntarle a
+ese evaluador, pero termina normalmente: devuelve los resultados que alcanzo a
+obtener, deja el resto como pendiente y no arrastra en su caida al resto del
+analisis, que no depende de este evaluador. El primer consumidor ya lo exige de su
+lado
+([F-QINST-R007](../2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md#F-QINST-R007));
+aca queda como garantia de la capacidad general, para que cualquier consumidor
+futuro la herede en lugar de volver a decidirla.
+
+Como se reconoce a que clase pertenece cada falla depende de cada evaluador y lo
+declara su consumidor: para el primero, la salida no utilizable es el veredicto
+conservador de infraestructura del juez
+([F-QINST-R013](../2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md#F-QINST-R013)).
+
+**Criterio de aceptacion**: sobre una serie de N contenidos a evaluar,
+(a) si la falla en el contenido i es atribuible a ese contenido, el evaluador
+recibe consultas por los contenidos siguientes y solo el contenido i queda
+pendiente; (b) si la falla en el contenido i es atribuible al servicio, el
+evaluador no recibe ninguna consulta mas, los contenidos i..N quedan pendientes y
+la corrida termina normalmente devolviendo los resultados de los contenidos
+anteriores; (c) en ambos casos no queda registrado ningun resultado para el
+contenido fallido ([F-EVCOST-R005](#F-EVCOST-R005)).
+
+**Error**: "La corrida siguio consultando al evaluador '{evaluador}' tras una falla
+del servicio" (condicion prohibida). El error simetrico se manifiesta como "La
+corrida dejo de consultar al evaluador '{evaluador}' por una falla atribuible a un
+unico contenido".
+
+</details>
+
 ## Contexto
 
 Los analisis del sistema fueron, hasta ahora, baratos y deterministas: recorren el
@@ -334,6 +403,9 @@ dos elementos con contenido identico comparten resultado y se pagan una sola vez
   - Consulta del resultado vigente y estado "pendiente" cuando no lo hay.
   - Disponibilidad inmediata de cada resultado y tolerancia a interrupcion.
   - Distincion entre resultado definitivo y falla transitoria del evaluador.
+  - Distincion, dentro de la falla transitoria, entre la que afecta a un contenido
+    puntual y la que afecta al servicio, con corte de consultas ante la segunda y
+    sin abortar el analisis.
   - Convivencia e historia de resultados de versiones distintas del evaluador.
   - Independencia respecto de los informes de analisis.
   - Re-evaluacion explicita del usuario.
@@ -343,6 +415,11 @@ dos elementos con contenido identico comparten resultado y se pagan una sola vez
     [F-QINST-R002](../2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md#F-QINST-R002)).
   - **El limite de evaluaciones nuevas por corrida.** Hoy lo declara cada
     consumidor; ver [DOUBT-PRESUPUESTO-GENERAL](#DOUBT-PRESUPUESTO-GENERAL).
+  - **Como se reconoce a que clase pertenece cada falla** en un evaluador concreto.
+    Lo declara cada consumidor (para el primero,
+    [F-QINST-R013](../2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md#F-QINST-R013)).
+  - **Reintentar al servicio** dentro de la misma corrida despues de que fallo, o
+    esperar a que se recupere.
   - **Como se representa la huella** y donde se guardan los resultados.
   - **La poda de la historia de versiones anteriores**; ver
     [DOUBT-RETENCION-HISTORIA](#DOUBT-RETENCION-HISTORIA).
@@ -402,8 +479,10 @@ journeys:
 ### Journey[F-EVCOST-J002] - Una interrupcion o una falla no pierden el trabajo hecho
 **Validation**: VALIDATED
 
-Cubre la tolerancia a la interrupcion y la separacion entre resultado definitivo
-—favorable o desfavorable— y falla transitoria del evaluador. Cubre R004 y R005.
+Cubre la tolerancia a la interrupcion, la separacion entre resultado definitivo
+—favorable o desfavorable— y falla transitoria del evaluador, y la distincion entre
+una falla atribuible a un contenido puntual (la corrida sigue) y una atribuible al
+servicio (la corrida deja de consultar y termina igual). Cubre R004, R005 y R009.
 
 ```yaml
 journeys:
@@ -416,10 +495,12 @@ journeys:
         outcomes:
           - when: "El proceso se interrumpe abruptamente a mitad del recorrido"
             then: conserva_lo_hecho
-          - when: "El evaluador no llega a pronunciarse sobre un contenido (servicio caido, tiempo agotado, credito agotado)"
+          - when: "El evaluador responde sobre un contenido pero su salida no es utilizable: la falla es atribuible a ese contenido puntual"
             then: falla_no_registrada
           - when: "El evaluador se pronuncia sobre un contenido con un resultado desfavorable"
             then: desfavorable_registrado
+          - when: "El evaluador deja de estar disponible a mitad del recorrido (servicio caido, tiempo de espera agotado, autenticacion rechazada, credito agotado)"
+            then: falla_del_servicio
 
       - id: conserva_lo_hecho
         action: "Los resultados obtenidos antes de la interrupcion siguen disponibles y completos al volver a consultar; ninguna entrada quedo a medio escribir"
@@ -427,13 +508,18 @@ journeys:
         result: success
 
       - id: falla_no_registrada
-        action: "No queda registrado ningun resultado para ese contenido: la corrida siguiente lo encuentra pendiente y vuelve a consultar al evaluador"
-        gate: [F-EVCOST-R005]
+        action: "No queda registrado ningun resultado para ese contenido y la corrida sigue consultando por el contenido restante; la corrida siguiente encuentra pendiente al contenido fallido y vuelve a consultar por el"
+        gate: [F-EVCOST-R005, F-EVCOST-R009]
         result: success
 
       - id: desfavorable_registrado
         action: "El resultado desfavorable queda registrado como definitivo y la corrida siguiente lo reutiliza sin volver a consultar al evaluador"
         gate: [F-EVCOST-R005]
+        result: success
+
+      - id: falla_del_servicio
+        action: "La corrida deja de consultar al evaluador: no registra nada para el contenido restante, que queda pendiente, y el analisis termina igual con los resultados que alcanzo a obtener, que la corrida siguiente reutiliza"
+        gate: [F-EVCOST-R009]
         result: success
 ```
 
@@ -565,9 +651,13 @@ se vuelve habitual y el gasto duplicado se mide y molesta, la duda se reabre.
 
 - **FEAT-QINST** — Primer consumidor de esta capacidad: el analizador de
   cumplimiento de consigna de quiz. Define que evalua su juez, como se traduce el
-  resultado a puntaje y con que limite de evaluaciones nuevas por corrida. Citada
-  por [F-EVCOST-R005](#F-EVCOST-R005), [F-EVCOST-R008](#F-EVCOST-R008) y el
-  Contexto.
+  resultado a puntaje y con que limite de evaluaciones nuevas por corrida. Aporta
+  ademas las dos caras del comportamiento ante fallas visto desde el consumidor:
+  **F-QINST-R007** (una falla del juez no aborta la auditoria, que termina con la
+  cobertura que alcanzo) y **F-QINST-R013** (la salida no utilizable del juez es
+  falla y no juicio, y afecta solo a ese ejercicio). Citada por
+  [F-EVCOST-R005](#F-EVCOST-R005), [F-EVCOST-R008](#F-EVCOST-R008),
+  [F-EVCOST-R009](#F-EVCOST-R009), el Alcance y el Contexto.
 - **FEAT-RPRES** — Establece que corregir un elemento del curso cambia su contenido
   pero no su identificador, que es la razon por la que la identidad de un resultado
   es la huella del contenido y no el identificador. Citada por el Contexto.

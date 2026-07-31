@@ -113,12 +113,12 @@ public class FLapsJ003JourneyTest {
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-laps-j003", "Grammar", "T001");
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Simple Present", "Write the correct form.", true,
-                "knowledge-laps-j003", "Knowledge 1", "K001", null);
+                "knowledge-laps-j003", "Knowledge 1", "K001", null, null);
         AuditableQuiz quiz = new AuditableQuiz(
                 List.of(), QUIZ_ID, "Quiz 1", "Q001",
                 "Ella hace cosas complicadas.",
                 List.of("She does complicated things."),
-                "She ____ [does] (do) complicated things.");
+                "She ____ [does] (do) complicated things.", null, null);
 
         AbsentLemma absent = new AbsentLemma(
                 new LemmaAndPos("complicated", "ADJ"), CefrLevel.B1,

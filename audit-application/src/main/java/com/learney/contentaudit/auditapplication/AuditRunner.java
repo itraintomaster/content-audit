@@ -14,4 +14,6 @@ public interface AuditRunner {
     AuditReport runAudit(Path coursePath, Set<String> analyzerNames);
 
     AuditNode runDetailedAudit(Path coursePath, String analyzerName);
+
+    AuditReport runAudit(Path coursePath, AuditRunRequest request);
 }

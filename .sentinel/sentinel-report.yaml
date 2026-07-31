@@ -1,4 +1,4 @@
-generatedAt: 2026-07-30T13:40:22.367031Z
+generatedAt: 2026-07-31T02:18:50.167856Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -1486,11 +1486,11 @@ features:
     healthScore: 80
     verdict: PASSED
 - id: FEAT-RPRES
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: ./requirements/2026-07-29.01_preservacion-del-contenido-no-revisado/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RPRES-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: should abort the approval leaving the proposal undecided and the course
         unwritten when the preservation check reports violations
@@ -1502,7 +1502,7 @@ features:
         \ comes from the real lemma-absence deriver, saving a course whose revised\
         \ quiz differs from the original only in the fields the correction covers"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultProposalDecisionService
     - name: "should declare nothing changeable for a diagnosis kind with no declared\
@@ -3618,13 +3618,13 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 503
+      linesCovered: 504
       linesMissed: 155
-      linesTotal: 658
+      linesTotal: 659
       lineCoveragePct: 76
-      branchesCovered: 213
-      branchesMissed: 157
-      branchesTotal: 370
+      branchesCovered: 214
+      branchesMissed: 158
+      branchesTotal: 372
       branchCoveragePct: 57
       blendPct: 66
     mutation:
@@ -3640,7 +3640,7 @@ features:
       totalMethods: 64
       hotspots: 2
       maxCrap: 110.0
-      averageCrap: 7.237734140625
+      averageCrap: 7.2564582656250005
       simple: 53
       moderate: 8
       high: 1
@@ -3667,46 +3667,582 @@ features:
     - branchCoverage 57% < 60%
     - mutationScore 36% < 60%
 - id: FEAT-QINST
-  state: ANALYSED
+  state: IMPLEMENTING
   requirementFile: ./requirements/2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md
-  patchFile: ./requirements/2026-07-29.02_validacion-de-consigna-de-quiz/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-QINST-R001
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should include the quiz instruction analysis when the audit request says
+        nothing about analyzers
+      implemented: true
+      passing: false
+      module: audit-application
+      implementation: DefaultAuditRunner
+    - name: "should report quiz instruction score, diagnoses and coverage on an audit\
+        \ asked with no options"
+      implemented: true
+      passing: false
+      module: audit-application
+      implementation: DefaultAuditRunner
+    - name: should neither exclude nor narrow the quiz instruction analysis when the
+        user passes no analyzer option
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: AnalyzeCmd
   - ruleId: F-QINST-R002
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should score the quiz at the maximum when the verdict says it follows
+        the instructions with severity none
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultQuizInstructionScorer
+    - name: should score the quiz at 0.6 when the verdict reports a minor breach
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultQuizInstructionScorer
+    - name: should score the quiz at 0.3 when the verdict reports a major breach
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultQuizInstructionScorer
+    - name: should score the quiz at 0.0 when the verdict reports a critical breach
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultQuizInstructionScorer
+    - name: should let the declared severity prevail when the verdict says the quiz
+        complies but declares a severity other than none
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultQuizInstructionScorer
+    - name: should score as a minor breach when the verdict says the quiz does not
+        comply but declares severity none
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultQuizInstructionScorer
+    - name: should score the same verdict identically whatever confidence the judge
+        reported
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultQuizInstructionScorer
+    - name: "should map the severities none, minor, major and critical to the scores\
+        \ 1.0, 0.6, 0.3 and 0.0"
+      implemented: true
+      passing: false
+      module: audit-application
+      implementation: DefaultQuizInstructionConfig
   - ruleId: F-QINST-R003
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "should record for a breaching quiz a diagnosis with every violation carrying\
+        \ its code, its breached constraint, its evidence and its explanation"
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: should record for a compliant quiz a diagnosis with the checks the judge
+        performed and no violations
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: "should record in the quiz diagnosis the reason, the severity and the\
+        \ confidence the judge reported"
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: should render for each breaching quiz its violations with their evidence
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: QuizInstructionDetailedFormatter
+    - name: "should read the judge payload preserving every violation with its code,\
+        \ constraint, evidence and explanation and every performed check with its\
+        \ state"
+      implemented: true
+      passing: false
+      module: quiz-instruction-infrastructure
+      implementation: JacksonQuizInstructionVerdictReader
+    - name: "should read the compliance flag, the severity and the confidence of the\
+        \ verdict"
+      implemented: true
+      passing: false
+      module: quiz-instruction-infrastructure
+      implementation: JacksonQuizInstructionVerdictReader
   - ruleId: F-QINST-R004
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "should average the quiz instruction score of a knowledge over its evaluated\
+        \ quizzes only, leaving the pending ones out"
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: IScoreAggregator
+    - name: should leave a quiz pending for budget without score and without diagnosis
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: should leave a failed quiz without score and without diagnosis
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
   - ruleId: F-QINST-R005
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "should declare on the course node how many quizzes were reached, resolved,\
+        \ evaluated in this run, reused, pending and failed"
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: "should declare a coverage whose resolved, pending and failed counts add\
+        \ up to the reached total"
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: should mark a verdict taken from a previous run as reused both in the
+        quiz diagnosis and in the declared coverage
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: should render the declared coverage of the quiz instruction analysis next
+        to its score
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: QuizInstructionDetailedFormatter
   - ruleId: F-QINST-R006
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should build the analyzer with the configured default budget when the
+        run declares no policy for the judge
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultQuizInstructionAnalyzerFactory
+    - name: should stop querying the judge once the run budget is exhausted and finish
+        without error leaving the rest pending
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: should audit a fully evaluated course without a single judge query whatever
+        the budget is
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: should hand the quiz instruction analyzer the run policy the request declared
+        for its judge
+      implemented: true
+      passing: false
+      module: audit-application
+      implementation: DefaultAuditRunner
+    - name: should default the run budget to 500 new judge queries
+      implemented: true
+      passing: false
+      module: audit-application
+      implementation: DefaultQuizInstructionConfig
+    - name: should carry the instruction budget the user asked for into the run policy
+        of the judge
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: AnalyzeCmd
   - ruleId: F-QINST-R007
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "should finish the run when the judge stops responding, counting the quizzes\
+        \ it could not judge as failed"
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: should keep the score and the diagnosis of the quizzes judged before the
+        judge failure
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: should finish the audit and keep the results of the other analyzers when
+        the quiz instruction judge fails
+      implemented: true
+      passing: false
+      module: audit-application
+      implementation: DefaultAuditRunner
+    - name: "should yield an evaluator that reports itself unavailable when the judge\
+        \ configuration is missing or invalid, instead of failing the audit"
+      implemented: true
+      passing: false
+      module: quiz-instruction-infrastructure
+      implementation: DefaultQuizInstructionJudgeFactory
+    - name: "should report a judge service failure, timeout or exhausted credit as\
+        \ an unavailable evaluator instead of throwing"
+      implemented: true
+      passing: false
+      module: quiz-instruction-infrastructure
+      implementation: QuizInstructionAgentJudge
   - ruleId: F-QINST-R008
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should score a quiz from its recorded verdict without querying the judge
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: should spend the run budget only on quizzes without a current verdict
+        so consecutive runs advance over different quizzes
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
   - ruleId: F-QINST-R009
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "should hand the judge the cefr level, the topic, the knowledge label,\
+        \ the knowledge instructions and the whole quiz with all its parts and accepted\
+        \ options"
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultQuizInstructionSubjectBuilder
+    - name: should leave the quiz identifier out of the judged content
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultQuizInstructionSubjectBuilder
+    - name: should produce different judged content when a single accepted option
+        of the quiz changes
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultQuizInstructionSubjectBuilder
+    - name: should produce different judged content for every quiz of a knowledge
+        when the knowledge instructions change
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultQuizInstructionSubjectBuilder
+    - name: should produce identical judged content when the same course is reprocessed
+        without content changes
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultQuizInstructionSubjectBuilder
+    - name: should take the label and the instructions from the knowledge when the
+        quiz carries diverging copies
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultQuizInstructionSubjectBuilder
+    - name: should carry every sentence part and every accepted option of the quiz
+        template into the auditable quiz
+      implemented: true
+      passing: false
+      module: audit-application
+      implementation: CourseToAuditableMapper
+    - name: should carry the knowledge instructions and the topic name into the auditable
+        knowledge
+      implemented: true
+      passing: false
+      module: audit-application
+      implementation: CourseToAuditableMapper
+    - name: should hand the judge the five declared inputs verbatim from the judged
+        content
+      implemented: true
+      passing: false
+      module: quiz-instruction-infrastructure
+      implementation: QuizInstructionAgentJudge
   - ruleId: F-QINST-R010
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should not reuse the verdicts recorded by a previous judge version and
+        report those quizzes as pending
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: should derive a different judge version when the agent definition or the
+        model changes
+      implemented: true
+      passing: false
+      module: quiz-instruction-infrastructure
+      implementation: DefaultQuizInstructionJudgeVersionResolver
+    - name: should keep the judge version stable while the agent definition and the
+        model stay the same
+      implemented: true
+      passing: false
+      module: quiz-instruction-infrastructure
+      implementation: DefaultQuizInstructionJudgeVersionResolver
+    - name: should honour the judge version fixed by configuration
+      implemented: true
+      passing: false
+      module: quiz-instruction-infrastructure
+      implementation: DefaultQuizInstructionJudgeVersionResolver
   - ruleId: F-QINST-R011
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should not build the quiz instruction analyzer when the request excludes
+        it
+      implemented: true
+      passing: false
+      module: audit-application
+      implementation: DefaultAuditRunner
+    - name: "should leave the report without quiz instruction score, diagnosis or\
+        \ coverage when the analysis is excluded"
+      implemented: true
+      passing: false
+      module: audit-application
+      implementation: DefaultAuditRunner
+    - name: should not run the quiz instruction analysis when the request narrows
+        the audit to other analyzers
+      implemented: true
+      passing: false
+      module: audit-application
+      implementation: DefaultAuditRunner
+    - name: should exclude the quiz instruction analysis from the run when the user
+        asks to exclude analyzers
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: AnalyzeCmd
   - ruleId: F-QINST-R012
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should query the judge again for quizzes that already had a current verdict
+        when re evaluation is requested
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: should keep an explicit re evaluation within the run budget
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: should match only the quizzes selected by the requested re evaluation
+        scope
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultQuizInstructionScopeMatcher
+    - name: should match every reached quiz when the re evaluation request declares
+        no scope
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultQuizInstructionScopeMatcher
+    - name: should ask for re evaluation with its scope when the user requests to
+        judge again
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: AnalyzeCmd
   - ruleId: F-QINST-R013
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should leave without score and without diagnosis and count as failed a
+        quiz whose judge output was unusable
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: should query the judge again in a later run for a quiz whose previous
+        output was unusable
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: "should report the conservative infrastructure verdict of the judge, with\
+        \ null confidence and a judge output invalid violation, as an unusable output\
+        \ instead of a verdict"
+      implemented: true
+      passing: false
+      module: quiz-instruction-infrastructure
+      implementation: QuizInstructionAgentJudge
+    - name: should report a genuine non compliant verdict as an emitted result and
+        not as a failure
+      implemented: true
+      passing: false
+      module: quiz-instruction-infrastructure
+      implementation: QuizInstructionAgentJudge
   - ruleId: F-QINST-R014
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: "should reach every quiz of the course, including those whose knowledge\
+        \ declares no instructions"
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: "should declare a reached count equal to the number of quizzes of the\
+        \ course, with no exclusions"
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: should build judged content for a quiz whose knowledge declares no instructions
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultQuizInstructionSubjectBuilder
   journeysCoverage:
   - journeyId: F-QINST-J001
-    state: NO_TESTS
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_elJuezRespondeQueElEjercicioCumpleSuConsignaConSeveridadNinguna_success
+        implemented: false
+        passing: false
+        module: audit-domain
+        implementation: FQinstJ001JourneyTest
+    - pathId: path-2
+      result: success
+      state: DECLARED
+      tests:
+      - name: path2_elJuezRespondeQueElEjercicioNoCumpleConSeveridadMenor_success
+        implemented: false
+        passing: false
+        module: audit-domain
+        implementation: FQinstJ001JourneyTest
+    - pathId: path-3
+      result: success
+      state: DECLARED
+      tests:
+      - name: path3_elJuezRespondeQueElEjercicioNoCumpleConSeveridadMayor_success
+        implemented: false
+        passing: false
+        module: audit-domain
+        implementation: FQinstJ001JourneyTest
+    - pathId: path-4
+      result: success
+      state: DECLARED
+      tests:
+      - name: path4_elJuezRespondeQueElEjercicioNoCumpleConSeveridadCritica_success
+        implemented: false
+        passing: false
+        module: audit-domain
+        implementation: FQinstJ001JourneyTest
+    - pathId: path-5
+      result: failure
+      state: DECLARED
+      tests:
+      - name: path5_elJuezNoLograEmitirUnVeredictoValidoYRespondeConSuVeredictoConservadorDeInfraestructuraConfianzaNulaYViolacionDeSalidaInvalida_failure
+        implemented: false
+        passing: false
+        module: audit-domain
+        implementation: FQinstJ001JourneyTest
   - journeyId: F-QINST-J002
-    state: NO_TESTS
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_elTopeDeLaCorridaSeAgotaAntesDeRecorrerTodosLosEjercicios_elContenidoJuzgadoDeLosEjerciciosYaEvaluadosNoCambio_success
+        implemented: false
+        passing: false
+        module: audit-domain
+        implementation: FQinstJ002JourneyTest
+    - pathId: path-2
+      result: success
+      state: DECLARED
+      tests:
+      - name: path2_elTopeDeLaCorridaSeAgotaAntesDeRecorrerTodosLosEjercicios_cambioElContenidoJuzgadoDeUnEjercicioYaEvaluadoPorEjemploUnaDeSusOpcionesAceptadasConservandoSuIdentificador_success
+        implemented: false
+        passing: false
+        module: audit-domain
+        implementation: FQinstJ002JourneyTest
+    - pathId: path-3
+      result: success
+      state: DECLARED
+      tests:
+      - name: path3_elJuezDejaDeResponderAMitadDeCorridaPorqueElServicioCaeOElCreditoSeAgota_elContenidoJuzgadoDeLosEjerciciosYaEvaluadosNoCambio_success
+        implemented: false
+        passing: false
+        module: audit-domain
+        implementation: FQinstJ002JourneyTest
+    - pathId: path-4
+      result: success
+      state: DECLARED
+      tests:
+      - name: path4_elJuezDejaDeResponderAMitadDeCorridaPorqueElServicioCaeOElCreditoSeAgota_cambioElContenidoJuzgadoDeUnEjercicioYaEvaluadoPorEjemploUnaDeSusOpcionesAceptadasConservandoSuIdentificador_success
+        implemented: false
+        passing: false
+        module: audit-domain
+        implementation: FQinstJ002JourneyTest
   - journeyId: F-QINST-J003
-    state: NO_TESTS
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_noIndicaNadaSobreElAnalisisDeConsigna_success
+        implemented: false
+        passing: false
+        module: audit-application
+        implementation: FQinstJ003JourneyTest
+    - pathId: path-2
+      result: success
+      state: DECLARED
+      tests:
+      - name: path2_excluyeExplicitamenteElAnalisisDeConsigna_success
+        implemented: false
+        passing: false
+        module: audit-application
+        implementation: FQinstJ003JourneyTest
+    - pathId: path-3
+      result: success
+      state: DECLARED
+      tests:
+      - name: path3_pideExplicitamenteVolverAJuzgarElCurso_success
+        implemented: false
+        passing: false
+        module: audit-application
+        implementation: FQinstJ003JourneyTest
+    - pathId: path-4
+      result: success
+      state: DECLARED
+      tests:
+      - name: path4_laVersionDelJuezCambioDesdeLaUltimaAuditoriaYElUsuarioNoPidioVolverAJuzgar_success
+        implemented: false
+        passing: false
+        module: audit-application
+        implementation: FQinstJ003JourneyTest
   quality:
+    classes:
+    - com.learney.contentaudit.auditapplication.CourseToAuditableMapper
+    - com.learney.contentaudit.auditapplication.DefaultAuditRunner
+    - com.learney.contentaudit.auditapplication.DefaultQuizInstructionConfig
+    - com.learney.contentaudit.auditcli.commands.AnalyzeCmd
+    - com.learney.contentaudit.auditcli.formatting.QuizInstructionDetailedFormatter
+    - com.learney.contentaudit.auditdomain.IScoreAggregator
+    - com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory
+    - com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionScopeMatcher
+    - com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionScorer
+    - com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionSubjectBuilder
+    - com.learney.contentaudit.auditdomain.quizinstructionengine.QuizInstructionAnalyzer
+    - com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.DefaultQuizInstructionJudgeFactory
+    - com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.DefaultQuizInstructionJudgeVersionResolver
+    - com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.QuizInstructionAgentJudge
+    - com.learney.contentaudit.quizinstructioninfrastructure.instructionverdict.JacksonQuizInstructionVerdictReader
     thresholds:
       lineCoverage: 70
       branchCoverage: 60
@@ -3714,36 +4250,47 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 0
-      linesMissed: 0
-      linesTotal: 0
-      lineCoveragePct: 0
-      branchesCovered: 0
-      branchesMissed: 0
-      branchesTotal: 0
-      branchCoveragePct: 0
-      blendPct: 0
+      linesCovered: 161
+      linesMissed: 53
+      linesTotal: 214
+      lineCoveragePct: 75
+      branchesCovered: 59
+      branchesMissed: 45
+      branchesTotal: 104
+      branchCoveragePct: 56
+      blendPct: 65
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 59
+      killed: 24
+      survived: 21
+      noCoverage: 14
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 40
+      testStrengthPct: 53
     crap:
-      totalMethods: 0
-      hotspots: 0
-      maxCrap: 0.0
-      averageCrap: 0.0
-      simple: 0
-      moderate: 0
-      high: 0
+      totalMethods: 22
+      hotspots: 1
+      maxCrap: 32.882681
+      averageCrap: 4.8236545
+      simple: 18
+      moderate: 3
+      high: 1
       veryHigh: 0
-      healthPct: 0
-    healthScore: 0
-    verdict: PASSED
+      healthPct: 89
+      top:
+      - className: com.learney.contentaudit.auditcli.commands.AnalyzeCmd
+        methodName: analyze
+        methodDesc: (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Z)Ljava/lang/Integer;
+        line: 136
+        cyclomatic: 13
+        lineCoveragePct: 51
+        crap: 32.882681
+    healthScore: 60
+    verdict: WARNED
+    violations:
+    - branchCoverage 56% < 60%
+    - mutationScore 40% < 60%
 - id: FEAT-INCEXP
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-06-18.01_incluir-lemas-ya-expuestos-en-suggested-lemmas/REQUIREMENT.md
@@ -4783,34 +5330,266 @@ features:
     - lineCoverage 20% < 70%
     - branchCoverage 16% < 60%
 - id: FEAT-EVCOST
-  state: ANALYSED
+  state: IMPLEMENTING
   requirementFile: ./requirements/2026-07-29.03_evaluaciones-costosas-reutilizables/REQUIREMENT.md
-  patchFile: ./requirements/2026-07-29.03_evaluaciones-costosas-reutilizables/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-EVCOST-R001
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should reuse the registered result for identical content belonging to
+        a different course element
+      implemented: true
+      passing: false
+      module: evaluation-ledger-domain
+      implementation: DefaultEvaluationSession
+    - name: should not reuse the registered result when the element kept its identifier
+        but its content changed
+      implemented: true
+      passing: false
+      module: evaluation-ledger-domain
+      implementation: DefaultEvaluationSession
   - ruleId: F-EVCOST-R002
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should derive the fingerprint from exactly the content map handed to the
+        evaluator
+      implemented: true
+      passing: false
+      module: evaluation-ledger-domain
+      implementation: DefaultEvaluationSession
+    - name: should produce a different fingerprint when any part of the delivered
+        content changes
+      implemented: true
+      passing: false
+      module: evaluation-ledger-domain
+      implementation: Sha256ContentFingerprinter
+    - name: should produce the same fingerprint when the same content is rebuilt in
+        another run
+      implemented: true
+      passing: false
+      module: evaluation-ledger-domain
+      implementation: Sha256ContentFingerprinter
   - ruleId: F-EVCOST-R003
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should return the registered result without consulting the evaluator
+      implemented: true
+      passing: false
+      module: evaluation-ledger-domain
+      implementation: DefaultEvaluationSession
+    - name: should report the content as pending when no result is registered and
+        no new evaluation can be made
+      implemented: true
+      passing: false
+      module: evaluation-ledger-domain
+      implementation: DefaultEvaluationSession
+    - name: should keep reusing registered results after the budget for new evaluations
+        is exhausted
+      implemented: true
+      passing: false
+      module: evaluation-ledger-domain
+      implementation: DefaultEvaluationSession
   - ruleId: F-EVCOST-R004
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should record each evaluated result in the ledger before resolving the
+        next content
+      implemented: true
+      passing: false
+      module: evaluation-ledger-domain
+      implementation: DefaultEvaluationSession
+    - name: should make every appended result readable by a ledger instance opened
+        after the run was interrupted
+      implemented: true
+      passing: false
+      module: evaluation-ledger-infrastructure
+      implementation: FileSystemEvaluationLedger
+    - name: should ignore a truncated trailing entry and report its content as never
+        registered
+      implemented: true
+      passing: false
+      module: evaluation-ledger-infrastructure
+      implementation: FileSystemEvaluationLedger
+    - name: should preserve every result when two runs append to the same evaluator
+        ledger at the same time
+      implemented: true
+      passing: false
+      module: evaluation-ledger-infrastructure
+      implementation: FileSystemEvaluationLedger
   - ruleId: F-EVCOST-R005
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should record an unfavourable verdict emitted by the evaluator and reuse
+        it in the next run
+      implemented: true
+      passing: false
+      module: evaluation-ledger-domain
+      implementation: DefaultEvaluationSession
+    - name: should record nothing when the evaluator does not emit a verdict and leave
+        the content pending for the next run
+      implemented: true
+      passing: false
+      module: evaluation-ledger-domain
+      implementation: DefaultEvaluationSession
   - ruleId: F-EVCOST-R006
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should leave content pending instead of reusing a result produced by a
+        previous version of the evaluator
+      implemented: true
+      passing: false
+      module: evaluation-ledger-domain
+      implementation: DefaultEvaluationSession
+    - name: should keep the results of previous evaluator versions readable in history
+        after a new version records its own
+      implemented: true
+      passing: false
+      module: evaluation-ledger-infrastructure
+      implementation: FileSystemEvaluationLedger
   - ruleId: F-EVCOST-R007
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should keep every registered result readable after the analysis reports
+        under the same base directory are deleted
+      implemented: true
+      passing: false
+      module: evaluation-ledger-infrastructure
+      implementation: FileSystemEvaluationLedger
   - ruleId: F-EVCOST-R008
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should consult the evaluator again for content with a current result only
+        when re-evaluation is explicitly requested
+      implemented: true
+      passing: false
+      module: evaluation-ledger-domain
+      implementation: DefaultEvaluationSession
+    - name: should keep the earlier entry consultable in history when the same key
+        is recorded again
+      implemented: true
+      passing: false
+      module: evaluation-ledger-infrastructure
+      implementation: FileSystemEvaluationLedger
+  - ruleId: F-EVCOST-R009
+    state: FAILING
+    tests:
+    - name: should keep consulting the evaluator for the remaining content when the
+        failure is attributable to a single content
+      implemented: true
+      passing: false
+      module: evaluation-ledger-domain
+      implementation: DefaultEvaluationSession
+    - name: should stop consulting the evaluator after a service failure and finish
+        the run leaving the remaining content pending
+      implemented: true
+      passing: false
+      module: evaluation-ledger-domain
+      implementation: DefaultEvaluationSession
   journeysCoverage:
   - journeyId: F-EVCOST-J001
-    state: NO_TESTS
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_hayUnResultadoRegistradoParaEseEvaluadorEnSuVersionVigenteYParaLaMismaHuellaDeContenido_success
+        implemented: false
+        passing: false
+        module: evaluation-ledger-domain
+        implementation: FEvcostJ001JourneyTest
+    - pathId: path-2
+      result: success
+      state: DECLARED
+      tests:
+      - name: path2_hayUnResultadoRegistradoPeroElContenidoCambioDesdeQueSeLoEvaluoElElementoConservaSuIdentificador_success
+        implemented: false
+        passing: false
+        module: evaluation-ledger-domain
+        implementation: FEvcostJ001JourneyTest
+    - pathId: path-3
+      result: success
+      state: DECLARED
+      tests:
+      - name: path3_hayUnResultadoRegistradoPeroFueProducidoPorUnaVersionAnteriorDelEvaluador_success
+        implemented: false
+        passing: false
+        module: evaluation-ledger-domain
+        implementation: FEvcostJ001JourneyTest
+    - pathId: path-4
+      result: success
+      state: DECLARED
+      tests:
+      - name: path4_noHayNingunResultadoRegistradoParaEsaHuella_success
+        implemented: false
+        passing: false
+        module: evaluation-ledger-domain
+        implementation: FEvcostJ001JourneyTest
   - journeyId: F-EVCOST-J002
-    state: NO_TESTS
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_elProcesoSeInterrumpeAbruptamenteAMitadDelRecorrido_success
+        implemented: false
+        passing: false
+        module: evaluation-ledger-infrastructure
+        implementation: FEvcostJ002JourneyTest
+    - pathId: path-2
+      result: success
+      state: DECLARED
+      tests:
+      - name: path2_elEvaluadorRespondeSobreUnContenidoPeroSuSalidaNoEsUtilizableLaFallaEsAtribuibleAEseContenidoPuntual_success
+        implemented: false
+        passing: false
+        module: evaluation-ledger-infrastructure
+        implementation: FEvcostJ002JourneyTest
+    - pathId: path-3
+      result: success
+      state: DECLARED
+      tests:
+      - name: path3_elEvaluadorSePronunciaSobreUnContenidoConUnResultadoDesfavorable_success
+        implemented: false
+        passing: false
+        module: evaluation-ledger-infrastructure
+        implementation: FEvcostJ002JourneyTest
+    - pathId: path-4
+      result: success
+      state: DECLARED
+      tests:
+      - name: path4_elEvaluadorDejaDeEstarDisponibleAMitadDelRecorridoServicioCaidoTiempoDeEsperaAgotadoAutenticacionRechazadaCreditoAgotado_success
+        implemented: false
+        passing: false
+        module: evaluation-ledger-infrastructure
+        implementation: FEvcostJ002JourneyTest
   - journeyId: F-EVCOST-J003
-    state: NO_TESTS
+    state: DECLARED
+    pathsCoverage:
+    - pathId: path-1
+      result: success
+      state: DECLARED
+      tests:
+      - name: path1_elUsuarioNoPidioVolverAEvaluar_success
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FEvcostJ003JourneyTest
+    - pathId: path-2
+      result: success
+      state: DECLARED
+      tests:
+      - name: path2_elUsuarioPidioExplicitamenteVolverAEvaluarEseEvaluador_success
+        implemented: false
+        passing: false
+        module: audit-cli
+        implementation: FEvcostJ003JourneyTest
   quality:
+    classes:
+    - com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter
+    - com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSession
+    - com.learney.contentaudit.evaluationledgerinfrastructure.FileSystemEvaluationLedger
     thresholds:
       lineCoverage: 70
       branchCoverage: 60
@@ -10071,7 +10850,7 @@ features:
         \ carried, even when the derived plain sentence differs, because the title\
         \ is not in scope of a lexical correction"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultLemmaAbsenceProposalDeriver
   - ruleId: F-LAPS-R015
@@ -10252,13 +11031,13 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 169
+      linesCovered: 170
       linesMissed: 37
-      linesTotal: 206
+      linesTotal: 207
       lineCoveragePct: 82
-      branchesCovered: 44
-      branchesMissed: 22
-      branchesTotal: 66
+      branchesCovered: 45
+      branchesMissed: 23
+      branchesTotal: 68
       branchCoveragePct: 66
       blendPct: 74
     mutation:
@@ -10274,7 +11053,7 @@ features:
       totalMethods: 32
       hotspots: 0
       maxCrap: 6.987675
-      averageCrap: 2.234347
+      averageCrap: 2.2717952500000003
       simple: 32
       moderate: 0
       high: 0
@@ -12949,6 +13728,8 @@ elements:
       status: EXISTS
     - name: sentenceMode
       status: EXISTS
+    - name: topicName
+      status: EXISTS
   - name: AuditableTopic
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditableTopic.java
@@ -12990,6 +13771,10 @@ elements:
     - name: sentences
       status: EXISTS
     - name: quizSentence
+      status: EXISTS
+    - name: instructions
+      status: EXISTS
+    - name: sentenceParts
       status: EXISTS
   - name: CefrLevel
     status: EXISTS
@@ -13295,6 +14080,8 @@ elements:
       status: EXISTS
     - signature: "getLemmaCountDiagnosis(): Optional<LemmaCountCourseDiagnosis>"
       status: EXISTS
+    - signature: "getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>"
+      status: MISSING
   - name: LevelDiagnoses
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/LevelDiagnoses.java
@@ -13327,6 +14114,8 @@ elements:
       status: EXISTS
     - signature: "getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>"
       status: EXISTS
+    - signature: "getQuizInstructionDiagnosis(): Optional<QuizInstructionDiagnosis>"
+      status: MISSING
   - name: AuditReportStore
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/AuditReportStore.java
@@ -13372,6 +14161,28 @@ elements:
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/LemmaCountConfig.java
     methods:
     - signature: "getThreshold(): int"
+      status: EXISTS
+  - name: EvaluationAnalyzerFactory
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/EvaluationAnalyzerFactory.java
+    methods:
+    - signature: "evaluatorId(): String"
+      status: EXISTS
+    - signature: "create(EvaluationRunPolicy policy): ContentAnalyzer"
+      status: EXISTS
+  - name: QuizInstructionVerdictReader
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/QuizInstructionVerdictReader.java
+    methods:
+    - signature: "read(String payload): QuizInstructionVerdict"
+      status: EXISTS
+  - name: QuizInstructionConfig
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/QuizInstructionConfig.java
+    methods:
+    - signature: "getDefaultMaxNewEvaluations(): int"
+      status: EXISTS
+    - signature: "getScoreFor(InstructionSeverity severity): double"
       status: EXISTS
   implementations:
   - name: IAuditEngine
@@ -15517,6 +16328,11 @@ elements:
   - name: IScoreAggregator
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/IScoreAggregator.java
+    tests:
+    - name: "should average the quiz instruction score of a knowledge over its evaluated\
+        \ quizzes only, leaving the pending ones out"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/IScoreAggregatorTest.java
     quality:
       coverage:
         linesCovered: 27
@@ -20986,6 +21802,170 @@ elements:
         flags.getMisplacedWords().isEmpty() is true
         flags.getOutOfCatalogWords() is not null
         flags.getOutOfCatalogWords().isEmpty() is true
+  - name: DefaultQuizInstructionAnalyzerFactory
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionAnalyzerFactory.java
+    tests:
+    - name: should build the analyzer with the configured default budget when the
+        run declares no policy for the judge
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionAnalyzerFactoryTest.java
+  - name: QuizInstructionAnalyzer
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzer.java
+    tests:
+    - name: "should record for a breaching quiz a diagnosis with every violation carrying\
+        \ its code, its breached constraint, its evidence and its explanation"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: should record for a compliant quiz a diagnosis with the checks the judge
+        performed and no violations
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: "should record in the quiz diagnosis the reason, the severity and the\
+        \ confidence the judge reported"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: should leave a quiz pending for budget without score and without diagnosis
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: should leave a failed quiz without score and without diagnosis
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: "should declare on the course node how many quizzes were reached, resolved,\
+        \ evaluated in this run, reused, pending and failed"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: "should declare a coverage whose resolved, pending and failed counts add\
+        \ up to the reached total"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: should mark a verdict taken from a previous run as reused both in the
+        quiz diagnosis and in the declared coverage
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: should stop querying the judge once the run budget is exhausted and finish
+        without error leaving the rest pending
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: should audit a fully evaluated course without a single judge query whatever
+        the budget is
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: "should finish the run when the judge stops responding, counting the quizzes\
+        \ it could not judge as failed"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: should keep the score and the diagnosis of the quizzes judged before the
+        judge failure
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: should score a quiz from its recorded verdict without querying the judge
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: should spend the run budget only on quizzes without a current verdict
+        so consecutive runs advance over different quizzes
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: should not reuse the verdicts recorded by a previous judge version and
+        report those quizzes as pending
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: should query the judge again for quizzes that already had a current verdict
+        when re evaluation is requested
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: should keep an explicit re evaluation within the run budget
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: should leave without score and without diagnosis and count as failed a
+        quiz whose judge output was unusable
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: should query the judge again in a later run for a quiz whose previous
+        output was unusable
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: "should reach every quiz of the course, including those whose knowledge\
+        \ declares no instructions"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: "should declare a reached count equal to the number of quizzes of the\
+        \ course, with no exclusions"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+  - name: DefaultQuizInstructionSubjectBuilder
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionSubjectBuilder.java
+    tests:
+    - name: "should hand the judge the cefr level, the topic, the knowledge label,\
+        \ the knowledge instructions and the whole quiz with all its parts and accepted\
+        \ options"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionSubjectBuilderTest.java
+    - name: should leave the quiz identifier out of the judged content
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionSubjectBuilderTest.java
+    - name: should produce different judged content when a single accepted option
+        of the quiz changes
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionSubjectBuilderTest.java
+    - name: should produce different judged content for every quiz of a knowledge
+        when the knowledge instructions change
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionSubjectBuilderTest.java
+    - name: should produce identical judged content when the same course is reprocessed
+        without content changes
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionSubjectBuilderTest.java
+    - name: should take the label and the instructions from the knowledge when the
+        quiz carries diverging copies
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionSubjectBuilderTest.java
+    - name: should build judged content for a quiz whose knowledge declares no instructions
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionSubjectBuilderTest.java
+  - name: DefaultQuizInstructionScorer
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionScorer.java
+    tests:
+    - name: should score the quiz at the maximum when the verdict says it follows
+        the instructions with severity none
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionScorerTest.java
+    - name: should score the quiz at 0.6 when the verdict reports a minor breach
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionScorerTest.java
+    - name: should score the quiz at 0.3 when the verdict reports a major breach
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionScorerTest.java
+    - name: should score the quiz at 0.0 when the verdict reports a critical breach
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionScorerTest.java
+    - name: should let the declared severity prevail when the verdict says the quiz
+        complies but declares a severity other than none
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionScorerTest.java
+    - name: should score as a minor breach when the verdict says the quiz does not
+        comply but declares severity none
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionScorerTest.java
+    - name: should score the same verdict identically whatever confidence the judge
+        reported
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionScorerTest.java
+  - name: DefaultQuizInstructionScopeMatcher
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionScopeMatcher.java
+    tests:
+    - name: should match only the quizzes selected by the requested re evaluation
+        scope
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionScopeMatcherTest.java
+    - name: should match every reached quiz when the re evaluation request declares
+        no scope
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionScopeMatcherTest.java
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -27221,6 +28201,17 @@ elements:
     - crapHotspots 13 > 5
 - module: audit-application
   status: EXISTS
+  models:
+  - name: AuditRunRequest
+    status: EXISTS
+    filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/AuditRunRequest.java
+    fields:
+    - name: includedAnalyzers
+      status: EXISTS
+    - name: excludedAnalyzers
+      status: EXISTS
+    - name: evaluationPolicies
+      status: EXISTS
   interfaces:
   - name: AuditRunner
     status: EXISTS
@@ -27229,6 +28220,8 @@ elements:
     - signature: "runAudit(Path coursePath,Set<String> analyzerNames): AuditReport"
       status: EXISTS
     - signature: "runDetailedAudit(Path coursePath,String analyzerName): AuditNode"
+      status: EXISTS
+    - signature: "runAudit(Path coursePath,AuditRunRequest request): AuditReport"
       status: EXISTS
   - name: AnalyzerRegistry
     status: EXISTS
@@ -27304,6 +28297,14 @@ elements:
       testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/CourseToAuditableMapperTest.java
     - name: should stamp the canonical sentence at index 0 of QuizTemplateEntity sentences
         as the NLP batch key for the AuditableQuiz tokens
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/CourseToAuditableMapperTest.java
+    - name: should carry every sentence part and every accepted option of the quiz
+        template into the auditable quiz
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/CourseToAuditableMapperTest.java
+    - name: should carry the knowledge instructions and the topic name into the auditable
+        knowledge
       status: EXISTS
       testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/CourseToAuditableMapperTest.java
     testCleanViews:
@@ -27998,6 +28999,34 @@ elements:
     - name: should expose lemma-count diagnoses in the AuditReport when runDetailedAudit
         is invoked with both lemma-count and lemma-absence analyzers so downstream
         consumers can read the underexposure signal per level
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
+    - name: should include the quiz instruction analysis when the audit request says
+        nothing about analyzers
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
+    - name: "should report quiz instruction score, diagnoses and coverage on an audit\
+        \ asked with no options"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
+    - name: should not build the quiz instruction analyzer when the request excludes
+        it
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
+    - name: "should leave the report without quiz instruction score, diagnosis or\
+        \ coverage when the analysis is excluded"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
+    - name: should not run the quiz instruction analysis when the request narrows
+        the audit to other analyzers
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
+    - name: should finish the audit and keep the results of the other analyzers when
+        the quiz instruction judge fails
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
+    - name: should hand the quiz instruction analyzer the run policy the request declared
+        for its judge
       status: EXISTS
       testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
     testCleanViews:
@@ -29905,6 +30934,17 @@ elements:
         mutantsNoCoverage: 1
         mutationScorePct: 57
         crap: 5.0128
+  - name: DefaultQuizInstructionConfig
+    status: EXISTS
+    filePath: audit-application/src/main/java/com/learney/contentaudit/auditapplication/DefaultQuizInstructionConfig.java
+    tests:
+    - name: should default the run budget to 500 new judge queries
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultQuizInstructionConfigTest.java
+    - name: "should map the severities none, minor, major and critical to the scores\
+        \ 1.0, 0.6, 0.3 and 0.0"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultQuizInstructionConfigTest.java
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -30858,6 +31898,28 @@ elements:
       status: EXISTS
     - name: regex
       status: EXISTS
+  - name: AnalyzeOptions
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/AnalyzeOptions.java
+    fields:
+    - name: format
+      status: EXISTS
+    - name: level
+      status: EXISTS
+    - name: topic
+      status: EXISTS
+    - name: knowledge
+      status: EXISTS
+    - name: analyzers
+      status: EXISTS
+    - name: excludeAnalyzers
+      status: EXISTS
+    - name: detailed
+      status: EXISTS
+    - name: instructionBudget
+      status: EXISTS
+    - name: reevaluateInstructions
+      status: EXISTS
   interfaces:
   - name: AnalyzeCommand
     status: EXISTS
@@ -30865,6 +31927,8 @@ elements:
     methods:
     - signature: "analyze(String coursePath, String format, String level, String topic,\
         \ String knowledge, List<String> analyzers, boolean detailed): Integer"
+      status: EXISTS
+    - signature: "analyze(String coursePath,AnalyzeOptions options): Integer"
       status: EXISTS
   - name: GetCommand
     status: EXISTS
@@ -31047,6 +32111,22 @@ elements:
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/AnalyzeCmdTest.java
     - name: should return a non-zero exit code when AuditRunner throws a RuntimeException
         during the audit pipeline and print a descriptive error message to stderr
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/AnalyzeCmdTest.java
+    - name: should exclude the quiz instruction analysis from the run when the user
+        asks to exclude analyzers
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/AnalyzeCmdTest.java
+    - name: should carry the instruction budget the user asked for into the run policy
+        of the judge
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/AnalyzeCmdTest.java
+    - name: should ask for re evaluation with its scope when the user requests to
+        judge again
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/AnalyzeCmdTest.java
+    - name: should neither exclude nor narrow the quiz instruction analysis when the
+        user passes no analyzer option
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/AnalyzeCmdTest.java
     testCleanViews:
@@ -35977,6 +37057,17 @@ elements:
         output.contains("prop-pending-c") is true
         output.contains("acceptedProposalId") || output.contains("accepted") is true
         output.contains("pendingProposalId") || output.contains("pending") is true
+  - name: QuizInstructionDetailedFormatter
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/formatting/QuizInstructionDetailedFormatter.java
+    tests:
+    - name: should render the declared coverage of the quiz instruction analysis next
+        to its score
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/QuizInstructionDetailedFormatterTest.java
+    - name: should render for each breaching quiz its violations with their evidence
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/QuizInstructionDetailedFormatterTest.java
   - name: DefaultWorkdirResolver
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/bootstrap/DefaultWorkdirResolver.java
@@ -36529,6 +37620,9 @@ elements:
 
       then:
         config.getMaxEvalRetries() == 3
+  - name: DefaultQuizInstructionJudgeConfigResolver
+    status: EXISTS
+    filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/bootstrap/DefaultQuizInstructionJudgeConfigResolver.java
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -41574,7 +42668,7 @@ elements:
     - name: "should apply the approval of a lexical correction whose elementAfter\
         \ comes from the real lemma-absence deriver, saving a course whose revised\
         \ quiz differs from the original only in the fields the correction covers"
-      status: MISSING
+      status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultProposalDecisionServiceTest.java
     testCleanViews:
     - |
@@ -42043,6 +43137,61 @@ elements:
         verify: elementLocator.replace(eq(currentCourseWithNewerQuizRevision), eq(after))
         verify: elementLocator.alignQuizTitles(eq(courseAfterReplace), eq(knowledgeId))
         verify: courseRepository.save(eq(courseAfterAlign), eq(coursePath))
+    - |
+      test: "should apply the approval of a lexical correction whose elementAfter comes from the real lemma-absence deriver, saving a course whose revised quiz differs from the original only in the fields the correction covers"
+      trace: FEAT-RPRES / F-RPRES-R001
+
+      given:
+        proposalId = "task-rpres001b-100019"
+        taskId = "task-rpres001b"
+        planId = "plan-rpres001b"
+        knowledgeId = "knowledge-lex-001"
+        quizId = "quiz-lex-001"
+        coursePath = Path.of("./db/english-course")
+        converter = DefaultQuizSentenceConverter.create()
+        deriver = DefaultLemmaAbsenceProposalDeriver(converter)
+        formBefore = FormEntity("CLOZE", 1.0, "", "", Arrays.asList(new SentencePartEntity(SentencePartKind.TEXT, "She", null), new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("reads")), new SentencePartEntity(SentencePartKind.TEXT, "(read) books.", null)))
+        quizBefore = QuizTemplateEntity(quizId, quizId, "CLOZE", knowledgeId, // title
+      "She reads (read) books.", // instructions
+      "Write the correct form.", // translation
+      "Ella lee libros.", "basics.01.Present_Tense", "Present Tense", formBefore, 0.0, 0.0, 0.0, "", "", "", "", "", "", "", List.of("She reads (read) books."))
+        elementBefore = CourseElementSnapshot(AuditTarget.QUIZ, quizId, quizBefore, null)
+        candidate = LemmaAbsenceQuizCandidate("She ____ [studies] (study) books.", "Ella estudia libros.")
+        elementAfter = deriver.derive(elementBefore, candidate, null)
+        quizAfter = elementAfter.getQuiz()
+        knowledgeBefore = KnowledgeEntity()
+        knowledgeAfter = KnowledgeEntity()
+        topicBefore = TopicEntity()
+        topicAfter = TopicEntity()
+        milestoneBefore = MilestoneEntity()
+        milestoneAfter = MilestoneEntity()
+        rootBefore = RootNodeEntity()
+        rootAfter = RootNodeEntity()
+        courseBefore = CourseEntity()
+        courseAfterReplace = CourseEntity()
+        proposal = RevisionProposal(proposalId, taskId, planId, "audit-001", DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, quizId, elementBefore, elementAfter, "lemma-absence: replace out-of-level word", "lemma-absence-mvp", Instant.now(), null)
+        artifact = RevisionArtifact(proposal, RevisionVerdict.PENDING_APPROVAL, null, null, null, null, null, null)
+        plan = buildPlanWithTask(planId, taskId, RefinementTaskStatus.PENDING)
+        service = DefaultProposalDecisionService(artifactStore, courseRepository, elementLocator, refinementPlanStore, new DefaultPreservationFactory().createCheck())
+        outcome = service.approve(proposalId, Optional.of(planId), Optional.empty(), coursePath)
+
+      mock:
+        artifactStore.findByProposalId(eq(proposalId), any()) -> Optional.of(artifact)
+        refinementPlanStore.load(planId) -> Optional.of(plan)
+        courseRepository.load(coursePath) -> courseBefore
+        elementLocator.replace(eq(courseBefore), eq(elementAfter)) -> courseAfterReplace
+        artifactStore.save(any(RevisionArtifact.class)) -> ".content-audit/revisions/" + planId + "/" + proposalId
+
+      when:
+        sut.setId(knowledgeId)
+
+      then:
+        outcome.getKind() == ProposalDecisionOutcomeKind.APPROVED_APPLIED
+        quizAfter.getTitle() == quizBefore.getTitle()
+        quizAfter.getInstructions() == quizBefore.getInstructions()
+        quizAfter.getId() == quizBefore.getId()
+        quizBefore.getSentences() != null
+        verify: courseRepository.save(eq(courseAfterReplace), eq(coursePath))
   - name: DefaultLemmaAbsenceProposalStrategyRegistry
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/engine/DefaultLemmaAbsenceProposalStrategyRegistry.java
@@ -42210,7 +43359,7 @@ elements:
     - name: "should keep on elementAfter the very same quiz title that elementBefore\
         \ carried, even when the derived plain sentence differs, because the title\
         \ is not in scope of a lexical correction"
-      status: MISSING
+      status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/engine/DefaultLemmaAbsenceProposalDeriverTest.java
     testCleanViews:
     - |
@@ -42389,6 +43538,18 @@ elements:
         canonicalAfter == "Watch the film."
         "You should watch the film. Watch the film." != null
         tokensAfter.length == tokensBefore.length
+    - |
+      test: "should keep on elementAfter the very same quiz title that elementBefore carried, even when the derived plain sentence differs, because the title is not in scope of a lexical correction"
+      trace: FEAT-LAPS / F-LAPS-R014
+
+      given:
+        before = buildElementBefore()
+        candidate = buildCandidateWithDifferentAnswer()
+        after = deriver.derive(before, candidate, null)
+
+      then:
+        after.getQuiz().getTitle() == before.getQuiz().getTitle()
+        after.getQuiz().getTitle() != null
   - name: DefaultImpactPreviewComputer
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/engine/DefaultImpactPreviewComputer.java
@@ -45504,13 +46665,13 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 1776
-      linesMissed: 998
-      linesTotal: 2774
+      linesCovered: 1779
+      linesMissed: 996
+      linesTotal: 2775
       lineCoveragePct: 64
-      branchesCovered: 604
-      branchesMissed: 863
-      branchesTotal: 1467
+      branchesCovered: 605
+      branchesMissed: 864
+      branchesTotal: 1469
       branchCoveragePct: 41
       blendPct: 52
     mutation:
@@ -45526,7 +46687,7 @@ elements:
       totalMethods: 605
       hotspots: 33
       maxCrap: 428.09823200000005
-      averageCrap: 7.755727547107438
+      averageCrap: 7.754402495867769
       simple: 553
       moderate: 16
       high: 14
@@ -45853,9 +47014,6 @@ elements:
         result is not null
         result.getQuizSentence() is not null
         result.getTranslation() is not null
-  - name: DefaultAgentRuntimeLauncher
-    status: EXISTS
-    filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/DefaultAgentRuntimeLauncher.java
   - name: DefaultSuggestedLemmaAgentTool
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/DefaultSuggestedLemmaAgentTool.java
@@ -45922,6 +47080,9 @@ elements:
   - name: DefaultAgentCandidateParser
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/DefaultAgentCandidateParser.java
+  - name: SharedRuntimeAgentLauncher
+    status: EXISTS
+    filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/lemmaabsenceagent/SharedRuntimeAgentLauncher.java
   - name: DefaultKnowledgeTitleAgentGeneratorFactory
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/knowledgetitleagent/DefaultKnowledgeTitleAgentGeneratorFactory.java
@@ -45960,15 +47121,15 @@ elements:
         result.getInstructions().isEmpty() is false
         result.getTitle() == "Present Simple Affirmative"
         result.getInstructions() == "Completa la oracion con el verbo en presente simple."
-  - name: DefaultKnowledgeTitleAgentRuntimeLauncher
-    status: EXISTS
-    filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/knowledgetitleagent/DefaultKnowledgeTitleAgentRuntimeLauncher.java
   - name: DefaultKnowledgeTitleAgentCandidateParser
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/knowledgetitleagent/DefaultKnowledgeTitleAgentCandidateParser.java
   - name: DefaultKnowledgeTitleAgentErrorClassifier
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/knowledgetitleagent/DefaultKnowledgeTitleAgentErrorClassifier.java
+  - name: SharedRuntimeKnowledgeTitleLauncher
+    status: EXISTS
+    filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/knowledgetitleagent/SharedRuntimeKnowledgeTitleLauncher.java
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -46083,11 +47244,535 @@ elements:
     - lineCoverage 0% < 70%
     - branchCoverage 0% < 60%
     - crapHotspots 17 > 5
+- module: evaluation-ledger-domain
+  status: EXISTS
+  models:
+  - name: EvaluationKey
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/EvaluationKey.java
+    fields:
+    - name: evaluatorId
+      status: EXISTS
+    - name: evaluatorVersion
+      status: EXISTS
+    - name: contentFingerprint
+      status: EXISTS
+  - name: EvaluationSubject
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/EvaluationSubject.java
+    fields:
+    - name: subjectRef
+      status: EXISTS
+    - name: content
+      status: EXISTS
+  - name: EvaluationRecord
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/EvaluationRecord.java
+    fields:
+    - name: key
+      status: EXISTS
+    - name: payload
+      status: EXISTS
+    - name: subjectRef
+      status: EXISTS
+    - name: recordedAt
+      status: EXISTS
+  - name: EvaluationEmitted
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/EvaluationEmitted.java
+    fields:
+    - name: payload
+      status: EXISTS
+  - name: EvaluationNotEmitted
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/EvaluationNotEmitted.java
+    fields:
+    - name: kind
+      status: EXISTS
+    - name: reason
+      status: EXISTS
+  - name: EvaluationFailureKind
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/EvaluationFailureKind.java
+    fields:
+    - name: OUTPUT_UNUSABLE
+      status: EXISTS
+    - name: EVALUATOR_UNAVAILABLE
+      status: EXISTS
+  - name: EvaluationResolutionKind
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/EvaluationResolutionKind.java
+    fields:
+    - name: REUSED
+      status: EXISTS
+    - name: EVALUATED
+      status: EXISTS
+    - name: PENDING
+      status: EXISTS
+    - name: FAILED
+      status: EXISTS
+  - name: EvaluationResolution
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/EvaluationResolution.java
+    fields:
+    - name: kind
+      status: EXISTS
+    - name: payload
+      status: EXISTS
+  - name: EvaluationCoverage
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/EvaluationCoverage.java
+    fields:
+    - name: reached
+      status: EXISTS
+    - name: withResult
+      status: EXISTS
+    - name: evaluatedInRun
+      status: EXISTS
+    - name: reused
+      status: EXISTS
+    - name: pending
+      status: EXISTS
+    - name: failed
+      status: EXISTS
+  - name: EvaluationRunPolicy
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/EvaluationRunPolicy.java
+    fields:
+    - name: maxNewEvaluations
+      status: EXISTS
+    - name: reevaluate
+      status: EXISTS
+    - name: reevaluationScope
+      status: EXISTS
+  interfaces:
+  - name: EvaluationOutcome
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/EvaluationOutcome.java
+  - name: EvaluationLedger
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/EvaluationLedger.java
+    methods:
+    - signature: "find(EvaluationKey key): Optional<EvaluationRecord>"
+      status: EXISTS
+    - signature: "append(EvaluationRecord record): void"
+      status: EXISTS
+    - signature: "history(String evaluatorId,String contentFingerprint): List<EvaluationRecord>"
+      status: EXISTS
+  - name: ContentFingerprinter
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/ContentFingerprinter.java
+    methods:
+    - signature: "fingerprint(Map<String,String> content): String"
+      status: EXISTS
+  - name: Evaluator
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/Evaluator.java
+    methods:
+    - signature: "evaluatorId(): String"
+      status: EXISTS
+    - signature: "evaluatorVersion(): String"
+      status: EXISTS
+    - signature: "evaluate(EvaluationSubject subject): EvaluationOutcome"
+      status: EXISTS
+  - name: EvaluationSession
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/EvaluationSession.java
+    methods:
+    - signature: "resolve(EvaluationSubject subject): EvaluationResolution"
+      status: EXISTS
+    - signature: "resolveForced(EvaluationSubject subject): EvaluationResolution"
+      status: EXISTS
+    - signature: "coverage(): EvaluationCoverage"
+      status: EXISTS
+  - name: EvaluationSessionFactory
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/EvaluationSessionFactory.java
+    methods:
+    - signature: "open(EvaluationRunPolicy policy,Evaluator evaluator): EvaluationSession"
+      status: EXISTS
+  implementations:
+  - name: DefaultEvaluationSessionFactory
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSessionFactory.java
+  - name: DefaultEvaluationSession
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSession.java
+    tests:
+    - name: should reuse the registered result for identical content belonging to
+        a different course element
+      status: EXISTS
+      testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSessionTest.java
+    - name: should not reuse the registered result when the element kept its identifier
+        but its content changed
+      status: EXISTS
+      testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSessionTest.java
+    - name: should derive the fingerprint from exactly the content map handed to the
+        evaluator
+      status: EXISTS
+      testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSessionTest.java
+    - name: should return the registered result without consulting the evaluator
+      status: EXISTS
+      testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSessionTest.java
+    - name: should report the content as pending when no result is registered and
+        no new evaluation can be made
+      status: EXISTS
+      testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSessionTest.java
+    - name: should keep reusing registered results after the budget for new evaluations
+        is exhausted
+      status: EXISTS
+      testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSessionTest.java
+    - name: should record each evaluated result in the ledger before resolving the
+        next content
+      status: EXISTS
+      testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSessionTest.java
+    - name: should record an unfavourable verdict emitted by the evaluator and reuse
+        it in the next run
+      status: EXISTS
+      testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSessionTest.java
+    - name: should record nothing when the evaluator does not emit a verdict and leave
+        the content pending for the next run
+      status: EXISTS
+      testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSessionTest.java
+    - name: should leave content pending instead of reusing a result produced by a
+        previous version of the evaluator
+      status: EXISTS
+      testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSessionTest.java
+    - name: should consult the evaluator again for content with a current result only
+        when re-evaluation is explicitly requested
+      status: EXISTS
+      testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSessionTest.java
+    - name: should keep consulting the evaluator for the remaining content when the
+        failure is attributable to a single content
+      status: EXISTS
+      testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSessionTest.java
+    - name: should stop consulting the evaluator after a service failure and finish
+        the run leaving the remaining content pending
+      status: EXISTS
+      testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSessionTest.java
+  - name: Sha256ContentFingerprinter
+    status: EXISTS
+    filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/contentfingerprint/Sha256ContentFingerprinter.java
+    tests:
+    - name: should produce a different fingerprint when any part of the delivered
+        content changes
+      status: EXISTS
+      testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/contentfingerprint/Sha256ContentFingerprinterTest.java
+    - name: should produce the same fingerprint when the same content is rebuilt in
+        another run
+      status: EXISTS
+      testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/contentfingerprint/Sha256ContentFingerprinterTest.java
+  qualitySummary:
+    enforcement: warn
+    thresholds:
+      lineCoverage: 70
+      branchCoverage: 60
+      mutationScore: 60
+      crapHotspotThreshold: 30
+      crapHotspotsMax: 5
+    coverage:
+      linesCovered: 0
+      linesMissed: 0
+      linesTotal: 0
+      lineCoveragePct: 0
+      branchesCovered: 0
+      branchesMissed: 0
+      branchesTotal: 0
+      branchCoveragePct: 0
+      blendPct: 0
+    mutation:
+      totalMutants: 0
+      killed: 0
+      survived: 0
+      noCoverage: 0
+      timedOut: 0
+      other: 0
+      mutationScorePct: 0
+      testStrengthPct: 0
+    crap:
+      totalMethods: 0
+      hotspots: 0
+      maxCrap: 0.0
+      averageCrap: 0.0
+      simple: 0
+      moderate: 0
+      high: 0
+      veryHigh: 0
+      healthPct: 0
+    healthScore: 0
+    verdict: PASSED
+- module: evaluation-ledger-infrastructure
+  status: EXISTS
+  implementations:
+  - name: FileSystemEvaluationLedger
+    status: EXISTS
+    filePath: evaluation-ledger-infrastructure/src/main/java/com/learney/contentaudit/evaluationledgerinfrastructure/FileSystemEvaluationLedger.java
+    tests:
+    - name: should make every appended result readable by a ledger instance opened
+        after the run was interrupted
+      status: EXISTS
+      testFilePath: evaluation-ledger-infrastructure/src/test/java/com/learney/contentaudit/evaluationledgerinfrastructure/FileSystemEvaluationLedgerTest.java
+    - name: should ignore a truncated trailing entry and report its content as never
+        registered
+      status: EXISTS
+      testFilePath: evaluation-ledger-infrastructure/src/test/java/com/learney/contentaudit/evaluationledgerinfrastructure/FileSystemEvaluationLedgerTest.java
+    - name: should preserve every result when two runs append to the same evaluator
+        ledger at the same time
+      status: EXISTS
+      testFilePath: evaluation-ledger-infrastructure/src/test/java/com/learney/contentaudit/evaluationledgerinfrastructure/FileSystemEvaluationLedgerTest.java
+    - name: should keep the results of previous evaluator versions readable in history
+        after a new version records its own
+      status: EXISTS
+      testFilePath: evaluation-ledger-infrastructure/src/test/java/com/learney/contentaudit/evaluationledgerinfrastructure/FileSystemEvaluationLedgerTest.java
+    - name: should keep every registered result readable after the analysis reports
+        under the same base directory are deleted
+      status: EXISTS
+      testFilePath: evaluation-ledger-infrastructure/src/test/java/com/learney/contentaudit/evaluationledgerinfrastructure/FileSystemEvaluationLedgerTest.java
+    - name: should keep the earlier entry consultable in history when the same key
+        is recorded again
+      status: EXISTS
+      testFilePath: evaluation-ledger-infrastructure/src/test/java/com/learney/contentaudit/evaluationledgerinfrastructure/FileSystemEvaluationLedgerTest.java
+  qualitySummary:
+    enforcement: warn
+    thresholds:
+      lineCoverage: 70
+      branchCoverage: 60
+      mutationScore: 60
+      crapHotspotThreshold: 30
+      crapHotspotsMax: 5
+    coverage:
+      linesCovered: 0
+      linesMissed: 0
+      linesTotal: 0
+      lineCoveragePct: 0
+      branchesCovered: 0
+      branchesMissed: 0
+      branchesTotal: 0
+      branchCoveragePct: 0
+      blendPct: 0
+    mutation:
+      totalMutants: 0
+      killed: 0
+      survived: 0
+      noCoverage: 0
+      timedOut: 0
+      other: 0
+      mutationScorePct: 0
+      testStrengthPct: 0
+    crap:
+      totalMethods: 0
+      hotspots: 0
+      maxCrap: 0.0
+      averageCrap: 0.0
+      simple: 0
+      moderate: 0
+      high: 0
+      veryHigh: 0
+      healthPct: 0
+    healthScore: 0
+    verdict: PASSED
+- module: agent-runtime-infrastructure
+  status: EXISTS
+  models:
+  - name: AgentGraphRunnerConfig
+    status: EXISTS
+    filePath: agent-runtime-infrastructure/src/main/java/com/learney/contentaudit/agentruntimeinfrastructure/AgentGraphRunnerConfig.java
+    fields:
+    - name: agentsBaseDir
+      status: EXISTS
+    - name: runsBaseDir
+      status: EXISTS
+  interfaces:
+  - name: AgentGraphRunner
+    status: EXISTS
+    filePath: agent-runtime-infrastructure/src/main/java/com/learney/contentaudit/agentruntimeinfrastructure/AgentGraphRunner.java
+    methods:
+    - signature: "run(String agentName,Map<String,String> inputs,ChatModel chatModel,Map<String,Object>\
+        \ tools): RunState"
+      status: EXISTS
+  - name: AgentGraphRunnerFactory
+    status: EXISTS
+    filePath: agent-runtime-infrastructure/src/main/java/com/learney/contentaudit/agentruntimeinfrastructure/AgentGraphRunnerFactory.java
+    methods:
+    - signature: "create(AgentGraphRunnerConfig config): AgentGraphRunner"
+      status: EXISTS
+  implementations:
+  - name: DefaultAgentGraphRunnerFactory
+    status: EXISTS
+    filePath: agent-runtime-infrastructure/src/main/java/com/learney/contentaudit/agentruntimeinfrastructure/graphexecution/DefaultAgentGraphRunnerFactory.java
+  - name: DefaultAgentGraphRunner
+    status: EXISTS
+    filePath: agent-runtime-infrastructure/src/main/java/com/learney/contentaudit/agentruntimeinfrastructure/graphexecution/DefaultAgentGraphRunner.java
+  qualitySummary:
+    enforcement: warn
+    thresholds:
+      lineCoverage: 70
+      branchCoverage: 60
+      mutationScore: 60
+      crapHotspotThreshold: 30
+      crapHotspotsMax: 5
+    coverage:
+      linesCovered: 0
+      linesMissed: 0
+      linesTotal: 0
+      lineCoveragePct: 0
+      branchesCovered: 0
+      branchesMissed: 0
+      branchesTotal: 0
+      branchCoveragePct: 0
+      blendPct: 0
+    mutation:
+      totalMutants: 0
+      killed: 0
+      survived: 0
+      noCoverage: 0
+      timedOut: 0
+      other: 0
+      mutationScorePct: 0
+      testStrengthPct: 0
+    crap:
+      totalMethods: 0
+      hotspots: 0
+      maxCrap: 0.0
+      averageCrap: 0.0
+      simple: 0
+      moderate: 0
+      high: 0
+      veryHigh: 0
+      healthPct: 0
+    healthScore: 0
+    verdict: PASSED
+- module: quiz-instruction-infrastructure
+  status: EXISTS
+  models:
+  - name: QuizInstructionJudgeConfig
+    status: EXISTS
+    filePath: quiz-instruction-infrastructure/src/main/java/com/learney/contentaudit/quizinstructioninfrastructure/QuizInstructionJudgeConfig.java
+    fields:
+    - name: baseUrl
+      status: EXISTS
+    - name: apiKey
+      status: EXISTS
+    - name: modelName
+      status: EXISTS
+    - name: temperature
+      status: EXISTS
+    - name: timeoutSeconds
+      status: EXISTS
+    - name: agentName
+      status: EXISTS
+    - name: judgeVersionOverride
+      status: EXISTS
+  interfaces:
+  - name: QuizInstructionJudgeFactory
+    status: EXISTS
+    filePath: quiz-instruction-infrastructure/src/main/java/com/learney/contentaudit/quizinstructioninfrastructure/QuizInstructionJudgeFactory.java
+    methods:
+    - signature: "create(QuizInstructionJudgeConfig config,AgentGraphRunner agentGraphRunner):\
+        \ Evaluator"
+      status: EXISTS
+  implementations:
+  - name: DefaultQuizInstructionJudgeFactory
+    status: EXISTS
+    filePath: quiz-instruction-infrastructure/src/main/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeFactory.java
+    tests:
+    - name: "should yield an evaluator that reports itself unavailable when the judge\
+        \ configuration is missing or invalid, instead of failing the audit"
+      status: EXISTS
+      testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeFactoryTest.java
+  - name: QuizInstructionAgentJudge
+    status: EXISTS
+    filePath: quiz-instruction-infrastructure/src/main/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/QuizInstructionAgentJudge.java
+    tests:
+    - name: "should report the conservative infrastructure verdict of the judge, with\
+        \ null confidence and a judge output invalid violation, as an unusable output\
+        \ instead of a verdict"
+      status: EXISTS
+      testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/QuizInstructionAgentJudgeTest.java
+    - name: should report a genuine non compliant verdict as an emitted result and
+        not as a failure
+      status: EXISTS
+      testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/QuizInstructionAgentJudgeTest.java
+    - name: "should report a judge service failure, timeout or exhausted credit as\
+        \ an unavailable evaluator instead of throwing"
+      status: EXISTS
+      testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/QuizInstructionAgentJudgeTest.java
+    - name: should hand the judge the five declared inputs verbatim from the judged
+        content
+      status: EXISTS
+      testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/QuizInstructionAgentJudgeTest.java
+  - name: DefaultQuizInstructionJudgeVersionResolver
+    status: EXISTS
+    filePath: quiz-instruction-infrastructure/src/main/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeVersionResolver.java
+    tests:
+    - name: should derive a different judge version when the agent definition or the
+        model changes
+      status: EXISTS
+      testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeVersionResolverTest.java
+    - name: should keep the judge version stable while the agent definition and the
+        model stay the same
+      status: EXISTS
+      testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeVersionResolverTest.java
+    - name: should honour the judge version fixed by configuration
+      status: EXISTS
+      testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeVersionResolverTest.java
+  - name: JacksonQuizInstructionVerdictReader
+    status: EXISTS
+    filePath: quiz-instruction-infrastructure/src/main/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionverdict/JacksonQuizInstructionVerdictReader.java
+    tests:
+    - name: "should read the judge payload preserving every violation with its code,\
+        \ constraint, evidence and explanation and every performed check with its\
+        \ state"
+      status: EXISTS
+      testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionverdict/JacksonQuizInstructionVerdictReaderTest.java
+    - name: "should read the compliance flag, the severity and the confidence of the\
+        \ verdict"
+      status: EXISTS
+      testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionverdict/JacksonQuizInstructionVerdictReaderTest.java
+  qualitySummary:
+    enforcement: warn
+    thresholds:
+      lineCoverage: 70
+      branchCoverage: 60
+      mutationScore: 60
+      crapHotspotThreshold: 30
+      crapHotspotsMax: 5
+    coverage:
+      linesCovered: 0
+      linesMissed: 0
+      linesTotal: 0
+      lineCoveragePct: 0
+      branchesCovered: 0
+      branchesMissed: 0
+      branchesTotal: 0
+      branchCoveragePct: 0
+      blendPct: 0
+    mutation:
+      totalMutants: 0
+      killed: 0
+      survived: 0
+      noCoverage: 0
+      timedOut: 0
+      other: 0
+      mutationScorePct: 0
+      testStrengthPct: 0
+    crap:
+      totalMethods: 0
+      hotspots: 0
+      maxCrap: 0.0
+      averageCrap: 0.0
+      simple: 0
+      moderate: 0
+      high: 0
+      veryHigh: 0
+      healthPct: 0
+    healthScore: 0
+    verdict: PASSED
 testSummary:
-  total: 1117
-  passing: 1099
+  total: 1204
+  passing: 1188
   failing: 0
-  notImplemented: 18
+  notImplemented: 16
 qualitySummary:
   enforcement: warn
   thresholds:
@@ -46097,13 +47782,13 @@ qualitySummary:
     crapHotspotThreshold: 30
     crapHotspotsMax: 5
   coverage:
-    linesCovered: 7980
-    linesMissed: 6055
-    linesTotal: 14035
+    linesCovered: 7983
+    linesMissed: 6053
+    linesTotal: 14036
     lineCoveragePct: 56
-    branchesCovered: 2987
-    branchesMissed: 4332
-    branchesTotal: 7319
+    branchesCovered: 2988
+    branchesMissed: 4333
+    branchesTotal: 7321
     branchCoveragePct: 40
     blendPct: 48
   mutation:
@@ -46119,7 +47804,7 @@ qualitySummary:
     totalMethods: 2812
     hotspots: 163
     maxCrap: 870.0
-    averageCrap: 8.938855221550497
+    averageCrap: 8.938570137624465
     simple: 2518
     moderate: 116
     high: 51
@@ -46324,7 +48009,55 @@ patterns:
     elementName: DefaultKnowledgeTitleAgentGeneratorFactory
     nodeId: impl-revision-infrastructure-DefaultKnowledgeTitleAgentGeneratorFactory
   confidence: 1.0
-- id: stereo-8
+- id: declared-8
+  pattern: Factory
+  category: gof
+  source: declared
+  severity: info
+  description: Declared Factory pattern in evaluation-ledger-domain
+  involvedElements:
+  - type: interface
+    moduleName: evaluation-ledger-domain
+    elementName: EvaluationSessionFactory
+    nodeId: interface-evaluation-ledger-domain-EvaluationSessionFactory
+  - type: implementation
+    moduleName: evaluation-ledger-domain
+    elementName: DefaultEvaluationSessionFactory
+    nodeId: impl-evaluation-ledger-domain-DefaultEvaluationSessionFactory
+  confidence: 1.0
+- id: declared-9
+  pattern: Factory
+  category: gof
+  source: declared
+  severity: info
+  description: Declared Factory pattern in agent-runtime-infrastructure
+  involvedElements:
+  - type: interface
+    moduleName: agent-runtime-infrastructure
+    elementName: AgentGraphRunnerFactory
+    nodeId: interface-agent-runtime-infrastructure-AgentGraphRunnerFactory
+  - type: implementation
+    moduleName: agent-runtime-infrastructure
+    elementName: DefaultAgentGraphRunnerFactory
+    nodeId: impl-agent-runtime-infrastructure-DefaultAgentGraphRunnerFactory
+  confidence: 1.0
+- id: declared-10
+  pattern: Factory
+  category: gof
+  source: declared
+  severity: info
+  description: Declared Factory pattern in quiz-instruction-infrastructure
+  involvedElements:
+  - type: interface
+    moduleName: quiz-instruction-infrastructure
+    elementName: QuizInstructionJudgeFactory
+    nodeId: interface-quiz-instruction-infrastructure-QuizInstructionJudgeFactory
+  - type: implementation
+    moduleName: quiz-instruction-infrastructure
+    elementName: DefaultQuizInstructionJudgeFactory
+    nodeId: impl-quiz-instruction-infrastructure-DefaultQuizInstructionJudgeFactory
+  confidence: 1.0
+- id: stereo-11
   pattern: Port
   category: architectural
   source: detected
@@ -46336,7 +48069,7 @@ patterns:
     elementName: AuditEngine
     nodeId: interface-audit-domain-AuditEngine
   confidence: 0.9
-- id: stereo-9
+- id: stereo-12
   pattern: Port
   category: architectural
   source: detected
@@ -46348,7 +48081,7 @@ patterns:
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.9
-- id: stereo-10
+- id: stereo-13
   pattern: Port
   category: architectural
   source: detected
@@ -46360,7 +48093,7 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: stereo-11
+- id: stereo-14
   pattern: Port
   category: architectural
   source: detected
@@ -46372,7 +48105,7 @@ patterns:
     elementName: NlpTokenizer
     nodeId: interface-audit-domain-NlpTokenizer
   confidence: 0.9
-- id: stereo-12
+- id: stereo-15
   pattern: Port
   category: architectural
   source: detected
@@ -46384,7 +48117,7 @@ patterns:
     elementName: SentenceLengthConfig
     nodeId: interface-audit-domain-SentenceLengthConfig
   confidence: 0.9
-- id: stereo-13
+- id: stereo-16
   pattern: Port
   category: architectural
   source: detected
@@ -46396,7 +48129,7 @@ patterns:
     elementName: ScoreAggregator
     nodeId: interface-audit-domain-ScoreAggregator
   confidence: 0.9
-- id: stereo-14
+- id: stereo-17
   pattern: Port
   category: architectural
   source: detected
@@ -46408,7 +48141,7 @@ patterns:
     elementName: CocaBucketsConfig
     nodeId: interface-audit-domain-CocaBucketsConfig
   confidence: 0.9
-- id: stereo-15
+- id: stereo-18
   pattern: Port
   category: architectural
   source: detected
@@ -46420,7 +48153,7 @@ patterns:
     elementName: ContentWordFilter
     nodeId: interface-audit-domain-ContentWordFilter
   confidence: 0.9
-- id: stereo-16
+- id: stereo-19
   pattern: Port
   category: architectural
   source: detected
@@ -46432,7 +48165,7 @@ patterns:
     elementName: LemmaRecurrenceConfig
     nodeId: interface-audit-domain-LemmaRecurrenceConfig
   confidence: 0.9
-- id: stereo-17
+- id: stereo-20
   pattern: Port
   category: architectural
   source: detected
@@ -46444,7 +48177,7 @@ patterns:
     elementName: LemmaAbsenceConfig
     nodeId: interface-audit-domain-LemmaAbsenceConfig
   confidence: 0.9
-- id: stereo-18
+- id: stereo-21
   pattern: Port
   category: architectural
   source: detected
@@ -46456,7 +48189,7 @@ patterns:
     elementName: EvpCatalogPort
     nodeId: interface-audit-domain-EvpCatalogPort
   confidence: 0.9
-- id: stereo-19
+- id: stereo-22
   pattern: Port
   category: architectural
   source: detected
@@ -46468,7 +48201,7 @@ patterns:
     elementName: AuditableEntity
     nodeId: interface-audit-domain-AuditableEntity
   confidence: 0.9
-- id: stereo-20
+- id: stereo-23
   pattern: Port
   category: architectural
   source: detected
@@ -46480,7 +48213,7 @@ patterns:
     elementName: SelfDescribingConfig
     nodeId: interface-audit-domain-SelfDescribingConfig
   confidence: 0.9
-- id: stereo-21
+- id: stereo-24
   pattern: Port
   category: architectural
   source: detected
@@ -46492,7 +48225,7 @@ patterns:
     elementName: NodeDiagnoses
     nodeId: interface-audit-domain-NodeDiagnoses
   confidence: 0.9
-- id: stereo-22
+- id: stereo-25
   pattern: Port
   category: architectural
   source: detected
@@ -46504,7 +48237,7 @@ patterns:
     elementName: CourseDiagnoses
     nodeId: interface-audit-domain-CourseDiagnoses
   confidence: 0.9
-- id: stereo-23
+- id: stereo-26
   pattern: Port
   category: architectural
   source: detected
@@ -46516,7 +48249,7 @@ patterns:
     elementName: LevelDiagnoses
     nodeId: interface-audit-domain-LevelDiagnoses
   confidence: 0.9
-- id: stereo-24
+- id: stereo-27
   pattern: Port
   category: architectural
   source: detected
@@ -46528,7 +48261,7 @@ patterns:
     elementName: TopicDiagnoses
     nodeId: interface-audit-domain-TopicDiagnoses
   confidence: 0.9
-- id: stereo-25
+- id: stereo-28
   pattern: Port
   category: architectural
   source: detected
@@ -46540,7 +48273,7 @@ patterns:
     elementName: KnowledgeDiagnoses
     nodeId: interface-audit-domain-KnowledgeDiagnoses
   confidence: 0.9
-- id: stereo-26
+- id: stereo-29
   pattern: Port
   category: architectural
   source: detected
@@ -46552,7 +48285,7 @@ patterns:
     elementName: QuizDiagnoses
     nodeId: interface-audit-domain-QuizDiagnoses
   confidence: 0.9
-- id: stereo-27
+- id: stereo-30
   pattern: Port
   category: architectural
   source: detected
@@ -46564,7 +48297,7 @@ patterns:
     elementName: AuditReportStore
     nodeId: interface-audit-domain-AuditReportStore
   confidence: 0.9
-- id: stereo-28
+- id: stereo-31
   pattern: Port
   category: architectural
   source: detected
@@ -46576,7 +48309,7 @@ patterns:
     elementName: CourseMapper
     nodeId: interface-audit-domain-CourseMapper
   confidence: 0.9
-- id: stereo-29
+- id: stereo-32
   pattern: Port
   category: architectural
   source: detected
@@ -46588,7 +48321,7 @@ patterns:
     elementName: ActiveAnalysisSelectionStore
     nodeId: interface-audit-domain-ActiveAnalysisSelectionStore
   confidence: 0.9
-- id: stereo-30
+- id: stereo-33
   pattern: Port
   category: architectural
   source: detected
@@ -46600,7 +48333,7 @@ patterns:
     elementName: AuditNodeIndex
     nodeId: interface-audit-domain-AuditNodeIndex
   confidence: 0.9
-- id: stereo-32
+- id: stereo-35
   pattern: Port
   category: architectural
   source: detected
@@ -46612,7 +48345,31 @@ patterns:
     elementName: LemmaCountConfig
     nodeId: interface-audit-domain-LemmaCountConfig
   confidence: 0.9
-- id: stereo-33
+- id: stereo-37
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: QuizInstructionVerdictReader is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: QuizInstructionVerdictReader
+    nodeId: interface-audit-domain-QuizInstructionVerdictReader
+  confidence: 0.9
+- id: stereo-38
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: QuizInstructionConfig is a port
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: QuizInstructionConfig
+    nodeId: interface-audit-domain-QuizInstructionConfig
+  confidence: 0.9
+- id: stereo-39
   pattern: Value Object
   category: architectural
   source: detected
@@ -46624,7 +48381,7 @@ patterns:
     elementName: AuditReport
     nodeId: model-audit-domain-AuditReport
   confidence: 0.75
-- id: stereo-34
+- id: stereo-40
   pattern: Value Object
   category: architectural
   source: detected
@@ -46636,7 +48393,7 @@ patterns:
     elementName: AuditableCourse
     nodeId: model-audit-domain-AuditableCourse
   confidence: 0.75
-- id: stereo-35
+- id: stereo-41
   pattern: Entity
   category: architectural
   source: detected
@@ -46648,7 +48405,7 @@ patterns:
     elementName: AuditableKnowledge
     nodeId: model-audit-domain-AuditableKnowledge
   confidence: 0.8
-- id: stereo-36
+- id: stereo-42
   pattern: Entity
   category: architectural
   source: detected
@@ -46660,7 +48417,7 @@ patterns:
     elementName: AuditableTopic
     nodeId: model-audit-domain-AuditableTopic
   confidence: 0.8
-- id: stereo-37
+- id: stereo-43
   pattern: Entity
   category: architectural
   source: detected
@@ -46672,7 +48429,7 @@ patterns:
     elementName: AuditableMilestone
     nodeId: model-audit-domain-AuditableMilestone
   confidence: 0.8
-- id: stereo-38
+- id: stereo-44
   pattern: Entity
   category: architectural
   source: detected
@@ -46684,7 +48441,7 @@ patterns:
     elementName: AuditableQuiz
     nodeId: model-audit-domain-AuditableQuiz
   confidence: 0.8
-- id: stereo-39
+- id: stereo-45
   pattern: Enum
   category: architectural
   source: detected
@@ -46696,7 +48453,7 @@ patterns:
     elementName: CefrLevel
     nodeId: model-audit-domain-CefrLevel
   confidence: 0.95
-- id: stereo-40
+- id: stereo-46
   pattern: Value Object
   category: architectural
   source: detected
@@ -46708,7 +48465,7 @@ patterns:
     elementName: TargetRange
     nodeId: model-audit-domain-TargetRange
   confidence: 0.75
-- id: stereo-41
+- id: stereo-47
   pattern: Enum
   category: architectural
   source: detected
@@ -46720,7 +48477,7 @@ patterns:
     elementName: AuditTarget
     nodeId: model-audit-domain-AuditTarget
   confidence: 0.95
-- id: stereo-42
+- id: stereo-48
   pattern: Value Object
   category: architectural
   source: detected
@@ -46732,7 +48489,7 @@ patterns:
     elementName: NlpToken
     nodeId: model-audit-domain-NlpToken
   confidence: 0.75
-- id: stereo-43
+- id: stereo-49
   pattern: Value Object
   category: architectural
   source: detected
@@ -46744,7 +48501,7 @@ patterns:
     elementName: AnalyzerDescriptor
     nodeId: model-audit-domain-AnalyzerDescriptor
   confidence: 0.75
-- id: stereo-44
+- id: stereo-50
   pattern: Value Object
   category: architectural
   source: detected
@@ -46756,7 +48513,7 @@ patterns:
     elementName: AuditNode
     nodeId: model-audit-domain-AuditNode
   confidence: 0.75
-- id: stereo-45
+- id: stereo-51
   pattern: Value Object
   category: architectural
   source: detected
@@ -46768,7 +48525,7 @@ patterns:
     elementName: SentenceLengthDiagnosis
     nodeId: model-audit-domain-SentenceLengthDiagnosis
   confidence: 0.75
-- id: stereo-46
+- id: stereo-52
   pattern: Entity
   category: architectural
   source: detected
@@ -46780,7 +48537,7 @@ patterns:
     elementName: AuditReportSummary
     nodeId: model-audit-domain-AuditReportSummary
   confidence: 0.8
-- id: stereo-47
+- id: stereo-53
   pattern: Value Object
   category: architectural
   source: detected
@@ -46792,7 +48549,7 @@ patterns:
     elementName: ActiveAnalysisSelection
     nodeId: model-audit-domain-ActiveAnalysisSelection
   confidence: 0.75
-- id: stereo-48
+- id: stereo-54
   pattern: Port
   category: architectural
   source: detected
@@ -46804,7 +48561,7 @@ patterns:
     elementName: CourseRepository
     nodeId: interface-course-domain-CourseRepository
   confidence: 0.9
-- id: stereo-49
+- id: stereo-55
   pattern: Service
   category: architectural
   source: detected
@@ -46816,7 +48573,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: stereo-50
+- id: stereo-56
   pattern: Enum
   category: architectural
   source: detected
@@ -46828,7 +48585,7 @@ patterns:
     elementName: NodeKind
     nodeId: model-course-domain-NodeKind
   confidence: 0.95
-- id: stereo-51
+- id: stereo-57
   pattern: Enum
   category: architectural
   source: detected
@@ -46840,7 +48597,7 @@ patterns:
     elementName: SentencePartKind
     nodeId: model-course-domain-SentencePartKind
   confidence: 0.95
-- id: stereo-52
+- id: stereo-58
   pattern: Entity
   category: architectural
   source: detected
@@ -46852,7 +48609,7 @@ patterns:
     elementName: CourseEntity
     nodeId: model-course-domain-CourseEntity
   confidence: 0.8
-- id: stereo-53
+- id: stereo-59
   pattern: Entity
   category: architectural
   source: detected
@@ -46864,7 +48621,7 @@ patterns:
     elementName: RootNodeEntity
     nodeId: model-course-domain-RootNodeEntity
   confidence: 0.8
-- id: stereo-54
+- id: stereo-60
   pattern: Entity
   category: architectural
   source: detected
@@ -46876,7 +48633,7 @@ patterns:
     elementName: MilestoneEntity
     nodeId: model-course-domain-MilestoneEntity
   confidence: 0.8
-- id: stereo-55
+- id: stereo-61
   pattern: Entity
   category: architectural
   source: detected
@@ -46888,7 +48645,7 @@ patterns:
     elementName: TopicEntity
     nodeId: model-course-domain-TopicEntity
   confidence: 0.8
-- id: stereo-56
+- id: stereo-62
   pattern: Entity
   category: architectural
   source: detected
@@ -46900,7 +48657,7 @@ patterns:
     elementName: KnowledgeEntity
     nodeId: model-course-domain-KnowledgeEntity
   confidence: 0.8
-- id: stereo-57
+- id: stereo-63
   pattern: Entity
   category: architectural
   source: detected
@@ -46912,7 +48669,7 @@ patterns:
     elementName: QuizTemplateEntity
     nodeId: model-course-domain-QuizTemplateEntity
   confidence: 0.8
-- id: stereo-58
+- id: stereo-64
   pattern: Value Object
   category: architectural
   source: detected
@@ -46924,7 +48681,7 @@ patterns:
     elementName: FormEntity
     nodeId: model-course-domain-FormEntity
   confidence: 0.75
-- id: stereo-59
+- id: stereo-65
   pattern: Value Object
   category: architectural
   source: detected
@@ -46936,7 +48693,7 @@ patterns:
     elementName: SentencePartEntity
     nodeId: model-course-domain-SentencePartEntity
   confidence: 0.75
-- id: stereo-60
+- id: stereo-66
   pattern: Enum
   category: architectural
   source: detected
@@ -46948,7 +48705,7 @@ patterns:
     elementName: SentenceMode
     nodeId: model-course-domain-SentenceMode
   confidence: 0.95
-- id: stereo-61
+- id: stereo-67
   pattern: Port
   category: architectural
   source: detected
@@ -46960,7 +48717,7 @@ patterns:
     elementName: RefinerEngine
     nodeId: interface-refiner-domain-RefinerEngine
   confidence: 0.9
-- id: stereo-62
+- id: stereo-68
   pattern: Port
   category: architectural
   source: detected
@@ -46972,7 +48729,7 @@ patterns:
     elementName: RefinementPlanStore
     nodeId: interface-refiner-domain-RefinementPlanStore
   confidence: 0.9
-- id: stereo-63
+- id: stereo-69
   pattern: Port
   category: architectural
   source: detected
@@ -46984,7 +48741,7 @@ patterns:
     elementName: CorrectionContextResolver
     nodeId: interface-refiner-domain-CorrectionContextResolver
   confidence: 0.9
-- id: stereo-64
+- id: stereo-70
   pattern: Port
   category: architectural
   source: detected
@@ -46996,7 +48753,7 @@ patterns:
     elementName: CorrectionContext
     nodeId: interface-refiner-domain-CorrectionContext
   confidence: 0.9
-- id: stereo-65
+- id: stereo-71
   pattern: Port
   category: architectural
   source: detected
@@ -47008,7 +48765,7 @@ patterns:
     elementName: SuggestedLemmaQueryPort
     nodeId: interface-refiner-domain-SuggestedLemmaQueryPort
   confidence: 0.9
-- id: stereo-66
+- id: stereo-72
   pattern: Port
   category: architectural
   source: detected
@@ -47020,7 +48777,7 @@ patterns:
     elementName: SuggestedLemmaQuerySession
     nodeId: interface-refiner-domain-SuggestedLemmaQuerySession
   confidence: 0.9
-- id: stereo-68
+- id: stereo-74
   pattern: Enum
   category: architectural
   source: detected
@@ -47032,7 +48789,7 @@ patterns:
     elementName: DiagnosisKind
     nodeId: model-refiner-domain-DiagnosisKind
   confidence: 0.95
-- id: stereo-69
+- id: stereo-75
   pattern: Enum
   category: architectural
   source: detected
@@ -47044,7 +48801,7 @@ patterns:
     elementName: RefinementTaskStatus
     nodeId: model-refiner-domain-RefinementTaskStatus
   confidence: 0.95
-- id: stereo-70
+- id: stereo-76
   pattern: Entity
   category: architectural
   source: detected
@@ -47056,7 +48813,7 @@ patterns:
     elementName: RefinementTask
     nodeId: model-refiner-domain-RefinementTask
   confidence: 0.8
-- id: stereo-71
+- id: stereo-77
   pattern: Entity
   category: architectural
   source: detected
@@ -47068,7 +48825,7 @@ patterns:
     elementName: RefinementPlan
     nodeId: model-refiner-domain-RefinementPlan
   confidence: 0.8
-- id: stereo-72
+- id: stereo-78
   pattern: Value Object
   category: architectural
   source: detected
@@ -47080,7 +48837,7 @@ patterns:
     elementName: SuggestedLemma
     nodeId: model-refiner-domain-SuggestedLemma
   confidence: 0.75
-- id: stereo-73
+- id: stereo-79
   pattern: Value Object
   category: architectural
   source: detected
@@ -47092,7 +48849,7 @@ patterns:
     elementName: SentenceLengthCorrectionContext
     nodeId: model-refiner-domain-SentenceLengthCorrectionContext
   confidence: 0.75
-- id: stereo-74
+- id: stereo-80
   pattern: Value Object
   category: architectural
   source: detected
@@ -47104,7 +48861,7 @@ patterns:
     elementName: MisplacedLemmaContext
     nodeId: model-refiner-domain-MisplacedLemmaContext
   confidence: 0.75
-- id: stereo-75
+- id: stereo-81
   pattern: Value Object
   category: architectural
   source: detected
@@ -47116,7 +48873,7 @@ patterns:
     elementName: LemmaAbsenceCorrectionContext
     nodeId: model-refiner-domain-LemmaAbsenceCorrectionContext
   confidence: 0.75
-- id: stereo-76
+- id: stereo-82
   pattern: Enum
   category: architectural
   source: detected
@@ -47128,7 +48885,7 @@ patterns:
     elementName: LengthDirection
     nodeId: model-refiner-domain-LengthDirection
   confidence: 0.95
-- id: stereo-77
+- id: stereo-83
   pattern: Value Object
   category: architectural
   source: detected
@@ -47140,7 +48897,7 @@ patterns:
     elementName: SuggestedLemmaQueryResult
     nodeId: model-refiner-domain-SuggestedLemmaQueryResult
   confidence: 0.75
-- id: stereo-78
+- id: stereo-84
   pattern: Value Object
   category: architectural
   source: detected
@@ -47152,7 +48909,7 @@ patterns:
     elementName: SuggestedLemmaQueryCriteria
     nodeId: model-refiner-domain-SuggestedLemmaQueryCriteria
   confidence: 0.75
-- id: stereo-79
+- id: stereo-85
   pattern: Value Object
   category: architectural
   source: detected
@@ -47164,7 +48921,7 @@ patterns:
     elementName: ScarceContentWord
     nodeId: model-refiner-domain-ScarceContentWord
   confidence: 0.75
-- id: stereo-80
+- id: stereo-86
   pattern: Value Object
   category: architectural
   source: detected
@@ -47176,7 +48933,7 @@ patterns:
     elementName: KnowledgeTitleCorrectionContext
     nodeId: model-refiner-domain-KnowledgeTitleCorrectionContext
   confidence: 0.75
-- id: stereo-81
+- id: stereo-87
   pattern: Value Object
   category: architectural
   source: detected
@@ -47188,7 +48945,7 @@ patterns:
     elementName: OutOfCatalogWordContext
     nodeId: model-refiner-domain-OutOfCatalogWordContext
   confidence: 0.75
-- id: stereo-82
+- id: stereo-88
   pattern: Service
   category: architectural
   source: detected
@@ -47200,7 +48957,7 @@ patterns:
     elementName: AuditRunner
     nodeId: interface-audit-application-AuditRunner
   confidence: 0.9
-- id: stereo-83
+- id: stereo-89
   pattern: Service
   category: architectural
   source: detected
@@ -47212,7 +48969,7 @@ patterns:
     elementName: AnalyzerRegistry
     nodeId: interface-audit-application-AnalyzerRegistry
   confidence: 0.9
-- id: stereo-84
+- id: stereo-90
   pattern: Port
   category: architectural
   source: detected
@@ -47224,7 +48981,19 @@ patterns:
     elementName: LemmaCountConfigLoader
     nodeId: interface-audit-application-LemmaCountConfigLoader
   confidence: 0.9
-- id: stereo-85
+- id: stereo-91
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: AuditRunRequest is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-application
+    elementName: AuditRunRequest
+    nodeId: model-audit-application-AuditRunRequest
+  confidence: 0.75
+- id: stereo-92
   pattern: Port
   category: architectural
   source: detected
@@ -47236,7 +49005,7 @@ patterns:
     elementName: AnalyzeCommand
     nodeId: interface-audit-cli-AnalyzeCommand
   confidence: 0.9
-- id: stereo-86
+- id: stereo-93
   pattern: Port
   category: architectural
   source: detected
@@ -47248,7 +49017,7 @@ patterns:
     elementName: GetCommand
     nodeId: interface-audit-cli-GetCommand
   confidence: 0.9
-- id: stereo-87
+- id: stereo-94
   pattern: Port
   category: architectural
   source: detected
@@ -47260,7 +49029,7 @@ patterns:
     elementName: DeleteCommand
     nodeId: interface-audit-cli-DeleteCommand
   confidence: 0.9
-- id: stereo-88
+- id: stereo-95
   pattern: Port
   category: architectural
   source: detected
@@ -47272,7 +49041,7 @@ patterns:
     elementName: PruneCommand
     nodeId: interface-audit-cli-PruneCommand
   confidence: 0.9
-- id: stereo-89
+- id: stereo-96
   pattern: Port
   category: architectural
   source: detected
@@ -47284,7 +49053,7 @@ patterns:
     elementName: PlanCommand
     nodeId: interface-audit-cli-PlanCommand
   confidence: 0.9
-- id: stereo-90
+- id: stereo-97
   pattern: Port
   category: architectural
   source: detected
@@ -47296,7 +49065,7 @@ patterns:
     elementName: ReviseCommand
     nodeId: interface-audit-cli-ReviseCommand
   confidence: 0.9
-- id: stereo-91
+- id: stereo-98
   pattern: Port
   category: architectural
   source: detected
@@ -47308,7 +49077,7 @@ patterns:
     elementName: ConfigAnalyzerCommand
     nodeId: interface-audit-cli-ConfigAnalyzerCommand
   confidence: 0.9
-- id: stereo-92
+- id: stereo-99
   pattern: Port
   category: architectural
   source: detected
@@ -47320,7 +49089,7 @@ patterns:
     elementName: StatsAnalyzerCommand
     nodeId: interface-audit-cli-StatsAnalyzerCommand
   confidence: 0.9
-- id: stereo-93
+- id: stereo-100
   pattern: Port
   category: architectural
   source: detected
@@ -47332,7 +49101,7 @@ patterns:
     elementName: ApproveCommand
     nodeId: interface-audit-cli-ApproveCommand
   confidence: 0.9
-- id: stereo-94
+- id: stereo-101
   pattern: Port
   category: architectural
   source: detected
@@ -47344,7 +49113,7 @@ patterns:
     elementName: RejectCommand
     nodeId: interface-audit-cli-RejectCommand
   confidence: 0.9
-- id: stereo-95
+- id: stereo-102
   pattern: Port
   category: architectural
   source: detected
@@ -47356,7 +49125,7 @@ patterns:
     elementName: GetConsolidatedCommand
     nodeId: interface-audit-cli-GetConsolidatedCommand
   confidence: 0.9
-- id: stereo-96
+- id: stereo-103
   pattern: Port
   category: architectural
   source: detected
@@ -47368,7 +49137,7 @@ patterns:
     elementName: SetActiveAnalysisCommand
     nodeId: interface-audit-cli-SetActiveAnalysisCommand
   confidence: 0.9
-- id: stereo-97
+- id: stereo-104
   pattern: Port
   category: architectural
   source: detected
@@ -47380,7 +49149,7 @@ patterns:
     elementName: LexisCommand
     nodeId: interface-audit-cli-LexisCommand
   confidence: 0.9
-- id: stereo-98
+- id: stereo-105
   pattern: Port
   category: architectural
   source: detected
@@ -47392,7 +49161,7 @@ patterns:
     elementName: RepairCommand
     nodeId: interface-audit-cli-RepairCommand
   confidence: 0.9
-- id: stereo-99
+- id: stereo-106
   pattern: Value Object
   category: architectural
   source: detected
@@ -47404,7 +49173,7 @@ patterns:
     elementName: GetTasksFilter
     nodeId: model-audit-cli-GetTasksFilter
   confidence: 0.75
-- id: stereo-100
+- id: stereo-107
   pattern: Enum
   category: architectural
   source: detected
@@ -47416,7 +49185,7 @@ patterns:
     elementName: LagenMode
     nodeId: model-audit-cli-LagenMode
   confidence: 0.95
-- id: stereo-101
+- id: stereo-108
   pattern: Enum
   category: architectural
   source: detected
@@ -47428,7 +49197,7 @@ patterns:
     elementName: PlanStorageMode
     nodeId: model-audit-cli-PlanStorageMode
   confidence: 0.95
-- id: stereo-102
+- id: stereo-109
   pattern: Value Object
   category: architectural
   source: detected
@@ -47440,7 +49209,7 @@ patterns:
     elementName: EphemeralRenderOptions
     nodeId: model-audit-cli-EphemeralRenderOptions
   confidence: 0.75
-- id: stereo-103
+- id: stereo-110
   pattern: Value Object
   category: architectural
   source: detected
@@ -47452,7 +49221,19 @@ patterns:
     elementName: SuggestedLemmasFilter
     nodeId: model-audit-cli-SuggestedLemmasFilter
   confidence: 0.75
-- id: stereo-105
+- id: stereo-111
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: AnalyzeOptions is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: audit-cli
+    elementName: AnalyzeOptions
+    nodeId: model-audit-cli-AnalyzeOptions
+  confidence: 0.75
+- id: stereo-113
   pattern: Value Object
   category: architectural
   source: detected
@@ -47464,7 +49245,7 @@ patterns:
     elementName: NlpTokenizerConfig
     nodeId: model-nlp-infrastructure-NlpTokenizerConfig
   confidence: 0.75
-- id: stereo-106
+- id: stereo-114
   pattern: Port
   category: architectural
   source: detected
@@ -47476,7 +49257,7 @@ patterns:
     elementName: Reviser
     nodeId: interface-revision-domain-Reviser
   confidence: 0.9
-- id: stereo-107
+- id: stereo-115
   pattern: Port
   category: architectural
   source: detected
@@ -47488,7 +49269,7 @@ patterns:
     elementName: RevisionValidator
     nodeId: interface-revision-domain-RevisionValidator
   confidence: 0.9
-- id: stereo-108
+- id: stereo-116
   pattern: Port
   category: architectural
   source: detected
@@ -47500,7 +49281,7 @@ patterns:
     elementName: RevisionArtifactStore
     nodeId: interface-revision-domain-RevisionArtifactStore
   confidence: 0.9
-- id: stereo-109
+- id: stereo-117
   pattern: Port
   category: architectural
   source: detected
@@ -47512,7 +49293,7 @@ patterns:
     elementName: CourseElementLocator
     nodeId: interface-revision-domain-CourseElementLocator
   confidence: 0.9
-- id: stereo-110
+- id: stereo-118
   pattern: Port
   category: architectural
   source: detected
@@ -47524,7 +49305,7 @@ patterns:
     elementName: RevisionEngine
     nodeId: interface-revision-domain-RevisionEngine
   confidence: 0.9
-- id: stereo-113
+- id: stereo-121
   pattern: Port
   category: architectural
   source: detected
@@ -47536,7 +49317,7 @@ patterns:
     elementName: ProposalDecisionService
     nodeId: interface-revision-domain-ProposalDecisionService
   confidence: 0.9
-- id: stereo-115
+- id: stereo-123
   pattern: Port
   category: architectural
   source: detected
@@ -47548,7 +49329,7 @@ patterns:
     elementName: LemmaAbsenceProposalStrategy
     nodeId: interface-revision-domain-LemmaAbsenceProposalStrategy
   confidence: 0.9
-- id: stereo-116
+- id: stereo-124
   pattern: Service
   category: architectural
   source: detected
@@ -47560,7 +49341,7 @@ patterns:
     elementName: LemmaAbsenceProposalStrategyRegistry
     nodeId: interface-revision-domain-LemmaAbsenceProposalStrategyRegistry
   confidence: 0.9
-- id: stereo-117
+- id: stereo-125
   pattern: Service
   category: architectural
   source: detected
@@ -47572,7 +49353,7 @@ patterns:
     elementName: LemmaAbsenceProposalDeriver
     nodeId: interface-revision-domain-LemmaAbsenceProposalDeriver
   confidence: 0.9
-- id: stereo-118
+- id: stereo-126
   pattern: Port
   category: architectural
   source: detected
@@ -47584,7 +49365,7 @@ patterns:
     elementName: ImpactPreviewStore
     nodeId: interface-revision-domain-ImpactPreviewStore
   confidence: 0.9
-- id: stereo-119
+- id: stereo-127
   pattern: Port
   category: architectural
   source: detected
@@ -47596,7 +49377,7 @@ patterns:
     elementName: CorrectionContextOverrideParser
     nodeId: interface-revision-domain-CorrectionContextOverrideParser
   confidence: 0.9
-- id: stereo-120
+- id: stereo-128
   pattern: Port
   category: architectural
   source: detected
@@ -47608,7 +49389,7 @@ patterns:
     elementName: KnowledgeTitleProposalStrategy
     nodeId: interface-revision-domain-KnowledgeTitleProposalStrategy
   confidence: 0.9
-- id: stereo-121
+- id: stereo-129
   pattern: Service
   category: architectural
   source: detected
@@ -47620,7 +49401,7 @@ patterns:
     elementName: KnowledgeTitleProposalStrategyRegistry
     nodeId: interface-revision-domain-KnowledgeTitleProposalStrategyRegistry
   confidence: 0.9
-- id: stereo-122
+- id: stereo-130
   pattern: Service
   category: architectural
   source: detected
@@ -47632,7 +49413,7 @@ patterns:
     elementName: KnowledgeTitleProposalDeriver
     nodeId: interface-revision-domain-KnowledgeTitleProposalDeriver
   confidence: 0.9
-- id: stereo-124
+- id: stereo-132
   pattern: Enum
   category: architectural
   source: detected
@@ -47644,7 +49425,7 @@ patterns:
     elementName: RevisionVerdict
     nodeId: model-revision-domain-RevisionVerdict
   confidence: 0.95
-- id: stereo-125
+- id: stereo-133
   pattern: Enum
   category: architectural
   source: detected
@@ -47656,7 +49437,7 @@ patterns:
     elementName: RevisionOutcomeKind
     nodeId: model-revision-domain-RevisionOutcomeKind
   confidence: 0.95
-- id: stereo-126
+- id: stereo-134
   pattern: Value Object
   category: architectural
   source: detected
@@ -47668,7 +49449,7 @@ patterns:
     elementName: CourseElementSnapshot
     nodeId: model-revision-domain-CourseElementSnapshot
   confidence: 0.75
-- id: stereo-127
+- id: stereo-135
   pattern: Value Object
   category: architectural
   source: detected
@@ -47680,7 +49461,7 @@ patterns:
     elementName: RevisionProposal
     nodeId: model-revision-domain-RevisionProposal
   confidence: 0.75
-- id: stereo-128
+- id: stereo-136
   pattern: Value Object
   category: architectural
   source: detected
@@ -47692,7 +49473,7 @@ patterns:
     elementName: RevisionArtifact
     nodeId: model-revision-domain-RevisionArtifact
   confidence: 0.75
-- id: stereo-129
+- id: stereo-137
   pattern: Value Object
   category: architectural
   source: detected
@@ -47704,7 +49485,7 @@ patterns:
     elementName: RevisionOutcome
     nodeId: model-revision-domain-RevisionOutcome
   confidence: 0.75
-- id: stereo-130
+- id: stereo-138
   pattern: Value Object
   category: architectural
   source: detected
@@ -47716,7 +49497,7 @@ patterns:
     elementName: RevisionEngineConfig
     nodeId: model-revision-domain-RevisionEngineConfig
   confidence: 0.75
-- id: stereo-131
+- id: stereo-139
   pattern: Enum
   category: architectural
   source: detected
@@ -47728,7 +49509,7 @@ patterns:
     elementName: ApprovalMode
     nodeId: model-revision-domain-ApprovalMode
   confidence: 0.95
-- id: stereo-132
+- id: stereo-140
   pattern: Enum
   category: architectural
   source: detected
@@ -47740,7 +49521,7 @@ patterns:
     elementName: ProposalDecisionOutcomeKind
     nodeId: model-revision-domain-ProposalDecisionOutcomeKind
   confidence: 0.95
-- id: stereo-133
+- id: stereo-141
   pattern: Value Object
   category: architectural
   source: detected
@@ -47752,7 +49533,7 @@ patterns:
     elementName: ProposalDecisionOutcome
     nodeId: model-revision-domain-ProposalDecisionOutcome
   confidence: 0.75
-- id: stereo-134
+- id: stereo-142
   pattern: Value Object
   category: architectural
   source: detected
@@ -47764,7 +49545,7 @@ patterns:
     elementName: StrategyId
     nodeId: model-revision-domain-StrategyId
   confidence: 0.75
-- id: stereo-135
+- id: stereo-143
   pattern: Value Object
   category: architectural
   source: detected
@@ -47776,7 +49557,7 @@ patterns:
     elementName: LemmaAbsenceQuizCandidate
     nodeId: model-revision-domain-LemmaAbsenceQuizCandidate
   confidence: 0.75
-- id: stereo-136
+- id: stereo-144
   pattern: Value Object
   category: architectural
   source: detected
@@ -47788,7 +49569,7 @@ patterns:
     elementName: ConsolidatedViewBuilderConfig
     nodeId: model-revision-domain-ConsolidatedViewBuilderConfig
   confidence: 0.75
-- id: stereo-137
+- id: stereo-145
   pattern: Enum
   category: architectural
   source: detected
@@ -47800,7 +49581,7 @@ patterns:
     elementName: CorrectionContextSource
     nodeId: model-revision-domain-CorrectionContextSource
   confidence: 0.95
-- id: stereo-138
+- id: stereo-146
   pattern: Value Object
   category: architectural
   source: detected
@@ -47812,7 +49593,223 @@ patterns:
     elementName: CorrectionContextOverride
     nodeId: model-revision-domain-CorrectionContextOverride
   confidence: 0.75
-- id: anti-139
+- id: stereo-147
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: EvaluationOutcome is a port
+  involvedElements:
+  - type: interface
+    moduleName: evaluation-ledger-domain
+    elementName: EvaluationOutcome
+    nodeId: interface-evaluation-ledger-domain-EvaluationOutcome
+  confidence: 0.9
+- id: stereo-148
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: EvaluationLedger is a port
+  involvedElements:
+  - type: interface
+    moduleName: evaluation-ledger-domain
+    elementName: EvaluationLedger
+    nodeId: interface-evaluation-ledger-domain-EvaluationLedger
+  confidence: 0.9
+- id: stereo-149
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: ContentFingerprinter is a port
+  involvedElements:
+  - type: interface
+    moduleName: evaluation-ledger-domain
+    elementName: ContentFingerprinter
+    nodeId: interface-evaluation-ledger-domain-ContentFingerprinter
+  confidence: 0.9
+- id: stereo-150
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: Evaluator is a port
+  involvedElements:
+  - type: interface
+    moduleName: evaluation-ledger-domain
+    elementName: Evaluator
+    nodeId: interface-evaluation-ledger-domain-Evaluator
+  confidence: 0.9
+- id: stereo-151
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: EvaluationSession is a port
+  involvedElements:
+  - type: interface
+    moduleName: evaluation-ledger-domain
+    elementName: EvaluationSession
+    nodeId: interface-evaluation-ledger-domain-EvaluationSession
+  confidence: 0.9
+- id: stereo-153
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: EvaluationKey is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: evaluation-ledger-domain
+    elementName: EvaluationKey
+    nodeId: model-evaluation-ledger-domain-EvaluationKey
+  confidence: 0.75
+- id: stereo-154
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: EvaluationSubject is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: evaluation-ledger-domain
+    elementName: EvaluationSubject
+    nodeId: model-evaluation-ledger-domain-EvaluationSubject
+  confidence: 0.75
+- id: stereo-155
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: EvaluationRecord is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: evaluation-ledger-domain
+    elementName: EvaluationRecord
+    nodeId: model-evaluation-ledger-domain-EvaluationRecord
+  confidence: 0.75
+- id: stereo-156
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: EvaluationEmitted is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: evaluation-ledger-domain
+    elementName: EvaluationEmitted
+    nodeId: model-evaluation-ledger-domain-EvaluationEmitted
+  confidence: 0.75
+- id: stereo-157
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: EvaluationNotEmitted is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: evaluation-ledger-domain
+    elementName: EvaluationNotEmitted
+    nodeId: model-evaluation-ledger-domain-EvaluationNotEmitted
+  confidence: 0.75
+- id: stereo-158
+  pattern: Enum
+  category: architectural
+  source: detected
+  severity: info
+  description: EvaluationFailureKind is an enum
+  involvedElements:
+  - type: model
+    moduleName: evaluation-ledger-domain
+    elementName: EvaluationFailureKind
+    nodeId: model-evaluation-ledger-domain-EvaluationFailureKind
+  confidence: 0.95
+- id: stereo-159
+  pattern: Enum
+  category: architectural
+  source: detected
+  severity: info
+  description: EvaluationResolutionKind is an enum
+  involvedElements:
+  - type: model
+    moduleName: evaluation-ledger-domain
+    elementName: EvaluationResolutionKind
+    nodeId: model-evaluation-ledger-domain-EvaluationResolutionKind
+  confidence: 0.95
+- id: stereo-160
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: EvaluationResolution is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: evaluation-ledger-domain
+    elementName: EvaluationResolution
+    nodeId: model-evaluation-ledger-domain-EvaluationResolution
+  confidence: 0.75
+- id: stereo-161
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: EvaluationCoverage is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: evaluation-ledger-domain
+    elementName: EvaluationCoverage
+    nodeId: model-evaluation-ledger-domain-EvaluationCoverage
+  confidence: 0.75
+- id: stereo-162
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: EvaluationRunPolicy is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: evaluation-ledger-domain
+    elementName: EvaluationRunPolicy
+    nodeId: model-evaluation-ledger-domain-EvaluationRunPolicy
+  confidence: 0.75
+- id: stereo-163
+  pattern: Port
+  category: architectural
+  source: detected
+  severity: info
+  description: AgentGraphRunner is a port
+  involvedElements:
+  - type: interface
+    moduleName: agent-runtime-infrastructure
+    elementName: AgentGraphRunner
+    nodeId: interface-agent-runtime-infrastructure-AgentGraphRunner
+  confidence: 0.9
+- id: stereo-165
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: AgentGraphRunnerConfig is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: agent-runtime-infrastructure
+    elementName: AgentGraphRunnerConfig
+    nodeId: model-agent-runtime-infrastructure-AgentGraphRunnerConfig
+  confidence: 0.75
+- id: stereo-167
+  pattern: Value Object
+  category: architectural
+  source: detected
+  severity: info
+  description: QuizInstructionJudgeConfig is a value object (record without id)
+  involvedElements:
+  - type: model
+    moduleName: quiz-instruction-infrastructure
+    elementName: QuizInstructionJudgeConfig
+    nodeId: model-quiz-instruction-infrastructure-QuizInstructionJudgeConfig
+  confidence: 0.75
+- id: anti-168
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -47824,7 +49821,7 @@ patterns:
     elementName: AnalysisResult
     nodeId: interface-audit-domain-AnalysisResult
   confidence: 0.9
-- id: anti-140
+- id: anti-169
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -47836,7 +49833,7 @@ patterns:
     elementName: NlpTokenizer
     nodeId: interface-audit-domain-NlpTokenizer
   confidence: 0.9
-- id: anti-141
+- id: anti-170
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -47848,7 +49845,7 @@ patterns:
     elementName: ContentWordFilter
     nodeId: interface-audit-domain-ContentWordFilter
   confidence: 0.9
-- id: anti-142
+- id: anti-171
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -47860,7 +49857,7 @@ patterns:
     elementName: EvpCatalogPort
     nodeId: interface-audit-domain-EvpCatalogPort
   confidence: 0.9
-- id: anti-143
+- id: anti-172
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -47872,7 +49869,7 @@ patterns:
     elementName: AuditableEntity
     nodeId: interface-audit-domain-AuditableEntity
   confidence: 0.9
-- id: anti-144
+- id: anti-173
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -47884,7 +49881,7 @@ patterns:
     elementName: SelfDescribingConfig
     nodeId: interface-audit-domain-SelfDescribingConfig
   confidence: 0.9
-- id: anti-145
+- id: anti-174
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -47896,7 +49893,7 @@ patterns:
     elementName: NodeDiagnoses
     nodeId: interface-audit-domain-NodeDiagnoses
   confidence: 0.9
-- id: anti-146
+- id: anti-175
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -47908,7 +49905,7 @@ patterns:
     elementName: CourseDiagnoses
     nodeId: interface-audit-domain-CourseDiagnoses
   confidence: 0.9
-- id: anti-147
+- id: anti-176
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -47920,7 +49917,7 @@ patterns:
     elementName: LevelDiagnoses
     nodeId: interface-audit-domain-LevelDiagnoses
   confidence: 0.9
-- id: anti-148
+- id: anti-177
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -47932,7 +49929,7 @@ patterns:
     elementName: TopicDiagnoses
     nodeId: interface-audit-domain-TopicDiagnoses
   confidence: 0.9
-- id: anti-149
+- id: anti-178
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -47944,7 +49941,7 @@ patterns:
     elementName: KnowledgeDiagnoses
     nodeId: interface-audit-domain-KnowledgeDiagnoses
   confidence: 0.9
-- id: anti-150
+- id: anti-179
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -47956,7 +49953,7 @@ patterns:
     elementName: QuizDiagnoses
     nodeId: interface-audit-domain-QuizDiagnoses
   confidence: 0.9
-- id: anti-151
+- id: anti-180
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -47968,7 +49965,7 @@ patterns:
     elementName: AuditNodeIndex
     nodeId: interface-audit-domain-AuditNodeIndex
   confidence: 0.9
-- id: anti-152
+- id: anti-181
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -47980,19 +49977,43 @@ patterns:
     elementName: AuditNodeIndexFactory
     nodeId: interface-audit-domain-AuditNodeIndexFactory
   confidence: 0.9
-- id: anti-153
+- id: anti-182
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: EvaluationAnalyzerFactory has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: EvaluationAnalyzerFactory
+    nodeId: interface-audit-domain-EvaluationAnalyzerFactory
+  confidence: 0.9
+- id: anti-183
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: QuizInstructionVerdictReader has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: audit-domain
+    elementName: QuizInstructionVerdictReader
+    nodeId: interface-audit-domain-QuizInstructionVerdictReader
+  confidence: 0.9
+- id: anti-184
   pattern: God Module
   category: anti-pattern
   source: detected
   severity: warning
-  description: "audit-domain is too large: 15 models, 25 interfaces"
+  description: "audit-domain is too large: 15 models, 28 interfaces"
   involvedElements:
   - type: module
     moduleName: audit-domain
     elementName: audit-domain
     nodeId: module-audit-domain
   confidence: 0.85
-- id: anti-154
+- id: anti-185
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -48004,7 +50025,7 @@ patterns:
     elementName: ContentAnalyzer
     nodeId: interface-audit-domain-ContentAnalyzer
   confidence: 0.8
-- id: anti-155
+- id: anti-186
   pattern: Fat Interface
   category: anti-pattern
   source: detected
@@ -48016,7 +50037,7 @@ patterns:
     elementName: LemmaAbsenceConfig
     nodeId: interface-audit-domain-LemmaAbsenceConfig
   confidence: 0.8
-- id: anti-156
+- id: anti-187
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48028,7 +50049,7 @@ patterns:
     elementName: CourseValidator
     nodeId: interface-course-domain-CourseValidator
   confidence: 0.9
-- id: anti-157
+- id: anti-188
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -48040,7 +50061,7 @@ patterns:
     elementName: course-domain
     nodeId: module-course-domain
   confidence: 0.85
-- id: anti-158
+- id: anti-189
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48052,7 +50073,7 @@ patterns:
     elementName: CorrectionContext
     nodeId: interface-refiner-domain-CorrectionContext
   confidence: 0.9
-- id: anti-159
+- id: anti-190
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48064,7 +50085,7 @@ patterns:
     elementName: SuggestedLemmaQueryPort
     nodeId: interface-refiner-domain-SuggestedLemmaQueryPort
   confidence: 0.9
-- id: anti-160
+- id: anti-191
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48076,7 +50097,7 @@ patterns:
     elementName: SuggestedLemmaQuerySession
     nodeId: interface-refiner-domain-SuggestedLemmaQuerySession
   confidence: 0.9
-- id: anti-161
+- id: anti-192
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48088,7 +50109,7 @@ patterns:
     elementName: SuggestedLemmaQuerySessionFactory
     nodeId: interface-refiner-domain-SuggestedLemmaQuerySessionFactory
   confidence: 0.9
-- id: anti-162
+- id: anti-193
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -48100,19 +50121,19 @@ patterns:
     elementName: refiner-domain
     nodeId: module-refiner-domain
   confidence: 0.85
-- id: anti-163
+- id: anti-194
   pattern: God Module
   category: anti-pattern
   source: detected
   severity: warning
-  description: "audit-application is too large: 9 implementations"
+  description: "audit-application is too large: 10 implementations"
   involvedElements:
   - type: module
     moduleName: audit-application
     elementName: audit-application
     nodeId: module-audit-application
   confidence: 0.85
-- id: anti-164
+- id: anti-195
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48124,7 +50145,7 @@ patterns:
     elementName: AnalyzeCommand
     nodeId: interface-audit-cli-AnalyzeCommand
   confidence: 0.9
-- id: anti-165
+- id: anti-196
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48136,7 +50157,7 @@ patterns:
     elementName: GetCommand
     nodeId: interface-audit-cli-GetCommand
   confidence: 0.9
-- id: anti-166
+- id: anti-197
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48148,7 +50169,7 @@ patterns:
     elementName: DeleteCommand
     nodeId: interface-audit-cli-DeleteCommand
   confidence: 0.9
-- id: anti-167
+- id: anti-198
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48160,7 +50181,7 @@ patterns:
     elementName: PruneCommand
     nodeId: interface-audit-cli-PruneCommand
   confidence: 0.9
-- id: anti-168
+- id: anti-199
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48172,7 +50193,7 @@ patterns:
     elementName: PlanCommand
     nodeId: interface-audit-cli-PlanCommand
   confidence: 0.9
-- id: anti-169
+- id: anti-200
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48184,7 +50205,7 @@ patterns:
     elementName: ReviseCommand
     nodeId: interface-audit-cli-ReviseCommand
   confidence: 0.9
-- id: anti-170
+- id: anti-201
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48196,7 +50217,7 @@ patterns:
     elementName: ConfigAnalyzerCommand
     nodeId: interface-audit-cli-ConfigAnalyzerCommand
   confidence: 0.9
-- id: anti-171
+- id: anti-202
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48208,7 +50229,7 @@ patterns:
     elementName: StatsAnalyzerCommand
     nodeId: interface-audit-cli-StatsAnalyzerCommand
   confidence: 0.9
-- id: anti-172
+- id: anti-203
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48220,7 +50241,7 @@ patterns:
     elementName: ApproveCommand
     nodeId: interface-audit-cli-ApproveCommand
   confidence: 0.9
-- id: anti-173
+- id: anti-204
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48232,7 +50253,7 @@ patterns:
     elementName: RejectCommand
     nodeId: interface-audit-cli-RejectCommand
   confidence: 0.9
-- id: anti-174
+- id: anti-205
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48244,7 +50265,7 @@ patterns:
     elementName: GetConsolidatedCommand
     nodeId: interface-audit-cli-GetConsolidatedCommand
   confidence: 0.9
-- id: anti-175
+- id: anti-206
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48256,7 +50277,7 @@ patterns:
     elementName: SetActiveAnalysisCommand
     nodeId: interface-audit-cli-SetActiveAnalysisCommand
   confidence: 0.9
-- id: anti-176
+- id: anti-207
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48268,7 +50289,7 @@ patterns:
     elementName: LexisCommand
     nodeId: interface-audit-cli-LexisCommand
   confidence: 0.9
-- id: anti-177
+- id: anti-208
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48280,7 +50301,7 @@ patterns:
     elementName: RepairCommand
     nodeId: interface-audit-cli-RepairCommand
   confidence: 0.9
-- id: anti-178
+- id: anti-209
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -48292,7 +50313,7 @@ patterns:
     elementName: audit-cli
     nodeId: module-audit-cli
   confidence: 0.85
-- id: anti-179
+- id: anti-210
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48304,7 +50325,7 @@ patterns:
     elementName: NlpTokenizerFactory
     nodeId: interface-nlp-infrastructure-NlpTokenizerFactory
   confidence: 0.9
-- id: anti-180
+- id: anti-211
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48316,7 +50337,7 @@ patterns:
     elementName: Reviser
     nodeId: interface-revision-domain-Reviser
   confidence: 0.9
-- id: anti-181
+- id: anti-212
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48328,7 +50349,7 @@ patterns:
     elementName: RevisionValidator
     nodeId: interface-revision-domain-RevisionValidator
   confidence: 0.9
-- id: anti-182
+- id: anti-213
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48340,7 +50361,7 @@ patterns:
     elementName: RevisionValidatorResult
     nodeId: interface-revision-domain-RevisionValidatorResult
   confidence: 0.9
-- id: anti-183
+- id: anti-214
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48352,7 +50373,7 @@ patterns:
     elementName: CourseElementLocator
     nodeId: interface-revision-domain-CourseElementLocator
   confidence: 0.9
-- id: anti-184
+- id: anti-215
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48364,7 +50385,7 @@ patterns:
     elementName: RevisionEngine
     nodeId: interface-revision-domain-RevisionEngine
   confidence: 0.9
-- id: anti-185
+- id: anti-216
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48376,7 +50397,7 @@ patterns:
     elementName: RevisionEngineFactory
     nodeId: interface-revision-domain-RevisionEngineFactory
   confidence: 0.9
-- id: anti-186
+- id: anti-217
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48388,7 +50409,7 @@ patterns:
     elementName: RevisionValidatorFactory
     nodeId: interface-revision-domain-RevisionValidatorFactory
   confidence: 0.9
-- id: anti-187
+- id: anti-218
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48400,7 +50421,7 @@ patterns:
     elementName: ProposalDecisionService
     nodeId: interface-revision-domain-ProposalDecisionService
   confidence: 0.9
-- id: anti-188
+- id: anti-219
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48412,7 +50433,7 @@ patterns:
     elementName: ProposalDecisionServiceFactory
     nodeId: interface-revision-domain-ProposalDecisionServiceFactory
   confidence: 0.9
-- id: anti-189
+- id: anti-220
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48424,7 +50445,7 @@ patterns:
     elementName: LemmaAbsenceProposalStrategy
     nodeId: interface-revision-domain-LemmaAbsenceProposalStrategy
   confidence: 0.9
-- id: anti-190
+- id: anti-221
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48436,7 +50457,7 @@ patterns:
     elementName: LemmaAbsenceProposalStrategyRegistry
     nodeId: interface-revision-domain-LemmaAbsenceProposalStrategyRegistry
   confidence: 0.9
-- id: anti-191
+- id: anti-222
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48448,7 +50469,7 @@ patterns:
     elementName: LemmaAbsenceProposalDeriver
     nodeId: interface-revision-domain-LemmaAbsenceProposalDeriver
   confidence: 0.9
-- id: anti-192
+- id: anti-223
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48460,7 +50481,7 @@ patterns:
     elementName: CorrectionContextOverrideParser
     nodeId: interface-revision-domain-CorrectionContextOverrideParser
   confidence: 0.9
-- id: anti-193
+- id: anti-224
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48472,7 +50493,7 @@ patterns:
     elementName: KnowledgeTitleProposalStrategy
     nodeId: interface-revision-domain-KnowledgeTitleProposalStrategy
   confidence: 0.9
-- id: anti-194
+- id: anti-225
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48484,7 +50505,7 @@ patterns:
     elementName: KnowledgeTitleProposalStrategyRegistry
     nodeId: interface-revision-domain-KnowledgeTitleProposalStrategyRegistry
   confidence: 0.9
-- id: anti-195
+- id: anti-226
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48496,7 +50517,7 @@ patterns:
     elementName: KnowledgeTitleProposalDeriver
     nodeId: interface-revision-domain-KnowledgeTitleProposalDeriver
   confidence: 0.9
-- id: anti-196
+- id: anti-227
   pattern: Orphan Interface
   category: anti-pattern
   source: detected
@@ -48508,7 +50529,7 @@ patterns:
     elementName: PreservationFactory
     nodeId: interface-revision-domain-PreservationFactory
   confidence: 0.9
-- id: anti-197
+- id: anti-228
   pattern: God Module
   category: anti-pattern
   source: detected
@@ -48520,3 +50541,111 @@ patterns:
     elementName: revision-domain
     nodeId: module-revision-domain
   confidence: 0.85
+- id: anti-229
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: EvaluationOutcome has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: evaluation-ledger-domain
+    elementName: EvaluationOutcome
+    nodeId: interface-evaluation-ledger-domain-EvaluationOutcome
+  confidence: 0.9
+- id: anti-230
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: ContentFingerprinter has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: evaluation-ledger-domain
+    elementName: ContentFingerprinter
+    nodeId: interface-evaluation-ledger-domain-ContentFingerprinter
+  confidence: 0.9
+- id: anti-231
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: Evaluator has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: evaluation-ledger-domain
+    elementName: Evaluator
+    nodeId: interface-evaluation-ledger-domain-Evaluator
+  confidence: 0.9
+- id: anti-232
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: EvaluationSession has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: evaluation-ledger-domain
+    elementName: EvaluationSession
+    nodeId: interface-evaluation-ledger-domain-EvaluationSession
+  confidence: 0.9
+- id: anti-233
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: EvaluationSessionFactory has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: evaluation-ledger-domain
+    elementName: EvaluationSessionFactory
+    nodeId: interface-evaluation-ledger-domain-EvaluationSessionFactory
+  confidence: 0.9
+- id: anti-234
+  pattern: God Module
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: "evaluation-ledger-domain is too large: 6 interfaces"
+  involvedElements:
+  - type: module
+    moduleName: evaluation-ledger-domain
+    elementName: evaluation-ledger-domain
+    nodeId: module-evaluation-ledger-domain
+  confidence: 0.85
+- id: anti-235
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: AgentGraphRunner has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: agent-runtime-infrastructure
+    elementName: AgentGraphRunner
+    nodeId: interface-agent-runtime-infrastructure-AgentGraphRunner
+  confidence: 0.9
+- id: anti-236
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: AgentGraphRunnerFactory has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: agent-runtime-infrastructure
+    elementName: AgentGraphRunnerFactory
+    nodeId: interface-agent-runtime-infrastructure-AgentGraphRunnerFactory
+  confidence: 0.9
+- id: anti-237
+  pattern: Orphan Interface
+  category: anti-pattern
+  source: detected
+  severity: warning
+  description: QuizInstructionJudgeFactory has no implementations
+  involvedElements:
+  - type: interface
+    moduleName: quiz-instruction-infrastructure
+    elementName: QuizInstructionJudgeFactory
+    nodeId: interface-quiz-instruction-infrastructure-QuizInstructionJudgeFactory
+  confidence: 0.9

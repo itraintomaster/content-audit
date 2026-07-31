@@ -102,7 +102,7 @@ public class CourseToAuditableMapper implements CourseMapper {
         List<AuditableQuiz> quizzes = quizTemplates.stream()
                 .map(this::mapQuiz)
                 .collect(Collectors.toList());
-        return new AuditableKnowledge(quizzes, ke.getLabel(), ke.getInstructions(), isSentence, ke.getId(), ke.getLabel(), ke.getCode(), ke.getSentenceMode());
+        return new AuditableKnowledge(quizzes, ke.getLabel(), ke.getInstructions(), isSentence, ke.getId(), ke.getLabel(), ke.getCode(), ke.getSentenceMode(), null);
     }
 
     private boolean hasSentenceParts(QuizTemplateEntity qt) {
@@ -125,7 +125,7 @@ public class CourseToAuditableMapper implements CourseMapper {
         // FEAT-RCLAQS R001/R002: quizSentence is derived in the same pass; null only when
         // the form has no sentenceParts (quizSentenceByQuiz will not contain an entry for it).
         String quizSentence = quizSentenceByQuiz.get(qt);
-        return new AuditableQuiz(tokens, qt.getId(), qt.getTitle(), qt.getCode(), qt.getTranslation(), sentences, quizSentence);
+        return new AuditableQuiz(tokens, qt.getId(), qt.getTitle(), qt.getCode(), qt.getTranslation(), sentences, quizSentence, null, null);
     }
 
     private List<String> deriveSentences(QuizTemplateEntity qt) {

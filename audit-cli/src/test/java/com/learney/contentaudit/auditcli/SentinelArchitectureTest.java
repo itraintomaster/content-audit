@@ -31,7 +31,7 @@ public class SentinelArchitectureTest {
   @Test
   public void enforceModuleBoundaries() {
     JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
-    ArchRuleDefinition.classes().that().resideInAPackage("..auditcli..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditcli..", "..auditapplication..", "..auditdomain..", "..coursedomain..", "..refinerdomain..", "..courseinfrastructure..", "..nlpinfrastructure..", "..vocabularyinfrastructure..", "..auditinfrastructure..", "..revisiondomain..", "..revisioninfrastructure..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
+    ArchRuleDefinition.classes().that().resideInAPackage("..auditcli..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditcli..", "..auditapplication..", "..auditdomain..", "..coursedomain..", "..evaluationledgerdomain..", "..refinerdomain..", "..courseinfrastructure..", "..nlpinfrastructure..", "..vocabularyinfrastructure..", "..auditinfrastructure..", "..revisiondomain..", "..revisioninfrastructure..", "..agentruntimeinfrastructure..", "..evaluationledgerinfrastructure..", "..quizinstructioninfrastructure..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
   }
 
   @Test
@@ -78,6 +78,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.SuggestedLemmasFilter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: SuggestedLemmasFilter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.AnalyzeOptions");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AnalyzeOptions - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.AnalyzeCommand");
@@ -430,6 +435,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: DefaultConsolidatedViewFormatter - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.QuizInstructionDetailedFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionDetailedFormatter - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.InvalidWorkdirException");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: InvalidWorkdirException - " + e.getMessage());
@@ -480,6 +490,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: LagenConfigResolver - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.QuizInstructionJudgeConfigResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionJudgeConfigResolver - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.DefaultWorkdirResolver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultWorkdirResolver - " + e.getMessage());
@@ -503,6 +518,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.DefaultLagenConfigResolver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultLagenConfigResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.bootstrap.DefaultQuizInstructionJudgeConfigResolver");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultQuizInstructionJudgeConfigResolver - " + e.getMessage());
     }
   }
 }

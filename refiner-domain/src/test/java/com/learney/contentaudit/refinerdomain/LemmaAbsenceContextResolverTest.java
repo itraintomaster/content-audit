@@ -228,8 +228,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R003")
     public void shouldResolveContextWithAllFieldsPopulatedFromQuizDiagnosisAndAncestorEntities() {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-1", null, null, "El gato se sentó.", List.of("The cat sat."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Complete the sentence.", true, "know-la-1", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-1", null, null, "El gato se sentó.", List.of("The cat sat."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Complete the sentence.", true, "know-la-1", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-1", "Basic Animals", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-1", "A1", null);
 
@@ -260,8 +260,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R003")
     public void shouldPopulateSentenceAndTranslationFromAuditableQuizEntityOnTheQuizNode() {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-2", null, null, "Me encanta aprender.", List.of("I love learning."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Feelings", "Complete.", true, "know-la-2", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-2", null, null, "Me encanta aprender.", List.of("I love learning."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Feelings", "Complete.", true, "know-la-2", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-2", "Emotions", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-2", "A1", null);
 
@@ -285,8 +285,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("F-RCLA-R003")
     public void shouldPopulateKnowledgeTitleAndKnowledgeInstructionsFromAuditableKnowledgeOnKnowledgeAncestor(
             ) {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-3", null, null, null, List.of("He reads."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Reading Skills", "Choose the correct word.", true, "know-la-3", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-3", null, null, null, List.of("He reads."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Reading Skills", "Choose the correct word.", true, "know-la-3", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-3", "Skills", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-3", "A2", null);
 
@@ -309,8 +309,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R003")
     public void shouldPopulateTopicLabelFromAuditableTopicOnTopicAncestor() {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-4", null, null, null, List.of("She sings."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Music", "Complete.", true, "know-la-4", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-4", null, null, null, List.of("She sings."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Music", "Complete.", true, "know-la-4", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-4", "Arts and Culture", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-4", "B1", null);
 
@@ -332,8 +332,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R003")
     public void shouldPopulateCefrLevelFromMilestoneAncestor() {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-5", null, null, null, List.of("They run fast."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Sports", "Complete.", true, "know-la-5", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-5", null, null, null, List.of("They run fast."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Sports", "Complete.", true, "know-la-5", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-5", "Activities", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-5", "B2", null);
 
@@ -355,8 +355,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R004")
     public void shouldPopulateMisplacedLemmasFromLemmaPlacementDiagnosisOnQuizNode() {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-6", null, null, null, List.of("A sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-6", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-6", null, null, null, List.of("A sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-6", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-6", "T6", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-6", "A1", null);
 
@@ -382,8 +382,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R004")
     public void shouldMapMisplacedLemmaFieldsToMisplacedLemmaContextFieldsCorrectly() {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-7", null, null, null, List.of("A sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-7", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-7", null, null, null, List.of("A sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-7", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-7", "T7", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-7", "A1", null);
 
@@ -409,8 +409,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R004")
     public void shouldIncludeExpectedLevelAndQuizLevelInEachMisplacedLemmaContextEntry() {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-8", null, null, null, List.of("A sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-8", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-8", null, null, null, List.of("A sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-8", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-8", "T8", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-8", "A1", null);
 
@@ -437,8 +437,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R004")
     public void shouldIncludeCocaRankAsNullInMisplacedLemmaContextWhenNotAvailable() {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-9", null, null, null, List.of("A sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-9", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-9", null, null, null, List.of("A sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-9", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-9", "T9", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-9", "A1", null);
 
@@ -464,8 +464,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R005")
     public void shouldReturnEmptyWhenQuizNodeIsNotFoundInTheAuditTree() {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-10", null, null, null, List.of("Hello."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete.", true, "know-la-10", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-10", null, null, null, List.of("Hello."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Greetings", "Complete.", true, "know-la-10", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-10", "Social", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-10", "A1", null);
 
@@ -486,8 +486,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R005")
     public void shouldReturnEmptyWhenTaskNodeTargetDoesNotMatchAnyNodeTargetInTheTree() {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-11", null, null, null, List.of("Hello."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-11", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-11", null, null, null, List.of("Hello."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-11", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-11", "T11", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-11", "A1", null);
 
@@ -511,12 +511,12 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R005")
     public void shouldLocateTheCorrectQuizNodeWhenMultipleQuizNodesExistInTheTree() {
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Mixed", "Do it.", true, "know-la-12", null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Mixed", "Do it.", true, "know-la-12", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-12", "Topic 12", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-12", "A1", null);
 
-        AuditableQuiz quiz1 = new AuditableQuiz(List.of(), "quiz-la-12a", null, null, null, List.of("First sentence."), null);
-        AuditableQuiz quiz2 = new AuditableQuiz(List.of(), "quiz-la-12b", null, null, null, List.of("Second sentence."), null);
+        AuditableQuiz quiz1 = new AuditableQuiz(List.of(), "quiz-la-12a", null, null, null, List.of("First sentence."), null, null, null);
+        AuditableQuiz quiz2 = new AuditableQuiz(List.of(), "quiz-la-12b", null, null, null, List.of("Second sentence."), null, null, null);
 
         MisplacedLemma ml = buildMisplacedLemma("tree", "NOUN", CefrLevel.A2, CefrLevel.A1, 600);
         DefaultQuizDiagnoses diag1 = buildQuizDiagnosesWithPlacement(List.of());
@@ -546,8 +546,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R006")
     public void shouldReturnEmptyWhenQuizNodeHasNoLemmaPlacementDiagnosis() {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-13", null, null, null, List.of("A sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-13", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-13", null, null, null, List.of("A sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-13", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-13", "T13", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-13", "A1", null);
 
@@ -570,8 +570,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("F-RCLA-R004b")
     public void shouldIncludeOnlyCOMPLETELYABSENTAndAPPEARSTOOLATELemmasInSuggestedLemmasAndExcludeAPPEARSTOOEARLY(
             ) {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-14", null, null, null, List.of("A sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-14", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-14", null, null, null, List.of("A sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-14", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-14", "T14", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-14", "A1", null);
 
@@ -601,8 +601,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R004b")
     public void shouldOrderSuggestedLemmasByCOCARankAscendingWithLowestRankFirst() {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-15", null, null, null, List.of("A sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-15", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-15", null, null, null, List.of("A sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-15", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-15", "T15", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-15", "A1", null);
 
@@ -632,8 +632,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R004b")
     public void shouldPlaceLemmasWithoutCOCARankAfterLemmasWithCOCARankInSuggestedLemmas() {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-16", null, null, null, List.of("A sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-16", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-16", null, null, null, List.of("A sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-16", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-16", "T16", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-16", "A1", null);
 
@@ -663,8 +663,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R004b")
     public void shouldMapAbsentLemmaFieldsToSuggestedLemmaFieldsCorrectly() {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-17", null, null, null, List.of("A sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-17", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-17", null, null, null, List.of("A sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-17", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-17", "T17", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-17", "A1", null);
 
@@ -694,8 +694,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R004b")
     public void shouldLimitSuggestedLemmasTo10WhenMoreThan10QualifyAfterFiltering() {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-18", null, null, null, List.of("A sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-18", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-18", null, null, null, List.of("A sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-18", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-18", "T18", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-18", "A1", null);
 
@@ -722,8 +722,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("F-RCLA-R004c")
     public void shouldReturnContextWithEmptySuggestedLemmasWhenMilestoneHasNoLemmaAbsenceLevelDiagnosis(
             ) {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-19", null, null, null, List.of("A sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-19", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-19", null, null, null, List.of("A sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-19", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-19", "T19", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-19", "A1", null);
 
@@ -747,8 +747,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("F-RCLA-R004c")
     public void shouldReturnContextWithEmptySuggestedLemmasWhenMilestoneAncestorIsNotFound() {
         // Build a shallow tree: COURSE → TOPIC → KNOWLEDGE → QUIZ (no MILESTONE level)
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-20", null, null, null, List.of("A sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-20", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-20", null, null, null, List.of("A sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-20", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-20", "T20", null);
 
         DefaultQuizDiagnoses quizDiag = buildQuizDiagnosesWithPlacement(List.of());
@@ -772,8 +772,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R004c")
     public void shouldReturnContextWithEmptySuggestedLemmasWhenAllAbsentLemmasAreAPPEARSTOOEARLY() {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-21", null, null, null, List.of("A sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-21", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-21", null, null, null, List.of("A sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-21", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-21", "T21", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-21", "A1", null);
 
@@ -810,8 +810,8 @@ public class LemmaAbsenceContextResolverTest {
                 List.of(), "quiz-rclaqs-01", null, null,
                 "Ella necesita negociar el contrato.",
                 List.of("She needs to negotiate the contract."),
-                expectedQuizSentence);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Present Simple", "Complete.", true, "know-rclaqs-01", null, null, null);
+                expectedQuizSentence, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Present Simple", "Complete.", true, "know-rclaqs-01", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclaqs-01", "Present Simple", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclaqs-01", "A1", null);
 
@@ -847,8 +847,8 @@ public class LemmaAbsenceContextResolverTest {
                 List.of(), "quiz-rclaqs-02", null, null,
                 "El es genial.",
                 List.of("He is great."),
-                carrierStampedValue);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "To Be", "Complete.", true, "know-rclaqs-02", null, null, null);
+                carrierStampedValue, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "To Be", "Complete.", true, "know-rclaqs-02", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclaqs-02", "Grammar", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclaqs-02", "A1", null);
 
@@ -885,8 +885,8 @@ public class LemmaAbsenceContextResolverTest {
                 List.of(), "quiz-rclaqs-03", null, null,
                 "El gato se sentó en la estera.",
                 List.of(plainSentence),
-                quizSentence);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Complete.", true, "know-rclaqs-03", null, null, null);
+                quizSentence, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Complete.", true, "know-rclaqs-03", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclaqs-03", "Pets", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclaqs-03", "A1", null);
 
@@ -919,8 +919,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("FEAT-RCLA")
     @Tag("F-RCLA-R003")
     public void shouldSetTaskIdFromTheRefinementTaskId() {
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-22", null, null, null, List.of("A sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-22", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-22", null, null, null, List.of("A sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-la-22", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-22", "T22", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-22", "A1", null);
 
@@ -945,8 +945,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("F-RCLALEN-R001")
     public void shouldPopulateTokenCountOnTheCorrectionContextFromSentenceLengthDiagnosisOnTheQuizNode() {
         // Arrange: quiz node with LemmaPlacementDiagnosis AND SentenceLengthDiagnosis (tokenCount=10)
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-01", null, null, "La traduccion.", List.of("The sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-01", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-01", null, null, "La traduccion.", List.of("The sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-01", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-01", "T01", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-01", "A1", null);
 
@@ -973,8 +973,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("F-RCLALEN-R001")
     public void shouldPopulateTargetMinAndTargetMaxOnTheCorrectionContextFromSentenceLengthDiagnosisOnTheQuizNode() {
         // Arrange: quiz node with SentenceLengthDiagnosis reporting targetMin=5, targetMax=8
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-02", null, null, "La traduccion.", List.of("The sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-02", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-02", null, null, "La traduccion.", List.of("The sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-02", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-02", "T02", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-02", "A1", null);
 
@@ -1003,8 +1003,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("F-RCLALEN-R001")
     public void shouldPopulateDeltaOnTheCorrectionContextFromSentenceLengthDiagnosisOnTheQuizNode() {
         // Arrange: SentenceLengthDiagnosis with delta=-2 (sentence too short)
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-03", null, null, "La oracion.", List.of("The sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-03", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-03", null, null, "La oracion.", List.of("The sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-03", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-03", "T03", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-03", "A1", null);
 
@@ -1031,8 +1031,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("F-RCLALEN-R001")
     public void shouldPopulateLengthDirectionOnTheCorrectionContextAsANonnullEnumValueDerivedByTheResolver() {
         // Arrange: any valid SentenceLengthDiagnosis — verifies that lengthDirection is always set (non-null)
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-04", null, null, "La oracion.", List.of("The sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-04", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-04", null, null, "La oracion.", List.of("The sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-04", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-04", "T04", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-04", "A1", null);
 
@@ -1061,8 +1061,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("F-RCLALEN-R002")
     public void shouldSetLengthDirectionToSHORTENWhenDeltaIsGreaterThanZero() {
         // Arrange: sentence has 10 tokens in range [5,8], so delta=+2 (exceeds max)
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-05", null, null, "La oracion larga.", List.of("The longer sentence today."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-05", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-05", null, null, "La oracion larga.", List.of("The longer sentence today."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-05", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-05", "T05", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-05", "A1", null);
 
@@ -1089,8 +1089,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("F-RCLALEN-R002")
     public void shouldSetLengthDirectionToLENGTHENWhenDeltaIsLessThanZero() {
         // Arrange: sentence has 3 tokens in range [5,8], so delta=-2 (below min)
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-06", null, null, "La oracion.", List.of("Short sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-06", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-06", null, null, "La oracion.", List.of("Short sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-06", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-06", "T06", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-06", "A1", null);
 
@@ -1117,8 +1117,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("F-RCLALEN-R002")
     public void shouldSetLengthDirectionToKEEPSAMEWhenDeltaIsExactlyZero() {
         // Arrange: sentence has 6 tokens in range [5,8], so delta=0 (within range)
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-07", null, null, "La oracion exacta.", List.of("She loves the book."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-07", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-07", null, null, "La oracion exacta.", List.of("She loves the book."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-07", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-07", "T07", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-07", "A1", null);
 
@@ -1145,8 +1145,8 @@ public class LemmaAbsenceContextResolverTest {
     @Tag("F-RCLALEN-R002")
     public void shouldSetLengthDirectionToUNKNOWNWhenSentenceLengthDiagnosisIsNotAvailableOnTheQuizNode() {
         // Arrange: quiz node with LemmaPlacementDiagnosis but NO SentenceLengthDiagnosis
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-08", null, null, "La oracion.", List.of("The sentence."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-08", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-08", null, null, "La oracion.", List.of("The sentence."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-08", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-08", "T08", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-08", "A1", null);
 
@@ -1175,12 +1175,12 @@ public class LemmaAbsenceContextResolverTest {
         // Arrange: two quiz nodes in the same tree. Only the target quiz carries SentenceLengthDiagnosis.
         // The other quiz has placement but no length — if the resolver used the wrong node, it would
         // return UNKNOWN instead of SHORTEN for the target quiz.
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Mixed", "Do it.", true, "know-rclalen-09", null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Mixed", "Do it.", true, "know-rclalen-09", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-09", "T09", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-09", "A1", null);
 
-        AuditableQuiz quiz1 = new AuditableQuiz(List.of(), "quiz-rclalen-09a", null, null, "Otra oracion.", List.of("Another sentence."), null);
-        AuditableQuiz quiz2 = new AuditableQuiz(List.of(), "quiz-rclalen-09b", null, null, "La oracion objetivo.", List.of("The target sentence with extra words."), null);
+        AuditableQuiz quiz1 = new AuditableQuiz(List.of(), "quiz-rclalen-09a", null, null, "Otra oracion.", List.of("Another sentence."), null, null, null);
+        AuditableQuiz quiz2 = new AuditableQuiz(List.of(), "quiz-rclalen-09b", null, null, "La oracion objetivo.", List.of("The target sentence with extra words."), null, null, null);
 
         MisplacedLemma ml1 = buildMisplacedLemma("other", "ADJ", CefrLevel.A2, CefrLevel.A1, 600);
         MisplacedLemma ml2 = buildMisplacedLemma("extra", "ADJ", CefrLevel.B1, CefrLevel.A1, 800);
@@ -1224,12 +1224,12 @@ public class LemmaAbsenceContextResolverTest {
         // If the resolver traversed the tree a second time (or used the wrong node), it could
         // pick up the wrong SentenceLengthDiagnosis. The assertion checks that the result
         // reflects the diagnosis from the node identified by the task's nodeId.
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Grammar", "Complete.", true, "know-rclalen-10", null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Grammar", "Complete.", true, "know-rclalen-10", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-10", "T10", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-10", "A1", null);
 
-        AuditableQuiz quiz1 = new AuditableQuiz(List.of(), "quiz-rclalen-10a", null, null, "Primera.", List.of("First sentence longer than allowed."), null);
-        AuditableQuiz quiz2 = new AuditableQuiz(List.of(), "quiz-rclalen-10b", null, null, "Segunda.", List.of("Short."), null);
+        AuditableQuiz quiz1 = new AuditableQuiz(List.of(), "quiz-rclalen-10a", null, null, "Primera.", List.of("First sentence longer than allowed."), null, null, null);
+        AuditableQuiz quiz2 = new AuditableQuiz(List.of(), "quiz-rclalen-10b", null, null, "Segunda.", List.of("Short."), null, null, null);
 
         MisplacedLemma ml1 = buildMisplacedLemma("longer", "ADJ", CefrLevel.B1, CefrLevel.A1, 700);
         MisplacedLemma ml2 = buildMisplacedLemma("short", "ADJ", CefrLevel.A2, CefrLevel.A1, 300);
@@ -1269,8 +1269,8 @@ public class LemmaAbsenceContextResolverTest {
     public void shouldStillProduceACorrectionContextWhenLemmaPlacementDiagnosisIsPresentButSentenceLengthDiagnosisIsAbsentOnTheQuizNode() {
         // Arrange: quiz node has LemmaPlacementDiagnosis but NO SentenceLengthDiagnosis
         // (e.g. quiz excluded from sentence-length analyzer by F-DSLEN-R002)
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-11", null, null, "La oracion sin longitud.", List.of("The sentence without length."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-11", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-11", null, null, "La oracion sin longitud.", List.of("The sentence without length."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "T", "D.", true, "know-rclalen-11", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-11", "T11", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-11", "A1", null);
 
@@ -1299,8 +1299,8 @@ public class LemmaAbsenceContextResolverTest {
         // Arrange: quiz node with LemmaPlacementDiagnosis but NO SentenceLengthDiagnosis.
         // The non-length fields (sentence, translation, knowledgeTitle, etc.) must be populated
         // normally as per F-RCLA-R003 — length absence is an enricher absence, not a context failure.
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-12", null, null, "Ella canta.", List.of("She sings."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Music Theory", "Complete the blank.", true, "know-rclalen-12", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-rclalen-12", null, null, "Ella canta.", List.of("She sings."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Music Theory", "Complete the blank.", true, "know-rclalen-12", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-rclalen-12", "Arts", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-rclalen-12", "A2", null);
 
@@ -1340,8 +1340,8 @@ public class LemmaAbsenceContextResolverTest {
         // The audit report carries lemma-count signal for A1 with count=2, threshold=5.
         // Expected: suggestedLemmas has one entry with lemmaCount=2, lemmaCountThreshold=5, isUnderexposed=true.
 
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r002a", null, null, "El sol.", List.of("The sun."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Nature", "Fill.", true, "know-r002a", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r002a", null, null, "El sol.", List.of("The sun."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Nature", "Fill.", true, "know-r002a", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r002a", "Environment", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r002a", "A1", null);
 
@@ -1410,8 +1410,8 @@ public class LemmaAbsenceContextResolverTest {
         // but "lemma-pure-under" has NO entry in LemmaAbsenceLevelDiagnosis.
         // R002: the list must include "lemma-pure-under" even though it has no LEMMA_ABSENCE diagnosis.
 
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r002b", null, null, "La luna.", List.of("The moon."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Space", "Fill.", true, "know-r002b", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r002b", null, null, "La luna.", List.of("The moon."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Space", "Fill.", true, "know-r002b", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r002b", "Universe", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r002b", "A1", null);
 
@@ -1488,9 +1488,9 @@ public class LemmaAbsenceContextResolverTest {
         AuditNode courseNode = buildCourseNodeWithEnrichBands("A1", new int[][]{{1, 500}});
 
         AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r003-v2", null, null,
-                "La traduccion.", List.of("The sentence."), null);
+                "La traduccion.", List.of("The sentence."), null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Vocab", "Complete.", true, "know-r003-v2", null, null, null);
+                List.of(), "Vocab", "Complete.", true, "know-r003-v2", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r003-v2", "Topic", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r003-v2", "A1", null);
 
@@ -1590,8 +1590,8 @@ public class LemmaAbsenceContextResolverTest {
 
         int threshold = 3;
 
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r004", null, null, "El libro.", List.of("The book."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Education", "Fill.", true, "know-r004", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r004", null, null, "El libro.", List.of("The book."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Education", "Fill.", true, "know-r004", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r004", "School", null);
         AuditableMilestone milestoneA1 = new AuditableMilestone(List.of(), "ms-r004-a1", "A1", null);
         AuditableMilestone milestoneA2 = new AuditableMilestone(List.of(), "ms-r004-a2", "A2", null);
@@ -1673,8 +1673,8 @@ public class LemmaAbsenceContextResolverTest {
         // Without LEMMA_ABSENCE and none in deficient band → Tier 3 for all.
 
         AuditNode courseNode = buildCourseNodeWithEnrichBands("A1", new int[][]{{1, 50}}); // band 1..50, so none qualify
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r005a-v2", null, null, "Ella corre.", List.of("She runs."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Sports", "Complete.", true, "know-r005a-v2", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r005a-v2", null, null, "Ella corre.", List.of("She runs."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Sports", "Complete.", true, "know-r005a-v2", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r005a-v2", "Activities", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r005a-v2", "A1", null);
 
@@ -1745,8 +1745,8 @@ public class LemmaAbsenceContextResolverTest {
         // Since COCA is equal, stable insertion order is acceptable — deficit-driven reordering is forbidden.
 
         AuditNode courseNode = buildCourseNodeWithEnrichBands("A1", new int[][]{{1, 10}}); // tiny band, none qualify
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r005b-v2", null, null, "El gato.", List.of("The cat."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Fill.", true, "know-r005b-v2", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r005b-v2", null, null, "El gato.", List.of("The cat."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Fill.", true, "know-r005b-v2", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r005b-v2", "Nature", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r005b-v2", "A1", null);
 
@@ -1820,8 +1820,8 @@ public class LemmaAbsenceContextResolverTest {
         // This verifies: (1) cap does not exceed 10, (2) cap is applied after ranking so
         // the 3 group-1 lemmas are preserved over group-5 lemmas.
 
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r006", null, null, "El perro.", List.of("The dog."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Fill.", true, "know-r006", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r006", null, null, "El perro.", List.of("The dog."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Fill.", true, "know-r006", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r006", "Nature", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r006", "A1", null);
 
@@ -1910,8 +1910,8 @@ public class LemmaAbsenceContextResolverTest {
         //   - T4 (absent+no-band, rank=50) comes AFTER T3 (under+no-band, rank=200) — within no-band, under beats absent
 
         AuditNode courseNode = buildCourseNodeWithEnrichBands("A1", new int[][]{{51, 100}});
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r007-v2", null, null, "Ella corre.", List.of("She runs."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Sports", "Complete.", true, "know-r007-v2", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r007-v2", null, null, "Ella corre.", List.of("She runs."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Sports", "Complete.", true, "know-r007-v2", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r007-v2", "Activities", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r007-v2", "A1", null);
 
@@ -1984,8 +1984,8 @@ public class LemmaAbsenceContextResolverTest {
         // R012: suggestedLemmas must still be returned (no exception), and for every element
         // the triple (lemmaCount, lemmaCountThreshold, isUnderexposed) must be null (all uninformed).
 
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r012", null, null, "El mar.", List.of("The sea."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Geography", "Fill.", true, "know-r012", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r012", null, null, "El mar.", List.of("The sea."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Geography", "Fill.", true, "know-r012", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r012", "Environment", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r012", "B1", null);
 
@@ -2046,8 +2046,8 @@ public class LemmaAbsenceContextResolverTest {
         // - "lemma-absent": COMPLETELY_ABSENT → triple must all be null (R007 + R013)
         // Verifies the "all-or-nothing" block invariant of R013.
 
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r013a", null, null, "La casa.", List.of("The house."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Housing", "Fill.", true, "know-r013a", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r013a", null, null, "La casa.", List.of("The house."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Housing", "Fill.", true, "know-r013a", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r013a", "Home", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r013a", "A1", null);
 
@@ -2134,8 +2134,8 @@ public class LemmaAbsenceContextResolverTest {
         // - "lemma-ok": count=6, threshold=5 → isUnderexposed should be false (6 >= 5, not underexposed)
         // R013: isUnderexposed must equal (lemmaCount < lemmaCountThreshold), both non-negative.
 
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r013b", null, null, "El agua.", List.of("The water."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Nature", "Fill.", true, "know-r013b", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r013b", null, null, "El agua.", List.of("The water."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Nature", "Fill.", true, "know-r013b", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r013b", "Elements", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r013b", "A1", null);
 
@@ -2230,8 +2230,8 @@ public class LemmaAbsenceContextResolverTest {
         // This verifies that absent+band beats under+no-band — a core consequence of the 6-tier ranking.
 
         AuditNode courseNode = buildCourseNodeWithEnrichBands("A1", new int[][]{{51, 200}});
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r014a", null, null, "Ella corre.", List.of("She runs."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Sports", "Complete.", true, "know-r014a", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r014a", null, null, "Ella corre.", List.of("She runs."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Sports", "Complete.", true, "know-r014a", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r014a", "Activities", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r014a", "A1", null);
 
@@ -2296,8 +2296,8 @@ public class LemmaAbsenceContextResolverTest {
         // Expected: lemma-under-n (T1) before lemma-at-n (T5 or T6)
 
         AuditNode courseNode = buildCourseNodeWithEnrichBands("A1", new int[][]{{1, 500}});
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r014b", null, null, "Ella corre.", List.of("She runs."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Sports", "Complete.", true, "know-r014b", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r014b", null, null, "Ella corre.", List.of("She runs."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Sports", "Complete.", true, "know-r014b", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r014b", "Activities", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r014b", "A1", null);
 
@@ -2375,8 +2375,8 @@ public class LemmaAbsenceContextResolverTest {
         //   They share Tier 1 → COCA ascending resolves → lemma-band-a (80) before lemma-band-b (250)
 
         AuditNode courseNode = buildCourseNodeWithEnrichBands("A1", new int[][]{{1, 100}, {200, 300}});
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r014c", null, null, "Ella trabaja.", List.of("She works."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Work", "Complete.", true, "know-r014c", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r014c", null, null, "Ella trabaja.", List.of("She works."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Work", "Complete.", true, "know-r014c", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r014c", "Daily Life", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r014c", "A1", null);
 
@@ -2448,8 +2448,8 @@ public class LemmaAbsenceContextResolverTest {
         // Expected order: T4 → T5 → T6
 
         AuditNode courseNode = buildCourseNodeWithEnrichBands("A1", new int[][]{{1, 500}});
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r014d", null, null, "Ella camina.", List.of("She walks."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Movement", "Complete.", true, "know-r014d", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r014d", null, null, "Ella camina.", List.of("She walks."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Movement", "Complete.", true, "know-r014d", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r014d", "Body", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r014d", "A1", null);
 
@@ -2529,8 +2529,8 @@ public class LemmaAbsenceContextResolverTest {
         // Expected: lemma-under-b (T3, rank=100), lemma-under-a (T3, rank=300), lemma-absent (T4, rank=50), lemma-scarce (T6, rank=150)
 
         AuditNode courseNode = buildCourseNode(); // NO CocaProgressionDiagnosis
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r015", null, null, "Ella bebe.", List.of("She drinks."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Habits", "Complete.", true, "know-r015", null, null, null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-r015", null, null, "Ella bebe.", List.of("She drinks."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Habits", "Complete.", true, "know-r015", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r015", "Daily Routine", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r015", "A1", null);
 
@@ -2621,8 +2621,8 @@ public class LemmaAbsenceContextResolverTest {
         );
 
         AuditableQuiz quiz = new AuditableQuiz(tokens, "quiz-r003b-filter", null, null,
-                "The dog runs fast", List.of("The dog runs fast."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Complete.", true, "know-r003b-filter", null, null, null);
+                "The dog runs fast", List.of("The dog runs fast."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Complete.", true, "know-r003b-filter", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r003b-filter", "Nature", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r003b-filter", "A1", null);
 
@@ -2694,8 +2694,8 @@ public class LemmaAbsenceContextResolverTest {
         );
 
         AuditableQuiz quiz = new AuditableQuiz(tokens, "quiz-r003b-fields", null, null,
-                "The cat", List.of("The cat."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Complete.", true, "know-r003b-fields", null, null, null);
+                "The cat", List.of("The cat."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Complete.", true, "know-r003b-fields", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r003b-fields", "Nature", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r003b-fields", "A1", null);
 
@@ -2761,8 +2761,8 @@ public class LemmaAbsenceContextResolverTest {
         );
 
         AuditableQuiz quiz = new AuditableQuiz(tokens, "quiz-r003c-no-signal", null, null,
-                "The dog barks", List.of("The dog barks."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Complete.", true, "know-r003c-no-signal", null, null, null);
+                "The dog barks", List.of("The dog barks."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Complete.", true, "know-r003c-no-signal", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r003c-no-signal", "Nature", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r003c-no-signal", "A1", null);
 
@@ -2817,8 +2817,8 @@ public class LemmaAbsenceContextResolverTest {
         );
 
         AuditableQuiz quiz = new AuditableQuiz(tokens, "quiz-r003c-none-scarce", null, null,
-                "The cat sleeps", List.of("The cat sleeps."), null);
-        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Complete.", true, "know-r003c-none-scarce", null, null, null);
+                "The cat sleeps", List.of("The cat sleeps."), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Complete.", true, "know-r003c-none-scarce", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-r003c-none-scarce", "Nature", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-r003c-none-scarce", "A1", null);
 
@@ -2871,9 +2871,9 @@ public class LemmaAbsenceContextResolverTest {
         // y revisiones produzca tareas corregibles. El motivo NO trae nivel CEFR: solo
         // lema, POS observada, ranking de frecuencia y descuento aplicado.
         AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-ooc-1", null, null,
-                "El aparato es raro.", List.of("The gadget is odd."), null);
+                "El aparato es raro.", List.of("The gadget is odd."), null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Objects", "Complete.",
-                true, "know-la-ooc-1", null, null, null);
+                true, "know-la-ooc-1", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-ooc-1", "Things", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-ooc-1", "A1", null);
 
@@ -2913,9 +2913,9 @@ public class LemmaAbsenceContextResolverTest {
         // R038: MisplacedLemmaContext gana el descuento aplicado para que el agente de
         // revision priorice que palabra reemplazar. Cada entrada conserva SU descuento.
         AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-disc-1", null, null,
-                "Ella posee un registro.", List.of("She possesses a record."), null);
+                "Ella posee un registro.", List.of("She possesses a record."), null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Ownership", "Complete.",
-                true, "know-la-disc-1", null, null, null);
+                true, "know-la-disc-1", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-disc-1", "Possessions", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-disc-1", "A1", null);
 
@@ -2962,9 +2962,9 @@ public class LemmaAbsenceContextResolverTest {
         // penalizadas o el reporte fuente es previo a la feature (diagnostico serializado
         // sin el campo: se simula con lista null en el diagnosis).
         AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-ooc-empty", null, null,
-                "El gato duerme.", List.of("The cat sleeps."), null);
+                "El gato duerme.", List.of("The cat sleeps."), null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Animals", "Complete.",
-                true, "know-la-ooc-empty", null, null, null);
+                true, "know-la-ooc-empty", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-la-ooc-empty", "Pets", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-la-ooc-empty", "A1", null);
 

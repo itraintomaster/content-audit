@@ -72,10 +72,11 @@ new AuditableCourse(List<AuditableMilestone> milestones)
 | `label` | `String` |  |
 | `code` | `String` |  |
 | `sentenceMode` | `SentenceMode` |  |
+| `topicName` | `String` |  |
 
 **Generated constructor:**
 ```java
-new AuditableKnowledge(List<AuditableQuiz> quizzes, String title, String instructions, boolean isSentence, String id, String label, String code, SentenceMode sentenceMode)
+new AuditableKnowledge(List<AuditableQuiz> quizzes, String title, String instructions, boolean isSentence, String id, String label, String code, SentenceMode sentenceMode, String topicName)
 ```
 
 #### AuditableTopic
@@ -126,10 +127,12 @@ new AuditableMilestone(List<AuditableTopic> topics, String id, String label, Str
 | `translation` | `String` |  |
 | `sentences` | `List<String>` | Import `java.util.List` |
 | `quizSentence` | `String` |  |
+| `instructions` | `String` |  |
+| `sentenceParts` | `List<SentencePartEntity>` | Import `java.util.List` |
 
 **Generated constructor:**
 ```java
-new AuditableQuiz(List<NlpToken> tokens, String id, String label, String code, String translation, List<String> sentences, String quizSentence)
+new AuditableQuiz(List<NlpToken> tokens, String id, String label, String code, String translation, List<String> sentences, String quizSentence, String instructions, List<SentencePartEntity> sentenceParts)
 ```
 
 #### CefrLevel
@@ -913,6 +916,95 @@ new ActiveAnalysisSelection(String auditId, String planId)
 | `pos` | `String` |
 | `frequencyRank` | `Integer` |
 
+#### InstructionSeverity (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `NONE` | `null` |
+| `MINOR` | `null` |
+| `MAJOR` | `null` |
+| `CRITICAL` | `null` |
+
+#### InstructionCheckStatus (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `PASSED` | `null` |
+| `FAILED` | `null` |
+| `NOT_APPLICABLE` | `null` |
+
+#### InstructionViolation (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `code` | `String` |
+| `constraint` | `String` |
+| `evidence` | `String` |
+| `explanation` | `String` |
+
+#### InstructionCheck (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `category` | `String` |
+| `constraint` | `String` |
+| `status` | `InstructionCheckStatus` |
+| `evidence` | `String` |
+
+#### QuizInstructionVerdict (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `followsInstructions` | `boolean` |
+| `confidence` | `double` |
+| `severity` | `InstructionSeverity` |
+| `reason` | `String` |
+| `violations` | `List<InstructionViolation>` |
+| `checkedConstraints` | `List<InstructionCheck>` |
+
+#### QuizInstructionDiagnosis (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `verdict` | `QuizInstructionVerdict` |
+| `score` | `double` |
+| `reusedFromPreviousRun` | `boolean` |
+
+#### QuizInstructionCoverageDiagnosis (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `coverage` | `EvaluationCoverage` |
+| `evaluatorVersion` | `String` |
+
 ### Module: course-domain
 
 #### NodeKind
@@ -1477,6 +1569,24 @@ new KnowledgeTitleCorrectionContext(String taskId, String knowledgeId, String cu
 new OutOfCatalogWordContext(String lemma, String observedPos, Integer frequencyRank, double discount)
 ```
 
+### Module: audit-application
+
+#### AuditRunRequest
+
+**Package:** `com.learney.contentaudit.auditapplication`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `includedAnalyzers` | `Set<String>` |  |
+| `excludedAnalyzers` | `Set<String>` |  |
+| `evaluationPolicies` | `Map<String,EvaluationRunPolicy>` |  |
+
+**Generated constructor:**
+```java
+new AuditRunRequest(Set<String> includedAnalyzers, Set<String> excludedAnalyzers, Map<String,EvaluationRunPolicy> evaluationPolicies)
+```
+
 ### Module: audit-cli
 
 #### GetTasksFilter
@@ -1558,6 +1668,28 @@ new EphemeralRenderOptions(boolean withCorrectionContext)
 **Generated constructor:**
 ```java
 new SuggestedLemmasFilter(Optional<Integer> limit, Optional<String> partOfSpeech, Optional<CefrLevel> level, boolean includeExposed, Optional<String> regex)
+```
+
+#### AnalyzeOptions
+
+**Package:** `com.learney.contentaudit.auditcli`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `format` | `String` |  |
+| `level` | `String` |  |
+| `topic` | `String` |  |
+| `knowledge` | `String` |  |
+| `analyzers` | `List<String>` | Import `java.util.List` |
+| `excludeAnalyzers` | `List<String>` | Import `java.util.List` |
+| `detailed` | `boolean` |  |
+| `instructionBudget` | `Integer` |  |
+| `reevaluateInstructions` | `String` |  |
+
+**Generated constructor:**
+```java
+new AnalyzeOptions(String format, String level, String topic, String knowledge, List<String> analyzers, List<String> excludeAnalyzers, boolean detailed, Integer instructionBudget, String reevaluateInstructions)
 ```
 
 #### ReportViewModel (package: formatting)
@@ -2565,4 +2697,206 @@ new OverrideRejectedException(String reason)
 |-------|------|
 | `providerName` | `String` |
 | `modelId` | `String` |
+
+### Module: evaluation-ledger-domain
+
+#### EvaluationKey
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `evaluatorId` | `String` |  |
+| `evaluatorVersion` | `String` |  |
+| `contentFingerprint` | `String` |  |
+
+**Generated constructor:**
+```java
+new EvaluationKey(String evaluatorId, String evaluatorVersion, String contentFingerprint)
+```
+
+#### EvaluationSubject
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `subjectRef` | `String` |  |
+| `content` | `Map<String,String>` |  |
+
+**Generated constructor:**
+```java
+new EvaluationSubject(String subjectRef, Map<String,String> content)
+```
+
+#### EvaluationRecord
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `key` | `EvaluationKey` |  |
+| `payload` | `String` |  |
+| `subjectRef` | `String` |  |
+| `recordedAt` | `Instant` |  |
+
+**Generated constructor:**
+```java
+new EvaluationRecord(EvaluationKey key, String payload, String subjectRef, Instant recordedAt)
+```
+
+#### EvaluationEmitted
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** record
+**Implements:** `EvaluationOutcome`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `payload` | `String` |  |
+
+**Generated constructor:**
+```java
+new EvaluationEmitted(String payload)
+```
+
+#### EvaluationNotEmitted
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** record
+**Implements:** `EvaluationOutcome`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `kind` | `EvaluationFailureKind` |  |
+| `reason` | `String` |  |
+
+**Generated constructor:**
+```java
+new EvaluationNotEmitted(EvaluationFailureKind kind, String reason)
+```
+
+#### EvaluationFailureKind
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `OUTPUT_UNUSABLE` | `null` |  |
+| `EVALUATOR_UNAVAILABLE` | `null` |  |
+
+**Generated constructor:**
+```java
+new EvaluationFailureKind(null OUTPUT_UNUSABLE, null EVALUATOR_UNAVAILABLE)
+```
+
+#### EvaluationResolutionKind
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `REUSED` | `null` |  |
+| `EVALUATED` | `null` |  |
+| `PENDING` | `null` |  |
+| `FAILED` | `null` |  |
+
+**Generated constructor:**
+```java
+new EvaluationResolutionKind(null REUSED, null EVALUATED, null PENDING, null FAILED)
+```
+
+#### EvaluationResolution
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `kind` | `EvaluationResolutionKind` |  |
+| `payload` | `String` |  |
+
+**Generated constructor:**
+```java
+new EvaluationResolution(EvaluationResolutionKind kind, String payload)
+```
+
+#### EvaluationCoverage
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `reached` | `int` |  |
+| `withResult` | `int` |  |
+| `evaluatedInRun` | `int` |  |
+| `reused` | `int` |  |
+| `pending` | `int` |  |
+| `failed` | `int` |  |
+
+**Generated constructor:**
+```java
+new EvaluationCoverage(int reached, int withResult, int evaluatedInRun, int reused, int pending, int failed)
+```
+
+#### EvaluationRunPolicy
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `maxNewEvaluations` | `int` |  |
+| `reevaluate` | `boolean` |  |
+| `reevaluationScope` | `String` |  |
+
+**Generated constructor:**
+```java
+new EvaluationRunPolicy(int maxNewEvaluations, boolean reevaluate, String reevaluationScope)
+```
+
+### Module: agent-runtime-infrastructure
+
+#### AgentGraphRunnerConfig
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `agentsBaseDir` | `Path` |  |
+| `runsBaseDir` | `Path` |  |
+
+**Generated constructor:**
+```java
+new AgentGraphRunnerConfig(Path agentsBaseDir, Path runsBaseDir)
+```
+
+### Module: quiz-instruction-infrastructure
+
+#### QuizInstructionJudgeConfig
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `baseUrl` | `String` |  |
+| `apiKey` | `String` |  |
+| `modelName` | `String` |  |
+| `temperature` | `Double` |  |
+| `timeoutSeconds` | `Integer` |  |
+| `agentName` | `String` |  |
+| `judgeVersionOverride` | `String` |  |
+
+**Generated constructor:**
+```java
+new QuizInstructionJudgeConfig(String baseUrl, String apiKey, String modelName, Double temperature, Integer timeoutSeconds, String agentName, String judgeVersionOverride)
+```
 

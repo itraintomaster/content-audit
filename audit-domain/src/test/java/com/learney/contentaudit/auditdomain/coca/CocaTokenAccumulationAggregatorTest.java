@@ -69,10 +69,10 @@ public class CocaTokenAccumulationAggregatorTest {
         List<NlpToken> tokens2 = java.util.stream.IntStream.range(0, quiz2Top1k)
                 .mapToObj(i -> tok(500)).collect(java.util.stream.Collectors.toList());
 
-        AuditableQuiz q1 = new AuditableQuiz(tokens1, "q1", "Q1", null, null, List.of("s"), null);
-        AuditableQuiz q2 = new AuditableQuiz(tokens2, "q2", "Q2", null, null, List.of("s"), null);
+        AuditableQuiz q1 = new AuditableQuiz(tokens1, "q1", "Q1", null, null, List.of("s"), null, null, null);
+        AuditableQuiz q2 = new AuditableQuiz(tokens2, "q2", "Q2", null, null, List.of("s"), null, null, null);
         AuditableKnowledge k = new AuditableKnowledge(
-                List.of(q1, q2), "K", "C", true, "k1", "K", "K", null);
+                List.of(q1, q2), "K", "C", true, "k1", "K", "K", null, null);
         AuditableTopic t = new AuditableTopic(List.of(k), "t1", "T", "T");
         AuditableMilestone m = new AuditableMilestone(List.of(t), "A1", "A1", null);
         AuditableCourse course = new AuditableCourse(List.of(m));

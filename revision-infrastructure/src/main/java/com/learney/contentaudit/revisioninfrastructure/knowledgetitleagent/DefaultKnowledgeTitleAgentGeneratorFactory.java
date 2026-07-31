@@ -1,5 +1,8 @@
 package com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent;
 
+import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunner;
+import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunnerConfig;
+import com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentGraphRunnerFactory;
 import com.learney.contentaudit.revisiondomain.knowledgetitle.KnowledgeTitleCandidateGenerator;
 import com.learney.contentaudit.revisioninfrastructure.lagen.InvalidProviderIdException;
 import com.learney.contentaudit.revisioninfrastructure.lagen.LagenConfig;
@@ -22,6 +25,16 @@ public class DefaultKnowledgeTitleAgentGeneratorFactory implements KnowledgeTitl
 
     private static final String STRATEGY_NAME = "knowledge-title-agent";
 
+    /**
+     * Shared declarative-graph runtime (agent-runtime-infrastructure). Built with an
+     * empty config so base-dir resolution falls through to its
+     * {@code inputs["project_root"]} step — this generator always populates
+     * {@code project_root} (see {@link KnowledgeTitleAgentGenerator}), matching the
+     * launcher's pre-consolidation behavior exactly.
+     */
+    private static final AgentGraphRunner AGENT_GRAPH_RUNNER =
+            new DefaultAgentGraphRunnerFactory().create(new AgentGraphRunnerConfig());
+
     private final Path projectRoot;
 
     public DefaultKnowledgeTitleAgentGeneratorFactory() {
@@ -36,7 +49,7 @@ public class DefaultKnowledgeTitleAgentGeneratorFactory implements KnowledgeTitl
     public KnowledgeTitleCandidateGenerator create(LagenConfig config) {
         ChatModel chatModel = buildChatModel(config);
         return new KnowledgeTitleAgentGenerator(
-                new DefaultKnowledgeTitleAgentRuntimeLauncher(),
+                new SharedRuntimeKnowledgeTitleLauncher(AGENT_GRAPH_RUNNER),
                 new DefaultKnowledgeTitleAgentCandidateParser(),
                 new DefaultKnowledgeTitleAgentErrorClassifier(),
                 chatModel,

@@ -13,12 +13,14 @@ import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
@@ -71,7 +73,7 @@ public class StatsAnalyzerCmdTest {
 
         // The impl may call runAudit or runDetailedAudit; stub both with a minimal result
         AuditReport minimalReport = new AuditReport(mockAuditNode);
-        when(auditRunner.runAudit(any(), any())).thenReturn(minimalReport);
+        when(auditRunner.runAudit(any(Path.class), ArgumentMatchers.<Set<String>>any())).thenReturn(minimalReport);
         when(auditRunner.runDetailedAudit(any(), anyString())).thenReturn(mockAuditNode);
 
         // Stub the transformer to return a valid (non-null) stats view

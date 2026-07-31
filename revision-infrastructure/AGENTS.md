@@ -373,6 +373,7 @@ Methods:
 | label | `String` |
 | code | `String` |
 | sentenceMode | `SentenceMode` |
+| topicName | `String` |
 
 ### AuditableTopic (`record`)
 
@@ -403,6 +404,8 @@ Methods:
 | translation | `String` |
 | sentences | `List<String>` |
 | quizSentence | `String` |
+| instructions | `String` |
+| sentenceParts | `List<SentencePartEntity>` |
 
 ### CefrLevel (`enum`)
 
@@ -624,6 +627,7 @@ Methods:
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>`
 - `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>`
 - `getLemmaCountDiagnosis(): Optional<LemmaCountCourseDiagnosis>`
+- `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>`
 
 ### LevelDiagnoses (port)
 
@@ -652,6 +656,7 @@ Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
 - `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
+- `getQuizInstructionDiagnosis(): Optional<QuizInstructionDiagnosis>`
 
 ### AuditReportStore (port)
 
@@ -693,6 +698,26 @@ Methods:
 Methods:
 
 - `getThreshold(): int`
+
+### EvaluationAnalyzerFactory (factory)
+
+Methods:
+
+- `evaluatorId(): String`
+- `create(EvaluationRunPolicy policy): ContentAnalyzer`
+
+### QuizInstructionVerdictReader (port)
+
+Methods:
+
+- `read(String payload): QuizInstructionVerdict`
+
+### QuizInstructionConfig (port)
+
+Methods:
+
+- `getDefaultMaxNewEvaluations(): int`
+- `getScoreFor(InstructionSeverity severity): double`
 
 ### From course-domain
 
@@ -857,6 +882,127 @@ Methods:
 Methods:
 
 - `validate(CourseEntity course): void`
+
+### From evaluation-ledger-domain
+
+## Models
+
+### EvaluationKey (`record`)
+
+| Field | Type |
+|-------|------|
+| evaluatorId | `String` |
+| evaluatorVersion | `String` |
+| contentFingerprint | `String` |
+
+### EvaluationSubject (`record`)
+
+| Field | Type |
+|-------|------|
+| subjectRef | `String` |
+| content | `Map<String,String>` |
+
+### EvaluationRecord (`record`)
+
+| Field | Type |
+|-------|------|
+| key | `EvaluationKey` |
+| payload | `String` |
+| subjectRef | `String` |
+| recordedAt | `Instant` |
+
+### EvaluationEmitted (`record`)
+
+| Field | Type |
+|-------|------|
+| payload | `String` |
+
+### EvaluationNotEmitted (`record`)
+
+| Field | Type |
+|-------|------|
+| kind | `EvaluationFailureKind` |
+| reason | `String` |
+
+### EvaluationFailureKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| OUTPUT_UNUSABLE | `null` |
+| EVALUATOR_UNAVAILABLE | `null` |
+
+### EvaluationResolutionKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| REUSED | `null` |
+| EVALUATED | `null` |
+| PENDING | `null` |
+| FAILED | `null` |
+
+### EvaluationResolution (`record`)
+
+| Field | Type |
+|-------|------|
+| kind | `EvaluationResolutionKind` |
+| payload | `String` |
+
+### EvaluationCoverage (`record`)
+
+| Field | Type |
+|-------|------|
+| reached | `int` |
+| withResult | `int` |
+| evaluatedInRun | `int` |
+| reused | `int` |
+| pending | `int` |
+| failed | `int` |
+
+### EvaluationRunPolicy (`record`)
+
+| Field | Type |
+|-------|------|
+| maxNewEvaluations | `int` |
+| reevaluate | `boolean` |
+| reevaluationScope | `String` |
+
+### EvaluationOutcome (port)
+
+### EvaluationLedger (port)
+
+Methods:
+
+- `find(EvaluationKey key): Optional<EvaluationRecord>`
+- `append(EvaluationRecord record): void`
+- `history(String evaluatorId,String contentFingerprint): List<EvaluationRecord>`
+
+### ContentFingerprinter (port)
+
+Methods:
+
+- `fingerprint(Map<String,String> content): String`
+
+### Evaluator (port)
+
+Methods:
+
+- `evaluatorId(): String`
+- `evaluatorVersion(): String`
+- `evaluate(EvaluationSubject subject): EvaluationOutcome`
+
+### EvaluationSession (port)
+
+Methods:
+
+- `resolve(EvaluationSubject subject): EvaluationResolution`
+- `resolveForced(EvaluationSubject subject): EvaluationResolution`
+- `coverage(): EvaluationCoverage`
+
+### EvaluationSessionFactory (factory)
+
+Methods:
+
+- `open(EvaluationRunPolicy policy,Evaluator evaluator): EvaluationSession`
 
 ### From refiner-domain
 
@@ -1080,4 +1226,27 @@ Methods:
 Methods:
 
 - `bindForTask(String sourceAuditId, RefinementTask task): SuggestedLemmaQuerySession`
+
+### From agent-runtime-infrastructure
+
+## Models
+
+### AgentGraphRunnerConfig (`record`)
+
+| Field | Type |
+|-------|------|
+| agentsBaseDir | `Path` |
+| runsBaseDir | `Path` |
+
+### AgentGraphRunner (port)
+
+Methods:
+
+- `run(String agentName,Map<String,String> inputs,ChatModel chatModel,Map<String,Object> tools): RunState`
+
+### AgentGraphRunnerFactory (factory)
+
+Methods:
+
+- `create(AgentGraphRunnerConfig config): AgentGraphRunner`
 

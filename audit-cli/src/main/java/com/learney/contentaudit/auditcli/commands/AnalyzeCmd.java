@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.auditcli.AnalyzeOptions;
 import javax.annotation.processing.Generated;
 
 import com.learney.contentaudit.auditapplication.AuditRunner;
@@ -61,7 +62,7 @@ import picocli.CommandLine.Parameters;
                 "  CONTENT_AUDIT_CONTENT_FOLDER=db/english-course content-audit analyze",
         }
 )
-final class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
+class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
     private final AuditRunner auditRunner;
 
     private final FormatterRegistry formatterRegistry;
@@ -202,6 +203,11 @@ final class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
             System.err.println("Error running audit: " + e.getMessage());
             return 1;
         }
+    }
+
+    @Override
+    public Integer analyze(String coursePath, AnalyzeOptions options) {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 
 }

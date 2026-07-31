@@ -141,9 +141,9 @@ public class FSlemJ002JourneyTest {
         // --- Step 1: Build AuditReport with lemma-count + LEMMA_ABSENCE signal ---
         AuditableQuiz quiz = new AuditableQuiz(
                 List.of(), "quiz-j002", null, null,
-                "El pájaro vuela.", List.of("The bird flies."), null);
+                "El pájaro vuela.", List.of("The bird flies."), null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Animals", "Complete.", true, "know-j002", null, null, null);
+                List.of(), "Animals", "Complete.", true, "know-j002", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-j002", "Nature", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-j002", "A1", null);
 

@@ -62,7 +62,7 @@ public class LemmaRecurrenceAnalyzerTest {
     @Test
     @DisplayName("Given an AuditableKnowledge, when onKnowledge is called, then completes without error")
     public void givenAnAuditableKnowledgeWhenOnKnowledgeIsCalledThenCompletesWithoutError() {
-        AuditableKnowledge k = new AuditableKnowledge(null, "t", "i", true, "k1", "l", "c", null);
+        AuditableKnowledge k = new AuditableKnowledge(null, "t", "i", true, "k1", "l", "c", null, null);
         assertDoesNotThrow(() -> sut.onKnowledge(makeNode(AuditTarget.KNOWLEDGE, k)));
     }
 
@@ -91,8 +91,8 @@ public class LemmaRecurrenceAnalyzerTest {
         // IntervalCalculator.calculateMeanInterval([2, 4]) called → positions are non-contiguous (global gap = 2)
         NlpToken detToken = new NlpToken("the", "the", "DET", 1, true, false);
         NlpToken catToken = new NlpToken("cat", "cat", "NOUN", 100, false, false);
-        AuditableQuiz quiz1 = new AuditableQuiz(List.of(detToken, catToken), null, null, null, null, List.of("the cat"), null);
-        AuditableQuiz quiz2 = new AuditableQuiz(List.of(detToken, catToken), null, null, null, null, List.of("the cat"), null);
+        AuditableQuiz quiz1 = new AuditableQuiz(List.of(detToken, catToken), null, null, null, null, List.of("the cat"), null, null, null);
+        AuditableQuiz quiz2 = new AuditableQuiz(List.of(detToken, catToken), null, null, null, null, List.of("the cat"), null, null, null);
 
         when(contentWordFilter.isContentWord(argThat(t -> t != null && "DET".equals(t.getPosTag())))).thenReturn(false);
         when(contentWordFilter.isContentWord(argThat(t -> t != null && "NOUN".equals(t.getPosTag())))).thenReturn(true);
@@ -101,8 +101,8 @@ public class LemmaRecurrenceAnalyzerTest {
         when(intervalCalculator.calculateStdDevInterval(any(), anyDouble())).thenReturn(0.0);
         when(exposureClassifier.classify(anyDouble(), any())).thenReturn(ExposureStatus.NORMAL);
 
-        AuditNode quizNode1 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(quiz1.getTokens(), null, null, null, null, List.of("the cat"), null));
-        AuditNode quizNode2 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(quiz2.getTokens(), null, null, null, null, List.of("the cat"), null));
+        AuditNode quizNode1 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(quiz1.getTokens(), null, null, null, null, List.of("the cat"), null, null, null));
+        AuditNode quizNode2 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(quiz2.getTokens(), null, null, null, null, List.of("the cat"), null, null, null));
         AuditNode root = makeNode(AuditTarget.COURSE, null);
 
         sut.onQuiz(quizNode1);
@@ -142,8 +142,8 @@ public class LemmaRecurrenceAnalyzerTest {
         when(intervalCalculator.calculateStdDevInterval(any(), anyDouble())).thenReturn(0.0);
         when(exposureClassifier.classify(anyDouble(), any())).thenReturn(ExposureStatus.NORMAL);
 
-        AuditNode quizNode1 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(runs), null, null, null, null, List.of("runs"), null));
-        AuditNode quizNode2 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(running), null, null, null, null, List.of("running"), null));
+        AuditNode quizNode1 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(runs), null, null, null, null, List.of("runs"), null, null, null));
+        AuditNode quizNode2 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(running), null, null, null, null, List.of("running"), null, null, null));
         AuditNode root = makeNode(AuditTarget.COURSE, null);
 
         sut.onQuiz(quizNode1);
@@ -176,11 +176,11 @@ public class LemmaRecurrenceAnalyzerTest {
 
         // 3 "cat" occurrences, 2 "dog" occurrences
         for (int i = 0; i < 3; i++) {
-            AuditNode qn = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(cat), null, null, null, null, List.of("cat"), null));
+            AuditNode qn = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(cat), null, null, null, null, List.of("cat"), null, null, null));
             sut.onQuiz(qn);
         }
         for (int i = 0; i < 2; i++) {
-            AuditNode qn = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(dog), null, null, null, null, List.of("dog"), null));
+            AuditNode qn = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(dog), null, null, null, null, List.of("dog"), null, null, null));
             sut.onQuiz(qn);
         }
 
@@ -202,7 +202,7 @@ public class LemmaRecurrenceAnalyzerTest {
         when(contentWordFilter.isContentWord(any())).thenReturn(true);
         when(config.getTop()).thenReturn(2000);
 
-        AuditNode quizNode = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(cat), null, null, null, null, List.of("cat"), null));
+        AuditNode quizNode = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(cat), null, null, null, null, List.of("cat"), null, null, null));
         AuditNode root = makeNode(AuditTarget.COURSE, null);
 
         sut.onQuiz(quizNode);
@@ -229,8 +229,8 @@ public class LemmaRecurrenceAnalyzerTest {
         // Classifier sees meanInterval=30.0 and returns OVER_EXPOSED
         when(exposureClassifier.classify(anyDouble(), any())).thenReturn(ExposureStatus.OVER_EXPOSED);
 
-        AuditNode q1 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(cat), null, null, null, null, List.of("cat"), null));
-        AuditNode q2 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(cat), null, null, null, null, List.of("cat"), null));
+        AuditNode q1 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(cat), null, null, null, null, List.of("cat"), null, null, null));
+        AuditNode q2 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(cat), null, null, null, null, List.of("cat"), null, null, null));
         AuditNode root = makeNode(AuditTarget.COURSE, null);
 
         sut.onQuiz(q1);
@@ -265,7 +265,7 @@ public class LemmaRecurrenceAnalyzerTest {
 
         // Each lemma needs 2 occurrences to be analysed
         for (NlpToken t : List.of(cat, cat, dog, dog, run, run)) {
-            AuditNode qn = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(t), null, null, null, null, List.of(t.getText()), null));
+            AuditNode qn = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(t), null, null, null, null, List.of(t.getText()), null, null, null));
             sut.onQuiz(qn);
         }
 
@@ -290,7 +290,7 @@ public class LemmaRecurrenceAnalyzerTest {
         when(contentWordFilter.isContentWord(any())).thenReturn(true);
         when(config.getTop()).thenReturn(2000);
 
-        AuditNode q1 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(cat), null, null, null, null, List.of("cat"), null));
+        AuditNode q1 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(cat), null, null, null, null, List.of("cat"), null, null, null));
         AuditNode root1 = makeNode(AuditTarget.COURSE, null);
         sut.onQuiz(q1);
         sut.onCourseComplete(root1);
@@ -317,7 +317,7 @@ public class LemmaRecurrenceAnalyzerTest {
         NlpToken dog = new NlpToken("dog", "dog", "NOUN", 80, false, false);
         NlpToken run = new NlpToken("run", "run", "VERB", 200, false, false);
         for (NlpToken t : List.of(cat, cat, dog, dog, run, run)) {
-            AuditNode qn = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(t), null, null, null, null, List.of(t.getText()), null));
+            AuditNode qn = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(t), null, null, null, null, List.of(t.getText()), null, null, null));
             sut2.onQuiz(qn);
         }
         AuditNode root2 = makeNode(AuditTarget.COURSE, null);
@@ -349,7 +349,7 @@ public class LemmaRecurrenceAnalyzerTest {
         LemmaRecurrenceAnalyzer sutA = new LemmaRecurrenceAnalyzer(cwfA, cfgA, icA, ecA);
         NlpToken cat = new NlpToken("cat", "cat", "NOUN", 100, false, false);
         for (int i = 0; i < 2; i++) {
-            AuditNode qn = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(cat), null, null, null, null, List.of("cat"), null));
+            AuditNode qn = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(cat), null, null, null, null, List.of("cat"), null, null, null));
             sutA.onQuiz(qn);
         }
         AuditNode rootA = makeNode(AuditTarget.COURSE, null);
@@ -368,7 +368,7 @@ public class LemmaRecurrenceAnalyzerTest {
 
         LemmaRecurrenceAnalyzer sutB = new LemmaRecurrenceAnalyzer(cwfB, cfgB, icB, ecB);
         for (int i = 0; i < 2; i++) {
-            AuditNode qn = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(cat), null, null, null, null, List.of("cat"), null));
+            AuditNode qn = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(cat), null, null, null, null, List.of("cat"), null, null, null));
             sutB.onQuiz(qn);
         }
         AuditNode rootB = makeNode(AuditTarget.COURSE, null);
@@ -401,8 +401,8 @@ public class LemmaRecurrenceAnalyzerTest {
         when(exposureClassifier.classify(anyDouble(), any())).thenReturn(ExposureStatus.NORMAL);
 
         // "cat" appears twice → count=2, positions recorded
-        AuditNode q1 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(catNoun), null, null, null, null, List.of("cats"), null));
-        AuditNode q2 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(catNoun), null, null, null, null, List.of("cats"), null));
+        AuditNode q1 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(catNoun), null, null, null, null, List.of("cats"), null, null, null));
+        AuditNode q2 = makeNode(AuditTarget.QUIZ, new AuditableQuiz(List.of(catNoun), null, null, null, null, List.of("cats"), null, null, null));
         AuditNode root = makeNode(AuditTarget.COURSE, null);
 
         sut.onQuiz(q1);

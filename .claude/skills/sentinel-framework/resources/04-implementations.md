@@ -272,6 +272,62 @@ public SentenceLengthAnalyzer(NlpTokenizer nlpTokenizer, SentenceLengthConfig co
 |------|------|
 | `sentenceLexicalScorer` | `SentenceLexicalScorer` |
 
+#### DefaultQuizInstructionAnalyzerFactory (package: quizinstructionengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstructionengine`
+**Visibility:** public
+**Implements:** EvaluationAnalyzerFactory
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `sessionFactory` | `EvaluationSessionFactory` |
+| `evaluator` | `Evaluator` |
+| `verdictReader` | `QuizInstructionVerdictReader` |
+| `config` | `QuizInstructionConfig` |
+
+#### QuizInstructionAnalyzer (package: quizinstructionengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstructionengine`
+**Visibility:** public
+**Implements:** ContentAnalyzer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `session` | `EvaluationSession` |
+| `subjectBuilder` | `QuizInstructionSubjectBuilder` |
+| `scorer` | `QuizInstructionScorer` |
+| `scopeMatcher` | `QuizInstructionScopeMatcher` |
+| `verdictReader` | `QuizInstructionVerdictReader` |
+| `policy` | `EvaluationRunPolicy` |
+
+#### DefaultQuizInstructionSubjectBuilder (package: quizinstructionengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstructionengine`
+**Visibility:** public
+**Implements:** QuizInstructionSubjectBuilder
+
+#### DefaultQuizInstructionScorer (package: quizinstructionengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstructionengine`
+**Visibility:** public
+**Implements:** QuizInstructionScorer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `config` | `QuizInstructionConfig` |
+
+#### DefaultQuizInstructionScopeMatcher (package: quizinstructionengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstructionengine`
+**Visibility:** public
+**Implements:** QuizInstructionScopeMatcher
+
 ### Module: course-domain
 
 #### DefaultQuizSentenceConverter (package: quizsentenceengine)
@@ -483,15 +539,17 @@ public CourseToAuditableMapper(NlpTokenizer nlpTokenizer, QuizSentenceConverter 
 | `auditEngine` | `AuditEngine` |
 | `allAnalyzers` | `List<ContentAnalyzer>` |
 | `scoreAggregator` | `ScoreAggregator` |
+| `evaluationAnalyzerFactories` | `List<EvaluationAnalyzerFactory>` |
 
 **Generated constructor:**
 ```java
-public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMapper courseToAuditableMapper, AuditEngine auditEngine, List<ContentAnalyzer> allAnalyzers, ScoreAggregator scoreAggregator) {
+public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMapper courseToAuditableMapper, AuditEngine auditEngine, List<ContentAnalyzer> allAnalyzers, ScoreAggregator scoreAggregator, List<EvaluationAnalyzerFactory> evaluationAnalyzerFactories) {
     this.courseRepository = courseRepository;
     this.courseToAuditableMapper = courseToAuditableMapper;
     this.auditEngine = auditEngine;
     this.allAnalyzers = allAnalyzers;
     this.scoreAggregator = scoreAggregator;
+    this.evaluationAnalyzerFactories = evaluationAnalyzerFactories;
 }
 ```
 
@@ -580,6 +638,14 @@ public DefaultLemmaCountConfig(int threshold) {
 **Package:** `com.learney.contentaudit.auditapplication`
 
 **Implements:** LemmaCountConfigLoader
+
+**Framework types:** Component
+
+#### DefaultQuizInstructionConfig
+
+**Package:** `com.learney.contentaudit.auditapplication`
+
+**Implements:** QuizInstructionConfig
 
 **Framework types:** Component
 
@@ -961,6 +1027,12 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 **Visibility:** internal
 **Implements:** ConsolidatedViewFormatter
 
+#### QuizInstructionDetailedFormatter (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+**Implements:** DetailedFormatter
+
 #### DefaultWorkdirResolver (package: bootstrap)
 
 **Package:** `com.learney.contentaudit.auditcli.bootstrap`
@@ -990,6 +1062,12 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 **Package:** `com.learney.contentaudit.auditcli.bootstrap`
 **Visibility:** internal
 **Implements:** LagenConfigResolver
+
+#### DefaultQuizInstructionJudgeConfigResolver (package: bootstrap)
+
+**Package:** `com.learney.contentaudit.auditcli.bootstrap`
+**Visibility:** internal
+**Implements:** QuizInstructionJudgeConfigResolver
 
 ### Module: nlp-infrastructure
 
@@ -1520,12 +1598,6 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 | `chatModel` | `ChatModel` |
 | `strategyName` | `String` |
 
-#### DefaultAgentRuntimeLauncher (package: lemmaabsenceagent)
-
-**Package:** `com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent`
-**Visibility:** internal
-**Implements:** AgentRuntimeLauncher
-
 #### DefaultSuggestedLemmaAgentTool (package: lemmaabsenceagent)
 
 **Package:** `com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent`
@@ -1549,6 +1621,18 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 **Package:** `com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent`
 **Visibility:** internal
 **Implements:** AgentCandidateParser
+
+#### SharedRuntimeAgentLauncher (package: lemmaabsenceagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent`
+**Visibility:** internal
+**Implements:** AgentRuntimeLauncher
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `agentGraphRunner` | `AgentGraphRunner` |
 
 #### DefaultKnowledgeTitleAgentGeneratorFactory (package: knowledgetitleagent)
 
@@ -1574,12 +1658,6 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 | `config` | `LagenConfig` |
 | `projectRoot` | `Path` |
 
-#### DefaultKnowledgeTitleAgentRuntimeLauncher (package: knowledgetitleagent)
-
-**Package:** `com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent`
-**Visibility:** public
-**Implements:** KnowledgeTitleAgentRuntimeLauncher
-
 #### DefaultKnowledgeTitleAgentCandidateParser (package: knowledgetitleagent)
 
 **Package:** `com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent`
@@ -1591,4 +1669,129 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 **Package:** `com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent`
 **Visibility:** public
 **Implements:** KnowledgeTitleAgentErrorClassifier
+
+#### SharedRuntimeKnowledgeTitleLauncher (package: knowledgetitleagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent`
+**Visibility:** public
+**Implements:** KnowledgeTitleAgentRuntimeLauncher
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `agentGraphRunner` | `AgentGraphRunner` |
+
+### Module: evaluation-ledger-domain
+
+#### DefaultEvaluationSessionFactory (package: evaluationsession)
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain.evaluationsession`
+**Visibility:** public
+**Implements:** EvaluationSessionFactory
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `ledger` | `EvaluationLedger` |
+| `fingerprinter` | `ContentFingerprinter` |
+
+#### DefaultEvaluationSession (package: evaluationsession)
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain.evaluationsession`
+**Visibility:** public
+**Implements:** EvaluationSession
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `ledger` | `EvaluationLedger` |
+| `fingerprinter` | `ContentFingerprinter` |
+| `evaluator` | `Evaluator` |
+| `policy` | `EvaluationRunPolicy` |
+
+#### Sha256ContentFingerprinter (package: contentfingerprint)
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain.contentfingerprint`
+**Visibility:** public
+**Implements:** ContentFingerprinter
+
+### Module: evaluation-ledger-infrastructure
+
+#### FileSystemEvaluationLedger
+
+**Package:** `com.learney.contentaudit.evaluationledgerinfrastructure`
+
+**Implements:** EvaluationLedger
+
+**Framework types:** Repository
+
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `baseDir` | `Path` |
+
+**Generated constructor:**
+```java
+public FileSystemEvaluationLedger(Path baseDir) {
+    this.baseDir = baseDir;
+}
+```
+
+### Module: agent-runtime-infrastructure
+
+#### DefaultAgentGraphRunnerFactory (package: graphexecution)
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure.graphexecution`
+**Visibility:** public
+**Implements:** AgentGraphRunnerFactory
+
+#### DefaultAgentGraphRunner (package: graphexecution)
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure.graphexecution`
+**Visibility:** public
+**Implements:** AgentGraphRunner
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `config` | `AgentGraphRunnerConfig` |
+
+### Module: quiz-instruction-infrastructure
+
+#### DefaultQuizInstructionJudgeFactory (package: instructionjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
+**Visibility:** public
+**Implements:** QuizInstructionJudgeFactory
+
+#### QuizInstructionAgentJudge (package: instructionjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
+**Visibility:** public
+**Implements:** Evaluator
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `config` | `QuizInstructionJudgeConfig` |
+| `agentGraphRunner` | `AgentGraphRunner` |
+| `versionResolver` | `QuizInstructionJudgeVersionResolver` |
+
+#### DefaultQuizInstructionJudgeVersionResolver (package: instructionjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
+**Visibility:** public
+**Implements:** QuizInstructionJudgeVersionResolver
+
+#### JacksonQuizInstructionVerdictReader (package: instructionverdict)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionverdict`
+**Visibility:** public
+**Implements:** QuizInstructionVerdictReader
 

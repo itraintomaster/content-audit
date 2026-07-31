@@ -31,7 +31,7 @@ public class SentinelArchitectureTest {
   @Test
   public void enforceModuleBoundaries() {
     JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
-    ArchRuleDefinition.classes().that().resideInAPackage("..auditdomain..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditdomain..", "..coursedomain..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
+    ArchRuleDefinition.classes().that().resideInAPackage("..auditdomain..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditdomain..", "..coursedomain..", "..evaluationledgerdomain..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
   }
 
   @Test
@@ -265,6 +265,21 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.LemmaCountConfig");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaCountConfig - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.EvaluationAnalyzerFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: EvaluationAnalyzerFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.QuizInstructionVerdictReader");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionVerdictReader - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.QuizInstructionConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionConfig - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditdomain.IAuditEngine");
@@ -660,6 +675,81 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.lexicalflags.DefaultSentenceLexicalEvaluator");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultSentenceLexicalEvaluator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstruction.InstructionSeverity");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: InstructionSeverity - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstruction.InstructionCheckStatus");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: InstructionCheckStatus - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstruction.InstructionViolation");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: InstructionViolation - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstruction.InstructionCheck");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: InstructionCheck - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionVerdict");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionVerdict - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionCoverageDiagnosis");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionCoverageDiagnosis - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstructionengine.QuizInstructionSubjectBuilder");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionSubjectBuilder - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstructionengine.QuizInstructionScorer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionScorer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstructionengine.QuizInstructionScopeMatcher");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionScopeMatcher - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultQuizInstructionAnalyzerFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstructionengine.QuizInstructionAnalyzer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: QuizInstructionAnalyzer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionSubjectBuilder");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultQuizInstructionSubjectBuilder - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionScorer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultQuizInstructionScorer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionScopeMatcher");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultQuizInstructionScopeMatcher - " + e.getMessage());
     }
   }
 }

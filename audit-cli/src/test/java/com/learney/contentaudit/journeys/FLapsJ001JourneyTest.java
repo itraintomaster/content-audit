@@ -210,12 +210,12 @@ public class FLapsJ001JourneyTest {
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-laps-j001", "Reading Comprehension", "T001");
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Reading at A1 level", "Write the correct form.", true,
-                "knowledge-laps-j001", "Knowledge 1", "K001", null);
+                "knowledge-laps-j001", "Knowledge 1", "K001", null, null);
         AuditableQuiz quiz = new AuditableQuiz(
                 List.of(), QUIZ_ID, "Quiz 1", "Q001",
                 "Ella lee libros sobre temas avanzados.",
                 List.of("She reads books about advanced topics."),
-                BEFORE_QUIZ_SENTENCE);
+                BEFORE_QUIZ_SENTENCE, null, null);
 
         AuditNode courseNode = buildCourseNode();
         AuditNode milestoneNode = buildMilestoneNode(courseNode, milestone);

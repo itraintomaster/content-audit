@@ -287,9 +287,19 @@ class Main {
                 new com.learney.contentaudit.auditdomain.labs.LemmaAbsenceScoreAggregator();
         IAuditEngine auditEngine = new IAuditEngine(contentAnalyzers, scoreAggregator);
 
+        // evaluationAnalyzerFactories: FEAT-QINST wiring is intentionally empty.
+        // DefaultQuizInstructionAnalyzerFactory and every piece of its construction chain
+        // (DefaultEvaluationSessionFactory, JacksonQuizInstructionVerdictReader,
+        // DefaultQuizInstructionConfig, DefaultQuizInstructionJudgeFactory) are still
+        // @Generated stubs that throw UnsupportedOperationException. Wiring them here would
+        // compile but do nothing real at runtime, so this list stays List.of() until those
+        // implementations exist. See audit-cli restore-compilation task summary.
+        List<com.learney.contentaudit.auditdomain.EvaluationAnalyzerFactory> evaluationAnalyzerFactories =
+                List.of();
+
         DefaultAuditRunner auditRunner = new DefaultAuditRunner(
                 courseRepository, courseToAuditableMapper, auditEngine,
-                contentAnalyzers, scoreAggregator);
+                contentAnalyzers, scoreAggregator, evaluationAnalyzerFactories);
 
         // ----------------------------------------------------------------
         // Step 5: CLI formatting

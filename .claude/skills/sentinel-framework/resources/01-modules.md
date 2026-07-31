@@ -61,6 +61,22 @@ project-root/
 │   ├── pom.xml            # Module POM (generated)
 │   ├── src/main/java/     # Production code
 │   └── src/test/java/     # Test code
+├── evaluation-ledger-domain/
+│   ├── pom.xml            # Module POM (generated)
+│   ├── src/main/java/     # Production code
+│   └── src/test/java/     # Test code
+├── evaluation-ledger-infrastructure/
+│   ├── pom.xml            # Module POM (generated)
+│   ├── src/main/java/     # Production code
+│   └── src/test/java/     # Test code
+├── agent-runtime-infrastructure/
+│   ├── pom.xml            # Module POM (generated)
+│   ├── src/main/java/     # Production code
+│   └── src/test/java/     # Test code
+├── quiz-instruction-infrastructure/
+│   ├── pom.xml            # Module POM (generated)
+│   ├── src/main/java/     # Production code
+│   └── src/test/java/     # Test code
 ```
 
 ## Declared Modules
@@ -72,13 +88,13 @@ project-root/
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.auditdomain` |
-| Depends On | course-domain |
+| Depends On | course-domain, evaluation-ledger-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
 | Models | 15 (AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis, AuditReportSummary, ActiveAnalysisSelection) |
-| Interfaces | 25 (AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper, ActiveAnalysisSelectionStore, AuditNodeIndex, AuditNodeIndexFactory, LemmaCountConfig) |
+| Interfaces | 28 (AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper, ActiveAnalysisSelectionStore, AuditNodeIndex, AuditNodeIndexFactory, LemmaCountConfig, EvaluationAnalyzerFactory, QuizInstructionVerdictReader, QuizInstructionConfig) |
 | Implementations | 5 (IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator) |
-| Packages | 6 (coca [internal], lrec [internal], labs [internal], auditnodeindex [internal], lemmacount [internal], lexicalflags [public]) |
+| Packages | 8 (coca [internal], lrec [internal], labs [internal], auditnodeindex [internal], lemmacount [internal], lexicalflags [public], quizinstruction [public], quizinstructionengine [public]) |
 
 ### course-domain
 
@@ -115,12 +131,12 @@ project-root/
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.auditapplication` |
-| Depends On | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain |
+| Depends On | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain, evaluation-ledger-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 0 |
+| Models | 1 (AuditRunRequest) |
 | Interfaces | 3 (AuditRunner, AnalyzerRegistry, LemmaCountConfigLoader) |
-| Implementations | 9 (CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry, DefaultLemmaCountConfig, DefaultLemmaCountConfigLoader) |
+| Implementations | 10 (CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry, DefaultLemmaCountConfig, DefaultLemmaCountConfigLoader, DefaultQuizInstructionConfig) |
 | Packages | 0 |
 
 ### course-infrastructure
@@ -145,10 +161,10 @@ project-root/
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.auditcli` |
-| Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure |
+| Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure, evaluation-ledger-domain, evaluation-ledger-infrastructure, agent-runtime-infrastructure, quiz-instruction-infrastructure |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 5 (GetTasksFilter, LagenMode, PlanStorageMode, EphemeralRenderOptions, SuggestedLemmasFilter) |
+| Models | 6 (GetTasksFilter, LagenMode, PlanStorageMode, EphemeralRenderOptions, SuggestedLemmasFilter, AnalyzeOptions) |
 | Interfaces | 14 (AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand, LexisCommand, RepairCommand) |
 | Implementations | 0 |
 | Packages | 3 (commands [internal], formatting [internal], bootstrap [internal]) |
@@ -220,7 +236,7 @@ project-root/
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.revisioninfrastructure` |
-| Depends On | revision-domain, refiner-domain |
+| Depends On | revision-domain, refiner-domain, agent-runtime-infrastructure |
 | Allowed Clients | audit-cli |
 | Scope | public |
 | Models | 0 |
@@ -228,10 +244,75 @@ project-root/
 | Implementations | 0 |
 | Packages | 3 (lagen [public], lemmaabsenceagent [internal], knowledgetitleagent [public]) |
 
+### evaluation-ledger-domain
+
+> FEAT-EVCOST. Capacidad general de resultados de evaluacion costosa reutilizables entre analisis. No sabe nada de auditoria, de cursos ni de LLMs: define la identidad de un resultado (evaluador + version + huella del contenido, F-EVCOST-R001), el registro append-only clave->payload opaco, y la coordinacion reanudable de una corrida (consultar vigente -> si falta, evaluar dentro del presupuesto -> registrar apenas se obtiene). Cada consumidor aporta tres cosas y nada mas: como construye el contenido (EvaluationSubject.content), como su evaluador se pronuncia (Evaluator -> EvaluationOutcome) y como interpreta su payload. La huella NO la calcula el consumidor: la deriva la sesion del propio mapa de contenido entregado al evaluador, de modo que F-EVCOST-R002 ("exactamente lo que el evaluador recibe, ni mas ni menos") queda garantizada por construccion y no por disciplina.
+
+
+| Property | Value |
+|----------|-------|
+| Package | `com.learney.contentaudit.evaluationledgerdomain` |
+| Depends On | (none — leaf module) |
+| Allowed Clients | (unrestricted) |
+| Scope | public |
+| Models | 10 (EvaluationKey, EvaluationSubject, EvaluationRecord, EvaluationEmitted, EvaluationNotEmitted, EvaluationFailureKind, EvaluationResolutionKind, EvaluationResolution, EvaluationCoverage, EvaluationRunPolicy) |
+| Interfaces | 6 (EvaluationOutcome, EvaluationLedger, ContentFingerprinter, Evaluator, EvaluationSession, EvaluationSessionFactory) |
+| Implementations | 0 |
+| Packages | 2 (evaluationsession [public], contentfingerprint [public]) |
+
+### evaluation-ledger-infrastructure
+
+> Adaptador filesystem del registro de evaluaciones costosas. Escribe un archivo por evaluador bajo .content-audit/evaluations/, una entrada por linea, en modo append: cada resultado queda disponible apenas se obtiene (F-EVCOST-R004) y una interrupcion abrupta a lo sumo deja una ultima linea incompleta, que la lectura descarta por no parsear —"se lee completa o no existe"—. Append-only tambien significa que las entradas de versiones anteriores del evaluador conviven como historia consultable y nunca se borran solas (F-EVCOST-R006), y que una re-evaluacion agrega sin destruir (F-EVCOST-R008). Vive aparte de los informes de auditoria a proposito: borrar informes no toca este registro (F-EVCOST-R007).
+
+
+| Property | Value |
+|----------|-------|
+| Package | `com.learney.contentaudit.evaluationledgerinfrastructure` |
+| Depends On | evaluation-ledger-domain |
+| Allowed Clients | (unrestricted) |
+| Scope | public |
+| Models | 0 |
+| Interfaces | 0 |
+| Implementations | 1 (FileSystemEvaluationLedger) |
+| Packages | 0 |
+
+### agent-runtime-infrastructure
+
+> Capacidad compartida para correr un agente declarativo de sentinel-agents in-process: carga el grafo de <agentsBaseDir>/<nombre>/, lo ejecuta con AgentRun.runRecording y persiste el run. Existe porque este lanzador ya se escribio dos veces identico dentro de revision-infrastructure (lemmaabsenceagent y knowledgetitleagent) y el juez de consigna seria la tercera copia — y no puede reusar ninguna, porque revision-infrastructure declara allowedClients=[audit-cli] y cuelga de revision-domain, mientras que este consumidor nuevo cuelga de la auditoria. Deliberadamente NO incluye la clasificacion de errores: el clasificador de cada consumidor devuelve su propia taxonomia de fallas y no es compartible sin arrastrar tipos ajenos. Declarado de forma identica en el patch principal a proposito, para que este patch valide y aplique en cualquier orden.
+
+
+| Property | Value |
+|----------|-------|
+| Package | `com.learney.contentaudit.agentruntimeinfrastructure` |
+| Depends On | (none — leaf module) |
+| Allowed Clients | quiz-instruction-infrastructure, audit-cli, revision-infrastructure |
+| Scope | public |
+| Models | 1 (AgentGraphRunnerConfig) |
+| Interfaces | 2 (AgentGraphRunner, AgentGraphRunnerFactory) |
+| Implementations | 0 |
+| Packages | 1 (graphexecution [public]) |
+
+### quiz-instruction-infrastructure
+
+> Adaptador del juez de consigna: implementa el SPI Evaluator de evaluation-ledger-domain corriendo el agente declarativo quiz-instruction-validator sobre el runtime compartido. Traduce EvaluationSubject.content a las cinco entradas declaradas del agente (cefrLevel, topic, title, instructions, quiz) verbatim, sin agregar ni quitar nada — es lo que hace que la huella cubra exactamente lo juzgado (F-EVCOST-R002). Reconoce el veredicto conservador de infraestructura del juez (confianza nula y violacion JUDGE_OUTPUT_INVALID) y lo devuelve como EvaluationNotEmitted(OUTPUT_UNUSABLE), de modo que nunca llega al registro (F-QINST-R013); toda falla de servicio, timeout, autenticacion o credito se devuelve como EvaluationNotEmitted(EVALUATOR_UNAVAILABLE) en lugar de propagarse como excepcion (F-QINST-R007). Construye el ChatModel de forma perezosa: una configuracion ausente o invalida es un evaluador no disponible, no una auditoria caida. allowedClients=[audit-cli] porque es un detalle de implementacion de la composition root.
+
+
+| Property | Value |
+|----------|-------|
+| Package | `com.learney.contentaudit.quizinstructioninfrastructure` |
+| Depends On | audit-domain, evaluation-ledger-domain, agent-runtime-infrastructure |
+| Allowed Clients | audit-cli |
+| Scope | public |
+| Models | 1 (QuizInstructionJudgeConfig) |
+| Interfaces | 1 (QuizInstructionJudgeFactory) |
+| Implementations | 0 |
+| Packages | 2 (instructionjudge [public], instructionverdict [public]) |
+
 ## Dependency Graph
 
 ```
 audit-domain ──depends──> course-domain
+audit-domain ──depends──> evaluation-ledger-domain
 course-domain (leaf — no dependencies)
 refiner-domain ──depends──> audit-domain
 refiner-domain ──depends──> course-domain
@@ -243,6 +324,7 @@ audit-application ──depends──> nlp-infrastructure
 audit-application ──depends──> vocabulary-infrastructure
 audit-application ──depends──> audit-infrastructure
 audit-application ──depends──> revision-domain
+audit-application ──depends──> evaluation-ledger-domain
 course-infrastructure ──depends──> course-domain
 audit-cli ──depends──> audit-application
 audit-cli ──depends──> audit-domain
@@ -254,6 +336,10 @@ audit-cli ──depends──> audit-infrastructure
 audit-cli ──depends──> refiner-domain
 audit-cli ──depends──> revision-domain
 audit-cli ──depends──> revision-infrastructure
+audit-cli ──depends──> evaluation-ledger-domain
+audit-cli ──depends──> evaluation-ledger-infrastructure
+audit-cli ──depends──> agent-runtime-infrastructure
+audit-cli ──depends──> quiz-instruction-infrastructure
 nlp-infrastructure ──depends──> audit-domain
 vocabulary-infrastructure ──depends──> audit-domain
 audit-infrastructure ──depends──> audit-domain
@@ -264,23 +350,34 @@ revision-domain ──depends──> refiner-domain
 revision-domain ──depends──> course-domain
 revision-infrastructure ──depends──> revision-domain
 revision-infrastructure ──depends──> refiner-domain
+revision-infrastructure ──depends──> agent-runtime-infrastructure
+evaluation-ledger-domain (leaf — no dependencies)
+evaluation-ledger-infrastructure ──depends──> evaluation-ledger-domain
+agent-runtime-infrastructure (leaf — no dependencies)
+quiz-instruction-infrastructure ──depends──> audit-domain
+quiz-instruction-infrastructure ──depends──> evaluation-ledger-domain
+quiz-instruction-infrastructure ──depends──> agent-runtime-infrastructure
 ```
 
 ## Access Control Matrix
 
 | Module | Can Import From | Who Can Import This |
 |--------|----------------|--------------------|
-| audit-domain | course-domain | (any) |
+| audit-domain | course-domain, evaluation-ledger-domain | (any) |
 | course-domain | (none) | (any) |
 | refiner-domain | audit-domain, course-domain | (any) |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain | (any) |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain, evaluation-ledger-domain | (any) |
 | course-infrastructure | course-domain | (any) |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure | (any) |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure, evaluation-ledger-domain, evaluation-ledger-infrastructure, agent-runtime-infrastructure, quiz-instruction-infrastructure | (any) |
 | nlp-infrastructure | audit-domain | (any) |
 | vocabulary-infrastructure | audit-domain | (any) |
 | audit-infrastructure | audit-domain, refiner-domain, revision-domain | (any) |
 | revision-domain | audit-domain, refiner-domain, course-domain | (any) |
-| revision-infrastructure | revision-domain, refiner-domain | audit-cli |
+| revision-infrastructure | revision-domain, refiner-domain, agent-runtime-infrastructure | audit-cli |
+| evaluation-ledger-domain | (none) | (any) |
+| evaluation-ledger-infrastructure | evaluation-ledger-domain | (any) |
+| agent-runtime-infrastructure | (none) | quiz-instruction-infrastructure, audit-cli, revision-infrastructure |
+| quiz-instruction-infrastructure | audit-domain, evaluation-ledger-domain, agent-runtime-infrastructure | audit-cli |
 
 ## Enforcement Mechanisms
 

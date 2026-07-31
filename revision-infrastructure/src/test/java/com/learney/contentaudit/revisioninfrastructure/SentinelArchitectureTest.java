@@ -31,7 +31,7 @@ public class SentinelArchitectureTest {
   @Test
   public void enforceModuleBoundaries() {
     JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
-    ArchRuleDefinition.classes().that().resideInAPackage("..revisioninfrastructure..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..revisioninfrastructure..", "..revisiondomain..", "..auditdomain..", "..coursedomain..", "..refinerdomain..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
+    ArchRuleDefinition.classes().that().resideInAPackage("..revisioninfrastructure..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..revisioninfrastructure..", "..revisiondomain..", "..auditdomain..", "..coursedomain..", "..evaluationledgerdomain..", "..refinerdomain..", "..agentruntimeinfrastructure..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
   }
 
   @Test
@@ -104,11 +104,6 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: LemmaAbsenceAgentGenerator - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent.DefaultAgentRuntimeLauncher");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: DefaultAgentRuntimeLauncher - " + e.getMessage());
-    }
-    try {
       Class.forName("com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent.DefaultSuggestedLemmaAgentTool");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultSuggestedLemmaAgentTool - " + e.getMessage());
@@ -122,6 +117,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent.DefaultAgentCandidateParser");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultAgentCandidateParser - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent.SharedRuntimeAgentLauncher");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SharedRuntimeAgentLauncher - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent.KnowledgeTitleAgentGeneratorFactory");
@@ -154,11 +154,6 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: KnowledgeTitleAgentGenerator - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent.DefaultKnowledgeTitleAgentRuntimeLauncher");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: DefaultKnowledgeTitleAgentRuntimeLauncher - " + e.getMessage());
-    }
-    try {
       Class.forName("com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent.DefaultKnowledgeTitleAgentCandidateParser");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultKnowledgeTitleAgentCandidateParser - " + e.getMessage());
@@ -167,6 +162,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent.DefaultKnowledgeTitleAgentErrorClassifier");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultKnowledgeTitleAgentErrorClassifier - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.knowledgetitleagent.SharedRuntimeKnowledgeTitleLauncher");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SharedRuntimeKnowledgeTitleLauncher - " + e.getMessage());
     }
   }
 }

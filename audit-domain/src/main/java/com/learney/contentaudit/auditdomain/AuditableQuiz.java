@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain;
 
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
@@ -23,11 +24,16 @@ public class AuditableQuiz implements AuditableEntity {
 
     private String quizSentence;
 
+    private String instructions;
+
+    private List<SentencePartEntity> sentenceParts;
+
     public AuditableQuiz() {
     }
 
     public AuditableQuiz(List<NlpToken> tokens, String id, String label, String code,
-            String translation, List<String> sentences, String quizSentence) {
+            String translation, List<String> sentences, String quizSentence, String instructions,
+            List<SentencePartEntity> sentenceParts) {
         this.tokens = tokens;
         this.id = id;
         this.label = label;
@@ -35,6 +41,8 @@ public class AuditableQuiz implements AuditableEntity {
         this.translation = translation;
         this.sentences = sentences;
         this.quizSentence = quizSentence;
+        this.instructions = instructions;
+        this.sentenceParts = sentenceParts;
     }
 
     public List<NlpToken> getTokens() {
@@ -93,6 +101,22 @@ public class AuditableQuiz implements AuditableEntity {
         this.quizSentence = quizSentence;
     }
 
+    public String getInstructions() {
+        return this.instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
+
+    public List<SentencePartEntity> getSentenceParts() {
+        return this.sentenceParts;
+    }
+
+    public void setSentenceParts(List<SentencePartEntity> sentenceParts) {
+        this.sentenceParts = sentenceParts;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -104,11 +128,13 @@ public class AuditableQuiz implements AuditableEntity {
                     && Objects.equals(this.code, that.code)
                     && Objects.equals(this.translation, that.translation)
                     && Objects.equals(this.sentences, that.sentences)
-                    && Objects.equals(this.quizSentence, that.quizSentence);
+                    && Objects.equals(this.quizSentence, that.quizSentence)
+                    && Objects.equals(this.instructions, that.instructions)
+                    && Objects.equals(this.sentenceParts, that.sentenceParts);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tokens, id, label, code, translation, sentences, quizSentence);
+        return Objects.hash(tokens, id, label, code, translation, sentences, quizSentence, instructions, sentenceParts);
     }
 }

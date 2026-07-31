@@ -59,3 +59,31 @@
   why: devuelven LlmGenerationFailureCategory, tipo publico del paquete lagen que audit-cli ya consume. Compartirlos exige taxonomia neutra + mapeo por consumidor: tres piezas nuevas para deduplicar una clasificacion por strings.
 
 2026-07-30 — architect — El patch de migracion quedo anclado en esta carpeta por falta de una propia, con `code: FEAT-EVCOST` auto-seteado, aunque NO implementa ninguna regla de FEAT-EVCOST. Trazabilidad engañosa conocida y documentada en la primera seccion del TECH_SPEC. Pendiente de decision del usuario.
+
+2026-07-30 — qa-tester — Placement de journeys por visibilidad, no por "modulo de la feature": J001 en evaluation-ledger-domain (las 4 salidas de "¿ya tengo esto?" las decide la sesion; la factory y el fingerprinter son publicos), J002 en evaluation-ledger-infrastructure (la mitad "se lee completa o no existe" solo se observa sobre el archivo append-line real), J003 en audit-cli (unico modulo que ve a la vez audit-infrastructure y evaluation-ledger-infrastructure, necesario para "eliminar informes").
+
+2026-07-30 — qa-tester — R002 y R004 se testean en las DOS mitades a proposito: R002 = (huella distinta ante cualquier cambio) + (misma huella al reconstruir en otra corrida) sobre Sha256ContentFingerprinter, mas un tercer test sobre la sesion que ancla la huella al mismo mapa que recibe el evaluador; R004 = disponibilidad inmediata + entrada truncada tratada como inexistente + dos corridas simultaneas sin perdida.
+  why: un test de una sola mitad deja pasar justo el error silencioso que la regla existe para evitar.
+
+2026-07-30 — qa-tester — Sin regla que las respalde y por lo tanto SIN handwrittenTest: (a) el corte de consultas de la sesion ante EVALUATOR_UNAVAILABLE, (b) los contadores de EvaluationCoverage, (c) el cableado de DefaultEvaluationSessionFactory. Escaladas al usuario en vez de forzar tag a la regla mas cercana.
+
+2026-07-30 — analyst — AGREGADA F-EVCOST-R009: ante una falla, la corrida distingue si es atribuible a ese contenido puntual (sigue consultando por el resto) o al servicio (deja de consultar; el resto queda pendiente). En ninguno de los dos casos se aborta el analisis. Cierra el hueco (a) que escalo @qa-tester.
+  why: R005 exige que la falla no se registre y el contenido vuelva a estar pendiente, pero NO dice nada sobre seguir o cortar — una implementacion que insiste con los 11.500 contenidos contra un servicio caido cumple R005 sin objecion. Sin corte: tarda lo mismo que una corrida completa y no produce ni un resultado.
+
+2026-07-30 — analyst — El criterio de la distincion es el ORIGEN de la falla, no su gravedad aparente; y "cortar consultas" != "abortar el analisis" (la corrida termina con la cobertura que alcanzo).
+  why: clasificar por como se ve el sintoma rompe las dos mitades: una salida inutilizable se ve alarmante y solo afecta a ese contenido, un tiempo de espera agotado se ve trivial e indica servicio caido. La mitad "no aborta" ya la exige F-QINST-R007 del lado del consumidor; aca queda como garantia general para que el segundo consumidor la herede.
+
+2026-07-30 — analyst — La mitad "no cortar ante falla de un contenido" se especifico explicitamente, no como default implicito.
+  why: sin ella, la lectura natural de "cortar ante falla" se generaliza a toda falla, y un unico contenido con el que el evaluador tropieza dejaria pendiente todo lo que sigue, corrida tras corrida: gasto conservado pero avance nulo.
+
+2026-07-30 — analyst — J002 MODIFICADA (no se creo journey nueva): el outcome falla_no_registrada se acoto a la falla del contenido puntual y se agrego un cuarto outcome/terminal falla_del_servicio. Requiere `sentinel feature sync`.
+  why: el `when` viejo decia literalmente "servicio caido, tiempo agotado, credito agotado" y lo mandaba a una rama cuya unica asercion era "no se registra" — o sea, la journey afirmaba algo incompleto justo para el caso que R009 gobierna. Se aprovecho que el patch de @qa-tester sigue SIN aplicar y las clases de journey aun no se generaron: es el momento mas barato para tocarla. El outcome nuevo va ultimo para no renumerar los paths 1-3 existentes.
+
+2026-07-30 — analyst — Alerta de placement para @qa-tester: J002 estaba asignada a evaluation-ledger-infrastructure porque "se lee completa o no existe" solo se observa sobre el archivo append-line real. La rama falla_del_servicio se observa en la sesion, no en el store.
+  why: puede obligar a re-decidir el testModule de la journey o a mockear el evaluador desde infrastructure. Decision de @qa-tester, no del analista.
+
+2026-07-30 — qa-tester — R009 se testea en sus dos mitades sobre DefaultEvaluationSession, con series de N contenidos identicas y la MISMA falla en el contenido i, discriminando solo por EvaluationFailureKind: OUTPUT_UNUSABLE -> la corrida sigue consultando i+1..N; EVALUATOR_UNAVAILABLE -> no consulta mas, i..N pendientes, y la corrida TERMINA (no lanza). El criterio (c) del requerimiento (no se registra nada) NO se tagea a R009: el propio enunciado lo delega a R005, que ya tiene su test.
+  why: un test de una sola mitad deja pasar "corta siempre" (un ejercicio problematico deja pendiente el curso entero, corrida tras corrida) o "no corta nunca" (11.500 llamadas a un servicio caido).
+
+2026-07-30 — qa-tester — J002 SE QUEDA en evaluation-ledger-infrastructure pese al 4to path (falla_del_servicio), que es de sesion y no de store.
+  why: la restriccion es unidireccional. El path conserva_lo_hecho exige el archivo append-line real, y evaluation-ledger-domain NO ve a FileSystemEvaluationLedger (esta aguas abajo). Al reves si: desde infrastructure la sesion es alcanzable entera por el seam publico DefaultEvaluationSessionFactory.open() -> puerto EvaluationSession, sin necesidad de nombrar la clase package-private. Ademas los paths 2, 3 y 4 afirman todos algo sobre "la corrida siguiente", que con el ledger real es literal (instancia nueva sobre el mismo dir) en vez de un fake.

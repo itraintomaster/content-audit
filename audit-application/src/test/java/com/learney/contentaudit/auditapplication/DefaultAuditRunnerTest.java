@@ -43,7 +43,7 @@ public class DefaultAuditRunnerTest {
     @BeforeEach
     void setUp() {
         sut = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
-                List.of(), scoreAggregator);
+                List.of(), scoreAggregator, List.of());
     }
 
     @Test
@@ -56,7 +56,7 @@ public class DefaultAuditRunnerTest {
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
         when(auditEngine.runAudit(auditableCourse)).thenReturn(auditReport);
 
-        AuditReport result = sut.runAudit(coursePath, null);
+        AuditReport result = sut.runAudit(coursePath, (Set<String>) null);
 
         assertSame(auditReport, result);
     }
@@ -70,7 +70,7 @@ public class DefaultAuditRunnerTest {
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
         when(auditEngine.runAudit(auditableCourse)).thenReturn(auditReport);
 
-        sut.runAudit(coursePath, null);
+        sut.runAudit(coursePath, (Set<String>) null);
 
         verify(courseRepository).load(coursePath);
     }
@@ -84,7 +84,7 @@ public class DefaultAuditRunnerTest {
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
         when(auditEngine.runAudit(auditableCourse)).thenReturn(auditReport);
 
-        sut.runAudit(coursePath, null);
+        sut.runAudit(coursePath, (Set<String>) null);
 
         verify(courseToAuditableMapper).map(courseEntity);
     }
@@ -98,7 +98,7 @@ public class DefaultAuditRunnerTest {
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
         when(auditEngine.runAudit(auditableCourse)).thenReturn(auditReport);
 
-        sut.runAudit(coursePath, null);
+        sut.runAudit(coursePath, (Set<String>) null);
 
         verify(auditEngine).runAudit(auditableCourse);
     }
@@ -110,7 +110,7 @@ public class DefaultAuditRunnerTest {
     public void givenCourseRepositoryThrowsAnExceptionWhenRunAuditIsCalledThenTheExceptionPropagates() {
         when(courseRepository.load(coursePath)).thenThrow(new RuntimeException("load failed"));
 
-        assertThrows(RuntimeException.class, () -> sut.runAudit(coursePath, null));
+        assertThrows(RuntimeException.class, () -> sut.runAudit(coursePath, (Set<String>) null));
     }
 
     @Test
@@ -121,7 +121,7 @@ public class DefaultAuditRunnerTest {
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
         when(courseToAuditableMapper.map(courseEntity)).thenThrow(new RuntimeException("map failed"));
 
-        assertThrows(RuntimeException.class, () -> sut.runAudit(coursePath, null));
+        assertThrows(RuntimeException.class, () -> sut.runAudit(coursePath, (Set<String>) null));
     }
 
     @Test
@@ -133,7 +133,7 @@ public class DefaultAuditRunnerTest {
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
         when(auditEngine.runAudit(auditableCourse)).thenThrow(new RuntimeException("audit failed"));
 
-        assertThrows(RuntimeException.class, () -> sut.runAudit(coursePath, null));
+        assertThrows(RuntimeException.class, () -> sut.runAudit(coursePath, (Set<String>) null));
     }
 
     @Test
@@ -146,7 +146,7 @@ public class DefaultAuditRunnerTest {
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(emptyCourse);
         when(auditEngine.runAudit(emptyCourse)).thenReturn(auditReport);
 
-        AuditReport result = sut.runAudit(coursePath, null);
+        AuditReport result = sut.runAudit(coursePath, (Set<String>) null);
 
         assertSame(auditReport, result);
     }
@@ -162,7 +162,7 @@ public class DefaultAuditRunnerTest {
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
         when(auditEngine.runAudit(auditableCourse)).thenReturn(auditReport);
 
-        AuditReport result = sut.runAudit(coursePath, null);
+        AuditReport result = sut.runAudit(coursePath, (Set<String>) null);
 
         assertSame(auditReport, result, "R005: runAudit must return the AuditReport produced by the engine");
         verify(courseRepository).load(coursePath);
@@ -213,7 +213,7 @@ public class DefaultAuditRunnerTest {
 
         // Act: null analyzerNames → DefaultAuditRunner uses the injected auditEngine directly
         // (represents the case where all registered analyzers, including lemma-count, are run)
-        AuditReport result = sut.runAudit(coursePath, null);
+        AuditReport result = sut.runAudit(coursePath, (Set<String>) null);
 
         // Assert: R001 — the returned report exposes the lemma-count diagnosis
         assertNotNull(result, "runAudit must return a non-null AuditReport");
@@ -312,5 +312,61 @@ public class DefaultAuditRunnerTest {
             }
         }
         return false;
+    }
+
+    @Test
+    @DisplayName("should include the quiz instruction analysis when the audit request says nothing about analyzers")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R001")
+    public void shouldIncludeTheQuizInstructionAnalysisWhenTheAuditRequestSaysNothingAboutAnalyzers() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should report quiz instruction score, diagnoses and coverage on an audit asked with no options")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R001")
+    public void shouldReportQuizInstructionScoreDiagnosesAndCoverageOnAnAuditAskedWithNoOptions() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should not build the quiz instruction analyzer when the request excludes it")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R011")
+    public void shouldNotBuildTheQuizInstructionAnalyzerWhenTheRequestExcludesIt() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave the report without quiz instruction score, diagnosis or coverage when the analysis is excluded")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R011")
+    public void shouldLeaveTheReportWithoutQuizInstructionScoreDiagnosisOrCoverageWhenTheAnalysisIsExcluded() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should not run the quiz instruction analysis when the request narrows the audit to other analyzers")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R011")
+    public void shouldNotRunTheQuizInstructionAnalysisWhenTheRequestNarrowsTheAuditToOtherAnalyzers() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should finish the audit and keep the results of the other analyzers when the quiz instruction judge fails")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R007")
+    public void shouldFinishTheAuditAndKeepTheResultsOfTheOtherAnalyzersWhenTheQuizInstructionJudgeFails() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should hand the quiz instruction analyzer the run policy the request declared for its judge")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R006")
+    public void shouldHandTheQuizInstructionAnalyzerTheRunPolicyTheRequestDeclaredForItsJudge() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

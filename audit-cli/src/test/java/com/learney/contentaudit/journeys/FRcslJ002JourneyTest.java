@@ -161,9 +161,9 @@ public class FRcslJ002JourneyTest {
             ) {
         // Step: solicitar_tarea — quiz with tokenCount=3, targetMin=5, targetMax=8 (too short)
         // tokenCount(3) - targetMin(5) = delta(-2): sentence needs 2 more tokens
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-j002-1", null, null, "Yo corro.", List.of("I run."), null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-j002-1", null, null, "Yo corro.", List.of("I run."), null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Daily Actions", "Complete the sentence.", true, "know-j002-1", null, null, null);
+                List.of(), "Daily Actions", "Complete the sentence.", true, "know-j002-1", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-j002-1", "Everyday Verbs", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-j002-1", "A1", null);
 
@@ -211,9 +211,9 @@ public class FRcslJ002JourneyTest {
     @DisplayName("path-2: El usuario ejecuta 'refiner next' y o... → El sistema busca el reporte de audito... → El sistema extrae la oracion y el dia... [El reporte y el nodo quiz se localizan correctamente] → El sistema navega al milestone ancest... → El sistema construye el contexto sin ... [No hay lemas sugeridos] → El comando muestra la tarea con el co... → success")
     public void path2_elReporteYElNodoQuizSeLocalizanCorrectamente_noHayLemasSugeridos_success() {
         // Step: solicitar_tarea — quiz with tokenCount=3, targetMin=5, targetMax=8 (too short)
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-j002-2", null, null, "Ella canta.", List.of("She sings."), null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-j002-2", null, null, "Ella canta.", List.of("She sings."), null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Music Basics", "Fill in the blank.", true, "know-j002-2", null, null, null);
+                List.of(), "Music Basics", "Fill in the blank.", true, "know-j002-2", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-j002-2", "Arts", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-j002-2", "A1", null);
 
@@ -250,9 +250,9 @@ public class FRcslJ002JourneyTest {
     @DisplayName("path-3: El usuario ejecuta 'refiner next' y o... → El sistema busca el reporte de audito... → El comando muestra la tarea sin conte... [No se puede localizar el reporte o el nodo] → failure")
     public void path3_noSePuedeLocalizarElReporteOElNodo_failure() {
         // Step: solicitar_tarea — task references a quiz that does not exist in the tree
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-j002-3", null, null, "El camina.", List.of("He walks."), null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-j002-3", null, null, "El camina.", List.of("He walks."), null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Basic Verbs", "Complete.", true, "know-j002-3", null, null, null);
+                List.of(), "Basic Verbs", "Complete.", true, "know-j002-3", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-j002-3", "Actions", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-j002-3", "A1", null);
 

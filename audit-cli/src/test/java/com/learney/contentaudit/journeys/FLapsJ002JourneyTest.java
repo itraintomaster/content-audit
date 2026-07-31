@@ -120,12 +120,12 @@ public class FLapsJ002JourneyTest {
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-laps-j002", "Daily Routines", "T001");
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Present Simple routines", "Write the correct form.", true,
-                "knowledge-laps-j002", "Knowledge 1", "K001", null);
+                "knowledge-laps-j002", "Knowledge 1", "K001", null, null);
         AuditableQuiz quiz = new AuditableQuiz(
                 List.of(), QUIZ_ID, "Quiz 1", "Q001",
                 "Ella hace ejercicio avanzado cada manana.",
                 List.of("She does advanced exercise every morning."),
-                "She ____ [does] (do) advanced exercise every morning.");
+                "She ____ [does] (do) advanced exercise every morning.", null, null);
 
         AbsentLemma absent = new AbsentLemma(
                 new LemmaAndPos("advanced", "ADJ"), CefrLevel.B2,

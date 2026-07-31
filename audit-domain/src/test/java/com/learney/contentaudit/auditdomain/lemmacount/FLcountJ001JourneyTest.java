@@ -76,8 +76,8 @@ public class FLcountJ001JourneyTest {
         NlpToken runToken2 = new NlpToken("runs", "run", "VERB", 50, false, false);
         NlpToken theToken  = new NlpToken("the",  "the", "DET",   1, true,  false);
 
-        AuditableQuiz quiz1 = new AuditableQuiz(List.of(theToken, runToken1), "q1", null, null, null, List.of("the run"),  null);
-        AuditableQuiz quiz2 = new AuditableQuiz(List.of(runToken2),           "q2", null, null, null, List.of("runs"),    null);
+        AuditableQuiz quiz1 = new AuditableQuiz(List.of(theToken, runToken1), "q1", null, null, null, List.of("the run"),  null, null, null);
+        AuditableQuiz quiz2 = new AuditableQuiz(List.of(runToken2),           "q2", null, null, null, List.of("runs"),    null, null, null);
 
         LemmaAndPos runVerb = new LemmaAndPos("run", "VERB");
         LemmaAndPos theDet  = new LemmaAndPos("the", "DET");
@@ -123,10 +123,10 @@ public class FLcountJ001JourneyTest {
         NlpToken blogToken3 = new NlpToken("blog",  "blog", "NOUN", null, false, false);
         NlpToken blogToken4 = new NlpToken("blog",  "blog", "NOUN", null, false, false);
 
-        AuditableQuiz quiz1 = new AuditableQuiz(List.of(blogToken1), "q1", null, null, null, List.of("I read a blog"),       null);
-        AuditableQuiz quiz2 = new AuditableQuiz(List.of(blogToken2), "q2", null, null, null, List.of("many blogs exist"),    null);
-        AuditableQuiz quiz3 = new AuditableQuiz(List.of(blogToken3), "q3", null, null, null, List.of("this blog is good"),   null);
-        AuditableQuiz quiz4 = new AuditableQuiz(List.of(blogToken4), "q4", null, null, null, List.of("writing a blog post"), null);
+        AuditableQuiz quiz1 = new AuditableQuiz(List.of(blogToken1), "q1", null, null, null, List.of("I read a blog"),       null, null, null);
+        AuditableQuiz quiz2 = new AuditableQuiz(List.of(blogToken2), "q2", null, null, null, List.of("many blogs exist"),    null, null, null);
+        AuditableQuiz quiz3 = new AuditableQuiz(List.of(blogToken3), "q3", null, null, null, List.of("this blog is good"),   null, null, null);
+        AuditableQuiz quiz4 = new AuditableQuiz(List.of(blogToken4), "q4", null, null, null, List.of("writing a blog post"), null, null, null);
 
         LemmaAndPos blogNoun = new LemmaAndPos("blog", "NOUN");
 
@@ -168,7 +168,7 @@ public class FLcountJ001JourneyTest {
         // El lema va al grupo "no asignado" y no contamina el score del curso (R014)
         NlpToken zarpToken = new NlpToken("zarpar", "zarpar", "VERB", null, false, false);
 
-        AuditableQuiz quiz1 = new AuditableQuiz(List.of(zarpToken), "q1", null, null, null, List.of("el barco zarpa"), null);
+        AuditableQuiz quiz1 = new AuditableQuiz(List.of(zarpToken), "q1", null, null, null, List.of("el barco zarpa"), null, null, null);
 
         LemmaAndPos zarpVerb = new LemmaAndPos("zarpar", "VERB");
 
