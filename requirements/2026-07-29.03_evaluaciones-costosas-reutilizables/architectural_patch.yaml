@@ -1,0 +1,103 @@
+code: FEAT-EVCOST
+description: |
+  CONSOLIDACION DEL RUNTIME DE GRAFOS DECLARATIVOS. Patch separado del principal (requirements/2026-07-29.02_validacion-de-consigna-de-quiz/architectural_patch.yaml). ORDEN RECOMENDADO: aplicar DESPUES del principal. Es aplicable en cualquier orden y el resultado es el mismo: los dos patches declaran agent-runtime-infrastructure de forma identica, incluida su lista de tres allowedClients, asi que el segundo en aplicarse es un no-op sobre ese modulo. Si se aplica SOLO, crea agent-runtime-infrastructure por su cuenta y la consolidacion queda completa y coherente; lo que falta en ese escenario es unicamente el consumidor nuevo (el juez de consigna), que lo trae el patch principal. ALCANCE DELIBERADAMENTE MINIMO: se elimina la IMPLEMENTACION duplicada del lanzador en los dos paquetes legados y se conservan sus INTERFACES locales. Los generators no cambian su requiresInject, asi que ningun handwrittenTest de FEAT-LASAG ni de FEAT-KTLR cambia de firma ni pierde trazabilidad.
+modules:
+- name: agent-runtime-infrastructure
+  description: |
+    Capacidad compartida para correr un agente declarativo de sentinel-agents in-process: carga el grafo de <agentsBaseDir>/<nombre>/, lo ejecuta con AgentRun.runRecording y persiste el run. Existe porque este lanzador ya se escribio dos veces identico dentro de revision-infrastructure (lemmaabsenceagent y knowledgetitleagent) y el juez de consigna seria la tercera copia — y no puede reusar ninguna, porque revision-infrastructure declara allowedClients=[audit-cli] y cuelga de revision-domain, mientras que este consumidor nuevo cuelga de la auditoria. Deliberadamente NO incluye la clasificacion de errores: el clasificador de cada consumidor devuelve su propia taxonomia de fallas y no es compartible sin arrastrar tipos ajenos. Declarado de forma identica en el patch principal a proposito, para que este patch valide y aplique en cualquier orden.
+  models:
+  - name: AgentGraphRunnerConfig
+    type: record
+    fields:
+    - name: agentsBaseDir
+      type: Path
+      description: "Directorio de definiciones de agentes. Null = se resuelve por\
+        \ inputs[\"project_root\"] si esta presente, y en su defecto .sentinel/agents\
+        \ relativo al CWD."
+    - name: runsBaseDir
+      type: Path
+      description: "Directorio donde se persisten los runs. Null = misma cadena de\
+        \ resolucion que agentsBaseDir, sobre .sentinel/runs."
+    _change: add
+  interfaces:
+  - name: AgentGraphRunner
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "run(String agentName,Map<String,String> inputs,ChatModel chatModel,Map<String,Object>\
+        \ tools): RunState"
+    _change: add
+  - name: AgentGraphRunnerFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(AgentGraphRunnerConfig config): AgentGraphRunner"
+    _change: add
+  allowedClients:
+  - quiz-instruction-infrastructure
+  - audit-cli
+  - revision-infrastructure
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultAgentGraphRunnerFactory
+    suppressed: false
+    interface: AgentGraphRunnerFactory
+  uses:
+  - sentinel-agents
+  - langchain4j-core
+  packages:
+  - name: graphexecution
+    description: Motor del runtime. Solo la factory es publica; el runner es package-private.
+    visibility: public
+    implementations:
+    - name: DefaultAgentGraphRunnerFactory
+      visibility: public
+      implements:
+      - AgentGraphRunnerFactory
+      _change: add
+    - name: DefaultAgentGraphRunner
+      requiresInject:
+      - name: config
+        type: AgentGraphRunnerConfig
+      implements:
+      - AgentGraphRunner
+      _change: add
+    _change: add
+  layer: infrastructure
+  _change: add
+- name: revision-infrastructure
+  dependsOn:
+  - revision-domain
+  - refiner-domain
+  - agent-runtime-infrastructure
+  uses:
+  - langchain4j-openai
+  - langchain4j-core
+  - sentinel-agents
+  packages:
+  - name: lemmaabsenceagent
+    implementations:
+    - name: DefaultAgentRuntimeLauncher
+      _change: delete
+    - name: SharedRuntimeAgentLauncher
+      requiresInject:
+      - name: agentGraphRunner
+        type: AgentGraphRunner
+      implements:
+      - AgentRuntimeLauncher
+      _change: add
+    _change: modify
+  - name: knowledgetitleagent
+    implementations:
+    - name: DefaultKnowledgeTitleAgentRuntimeLauncher
+      _change: delete
+    - name: SharedRuntimeKnowledgeTitleLauncher
+      requiresInject:
+      - name: agentGraphRunner
+        type: AgentGraphRunner
+      implements:
+      - KnowledgeTitleAgentRuntimeLauncher
+      _change: add
+    _change: modify
+  _change: modify
