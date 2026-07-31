@@ -345,13 +345,17 @@ public class FKtlrJ002JourneyTest {
         RevisionArtifact artifact = outcome.getArtifact();
         QuizTemplateEntity elementAfterQuiz = artifact.getProposal().getElementAfter().getQuiz();
         assertNotNull(elementAfterQuiz, "elementAfter quiz must be non-null — quiz route intact (R008)");
-        assertEquals("She studies books every day.", elementAfterQuiz.getTitle(),
-                "R008: elementAfter.title must be the canonical plain sentence from the candidate DSL, exactly as before this feature");
-        assertNotEquals("She reads books about advanced topics.", elementAfterQuiz.getTitle(),
-                "R008: elementAfter.title must differ from elementBefore.title (revision applied)");
+        assertEquals(List.of("She studies books every day."), elementAfterQuiz.getSentences(),
+                "R008: elementAfter.sentences must be the canonical plain sentence from the candidate DSL, exactly as before this feature");
+        assertNotEquals(List.of("She reads books about advanced topics."), elementAfterQuiz.getSentences(),
+                "R008: elementAfter.sentences must differ from elementBefore.sentences (revision applied)");
         assertEquals(QUIZ_ID, elementAfterQuiz.getId(), "R008: quizId must be preserved in elementAfter");
         assertEquals("knowledge-ktlr-j002", elementAfterQuiz.getKnowledgeId(),
                 "R008: knowledgeId must be preserved in elementAfter");
+        // F-LAPS-R014/F-RPRES-R004: the quiz route's title behavior is also unchanged by KTLR —
+        // a lexical correction never touches the title, which stays copied from elementBefore.
+        assertEquals("She reads books about advanced topics.", elementAfterQuiz.getTitle(),
+                "R008: elementAfter.title must be preserved from elementBefore, exactly as before this feature");
 
         // Task marked DONE and the course was written — same as before this feature (R008)
         verify(planStore).save(any(RefinementPlan.class));

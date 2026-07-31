@@ -73,6 +73,7 @@ The following interfaces are `sealed`. Only the listed classes may implement the
 - `GetConsolidatedCommand` permits: (none declared)
 - `SetActiveAnalysisCommand` permits: (none declared)
 - `LexisCommand` permits: (none declared)
+- `RepairCommand` permits: (none declared)
 - `LemmaAbsenceProposalStrategyRegistry` permits: (none declared)
 - `LemmaAbsenceProposalDeriver` permits: (none declared)
 - `KnowledgeTitleProposalStrategyRegistry` permits: (none declared)
@@ -273,7 +274,7 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 **Models:** GetTasksFilter, LagenMode, PlanStorageMode, EphemeralRenderOptions, SuggestedLemmasFilter
 
-**Interfaces:** AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand, LexisCommand
+**Interfaces:** AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand, LexisCommand, RepairCommand
 
 ### nlp-infrastructure
 
@@ -299,7 +300,7 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 **Models:** RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig, ApprovalMode, ProposalDecisionOutcomeKind, ProposalDecisionOutcome, StrategyId, LemmaAbsenceQuizCandidate, ProposalStrategyFailedException, ProposalDerivationException, ConsolidatedViewBuilderConfig, CorrectionContextSource, CorrectionContextOverride, OverrideRejectedException
 
-**Interfaces:** Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore, CorrectionContextOverrideParser, KnowledgeTitleProposalStrategy, KnowledgeTitleProposalStrategyRegistry, KnowledgeTitleProposalDeriver
+**Interfaces:** Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore, CorrectionContextOverrideParser, KnowledgeTitleProposalStrategy, KnowledgeTitleProposalStrategyRegistry, KnowledgeTitleProposalDeriver, PreservationFactory
 
 ### revision-infrastructure
 

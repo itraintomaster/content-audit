@@ -149,7 +149,7 @@ project-root/
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 5 (GetTasksFilter, LagenMode, PlanStorageMode, EphemeralRenderOptions, SuggestedLemmasFilter) |
-| Interfaces | 13 (AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand, LexisCommand) |
+| Interfaces | 14 (AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand, LexisCommand, RepairCommand) |
 | Implementations | 0 |
 | Packages | 3 (commands [internal], formatting [internal], bootstrap [internal]) |
 
@@ -209,9 +209,9 @@ project-root/
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 18 (RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig, ApprovalMode, ProposalDecisionOutcomeKind, ProposalDecisionOutcome, StrategyId, LemmaAbsenceQuizCandidate, ProposalStrategyFailedException, ProposalDerivationException, ConsolidatedViewBuilderConfig, CorrectionContextSource, CorrectionContextOverride, OverrideRejectedException) |
-| Interfaces | 18 (Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore, CorrectionContextOverrideParser, KnowledgeTitleProposalStrategy, KnowledgeTitleProposalStrategyRegistry, KnowledgeTitleProposalDeriver) |
+| Interfaces | 19 (Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore, CorrectionContextOverrideParser, KnowledgeTitleProposalStrategy, KnowledgeTitleProposalStrategyRegistry, KnowledgeTitleProposalDeriver, PreservationFactory) |
 | Implementations | 0 |
-| Packages | 7 (engine [internal], lemmaabsence [public], impactpreview [public], consolidatedview [public], fielddiff [internal], contextoverride [internal], knowledgetitle [public]) |
+| Packages | 9 (engine [internal], lemmaabsence [public], impactpreview [public], consolidatedview [public], fielddiff [internal], contextoverride [internal], knowledgetitle [public], preservation [public], preservationengine [internal]) |
 
 ### revision-infrastructure
 

@@ -34,10 +34,19 @@ public final class DefaultLemmaAbsenceProposalDeriver implements LemmaAbsencePro
                     "elementBefore has no quiz — cannot derive elementAfter");
         }
 
-        // Parse quizSentence via FEAT-QSENT to get the new FormEntity (R012)
+        // Parse quizSentence via FEAT-QSENT onto the prior form (R012, F-LAPS-R013/R014,
+        // F-RPRES-R006): parseOnto replaces only the sentence structure the DSL encodes
+        // (parts sequence + each blank's answer/variants) while preserving everything it
+        // does not — form.kind/incidence/label/name and each blank's non-encoded (empty)
+        // text. Using plain parse() here fabricated those attributes from scratch, which is
+        // exactly the damage this fix closes. When elementBefore carries no form at all,
+        // there is nothing to preserve, so an empty FormEntity is used as the base — this
+        // still routes through parseOnto so the derived CLOZE text stays empty-but-present
+        // (never absent), matching parseOnto's own preservation contract for a missing base.
+        FormEntity baseForm = beforeQuiz.getForm() != null ? beforeQuiz.getForm() : new FormEntity();
         FormEntity newForm;
         try {
-            newForm = quizSentenceConverter.parse(candidate.getQuizSentence());
+            newForm = quizSentenceConverter.parseOnto(candidate.getQuizSentence(), baseForm);
         } catch (QuizSentenceParseException e) {
             throw new ProposalDerivationException(
                     "lemma-absence-mvp",
@@ -50,9 +59,8 @@ public final class DefaultLemmaAbsenceProposalDeriver implements LemmaAbsencePro
                     "unexpected error parsing quizSentence: " + e.getMessage());
         }
 
-        // Derive canonical plain sentence — index 0 of toPlainSentences (R012, F-SMODE-R003/R006)
+        // Derive canonical plain sentences (R012, F-SMODE-R003/R006).
         // Use the mode-aware overload so REWRITE knowledge yields only the answer sentence.
-        String newTitle;
         List<String> plainSentences;
         try {
             plainSentences = quizSentenceConverter.toPlainSentences(newForm, mode);
@@ -62,7 +70,6 @@ public final class DefaultLemmaAbsenceProposalDeriver implements LemmaAbsencePro
                         before.getNodeId(),
                         "toPlainSentences returned empty list for the parsed quizSentence");
             }
-            newTitle = plainSentences.get(0);
         } catch (ProposalDerivationException rethrow) {
             throw rethrow;
         } catch (RuntimeException e) {
@@ -72,14 +79,16 @@ public final class DefaultLemmaAbsenceProposalDeriver implements LemmaAbsencePro
                     "unexpected error deriving plain sentences: " + e.getMessage());
         }
 
-        // Build elementAfter: copy all fields from beforeQuiz except title (plain sentence),
-        // form (quiz structure) and translation (from candidate). R014 — identifiers preserved.
+        // Build elementAfter: copy all fields from beforeQuiz except form (quiz structure)
+        // and translation (from candidate). The title is NOT in scope of a lexical
+        // correction (F-LAPS-R014, F-RPRES-R004) — it tracks the knowledge label only,
+        // so it is preserved unchanged from beforeQuiz.
         QuizTemplateEntity afterQuiz = new QuizTemplateEntity(
                 beforeQuiz.getId(),
                 beforeQuiz.getOidId(),
                 beforeQuiz.getKind(),
                 beforeQuiz.getKnowledgeId(),
-                newTitle,
+                beforeQuiz.getTitle(),
                 beforeQuiz.getInstructions(),
                 candidate.getTranslation(),
                 beforeQuiz.getTheoryId(),

@@ -368,17 +368,22 @@ public class FLapsJ001JourneyTest {
         assertEquals("lemma-absence-llm", artifact.getProposal().getStrategyId().getName(),
                 "R005: strategyId.name must be 'lemma-absence-llm'");
 
-        // R001: elementAfter title must match the candidate's DSL (not the original "reads")
+        // R001: elementAfter sentences must match the candidate's DSL (not the original "reads")
         QuizTemplateEntity elementAfterQuiz = artifact.getProposal().getElementAfter().getQuiz();
         assertNotNull(elementAfterQuiz, "elementAfter quiz must be non-null (R001)");
         // The candidate DSL "She ____ [studies] (study) books every day."
         // yields plain sentence "She studies books every day." (R012)
-        assertEquals("She studies books every day.", elementAfterQuiz.getTitle(),
-                "R001/R012: elementAfter.title must be the canonical plain sentence from candidate DSL");
+        assertEquals(List.of("She studies books every day."), elementAfterQuiz.getSentences(),
+                "R001/R012: elementAfter.sentences must be the canonical plain sentence from candidate DSL");
 
-        // R001: elementAfter differs from elementBefore (title changed)
-        assertNotEquals("She reads books about advanced topics.", elementAfterQuiz.getTitle(),
-                "R001: elementAfter.title must differ from elementBefore.title");
+        // R001: elementAfter differs from elementBefore (plain sentence changed)
+        assertNotEquals(List.of("She reads books about advanced topics."), elementAfterQuiz.getSentences(),
+                "R001: elementAfter.sentences must differ from elementBefore.sentences");
+
+        // F-LAPS-R014/F-RPRES-R004: the exercise title is not lexical-correction scope; it must
+        // be preserved from elementBefore, not overwritten with the derived plain sentence.
+        assertEquals("She reads books about advanced topics.", elementAfterQuiz.getTitle(),
+                "F-LAPS-R014: elementAfter.title must be preserved from elementBefore");
 
         // R014: ids, instructions and knowledgeId preserved
         assertEquals(QUIZ_ID, elementAfterQuiz.getId(),

@@ -941,6 +941,7 @@ Methods:
 | REJECTED | `null` |
 | NOT_FOUND | `null` |
 | ALREADY_DECIDED | `null` |
+| PRESERVATION_VIOLATED | `null` |
 
 ### ProposalDecisionOutcome (`record`)
 
@@ -1065,6 +1066,7 @@ Methods:
 
 - `snapshot(CourseEntity course, AuditTarget target, String nodeId): Optional<CourseElementSnapshot>`
 - `replace(CourseEntity course, CourseElementSnapshot replacement): CourseEntity`
+- `alignQuizTitles(CourseEntity course, String knowledgeId): CourseEntity`
 
 ### RevisionEngine (port)
 
@@ -1153,4 +1155,11 @@ Methods:
 Methods:
 
 - `derive(CourseElementSnapshot before, KnowledgeTitleCandidate candidate): CourseElementSnapshot`
+
+### PreservationFactory (factory)
+
+Methods:
+
+- `createCheck(): PreservationCheck`
+- `createRepair(RevisionArtifactStore artifactStore): PreservationRepair`
 

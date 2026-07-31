@@ -14,4 +14,6 @@ public interface CourseElementLocator {
             String nodeId);
 
     CourseEntity replace(CourseEntity course, CourseElementSnapshot replacement);
+
+    CourseEntity alignQuizTitles(CourseEntity course, String knowledgeId);
 }

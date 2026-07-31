@@ -1,0 +1,14 @@
+code: FEAT-RPRES
+modules:
+- name: course-domain
+  packages:
+  - name: quizsentenceengine
+    implementations:
+    - name: DefaultQuizSentenceConverter
+      handwrittenTests:
+      - name: "should give a fixed-text part that the correction adds its own text\
+          \ and no accepted answers, even when the exercise had no other fixed-text\
+          \ part"
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R006

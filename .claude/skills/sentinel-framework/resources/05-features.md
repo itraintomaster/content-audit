@@ -1309,7 +1309,7 @@ bloqueo sin tocar el flujo de revision de quizzes ya existente.
 | F-KTLR-R004 | La salida del agente es un unico candidato de titulo por revision | high | - |
 | F-KTLR-R005 | El candidato se transforma en una propuesta revisable | high | - |
 | F-KTLR-R006 | Aprobar una correccion de titulo escribe el knowledge en el curso | critical | - |
-| F-KTLR-R007 | Solo cambian titulo e instructions del knowledge senalado | critical | - |
+| F-KTLR-R007 | Alcance acotado de la correccion de titulo | critical | - |
 | F-KTLR-R008 | El flujo de revision de quizzes queda intacto | critical | - |
 | F-KTLR-R009 | Rechazar deja el knowledge sin cambios | high | - |
 | F-KTLR-R010 | Si el agente no produce un candidato valido, la revision aborta sin tocar el curso | high | El agente de titulos no pudo generar una correccion para el
@@ -1352,4 +1352,33 @@ auditarlo, nunca sobre una oracion suelta.
 **User Journeys:**
 
 - **F-CLEX-J001**: El agente consulta los flags lexicos de un candidato
+
+### FEAT-RPRES: Preservacion del contenido no revisado al aplicar una revision [F-RPRES]
+
+> **Que**: Aplicar una revision a un elemento del curso cambia **solo** lo que la
+revision propone corregir; todo lo demas del elemento sobrevive intacto al ciclo
+de guardado y recarga, incluidos los valores legitimamente vacios.
+
+**Por que**: Hoy los atributos del ejercicio que la propuesta no describe quedan
+en valores por defecto (2.658 quizzes revisados degradados), y eso deja el
+contenido inutilizable para la aplicacion que lo sirve a los alumnos.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-RPRES-R001 | Preservacion por defecto: solo cambia lo que la revision propone | critical | La revision del elemento '{elementId}' modifico atributos que no eran objeto de la correccion: {atributos} |
+| F-RPRES-R002 | Vacio no es ausente, y un valor propio no es un valor por defecto | critical | El atributo '{atributo}' del elemento '{elementId}' paso de '{estadoOriginal}' a '{estadoResultante}' al aplicar la revision |
+| F-RPRES-R003 | Revisar un elemento no altera ningun otro elemento del curso | critical | La revision del elemento '{elementId}' modifico {cantidad} elementos ajenos a la correccion |
+| F-RPRES-R004 | Corregir la etiqueta de un knowledge alinea el titulo de sus ejercicios | critical | La correccion de la etiqueta del knowledge '{knowledgeId}' dejo {cantidad} ejercicios con el titulo desalineado |
+| F-RPRES-R005 | El contenido ya degradado se repara, una vez vigente la preservacion | critical | Quedan {cantidad} elementos del curso con atributos degradados tras la reparacion |
+| F-RPRES-R006 | Una parte nueva del enunciado nace completa, no por defecto | critical | La correccion del ejercicio '{quizId}' agrego {cantidad} partes al enunciado que no estan en el estado que corresponde a su clase: {detalle} |
+
+**User Journeys:**
+
+- **F-RPRES-J001**: Aplicar una revision conservando el contenido no revisado
+
+- **F-RPRES-J002**: Aplicar una revision no altera el resto del curso
+
+- **F-RPRES-J003**: El titulo de los ejercicios sigue a la etiqueta, y solo a ella
 

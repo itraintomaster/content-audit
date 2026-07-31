@@ -852,6 +852,19 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | `nlpTokenizer` | `NlpTokenizer` |
 | `sentenceLexicalEvaluator` | `SentenceLexicalEvaluator` |
 
+#### RepairCmd (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** RepairCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `preservationRepair` | `PreservationRepair` |
+| `courseRepository` | `CourseRepository` |
+
 #### TextReportFormatter (package: formatting)
 
 **Package:** `com.learney.contentaudit.auditcli.formatting`
@@ -1239,6 +1252,7 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 | `courseRepository` | `CourseRepository` |
 | `elementLocator` | `CourseElementLocator` |
 | `refinementPlanStore` | `RefinementPlanStore` |
+| `preservationCheck` | `PreservationCheck` |
 
 #### DefaultLemmaAbsenceProposalStrategyRegistry (package: engine)
 
@@ -1442,6 +1456,43 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 |------|------|
 | `generator` | `KnowledgeTitleCandidateGenerator` |
 | `providerId` | `String` |
+
+#### DefaultCorrectionScope (package: preservationengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.preservationengine`
+**Visibility:** internal
+**Implements:** CorrectionScope
+
+#### DefaultPreservationCheck (package: preservationengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.preservationengine`
+**Visibility:** internal
+**Implements:** PreservationCheck
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `scope` | `CorrectionScope` |
+
+#### DefaultPreservationRepair (package: preservationengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.preservationengine`
+**Visibility:** internal
+**Implements:** PreservationRepair
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `artifactStore` | `RevisionArtifactStore` |
+| `scope` | `CorrectionScope` |
+
+#### DefaultPreservationFactory (package: preservationengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.preservationengine`
+**Visibility:** internal
+**Implements:** PreservationFactory
 
 ### Module: revision-infrastructure
 

@@ -1,5 +1,6 @@
 package com.learney.contentaudit.revisiondomain.engine;
 
+import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
@@ -14,6 +15,8 @@ import com.learney.contentaudit.revisiondomain.ProposalDecisionService;
 import com.learney.contentaudit.revisiondomain.RevisionArtifact;
 import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
 import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.revisiondomain.preservation.PreservationCheck;
+import com.learney.contentaudit.revisiondomain.preservation.PreservationViolation;
 import java.nio.file.Path;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -34,14 +37,15 @@ class DefaultProposalDecisionService implements ProposalDecisionService {
 
     private final RefinementPlanStore refinementPlanStore;
 
-    public DefaultProposalDecisionService(RevisionArtifactStore artifactStore,
-            CourseRepository courseRepository, CourseElementLocator elementLocator,
-            RefinementPlanStore refinementPlanStore) {
-        this.artifactStore = artifactStore;
-        this.courseRepository = courseRepository;
-        this.elementLocator = elementLocator;
-        this.refinementPlanStore = refinementPlanStore;
-    }
+private final PreservationCheck preservationCheck;
+
+public DefaultProposalDecisionService(RevisionArtifactStore artifactStore, CourseRepository courseRepository, CourseElementLocator elementLocator, RefinementPlanStore refinementPlanStore, PreservationCheck preservationCheck) {
+    this.artifactStore = artifactStore;
+    this.courseRepository = courseRepository;
+    this.elementLocator = elementLocator;
+    this.refinementPlanStore = refinementPlanStore;
+    this.preservationCheck = preservationCheck;
+}
 
     @Override
     public ProposalDecisionOutcome approve(String proposalId, Optional<String> planId,
@@ -66,7 +70,25 @@ class DefaultProposalDecisionService implements ProposalDecisionService {
 
         CourseEntity course = courseRepository.load(coursePath);
         CourseElementSnapshot elementAfter = artifact.getProposal().getElementAfter();
-        CourseEntity updatedCourse = elementLocator.replace(course, elementAfter);
+        CourseEntity replacedCourse = elementLocator.replace(course, elementAfter);
+
+        // F-RPRES-R004: a KNOWLEDGE label correction also aligns the title of every quiz of
+        // that knowledge; chained from the course that replace() just produced, never from a
+        // reconstruction of the frozen proposal snapshot (F-RPRES-R003).
+        CourseEntity updatedCourse = replacedCourse;
+        if (elementAfter != null && elementAfter.getNodeTarget() == AuditTarget.KNOWLEDGE) {
+            updatedCourse = elementLocator.alignQuizTitles(replacedCourse, elementAfter.getNodeId());
+        }
+
+        // F-RPRES-R001/R002/R003: abort before persisting anything if the correction dropped or
+        // altered any attribute outside its declared scope.
+        List<PreservationViolation> violations = preservationCheck.verify(
+                course, updatedCourse, elementAfter, artifact.getProposal().getDiagnosisKind());
+        if (!violations.isEmpty()) {
+            return new ProposalDecisionOutcome(ProposalDecisionOutcomeKind.PRESERVATION_VIOLATED, null,
+                    "Preservation check reported " + violations.size()
+                            + " violation(s); approval aborted: " + violations);
+        }
 
         // Step 4: Rewrite artifact with APPROVED verdict and save
         // Preserve contextSource and contextOverridePayload from the original artifact (F-REVCTX-R007)

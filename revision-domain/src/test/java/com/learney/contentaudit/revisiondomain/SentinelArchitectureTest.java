@@ -53,6 +53,12 @@ public class SentinelArchitectureTest {
   }
 
   @Test
+  public void enforcePackagePreservationengineVisibility() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..revisiondomain..", "java..").should().dependOnClassesThat().resideInAPackage("..revisiondomain.preservationengine..").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
   public void enforceAllDeclaredClassesExist() {
     try {
       Class.forName("com.learney.contentaudit.revisiondomain.RevisionVerdict");
@@ -233,6 +239,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.revisiondomain.KnowledgeTitleProposalDeriver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: KnowledgeTitleProposalDeriver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.PreservationFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: PreservationFactory - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.revisiondomain.engine.LemmaAbsenceProposalStrategyRegistryConfig");
@@ -553,6 +564,61 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.revisiondomain.knowledgetitle.KnowledgeTitleAgentStrategy");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: KnowledgeTitleAgentStrategy - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.preservation.AttributeState");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AttributeState - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.preservation.PreservationViolation");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: PreservationViolation - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.preservation.RepairReport");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RepairReport - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.preservation.ScopedField");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ScopedField - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.preservation.CorrectionScope");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CorrectionScope - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.preservation.PreservationCheck");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: PreservationCheck - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.preservation.PreservationRepair");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: PreservationRepair - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.preservationengine.DefaultCorrectionScope");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultCorrectionScope - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.preservationengine.DefaultPreservationCheck");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultPreservationCheck - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.preservationengine.DefaultPreservationRepair");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultPreservationRepair - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.preservationengine.DefaultPreservationFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultPreservationFactory - " + e.getMessage());
     }
   }
 }

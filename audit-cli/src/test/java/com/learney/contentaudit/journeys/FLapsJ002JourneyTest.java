@@ -313,12 +313,14 @@ public class FLapsJ002JourneyTest {
         // Gate F-LAPS-R001: elementAfter differs from elementBefore
         QuizTemplateEntity afterQuiz = pendingArtifact.getProposal().getElementAfter().getQuiz();
         assertNotNull(afterQuiz, "R001: elementAfter quiz must not be null");
-        assertEquals("She studies every morning.", afterQuiz.getTitle(),
-                "R001/R012: elementAfter.title must be the canonical plain sentence from AFTER_DSL");
+        assertEquals(List.of("She studies every morning."), afterQuiz.getSentences(),
+                "R001/R012: elementAfter.sentences must be the canonical plain sentence from AFTER_DSL");
 
-        // Gate F-LAPS-R012: proposal derived deterministically (title matches DSL parse)
-        // Gate F-LAPS-R014: structural invariants preserved
+        // Gate F-LAPS-R012: proposal derived deterministically (plain sentence matches DSL parse)
+        // Gate F-LAPS-R014/F-RPRES-R004: structural invariants preserved, including the title
         assertEquals(QUIZ_ID, afterQuiz.getId(), "R014: quizId preserved in elementAfter");
+        assertEquals("She does advanced exercise every morning.", afterQuiz.getTitle(),
+                "R014: elementAfter.title must be preserved from elementBefore, not overwritten with the plain sentence");
 
         // Course must NOT have been touched yet (pending approval)
         verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));
@@ -415,8 +417,8 @@ public class FLapsJ002JourneyTest {
 
         // Gate F-LAPS-R001: elementAfter != elementBefore
         QuizTemplateEntity afterQuiz = pendingArtifact.getProposal().getElementAfter().getQuiz();
-        assertEquals("She studies every morning.", afterQuiz.getTitle(),
-                "R001/R012: elementAfter.title must be from AFTER_DSL candidate");
+        assertEquals(List.of("She studies every morning."), afterQuiz.getSentences(),
+                "R001/R012: elementAfter.sentences must be from AFTER_DSL candidate");
 
         // Gate F-LAPS-R005: strategy identity in proposal
         assertEquals("lemma-absence-llm", pendingArtifact.getProposal().getReviserKind(),
@@ -425,6 +427,8 @@ public class FLapsJ002JourneyTest {
         // Gate F-LAPS-R013: structural invariants preserved in elementAfter
         assertEquals(QUIZ_ID, afterQuiz.getId(),
                 "R014: quizId preserved in elementAfter");
+        assertEquals("She does advanced exercise every morning.", afterQuiz.getTitle(),
+                "R014: elementAfter.title must be preserved from elementBefore, even though the proposal was rejected");
 
         // ── Act: Step 2 — operator rejects the proposal ───────────────────────────
         ProposalDecisionService decisionService =

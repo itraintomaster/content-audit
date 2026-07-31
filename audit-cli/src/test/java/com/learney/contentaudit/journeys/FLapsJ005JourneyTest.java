@@ -310,9 +310,9 @@ public class FLapsJ005JourneyTest {
         QuizTemplateEntity afterQuiz = pendingArtifact.getProposal().getElementAfter().getQuiz();
         assertNotNull(afterQuiz, "R001: elementAfter quiz must not be null");
         // AFTER_DSL = "She ____ [learns] (learn) new words daily." → plain = "She learns new words daily."
-        assertEquals("She learns new words daily.", afterQuiz.getTitle(),
-                "R001/R012: elementAfter.title must be the plain sentence derived from AFTER_DSL");
-        // Before was "She learns complicated words daily." — title changed (R001)
+        assertEquals(List.of("She learns new words daily."), afterQuiz.getSentences(),
+                "R001/R012: elementAfter.sentences must be the plain sentence derived from AFTER_DSL");
+        // Before was "She learns complicated words daily." — plain sentence changed (R001)
 
         // Gate F-LAPS-R005: proposal carries strategy identity
         assertEquals("lemma-absence-llm", pendingArtifact.getProposal().getReviserKind(),
@@ -333,6 +333,10 @@ public class FLapsJ005JourneyTest {
                 "R014: knowledgeId preserved in elementAfter");
         assertEquals("Write the correct form.", afterQuiz.getInstructions(),
                 "R014: instructions preserved in elementAfter");
+        // F-LAPS-R014/F-RPRES-R004: the exercise title is not lexical-correction scope; it must
+        // be preserved from elementBefore, not overwritten with the derived plain sentence.
+        assertEquals("She learns complicated words daily.", afterQuiz.getTitle(),
+                "R014: elementAfter.title must be preserved from elementBefore");
 
         // Course must NOT have been touched yet (pending approval)
         verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));

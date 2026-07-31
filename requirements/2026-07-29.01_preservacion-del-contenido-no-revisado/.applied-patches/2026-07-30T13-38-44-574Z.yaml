@@ -1,0 +1,14 @@
+code: FEAT-RPRES
+modules:
+- name: revision-domain
+  packages:
+  - name: engine
+    implementations:
+    - name: DefaultProposalDecisionService
+      handwrittenTests:
+      - name: "should apply the approval of a lexical correction whose elementAfter\
+          \ comes from the real lemma-absence deriver, saving a course whose revised\
+          \ quiz differs from the original only in the fields the correction covers"
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R001

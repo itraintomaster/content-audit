@@ -38,3 +38,7 @@ re-litigar. Entrada más reciente arriba.
 
 - **ESC2 (RevisionEngineConfig vaciado)** = interfaz espuria en el bloque `interfaces:` del patch ARCH-KTLR (homónima del record de 14 campos en `models:`); el merge insertó una interface duplicada y `generate` la emitió pisando el record. Fix **ARCH-KTLR-FIX** (propuesto, 1 deletion, 0 conflicts) borra la interface; al re-generar, el record se re-materializa desde la DSL intacta. `patch propose`/`generate` no validan colisiones cross-kind (record vs interface homónimos) — candidato a reporte al equipo Sentinel.
 - **ESC1 (KnowledgeTitleContextResolver con `Optional<T>`)** = NO es bug: comportamiento normal de stub sin implementar cuando la impl declara `implements: [CorrectionContextResolver]` raw. Resolución: @developer sustituye `T` por `KnowledgeTitleCorrectionContext` en los overrides (`resolve`, `resolveWithIndex`, `supports` → KNOWLEDGE_TITLE_LENGTH), igual que hizo LemmaAbsenceContextResolver.
+
+2026-07-29 — analyst — F-KTLR-R007 reformulada (id y severidad conservados) para reconciliarla con F-RPRES-R004.
+  why: afirmaba "No altera sus quizzes" y F-RPRES-R004 (posterior y explicita) declara correcto que corregir la etiqueta alinee el titulo de los quizzes. Ahora son 3 invariantes numerados; el anti-resurreccion (contenido de los quizzes = estado actual del curso, no la foto de la propuesta) se conserva explicito porque es el bug real que la regla atrapo.
+  OJO qa-tester: DefaultCourseElementLocatorTest usa el titulo del quiz como testigo de staleness; hay que moverlo al contenido (sentences).

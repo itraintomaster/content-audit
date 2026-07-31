@@ -194,23 +194,56 @@ titulo e instructions propuestos.
 </details>
 
 <a id="F-KTLR-R007"></a>
-### Rule[F-KTLR-R007] - Solo cambian titulo e instructions del knowledge senalado
-**Severity**: critical | **Validation**: AUTO_VALIDATED
+### Rule[F-KTLR-R007] - Alcance acotado de la correccion de titulo
+**Severity**: critical | **Validation**: VALIDATED
 
-> Aprobar una correccion de titulo modifica unicamente el titulo y las
-> instructions del knowledge de la tarea. No altera sus quizzes, ni su
-> identificador, ni su posicion en la jerarquia, ni ningun otro knowledge, topic
-> o nivel del curso.
+> Aprobar una correccion de titulo produce exactamente tres efectos, y ninguno
+> mas:
+> 1. Cambia el titulo y las instructions del knowledge de la tarea.
+> 2. Alinea con el nuevo titulo el titulo de los quizzes de ese knowledge
+>    ([F-RPRES-R004](../2026-07-29.01_preservacion-del-contenido-no-revisado/REQUIREMENT.md#F-RPRES-R004)).
+> 3. Nada mas cambia: ni el identificador del knowledge, ni su posicion en la
+>    jerarquia, ni ningun otro knowledge, topic o nivel del curso, ni el
+>    **contenido** de los quizzes — que se toma del estado actual del curso y
+>    nunca de la version congelada al construir la propuesta.
 
 <details><summary>Detail</summary>
 
-Invariante estructural: el identificador del knowledge, sus quizzes, su orden
-dentro del topic y el resto del arbol de contenidos se preservan identicos. La
-correccion es un cambio quirurgico de dos campos de texto sobre un unico nodo.
+**Que cambio respecto de la formulacion anterior.** Esta regla decia "no altera
+sus quizzes". Eso quedo desactualizado: la alineacion del titulo de los quizzes
+con la etiqueta de su knowledge es comportamiento correcto y esta declarada en
+[F-RPRES-R004](../2026-07-29.01_preservacion-del-contenido-no-revisado/REQUIREMENT.md#F-RPRES-R004),
+que es posterior y explicita. Mantener las dos redacciones dejaba dos reglas
+contradictorias en el repositorio. La reformulacion **acota** el alcance en lugar
+de negarlo: cambia el titulo del quiz, y nada mas del quiz.
 
-**Failing test**: aprobar una propuesta `KNOWLEDGE_TITLE_LENGTH` y assertear que
-el identificador del knowledge, sus quizzes y los demas nodos del curso quedan
-sin cambios, y que solo cambiaron el titulo y las instructions de ese knowledge.
+**Lo que esta regla sigue protegiendo, y es lo importante.** El invariante 3 es
+el que atrapo un bug real: la propuesta lleva adentro una foto del knowledge
+tomada al construirla, y esa foto incluye los quizzes tal como estaban en ese
+momento. Si al aplicar la correccion de titulo se escribieran los quizzes de la
+foto, cualquier revision de quiz aprobada **despues** de esa foto quedaria
+revertida — quizzes corregidos resucitando en su version vieja. Eso sigue
+prohibido. La correccion de titulo alcanza un unico atributo del quiz (su
+titulo); su contenido —la oracion, el enunciado, la traduccion— proviene siempre
+del estado actual del curso.
+
+**Distincion clave**: alinear un atributo derivado (el titulo, que es copia de la
+etiqueta del knowledge) y reescribir el contenido de un quiz son cosas
+distintas. La primera es el efecto deseado de esta correccion; la segunda es
+perdida de trabajo ajeno.
+
+**Failing test**: aprobar una propuesta `KNOWLEDGE_TITLE_LENGTH` sobre un
+knowledge cuyos quizzes cambiaron **despues** de construida la propuesta, y
+assertear que (a) el titulo y las instructions del knowledge son los corregidos,
+(b) el titulo de sus quizzes quedo alineado con el nuevo titulo, (c) el contenido
+de esos quizzes es el actual del curso y no el congelado en la propuesta, y (d)
+el identificador del knowledge y los demas nodos del curso quedan sin cambios.
+
+**Nota para el diseno de tests**: la verificacion vigente usa el **titulo** del
+quiz como testigo de que gano la version actual del curso frente a la congelada.
+Bajo el invariante 2 el titulo dejo de servir para eso, porque es justamente el
+atributo que se re-alinea. El testigo correcto es el contenido del quiz (su
+oracion), que no se toca. Es un cambio de asercion, no de alcance de la regla.
 
 </details>
 
@@ -505,3 +538,8 @@ acotan a solo titulo.
   un agente como backend de la estrategia LLM (contrato externo estable, un unico
   candidato, best-effort, runtime error = falla). Analogo al agente de titulos de
   esta feature. Citado por [F-KTLR-R004](#F-KTLR-R004).
+- **FEAT-RPRES** (`2026-07-29.01_preservacion-del-contenido-no-revisado`) —
+  Declara que corregir la etiqueta de un knowledge alinea el titulo de sus
+  quizzes, como unica excepcion al radio de impacto de una revision. Gobierna el
+  invariante 2 de [F-KTLR-R007](#F-KTLR-R007), que antes afirmaba lo contrario.
+  Citado por [F-KTLR-R007](#F-KTLR-R007).

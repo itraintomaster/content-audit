@@ -3,6 +3,17 @@ package com.learney.contentaudit.revisiondomain.engine;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.KnowledgeEntity;
+import com.learney.contentaudit.coursedomain.MilestoneEntity;
+import com.learney.contentaudit.coursedomain.NodeKind;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.coursedomain.RootNodeEntity;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.TopicEntity;
+import com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceConverter;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
@@ -10,14 +21,21 @@ import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
 import com.learney.contentaudit.revisiondomain.CourseElementLocator;
 import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
+import com.learney.contentaudit.revisiondomain.LemmaAbsenceProposalDeriver;
+import com.learney.contentaudit.revisiondomain.LemmaAbsenceQuizCandidate;
 import com.learney.contentaudit.revisiondomain.ProposalDecisionOutcome;
 import com.learney.contentaudit.revisiondomain.ProposalDecisionOutcomeKind;
 import com.learney.contentaudit.revisiondomain.RevisionArtifact;
 import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
 import com.learney.contentaudit.revisiondomain.RevisionProposal;
 import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.revisiondomain.preservation.AttributeState;
+import com.learney.contentaudit.revisiondomain.preservation.PreservationCheck;
+import com.learney.contentaudit.revisiondomain.preservation.PreservationViolation;
+import com.learney.contentaudit.revisiondomain.preservationengine.DefaultPreservationFactory;
 import java.nio.file.Path;
 import java.time.Instant;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
@@ -30,6 +48,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -50,13 +69,15 @@ public class DefaultProposalDecisionServiceTest {
     @Mock private CourseRepository courseRepository;
     @Mock private CourseElementLocator elementLocator;
     @Mock private RefinementPlanStore refinementPlanStore;
+    @Mock private PreservationCheck preservationCheck;
 
     private DefaultProposalDecisionService buildService() {
         return new DefaultProposalDecisionService(
                 artifactStore,
                 courseRepository,
                 elementLocator,
-                refinementPlanStore
+                refinementPlanStore,
+                preservationCheck
         );
     }
 
@@ -86,6 +107,34 @@ public class DefaultProposalDecisionServiceTest {
                 DiagnosisKind.SENTENCE_LENGTH, 1, status
         );
         return new RefinementPlan(planId, "audit-001", Instant.now(), List.of(task));
+    }
+
+    private CourseElementSnapshot buildKnowledgeSnapshot(String knowledgeId, String label, String instructions) {
+        KnowledgeEntity knowledge = new KnowledgeEntity();
+        knowledge.setId(knowledgeId);
+        knowledge.setKind(NodeKind.KNOWLEDGE);
+        knowledge.setLabel(label);
+        knowledge.setInstructions(instructions);
+        knowledge.setQuizTemplates(List.of());
+        return new CourseElementSnapshot(AuditTarget.KNOWLEDGE, knowledgeId, null, knowledge);
+    }
+
+    private RevisionProposal buildKnowledgeProposal(String proposalId, String taskId, String planId,
+                                                     String knowledgeId,
+                                                     CourseElementSnapshot before, CourseElementSnapshot after) {
+        return new RevisionProposal(
+                proposalId, taskId, planId, "audit-001",
+                DiagnosisKind.KNOWLEDGE_TITLE_LENGTH, AuditTarget.KNOWLEDGE, knowledgeId,
+                before, after, "knowledge-title-length: shorten label", "knowledge-title-agent", Instant.now(), null
+        );
+    }
+
+    private RevisionArtifact buildKnowledgeArtifact(String proposalId, String taskId, String planId,
+                                                     String knowledgeId,
+                                                     CourseElementSnapshot before, CourseElementSnapshot after,
+                                                     RevisionVerdict verdict) {
+        RevisionProposal proposal = buildKnowledgeProposal(proposalId, taskId, planId, knowledgeId, before, after);
+        return new RevisionArtifact(proposal, verdict, null, null, null, null, null, null);
     }
 
     // ---------------------------------------------------------------------------
@@ -581,5 +630,358 @@ public class DefaultProposalDecisionServiceTest {
         verify(artifactStore, never()).save(any(RevisionArtifact.class));
         verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));
         verify(refinementPlanStore, never()).save(any(RefinementPlan.class));
+    }
+
+    @Test
+    @DisplayName("should abort the approval leaving the proposal undecided and the course unwritten when the preservation check reports violations")
+    @Tag("FEAT-RPRES")
+    @Tag("F-RPRES-R001")
+    public void shouldAbortTheApprovalLeavingTheProposalUndecidedAndTheCourseUnwrittenWhenThePreservationCheckReportsViolations() {
+        // Arrange
+        String proposalId = "task-rpres001a-100015";
+        String taskId     = "task-rpres001a";
+        String planId     = "plan-rpres001a";
+        Path coursePath   = Path.of("./db/english-course");
+
+        RevisionArtifact artifact = buildArtifact(proposalId, taskId, planId, RevisionVerdict.PENDING_APPROVAL);
+        RefinementPlan plan = buildPlanWithTask(planId, taskId, RefinementTaskStatus.PENDING);
+
+        CourseEntity course = mock(CourseEntity.class);
+        CourseEntity courseAfterReplace = mock(CourseEntity.class);
+        CourseElementSnapshot snapshot = artifact.getProposal().getElementAfter();
+
+        // A violation: an attribute out of the correction's scope was silently dropped (F-RPRES-R001)
+        PreservationViolation violation = new PreservationViolation(
+                "quiz-001", "form.incidence",
+                AttributeState.VALUE_PRESENT, AttributeState.ABSENT,
+                "1.0", null);
+
+        when(artifactStore.findByProposalId(eq(proposalId), any())).thenReturn(Optional.of(artifact));
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        when(courseRepository.load(coursePath)).thenReturn(course);
+        when(elementLocator.replace(eq(course), eq(snapshot))).thenReturn(courseAfterReplace);
+        when(preservationCheck.verify(any(CourseEntity.class), any(CourseEntity.class),
+                any(CourseElementSnapshot.class), any(DiagnosisKind.class)))
+                .thenReturn(List.of(violation));
+
+        DefaultProposalDecisionService service = buildService();
+
+        // Act
+        ProposalDecisionOutcome outcome = service.approve(proposalId, Optional.of(planId), Optional.empty(), coursePath);
+
+        // Assert — F-RPRES-R001: a reported violation aborts the approval before persisting
+        // anything: the proposal stays undecided and the course is left unwritten.
+        assertEquals(ProposalDecisionOutcomeKind.PRESERVATION_VIOLATED, outcome.getKind(),
+                "When the preservation check reports violations, approve must abort with PRESERVATION_VIOLATED");
+        verify(artifactStore, never()).save(any(RevisionArtifact.class));
+        verify(courseRepository, never()).save(any(CourseEntity.class), any(Path.class));
+        verify(refinementPlanStore, never()).save(any(RefinementPlan.class));
+    }
+
+    @Test
+    @DisplayName("should align the title of every quiz of the knowledge when approving a correction of its label")
+    @Tag("FEAT-RPRES")
+    @Tag("F-RPRES-R004")
+    public void shouldAlignTheTitleOfEveryQuizOfTheKnowledgeWhenApprovingACorrectionOfItsLabel() {
+        // Arrange — a KNOWLEDGE-target proposal correcting the label
+        String proposalId  = "task-rpres004a-100016";
+        String taskId      = "task-rpres004a";
+        String planId      = "plan-rpres004a";
+        String knowledgeId = "knowledge-rpres004a";
+        Path coursePath    = Path.of("./db/english-course");
+
+        CourseElementSnapshot before = buildKnowledgeSnapshot(knowledgeId,
+                "Present Simple Affirmative Sentences With Third Person Singular Verbs", "Instrucciones viejas");
+        CourseElementSnapshot after = buildKnowledgeSnapshot(knowledgeId,
+                "Present Simple Affirmative", "Instrucciones nuevas");
+
+        RevisionArtifact artifact = buildKnowledgeArtifact(
+                proposalId, taskId, planId, knowledgeId, before, after, RevisionVerdict.PENDING_APPROVAL);
+        RefinementPlan plan = buildPlanWithTask(planId, taskId, RefinementTaskStatus.PENDING);
+
+        CourseEntity currentCourse = mock(CourseEntity.class);
+        CourseEntity courseAfterReplace = mock(CourseEntity.class);
+        CourseEntity courseAfterAlign = mock(CourseEntity.class);
+
+        when(artifactStore.findByProposalId(eq(proposalId), any())).thenReturn(Optional.of(artifact));
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        when(courseRepository.load(coursePath)).thenReturn(currentCourse);
+        when(elementLocator.replace(eq(currentCourse), eq(after))).thenReturn(courseAfterReplace);
+        when(elementLocator.alignQuizTitles(eq(courseAfterReplace), eq(knowledgeId))).thenReturn(courseAfterAlign);
+        when(preservationCheck.verify(any(CourseEntity.class), any(CourseEntity.class),
+                any(CourseElementSnapshot.class), any(DiagnosisKind.class))).thenReturn(List.of());
+        when(artifactStore.save(any(RevisionArtifact.class))).thenReturn(
+                ".content-audit/revisions/" + planId + "/" + proposalId);
+
+        DefaultProposalDecisionService service = buildService();
+
+        // Act
+        service.approve(proposalId, Optional.of(planId), Optional.empty(), coursePath);
+
+        // Assert — F-RPRES-R004: correcting the knowledge label also aligns the title of its quizzes,
+        // and the persisted course is the one that went through that alignment step.
+        verify(elementLocator).alignQuizTitles(eq(courseAfterReplace), eq(knowledgeId));
+        verify(courseRepository).save(eq(courseAfterAlign), eq(coursePath));
+    }
+
+    @Test
+    @DisplayName("should leave the title of the knowledge quizzes untouched when approving a correction of one of those quizzes")
+    @Tag("FEAT-RPRES")
+    @Tag("F-RPRES-R004")
+    public void shouldLeaveTheTitleOfTheKnowledgeQuizzesUntouchedWhenApprovingACorrectionOfOneOfThoseQuizzes() {
+        // Arrange — a QUIZ-target proposal (a correction of the exercise itself, not of the knowledge label)
+        String proposalId = "task-rpres004b-100017";
+        String taskId     = "task-rpres004b";
+        String planId     = "plan-rpres004b";
+        Path coursePath   = Path.of("./db/english-course");
+
+        RevisionArtifact artifact = buildArtifact(proposalId, taskId, planId, RevisionVerdict.PENDING_APPROVAL);
+        RefinementPlan plan = buildPlanWithTask(planId, taskId, RefinementTaskStatus.PENDING);
+
+        CourseEntity course = mock(CourseEntity.class);
+        CourseEntity courseAfterReplace = mock(CourseEntity.class);
+        CourseElementSnapshot snapshot = artifact.getProposal().getElementAfter();
+
+        when(artifactStore.findByProposalId(eq(proposalId), any())).thenReturn(Optional.of(artifact));
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        when(courseRepository.load(coursePath)).thenReturn(course);
+        when(elementLocator.replace(eq(course), eq(snapshot))).thenReturn(courseAfterReplace);
+        when(preservationCheck.verify(any(CourseEntity.class), any(CourseEntity.class),
+                any(CourseElementSnapshot.class), any(DiagnosisKind.class))).thenReturn(List.of());
+        when(artifactStore.save(any(RevisionArtifact.class))).thenReturn(
+                ".content-audit/revisions/" + planId + "/" + proposalId);
+
+        DefaultProposalDecisionService service = buildService();
+
+        // Act
+        service.approve(proposalId, Optional.of(planId), Optional.empty(), coursePath);
+
+        // Assert — F-RPRES-R004 reciprocal: a quiz correction never triggers title alignment.
+        verify(elementLocator, never()).alignQuizTitles(any(CourseEntity.class), any(String.class));
+        verify(courseRepository).save(eq(courseAfterReplace), eq(coursePath));
+    }
+
+    @Test
+    @DisplayName("should keep the quizzes revised after the proposal was recorded when approving a correction of the knowledge label")
+    @Tag("FEAT-RPRES")
+    @Tag("F-RPRES-R003")
+    public void shouldKeepTheQuizzesRevisedAfterTheProposalWasRecordedWhenApprovingACorrectionOfTheKnowledgeLabel() {
+        // Arrange — the knowledge-label proposal was recorded earlier, but one of its quizzes
+        // was revised and approved by a DIFFERENT task afterwards. F-RPRES-R003 requires that
+        // approving the label correction does not revert or alter that already-applied quiz
+        // revision: the pipeline must be chained from the course actually loaded from the
+        // repository (which already carries the later revision), never reconstructed from the
+        // frozen elementBefore/elementAfter embedded in this proposal.
+        String proposalId  = "task-rpres003a-100018";
+        String taskId      = "task-rpres003a";
+        String planId      = "plan-rpres003a";
+        String knowledgeId = "knowledge-rpres003a";
+        Path coursePath    = Path.of("./db/english-course");
+
+        CourseElementSnapshot before = buildKnowledgeSnapshot(knowledgeId,
+                "Present Simple Affirmative Sentences With Third Person Singular Verbs", "Instrucciones viejas");
+        CourseElementSnapshot after = buildKnowledgeSnapshot(knowledgeId,
+                "Present Simple Affirmative", "Instrucciones nuevas");
+
+        RevisionArtifact artifact = buildKnowledgeArtifact(
+                proposalId, taskId, planId, knowledgeId, before, after, RevisionVerdict.PENDING_APPROVAL);
+        RefinementPlan plan = buildPlanWithTask(planId, taskId, RefinementTaskStatus.PENDING);
+
+        // The course CURRENTLY on disk already reflects a quiz revised by another task after
+        // this label proposal was recorded — distinct from anything embedded in the proposal.
+        CourseEntity currentCourseWithNewerQuizRevision = mock(CourseEntity.class);
+        CourseEntity courseAfterReplace = mock(CourseEntity.class);
+        CourseEntity courseAfterAlign = mock(CourseEntity.class);
+
+        when(artifactStore.findByProposalId(eq(proposalId), any())).thenReturn(Optional.of(artifact));
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        when(courseRepository.load(coursePath)).thenReturn(currentCourseWithNewerQuizRevision);
+        when(elementLocator.replace(eq(currentCourseWithNewerQuizRevision), eq(after))).thenReturn(courseAfterReplace);
+        when(elementLocator.alignQuizTitles(eq(courseAfterReplace), eq(knowledgeId))).thenReturn(courseAfterAlign);
+        when(preservationCheck.verify(any(CourseEntity.class), any(CourseEntity.class),
+                any(CourseElementSnapshot.class), any(DiagnosisKind.class))).thenReturn(List.of());
+        when(artifactStore.save(any(RevisionArtifact.class))).thenReturn(
+                ".content-audit/revisions/" + planId + "/" + proposalId);
+
+        DefaultProposalDecisionService service = buildService();
+
+        // Act
+        service.approve(proposalId, Optional.of(planId), Optional.empty(), coursePath);
+
+        // Assert — F-RPRES-R003: replace/align are chained from the course actually loaded from
+        // the repository (which already carries the later quiz revision), and the final persisted
+        // course is the result of that chain — so the later quiz revision is not reverted.
+        verify(elementLocator).replace(eq(currentCourseWithNewerQuizRevision), eq(after));
+        verify(elementLocator).alignQuizTitles(eq(courseAfterReplace), eq(knowledgeId));
+        verify(courseRepository).save(eq(courseAfterAlign), eq(coursePath));
+    }
+
+    @Test
+    @DisplayName("should apply the approval of a lexical correction whose elementAfter comes from the real lemma-absence deriver, saving a course whose revised quiz differs from the original only in the fields the correction covers")
+    @Tag("FEAT-RPRES")
+    @Tag("F-RPRES-R001")
+    public void shouldApplyTheApprovalOfALexicalCorrectionWhoseElementAfterComesFromTheRealLemmaabsenceDeriverSavingACourseWhoseRevisedQuizDiffersFromTheOriginalOnlyInTheFieldsTheCorrectionCovers(
+            ) {
+        // Arrange — this is the composition test: it wires the REAL LemmaAbsenceProposalDeriver
+        // and the REAL PreservationCheck (via DefaultPreservationFactory), because the bug this
+        // test guards against lived exactly in that interaction (deriver writing "title" too,
+        // tripping the preservation guard on every lexical approval). Only the stores, the
+        // CourseRepository and the CourseElementLocator are mocked.
+        String proposalId  = "task-rpres001b-100019";
+        String taskId      = "task-rpres001b";
+        String planId      = "plan-rpres001b";
+        String knowledgeId = "knowledge-lex-001";
+        String quizId      = "quiz-lex-001";
+        Path coursePath    = Path.of("./db/english-course");
+
+        QuizSentenceConverter converter = DefaultQuizSentenceConverter.create();
+        LemmaAbsenceProposalDeriver deriver = new DefaultLemmaAbsenceProposalDeriver(converter);
+
+        // elementBefore: the original quiz, same fixture shape used by DefaultLemmaAbsenceProposalDeriverTest
+        FormEntity formBefore = new FormEntity("CLOZE", 1.0, "", "", Arrays.asList(
+                new SentencePartEntity(SentencePartKind.TEXT, "She", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("reads")),
+                new SentencePartEntity(SentencePartKind.TEXT, "(read) books.", null)
+        ));
+        QuizTemplateEntity quizBefore = new QuizTemplateEntity(
+                quizId, quizId, "CLOZE", knowledgeId,
+                "She reads (read) books.",     // title
+                "Write the correct form.",     // instructions
+                "Ella lee libros.",            // translation
+                "basics.01.Present_Tense", "Present Tense", formBefore,
+                0.0, 0.0, 0.0,
+                "", "", "", "", "", "", "",
+                List.of("She reads (read) books.")
+        );
+        CourseElementSnapshot elementBefore = new CourseElementSnapshot(AuditTarget.QUIZ, quizId, quizBefore, null);
+
+        // The candidate proposes a lexical correction: "reads" -> "studies" (non-identity change).
+        LemmaAbsenceQuizCandidate candidate = new LemmaAbsenceQuizCandidate(
+                "She ____ [studies] (study) books.",
+                "Ella estudia libros."
+        );
+
+        // Act (setup) — the REAL deriver builds elementAfter; this is the exact step that used to
+        // leak the derived sentence into "title" too.
+        CourseElementSnapshot elementAfter = deriver.derive(elementBefore, candidate, null);
+        QuizTemplateEntity quizAfter = elementAfter.getQuiz();
+
+        // Build the full course trees courseBefore / courseAfterReplace mirroring what
+        // CourseElementLocator.replace(courseBefore, elementAfter) does in production: the same
+        // tree with only quizId's QuizTemplateEntity swapped for the deriver's elementAfter.quiz.
+        KnowledgeEntity knowledgeBefore = new KnowledgeEntity();
+        knowledgeBefore.setId(knowledgeId);
+        knowledgeBefore.setKind(NodeKind.KNOWLEDGE);
+        knowledgeBefore.setLabel("Present Tense");
+        knowledgeBefore.setInstructions("Instrucciones del knowledge");
+        knowledgeBefore.setQuizTemplates(List.of(quizBefore));
+
+        KnowledgeEntity knowledgeAfter = new KnowledgeEntity();
+        knowledgeAfter.setId(knowledgeId);
+        knowledgeAfter.setKind(NodeKind.KNOWLEDGE);
+        knowledgeAfter.setLabel("Present Tense");
+        knowledgeAfter.setInstructions("Instrucciones del knowledge");
+        knowledgeAfter.setQuizTemplates(List.of(quizAfter));
+
+        TopicEntity topicBefore = new TopicEntity();
+        topicBefore.setId("topic-lex-001");
+        topicBefore.setKind(NodeKind.TOPIC);
+        topicBefore.setLabel("Topic");
+        topicBefore.setRuleIds(List.of(knowledgeId));
+        topicBefore.setKnowledges(List.of(knowledgeBefore));
+
+        TopicEntity topicAfter = new TopicEntity();
+        topicAfter.setId("topic-lex-001");
+        topicAfter.setKind(NodeKind.TOPIC);
+        topicAfter.setLabel("Topic");
+        topicAfter.setRuleIds(List.of(knowledgeId));
+        topicAfter.setKnowledges(List.of(knowledgeAfter));
+
+        MilestoneEntity milestoneBefore = new MilestoneEntity();
+        milestoneBefore.setId("milestone-lex-001");
+        milestoneBefore.setKind(NodeKind.MILESTONE);
+        milestoneBefore.setLabel("A1");
+        milestoneBefore.setTopics(List.of(topicBefore));
+
+        MilestoneEntity milestoneAfter = new MilestoneEntity();
+        milestoneAfter.setId("milestone-lex-001");
+        milestoneAfter.setKind(NodeKind.MILESTONE);
+        milestoneAfter.setLabel("A1");
+        milestoneAfter.setTopics(List.of(topicAfter));
+
+        RootNodeEntity rootBefore = new RootNodeEntity();
+        rootBefore.setId("root-1");
+        rootBefore.setKind(NodeKind.ROOT);
+        rootBefore.setMilestones(List.of(milestoneBefore));
+
+        RootNodeEntity rootAfter = new RootNodeEntity();
+        rootAfter.setId("root-1");
+        rootAfter.setKind(NodeKind.ROOT);
+        rootAfter.setMilestones(List.of(milestoneAfter));
+
+        CourseEntity courseBefore = new CourseEntity();
+        courseBefore.setId("course-1");
+        courseBefore.setTitle("english-course");
+        courseBefore.setKnowledgeIds(List.of(knowledgeId));
+        courseBefore.setRoot(rootBefore);
+
+        CourseEntity courseAfterReplace = new CourseEntity();
+        courseAfterReplace.setId("course-1");
+        courseAfterReplace.setTitle("english-course");
+        courseAfterReplace.setKnowledgeIds(List.of(knowledgeId));
+        courseAfterReplace.setRoot(rootAfter);
+
+        RevisionProposal proposal = new RevisionProposal(
+                proposalId, taskId, planId, "audit-001",
+                DiagnosisKind.LEMMA_ABSENCE, AuditTarget.QUIZ, quizId,
+                elementBefore, elementAfter, "lemma-absence: replace out-of-level word",
+                "lemma-absence-mvp", Instant.now(), null
+        );
+        RevisionArtifact artifact = new RevisionArtifact(proposal, RevisionVerdict.PENDING_APPROVAL,
+                null, null, null, null, null, null);
+        RefinementPlan plan = buildPlanWithTask(planId, taskId, RefinementTaskStatus.PENDING);
+
+        when(artifactStore.findByProposalId(eq(proposalId), any())).thenReturn(Optional.of(artifact));
+        when(refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
+        when(courseRepository.load(coursePath)).thenReturn(courseBefore);
+        when(elementLocator.replace(eq(courseBefore), eq(elementAfter))).thenReturn(courseAfterReplace);
+        when(artifactStore.save(any(RevisionArtifact.class))).thenReturn(
+                ".content-audit/revisions/" + planId + "/" + proposalId);
+
+        // The service under test is built directly (not via buildService()) so the REAL
+        // PreservationCheck is wired instead of the class-level Mockito mock field.
+        DefaultProposalDecisionService service = new DefaultProposalDecisionService(
+                artifactStore,
+                courseRepository,
+                elementLocator,
+                refinementPlanStore,
+                new DefaultPreservationFactory().createCheck()
+        );
+
+        // Act
+        ProposalDecisionOutcome outcome = service.approve(proposalId, Optional.of(planId), Optional.empty(), coursePath);
+
+        // Assert — the approval must succeed (NOT PRESERVATION_VIOLATED). Before the production fix,
+        // the deriver also overwrote "title", so the real preservation check would have reported a
+        // violation on every single lexical approval and the outcome would have been
+        // PRESERVATION_VIOLATED, never persisting anything (F-RPRES-R001).
+        assertEquals(ProposalDecisionOutcomeKind.APPROVED_APPLIED, outcome.getKind(),
+                "approve() must succeed end-to-end through the real deriver and the real preservation "
+                        + "check: a lexical correction must never trip PRESERVATION_VIOLATED (F-RPRES-R001)");
+
+        // The persisted course is exactly the one produced by replacing the revised quiz.
+        verify(courseRepository).save(eq(courseAfterReplace), eq(coursePath));
+
+        // The revised quiz differs from the original only in the fields the correction covers
+        // (sentences, form composition, translation — F-LAPS-R013) and preserves everything else,
+        // in particular the title (F-LAPS-R014 / F-RPRES-R004).
+        assertEquals(quizBefore.getTitle(), quizAfter.getTitle(),
+                "title must be preserved: it is not in scope of a lexical correction");
+        assertEquals(quizBefore.getInstructions(), quizAfter.getInstructions(),
+                "instructions must be preserved");
+        assertEquals(quizBefore.getId(), quizAfter.getId(),
+                "quizId must be preserved");
+        assertNotEquals(quizBefore.getSentences(), quizAfter.getSentences(),
+                "sentences must differ: this is the field the lexical correction actually covers");
     }
 }

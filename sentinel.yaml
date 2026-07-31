@@ -3433,6 +3433,7 @@ modules:
       - signature: "parse(String quizSentence): FormEntity"
       - signature: "toPlainSentences(FormEntity form): List<String>"
       - signature: "toPlainSentences(FormEntity form, SentenceMode mode): List<String>"
+      - signature: "parseOnto(String quizSentence, FormEntity base): FormEntity"
       visibility: public
   - name: quizsentenceengine
     description: "Internal engine implementing the quizSentence DSL conversions. The\
@@ -3614,6 +3615,48 @@ modules:
         traceability:
           feature: FEAT-SMODE
           rule: F-SMODE-R004
+      - name: "should keep the form kind, incidence, label and name of the base form\
+          \ when parsing a quizSentence onto it"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014
+      - name: should keep the empty text of each blank part present and empty instead
+          of leaving it absent
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014
+      - name: should take the non-encoded attributes of each part from the base part
+          at the same position when the quizSentence yields the same structure
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014
+      - name: "should replace the sequence of parts, the correct answer of each blank\
+          \ and its accepted variants with what the quizSentence encodes"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R013
+      - name: should give each blank part that the correction adds the same text as
+          the blank parts the exercise already had
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R006
+      - name: should give each fixed-text part that the correction adds its options
+          in the same state as the fixed-text parts the exercise already had
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R006
+      - name: "should never leave a blank part that the correction adds with its text\
+          \ absent or at the default value of its type, even when the exercise had\
+          \ no other blank part"
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R006
+      - name: "should give a fixed-text part that the correction adds its own text\
+          \ and no accepted answers, even when the exercise had no other fixed-text\
+          \ part"
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R006
       implements:
       - QuizSentenceConverter
     - name: QuizSentenceSerializer
@@ -6214,6 +6257,12 @@ modules:
     sealed: true
     exposes:
     - signature: "queryLexis(String quizSentence, String mode, String level): Integer"
+  - name: RepairCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "repair(String resource, String coursePath, boolean dryRun): Integer"
+    visibility: public
   patterns:
   - type: Strategy
     implementations:
@@ -7455,6 +7504,27 @@ modules:
       - java.util.concurrent.Callable<Integer>
       implements:
       - LexisCommand
+    - name: RepairCmd
+      requiresInject:
+      - name: preservationRepair
+        type: PreservationRepair
+        description: Puerto de reparacion de revision-domain.
+      - name: courseRepository
+        type: CourseRepository
+        description: Carga el curso y persiste el resultado reparado; en dry-run solo
+          carga.
+      types:
+      - Component
+      handwrittenTests:
+      - name: should leave no element with degraded attributes in the course reloaded
+          from the data source after repairing it
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R005
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - RepairCommand
   - name: formatting
     description: "Internal formatting infrastructure — report transformers, view models,\
       \ formatters, drill-down resolution, and proposal/preview rendering."
@@ -9009,6 +9079,10 @@ modules:
       description: No proposal matches the supplied id (R002/R011/R012)
     - name: ALREADY_DECIDED
       description: Proposal exists but its verdict is not PENDING_APPROVAL (R013)
+    - name: PRESERVATION_VIOLATED
+      description: "La revision aprobada habria cambiado atributos fuera del alcance\
+        \ declarado de su tipo de correccion (F-RPRES-R001/R002/R003). Ni el artifact\
+        \ pasa a APPROVED ni el curso se escribe: el apply aborta antes de persistir."
   - name: ProposalDecisionOutcome
     type: record
     fields:
@@ -9191,6 +9265,7 @@ modules:
         \ Optional<CourseElementSnapshot>"
     - signature: "replace(CourseEntity course, CourseElementSnapshot replacement):\
         \ CourseEntity"
+    - signature: "alignQuizTitles(CourseEntity course, String knowledgeId): CourseEntity"
   - name: RevisionEngine
     stereotype: port
     sealed: false
@@ -9275,12 +9350,24 @@ modules:
     exposes:
     - signature: "derive(CourseElementSnapshot before, KnowledgeTitleCandidate candidate):\
         \ CourseElementSnapshot"
+  - name: PreservationFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "createCheck(): PreservationCheck"
+    - signature: "createRepair(RevisionArtifactStore artifactStore): PreservationRepair"
+    visibility: public
   patterns:
   - type: Strategy
     implementations:
     - LemmaAbsenceMvpStrategy
     suppressed: false
     interface: LemmaAbsenceProposalStrategy
+  - type: Factory
+    implementations:
+    - DefaultPreservationFactory
+    suppressed: false
+    interface: PreservationFactory
   uses:
   - jackson-databind
   packages:
@@ -9501,6 +9588,20 @@ modules:
         traceability:
           feature: FEAT-KTLR
           rule: F-KTLR-R007
+      - name: should set the title of every quiz of the knowledge to the corrected
+          label
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R004
+      - name: should leave every attribute other than the title of those quizzes unchanged
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R004
+      - name: should leave the quizzes of every other knowledge of the course untouched
+          when aligning titles
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R003
       implements:
       - CourseElementLocator
     - name: DefaultRevisionEngine
@@ -9706,6 +9807,11 @@ modules:
         type: RefinementPlanStore
         description: Needed to clear the task back to PENDING on reject (R014) and
           close it as DONE on approve
+      - name: preservationCheck
+        type: PreservationCheck
+        description: "Guarda de F-RPRES-R001/R002/R003. Se consulta con el curso antes\
+          \ y despues de elementLocator.replace y antes de escribir: si devuelve violaciones,\
+          \ approve retorna PRESERVATION_VIOLATED sin tocar el artifact ni el curso."
       types:
       - Component
       handwrittenTests:
@@ -9782,6 +9888,32 @@ modules:
         traceability:
           feature: FEAT-REVAPR
           rule: F-REVAPR-R013
+      - name: should abort the approval leaving the proposal undecided and the course
+          unwritten when the preservation check reports violations
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R001
+      - name: should align the title of every quiz of the knowledge when approving
+          a correction of its label
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R004
+      - name: should leave the title of the knowledge quizzes untouched when approving
+          a correction of one of those quizzes
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R004
+      - name: should keep the quizzes revised after the proposal was recorded when
+          approving a correction of the knowledge label
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R003
+      - name: "should apply the approval of a lexical correction whose elementAfter\
+          \ comes from the real lemma-absence deriver, saving a course whose revised\
+          \ quiz differs from the original only in the fields the correction covers"
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R001
       implements:
       - ProposalDecisionService
     - name: DefaultLemmaAbsenceProposalStrategyRegistry
@@ -9898,6 +10030,22 @@ modules:
         traceability:
           feature: FEAT-SMODE
           rule: F-SMODE-R007
+      - name: should keep the quiz title identical to the original instead of replacing
+          it with the corrected sentence
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014
+      - name: "should keep the form kind, incidence, label and name and the empty\
+          \ text of each blank identical to the original"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014
+      - name: "should keep on elementAfter the very same quiz title that elementBefore\
+          \ carried, even when the derived plain sentence differs, because the title\
+          \ is not in scope of a lexical correction"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014
       implements:
       - LemmaAbsenceProposalDeriver
     - name: DefaultImpactPreviewComputer
@@ -11264,6 +11412,256 @@ modules:
       visibility: public
       implements:
       - KnowledgeTitleProposalStrategy
+  - name: preservation
+    description: "Contrato publico de la garantia de preservacion (FEAT-RPRES). Aloja\
+      \ la declaracion de alcance por tipo de correccion (CorrectionScope: la respuesta\
+      \ a DOUBT-ALCANCE-DECLARADO), el verificador por complemento que corre antes\
+      \ de persistir un apply (PreservationCheck), el reparador retroactivo del contenido\
+      \ ya degradado (PreservationRepair) y sus carriers (ScopedField, PreservationViolation,\
+      \ AttributeState, RepairReport). Solo puertos y carriers: el motor vive en el\
+      \ package hermano interno 'preservationengine'. Es publico porque el comando\
+      \ repair del CLI consume PreservationRepair; el resto de los consumidores estan\
+      \ dentro de revision-domain."
+    visibility: public
+    models:
+    - name: AttributeState
+      type: enum
+      fields:
+      - name: VALUE_PRESENT
+        description: El atributo esta presente y tiene un valor propio distinto del
+          vacio.
+      - name: EMPTY_PRESENT
+        description: "El atributo esta presente y su valor es legitimamente vacio\
+          \ (cadena vacia, lista vacia). Es una decision de contenido, no una perdida."
+      - name: ABSENT
+        description: "El atributo no esta: null, o el valor por defecto del tipo primitivo\
+          \ alli donde el contenido tenia un valor propio."
+    - name: PreservationViolation
+      type: record
+      fields:
+      - name: elementId
+        type: String
+        description: Id del elemento del curso (quiz o knowledge) donde se observo
+          la diferencia.
+      - name: path
+        type: String
+        description: "Ruta concreta e instanciada donde se observo la diferencia (p.ej.\
+          \ 'form.sentenceParts[2].text'), no el patron declarado en ScopedField.\
+          \ Se resuelve contra el alcance expandiendo cada ScopedField sobre el elemento\
+          \ real."
+      - name: beforeState
+        type: AttributeState
+        description: Estado del atributo en el elemento original.
+      - name: afterState
+        type: AttributeState
+        description: Estado del atributo en el elemento resultante.
+      - name: beforeValue
+        type: String
+        description: "Representacion textual del valor original, para el mensaje de\
+          \ error de R001/R002."
+      - name: afterValue
+        type: String
+        description: Representacion textual del valor resultante.
+    - name: RepairReport
+      type: record
+      fields:
+      - name: course
+        type: CourseEntity
+        description: Curso resultante. En modo inspeccion es el mismo objeto de entrada.
+      - name: elementsInspected
+        type: int
+        description: Cantidad de elementos del curso examinados.
+      - name: elementsRepaired
+        type: int
+        description: Cantidad de elementos con al menos un atributo repuesto.
+      - name: restored
+        type: List<PreservationViolation>
+        description: "Detalle atributo por atributo de lo repuesto (o de lo que se\
+          \ repondria, en modo inspeccion)."
+      - name: unrepairable
+        type: List<String>
+        description: "Ids de elementos degradados sin contraparte integra disponible\
+          \ en los artifacts de revision. Se informan, nunca se inventa un valor por\
+          \ defecto (F-RPRES-R002)."
+    - name: ScopedField
+      type: record
+      fields:
+      - name: path
+        type: String
+        description: "Ruta al leaf dentro del elemento. '[]' marca el paso por una\
+          \ lista. Una ruta que termina en '[]' denota la estructura de la lista (longitud,\
+          \ orden y la clase declarada de cada elemento), no sus leaves: p.ej. 'form.sentenceParts[]'\
+          \ autoriza reordenar/agregar/quitar partes pero no cambiar ningun atributo\
+          \ de una parte. Ejemplos de leaf: 'translation', 'form.incidence', 'quizTemplates[].title',\
+          \ 'form.sentenceParts[].text'."
+      - name: elementKind
+        type: String
+        description: "Nombre de la constante de clase que selecciona los elementos\
+          \ de la lista a los que aplica la entrada; null significa 'todos los elementos'.\
+          \ Es el unico refinamiento admitido sobre la ruta, y solo puede nombrar\
+          \ una clase que el dominio ya declara como enum (p.ej. SentencePartKind.TEXT).\
+          \ Existe porque la correccion lexica cambia el texto de las partes TEXT\
+          \ pero no el de las partes CLOZE, y sin el discriminador ambas quedan bajo\
+          \ la misma ruta 'form.sentenceParts[].text'."
+    interfaces:
+    - name: CorrectionScope
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "changeableFields(DiagnosisKind kind, AuditTarget target): Set<ScopedField>"
+      visibility: public
+    - name: PreservationCheck
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "verify(CourseEntity courseBefore, CourseEntity courseAfter, CourseElementSnapshot\
+          \ revised, DiagnosisKind kind): List<PreservationViolation>"
+      visibility: public
+    - name: PreservationRepair
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "inspect(CourseEntity course): RepairReport"
+      - signature: "repair(CourseEntity course): RepairReport"
+      visibility: public
+  - name: preservationengine
+    description: "Motor interno de la garantia de preservacion. Aloja la tabla de\
+      \ alcances por tipo de correccion (DefaultCorrectionScope), el comparador por\
+      \ complemento que recorre el elemento revisado y verifica el radio de impacto\
+      \ sobre el resto del curso (DefaultPreservationCheck) y el reparador que reconstruye\
+      \ desde los artifacts (DefaultPreservationRepair), todos package-private. Solo\
+      \ DefaultPreservationFactory es publica: es la unica costura por la que el composition\
+      \ root y el resto de revision-domain arman las dos capacidades. Empaquetado\
+      \ aparte de 'preservation' por la misma razon que fielddiff lo esta de consolidatedview:\
+      \ el contrato es estable y el motor no."
+    visibility: internal
+    implementations:
+    - name: DefaultCorrectionScope
+      handwrittenTests:
+      - name: "should declare nothing changeable for a diagnosis kind with no declared\
+          \ scope, so every attribute stays preserved by default"
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R001
+      - name: "should declare a knowledge label correction as changing the label,\
+          \ the instructions and the title of its quizzes"
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R004
+      - name: "should declare a lexical correction of a quiz as changing only the\
+          \ plain sentence, the composition of the statement and the translation"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R013
+      - name: "should leave the quiz title, the form kind, the incidence, the presentation\
+          \ labels and the empty text of each blank outside the scope of a lexical\
+          \ correction"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R013
+      implements:
+      - CorrectionScope
+    - name: DefaultPreservationCheck
+      requiresInject:
+      - name: scope
+        type: CorrectionScope
+        description: Declaracion de alcance contra la que se contrasta el diff observado.
+      handwrittenTests:
+      - name: should report no violation when the revised quiz differs from the original
+          only in the attributes the correction declares changeable
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R001
+      - name: should report a violation when the revised quiz loses the form kind
+          that the correction does not propose to change
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R001
+      - name: should report a violation when an attribute that was present and empty
+          becomes absent
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R002
+      - name: should report a violation when an attribute holding its own value is
+          replaced by the default value of its type
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R002
+      - name: should report a violation when an attribute absent in the original is
+          materialized with a default value
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R002
+      - name: should report a violation when a quiz correction replaces the quiz title
+          with the corrected sentence
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R004
+      - name: should report no violation for the quizzes whose title was aligned to
+          the corrected label of their knowledge
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R004
+      - name: should report a violation when a quiz other than the revised one changed
+          its content
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R003
+      - name: "should report a violation when the course gains, loses or reorders\
+          \ elements around the revised one"
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R003
+      implements:
+      - PreservationCheck
+    - name: DefaultPreservationRepair
+      requiresInject:
+      - name: artifactStore
+        type: RevisionArtifactStore
+        description: "Fuente de las contrapartes integras: el elementBefore de los\
+          \ artifacts APPROVED. Se toma el artifact mas antiguo por nodeId, porque\
+          \ el de una segunda revision ya trae el elemento degradado."
+      - name: scope
+        type: CorrectionScope
+        description: "Delimita que atributos repone la reparacion: exactamente los\
+          \ que quedan fuera del alcance de la correccion que el artifact aplico,\
+          \ de modo que reparar nunca revierte la correccion."
+      handwrittenTests:
+      - name: should restore the degraded attributes of a quiz from the intact counterpart
+          recorded before the revision that degraded it
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R005
+      - name: "should repair a quiz revised twice, whose most recent record already\
+          \ carries the degradation"
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R005
+      - name: should keep the correction that the revision had applied when restoring
+          the lost attributes
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R005
+      - name: should leave every element that was never degraded exactly as it was
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R005
+      - name: should report the degraded elements found in a full walk of the course
+          without modifying it when only inspecting
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R005
+      - name: should report as unrepairable a degraded element with no intact counterpart
+          instead of filling it with the default value of its type
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R002
+      implements:
+      - PreservationRepair
+    - name: DefaultPreservationFactory
+      visibility: public
+      implements:
+      - PreservationFactory
 - name: revision-infrastructure
   description: "Infrastructure adapter for the revision phase. Provides the LLM-backed\
     \ implementation of LemmaAbsenceQuizCandidateGenerator (revision-domain.lemmaabsence\
@@ -12133,6 +12531,21 @@ features:
     validation: AUTO_VALIDATED
     testModule: audit-cli
     testPackage: com.learney.contentaudit.auditcli.commands
+- id: FEAT-RPRES
+  code: F-RPRES
+  journeys:
+  - id: F-RPRES-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-RPRES-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-RPRES-J003
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
 dependencies:
 - alias: langchain4j-openai
   artifact: dev.langchain4j:langchain4j-open-ai:1.13.0

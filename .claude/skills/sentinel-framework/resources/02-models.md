@@ -1996,10 +1996,11 @@ new ApprovalMode(null AUTO, null HUMAN)
 | `REJECTED` | `null` |  |
 | `NOT_FOUND` | `null` |  |
 | `ALREADY_DECIDED` | `null` |  |
+| `PRESERVATION_VIOLATED` | `null` |  |
 
 **Generated constructor:**
 ```java
-new ProposalDecisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NOT_FOUND, null ALREADY_DECIDED)
+new ProposalDecisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NOT_FOUND, null ALREADY_DECIDED, null PRESERVATION_VIOLATED)
 ```
 
 #### ProposalDecisionOutcome
@@ -2452,6 +2453,58 @@ new OverrideRejectedException(String reason)
 |-------|------|
 | `title` | `String` |
 | `instructions` | `String` |
+
+#### AttributeState (package: preservation)
+
+**Package:** `com.learney.contentaudit.revisiondomain.preservation`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `VALUE_PRESENT` | `null` |
+| `EMPTY_PRESENT` | `null` |
+| `ABSENT` | `null` |
+
+#### PreservationViolation (package: preservation)
+
+**Package:** `com.learney.contentaudit.revisiondomain.preservation`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `elementId` | `String` |
+| `path` | `String` |
+| `beforeState` | `AttributeState` |
+| `afterState` | `AttributeState` |
+| `beforeValue` | `String` |
+| `afterValue` | `String` |
+
+#### RepairReport (package: preservation)
+
+**Package:** `com.learney.contentaudit.revisiondomain.preservation`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `course` | `CourseEntity` |
+| `elementsInspected` | `int` |
+| `elementsRepaired` | `int` |
+| `restored` | `List<PreservationViolation>` |
+| `unrepairable` | `List<String>` |
+
+#### ScopedField (package: preservation)
+
+**Package:** `com.learney.contentaudit.revisiondomain.preservation`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `path` | `String` |
+| `elementKind` | `String` |
 
 ### Module: revision-infrastructure
 

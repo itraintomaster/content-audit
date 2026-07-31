@@ -129,6 +129,9 @@ import com.learney.contentaudit.revisiondomain.consolidatedview.NodeFieldDiffer;
 import com.learney.contentaudit.revisiondomain.engine.DefaultConsolidatedViewBuilderFactory;
 import com.learney.contentaudit.revisiondomain.fielddiff.DefaultNodeFieldDifferFactory;
 import com.learney.contentaudit.auditcli.formatting.DefaultConsolidatedViewFormatter;
+import com.learney.contentaudit.revisiondomain.PreservationFactory;
+import com.learney.contentaudit.revisiondomain.preservation.PreservationRepair;
+import com.learney.contentaudit.revisiondomain.preservationengine.DefaultPreservationFactory;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -590,6 +593,14 @@ class Main {
         DefaultGetConsolidatedCommand getConsolidatedCmd = new DefaultGetConsolidatedCommand(
                 consolidatedViewBuilder, new DefaultConsolidatedViewFormatter());
         cmd.addSubcommand("get-consolidated", new picocli.CommandLine(new GetConsolidatedCmd(getConsolidatedCmd)));
+
+        // repair — F-RPRES-R005: restores attributes degraded by past revisions, using the
+        // same CorrectionScope the preservation guard applies going forward, so both
+        // directions stay the same rule (architect decision, decisions.md 2026-07-29).
+        PreservationFactory preservationFactory = new DefaultPreservationFactory();
+        PreservationRepair preservationRepair = preservationFactory.createRepair(revisionArtifactStore);
+        cmd.addSubcommand("repair", new picocli.CommandLine(
+                new RepairCmd(preservationRepair, (CourseRepository) courseRepository)));
 
         // ----------------------------------------------------------------
         // Step 9: Execute

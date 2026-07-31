@@ -6,3 +6,5 @@
 2026-04-22 — test-writer — QuizSentenceConverter lives in com.learney.contentaudit.coursedomain.quizsentence (public package in course-domain). Import needed explicitly since CourseToAuditableMapperTest only had com.learney.contentaudit.coursedomain.* wildcard (covers entity classes, not the quizsentence subpackage).
 
 2026-04-22 — test-writer — R028 fixture approach: no Jackson in course-domain test scope. Used 7 manually transcribed FormEntity instances from real db/english-course files instead of file-scanning. Covers all real patterns: single-option, pipe-variant, hint in TEXT, multi-entry options. Each fixture exercises R021+R022+R020 in one loop.
+
+2026-07-30 — test-writer — FormEntity/SentencePartEntity son POJOs generados (no records de Java pese a `type: record` en sentinel.yaml), pero SÍ traen equals()/hashCode() sobreescritos por igualdad estructural de campos — assertEquals/assertNotEquals sobre instancias funciona directo, sin comparar campo a campo. Accessors son getSentenceParts()/getKind()/getText()/getOptions(), no sentenceParts()/kind()/text()/options() (mismo patrón que AuditableQuiz.getSentences() ya loggeado arriba).

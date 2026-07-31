@@ -129,6 +129,12 @@ Methods:
 
 - `queryLexis(String quizSentence, String mode, String level): Integer`
 
+### RepairCommand (port) [sealed]
+
+Methods:
+
+- `repair(String resource, String coursePath, boolean dryRun): Integer`
+
 ## Dependency Contracts
 
 The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.
@@ -1023,6 +1029,7 @@ Methods:
 | REJECTED | `null` |
 | NOT_FOUND | `null` |
 | ALREADY_DECIDED | `null` |
+| PRESERVATION_VIOLATED | `null` |
 
 ### ProposalDecisionOutcome (`record`)
 
@@ -1147,6 +1154,7 @@ Methods:
 
 - `snapshot(CourseEntity course, AuditTarget target, String nodeId): Optional<CourseElementSnapshot>`
 - `replace(CourseEntity course, CourseElementSnapshot replacement): CourseEntity`
+- `alignQuizTitles(CourseEntity course, String knowledgeId): CourseEntity`
 
 ### RevisionEngine (port)
 
@@ -1235,4 +1243,11 @@ Methods:
 Methods:
 
 - `derive(CourseElementSnapshot before, KnowledgeTitleCandidate candidate): CourseElementSnapshot`
+
+### PreservationFactory (factory)
+
+Methods:
+
+- `createCheck(): PreservationCheck`
+- `createRepair(RevisionArtifactStore artifactStore): PreservationRepair`
 

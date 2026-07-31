@@ -413,6 +413,7 @@ Examples:
 | `parse(String quizSentence): FormEntity` | (none) |
 | `toPlainSentences(FormEntity form): List<String>` | (none) |
 | `toPlainSentences(FormEntity form, SentenceMode mode): List<String>` | (none) |
+| `parseOnto(String quizSentence, FormEntity base): FormEntity` | (none) |
 
 ### Module: refiner-domain
 
@@ -628,6 +629,14 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `queryLexis(String quizSentence, String mode, String level): Integer` | (none) |
+
+#### RepairCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `repair(String resource, String coursePath, boolean dryRun): Integer` | (none) |
 
 #### EphemeralPlanRenderer (package: commands)
 
@@ -846,6 +855,7 @@ Examples:
 |--------|--------|
 | `snapshot(CourseEntity course, AuditTarget target, String nodeId): Optional<CourseElementSnapshot>` | (none) |
 | `replace(CourseEntity course, CourseElementSnapshot replacement): CourseEntity` | (none) |
+| `alignQuizTitles(CourseEntity course, String knowledgeId): CourseEntity` | (none) |
 
 #### RevisionEngine (port)
 
@@ -963,6 +973,15 @@ Examples:
 |--------|--------|
 | `derive(CourseElementSnapshot before, KnowledgeTitleCandidate candidate): CourseElementSnapshot` | (none) |
 
+#### PreservationFactory (factory)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+| Method | Throws |
+|--------|--------|
+| `createCheck(): PreservationCheck` | (none) |
+| `createRepair(RevisionArtifactStore artifactStore): PreservationRepair` | (none) |
+
 #### LemmaAbsenceQuizCandidateGenerator (package: lemmaabsence)
 
 **Package:** `com.learney.contentaudit.revisiondomain.lemmaabsence`
@@ -1053,6 +1072,34 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `generate(KnowledgeTitleCorrectionContext context): KnowledgeTitleGeneratorResponse` | (none) |
+
+#### CorrectionScope (package: preservation)
+
+**Package:** `com.learney.contentaudit.revisiondomain.preservation`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `changeableFields(DiagnosisKind kind, AuditTarget target): Set<ScopedField>` | (none) |
+
+#### PreservationCheck (package: preservation)
+
+**Package:** `com.learney.contentaudit.revisiondomain.preservation`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `verify(CourseEntity courseBefore, CourseEntity courseAfter, CourseElementSnapshot revised, DiagnosisKind kind): List<PreservationViolation>` | (none) |
+
+#### PreservationRepair (package: preservation)
+
+**Package:** `com.learney.contentaudit.revisiondomain.preservation`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `inspect(CourseEntity course): RepairReport` | (none) |
+| `repair(CourseEntity course): RepairReport` | (none) |
 
 ### Module: revision-infrastructure
 

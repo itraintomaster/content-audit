@@ -283,20 +283,88 @@ Dado un `quizSentence` valido, parsearlo a `sentenceParts` (Grupo D) y volver a 
 
 **Error**: "Round-trip rompe la estabilidad textual del quizSentence: '{original}' vs '{recuperado}'"
 
+<a id="F-QSENT-R023"></a>
 ### Rule[F-QSENT-R023] - La derivacion a plain sentence es estrictamente unidireccional
 **Severity**: critical | **Validation**: VALIDATED
 
-La derivacion a plain sentence (Grupo E) es **estrictamente unidireccional y lossy**. No existe una conversion inversa desde una plain sentence (ni desde la lista completa de variantes) hacia un `quizSentence` o un `sentenceParts`, porque en la derivacion se pierde informacion esencial:
+> La derivacion a plain sentence (Grupo E) es lossy y **no tiene vuelta**. Se
+> verifica por tres invariantes observables:
+> 1. **La derivacion no es inyectiva**: existen dos ejercicios estructuralmente
+>    distintos que derivan la **misma** lista de plain sentences, por lo que la
+>    lista no determina el ejercicio del que salio.
+> 2. **Una plain sentence entregada a una conversion que lee texto no recupera el
+>    ejercicio**: no reaparece ningun blank, ninguna respuesta aceptada y ningun
+>    hint que la plain sentence ya no contenga — la conversion devuelve texto
+>    plano sin huecos o falla, pero en ningun caso reconstruye la estructura
+>    perdida, ni siquiera cuando se le ofrece el ejercicio original como base.
+> 3. **Ninguna conversion del dominio admite una plain sentence (ni la lista de
+>    plain sentences) como entrada**: la salida de la derivacion no es entrada de
+>    ninguna otra conversion.
 
-- La **ubicacion y cantidad de blanks** se borra (en la plain sentence ya estan rellenos con la variante).
-- Los **hints pedagogicos** se eliminan.
+<details><summary>Detalle</summary>
+
+**Que se pierde en la derivacion** (esto es lo que hace imposible la vuelta, y es
+la causa de la no inyectividad del invariante 1):
+
+- La **ubicacion y cantidad de blanks** se borra (en la plain sentence ya estan
+  rellenos con la variante).
+- Los **hints pedagogicos** se eliminan (R019).
 - La **estructura TEXT/CLOZE** desaparece (solo queda texto).
 
-Cualquier intento de reconstruir un `quizSentence` o un `sentenceParts` a partir de una o mas plain sentences es **fuera de alcance de QSENT** y corresponde a un problema distinto ("generar un quiz desde cero", no "convertir entre representaciones").
+Colision concreta que demuestra el invariante 1: `[TEXT "He ", CLOZE options=["is"], TEXT " great."]`,
+`[TEXT "He is (to be) great."]` y `[TEXT "He is great."]` derivan las tres la
+misma plain sentence `"He is great."`. Tres ejercicios distintos, una sola plain
+sentence: no existe funcion inversa posible.
 
-Las unicas conversiones bidireccionales son `sentenceParts <-> quizSentence` (R021, R022).
+**La regla acota una direccion, no una cantidad de conversiones.** R023 no dice
+cuantas conversiones ofrece el dominio ni prohibe agregar nuevas: prohibe que
+alguna de ellas vaya *desde* una plain sentence *hacia* un `quizSentence` o un
+`sentenceParts`. Cualquier conversion nueva es legitima frente a esta regla
+mientras su entrada textual sea un `quizSentence` (que conserva blanks,
+respuestas, hints y la estructura TEXT/CLOZE) y no una plain sentence. Enunciarla
+como un conteo de conversiones fue un error historico de su primer test: obligo a
+subir el numero al aparecer la derivacion sensible al modo de oracion
+(FEAT-SMODE) sin que nada de la unidireccionalidad hubiera cambiado.
+
+**Conversiones dentro del alcance permitido** (ninguna viola R023):
+
+| Conversion | Entrada textual | Por que no viola R023 |
+|---|---|---|
+| `sentenceParts` -> `quizSentence` (Grupo C) | ninguna | no parte de texto plano |
+| `quizSentence` -> `sentenceParts` (Grupo D) | `quizSentence` | la DSL conserva blanks, respuestas y hints |
+| `sentenceParts` -> plain sentences (Grupo E) | ninguna | es la direccion permitida, la que pierde informacion |
+| `sentenceParts` + modo de oracion -> plain sentences (FEAT-SMODE) | ninguna | misma direccion permitida, con seleccion de modo |
+| `quizSentence` + ejercicio base -> `sentenceParts` (conversion de preservacion, FEAT-RPRES) | `quizSentence` | ver parrafo siguiente |
+
+**La conversion de preservacion esta DENTRO del alcance permitido.** La conversion
+que recibe un `quizSentence` junto con un **ejercicio base** y devuelve el
+`sentenceParts` revisado conservando los atributos del ejercicio que la DSL no
+codifica (tipo de formulario, incidencia, etiquetas, nombre — F-RPRES-R001,
+F-RPRES-R002) va en la **misma direccion** que el parseo simple del Grupo D: de
+`quizSentence` a `sentenceParts`. El ejercicio base no se usa para adivinar nada
+de lo que la plain sentence pierde; solo aporta atributos que **la DSL nunca
+codifico** y que por lo tanto no se pueden leer del texto. En el contrato del
+dominio esta conversion se conoce como `parseOnto`; queda anotado aqui para que
+quien lea su test no tenga que re-derivar la decision.
+
+El limite se mantiene incluso en esa conversion: si se le entrega una plain
+sentence en lugar de un `quizSentence`, aun teniendo el ejercicio original como
+base, el resultado **no** vuelve a tener los blanks ni las respuestas del original
+(invariante 2). El base preserva atributos no codificados, no resucita la
+estructura del enunciado, que es justamente lo que la revision se propone
+cambiar.
+
+Cualquier intento de reconstruir un `quizSentence` o un `sentenceParts` a partir
+de una o mas plain sentences es **fuera de alcance de QSENT** y corresponde a un
+problema distinto ("generar un quiz desde cero", no "convertir entre
+representaciones").
+
+Las unicas conversiones bidireccionales son `sentenceParts <-> quizSentence`
+(R021, R022).
 
 **Error**: N/A (esta regla declara la unidireccionalidad de la plain sentence)
+
+</details>
 
 ### Rule[F-QSENT-R024] - Las conversiones fallan de forma atomica
 **Severity**: critical | **Validation**: AUTO_VALIDATED

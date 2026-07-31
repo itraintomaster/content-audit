@@ -283,4 +283,95 @@ class DefaultCourseElementLocator implements CourseElementLocator {
                 .filter(q -> nodeId.equals(q.getId()))
                 .findFirst();
     }
+
+    @Override
+    public CourseEntity alignQuizTitles(CourseEntity course, String knowledgeId) {
+        if (course == null || knowledgeId == null) {
+            return course;
+        }
+        RootNodeEntity root = course.getRoot();
+        if (root == null || root.getMilestones() == null) {
+            return course;
+        }
+
+        List<MilestoneEntity> updatedMilestones = new ArrayList<>();
+        boolean replaced = false;
+        for (MilestoneEntity milestone : root.getMilestones()) {
+            if (milestone.getTopics() == null) {
+                updatedMilestones.add(milestone);
+                continue;
+            }
+            List<TopicEntity> updatedTopics = new ArrayList<>();
+            boolean topicChanged = false;
+            for (TopicEntity topic : milestone.getTopics()) {
+                if (topic.getKnowledges() == null) {
+                    updatedTopics.add(topic);
+                    continue;
+                }
+                List<KnowledgeEntity> updatedKnowledges = new ArrayList<>();
+                boolean knowledgeChanged = false;
+                for (KnowledgeEntity knowledge : topic.getKnowledges()) {
+                    if (knowledgeId.equals(knowledge.getId()) && knowledge.getQuizTemplates() != null) {
+                        List<QuizTemplateEntity> alignedQuizzes = new ArrayList<>();
+                        for (QuizTemplateEntity quiz : knowledge.getQuizTemplates()) {
+                            QuizTemplateEntity alignedQuiz = new QuizTemplateEntity(
+                                    quiz.getId(), quiz.getOidId(), quiz.getKind(), quiz.getKnowledgeId(),
+                                    knowledge.getLabel(), quiz.getInstructions(), quiz.getTranslation(),
+                                    quiz.getTheoryId(), quiz.getTopicName(), quiz.getForm(),
+                                    quiz.getDifficulty(), quiz.getRetries(), quiz.getNoScoreRetries(),
+                                    quiz.getCode(), quiz.getAudioUrl(), quiz.getImageUrl(),
+                                    quiz.getAnswerAudioUrl(), quiz.getAnswerImageUrl(), quiz.getMiniTheory(),
+                                    quiz.getSuccessMessage(), quiz.getSentences());
+                            alignedQuizzes.add(alignedQuiz);
+                        }
+                        KnowledgeEntity updatedKnowledge = new KnowledgeEntity(
+                                knowledge.getId(), knowledge.getCode(), knowledge.getKind(),
+                                knowledge.getLabel(), knowledge.getOldId(), knowledge.getParentId(),
+                                knowledge.isIsRule(), knowledge.getInstructions(),
+                                knowledge.getOrder(), knowledge.getSlug(), alignedQuizzes,
+                                knowledge.getSentenceMode());
+                        updatedKnowledges.add(updatedKnowledge);
+                        knowledgeChanged = true;
+                        replaced = true;
+                    } else {
+                        updatedKnowledges.add(knowledge);
+                    }
+                }
+                if (knowledgeChanged) {
+                    TopicEntity updatedTopic = new TopicEntity(
+                            topic.getId(), topic.getCode(), topic.getKind(), topic.getLabel(),
+                            topic.getOldId(), topic.getParentId(), topic.getChildren(),
+                            topic.getRuleIds(), topic.getOrder(), topic.getSlug(),
+                            updatedKnowledges);
+                    updatedTopics.add(updatedTopic);
+                    topicChanged = true;
+                } else {
+                    updatedTopics.add(topic);
+                }
+            }
+            if (topicChanged) {
+                MilestoneEntity updatedMilestone = new MilestoneEntity(
+                        milestone.getId(), milestone.getCode(), milestone.getKind(),
+                        milestone.getLabel(), milestone.getOldId(), milestone.getParentId(),
+                        milestone.getChildren(), milestone.getOrder(), milestone.getSlug(),
+                        updatedTopics);
+                updatedMilestones.add(updatedMilestone);
+            } else {
+                updatedMilestones.add(milestone);
+            }
+        }
+
+        if (!replaced) {
+            return course;
+        }
+
+        RootNodeEntity updatedRoot = new RootNodeEntity(
+                root.getId(), root.getCode(), root.getKind(), root.getLabel(),
+                root.getChildren(), updatedMilestones);
+
+        return new CourseEntity(
+                course.getId(), course.getTitle(), course.getKnowledgeIds(),
+                updatedRoot, course.getSlug());
+    }
+
 }

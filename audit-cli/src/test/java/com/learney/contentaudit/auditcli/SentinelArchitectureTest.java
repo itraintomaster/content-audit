@@ -145,6 +145,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: LexisCommand - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.RepairCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RepairCommand - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.commands.EphemeralPlanRenderer");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: EphemeralPlanRenderer - " + e.getMessage());
@@ -238,6 +243,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.commands.LexisCmd");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LexisCmd - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.RepairCmd");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RepairCmd - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.formatting.ReportViewModel");

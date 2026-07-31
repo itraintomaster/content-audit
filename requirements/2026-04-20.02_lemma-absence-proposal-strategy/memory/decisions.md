@@ -28,3 +28,7 @@ should not re-litigate. Newest entries on top.
     sin primitive renameTo: en el DSL (el merger matchea por name).
   - Validador: 0 additions, 1 modifications, 0 conflicts.
   - Post-apply esperado: R004 pasa de FAILING a PASSING (8/8 tests).
+
+2026-07-29 — analyst — R013 y R014 reformuladas (ids conservados) como caso particular de F-RPRES-R001 (requirements/2026-07-29.01_preservacion-del-contenido-no-revisado).
+  why: entre las dos autorizaban formalmente un dano real (2658 quizzes revisados perdieron tipo de formulario, peso, etiquetas y el texto vacio del hueco). El agujero estaba en el 2do item de R013: "estructura del ejercicio (quizForm)" se leia como el formulario completo. Ahora R013 dice "composicion del enunciado" (partes TEXT/CLOZE + respuesta + variantes) y delimita explicito que atributos NO entran; R014 pasa de lista enumerada a complemento ("todo lo que no esta en R013 se preserva"), con la lista vieja degradada a ejemplos.
+  ojo: el cambio ACOTA lo permitido, no amplia — los tests vigentes tagueados R013/R014 (DefaultLemmaAbsenceProposalDeriverTest, DefaultImpactPreviewComputerTest, FLapsJ001/J002JourneyTest) siguen valiendo sin retag. Se conservo explicita la estabilidad de identidad del elemento y la exclusion de propuestas estructurales, porque FEAT-PIPRE y FEAT-CDIFF heredan de R014 justamente eso. Ningun id cambio; hace falta `sentinel feature sync`.

@@ -4,6 +4,7 @@ import com.learney.contentaudit.revisiondomain.CourseElementLocator;
 import com.learney.contentaudit.revisiondomain.ProposalDecisionService;
 import com.learney.contentaudit.revisiondomain.ProposalDecisionServiceFactory;
 import com.learney.contentaudit.revisiondomain.RevisionEngineConfig;
+import com.learney.contentaudit.revisiondomain.preservationengine.DefaultPreservationFactory;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -20,6 +21,7 @@ public class DefaultProposalDecisionServiceFactory implements ProposalDecisionSe
                 config.getArtifactStore(),
                 config.getCourseRepository(),
                 elementLocator,
-                config.getRefinementPlanStore());
+                config.getRefinementPlanStore(),
+                new DefaultPreservationFactory().createCheck());
     }
 }
