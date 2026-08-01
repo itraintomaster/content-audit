@@ -1,5 +1,29 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.QuizDiagnoses;
+import com.learney.contentaudit.auditdomain.QuizInstructionVerdictReader;
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionCheck;
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionCheckStatus;
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionSeverity;
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionViolation;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionDiagnosis;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionVerdict;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -16,12 +40,68 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-QINST-J001")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FQinstJ001JourneyTest {
+
+    // ------------------------------------------------------------------
+    // Helpers
+    // ------------------------------------------------------------------
+
+    private AuditNode buildQuizNode() {
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.QUIZ);
+        node.setEntity(new AuditableQuiz(List.of(), "q1", "label", null, null,
+                List.of("a sentence"), null, "Fill in the blank with the past tense", List.of()));
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        return node;
+    }
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El sistema entrega al juez el conteni... → El ejercicio recibe el puntaje maximo... [El juez responde que el ejercicio cumple su consigna, con severidad ninguna] → success")
     public void path1_elJuezRespondeQueElEjercicioCumpleSuConsignaConSeveridadNinguna_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        EvaluationSession session = mock(EvaluationSession.class);
+        QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
+        QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
+        QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
+        QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null);
+
+        // Nodo "consultar_juez": el sistema entrega al juez el contenido completo del ejercicio
+        AuditNode quizNode = buildQuizNode();
+        EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
+        when(subjectBuilder.build(quizNode)).thenReturn(subject);
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-cumple"));
+
+        // Outcome: "El juez responde que el ejercicio cumple su consigna, con severidad ninguna"
+        InstructionCheck grammarCheck = new InstructionCheck("grammar",
+                "El texto debe ser gramaticalmente correcto", InstructionCheckStatus.PASSED, "\"She has gone home\"");
+        InstructionCheck instructionCheck = new InstructionCheck("instruction-form",
+                "La respuesta debe ser un verbo en presente perfecto", InstructionCheckStatus.PASSED, "\"has gone\"");
+        QuizInstructionVerdict verdict = new QuizInstructionVerdict(true, 0.95, InstructionSeverity.NONE,
+                "El ejercicio cumple literalmente la consigna", List.of(), List.of(grammarCheck, instructionCheck));
+        when(verdictReader.read("payload-cumple")).thenReturn(verdict);
+        when(scorer.score(verdict)).thenReturn(1.0);
+
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
+                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+
+        // Nodo "cumple" (gate F-QINST-R002, F-QINST-R003): puntaje maximo + diagnostico sin
+        // violaciones, con los controles realizados por el juez -> desenlace success
+        analyzer.onQuiz(quizNode);
+
+        assertFalse(quizNode.getScores().isEmpty(),
+                "F-QINST-R002: el ejercicio que cumple recibe el puntaje maximo del analisis");
+        assertEquals(1.0, quizNode.getScores().values().iterator().next(), 0.0001,
+                "F-QINST-R002: severidad ninguna -> puntaje 1,0");
+        assertInstanceOf(QuizDiagnoses.class, quizNode.getDiagnoses(), "F-QINST-R003: debe quedar diagnostico registrado");
+        QuizInstructionDiagnosis diagnosis = ((QuizDiagnoses) quizNode.getDiagnoses())
+                .getQuizInstructionDiagnosis()
+                .orElseThrow(() -> new AssertionError("F-QINST-R003: el ejercicio que cumple deja diagnostico"));
+        assertTrue(diagnosis.getVerdict().getViolations().isEmpty(),
+                "F-QINST-R003: sin violaciones cuando el ejercicio cumple");
+        assertEquals(2, diagnosis.getVerdict().getCheckedConstraints().size(),
+                "F-QINST-R003: deben quedar registrados los controles realizados por el juez");
     }
 
     @Test
@@ -29,7 +109,47 @@ public class FQinstJ001JourneyTest {
     @Tag("path-2")
     @DisplayName("path-2: El sistema entrega al juez el conteni... → El ejercicio recibe el puntaje corres... [El juez responde que el ejercicio no cumple, con severidad menor] → success")
     public void path2_elJuezRespondeQueElEjercicioNoCumpleConSeveridadMenor_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        EvaluationSession session = mock(EvaluationSession.class);
+        QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
+        QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
+        QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
+        QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null);
+
+        // Nodo "consultar_juez": el sistema entrega al juez el contenido completo del ejercicio
+        AuditNode quizNode = buildQuizNode();
+        EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
+        when(subjectBuilder.build(quizNode)).thenReturn(subject);
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-menor"));
+
+        // Outcome: "El juez responde que el ejercicio no cumple, con severidad menor"
+        InstructionViolation violation = new InstructionViolation("MINOR_FORM",
+                "La respuesta debe estar en minuscula", "\"Home\"",
+                "La respuesta empieza con mayuscula sin ser nombre propio");
+        QuizInstructionVerdict verdict = new QuizInstructionVerdict(false, 0.8, InstructionSeverity.MINOR,
+                "Incumplimiento menor de forma", List.of(violation), List.of());
+        when(verdictReader.read("payload-menor")).thenReturn(verdict);
+        when(scorer.score(verdict)).thenReturn(0.6);
+
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
+                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+
+        // Nodo "incumple_menor" (gate F-QINST-R002, F-QINST-R003): puntaje de severidad menor
+        // + diagnostico con la violacion detectada, su restriccion, evidencia y explicacion
+        analyzer.onQuiz(quizNode);
+
+        assertEquals(0.6, quizNode.getScores().values().iterator().next(), 0.0001,
+                "F-QINST-R002: severidad menor -> puntaje 0,6");
+        QuizInstructionDiagnosis diagnosis = ((QuizDiagnoses) quizNode.getDiagnoses())
+                .getQuizInstructionDiagnosis()
+                .orElseThrow(() -> new AssertionError("F-QINST-R003: el ejercicio que incumple deja diagnostico"));
+        assertEquals(1, diagnosis.getVerdict().getViolations().size(),
+                "F-QINST-R003: debe registrarse la violacion detectada");
+        InstructionViolation recorded = diagnosis.getVerdict().getViolations().get(0);
+        assertEquals("MINOR_FORM", recorded.getCode());
+        assertEquals("La respuesta debe estar en minuscula", recorded.getConstraint());
+        assertEquals("\"Home\"", recorded.getEvidence());
+        assertEquals("La respuesta empieza con mayuscula sin ser nombre propio", recorded.getExplanation());
     }
 
     @Test
@@ -37,7 +157,46 @@ public class FQinstJ001JourneyTest {
     @Tag("path-3")
     @DisplayName("path-3: El sistema entrega al juez el conteni... → El ejercicio recibe el puntaje corres... [El juez responde que el ejercicio no cumple, con severidad mayor] → success")
     public void path3_elJuezRespondeQueElEjercicioNoCumpleConSeveridadMayor_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        EvaluationSession session = mock(EvaluationSession.class);
+        QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
+        QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
+        QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
+        QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null);
+
+        // Nodo "consultar_juez": el sistema entrega al juez el contenido completo del ejercicio
+        AuditNode quizNode = buildQuizNode();
+        EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
+        when(subjectBuilder.build(quizNode)).thenReturn(subject);
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-mayor"));
+
+        // Outcome: "El juez responde que el ejercicio no cumple, con severidad mayor"
+        InstructionViolation violation = new InstructionViolation("WRONG_TENSE",
+                "El hueco debe completarse con un verbo en pasado", "\"goes\"",
+                "La respuesta esta en presente, no en pasado");
+        QuizInstructionVerdict verdict = new QuizInstructionVerdict(false, 0.85, InstructionSeverity.MAJOR,
+                "Incumplimiento mayor de la restriccion temporal", List.of(violation), List.of());
+        when(verdictReader.read("payload-mayor")).thenReturn(verdict);
+        when(scorer.score(verdict)).thenReturn(0.3);
+
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
+                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+
+        // Nodo "incumple_mayor" (gate F-QINST-R002, F-QINST-R003): puntaje de severidad mayor
+        // + diagnostico con sus violaciones y evidencia
+        analyzer.onQuiz(quizNode);
+
+        assertEquals(0.3, quizNode.getScores().values().iterator().next(), 0.0001,
+                "F-QINST-R002: severidad mayor -> puntaje 0,3");
+        QuizInstructionDiagnosis diagnosis = ((QuizDiagnoses) quizNode.getDiagnoses())
+                .getQuizInstructionDiagnosis()
+                .orElseThrow(() -> new AssertionError("F-QINST-R003: el ejercicio que incumple deja diagnostico"));
+        assertEquals(1, diagnosis.getVerdict().getViolations().size(),
+                "F-QINST-R003: debe registrarse la violacion detectada");
+        InstructionViolation recorded = diagnosis.getVerdict().getViolations().get(0);
+        assertEquals("WRONG_TENSE", recorded.getCode());
+        assertEquals("\"goes\"", recorded.getEvidence());
+        assertEquals("La respuesta esta en presente, no en pasado", recorded.getExplanation());
     }
 
     @Test
@@ -45,7 +204,46 @@ public class FQinstJ001JourneyTest {
     @Tag("path-4")
     @DisplayName("path-4: El sistema entrega al juez el conteni... → El ejercicio recibe el puntaje minimo... [El juez responde que el ejercicio no cumple, con severidad critica] → success")
     public void path4_elJuezRespondeQueElEjercicioNoCumpleConSeveridadCritica_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        EvaluationSession session = mock(EvaluationSession.class);
+        QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
+        QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
+        QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
+        QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null);
+
+        // Nodo "consultar_juez": el sistema entrega al juez el contenido completo del ejercicio
+        AuditNode quizNode = buildQuizNode();
+        EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
+        when(subjectBuilder.build(quizNode)).thenReturn(subject);
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-critico"));
+
+        // Outcome: "El juez responde que el ejercicio no cumple, con severidad critica"
+        InstructionViolation violation = new InstructionViolation("UNSOLVABLE",
+                "El ejercicio debe tener al menos una solucion valida", "\"____ (goed)\"",
+                "Ninguna opcion aceptada es gramaticalmente correcta: el ejercicio es irresoluble");
+        QuizInstructionVerdict verdict = new QuizInstructionVerdict(false, 0.9, InstructionSeverity.CRITICAL,
+                "El ejercicio es irresoluble", List.of(violation), List.of());
+        when(verdictReader.read("payload-critico")).thenReturn(verdict);
+        when(scorer.score(verdict)).thenReturn(0.0);
+
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
+                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+
+        // Nodo "incumple_critico" (gate F-QINST-R002, F-QINST-R003): puntaje minimo
+        // + diagnostico con sus violaciones y evidencia
+        analyzer.onQuiz(quizNode);
+
+        assertEquals(0.0, quizNode.getScores().values().iterator().next(), 0.0001,
+                "F-QINST-R002: severidad critica -> puntaje 0,0");
+        QuizInstructionDiagnosis diagnosis = ((QuizDiagnoses) quizNode.getDiagnoses())
+                .getQuizInstructionDiagnosis()
+                .orElseThrow(() -> new AssertionError("F-QINST-R003: el ejercicio que incumple deja diagnostico"));
+        assertEquals(1, diagnosis.getVerdict().getViolations().size(),
+                "F-QINST-R003: debe registrarse la violacion detectada");
+        InstructionViolation recorded = diagnosis.getVerdict().getViolations().get(0);
+        assertEquals("UNSOLVABLE", recorded.getCode());
+        assertEquals("Ninguna opcion aceptada es gramaticalmente correcta: el ejercicio es irresoluble",
+                recorded.getExplanation());
     }
 
     @Test
@@ -54,6 +252,37 @@ public class FQinstJ001JourneyTest {
     @DisplayName("path-5: El sistema entrega al juez el conteni... → El ejercicio no recibe puntaje ni dia... [El juez no logra emitir un veredicto valido y responde con su veredicto conservador de infraestructura (confianza nula y violacion de salida invalida)] → failure")
     public void path5_elJuezNoLograEmitirUnVeredictoValidoYRespondeConSuVeredictoConservadorDeInfraestructuraConfianzaNulaYViolacionDeSalidaInvalida_failure(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        EvaluationSession session = mock(EvaluationSession.class);
+        QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
+        QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
+        QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
+        QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null);
+
+        // Nodo "consultar_juez": el sistema entrega al juez el contenido completo de un
+        // ejercicio pendiente (nivel CEFR, topic, etiqueta e instrucciones del knowledge y el
+        // ejercicio con todas sus partes y opciones aceptadas)
+        AuditNode quizNode = buildQuizNode();
+        EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
+        when(subjectBuilder.build(quizNode)).thenReturn(subject);
+        // Outcome: "el juez no logra emitir un veredicto valido y responde con su veredicto
+        // conservador de infraestructura (confianza nula y violacion de salida invalida)".
+        // La sesion traduce esa respuesta en una resolucion FAILED, no en un veredicto legitimo.
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null));
+
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
+                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+
+        // Nodo "falla_del_juez" (gate F-QINST-R013): el ejercicio no recibe puntaje ni
+        // diagnostico, no queda registrado ningun veredicto para el, y se cuenta como
+        // fallido -> desenlace failure
+        analyzer.onQuiz(quizNode);
+
+        assertTrue(quizNode.getScores().isEmpty(),
+                "F-QINST-R013: la respuesta de infraestructura del juez no otorga puntaje");
+        assertNull(quizNode.getDiagnoses(),
+                "F-QINST-R013: la respuesta de infraestructura del juez no deja diagnostico");
+        verify(verdictReader, never()).read(any());
+        verify(scorer, never()).score(any());
     }
 }

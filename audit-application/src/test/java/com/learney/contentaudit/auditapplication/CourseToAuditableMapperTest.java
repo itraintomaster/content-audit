@@ -709,7 +709,58 @@ public class CourseToAuditableMapperTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R009")
     public void shouldCarryEverySentencePartAndEveryAcceptedOptionOfTheQuizTemplateIntoTheAuditableQuiz() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009: the judge needs the exercise complete -- every part, in order, with every
+        // accepted option of each gap -- because the verdict's identity is the fingerprint of
+        // that complete content. sentenceParts must be copied verbatim from the entity's form,
+        // never re-derived by parsing the quizSentence DSL (QuizSentenceParser.buildForm()
+        // fabricates an empty form, which would mutilate exactly the content the fingerprint
+        // protects).
+        NlpTokenizer nlpTokenizer = mock(NlpTokenizer.class);
+        QuizSentenceConverter quizSentenceConverter = mock(QuizSentenceConverter.class);
+
+        SentencePartEntity textPart = new SentencePartEntity(SentencePartKind.TEXT, "She ", null);
+        SentencePartEntity clozePart = new SentencePartEntity(SentencePartKind.CLOZE, null, List.of("is", "'s"));
+        SentencePartEntity tailPart = new SentencePartEntity(SentencePartKind.TEXT, " great.", null);
+        List<SentencePartEntity> parts = List.of(textPart, clozePart, tailPart);
+        FormEntity form = new FormEntity(null, 0, null, null, parts);
+
+        QuizTemplateEntity qt = new QuizTemplateEntity();
+        qt.setId("q-qinst-r009a");
+        qt.setForm(form);
+        qt.setSentences(List.of("She is great.", "She's great."));
+
+        KnowledgeEntity ke = new KnowledgeEntity();
+        ke.setId("k-qinst-r009a");
+        ke.setLabel("label");
+        ke.setQuizTemplates(List.of(qt));
+        TopicEntity te = new TopicEntity();
+        te.setId("t-qinst-r009a");
+        te.setLabel("label");
+        te.setKnowledges(List.of(ke));
+        MilestoneEntity me = new MilestoneEntity();
+        me.setId("m-qinst-r009a");
+        me.setLabel("A1");
+        me.setTopics(List.of(te));
+        RootNodeEntity root = new RootNodeEntity();
+        root.setMilestones(List.of(me));
+        CourseEntity course = new CourseEntity();
+        course.setRoot(root);
+
+        when(quizSentenceConverter.serialize(form)).thenReturn("She [is|'s] great.");
+        when(nlpTokenizer.analyzeTokensBatch(anyList())).thenReturn(Map.of());
+
+        CourseToAuditableMapper mapper = new CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter);
+        AuditableCourse result = mapper.map(course);
+
+        AuditableQuiz auditableQuiz = result.getMilestones().get(0)
+                .getTopics().get(0)
+                .getKnowledge().get(0)
+                .getQuizzes().get(0);
+
+        // R009: sentenceParts must be the entity's exact parts, in order, with every accepted
+        // option of the gap preserved -- copied verbatim, never re-derived from quizSentence.
+        assertEquals(parts, auditableQuiz.getSentenceParts(),
+                "R009: sentenceParts must be carried verbatim from QuizTemplateEntity.form, including every accepted option of each gap");
     }
 
     @Test
@@ -717,6 +768,41 @@ public class CourseToAuditableMapperTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R009")
     public void shouldCarryTheKnowledgeInstructionsAndTheTopicNameIntoTheAuditableKnowledge() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009: the judge needs the knowledge's instructions and the topic name to reconstruct
+        // the fingerprinted content it is asked to judge; both must reach AuditableKnowledge.
+        NlpTokenizer nlpTokenizer = mock(NlpTokenizer.class);
+        QuizSentenceConverter quizSentenceConverter = mock(QuizSentenceConverter.class);
+
+        KnowledgeEntity ke = new KnowledgeEntity();
+        ke.setId("k-qinst-r009b");
+        ke.setLabel("Present Continuous");
+        ke.setInstructions("Complete with the correct form of the verb 'to be'.");
+        ke.setQuizTemplates(List.of());
+        TopicEntity te = new TopicEntity();
+        te.setId("t-qinst-r009b");
+        te.setLabel("Verbs");
+        te.setKnowledges(List.of(ke));
+        MilestoneEntity me = new MilestoneEntity();
+        me.setId("m-qinst-r009b");
+        me.setLabel("A1");
+        me.setTopics(List.of(te));
+        RootNodeEntity root = new RootNodeEntity();
+        root.setMilestones(List.of(me));
+        CourseEntity course = new CourseEntity();
+        course.setRoot(root);
+
+        when(nlpTokenizer.analyzeTokensBatch(anyList())).thenReturn(Map.of());
+
+        CourseToAuditableMapper mapper = new CourseToAuditableMapper(nlpTokenizer, quizSentenceConverter);
+        AuditableCourse result = mapper.map(course);
+
+        AuditableKnowledge auditableKnowledge = result.getMilestones().get(0)
+                .getTopics().get(0)
+                .getKnowledge().get(0);
+
+        assertEquals("Complete with the correct form of the verb 'to be'.", auditableKnowledge.getInstructions(),
+                "R009: AuditableKnowledge.instructions must carry the knowledge's instructions verbatim");
+        assertEquals("Verbs", auditableKnowledge.getTopicName(),
+                "R009: AuditableKnowledge.topicName must carry the label of the topic that contains it");
     }
 }

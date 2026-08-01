@@ -1,5 +1,26 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.CourseDiagnoses;
+import com.learney.contentaudit.auditdomain.QuizInstructionVerdictReader;
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionSeverity;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionVerdict;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -16,13 +37,103 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-QINST-J002")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FQinstJ002JourneyTest {
+
+    // ------------------------------------------------------------------
+    // Helpers
+    // ------------------------------------------------------------------
+
+    private AuditNode buildQuizNode(String id) {
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.QUIZ);
+        node.setEntity(new AuditableQuiz(List.of(), id, "label-" + id, null, null,
+                List.of("a sentence"), null, "Fill in the blank with the past tense", List.of()));
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        return node;
+    }
+
+    private AuditNode buildCourseNode() {
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.COURSE);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        return node;
+    }
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El usuario audita un curso cuyos ejer... → El sistema consulta al juez por los e... → La auditoria termina y su informe dec... [El tope de la corrida se agota antes de recorrer todos los ejercicios] → El usuario vuelve a auditar el mismo ... → El juez no recibe ninguna consulta po... [El contenido juzgado de los ejercicios ya evaluados no cambio] → success")
     public void path1_elTopeDeLaCorridaSeAgotaAntesDeRecorrerTodosLosEjercicios_elContenidoJuzgadoDeLosEjerciciosYaEvaluadosNoCambio_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        EvaluationSession session = mock(EvaluationSession.class);
+        QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
+        QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
+        QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
+        QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
+        // Tope de 1 consulta nueva por corrida (F-QINST-R006)
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(1, false, null);
+
+        AuditNode quizA = buildQuizNode("qa");
+        AuditNode quizB = buildQuizNode("qb");
+        EvaluationSubject subjA = new EvaluationSubject("qa", Map.of());
+        EvaluationSubject subjB = new EvaluationSubject("qb", Map.of());
+        when(subjectBuilder.build(quizA)).thenReturn(subjA);
+        when(subjectBuilder.build(quizB)).thenReturn(subjB);
+
+        QuizInstructionVerdict verdict = new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "cumple", List.of(), List.of());
+        when(verdictReader.read(anyString())).thenReturn(verdict);
+        when(scorer.score(verdict)).thenReturn(1.0);
+
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
+                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+
+        // Nodo "primera_corrida"/"evaluar_pendientes" (gate F-QINST-R006): el curso no tiene
+        // veredictos previos; el tope de la corrida (1) alcanza solo para qa
+        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a"));
+        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null));
+        analyzer.onQuiz(quizA);
+        analyzer.onQuiz(quizB);
+
+        // Nodo "informe_parcial" (gate F-QINST-R004, F-QINST-R005): declara evaluados y
+        // pendientes; qb no tiene puntaje ni diagnostico y no participa de ningun promedio
+        EvaluationCoverage firstRunCoverage = new EvaluationCoverage(2, 1, 1, 0, 1, 0);
+        when(session.coverage()).thenReturn(firstRunCoverage);
+        AuditNode courseNodeFirstRun = buildCourseNode();
+        analyzer.onCourseComplete(courseNodeFirstRun);
+        EvaluationCoverage declaredFirstRun = ((CourseDiagnoses) courseNodeFirstRun.getDiagnoses())
+                .getQuizInstructionCoverage().orElseThrow().getCoverage();
+        assertEquals(2, declaredFirstRun.getReached(), "F-QINST-R005: alcanzados");
+        assertEquals(1, declaredFirstRun.getPending(), "F-QINST-R005: pendientes");
+        assertTrue(quizB.getScores().isEmpty(), "F-QINST-R004: qb pendiente, sin puntaje");
+        assertNull(quizB.getDiagnoses(), "F-QINST-R004: qb pendiente, sin diagnostico");
+
+        // Nodo "segunda_corrida": el usuario vuelve a auditar el mismo curso, sin cambios
+        // Nodo "reusa_y_avanza" (gate F-QINST-R005, F-QINST-R008): el contenido juzgado de qa
+        // no cambio -> se reutiliza sin consultar al juez; el tope se dedica integramente a qb
+        AuditNode quizAAgain = buildQuizNode("qa");
+        AuditNode quizBAgain = buildQuizNode("qb");
+        when(subjectBuilder.build(quizAAgain)).thenReturn(subjA);
+        when(subjectBuilder.build(quizBAgain)).thenReturn(subjB);
+        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-a"));
+        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-b"));
+        analyzer.onQuiz(quizAAgain);
+        analyzer.onQuiz(quizBAgain);
+
+        assertFalse(quizBAgain.getScores().isEmpty(), "F-QINST-R008: qb avanza en la segunda corrida");
+        verify(session, never()).resolveForced(any());
+
+        EvaluationCoverage secondRunCoverage = new EvaluationCoverage(2, 2, 1, 1, 0, 0);
+        when(session.coverage()).thenReturn(secondRunCoverage);
+        AuditNode courseNodeSecondRun = buildCourseNode();
+        analyzer.onCourseComplete(courseNodeSecondRun);
+        EvaluationCoverage declaredSecondRun = ((CourseDiagnoses) courseNodeSecondRun.getDiagnoses())
+                .getQuizInstructionCoverage().orElseThrow().getCoverage();
+        assertEquals(2, declaredSecondRun.getWithResult(), "F-QINST-R005: crecen los con-veredicto");
+        assertEquals(0, declaredSecondRun.getPending(), "F-QINST-R005: decrecen los pendientes");
+        assertEquals(1, declaredSecondRun.getReused(), "F-QINST-R008: qa se reutilizo sin consultar al juez");
     }
 
     @Test
@@ -31,7 +142,63 @@ public class FQinstJ002JourneyTest {
     @DisplayName("path-2: El usuario audita un curso cuyos ejer... → El sistema consulta al juez por los e... → La auditoria termina y su informe dec... [El tope de la corrida se agota antes de recorrer todos los ejercicios] → El usuario vuelve a auditar el mismo ... → El ejercicio cuyo contenido cambio vu... [Cambio el contenido juzgado de un ejercicio ya evaluado (por ejemplo, una de sus opciones aceptadas), conservando su identificador] → success")
     public void path2_elTopeDeLaCorridaSeAgotaAntesDeRecorrerTodosLosEjercicios_cambioElContenidoJuzgadoDeUnEjercicioYaEvaluadoPorEjemploUnaDeSusOpcionesAceptadasConservandoSuIdentificador_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        EvaluationSession session = mock(EvaluationSession.class);
+        QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
+        QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
+        QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
+        QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(1, false, null);
+
+        AuditNode quizA = buildQuizNode("qa");
+        AuditNode quizB = buildQuizNode("qb");
+        EvaluationSubject subjA = new EvaluationSubject("qa", Map.of());
+        EvaluationSubject subjB = new EvaluationSubject("qb", Map.of());
+        when(subjectBuilder.build(quizA)).thenReturn(subjA);
+        when(subjectBuilder.build(quizB)).thenReturn(subjB);
+
+        QuizInstructionVerdict verdict = new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "cumple", List.of(), List.of());
+        when(verdictReader.read("payload-a")).thenReturn(verdict);
+        when(scorer.score(verdict)).thenReturn(1.0);
+
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
+                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+
+        // Nodo "primera_corrida"/"evaluar_pendientes" (gate F-QINST-R006): el tope (1) alcanza
+        // solo para qa
+        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a"));
+        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null));
+        analyzer.onQuiz(quizA);
+        analyzer.onQuiz(quizB);
+
+        // Nodo "informe_parcial" (gate F-QINST-R004, F-QINST-R005)
+        EvaluationCoverage firstRunCoverage = new EvaluationCoverage(2, 1, 1, 0, 1, 0);
+        when(session.coverage()).thenReturn(firstRunCoverage);
+        AuditNode courseNodeFirstRun = buildCourseNode();
+        analyzer.onCourseComplete(courseNodeFirstRun);
+        EvaluationCoverage declaredFirstRun = ((CourseDiagnoses) courseNodeFirstRun.getDiagnoses())
+                .getQuizInstructionCoverage().orElseThrow().getCoverage();
+        assertEquals(2, declaredFirstRun.getReached(), "F-QINST-R005: alcanzados");
+        assertEquals(1, declaredFirstRun.getPending(), "F-QINST-R005: pendientes");
+        assertTrue(quizB.getScores().isEmpty(), "F-QINST-R004: qb pendiente, sin puntaje");
+
+        // Nodo "segunda_corrida": cambio el contenido juzgado de qa (una de sus opciones
+        // aceptadas), conservando su identificador -> nueva huella, nuevo contenido a juzgar
+        AuditNode quizAChanged = buildQuizNode("qa");
+        EvaluationSubject subjAChanged = new EvaluationSubject("qa", Map.of("sentenceParts", "changed-accepted-option"));
+        when(subjectBuilder.build(quizAChanged)).thenReturn(subjAChanged);
+        QuizInstructionVerdict newVerdict = new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE,
+                "Cumple con el contenido corregido", List.of(), List.of());
+        when(session.resolve(subjAChanged)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a-v2"));
+        when(verdictReader.read("payload-a-v2")).thenReturn(newVerdict);
+        when(scorer.score(newVerdict)).thenReturn(0.6);
+
+        // Nodo "reevalua_lo_cambiado" (gate F-QINST-R009): vuelve a consultarse al juez y el
+        // puntaje se recalcula sobre el veredicto nuevo -> success
+        analyzer.onQuiz(quizAChanged);
+
+        verify(session).resolve(subjAChanged);
+        assertEquals(0.6, quizAChanged.getScores().values().iterator().next(), 0.0001,
+                "F-QINST-R009: el puntaje se recalcula sobre el veredicto nuevo");
     }
 
     @Test
@@ -40,7 +207,66 @@ public class FQinstJ002JourneyTest {
     @DisplayName("path-3: El usuario audita un curso cuyos ejer... → El sistema consulta al juez por los e... → La auditoria termina igual, sin abort... [El juez deja de responder a mitad de corrida porque el servicio cae o el credito se agota] → El usuario vuelve a auditar el mismo ... → El juez no recibe ninguna consulta po... [El contenido juzgado de los ejercicios ya evaluados no cambio] → success")
     public void path3_elJuezDejaDeResponderAMitadDeCorridaPorqueElServicioCaeOElCreditoSeAgota_elContenidoJuzgadoDeLosEjerciciosYaEvaluadosNoCambio_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        EvaluationSession session = mock(EvaluationSession.class);
+        QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
+        QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
+        QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
+        QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null);
+
+        AuditNode quizA = buildQuizNode("qa");
+        AuditNode quizB = buildQuizNode("qb");
+        EvaluationSubject subjA = new EvaluationSubject("qa", Map.of());
+        EvaluationSubject subjB = new EvaluationSubject("qb", Map.of());
+        when(subjectBuilder.build(quizA)).thenReturn(subjA);
+        when(subjectBuilder.build(quizB)).thenReturn(subjB);
+
+        QuizInstructionVerdict verdict = new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "cumple", List.of(), List.of());
+        when(verdictReader.read("payload-a")).thenReturn(verdict);
+        when(scorer.score(verdict)).thenReturn(1.0);
+
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
+                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+
+        // Nodo "primera_corrida"/"evaluar_pendientes" (gate F-QINST-R006): el servicio del juez
+        // cae a mitad de corrida, despues de evaluar qa; qb queda sin veredicto
+        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a"));
+        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null));
+
+        // Nodo "informe_tras_falla" (gate F-QINST-R007): la auditoria termina igual, sin
+        // abortar; qb se declara fallido y sin puntaje, qa conserva lo ya obtenido
+        assertDoesNotThrow(() -> {
+            analyzer.onQuiz(quizA);
+            analyzer.onQuiz(quizB);
+        }, "F-QINST-R007: una falla del juez a mitad de corrida no debe abortar la auditoria");
+        assertFalse(quizA.getScores().isEmpty(), "F-QINST-R007: qa evaluado antes de la falla conserva su puntaje");
+        assertTrue(quizB.getScores().isEmpty(), "F-QINST-R007: qb no evaluado por la falla, sin puntaje");
+        assertNull(quizB.getDiagnoses(), "F-QINST-R007: qb no evaluado por la falla, sin diagnostico");
+
+        // Nodo "segunda_corrida": el usuario vuelve a auditar el mismo curso, sin cambios
+        // Nodo "reusa_y_avanza" (gate F-QINST-R005, F-QINST-R008): qa se reutiliza sin
+        // consultar al juez; el tope se dedica integramente a qb, que ahora avanza
+        AuditNode quizAAgain = buildQuizNode("qa");
+        AuditNode quizBAgain = buildQuizNode("qb");
+        when(subjectBuilder.build(quizAAgain)).thenReturn(subjA);
+        when(subjectBuilder.build(quizBAgain)).thenReturn(subjB);
+        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-a"));
+        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-b"));
+        analyzer.onQuiz(quizAAgain);
+        analyzer.onQuiz(quizBAgain);
+
+        assertFalse(quizBAgain.getScores().isEmpty(), "F-QINST-R008: qb avanza en la segunda corrida");
+        verify(session, never()).resolveForced(any());
+
+        EvaluationCoverage secondRunCoverage = new EvaluationCoverage(2, 2, 1, 1, 0, 0);
+        when(session.coverage()).thenReturn(secondRunCoverage);
+        AuditNode courseNodeSecondRun = buildCourseNode();
+        analyzer.onCourseComplete(courseNodeSecondRun);
+        EvaluationCoverage declaredSecondRun = ((CourseDiagnoses) courseNodeSecondRun.getDiagnoses())
+                .getQuizInstructionCoverage().orElseThrow().getCoverage();
+        assertEquals(2, declaredSecondRun.getWithResult(), "F-QINST-R005: crecen los con-veredicto");
+        assertEquals(0, declaredSecondRun.getPending(), "F-QINST-R005: decrecen los pendientes");
+        assertEquals(1, declaredSecondRun.getReused(), "F-QINST-R008: qa se reutilizo sin consultar al juez");
     }
 
     @Test
@@ -49,6 +275,57 @@ public class FQinstJ002JourneyTest {
     @DisplayName("path-4: El usuario audita un curso cuyos ejer... → El sistema consulta al juez por los e... → La auditoria termina igual, sin abort... [El juez deja de responder a mitad de corrida porque el servicio cae o el credito se agota] → El usuario vuelve a auditar el mismo ... → El ejercicio cuyo contenido cambio vu... [Cambio el contenido juzgado de un ejercicio ya evaluado (por ejemplo, una de sus opciones aceptadas), conservando su identificador] → success")
     public void path4_elJuezDejaDeResponderAMitadDeCorridaPorqueElServicioCaeOElCreditoSeAgota_cambioElContenidoJuzgadoDeUnEjercicioYaEvaluadoPorEjemploUnaDeSusOpcionesAceptadasConservandoSuIdentificador_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        EvaluationSession session = mock(EvaluationSession.class);
+        QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
+        QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
+        QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
+        QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(500, false, null);
+
+        AuditNode quizA = buildQuizNode("qa");
+        AuditNode quizB = buildQuizNode("qb");
+        EvaluationSubject subjA = new EvaluationSubject("qa", Map.of());
+        EvaluationSubject subjB = new EvaluationSubject("qb", Map.of());
+        when(subjectBuilder.build(quizA)).thenReturn(subjA);
+        when(subjectBuilder.build(quizB)).thenReturn(subjB);
+
+        QuizInstructionVerdict verdict = new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "cumple", List.of(), List.of());
+        when(verdictReader.read("payload-a")).thenReturn(verdict);
+        when(scorer.score(verdict)).thenReturn(1.0);
+
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
+                session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+
+        // Nodo "primera_corrida"/"evaluar_pendientes" (gate F-QINST-R006): el servicio del juez
+        // cae a mitad de corrida, despues de evaluar qa; qb queda fallido
+        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a"));
+        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null));
+
+        // Nodo "informe_tras_falla" (gate F-QINST-R007): la auditoria termina igual, sin abortar
+        assertDoesNotThrow(() -> {
+            analyzer.onQuiz(quizA);
+            analyzer.onQuiz(quizB);
+        }, "F-QINST-R007: una falla del juez a mitad de corrida no debe abortar la auditoria");
+        assertFalse(quizA.getScores().isEmpty(), "F-QINST-R007: qa evaluado antes de la falla conserva su puntaje");
+        assertTrue(quizB.getScores().isEmpty(), "F-QINST-R007: qb no evaluado por la falla, sin puntaje");
+
+        // Nodo "segunda_corrida": cambio el contenido juzgado de qa (una de sus opciones
+        // aceptadas), conservando su identificador
+        AuditNode quizAChanged = buildQuizNode("qa");
+        EvaluationSubject subjAChanged = new EvaluationSubject("qa", Map.of("sentenceParts", "changed-accepted-option"));
+        when(subjectBuilder.build(quizAChanged)).thenReturn(subjAChanged);
+        QuizInstructionVerdict newVerdict = new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE,
+                "Cumple con el contenido corregido", List.of(), List.of());
+        when(session.resolve(subjAChanged)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a-v2"));
+        when(verdictReader.read("payload-a-v2")).thenReturn(newVerdict);
+        when(scorer.score(newVerdict)).thenReturn(0.6);
+
+        // Nodo "reevalua_lo_cambiado" (gate F-QINST-R009): vuelve a consultarse al juez y el
+        // puntaje se recalcula sobre el veredicto nuevo -> success
+        analyzer.onQuiz(quizAChanged);
+
+        verify(session).resolve(subjAChanged);
+        assertEquals(0.6, quizAChanged.getScores().values().iterator().next(), 0.0001,
+                "F-QINST-R009: el puntaje se recalcula sobre el veredicto nuevo");
     }
 }

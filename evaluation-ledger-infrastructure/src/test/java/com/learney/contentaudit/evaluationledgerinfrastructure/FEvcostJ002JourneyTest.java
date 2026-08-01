@@ -1,5 +1,26 @@
 package com.learney.contentaudit.evaluationledgerinfrastructure;
 
+import com.learney.contentaudit.evaluationledgerdomain.ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationFailureKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -7,6 +28,11 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.io.TempDir;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -16,12 +42,117 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-EVCOST-J002")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FEvcostJ002JourneyTest {
+
+    private static final String EVALUATOR_ID = "quiz-instruction-judge";
+    private static final String EVALUATOR_VERSION = "v1";
+
+    /**
+     * A fully real session, wired over a real filesystem ledger and a real
+     * fingerprinter under the given base directory. The Evaluator is the only
+     * external boundary of this journey, so it is the only thing scripted/faked.
+     */
+    private static EvaluationSession openSession(Path baseDir, EvaluationRunPolicy policy, Evaluator evaluator) {
+        EvaluationLedger ledger = new FileSystemEvaluationLedger(baseDir);
+        ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
+        EvaluationSessionFactory factory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
+        return factory.open(policy, evaluator);
+    }
+
+    private static EvaluationSubject subject(String subjectRef, String instructionText) {
+        return new EvaluationSubject(subjectRef, Map.of("instruction", instructionText));
+    }
+
+    private static EvaluationRunPolicy generousPolicy() {
+        return new EvaluationRunPolicy(10, false, null);
+    }
+
+    /** Scripts one outcome per subjectRef; any unscripted subjectRef fails the test loudly. */
+    private static final class ScriptedEvaluator implements Evaluator {
+        private final String evaluatorId;
+        private final String evaluatorVersion;
+        private final Map<String, EvaluationOutcome> scriptBySubjectRef;
+        private final List<String> invokedSubjectRefs = new ArrayList<>();
+
+        ScriptedEvaluator(String evaluatorId, String evaluatorVersion,
+                Map<String, EvaluationOutcome> scriptBySubjectRef) {
+            this.evaluatorId = evaluatorId;
+            this.evaluatorVersion = evaluatorVersion;
+            this.scriptBySubjectRef = scriptBySubjectRef;
+        }
+
+        @Override
+        public String evaluatorId() {
+            return evaluatorId;
+        }
+
+        @Override
+        public String evaluatorVersion() {
+            return evaluatorVersion;
+        }
+
+        @Override
+        public EvaluationOutcome evaluate(EvaluationSubject subject) {
+            invokedSubjectRefs.add(subject.getSubjectRef());
+            EvaluationOutcome outcome = scriptBySubjectRef.get(subject.getSubjectRef());
+            if (outcome == null) {
+                throw new IllegalStateException(
+                        "Unexpected evaluation requested for " + subject.getSubjectRef()
+                                + "; this journey path must not consult the evaluator about it");
+            }
+            return outcome;
+        }
+
+        List<String> invokedSubjectRefs() {
+            return invokedSubjectRefs;
+        }
+    }
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: Un analisis evalua contenidos uno por... → Los resultados obtenidos antes de la ... [El proceso se interrumpe abruptamente a mitad del recorrido] → success")
-    public void path1_elProcesoSeInterrumpeAbruptamenteAMitadDelRecorrido_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void path1_elProcesoSeInterrumpeAbruptamenteAMitadDelRecorrido_success(@TempDir Path tempDir) {
+        EvaluationSubject quiz1 = subject("quiz-1", "Complete the sentence with the correct verb tense.");
+        EvaluationSubject quiz2 = subject("quiz-2", "Choose the word that best fits the gap.");
+        EvaluationSubject quiz3 = subject("quiz-3", "Rewrite the sentence in the passive voice.");
+
+        // Step: recorrer (gate F-EVCOST-R004) — the run evaluates content one by one
+        // and each result is registered as soon as it is obtained.
+        ScriptedEvaluator firstRunEvaluator = new ScriptedEvaluator(EVALUATOR_ID, EVALUATOR_VERSION, Map.of(
+                "quiz-1", new EvaluationEmitted("compliant: clear and unambiguous"),
+                "quiz-2", new EvaluationEmitted("compliant: matches the exercise type"),
+                "quiz-3", new EvaluationEmitted("compliant: single unambiguous instruction")));
+        EvaluationSession firstRun = openSession(tempDir, generousPolicy(), firstRunEvaluator);
+
+        EvaluationResolution result1 = firstRun.resolve(quiz1);
+        EvaluationResolution result2 = firstRun.resolve(quiz2);
+        EvaluationResolution result3 = firstRun.resolve(quiz3);
+
+        assertEquals(EvaluationResolutionKind.EVALUATED, result1.getKind());
+        assertEquals(EvaluationResolutionKind.EVALUATED, result2.getKind());
+        assertEquals(EvaluationResolutionKind.EVALUATED, result3.getKind());
+
+        // Abrupt interruption: the process dies right here. No more calls happen on
+        // firstRun, and there is no explicit shutdown/flush step on EvaluationSession.
+
+        // Step: conserva_lo_hecho (gate F-EVCOST-R004) — a brand-new session opened
+        // afterwards must find all three results complete and available, and must
+        // never consult the evaluator again for them.
+        ScriptedEvaluator resumedRunEvaluator = new ScriptedEvaluator(EVALUATOR_ID, EVALUATOR_VERSION, Map.of());
+        EvaluationSession resumedRun = openSession(tempDir, generousPolicy(), resumedRunEvaluator);
+
+        EvaluationResolution resumed1 = resumedRun.resolve(quiz1);
+        EvaluationResolution resumed2 = resumedRun.resolve(quiz2);
+        EvaluationResolution resumed3 = resumedRun.resolve(quiz3);
+
+        assertEquals(EvaluationResolutionKind.REUSED, resumed1.getKind());
+        assertEquals(result1.getPayload(), resumed1.getPayload());
+        assertEquals(EvaluationResolutionKind.REUSED, resumed2.getKind());
+        assertEquals(result2.getPayload(), resumed2.getPayload());
+        assertEquals(EvaluationResolutionKind.REUSED, resumed3.getKind());
+        assertEquals(result3.getPayload(), resumed3.getPayload());
+        assertTrue(resumedRunEvaluator.invokedSubjectRefs().isEmpty(),
+                "None of the already-registered results should trigger a new consultation");
     }
 
     @Test
@@ -29,16 +160,96 @@ public class FEvcostJ002JourneyTest {
     @Tag("path-2")
     @DisplayName("path-2: Un analisis evalua contenidos uno por... → No queda registrado ningun resultado ... [El evaluador responde sobre un contenido pero su salida no es utilizable: la falla es atribuible a ese contenido puntual] → success")
     public void path2_elEvaluadorRespondeSobreUnContenidoPeroSuSalidaNoEsUtilizableLaFallaEsAtribuibleAEseContenidoPuntual_success(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+            @TempDir Path tempDir) {
+        EvaluationSubject quiz1 = subject("quiz-1", "Complete the sentence with the correct verb tense.");
+        EvaluationSubject quiz2 = subject("quiz-2", "Choose the word that best fits the gap.");
+        EvaluationSubject quiz3 = subject("quiz-3", "Rewrite the sentence in the passive voice.");
+
+        // Step: recorrer (gate F-EVCOST-R004) — quiz-2's own output is unusable
+        // (content-specific failure), which is what routes this path.
+        ScriptedEvaluator evaluator = new ScriptedEvaluator(EVALUATOR_ID, EVALUATOR_VERSION, Map.of(
+                "quiz-1", new EvaluationEmitted("compliant"),
+                "quiz-2", new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE,
+                        "judge returned an empty verdict"),
+                "quiz-3", new EvaluationEmitted("compliant")));
+        EvaluationSession session = openSession(tempDir, generousPolicy(), evaluator);
+
+        EvaluationResolution[] resolutions = new EvaluationResolution[3];
+        assertDoesNotThrow(() -> {
+            resolutions[0] = session.resolve(quiz1);
+            resolutions[1] = session.resolve(quiz2);
+            resolutions[2] = session.resolve(quiz3);
+        }, "a failure attributable to a single content must not abort the run (F-EVCOST-R009)");
+        EvaluationResolution result1 = resolutions[0];
+        EvaluationResolution result2 = resolutions[1];
+        EvaluationResolution result3 = resolutions[2];
+
+        // Step: falla_no_registrada (gate F-EVCOST-R005, F-EVCOST-R009) — the run
+        // keeps consulting the evaluator for the remaining content instead of
+        // stopping, and nothing gets registered for the failed one.
+        assertEquals(EvaluationResolutionKind.EVALUATED, result1.getKind());
+        assertEquals(EvaluationResolutionKind.FAILED, result2.getKind());
+        assertEquals(EvaluationResolutionKind.EVALUATED, result3.getKind());
+        assertEquals(List.of("quiz-1", "quiz-2", "quiz-3"), evaluator.invokedSubjectRefs(),
+                "A failure attributable to a single content must not stop the run from consulting the rest");
+
+        EvaluationCoverage coverage = session.coverage();
+        assertEquals(1, coverage.getFailed());
+        assertEquals(0, coverage.getPending());
+
+        EvaluationLedger ledger = new FileSystemEvaluationLedger(tempDir);
+        ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
+        String failedFingerprint = fingerprinter.fingerprint(quiz2.getContent());
+        assertTrue(ledger.find(new EvaluationKey(EVALUATOR_ID, EVALUATOR_VERSION, failedFingerprint)).isEmpty(),
+                "F-EVCOST-R005: a failure must never be registered as a result");
+
+        // The run finished normally, and the next run finds quiz-2 pending and
+        // consults the evaluator about it again.
+        ScriptedEvaluator retryEvaluator = new ScriptedEvaluator(EVALUATOR_ID, EVALUATOR_VERSION,
+                Map.of("quiz-2", new EvaluationEmitted("compliant after retry")));
+        EvaluationSession nextRun = openSession(tempDir, generousPolicy(), retryEvaluator);
+
+        EvaluationResolution retryResult = nextRun.resolve(quiz2);
+
+        assertEquals(EvaluationResolutionKind.EVALUATED, retryResult.getKind());
+        assertEquals("compliant after retry", retryResult.getPayload());
+        assertEquals(List.of("quiz-2"), retryEvaluator.invokedSubjectRefs());
     }
 
     @Test
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: Un analisis evalua contenidos uno por... → El resultado desfavorable queda regis... [El evaluador se pronuncia sobre un contenido con un resultado desfavorable] → success")
-    public void path3_elEvaluadorSePronunciaSobreUnContenidoConUnResultadoDesfavorable_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void path3_elEvaluadorSePronunciaSobreUnContenidoConUnResultadoDesfavorable_success(@TempDir Path tempDir) {
+        EvaluationSubject quiz = subject("quiz-1",
+                "Fill in the blank with the appropriate preposition and then translate the sentence and write a rhyme.");
+
+        // Step: recorrer (gate F-EVCOST-R004) — the evaluator pronounces on the
+        // content with an unfavourable verdict; it is still a verdict, not a failure.
+        EvaluationOutcome unfavourableVerdict = new EvaluationEmitted(
+                "non-compliant: the instruction bundles two unrelated tasks (translation and rhyme)");
+        ScriptedEvaluator firstRunEvaluator = new ScriptedEvaluator(EVALUATOR_ID, EVALUATOR_VERSION,
+                Map.of("quiz-1", unfavourableVerdict));
+        EvaluationSession firstRun = openSession(tempDir, generousPolicy(), firstRunEvaluator);
+
+        EvaluationResolution result = firstRun.resolve(quiz);
+
+        assertEquals(EvaluationResolutionKind.EVALUATED, result.getKind());
+        assertEquals("non-compliant: the instruction bundles two unrelated tasks (translation and rhyme)",
+                result.getPayload());
+
+        // Step: desfavorable_registrado (gate F-EVCOST-R005) — the unfavourable
+        // verdict is definitive: the next run reuses it and never consults the
+        // evaluator again.
+        ScriptedEvaluator nextRunEvaluator = new ScriptedEvaluator(EVALUATOR_ID, EVALUATOR_VERSION, Map.of());
+        EvaluationSession nextRun = openSession(tempDir, generousPolicy(), nextRunEvaluator);
+
+        EvaluationResolution reused = nextRun.resolve(quiz);
+
+        assertEquals(EvaluationResolutionKind.REUSED, reused.getKind());
+        assertEquals(result.getPayload(), reused.getPayload());
+        assertTrue(nextRunEvaluator.invokedSubjectRefs().isEmpty(),
+                "A definitive unfavourable verdict must be reused, not re-consulted");
     }
 
     @Test
@@ -46,7 +257,78 @@ public class FEvcostJ002JourneyTest {
     @Tag("path-4")
     @DisplayName("path-4: Un analisis evalua contenidos uno por... → La corrida deja de consultar al evalu... [El evaluador deja de estar disponible a mitad del recorrido (servicio caido, tiempo de espera agotado, autenticacion rechazada, credito agotado)] → success")
     public void path4_elEvaluadorDejaDeEstarDisponibleAMitadDelRecorridoServicioCaidoTiempoDeEsperaAgotadoAutenticacionRechazadaCreditoAgotado_success(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+            @TempDir Path tempDir) {
+        EvaluationSubject quiz1 = subject("quiz-1", "Complete the sentence with the correct verb tense.");
+        EvaluationSubject quiz2 = subject("quiz-2", "Choose the word that best fits the gap.");
+        EvaluationSubject quiz3 = subject("quiz-3", "Rewrite the sentence in the passive voice.");
+        EvaluationSubject quiz4 = subject("quiz-4", "Match each word with its definition.");
+
+        // Step: recorrer (gate F-EVCOST-R004) — quiz-2's invocation reveals the
+        // service is unavailable. quiz-3 and quiz-4 are deliberately absent from the
+        // script: this path must never reach them once the failure is detected.
+        ScriptedEvaluator evaluator = new ScriptedEvaluator(EVALUATOR_ID, EVALUATOR_VERSION, Map.of(
+                "quiz-1", new EvaluationEmitted("compliant"),
+                "quiz-2", new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE,
+                        "request timed out")));
+        EvaluationSession session = openSession(tempDir, generousPolicy(), evaluator);
+
+        EvaluationResolution[] resolutions = new EvaluationResolution[4];
+        assertDoesNotThrow(() -> {
+            resolutions[0] = session.resolve(quiz1);
+            resolutions[1] = session.resolve(quiz2);
+            resolutions[2] = session.resolve(quiz3);
+            resolutions[3] = session.resolve(quiz4);
+        }, "a service failure must not abort the run (F-EVCOST-R009)");
+        EvaluationResolution result1 = resolutions[0];
+        EvaluationResolution result2 = resolutions[1];
+        EvaluationResolution result3 = resolutions[2];
+        EvaluationResolution result4 = resolutions[3];
+
+        // Step: falla_del_servicio (gate F-EVCOST-R009) — the run stops consulting
+        // the evaluator right after the service failure; the remaining content is
+        // left pending and the run finishes normally (no exception propagates).
+        assertEquals(EvaluationResolutionKind.EVALUATED, result1.getKind());
+        assertEquals(EvaluationResolutionKind.FAILED, result2.getKind());
+        assertEquals(EvaluationResolutionKind.PENDING, result3.getKind());
+        assertEquals(EvaluationResolutionKind.PENDING, result4.getKind());
+        assertEquals(List.of("quiz-1", "quiz-2"), evaluator.invokedSubjectRefs(),
+                "A failure attributable to the service must stop the run from consulting the evaluator any further");
+
+        EvaluationCoverage coverage = session.coverage();
+        assertEquals(4, coverage.getReached());
+        assertEquals(1, coverage.getWithResult());
+        assertEquals(1, coverage.getEvaluatedInRun());
+        assertEquals(0, coverage.getReused());
+        assertEquals(1, coverage.getFailed());
+        assertEquals(2, coverage.getPending());
+
+        EvaluationLedger ledger = new FileSystemEvaluationLedger(tempDir);
+        ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
+        assertTrue(ledger.find(new EvaluationKey(EVALUATOR_ID, EVALUATOR_VERSION,
+                fingerprinter.fingerprint(quiz2.getContent()))).isEmpty());
+        assertTrue(ledger.find(new EvaluationKey(EVALUATOR_ID, EVALUATOR_VERSION,
+                fingerprinter.fingerprint(quiz3.getContent()))).isEmpty());
+        assertTrue(ledger.find(new EvaluationKey(EVALUATOR_ID, EVALUATOR_VERSION,
+                fingerprinter.fingerprint(quiz4.getContent()))).isEmpty());
+
+        // The next run reuses quiz-1's already-registered result and consults the
+        // evaluator again for every content that was left pending.
+        ScriptedEvaluator nextRunEvaluator = new ScriptedEvaluator(EVALUATOR_ID, EVALUATOR_VERSION, Map.of(
+                "quiz-2", new EvaluationEmitted("compliant"),
+                "quiz-3", new EvaluationEmitted("compliant"),
+                "quiz-4", new EvaluationEmitted("compliant")));
+        EvaluationSession nextRun = openSession(tempDir, generousPolicy(), nextRunEvaluator);
+
+        EvaluationResolution reusedQuiz1 = nextRun.resolve(quiz1);
+        EvaluationResolution retriedQuiz2 = nextRun.resolve(quiz2);
+        EvaluationResolution retriedQuiz3 = nextRun.resolve(quiz3);
+        EvaluationResolution retriedQuiz4 = nextRun.resolve(quiz4);
+
+        assertEquals(EvaluationResolutionKind.REUSED, reusedQuiz1.getKind());
+        assertEquals(EvaluationResolutionKind.EVALUATED, retriedQuiz2.getKind());
+        assertEquals(EvaluationResolutionKind.EVALUATED, retriedQuiz3.getKind());
+        assertEquals(EvaluationResolutionKind.EVALUATED, retriedQuiz4.getKind());
+        assertTrue(!nextRunEvaluator.invokedSubjectRefs().contains("quiz-1"),
+                "quiz-1's already-registered result must be reused, not re-consulted");
     }
 }

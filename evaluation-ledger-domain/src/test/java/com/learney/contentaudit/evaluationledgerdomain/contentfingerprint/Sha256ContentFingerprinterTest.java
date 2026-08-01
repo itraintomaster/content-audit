@@ -1,5 +1,10 @@
 package com.learney.contentaudit.evaluationledgerdomain.contentfingerprint;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -15,7 +20,23 @@ public class Sha256ContentFingerprinterTest {
     @Tag("FEAT-EVCOST")
     @Tag("F-EVCOST-R002")
     public void shouldProduceADifferentFingerprintWhenAnyPartOfTheDeliveredContentChanges() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002 (a): altering any part of the content delivered to the evaluator must
+        // change the fingerprint. Two contents that differ in exactly one field.
+        Sha256ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
+
+        Map<String, String> original = new LinkedHashMap<>();
+        original.put("instruction", "Choose the correct verb form.");
+        original.put("sentence", "She ___ to school every day.");
+
+        Map<String, String> changed = new LinkedHashMap<>();
+        changed.put("instruction", "Choose the correct verb form.");
+        changed.put("sentence", "She ___ to school every week.");
+
+        String originalFingerprint = fingerprinter.fingerprint(original);
+        String changedFingerprint = fingerprinter.fingerprint(changed);
+
+        assertNotEquals(originalFingerprint, changedFingerprint,
+                "changing any part of the delivered content must change the fingerprint (F-EVCOST-R002)");
     }
 
     @Test
@@ -23,6 +44,24 @@ public class Sha256ContentFingerprinterTest {
     @Tag("FEAT-EVCOST")
     @Tag("F-EVCOST-R002")
     public void shouldProduceTheSameFingerprintWhenTheSameContentIsRebuiltInAnotherRun() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002 (b): reconstructing the exact same content, at another moment and with
+        // another instance of the fingerprinter (simulating "another run"), must
+        // reproduce the same fingerprint.
+        Map<String, String> firstRunContent = new LinkedHashMap<>();
+        firstRunContent.put("instruction", "Choose the correct verb form.");
+        firstRunContent.put("sentence", "She ___ to school every day.");
+
+        Map<String, String> secondRunContent = new LinkedHashMap<>();
+        secondRunContent.put("instruction", "Choose the correct verb form.");
+        secondRunContent.put("sentence", "She ___ to school every day.");
+
+        Sha256ContentFingerprinter firstRunFingerprinter = new Sha256ContentFingerprinter();
+        Sha256ContentFingerprinter secondRunFingerprinter = new Sha256ContentFingerprinter();
+
+        String firstRunFingerprint = firstRunFingerprinter.fingerprint(firstRunContent);
+        String secondRunFingerprint = secondRunFingerprinter.fingerprint(secondRunContent);
+
+        assertEquals(firstRunFingerprint, secondRunFingerprint,
+                "rebuilding the same content in another run must reproduce the same fingerprint (F-EVCOST-R002)");
     }
 }

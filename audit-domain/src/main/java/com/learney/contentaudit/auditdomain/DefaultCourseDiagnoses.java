@@ -3,6 +3,7 @@ package com.learney.contentaudit.auditdomain;
 import com.learney.contentaudit.auditdomain.coca.CocaProgressionDiagnosis;
 import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceCourseDiagnosis;
 import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountCourseDiagnosis;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionCoverageDiagnosis;
 import java.util.Optional;
 
 public final class DefaultCourseDiagnoses implements CourseDiagnoses {
@@ -12,6 +13,8 @@ public final class DefaultCourseDiagnoses implements CourseDiagnoses {
     private CocaProgressionDiagnosis cocaBucketsDiagnosis;
 
     private LemmaCountCourseDiagnosis lemmaCountDiagnosis;
+
+    private QuizInstructionCoverageDiagnosis quizInstructionCoverage;
 
     @Override
     public Optional<LemmaAbsenceCourseDiagnosis> getLemmaAbsenceDiagnosis() {
@@ -38,5 +41,14 @@ public final class DefaultCourseDiagnoses implements CourseDiagnoses {
 
     public void setLemmaCountDiagnosis(LemmaCountCourseDiagnosis diagnosis) {
         this.lemmaCountDiagnosis = diagnosis;
+    }
+
+    @Override
+    public Optional<QuizInstructionCoverageDiagnosis> getQuizInstructionCoverage() {
+        return Optional.ofNullable(quizInstructionCoverage);
+    }
+
+    public void setQuizInstructionCoverage(QuizInstructionCoverageDiagnosis diagnosis) {
+        this.quizInstructionCoverage = diagnosis;
     }
 }

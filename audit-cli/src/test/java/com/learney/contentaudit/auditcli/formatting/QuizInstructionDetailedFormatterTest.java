@@ -1,5 +1,23 @@
 package com.learney.contentaudit.auditcli.formatting;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.CourseDiagnoses;
+import com.learney.contentaudit.auditdomain.QuizDiagnoses;
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionSeverity;
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionViolation;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionDiagnosis;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionVerdict;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -15,7 +33,30 @@ public class QuizInstructionDetailedFormatterTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R005")
     public void shouldRenderTheDeclaredCoverageOfTheQuizInstructionAnalysisNextToItsScore() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: the report must expose reached / with-verdict (evaluated-in-run + reused) /
+        // pending / failed next to the analysis score — without it the score is misleading.
+        EvaluationCoverage coverage = new EvaluationCoverage(1060, 156, 52, 104, 811, 93);
+        QuizInstructionCoverageDiagnosis coverageDiagnosis =
+                new QuizInstructionCoverageDiagnosis(coverage, "judge-v1");
+
+        CourseDiagnoses courseDiagnoses = mock(CourseDiagnoses.class);
+        when(courseDiagnoses.getQuizInstructionCoverage()).thenReturn(Optional.of(coverageDiagnosis));
+
+        AuditNode courseNode = new AuditNode(null, AuditTarget.COURSE, null, List.of(),
+                Map.of("quiz-instruction", 0.62), Map.of(), courseDiagnoses);
+
+        QuizInstructionDetailedFormatter formatter = new QuizInstructionDetailedFormatter();
+
+        String result = formatter.format("quiz-instruction", courseNode, "text");
+
+        assertNotNull(result, "R005: formatter must produce output");
+        assertTrue(result.contains("0.62") || result.contains("0,62"),
+                "R005: rendered output must show the analysis score next to its coverage; got: " + result);
+        assertTrue(result.contains("1060"), "R005: rendered output must show reached count; got: " + result);
+        assertTrue(result.contains("52"), "R005: rendered output must show evaluated-in-run count; got: " + result);
+        assertTrue(result.contains("104"), "R005: rendered output must show reused count; got: " + result);
+        assertTrue(result.contains("811"), "R005: rendered output must show pending count; got: " + result);
+        assertTrue(result.contains("93"), "R005: rendered output must show failed count; got: " + result);
     }
 
     @Test
@@ -23,6 +64,54 @@ public class QuizInstructionDetailedFormatterTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R003")
     public void shouldRenderForEachBreachingQuizItsViolationsWithTheirEvidence() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the evidence is what separates this diagnosis from a plain low score —
+        // every violation of every breaching quiz must be rendered with its cited fragment.
+        QuizInstructionVerdict verdictA = new QuizInstructionVerdict(
+                false, 0.91, InstructionSeverity.MAJOR,
+                "La respuesta no usa la forma verbal exigida por la consigna",
+                List.of(new InstructionViolation(
+                        "VERB-FORM",
+                        "La respuesta debe usar el gerundio",
+                        "the sentence uses 'run' instead of 'running'",
+                        "La consigna exige explicitamente la forma en -ing y el ejercicio la ignora")),
+                List.of());
+        QuizInstructionDiagnosis diagnosisA = new QuizInstructionDiagnosis(verdictA, 0.3, false);
+        QuizDiagnoses quizDiagnosesA = mock(QuizDiagnoses.class);
+        when(quizDiagnosesA.getQuizInstructionDiagnosis()).thenReturn(Optional.of(diagnosisA));
+        AuditNode quizNodeA = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
+                Map.of("quiz-instruction", 0.3), Map.of(), quizDiagnosesA);
+
+        QuizInstructionVerdict verdictB = new QuizInstructionVerdict(
+                false, 0.77, InstructionSeverity.CRITICAL,
+                "La consigna pide completar un hueco y el ejercicio no tiene ninguno",
+                List.of(new InstructionViolation(
+                        "NO-BLANK",
+                        "El ejercicio debe presentar un hueco para completar",
+                        "sentence: 'She always drinks coffee in the morning.' has no blank",
+                        "No existe ningun hueco marcado en la oracion, contradiciendo la consigna")),
+                List.of());
+        QuizInstructionDiagnosis diagnosisB = new QuizInstructionDiagnosis(verdictB, 0.0, false);
+        QuizDiagnoses quizDiagnosesB = mock(QuizDiagnoses.class);
+        when(quizDiagnosesB.getQuizInstructionDiagnosis()).thenReturn(Optional.of(diagnosisB));
+        AuditNode quizNodeB = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
+                Map.of("quiz-instruction", 0.0), Map.of(), quizDiagnosesB);
+
+        CourseDiagnoses courseDiagnoses = mock(CourseDiagnoses.class);
+        AuditNode courseNode = new AuditNode(null, AuditTarget.COURSE, null,
+                List.of(quizNodeA, quizNodeB), Map.of("quiz-instruction", 0.15), Map.of(), courseDiagnoses);
+
+        QuizInstructionDetailedFormatter formatter = new QuizInstructionDetailedFormatter();
+
+        String result = formatter.format("quiz-instruction", courseNode, "text");
+
+        assertNotNull(result, "R003: formatter must produce output");
+        assertTrue(result.contains("VERB-FORM"),
+                "R003: rendered output must cite the violation code of the first breaching quiz; got: " + result);
+        assertTrue(result.contains("the sentence uses 'run' instead of 'running'"),
+                "R003: rendered output must cite the evidence fragment of the first breaching quiz; got: " + result);
+        assertTrue(result.contains("NO-BLANK"),
+                "R003: rendered output must cite the violation code of the second breaching quiz; got: " + result);
+        assertTrue(result.contains("sentence: 'She always drinks coffee in the morning.' has no blank"),
+                "R003: rendered output must cite the evidence fragment of the second breaching quiz; got: " + result);
     }
 }

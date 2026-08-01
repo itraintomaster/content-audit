@@ -1,5 +1,8 @@
 package com.learney.contentaudit.auditapplication;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionSeverity;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -15,7 +18,12 @@ public class DefaultQuizInstructionConfigTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R006")
     public void shouldDefaultTheRunBudgetTo500NewJudgeQueries() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: each run bounds new judge queries with a configurable budget that has a
+        // default value; the requirement fixes that default (ASSUMPTION) at 500 per run.
+        DefaultQuizInstructionConfig config = new DefaultQuizInstructionConfig();
+
+        assertEquals(500, config.getDefaultMaxNewEvaluations(),
+                "R006: the run budget must default to 500 new judge queries per run");
     }
 
     @Test
@@ -23,6 +31,17 @@ public class DefaultQuizInstructionConfigTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R002")
     public void shouldMapTheSeveritiesNoneMinorMajorAndCriticalToTheScores100603And00() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: the verdict's severity defines the score scale -- 1.0 / 0.6 / 0.3 / 0.0 for
+        // none / minor / major / critical, respectively.
+        DefaultQuizInstructionConfig config = new DefaultQuizInstructionConfig();
+
+        assertEquals(1.0, config.getScoreFor(InstructionSeverity.NONE), 0.0001,
+                "R002: severity NONE must score 1.0");
+        assertEquals(0.6, config.getScoreFor(InstructionSeverity.MINOR), 0.0001,
+                "R002: severity MINOR must score 0.6");
+        assertEquals(0.3, config.getScoreFor(InstructionSeverity.MAJOR), 0.0001,
+                "R002: severity MAJOR must score 0.3");
+        assertEquals(0.0, config.getScoreFor(InstructionSeverity.CRITICAL), 0.0001,
+                "R002: severity CRITICAL must score 0.0");
     }
 }

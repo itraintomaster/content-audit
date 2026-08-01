@@ -9,13 +9,20 @@ import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountCourseDiagnosis
 import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountLevelDiagnosis;
 import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountResult;
 import com.learney.contentaudit.auditdomain.lemmacount.LevelLemmaCountResult;
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionSeverity;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionDiagnosis;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionVerdict;
 import static org.mockito.Mockito.lenient;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
@@ -319,7 +326,25 @@ public class DefaultAuditRunnerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R001")
     public void shouldIncludeTheQuizInstructionAnalysisWhenTheAuditRequestSaysNothingAboutAnalyzers() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: the quiz instruction analysis is part of the audit like any other analysis --
+        // it must run without the user having to ask for it. With a request that says nothing
+        // about analyzers, the runner must still build the quiz instruction analyzer from its
+        // factory (the observable proof that it participated in this audit).
+        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
+        when(quizInstructionFactory.evaluatorId()).thenReturn("quiz-instruction");
+        when(quizInstructionFactory.create(any())).thenReturn(mock(ContentAnalyzer.class));
+
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
+        when(auditEngine.runAudit(auditableCourse)).thenReturn(auditReport);
+
+        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
+                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+
+        AuditRunRequest request = new AuditRunRequest(null, null, null);
+        runner.runAudit(coursePath, request);
+
+        verify(quizInstructionFactory).create(any());
     }
 
     @Test
@@ -327,7 +352,73 @@ public class DefaultAuditRunnerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R001")
     public void shouldReportQuizInstructionScoreDiagnosesAndCoverageOnAnAuditAskedWithNoOptions() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: an audit requested with no options must come back with the three things the
+        // quiz instruction analysis produces -- score, diagnosis and coverage -- not just proof
+        // that the analyzer was built.
+        AuditNode quizNode = new AuditNode();
+        quizNode.setTarget(AuditTarget.QUIZ);
+        quizNode.setChildren(new ArrayList<>());
+        quizNode.setScores(new LinkedHashMap<>());
+        quizNode.setMetadata(new LinkedHashMap<>());
+        quizNode.setDiagnoses(new DefaultQuizDiagnoses());
+
+        AuditNode rootNode = new AuditNode();
+        rootNode.setTarget(AuditTarget.COURSE);
+        rootNode.setChildren(new ArrayList<>(List.of(quizNode)));
+        rootNode.setScores(new LinkedHashMap<>());
+        rootNode.setMetadata(new LinkedHashMap<>());
+        rootNode.setDiagnoses(new DefaultCourseDiagnoses());
+        quizNode.setParent(rootNode);
+
+        AuditReport baseReport = new AuditReport(rootNode);
+
+        QuizInstructionVerdict verdict = new QuizInstructionVerdict(
+                true, 0.9, InstructionSeverity.NONE, "Cumple la consigna", List.of(), List.of());
+        QuizInstructionDiagnosis quizDiagnosis = new QuizInstructionDiagnosis(verdict, 1.0, false);
+        EvaluationCoverage coverage = new EvaluationCoverage(1, 1, 1, 0, 0, 0);
+        QuizInstructionCoverageDiagnosis coverageDiagnosis =
+                new QuizInstructionCoverageDiagnosis(coverage, "v1");
+
+        ContentAnalyzer quizInstructionAnalyzer = mock(ContentAnalyzer.class);
+        doAnswer(invocation -> {
+            AuditNode node = invocation.getArgument(0);
+            ((DefaultQuizDiagnoses) node.getDiagnoses()).setQuizInstructionDiagnosis(quizDiagnosis);
+            node.getScores().put("quiz-instruction", 1.0);
+            return null;
+        }).when(quizInstructionAnalyzer).onQuiz(any());
+        doAnswer(invocation -> {
+            AuditNode node = invocation.getArgument(0);
+            ((DefaultCourseDiagnoses) node.getDiagnoses()).setQuizInstructionCoverage(coverageDiagnosis);
+            return null;
+        }).when(quizInstructionAnalyzer).onCourseComplete(any());
+
+        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
+        when(quizInstructionFactory.evaluatorId()).thenReturn("quiz-instruction");
+        when(quizInstructionFactory.create(any())).thenReturn(quizInstructionAnalyzer);
+
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
+        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
+
+        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
+                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+
+        AuditRunRequest request = new AuditRunRequest(null, null, null);
+        AuditReport result = runner.runAudit(coursePath, request);
+
+        QuizDiagnoses resultQuizDiagnoses = (QuizDiagnoses) result.getRoot().getChildren().get(0).getDiagnoses();
+        assertTrue(resultQuizDiagnoses.getQuizInstructionDiagnosis().isPresent(),
+                "R001: the quiz node must carry the quiz instruction diagnosis when the audit runs with no options");
+        assertEquals(1.0, resultQuizDiagnoses.getQuizInstructionDiagnosis().get().getScore(),
+                "R001: the diagnosis must carry the score derived from the verdict");
+        assertEquals(1.0, result.getRoot().getChildren().get(0).getScores().get("quiz-instruction"),
+                "R001: the generic per-analyzer scores map must also carry the quiz instruction score");
+
+        CourseDiagnoses resultCourseDiagnoses = (CourseDiagnoses) result.getRoot().getDiagnoses();
+        assertTrue(resultCourseDiagnoses.getQuizInstructionCoverage().isPresent(),
+                "R001: the report must declare the quiz instruction coverage when the audit runs with no options");
+        assertEquals(coverage, resultCourseDiagnoses.getQuizInstructionCoverage().get().getCoverage(),
+                "R001: the declared coverage must be the one produced by this run");
     }
 
     @Test
@@ -335,7 +426,22 @@ public class DefaultAuditRunnerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R011")
     public void shouldNotBuildTheQuizInstructionAnalyzerWhenTheRequestExcludesIt() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R011: an explicit exclusion must stop the analyzer from ever being built -- excluded
+        // means "do not run", not "run and find nothing".
+        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
+        when(quizInstructionFactory.evaluatorId()).thenReturn("quiz-instruction");
+
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
+        when(auditEngine.runAudit(auditableCourse)).thenReturn(auditReport);
+
+        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
+                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+
+        AuditRunRequest request = new AuditRunRequest(null, Set.of("quiz-instruction"), null);
+        runner.runAudit(coursePath, request);
+
+        verify(quizInstructionFactory, never()).create(any());
     }
 
     @Test
@@ -343,7 +449,50 @@ public class DefaultAuditRunnerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R011")
     public void shouldLeaveTheReportWithoutQuizInstructionScoreDiagnosisOrCoverageWhenTheAnalysisIsExcluded() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R011: excluded means the analysis does not appear in the report at all -- which is
+        // different from appearing with zero coverage. Zero coverage would mean "I ran and
+        // could not evaluate anything"; excluded means "you did not ask me to run". The
+        // Optionals must come back empty, never populated with zeros.
+        AuditNode quizNode = new AuditNode();
+        quizNode.setTarget(AuditTarget.QUIZ);
+        quizNode.setChildren(new ArrayList<>());
+        quizNode.setScores(new LinkedHashMap<>());
+        quizNode.setMetadata(new LinkedHashMap<>());
+        quizNode.setDiagnoses(new DefaultQuizDiagnoses());
+
+        AuditNode rootNode = new AuditNode();
+        rootNode.setTarget(AuditTarget.COURSE);
+        rootNode.setChildren(new ArrayList<>(List.of(quizNode)));
+        rootNode.setScores(new LinkedHashMap<>());
+        rootNode.setMetadata(new LinkedHashMap<>());
+        rootNode.setDiagnoses(new DefaultCourseDiagnoses());
+        quizNode.setParent(rootNode);
+        AuditReport baseReport = new AuditReport(rootNode);
+
+        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
+        when(quizInstructionFactory.evaluatorId()).thenReturn("quiz-instruction");
+
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
+        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
+
+        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
+                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+
+        AuditRunRequest request = new AuditRunRequest(null, Set.of("quiz-instruction"), null);
+        AuditReport result = runner.runAudit(coursePath, request);
+
+        verify(quizInstructionFactory, never()).create(any());
+
+        QuizDiagnoses resultQuizDiagnoses = (QuizDiagnoses) result.getRoot().getChildren().get(0).getDiagnoses();
+        assertTrue(resultQuizDiagnoses.getQuizInstructionDiagnosis().isEmpty(),
+                "R011: excluded analysis must leave no quiz instruction diagnosis on the quiz node");
+        assertTrue(result.getRoot().getChildren().get(0).getScores().isEmpty(),
+                "R011: excluded analysis must leave no quiz instruction score on the quiz node");
+
+        CourseDiagnoses resultCourseDiagnoses = (CourseDiagnoses) result.getRoot().getDiagnoses();
+        assertTrue(resultCourseDiagnoses.getQuizInstructionCoverage().isEmpty(),
+                "R011: excluded analysis must leave no quiz instruction coverage on the report -- not even zero coverage");
     }
 
     @Test
@@ -351,7 +500,22 @@ public class DefaultAuditRunnerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R011")
     public void shouldNotRunTheQuizInstructionAnalysisWhenTheRequestNarrowsTheAuditToOtherAnalyzers() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R011: asking for an audit narrowed to other analyzers has the same effect as
+        // excluding the quiz instruction analysis explicitly -- it must not be built either.
+        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
+        when(quizInstructionFactory.evaluatorId()).thenReturn("quiz-instruction");
+
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
+        when(auditEngine.runAudit(auditableCourse)).thenReturn(auditReport);
+
+        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
+                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+
+        AuditRunRequest request = new AuditRunRequest(Set.of("sentence-length"), null, null);
+        runner.runAudit(coursePath, request);
+
+        verify(quizInstructionFactory, never()).create(any());
     }
 
     @Test
@@ -359,7 +523,48 @@ public class DefaultAuditRunnerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R007")
     public void shouldFinishTheAuditAndKeepTheResultsOfTheOtherAnalyzersWhenTheQuizInstructionJudgeFails() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: a judge failure mid-run must not abort the audit -- the other analyzers, which
+        // do not depend on the judge, must keep their results intact in the returned report.
+        AuditNode quizNode = new AuditNode();
+        quizNode.setTarget(AuditTarget.QUIZ);
+        quizNode.setChildren(new ArrayList<>());
+        LinkedHashMap<String, Double> quizScores = new LinkedHashMap<>();
+        quizScores.put("sentence-length", 0.8);
+        quizNode.setScores(quizScores);
+        quizNode.setMetadata(new LinkedHashMap<>());
+
+        AuditNode rootNode = new AuditNode();
+        rootNode.setTarget(AuditTarget.COURSE);
+        rootNode.setChildren(new ArrayList<>(List.of(quizNode)));
+        rootNode.setScores(new LinkedHashMap<>());
+        rootNode.setMetadata(new LinkedHashMap<>());
+        quizNode.setParent(rootNode);
+        AuditReport baseReport = new AuditReport(rootNode);
+
+        ContentAnalyzer quizInstructionAnalyzer = mock(ContentAnalyzer.class);
+        doThrow(new RuntimeException("quiz instruction judge unavailable"))
+                .when(quizInstructionAnalyzer).onQuiz(any());
+        lenient().doThrow(new RuntimeException("quiz instruction judge unavailable"))
+                .when(quizInstructionAnalyzer).onCourseComplete(any());
+
+        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
+        when(quizInstructionFactory.evaluatorId()).thenReturn("quiz-instruction");
+        when(quizInstructionFactory.create(any())).thenReturn(quizInstructionAnalyzer);
+
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
+        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
+
+        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
+                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+
+        AuditRunRequest request = new AuditRunRequest(null, null, null);
+
+        AuditReport result = assertDoesNotThrow(() -> runner.runAudit(coursePath, request),
+                "R007: a judge failure must not abort the audit");
+
+        assertEquals(0.8, result.getRoot().getChildren().get(0).getScores().get("sentence-length"),
+                "R007: scores from other analyzers must remain intact after a quiz instruction judge failure");
     }
 
     @Test
@@ -367,6 +572,24 @@ public class DefaultAuditRunnerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R006")
     public void shouldHandTheQuizInstructionAnalyzerTheRunPolicyTheRequestDeclaredForItsJudge() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: each run bounds new judge queries through a configurable policy; the runner
+        // must hand the exact policy the request declared for this evaluator to its factory.
+        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
+        when(quizInstructionFactory.evaluatorId()).thenReturn("quiz-instruction");
+        when(quizInstructionFactory.create(any())).thenReturn(mock(ContentAnalyzer.class));
+
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
+        when(auditEngine.runAudit(auditableCourse)).thenReturn(auditReport);
+
+        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
+                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+
+        EvaluationRunPolicy policy = new EvaluationRunPolicy(200, false, null);
+        AuditRunRequest request = new AuditRunRequest(null, null, Map.of("quiz-instruction", policy));
+
+        runner.runAudit(coursePath, request);
+
+        verify(quizInstructionFactory).create(policy);
     }
 }

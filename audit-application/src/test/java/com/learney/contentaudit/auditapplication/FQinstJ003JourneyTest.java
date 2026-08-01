@@ -1,5 +1,45 @@
 package com.learney.contentaudit.auditapplication;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.auditdomain.AuditEngine;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.ContentAnalyzer;
+import com.learney.contentaudit.auditdomain.EvaluationAnalyzerFactory;
+import com.learney.contentaudit.auditdomain.ScoreAggregator;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.evaluationledgerdomain.ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory;
+import java.nio.file.Path;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeMap;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -16,12 +56,62 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-QINST-J003")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FQinstJ003JourneyTest {
+
+    private static final String EVALUATOR_ID = "quiz-instruction-judge";
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El usuario pide la auditoria de un curso → El informe incluye el puntaje, los di... [No indica nada sobre el analisis de consigna] → success")
     public void path1_noIndicaNadaSobreElAnalisisDeConsigna_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 + R014: an audit requested with no indication about analyzers must run the
+        // quiz instruction analysis by default, and it must reach every quiz of the course --
+        // including one whose knowledge declares no instructions.
+        CourseRepository courseRepository = mock(CourseRepository.class);
+        CourseToAuditableMapper courseToAuditableMapper = mock(CourseToAuditableMapper.class);
+        AuditEngine auditEngine = mock(AuditEngine.class);
+        ScoreAggregator scoreAggregator = mock(ScoreAggregator.class);
+
+        Path coursePath = Path.of("/test/course-j003-path1.json");
+        CourseEntity courseEntity = new CourseEntity();
+        AuditableCourse auditableCourse = new AuditableCourse(List.of());
+
+        AuditNode quizWithInstructions = quizNode("quiz-with-instructions");
+        AuditNode quizWithoutInstructions = quizNode("quiz-without-instructions");
+        AuditNode rootNode = rootWithChildren(quizWithInstructions, quizWithoutInstructions);
+        AuditReport baseReport = new AuditReport(rootNode);
+
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
+        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
+
+        FakeEvaluationLedger ledger = new FakeEvaluationLedger();
+        ContentFingerprinter fingerprinter = new FakeContentFingerprinter();
+        EvaluationSessionFactory sessionFactory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
+        FakeEvaluator evaluator = new FakeEvaluator(EVALUATOR_ID, "v1");
+
+        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
+        when(quizInstructionFactory.evaluatorId()).thenReturn(EVALUATOR_ID);
+        when(quizInstructionFactory.create(any())).thenAnswer(invocation -> {
+            EvaluationRunPolicy policy = invocation.getArgument(0);
+            EvaluationSession session = sessionFactory.open(policy, evaluator);
+            return sessionBackedAnalyzer(session, policy);
+        });
+
+        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
+                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+
+        AuditRunRequest request = new AuditRunRequest(null, null, null);
+        runner.runAudit(coursePath, request);
+
+        // R001: the analysis ran by default -- the factory was used to build its analyzer.
+        verify(quizInstructionFactory).create(any());
+        // R014: every quiz reached by the audit was handed to the judge, with or without
+        // declared instructions.
+        assertEquals(2, evaluator.getEvaluatedSubjects().size(),
+                "R001+R014: the judge must be consulted for every quiz reached by the audit, including one without instructions");
+        assertTrue(evaluator.getEvaluatedSubjectRefs().contains("quiz-with-instructions"));
+        assertTrue(evaluator.getEvaluatedSubjectRefs().contains("quiz-without-instructions"));
     }
 
     @Test
@@ -29,7 +119,46 @@ public class FQinstJ003JourneyTest {
     @Tag("path-2")
     @DisplayName("path-2: El usuario pide la auditoria de un curso → El juez no recibe ninguna consulta, e... [Excluye explicitamente el analisis de consigna] → success")
     public void path2_excluyeExplicitamenteElAnalisisDeConsigna_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R011: excluding the analysis explicitly must stop the judge from receiving any
+        // query, and it must leave every previously recorded verdict untouched.
+        CourseRepository courseRepository = mock(CourseRepository.class);
+        CourseToAuditableMapper courseToAuditableMapper = mock(CourseToAuditableMapper.class);
+        AuditEngine auditEngine = mock(AuditEngine.class);
+        ScoreAggregator scoreAggregator = mock(ScoreAggregator.class);
+
+        Path coursePath = Path.of("/test/course-j003-path2.json");
+        CourseEntity courseEntity = new CourseEntity();
+        AuditableCourse auditableCourse = new AuditableCourse(List.of());
+
+        AuditNode quizNode = quizNode("quiz-1");
+        AuditNode rootNode = rootWithChildren(quizNode);
+        AuditReport baseReport = new AuditReport(rootNode);
+
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
+        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
+
+        FakeEvaluationLedger ledger = new FakeEvaluationLedger();
+        FakeContentFingerprinter fingerprinter = new FakeContentFingerprinter();
+        String fingerprint = fingerprinter.fingerprint(subjectContent("quiz-1"));
+        EvaluationKey previousKey = new EvaluationKey(EVALUATOR_ID, "v1", fingerprint);
+        ledger.seed(new EvaluationRecord(previousKey, "{\"compliant\":true}", "quiz-1", Instant.now()));
+
+        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
+        when(quizInstructionFactory.evaluatorId()).thenReturn(EVALUATOR_ID);
+
+        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
+                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+
+        AuditRunRequest request = new AuditRunRequest(null, Set.of(EVALUATOR_ID), null);
+        runner.runAudit(coursePath, request);
+
+        // R011: excluded means the analyzer is never built and the judge never consulted.
+        verify(quizInstructionFactory, never()).create(any());
+        assertTrue(ledger.find(previousKey).isPresent(),
+                "R011: verdicts already recorded must remain intact when the analysis is excluded");
+        assertEquals(1, ledger.history(EVALUATOR_ID, fingerprint).size(),
+                "R011: exclusion must not add or remove any recorded verdict");
     }
 
     @Test
@@ -37,15 +166,283 @@ public class FQinstJ003JourneyTest {
     @Tag("path-3")
     @DisplayName("path-3: El usuario pide la auditoria de un curso → El sistema vuelve a consultar al juez... [Pide explicitamente volver a juzgar el curso] → success")
     public void path3_pideExplicitamenteVolverAJuzgarElCurso_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R012: an explicit re-evaluation request must consult the judge again for content
+        // that already has a current verdict, respecting the run's budget, without destroying
+        // the previous verdict.
+        CourseRepository courseRepository = mock(CourseRepository.class);
+        CourseToAuditableMapper courseToAuditableMapper = mock(CourseToAuditableMapper.class);
+        AuditEngine auditEngine = mock(AuditEngine.class);
+        ScoreAggregator scoreAggregator = mock(ScoreAggregator.class);
+
+        Path coursePath = Path.of("/test/course-j003-path3.json");
+        CourseEntity courseEntity = new CourseEntity();
+        AuditableCourse auditableCourse = new AuditableCourse(List.of());
+
+        AuditNode quizNode = quizNode("quiz-1");
+        AuditNode rootNode = rootWithChildren(quizNode);
+        AuditReport baseReport = new AuditReport(rootNode);
+
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
+        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
+
+        FakeEvaluationLedger ledger = new FakeEvaluationLedger();
+        FakeContentFingerprinter fingerprinter = new FakeContentFingerprinter();
+        EvaluationSessionFactory sessionFactory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
+        FakeEvaluator evaluator = new FakeEvaluator(EVALUATOR_ID, "v1");
+
+        // Seed a CURRENT verdict (same evaluator version) so the ordinary path would reuse it.
+        String fingerprint = fingerprinter.fingerprint(subjectContent("quiz-1"));
+        EvaluationKey currentKey = new EvaluationKey(EVALUATOR_ID, "v1", fingerprint);
+        ledger.seed(new EvaluationRecord(currentKey, "{\"compliant\":true}", "quiz-1", Instant.now()));
+
+        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
+        when(quizInstructionFactory.evaluatorId()).thenReturn(EVALUATOR_ID);
+        when(quizInstructionFactory.create(any())).thenAnswer(invocation -> {
+            EvaluationRunPolicy policy = invocation.getArgument(0);
+            EvaluationSession session = sessionFactory.open(policy, evaluator);
+            return sessionBackedAnalyzer(session, policy);
+        });
+
+        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
+                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+
+        EvaluationRunPolicy reevaluationPolicy = new EvaluationRunPolicy(500, true, null);
+        AuditRunRequest request = new AuditRunRequest(null, null, Map.of(EVALUATOR_ID, reevaluationPolicy));
+        runner.runAudit(coursePath, request);
+
+        // R012: the judge is consulted again despite a current verdict already existing.
+        assertEquals(1, evaluator.getEvaluatedSubjects().size(),
+                "R012: explicit re-evaluation must query the judge even for content with a current verdict");
+        // R012: the previous verdict and the new one coexist -- nothing was destroyed.
+        assertEquals(2, ledger.history(EVALUATOR_ID, fingerprint).size(),
+                "R012: an explicit re-evaluation must not destroy the previous verdict");
     }
 
     @Test
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: El usuario pide la auditoria de un curso → Los veredictos de la version anterior... [La version del juez cambio desde la ultima auditoria y el usuario no pidio volver a juzgar] → success")
-    public void path4_laVersionDelJuezCambioDesdeLaUltimaAuditoriaYElUsuarioNoPidioVolverAJuzgar_success(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void path4_laVersionDelJuezCambioDesdeLaUltimaAuditoriaYElUsuarioNoPidioVolverAJuzgar_success() {
+        // R010: a verdict recorded under a previous judge version must not be reused; the quiz
+        // is treated as pending and re-consulted within the ordinary run budget -- with no
+        // special re-evaluation request -- and the previous version's verdict is not deleted.
+        CourseRepository courseRepository = mock(CourseRepository.class);
+        CourseToAuditableMapper courseToAuditableMapper = mock(CourseToAuditableMapper.class);
+        AuditEngine auditEngine = mock(AuditEngine.class);
+        ScoreAggregator scoreAggregator = mock(ScoreAggregator.class);
+
+        Path coursePath = Path.of("/test/course-j003-path4.json");
+        CourseEntity courseEntity = new CourseEntity();
+        AuditableCourse auditableCourse = new AuditableCourse(List.of());
+
+        AuditNode quizNode = quizNode("quiz-1");
+        AuditNode rootNode = rootWithChildren(quizNode);
+        AuditReport baseReport = new AuditReport(rootNode);
+
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
+        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
+
+        FakeEvaluationLedger ledger = new FakeEvaluationLedger();
+        FakeContentFingerprinter fingerprinter = new FakeContentFingerprinter();
+        EvaluationSessionFactory sessionFactory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
+
+        // The judge's version changed since the last audit: v1 -> v2.
+        FakeEvaluator evaluator = new FakeEvaluator(EVALUATOR_ID, "v2");
+
+        String fingerprint = fingerprinter.fingerprint(subjectContent("quiz-1"));
+        EvaluationKey previousVersionKey = new EvaluationKey(EVALUATOR_ID, "v1", fingerprint);
+        ledger.seed(new EvaluationRecord(previousVersionKey, "{\"compliant\":true}", "quiz-1", Instant.now()));
+
+        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
+        when(quizInstructionFactory.evaluatorId()).thenReturn(EVALUATOR_ID);
+        when(quizInstructionFactory.create(any())).thenAnswer(invocation -> {
+            EvaluationRunPolicy policy = invocation.getArgument(0);
+            EvaluationSession session = sessionFactory.open(policy, evaluator);
+            return sessionBackedAnalyzer(session, policy);
+        });
+
+        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
+                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+
+        // No reevaluation requested -- just an ordinary audit after the judge's version changed.
+        AuditRunRequest request = new AuditRunRequest(null, null, null);
+        runner.runAudit(coursePath, request);
+
+        // R010: the verdict from the previous judge version is not reused -- the quiz is
+        // re-consulted within the run's ordinary budget.
+        assertEquals(1, evaluator.getEvaluatedSubjects().size(),
+                "R010: a verdict from a previous judge version must not be reused, so the ordinary run must query the judge again");
+        // R010: the previous version's verdict is not deleted -- it remains as history.
+        assertTrue(ledger.find(previousVersionKey).isPresent(),
+                "R010: changing the judge version must not delete verdicts recorded under the previous version");
+        assertEquals(2, ledger.history(EVALUATOR_ID, fingerprint).size(),
+                "R010: the previous version's verdict and the new one must coexist as history");
+    }
+
+    // -----------------------------------------------------------------------
+    // Fixtures shared across paths
+    // -----------------------------------------------------------------------
+
+    private static AuditNode quizNode(String quizId) {
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.QUIZ);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        node.setEntity(new AuditableQuiz(List.of(), quizId, "label", "code", null,
+                List.of("She is happy."), null, null, List.of()));
+        return node;
+    }
+
+    private static AuditNode rootWithChildren(AuditNode... children) {
+        AuditNode root = new AuditNode();
+        root.setTarget(AuditTarget.COURSE);
+        List<AuditNode> childList = new ArrayList<>(List.of(children));
+        root.setChildren(childList);
+        root.setScores(new LinkedHashMap<>());
+        root.setMetadata(new LinkedHashMap<>());
+        for (AuditNode child : children) {
+            child.setParent(root);
+        }
+        return root;
+    }
+
+    private static Map<String, String> subjectContent(String quizId) {
+        return Map.of("marker", quizId);
+    }
+
+    /**
+     * A minimal ContentAnalyzer that delegates each quiz to a real EvaluationSession, so the
+     * journey exercises the actual reuse/budget/version machinery (FEAT-EVCOST) rather than a
+     * fully-mocked analyzer. Only the judge (Evaluator) and the ledger are faked -- they are
+     * the true external boundaries of this analysis.
+     */
+    private static ContentAnalyzer sessionBackedAnalyzer(EvaluationSession session, EvaluationRunPolicy policy) {
+        return new ContentAnalyzer() {
+            @Override
+            public Void onQuiz(AuditNode node) {
+                String subjectRef = node.getEntity() != null ? node.getEntity().getId() : null;
+                EvaluationSubject subject = new EvaluationSubject(subjectRef, subjectContent(subjectRef));
+                if (policy != null && policy.isReevaluate()) {
+                    session.resolveForced(subject);
+                } else {
+                    session.resolve(subject);
+                }
+                return null;
+            }
+
+            @Override
+            public Void onKnowledge(AuditNode node) {
+                return null;
+            }
+
+            @Override
+            public Void onMilestone(AuditNode node) {
+                return null;
+            }
+
+            @Override
+            public Void onTopic(AuditNode node) {
+                return null;
+            }
+
+            @Override
+            public Void onCourseComplete(AuditNode rootNode) {
+                return null;
+            }
+
+            @Override
+            public String getName() {
+                return "quiz-instruction";
+            }
+
+            @Override
+            public AuditTarget getTarget() {
+                return AuditTarget.QUIZ;
+            }
+
+            @Override
+            public String getDescription() {
+                return "fake quiz instruction analyzer for journey testing";
+            }
+        };
+    }
+
+    /** Deterministic fake fingerprinter: same content map always yields the same fingerprint. */
+    private static final class FakeContentFingerprinter implements ContentFingerprinter {
+        @Override
+        public String fingerprint(Map<String, String> content) {
+            return new TreeMap<>(content).toString();
+        }
+    }
+
+    /** In-memory fake ledger -- the real FileSystemEvaluationLedger lives in a module this
+     * one does not depend on, and a journey test must not touch disk anyway. */
+    private static final class FakeEvaluationLedger implements EvaluationLedger {
+        private final List<EvaluationRecord> records = new ArrayList<>();
+
+        @Override
+        public Optional<EvaluationRecord> find(EvaluationKey key) {
+            return records.stream().filter(r -> r.getKey().equals(key)).findFirst();
+        }
+
+        @Override
+        public void append(EvaluationRecord record) {
+            records.add(record);
+        }
+
+        @Override
+        public List<EvaluationRecord> history(String evaluatorId, String contentFingerprint) {
+            List<EvaluationRecord> result = new ArrayList<>();
+            for (EvaluationRecord record : records) {
+                if (record.getKey().getEvaluatorId().equals(evaluatorId)
+                        && record.getKey().getContentFingerprint().equals(contentFingerprint)) {
+                    result.add(record);
+                }
+            }
+            return result;
+        }
+
+        private void seed(EvaluationRecord record) {
+            records.add(record);
+        }
+    }
+
+    /** Fake judge -- never calls a real LLM. Records every subject it was asked to judge. */
+    private static final class FakeEvaluator implements Evaluator {
+        private final String id;
+        private final String version;
+        private final List<EvaluationSubject> evaluatedSubjects = new ArrayList<>();
+
+        private FakeEvaluator(String id, String version) {
+            this.id = id;
+            this.version = version;
+        }
+
+        @Override
+        public String evaluatorId() {
+            return id;
+        }
+
+        @Override
+        public String evaluatorVersion() {
+            return version;
+        }
+
+        @Override
+        public EvaluationOutcome evaluate(EvaluationSubject subject) {
+            evaluatedSubjects.add(subject);
+            return new EvaluationEmitted("{\"compliant\":true}");
+        }
+
+        private List<EvaluationSubject> getEvaluatedSubjects() {
+            return evaluatedSubjects;
+        }
+
+        private List<String> getEvaluatedSubjectRefs() {
+            return evaluatedSubjects.stream().map(EvaluationSubject::getSubjectRef).toList();
+        }
     }
 }

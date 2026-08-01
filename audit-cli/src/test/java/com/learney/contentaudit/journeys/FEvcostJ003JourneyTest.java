@@ -1,5 +1,39 @@
 package com.learney.contentaudit.journeys;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditReportStore;
+import com.learney.contentaudit.auditinfrastructure.FileSystemAuditReportStore;
+import com.learney.contentaudit.evaluationledgerdomain.ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory;
+import com.learney.contentaudit.evaluationledgerinfrastructure.FileSystemEvaluationLedger;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -7,6 +41,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.io.TempDir;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -16,19 +51,140 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-EVCOST-J003")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FEvcostJ003JourneyTest {
+
+    private static final String EVALUATOR_ID = "quiz-instruction-judge";
+    private static final String EVALUATOR_VERSION = "v1";
+
+    private static void deleteRecursively(Path root) throws IOException {
+        try (var files = Files.walk(root)) {
+            for (Path path : files.sorted(Comparator.reverseOrder()).collect(Collectors.toList())) {
+                Files.delete(path);
+            }
+        }
+    }
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El usuario elimina los informes de an... → El usuario ejecuta un analisis nuevo ... → Los resultados registrados siguen dis... [El usuario no pidio volver a evaluar] → success")
-    public void path1_elUsuarioNoPidioVolverAEvaluar_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void path1_elUsuarioNoPidioVolverAEvaluar_success(@TempDir Path tempDir) throws IOException {
+        EvaluationSubject subject = new EvaluationSubject("quiz-77",
+                Map.of("instruction", "Complete the sentence using the past continuous tense."));
+
+        // Step: eliminar_informes — a previous run produced both an analysis report
+        // and a registered evaluation result over the same base directory.
+        Evaluator firstRunEvaluator = mock(Evaluator.class);
+        when(firstRunEvaluator.evaluatorId()).thenReturn(EVALUATOR_ID);
+        when(firstRunEvaluator.evaluatorVersion()).thenReturn(EVALUATOR_VERSION);
+        when(firstRunEvaluator.evaluate(any())).thenReturn(
+                new EvaluationEmitted("compliant: matches the instructed tense"));
+
+        ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
+        EvaluationSessionFactory firstFactory = new DefaultEvaluationSessionFactory(
+                new FileSystemEvaluationLedger(tempDir), fingerprinter);
+        EvaluationSession firstRun = firstFactory.open(new EvaluationRunPolicy(10, false, null), firstRunEvaluator);
+        EvaluationResolution firstResolution = firstRun.resolve(subject);
+        assertEquals(EvaluationResolutionKind.EVALUATED, firstResolution.getKind());
+
+        AuditReportStore reportStore = new FileSystemAuditReportStore(tempDir);
+        String reportId = reportStore.save(new AuditReport(new AuditNode()));
+        assertTrue(reportStore.load(reportId).isPresent(),
+                "Precondition: the analysis report exists before it gets deleted");
+
+        // El usuario elimina los informes de analisis anteriores del curso.
+        Path reportsDir = tempDir.resolve(".content-audit").resolve("audits");
+        deleteRecursively(reportsDir);
+        assertFalse(Files.exists(reportsDir), "Precondition: the analysis reports must actually be gone");
+        AuditReportStore reportStoreAfterCleanup = new FileSystemAuditReportStore(tempDir);
+        assertTrue(reportStoreAfterCleanup.list().isEmpty(),
+                "F-EVCOST-R007: no analysis report must remain listed after deletion");
+
+        // Step: nuevo_analisis (gate F-EVCOST-R007) — a new analysis runs over the same
+        // content. The user did not ask to re-evaluate anything.
+        Evaluator secondRunEvaluator = mock(Evaluator.class);
+        when(secondRunEvaluator.evaluatorId()).thenReturn(EVALUATOR_ID);
+        when(secondRunEvaluator.evaluatorVersion()).thenReturn(EVALUATOR_VERSION);
+
+        EvaluationSessionFactory secondFactory = new DefaultEvaluationSessionFactory(
+                new FileSystemEvaluationLedger(tempDir), new Sha256ContentFingerprinter());
+        EvaluationSession secondRun = secondFactory.open(new EvaluationRunPolicy(10, false, null), secondRunEvaluator);
+
+        // Step: reusa_igual (gate F-EVCOST-R007, F-EVCOST-R008) — the registered result
+        // survived the deletion of the analysis reports and is reused without consulting
+        // the evaluator -> success.
+        EvaluationResolution reused = secondRun.resolve(subject);
+
+        assertEquals(EvaluationResolutionKind.REUSED, reused.getKind());
+        assertEquals(firstResolution.getPayload(), reused.getPayload());
+        verify(secondRunEvaluator, never()).evaluate(any());
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El usuario elimina los informes de an... → El usuario ejecuta un analisis nuevo ... → El contenido alcanzado se vuelve a ev... [El usuario pidio explicitamente volver a evaluar ese evaluador] → success")
-    public void path2_elUsuarioPidioExplicitamenteVolverAEvaluarEseEvaluador_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void path2_elUsuarioPidioExplicitamenteVolverAEvaluarEseEvaluador_success(@TempDir Path tempDir)
+            throws IOException {
+        EvaluationSubject subject = new EvaluationSubject("quiz-77",
+                Map.of("instruction", "Complete the sentence using the past continuous tense."));
+
+        // Step: eliminar_informes — a previous run produced both an analysis report
+        // and a registered evaluation result over the same base directory.
+        Evaluator firstRunEvaluator = mock(Evaluator.class);
+        when(firstRunEvaluator.evaluatorId()).thenReturn(EVALUATOR_ID);
+        when(firstRunEvaluator.evaluatorVersion()).thenReturn(EVALUATOR_VERSION);
+        when(firstRunEvaluator.evaluate(any())).thenReturn(
+                new EvaluationEmitted("compliant: matches the instructed tense"));
+
+        ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
+        EvaluationSessionFactory firstFactory = new DefaultEvaluationSessionFactory(
+                new FileSystemEvaluationLedger(tempDir), fingerprinter);
+        EvaluationSession firstRun = firstFactory.open(new EvaluationRunPolicy(10, false, null), firstRunEvaluator);
+        EvaluationResolution firstResolution = firstRun.resolve(subject);
+        assertEquals(EvaluationResolutionKind.EVALUATED, firstResolution.getKind());
+
+        AuditReportStore reportStore = new FileSystemAuditReportStore(tempDir);
+        String reportId = reportStore.save(new AuditReport(new AuditNode()));
+        assertTrue(reportStore.load(reportId).isPresent(),
+                "Precondition: the analysis report exists before it gets deleted");
+
+        // El usuario elimina los informes de analisis anteriores del curso.
+        Path reportsDir = tempDir.resolve(".content-audit").resolve("audits");
+        deleteRecursively(reportsDir);
+        assertFalse(Files.exists(reportsDir), "Precondition: the analysis reports must actually be gone");
+        AuditReportStore reportStoreAfterCleanup = new FileSystemAuditReportStore(tempDir);
+        assertTrue(reportStoreAfterCleanup.list().isEmpty(),
+                "F-EVCOST-R007: no analysis report must remain listed after deletion");
+
+        // Step: nuevo_analisis (gate F-EVCOST-R007) — a new analysis runs over the same
+        // content, and this time the user explicitly asked to judge it again.
+        Evaluator secondRunEvaluator = mock(Evaluator.class);
+        when(secondRunEvaluator.evaluatorId()).thenReturn(EVALUATOR_ID);
+        when(secondRunEvaluator.evaluatorVersion()).thenReturn(EVALUATOR_VERSION);
+        when(secondRunEvaluator.evaluate(any())).thenReturn(
+                new EvaluationEmitted("compliant: re-checked after the explicit re-evaluation request"));
+
+        ContentFingerprinter secondFingerprinter = new Sha256ContentFingerprinter();
+        EvaluationSessionFactory secondFactory = new DefaultEvaluationSessionFactory(
+                new FileSystemEvaluationLedger(tempDir), secondFingerprinter);
+        // reevaluate = true, null scope: the user asked to re-judge all reached content.
+        EvaluationSession secondRun = secondFactory.open(new EvaluationRunPolicy(10, true, null), secondRunEvaluator);
+
+        // Step: reevalua_a_pedido (gate F-EVCOST-R008) — the content is re-evaluated
+        // despite having a valid registered result, and the previous result remains
+        // consultable -> success.
+        EvaluationResolution reevaluated = secondRun.resolve(subject);
+
+        assertEquals(EvaluationResolutionKind.EVALUATED, reevaluated.getKind());
+        assertEquals("compliant: re-checked after the explicit re-evaluation request", reevaluated.getPayload());
+        verify(secondRunEvaluator).evaluate(any());
+
+        EvaluationLedger ledgerAfterReevaluation = new FileSystemEvaluationLedger(tempDir);
+        List<EvaluationRecord> history = ledgerAfterReevaluation.history(
+                EVALUATOR_ID, secondFingerprinter.fingerprint(subject.getContent()));
+        assertTrue(history.stream().anyMatch(record -> record.getPayload().equals(firstResolution.getPayload())),
+                "F-EVCOST-R008: the previous result must remain consultable after the explicit re-evaluation");
+        assertTrue(history.stream().anyMatch(record -> record.getPayload().equals(reevaluated.getPayload())),
+                "F-EVCOST-R008: the new result of the explicit re-evaluation must be consultable too");
     }
 }

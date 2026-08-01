@@ -1,5 +1,29 @@
 package com.learney.contentaudit.evaluationledgerdomain.evaluationsession;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.evaluationledgerdomain.ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -16,13 +40,70 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-EVCOST-J001")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FEvcostJ001JourneyTest {
+
+    /**
+     * Minimal in-memory {@link EvaluationLedger} fake — same role as the one in
+     * {@link DefaultEvaluationSessionTest}, duplicated here because nested classes
+     * are not shared across top-level test classes.
+     */
+    private static final class InMemoryLedger implements EvaluationLedger {
+        private final List<EvaluationRecord> records = new ArrayList<>();
+
+        @Override
+        public Optional<EvaluationRecord> find(EvaluationKey key) {
+            return records.stream()
+                    .filter(record -> record.getKey().equals(key))
+                    .reduce((first, second) -> second);
+        }
+
+        @Override
+        public void append(EvaluationRecord record) {
+            records.add(record);
+        }
+
+        @Override
+        public List<EvaluationRecord> history(String evaluatorId, String contentFingerprint) {
+            return records.stream()
+                    .filter(record -> record.getKey().getEvaluatorId().equals(evaluatorId)
+                            && record.getKey().getContentFingerprint().equals(contentFingerprint))
+                    .collect(Collectors.toList());
+        }
+    }
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: Un analisis solicita el resultado de ... → El analisis obtiene el resultado regi... [Hay un resultado registrado para ese evaluador, en su version vigente y para la misma huella de contenido] → success")
     public void path1_hayUnResultadoRegistradoParaEseEvaluadorEnSuVersionVigenteYParaLaMismaHuellaDeContenido_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // solicitar (gate F-EVCOST-R003) -> reusa (gate F-EVCOST-R001, F-EVCOST-R003)
+        Map<String, String> content = Map.of("instruction", "Fill the blank with the correct verb.");
+
+        ContentFingerprinter fingerprinter = mock(ContentFingerprinter.class);
+        when(fingerprinter.fingerprint(content)).thenReturn("fp-current");
+
+        Evaluator evaluator = mock(Evaluator.class);
+        when(evaluator.evaluatorId()).thenReturn("qinst-judge");
+        when(evaluator.evaluatorVersion()).thenReturn("v1");
+
+        InMemoryLedger ledger = new InMemoryLedger();
+        ledger.append(new EvaluationRecord(
+                new EvaluationKey("qinst-judge", "v1", "fp-current"),
+                "APPROVED",
+                "quiz-1",
+                Instant.parse("2026-07-01T00:00:00Z")));
+
+        DefaultEvaluationSessionFactory factory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
+        EvaluationSession session = factory.open(new EvaluationRunPolicy(5, false, null), evaluator);
+
+        // solicitar: an analysis requests the evaluator's result for a course content
+        EvaluationResolution resolution = session.resolve(new EvaluationSubject("quiz-1", content));
+
+        // reusa: the analysis obtains the registered result and the evaluator
+        // receives no request for that content -> success
+        assertEquals(EvaluationResolutionKind.REUSED, resolution.getKind());
+        assertEquals("APPROVED", resolution.getPayload());
+        verify(evaluator, never()).evaluate(any());
     }
 
     @Test
@@ -31,7 +112,45 @@ public class FEvcostJ001JourneyTest {
     @DisplayName("path-2: Un analisis solicita el resultado de ... → El resultado registrado no se conside... [Hay un resultado registrado, pero el contenido cambio desde que se lo evaluo (el elemento conserva su identificador)] → success")
     public void path2_hayUnResultadoRegistradoPeroElContenidoCambioDesdeQueSeLoEvaluoElElementoConservaSuIdentificador_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // solicitar (gate F-EVCOST-R003) -> contenido_cambiado (gate F-EVCOST-R002)
+        Map<String, String> oldContent = Map.of("instruction", "Original instruction text.");
+        Map<String, String> newContent = Map.of("instruction", "Revised instruction text.");
+
+        ContentFingerprinter fingerprinter = mock(ContentFingerprinter.class);
+        when(fingerprinter.fingerprint(oldContent)).thenReturn("fp-old");
+        when(fingerprinter.fingerprint(newContent)).thenReturn("fp-new");
+
+        Evaluator evaluator = mock(Evaluator.class);
+        when(evaluator.evaluatorId()).thenReturn("qinst-judge");
+        when(evaluator.evaluatorVersion()).thenReturn("v1");
+        when(evaluator.evaluate(any())).thenReturn(new EvaluationEmitted("APPROVED-REVISED"));
+
+        InMemoryLedger ledger = new InMemoryLedger();
+        ledger.append(new EvaluationRecord(
+                new EvaluationKey("qinst-judge", "v1", "fp-old"),
+                "APPROVED-ORIGINAL",
+                "quiz-1",
+                Instant.parse("2026-07-01T00:00:00Z")));
+
+        DefaultEvaluationSessionFactory factory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
+        EvaluationSession session = factory.open(new EvaluationRunPolicy(5, false, null), evaluator);
+
+        // solicitar: the element kept its identifier ("quiz-1") but its content changed
+        EvaluationResolution resolution = session.resolve(new EvaluationSubject("quiz-1", newContent));
+
+        // contenido_cambiado: the registered result is not considered current; the new
+        // content is evaluated and registered under the new fingerprint, without
+        // destroying the previous record -> success
+        assertEquals(EvaluationResolutionKind.EVALUATED, resolution.getKind());
+        assertEquals("APPROVED-REVISED", resolution.getPayload());
+
+        List<EvaluationRecord> oldHistory = ledger.history("qinst-judge", "fp-old");
+        assertEquals(1, oldHistory.size());
+        assertEquals("APPROVED-ORIGINAL", oldHistory.get(0).getPayload());
+
+        List<EvaluationRecord> newHistory = ledger.history("qinst-judge", "fp-new");
+        assertEquals(1, newHistory.size());
+        assertEquals("APPROVED-REVISED", newHistory.get(0).getPayload());
     }
 
     @Test
@@ -40,7 +159,37 @@ public class FEvcostJ001JourneyTest {
     @DisplayName("path-3: Un analisis solicita el resultado de ... → El resultado de la version anterior s... [Hay un resultado registrado, pero fue producido por una version anterior del evaluador] → success")
     public void path3_hayUnResultadoRegistradoPeroFueProducidoPorUnaVersionAnteriorDelEvaluador_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // solicitar (gate F-EVCOST-R003) -> version_anterior (gate F-EVCOST-R006)
+        Map<String, String> content = Map.of("instruction", "Instruction judged by an older evaluator version.");
+
+        ContentFingerprinter fingerprinter = mock(ContentFingerprinter.class);
+        when(fingerprinter.fingerprint(content)).thenReturn("fp-content");
+
+        InMemoryLedger ledger = new InMemoryLedger();
+        ledger.append(new EvaluationRecord(
+                new EvaluationKey("qinst-judge", "v1", "fp-content"),
+                "APPROVED-BY-V1",
+                "quiz-1",
+                Instant.parse("2026-07-01T00:00:00Z")));
+
+        Evaluator evaluatorV2 = mock(Evaluator.class);
+        when(evaluatorV2.evaluatorId()).thenReturn("qinst-judge");
+        when(evaluatorV2.evaluatorVersion()).thenReturn("v2");
+
+        DefaultEvaluationSessionFactory factory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
+        // No budget for a new evaluation: isolates the "not reused" half of this path.
+        EvaluationSession session = factory.open(new EvaluationRunPolicy(0, false, null), evaluatorV2);
+
+        EvaluationResolution resolution = session.resolve(new EvaluationSubject("quiz-1", content));
+
+        // version_anterior: the v1 result is conserved as consultable history and not
+        // reused; the content is pending for evaluation with the current version -> success
+        assertEquals(EvaluationResolutionKind.PENDING, resolution.getKind());
+        verify(evaluatorV2, never()).evaluate(any());
+
+        List<EvaluationRecord> history = ledger.history("qinst-judge", "fp-content");
+        assertEquals(1, history.size());
+        assertEquals("APPROVED-BY-V1", history.get(0).getPayload());
     }
 
     @Test
@@ -48,6 +197,39 @@ public class FEvcostJ001JourneyTest {
     @Tag("path-4")
     @DisplayName("path-4: Un analisis solicita el resultado de ... → El contenido queda pendiente; al eval... [No hay ningun resultado registrado para esa huella] → success")
     public void path4_noHayNingunResultadoRegistradoParaEsaHuella_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // solicitar (gate F-EVCOST-R003) -> primera_vez (gate F-EVCOST-R004)
+        Map<String, String> content = Map.of("instruction", "Instruction never evaluated before.");
+
+        ContentFingerprinter fingerprinter = mock(ContentFingerprinter.class);
+        when(fingerprinter.fingerprint(content)).thenReturn("fp-first-time");
+
+        Evaluator evaluator = mock(Evaluator.class);
+        when(evaluator.evaluatorId()).thenReturn("qinst-judge");
+        when(evaluator.evaluatorVersion()).thenReturn("v1");
+        when(evaluator.evaluate(any())).thenReturn(new EvaluationEmitted("APPROVED-FIRST-TIME"));
+
+        InMemoryLedger ledger = new InMemoryLedger();
+
+        DefaultEvaluationSessionFactory factory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
+        EvaluationSession session = factory.open(new EvaluationRunPolicy(5, false, null), evaluator);
+
+        EvaluationResolution resolution = session.resolve(new EvaluationSubject("quiz-1", content));
+
+        // primera_vez: the content is pending; once evaluated, its result is
+        // registered and immediately available for any subsequent analysis -> success
+        assertEquals(EvaluationResolutionKind.EVALUATED, resolution.getKind());
+        assertEquals("APPROVED-FIRST-TIME", resolution.getPayload());
+
+        Evaluator subsequentEvaluator = mock(Evaluator.class);
+        when(subsequentEvaluator.evaluatorId()).thenReturn("qinst-judge");
+        when(subsequentEvaluator.evaluatorVersion()).thenReturn("v1");
+        EvaluationSession subsequentAnalysis =
+                factory.open(new EvaluationRunPolicy(5, false, null), subsequentEvaluator);
+        EvaluationResolution subsequentResolution =
+                subsequentAnalysis.resolve(new EvaluationSubject("quiz-1", content));
+
+        assertEquals(EvaluationResolutionKind.REUSED, subsequentResolution.getKind());
+        assertEquals("APPROVED-FIRST-TIME", subsequentResolution.getPayload());
+        verify(subsequentEvaluator, never()).evaluate(any());
     }
 }
