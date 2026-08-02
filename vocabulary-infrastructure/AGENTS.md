@@ -158,6 +158,14 @@ The following models and interfaces are available from dependencies. You can use
 | auditId | `String` |
 | planId | `String` |
 
+### EvaluationRunPolicy (`record`)
+
+| Field | Type |
+|-------|------|
+| maxNewEvaluations | `int` |
+| reevaluate | `boolean` |
+| reevaluationScope | `String` |
+
 ### AuditEngine (port)
 
 Methods:
@@ -367,8 +375,8 @@ Methods:
 
 Methods:
 
-- `evaluatorId(): String`
 - `create(EvaluationRunPolicy policy): ContentAnalyzer`
+- `analyzerName(): String`
 
 ### QuizInstructionVerdictReader (port)
 
@@ -622,13 +630,11 @@ Methods:
 | pending | `int` |
 | failed | `int` |
 
-### EvaluationRunPolicy (`record`)
+### EvaluationBudget (`record`)
 
 | Field | Type |
 |-------|------|
 | maxNewEvaluations | `int` |
-| reevaluate | `boolean` |
-| reevaluationScope | `String` |
 
 ### EvaluationOutcome (port)
 
@@ -661,10 +667,11 @@ Methods:
 - `resolve(EvaluationSubject subject): EvaluationResolution`
 - `resolveForced(EvaluationSubject subject): EvaluationResolution`
 - `coverage(): EvaluationCoverage`
+- `evaluatorVersion(): String`
 
 ### EvaluationSessionFactory (factory)
 
 Methods:
 
-- `open(EvaluationRunPolicy policy,Evaluator evaluator): EvaluationSession`
+- `open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession`
 

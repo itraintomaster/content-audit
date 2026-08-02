@@ -14,7 +14,7 @@ import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionVerdi
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
-import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import java.util.ArrayList;

@@ -294,6 +294,22 @@ new AuditReportSummary(String id, Instant timestamp, String courseName, double o
 new ActiveAnalysisSelection(String auditId, String planId)
 ```
 
+#### EvaluationRunPolicy
+
+**Package:** `com.learney.contentaudit.auditdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `maxNewEvaluations` | `int` |  |
+| `reevaluate` | `boolean` |  |
+| `reevaluationScope` | `String` |  |
+
+**Generated constructor:**
+```java
+new EvaluationRunPolicy(int maxNewEvaluations, boolean reevaluate, String reevaluationScope)
+```
+
 #### FrequencyBand (package: coca)
 
 **Package:** `com.learney.contentaudit.auditdomain.coca`
@@ -1580,11 +1596,11 @@ new OutOfCatalogWordContext(String lemma, String observedPos, Integer frequencyR
 |-------|------|-------|
 | `includedAnalyzers` | `Set<String>` |  |
 | `excludedAnalyzers` | `Set<String>` |  |
-| `evaluationPolicies` | `Map<String,EvaluationRunPolicy>` |  |
+| `analyzerPolicies` | `Map<String,EvaluationRunPolicy>` |  |
 
 **Generated constructor:**
 ```java
-new AuditRunRequest(Set<String> includedAnalyzers, Set<String> excludedAnalyzers, Map<String,EvaluationRunPolicy> evaluationPolicies)
+new AuditRunRequest(Set<String> includedAnalyzers, Set<String> excludedAnalyzers, Map<String,EvaluationRunPolicy> analyzerPolicies)
 ```
 
 ### Module: audit-cli
@@ -2845,7 +2861,7 @@ new EvaluationResolution(EvaluationResolutionKind kind, String payload)
 new EvaluationCoverage(int reached, int withResult, int evaluatedInRun, int reused, int pending, int failed)
 ```
 
-#### EvaluationRunPolicy
+#### EvaluationBudget
 
 **Package:** `com.learney.contentaudit.evaluationledgerdomain`
 **Type:** record
@@ -2853,12 +2869,10 @@ new EvaluationCoverage(int reached, int withResult, int evaluatedInRun, int reus
 | Field | Type | Notes |
 |-------|------|-------|
 | `maxNewEvaluations` | `int` |  |
-| `reevaluate` | `boolean` |  |
-| `reevaluationScope` | `String` |  |
 
 **Generated constructor:**
 ```java
-new EvaluationRunPolicy(int maxNewEvaluations, boolean reevaluate, String reevaluationScope)
+new EvaluationBudget(int maxNewEvaluations)
 ```
 
 ### Module: agent-runtime-infrastructure
@@ -2876,6 +2890,37 @@ new EvaluationRunPolicy(int maxNewEvaluations, boolean reevaluate, String reeval
 **Generated constructor:**
 ```java
 new AgentGraphRunnerConfig(Path agentsBaseDir, Path runsBaseDir)
+```
+
+#### AgentDefinitionFound
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure`
+**Type:** record
+**Implements:** `AgentDefinitionLocation`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `directory` | `Path` |  |
+
+**Generated constructor:**
+```java
+new AgentDefinitionFound(Path directory)
+```
+
+#### AgentDefinitionUnresolved
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure`
+**Type:** record
+**Implements:** `AgentDefinitionLocation`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `agentName` | `String` |  |
+| `searchedIn` | `Path` |  |
+
+**Generated constructor:**
+```java
+new AgentDefinitionUnresolved(String agentName, Path searchedIn)
 ```
 
 ### Module: quiz-instruction-infrastructure

@@ -1,5 +1,6 @@
 package com.learney.contentaudit.agentruntimeinfrastructure.graphexecution;
 
+import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocator;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunner;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunnerConfig;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunnerFactory;
@@ -12,6 +13,10 @@ import javax.annotation.processing.Generated;
 public class DefaultAgentGraphRunnerFactory implements AgentGraphRunnerFactory {
     @Override
     public AgentGraphRunner create(AgentGraphRunnerConfig config) {
-        return new DefaultAgentGraphRunner(config);
+        // Built from the same config, through the sibling factory, so the runner
+        // and the locator it delegates to always agree on where the agent
+        // definition directory lives (see DefaultAgentDefinitionLocator).
+        AgentDefinitionLocator agentDefinitionLocator = new DefaultAgentDefinitionLocatorFactory().create(config);
+        return new DefaultAgentGraphRunner(config, agentDefinitionLocator);
     }
 }

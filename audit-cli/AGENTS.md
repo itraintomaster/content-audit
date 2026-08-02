@@ -164,7 +164,7 @@ The following models and interfaces are available from dependencies. You can use
 |-------|------|
 | includedAnalyzers | `Set<String>` |
 | excludedAnalyzers | `Set<String>` |
-| evaluationPolicies | `Map<String,EvaluationRunPolicy>` |
+| analyzerPolicies | `Map<String,EvaluationRunPolicy>` |
 
 ### AuditRunner (service)
 
@@ -335,6 +335,14 @@ Methods:
 |-------|------|
 | auditId | `String` |
 | planId | `String` |
+
+### EvaluationRunPolicy (`record`)
+
+| Field | Type |
+|-------|------|
+| maxNewEvaluations | `int` |
+| reevaluate | `boolean` |
+| reevaluationScope | `String` |
 
 ### AuditEngine (port)
 
@@ -545,8 +553,8 @@ Methods:
 
 Methods:
 
-- `evaluatorId(): String`
 - `create(EvaluationRunPolicy policy): ContentAnalyzer`
+- `analyzerName(): String`
 
 ### QuizInstructionVerdictReader (port)
 
@@ -800,13 +808,11 @@ Methods:
 | pending | `int` |
 | failed | `int` |
 
-### EvaluationRunPolicy (`record`)
+### EvaluationBudget (`record`)
 
 | Field | Type |
 |-------|------|
 | maxNewEvaluations | `int` |
-| reevaluate | `boolean` |
-| reevaluationScope | `String` |
 
 ### EvaluationOutcome (port)
 
@@ -839,12 +845,13 @@ Methods:
 - `resolve(EvaluationSubject subject): EvaluationResolution`
 - `resolveForced(EvaluationSubject subject): EvaluationResolution`
 - `coverage(): EvaluationCoverage`
+- `evaluatorVersion(): String`
 
 ### EvaluationSessionFactory (factory)
 
 Methods:
 
-- `open(EvaluationRunPolicy policy,Evaluator evaluator): EvaluationSession`
+- `open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession`
 
 ### From refiner-domain
 
@@ -1434,6 +1441,19 @@ Methods:
 | agentsBaseDir | `Path` |
 | runsBaseDir | `Path` |
 
+### AgentDefinitionFound (`record`)
+
+| Field | Type |
+|-------|------|
+| directory | `Path` |
+
+### AgentDefinitionUnresolved (`record`)
+
+| Field | Type |
+|-------|------|
+| agentName | `String` |
+| searchedIn | `Path` |
+
 ### AgentGraphRunner (port)
 
 Methods:
@@ -1445,6 +1465,21 @@ Methods:
 Methods:
 
 - `create(AgentGraphRunnerConfig config): AgentGraphRunner`
+
+### AgentDefinitionLocation
+
+### AgentDefinitionLocator (port)
+
+Methods:
+
+- `locate(String agentName): AgentDefinitionLocation`
+- `locateUnderProjectRoot(String projectRoot,String agentName): AgentDefinitionLocation`
+
+### AgentDefinitionLocatorFactory (factory)
+
+Methods:
+
+- `create(AgentGraphRunnerConfig config): AgentDefinitionLocator`
 
 ### From quiz-instruction-infrastructure
 
@@ -1466,5 +1501,5 @@ Methods:
 
 Methods:
 
-- `create(QuizInstructionJudgeConfig config,AgentGraphRunner agentGraphRunner): Evaluator`
+- `create(QuizInstructionJudgeConfig config,AgentGraphRunner agentGraphRunner,AgentDefinitionLocator agentDefinitionLocator): Evaluator`
 

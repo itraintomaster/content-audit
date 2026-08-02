@@ -25,7 +25,7 @@ import com.learney.contentaudit.auditcli.formatting.ReportViewModelTransformer;
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
-import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -407,9 +407,9 @@ public class AnalyzeCmdTest {
         ArgumentCaptor<AuditRunRequest> captor = ArgumentCaptor.forClass(AuditRunRequest.class);
         verify(auditRunner).runAudit(any(Path.class), captor.capture());
         AuditRunRequest request = captor.getValue();
-        assertNotNull(request.getEvaluationPolicies(),
+        assertNotNull(request.getAnalyzerPolicies(),
                 "R006: the run policy map must be present when a budget is requested");
-        EvaluationRunPolicy policy = request.getEvaluationPolicies().get("quiz-instruction");
+        EvaluationRunPolicy policy = request.getAnalyzerPolicies().get("quiz-instruction");
         assertNotNull(policy, "R006: the run policy for quiz-instruction must be present when a budget is requested");
         assertEquals(250, policy.getMaxNewEvaluations(),
                 "R006: the requested instruction budget must be carried into the run policy of the judge");
@@ -461,9 +461,9 @@ public class AnalyzeCmdTest {
         ArgumentCaptor<AuditRunRequest> captor = ArgumentCaptor.forClass(AuditRunRequest.class);
         verify(auditRunner).runAudit(any(Path.class), captor.capture());
         AuditRunRequest request = captor.getValue();
-        assertNotNull(request.getEvaluationPolicies(),
+        assertNotNull(request.getAnalyzerPolicies(),
                 "R012: the run policy map must be present when re-evaluation is requested");
-        EvaluationRunPolicy policy = request.getEvaluationPolicies().get("quiz-instruction");
+        EvaluationRunPolicy policy = request.getAnalyzerPolicies().get("quiz-instruction");
         assertNotNull(policy, "R012: the run policy for quiz-instruction must be present when re-evaluation is requested");
         assertTrue(policy.isReevaluate(),
                 "R012: re-evaluation must be requested explicitly in the run policy of the judge");
@@ -524,8 +524,8 @@ public class AnalyzeCmdTest {
         assertFalse(excluded,
                 "R001: quiz-instruction must not be excluded when the user passes no analyzer option");
 
-        boolean narrowed = request.getEvaluationPolicies() != null
-                && request.getEvaluationPolicies().containsKey("quiz-instruction");
+        boolean narrowed = request.getAnalyzerPolicies() != null
+                && request.getAnalyzerPolicies().containsKey("quiz-instruction");
         assertFalse(narrowed,
                 "R001: quiz-instruction's run policy must not be narrowed when the user passes no analyzer option");
     }

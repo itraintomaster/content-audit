@@ -2,6 +2,7 @@ package com.learney.contentaudit.auditcli.commands;
 import com.learney.contentaudit.auditcli.AnalyzeOptions;
 import javax.annotation.processing.Generated;
 
+import com.learney.contentaudit.auditapplication.AuditRunRequest;
 import com.learney.contentaudit.auditapplication.AuditRunner;
 import com.learney.contentaudit.auditcli.AnalyzeCommand;
 import com.learney.contentaudit.auditcli.formatting.DetailedFormatter;
@@ -15,7 +16,9 @@ import com.learney.contentaudit.auditcli.formatting.ReportViewModelTransformer;
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +66,12 @@ import picocli.CommandLine.Parameters;
         }
 )
 class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
+
+    // F-QINST-R011/R006/R012: analyzer name under which DefaultAuditRunner looks up
+    // the per-run EvaluationRunPolicy (DefaultQuizInstructionAnalyzerFactory.analyzerName()
+    // is this same name, the one shown in the report -- not the judge's evaluatorId).
+    private static final String QUIZ_INSTRUCTION_ANALYZER_NAME = "quiz-instruction";
+
     private final AuditRunner auditRunner;
 
     private final FormatterRegistry formatterRegistry;
@@ -110,6 +119,26 @@ class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
             description = "Show detailed analyzer output with metadata. Requires a single --analyzers value.")
     private boolean detailed;
 
+    @Option(names = {"--exclude-analyzers"},
+            description = "Comma-separated list of analyzer names to exclude from the run "
+                    + "(e.g. quiz-instruction, to skip the costly quiz-instruction judge).",
+            split = ",")
+    private List<String> excludeAnalyzers;
+
+    @Option(names = {"--instruction-budget"},
+            description = "Maximum number of new quiz-instruction judge queries for this run. "
+                    + "Already-emitted verdicts are reused for free and never count against this budget.")
+    private Integer instructionBudget;
+
+    @Option(names = {"--reevaluate-instructions"},
+            description = "Explicitly re-judge quiz-instruction verdicts that are already valid. "
+                    + "With no value, re-evaluates the whole course; with a knowledge id, narrows "
+                    + "the re-evaluation to that knowledge's quizzes only. Still respects "
+                    + "--instruction-budget.",
+            arity = "0..1",
+            fallbackValue = "")
+    private String reevaluateInstructions;
+
     public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry,
             ReportViewModelTransformer viewModelTransformer, RawReportFormatter rawReportFormatter,
             DrillDownResolver drillDownResolver,
@@ -128,7 +157,10 @@ class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
 
     @Override
     public Integer call() {
-        return analyze(this.coursePath, this.formatName, this.level, this.topic, this.knowledge, this.analyzerFilter, this.detailed);
+        AnalyzeOptions options = new AnalyzeOptions(this.formatName, this.level, this.topic,
+                this.knowledge, this.analyzerFilter, this.excludeAnalyzers, this.detailed,
+                this.instructionBudget, this.reevaluateInstructions);
+        return analyze(this.coursePath, options);
     }
 
     @Override
@@ -207,7 +239,130 @@ class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
 
     @Override
     public Integer analyze(String coursePath, AnalyzeOptions options) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        try {
+            String level = options.getLevel();
+            String topic = options.getTopic();
+            String knowledge = options.getKnowledge();
+            String format = options.getFormat();
+
+            if (topic != null && level == null) {
+                System.err.println("Error: --topic requires --level");
+                return 1;
+            }
+            if (knowledge != null && topic == null) {
+                System.err.println("Error: --knowledge requires --level and --topic");
+                return 1;
+            }
+
+            String resolvedPath = pathResolver.apply(coursePath);
+            if (resolvedPath == null) {
+                System.err.println("Error: missing course path. Provide it as argument or set CONTENT_AUDIT_CONTENT_FOLDER.");
+                return 1;
+            }
+
+            List<String> analyzers = options.getAnalyzers();
+
+            // Detailed mode: bypass the report pipeline, use raw ScoredItems
+            if (options.isDetailed()) {
+                if (analyzers == null || analyzers.size() != 1) {
+                    System.err.println("Error: --detailed requires exactly one --analyzers value");
+                    return 1;
+                }
+                String analyzerName = analyzers.get(0);
+                DetailedFormatter detailedFormatter = detailedFormatters.get(analyzerName);
+                if (detailedFormatter == null) {
+                    System.err.println("No detailed view available for: " + analyzerName);
+                    return 1;
+                }
+                AuditNode rootNode = auditRunner.runDetailedAudit(
+                        Path.of(resolvedPath), analyzerName);
+                System.out.println(detailedFormatter.format(analyzerName, rootNode, format));
+                return 0;
+            }
+
+            AuditRunRequest request = toAuditRunRequest(options);
+
+            AuditReport report = auditRunner.runAudit(Path.of(resolvedPath), request);
+
+            // Persist the audit report
+            String auditId = auditReportStore.save(report);
+            System.err.println("[Audit saved: " + auditId + "]");
+
+            if ("raw".equals(format)) {
+                System.out.println(rawReportFormatter.format(report));
+                return 0;
+            }
+
+            ReportFormatter formatter = formatterRegistry.getFormatter(format);
+            if (formatter == null) {
+                System.err.println("Formato no soportado: " + format);
+                return 1;
+            }
+
+            ReportViewModel viewModel = viewModelTransformer.transform(report);
+            DrillDownScope scope = new DrillDownScope(
+                    Optional.ofNullable(level),
+                    Optional.ofNullable(topic),
+                    Optional.ofNullable(knowledge)
+            );
+            System.out.println(formatter.format(viewModel, scope));
+            return 0;
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error: " + e.getMessage());
+            return 1;
+        } catch (RuntimeException e) {
+            System.err.println("Error running audit: " + e.getMessage());
+            return 1;
+        }
+    }
+
+    /**
+     * Translates the CLI-facing {@link AnalyzeOptions} into the {@link AuditRunRequest}
+     * the audit pipeline understands.
+     *
+     * <ul>
+     *   <li>F-QINST-R001: with no analyzer-related option at all, neither
+     *       {@code excludedAnalyzers} nor the quiz-instruction run policy are populated,
+     *       so the analysis runs unrestricted like any other.</li>
+     *   <li>F-QINST-R011: {@code --exclude-analyzers} is carried verbatim into
+     *       {@code excludedAnalyzers}.</li>
+     *   <li>F-QINST-R006/R012: {@code --instruction-budget} and
+     *       {@code --reevaluate-instructions[=SCOPE]} are only ever asked by the user for
+     *       the quiz-instruction judge, so they are translated into that analyzer's
+     *       {@link EvaluationRunPolicy} entry; absent both, no policy entry is created.</li>
+     * </ul>
+     */
+    private AuditRunRequest toAuditRunRequest(AnalyzeOptions options) {
+        List<String> analyzers = options.getAnalyzers();
+        Set<String> includedNames = analyzers != null
+                ? new LinkedHashSet<>(analyzers)
+                : null;
+
+        List<String> excludeAnalyzers = options.getExcludeAnalyzers();
+        Set<String> excludedNames = excludeAnalyzers != null
+                ? new LinkedHashSet<>(excludeAnalyzers)
+                : null;
+
+        Integer instructionBudget = options.getInstructionBudget();
+        String reevaluateInstructions = options.getReevaluateInstructions();
+
+        Map<String, EvaluationRunPolicy> analyzerPolicies = null;
+        if (instructionBudget != null || reevaluateInstructions != null) {
+            EvaluationRunPolicy policy = new EvaluationRunPolicy();
+            if (instructionBudget != null) {
+                policy.setMaxNewEvaluations(instructionBudget);
+            }
+            if (reevaluateInstructions != null) {
+                policy.setReevaluate(true);
+                // An empty scope (--reevaluate-instructions with no value) means "the whole
+                // course"; QuizInstructionScopeMatcher treats a null scope as unrestricted.
+                policy.setReevaluationScope(reevaluateInstructions.isEmpty() ? null : reevaluateInstructions);
+            }
+            analyzerPolicies = new HashMap<>();
+            analyzerPolicies.put(QUIZ_INSTRUCTION_ANALYZER_NAME, policy);
+        }
+
+        return new AuditRunRequest(includedNames, excludedNames, analyzerPolicies);
     }
 
 }

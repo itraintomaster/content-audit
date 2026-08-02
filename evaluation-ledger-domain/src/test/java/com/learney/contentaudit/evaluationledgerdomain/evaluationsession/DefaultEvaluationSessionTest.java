@@ -19,7 +19,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
-import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
 import java.time.Instant;
@@ -95,7 +95,7 @@ public class DefaultEvaluationSessionTest {
                 "quiz-elementA",
                 Instant.parse("2026-07-01T00:00:00Z")));
 
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(5, false, null);
+        EvaluationBudget policy = new EvaluationBudget(5);
         DefaultEvaluationSession session =
                 new DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy);
 
@@ -140,7 +140,7 @@ public class DefaultEvaluationSessionTest {
 
         // No budget for a new evaluation: isolates the ledger-lookup behaviour (R001)
         // from any new-evaluation behaviour, which is R003's concern.
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(0, false, null);
+        EvaluationBudget policy = new EvaluationBudget(0);
         DefaultEvaluationSession session =
                 new DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy);
 
@@ -174,7 +174,7 @@ public class DefaultEvaluationSessionTest {
         when(evaluator.evaluate(any())).thenReturn(new EvaluationEmitted("APPROVED"));
 
         InMemoryLedger ledger = new InMemoryLedger();
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(5, false, null);
+        EvaluationBudget policy = new EvaluationBudget(5);
         DefaultEvaluationSession session =
                 new DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy);
 
@@ -215,7 +215,7 @@ public class DefaultEvaluationSessionTest {
                 "quiz-1",
                 Instant.parse("2026-07-01T00:00:00Z")));
 
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(5, false, null);
+        EvaluationBudget policy = new EvaluationBudget(5);
         DefaultEvaluationSession session =
                 new DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy);
 
@@ -244,7 +244,7 @@ public class DefaultEvaluationSessionTest {
         when(evaluator.evaluatorVersion()).thenReturn("v1");
 
         InMemoryLedger ledger = new InMemoryLedger();
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(0, false, null);
+        EvaluationBudget policy = new EvaluationBudget(0);
         DefaultEvaluationSession session =
                 new DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy);
 
@@ -289,7 +289,7 @@ public class DefaultEvaluationSessionTest {
                 Instant.parse("2026-07-01T00:00:00Z")));
 
         // Budget for exactly one new evaluation.
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(1, false, null);
+        EvaluationBudget policy = new EvaluationBudget(1);
         DefaultEvaluationSession session =
                 new DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy);
 
@@ -333,7 +333,7 @@ public class DefaultEvaluationSessionTest {
                 .thenReturn(new EvaluationEmitted("VERDICT-2"));
 
         InMemoryLedger ledger = new InMemoryLedger();
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(2, false, null);
+        EvaluationBudget policy = new EvaluationBudget(2);
         DefaultEvaluationSession session =
                 new DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy);
 
@@ -370,7 +370,7 @@ public class DefaultEvaluationSessionTest {
                 .thenReturn(new EvaluationEmitted("UNFAVOURABLE:instruction unclear"));
 
         InMemoryLedger ledger = new InMemoryLedger();
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(5, false, null);
+        EvaluationBudget policy = new EvaluationBudget(5);
 
         DefaultEvaluationSession firstRun =
                 new DefaultEvaluationSession(ledger, fingerprinter, firstRunEvaluator, policy);
@@ -417,7 +417,7 @@ public class DefaultEvaluationSessionTest {
                 new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE, "judge output was not parseable"));
 
         InMemoryLedger ledger = new InMemoryLedger();
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(5, false, null);
+        EvaluationBudget policy = new EvaluationBudget(5);
 
         DefaultEvaluationSession firstRun =
                 new DefaultEvaluationSession(ledger, fingerprinter, firstRunEvaluator, policy);
@@ -470,7 +470,7 @@ public class DefaultEvaluationSessionTest {
         when(evaluatorV2.evaluatorVersion()).thenReturn("v2");
 
         // No budget for a new evaluation: isolates the "not reused" half of R006.
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(0, false, null);
+        EvaluationBudget policy = new EvaluationBudget(0);
         DefaultEvaluationSession session =
                 new DefaultEvaluationSession(ledger, fingerprinter, evaluatorV2, policy);
 
@@ -510,7 +510,7 @@ public class DefaultEvaluationSessionTest {
                 "quiz-1",
                 Instant.parse("2026-07-01T00:00:00Z")));
 
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(5, false, null);
+        EvaluationBudget policy = new EvaluationBudget(5);
         DefaultEvaluationSession session =
                 new DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy);
 
@@ -562,7 +562,7 @@ public class DefaultEvaluationSessionTest {
                 .thenReturn(new EvaluationEmitted("APPROVED-3"));
 
         InMemoryLedger ledger = new InMemoryLedger();
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(10, false, null);
+        EvaluationBudget policy = new EvaluationBudget(10);
         DefaultEvaluationSession session =
                 new DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy);
 
@@ -603,7 +603,7 @@ public class DefaultEvaluationSessionTest {
                 new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, "service is down"));
 
         InMemoryLedger ledger = new InMemoryLedger();
-        EvaluationRunPolicy policy = new EvaluationRunPolicy(10, false, null);
+        EvaluationBudget policy = new EvaluationBudget(10);
         DefaultEvaluationSession session =
                 new DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy);
 

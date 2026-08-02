@@ -48,6 +48,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: AgentGraphRunnerConfig - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionFound");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AgentDefinitionFound - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionUnresolved");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AgentDefinitionUnresolved - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunner");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AgentGraphRunner - " + e.getMessage());
@@ -58,6 +68,21 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: AgentGraphRunnerFactory - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocation");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AgentDefinitionLocation - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AgentDefinitionLocator - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocatorFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AgentDefinitionLocatorFactory - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentGraphRunnerFactory");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultAgentGraphRunnerFactory - " + e.getMessage());
@@ -66,6 +91,16 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentGraphRunner");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultAgentGraphRunner - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentDefinitionLocatorFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultAgentDefinitionLocatorFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentDefinitionLocator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultAgentDefinitionLocator - " + e.getMessage());
     }
   }
 }

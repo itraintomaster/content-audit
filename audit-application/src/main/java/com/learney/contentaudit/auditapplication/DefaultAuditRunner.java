@@ -4,14 +4,17 @@ import com.learney.contentaudit.auditdomain.EvaluationAnalyzerFactory;
 import com.learney.contentaudit.auditdomain.AuditEngine;
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.AuditableCourse;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.IAuditEngine;
 import com.learney.contentaudit.auditdomain.ScoreAggregator;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import javax.annotation.processing.Generated;
 
@@ -58,7 +61,68 @@ public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMa
 
     @Override
     public AuditReport runAudit(Path coursePath, AuditRunRequest request) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AuditableCourse auditableCourse = loadCourse(coursePath);
+        AuditReport report = auditEngine.runAudit(auditableCourse);
+
+        Set<String> included = request != null ? request.getIncludedAnalyzers() : null;
+        Set<String> excluded = request != null ? request.getExcludedAnalyzers() : null;
+        Map<String, EvaluationRunPolicy> policies = request != null ? request.getAnalyzerPolicies() : null;
+
+        for (EvaluationAnalyzerFactory factory : evaluationAnalyzerFactories) {
+            String analyzerName = factory.analyzerName();
+            // F-QINST-R011: excluded means real absence -- the analyzer is never built, so it
+            // never touches the tree (no score, no diagnosis, no coverage -- not even zeros).
+            if (excluded != null && excluded.contains(analyzerName)) {
+                continue;
+            }
+            if (included != null && !included.isEmpty() && !included.contains(analyzerName)) {
+                continue;
+            }
+            // F-QINST-R006: the run's policy for this analyzer travels as-is to its factory.
+            EvaluationRunPolicy policy = policies != null ? policies.get(analyzerName) : null;
+            ContentAnalyzer analyzer = factory.create(policy);
+            applyEvaluationAnalyzer(report.getRoot(), analyzer);
+        }
+
+        return report;
+    }
+
+    private void applyEvaluationAnalyzer(AuditNode root, ContentAnalyzer analyzer) {
+        traverseForEvaluationAnalyzer(root, analyzer);
+        try {
+            analyzer.onCourseComplete(root);
+        } catch (RuntimeException e) {
+            // F-QINST-R007: a judge failure must not abort the audit -- the other analyzers'
+            // results already on the tree remain intact.
+        }
+    }
+
+    private void traverseForEvaluationAnalyzer(AuditNode node, ContentAnalyzer analyzer) {
+        if (node == null) {
+            return;
+        }
+        AuditTarget target = node.getTarget();
+        if (target != null) {
+            try {
+                switch (target) {
+                    case MILESTONE -> analyzer.onMilestone(node);
+                    case TOPIC -> analyzer.onTopic(node);
+                    case KNOWLEDGE -> analyzer.onKnowledge(node);
+                    case QUIZ -> analyzer.onQuiz(node);
+                    case COURSE -> {
+                        // no per-node callback for the root; handled via onCourseComplete
+                    }
+                }
+            } catch (RuntimeException e) {
+                // F-QINST-R007: a failure evaluating one node must not abort the rest of the
+                // audit -- other nodes and other analyzers keep their results.
+            }
+        }
+        if (node.getChildren() != null) {
+            for (AuditNode child : node.getChildren()) {
+                traverseForEvaluationAnalyzer(child, analyzer);
+            }
+        }
     }
 
     @Override

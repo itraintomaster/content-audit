@@ -494,6 +494,14 @@ Methods:
 | auditId | `String` |
 | planId | `String` |
 
+### EvaluationRunPolicy (`record`)
+
+| Field | Type |
+|-------|------|
+| maxNewEvaluations | `int` |
+| reevaluate | `boolean` |
+| reevaluationScope | `String` |
+
 ### AuditEngine (port)
 
 Methods:
@@ -703,8 +711,8 @@ Methods:
 
 Methods:
 
-- `evaluatorId(): String`
 - `create(EvaluationRunPolicy policy): ContentAnalyzer`
+- `analyzerName(): String`
 
 ### QuizInstructionVerdictReader (port)
 
@@ -958,13 +966,11 @@ Methods:
 | pending | `int` |
 | failed | `int` |
 
-### EvaluationRunPolicy (`record`)
+### EvaluationBudget (`record`)
 
 | Field | Type |
 |-------|------|
 | maxNewEvaluations | `int` |
-| reevaluate | `boolean` |
-| reevaluationScope | `String` |
 
 ### EvaluationOutcome (port)
 
@@ -997,12 +1003,13 @@ Methods:
 - `resolve(EvaluationSubject subject): EvaluationResolution`
 - `resolveForced(EvaluationSubject subject): EvaluationResolution`
 - `coverage(): EvaluationCoverage`
+- `evaluatorVersion(): String`
 
 ### EvaluationSessionFactory (factory)
 
 Methods:
 
-- `open(EvaluationRunPolicy policy,Evaluator evaluator): EvaluationSession`
+- `open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession`
 
 ### From refiner-domain
 
@@ -1238,6 +1245,19 @@ Methods:
 | agentsBaseDir | `Path` |
 | runsBaseDir | `Path` |
 
+### AgentDefinitionFound (`record`)
+
+| Field | Type |
+|-------|------|
+| directory | `Path` |
+
+### AgentDefinitionUnresolved (`record`)
+
+| Field | Type |
+|-------|------|
+| agentName | `String` |
+| searchedIn | `Path` |
+
 ### AgentGraphRunner (port)
 
 Methods:
@@ -1249,4 +1269,19 @@ Methods:
 Methods:
 
 - `create(AgentGraphRunnerConfig config): AgentGraphRunner`
+
+### AgentDefinitionLocation
+
+### AgentDefinitionLocator (port)
+
+Methods:
+
+- `locate(String agentName): AgentDefinitionLocation`
+- `locateUnderProjectRoot(String projectRoot,String agentName): AgentDefinitionLocation`
+
+### AgentDefinitionLocatorFactory (factory)
+
+Methods:
+
+- `create(AgentGraphRunnerConfig config): AgentDefinitionLocator`
 

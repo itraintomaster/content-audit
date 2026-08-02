@@ -12,4 +12,6 @@ public interface EvaluationSession {
     EvaluationResolution resolveForced(EvaluationSubject subject);
 
     EvaluationCoverage coverage();
+
+    String evaluatorVersion();
 }

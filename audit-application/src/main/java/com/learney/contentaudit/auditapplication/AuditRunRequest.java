@@ -1,6 +1,6 @@
 package com.learney.contentaudit.auditapplication;
 
-import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -15,16 +15,16 @@ public class AuditRunRequest {
 
     private Set<String> excludedAnalyzers;
 
-    private Map<String, EvaluationRunPolicy> evaluationPolicies;
+    private Map<String, EvaluationRunPolicy> analyzerPolicies;
 
     public AuditRunRequest() {
     }
 
     public AuditRunRequest(Set<String> includedAnalyzers, Set<String> excludedAnalyzers,
-            Map<String, EvaluationRunPolicy> evaluationPolicies) {
+            Map<String, EvaluationRunPolicy> analyzerPolicies) {
         this.includedAnalyzers = includedAnalyzers;
         this.excludedAnalyzers = excludedAnalyzers;
-        this.evaluationPolicies = evaluationPolicies;
+        this.analyzerPolicies = analyzerPolicies;
     }
 
     public Set<String> getIncludedAnalyzers() {
@@ -43,12 +43,12 @@ public class AuditRunRequest {
         this.excludedAnalyzers = excludedAnalyzers;
     }
 
-    public Map<String, EvaluationRunPolicy> getEvaluationPolicies() {
-        return this.evaluationPolicies;
+    public Map<String, EvaluationRunPolicy> getAnalyzerPolicies() {
+        return this.analyzerPolicies;
     }
 
-    public void setEvaluationPolicies(Map<String, EvaluationRunPolicy> evaluationPolicies) {
-        this.evaluationPolicies = evaluationPolicies;
+    public void setAnalyzerPolicies(Map<String, EvaluationRunPolicy> analyzerPolicies) {
+        this.analyzerPolicies = analyzerPolicies;
     }
 
     @Override
@@ -58,11 +58,11 @@ public class AuditRunRequest {
         AuditRunRequest that = (AuditRunRequest) o;
         return Objects.equals(this.includedAnalyzers, that.includedAnalyzers)
                     && Objects.equals(this.excludedAnalyzers, that.excludedAnalyzers)
-                    && Objects.equals(this.evaluationPolicies, that.evaluationPolicies);
+                    && Objects.equals(this.analyzerPolicies, that.analyzerPolicies);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(includedAnalyzers, excludedAnalyzers, evaluationPolicies);
+        return Objects.hash(includedAnalyzers, excludedAnalyzers, analyzerPolicies);
     }
 }

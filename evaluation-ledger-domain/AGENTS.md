@@ -79,13 +79,11 @@ FEAT-EVCOST. Capacidad general de resultados de evaluacion costosa reutilizables
 | pending | `int` |
 | failed | `int` |
 
-### EvaluationRunPolicy (`record`)
+### EvaluationBudget (`record`)
 
 | Field | Type |
 |-------|------|
 | maxNewEvaluations | `int` |
-| reevaluate | `boolean` |
-| reevaluationScope | `String` |
 
 ## Interfaces
 
@@ -120,10 +118,11 @@ Methods:
 - `resolve(EvaluationSubject subject): EvaluationResolution`
 - `resolveForced(EvaluationSubject subject): EvaluationResolution`
 - `coverage(): EvaluationCoverage`
+- `evaluatorVersion(): String`
 
 ### EvaluationSessionFactory (factory)
 
 Methods:
 
-- `open(EvaluationRunPolicy policy,Evaluator evaluator): EvaluationSession`
+- `open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession`
 

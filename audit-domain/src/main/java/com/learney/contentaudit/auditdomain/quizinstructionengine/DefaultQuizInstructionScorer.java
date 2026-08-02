@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
 
 import com.learney.contentaudit.auditdomain.QuizInstructionConfig;
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionSeverity;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionVerdict;
 import javax.annotation.processing.Generated;
 
@@ -17,6 +18,28 @@ class DefaultQuizInstructionScorer implements QuizInstructionScorer {
 
     @Override
     public double score(QuizInstructionVerdict verdict) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        InstructionSeverity severity = verdict.getSeverity();
+
+        if (verdict.isFollowsInstructions()) {
+            // Normally a compliant verdict scores at severity none (the maximum).
+            // R002's first inconsistent combination: compliant but a severity other
+            // than none is declared anyway -- the severity prevails (conservative
+            // reading), never the compliance flag.
+            double complianceScore = config.getScoreFor(InstructionSeverity.NONE);
+            if (severity != InstructionSeverity.NONE) {
+                return config.getScoreFor(severity);
+            }
+            return complianceScore;
+        }
+
+        // Normally a non-compliant verdict scores by its declared severity.
+        // R002's other inconsistent combination: non-compliant but severity none
+        // is declared anyway -- treated as a minor breach (conservative reading),
+        // never as the maximum.
+        double severityScore = config.getScoreFor(severity);
+        if (severity == InstructionSeverity.NONE) {
+            return config.getScoreFor(InstructionSeverity.MINOR);
+        }
+        return severityScore;
     }
 }

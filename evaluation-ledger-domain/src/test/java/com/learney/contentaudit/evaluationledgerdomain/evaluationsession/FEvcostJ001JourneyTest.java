@@ -14,7 +14,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
-import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
@@ -94,7 +94,7 @@ public class FEvcostJ001JourneyTest {
                 Instant.parse("2026-07-01T00:00:00Z")));
 
         DefaultEvaluationSessionFactory factory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
-        EvaluationSession session = factory.open(new EvaluationRunPolicy(5, false, null), evaluator);
+        EvaluationSession session = factory.open(new EvaluationBudget(5), evaluator);
 
         // solicitar: an analysis requests the evaluator's result for a course content
         EvaluationResolution resolution = session.resolve(new EvaluationSubject("quiz-1", content));
@@ -133,7 +133,7 @@ public class FEvcostJ001JourneyTest {
                 Instant.parse("2026-07-01T00:00:00Z")));
 
         DefaultEvaluationSessionFactory factory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
-        EvaluationSession session = factory.open(new EvaluationRunPolicy(5, false, null), evaluator);
+        EvaluationSession session = factory.open(new EvaluationBudget(5), evaluator);
 
         // solicitar: the element kept its identifier ("quiz-1") but its content changed
         EvaluationResolution resolution = session.resolve(new EvaluationSubject("quiz-1", newContent));
@@ -178,7 +178,7 @@ public class FEvcostJ001JourneyTest {
 
         DefaultEvaluationSessionFactory factory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
         // No budget for a new evaluation: isolates the "not reused" half of this path.
-        EvaluationSession session = factory.open(new EvaluationRunPolicy(0, false, null), evaluatorV2);
+        EvaluationSession session = factory.open(new EvaluationBudget(0), evaluatorV2);
 
         EvaluationResolution resolution = session.resolve(new EvaluationSubject("quiz-1", content));
 
@@ -211,7 +211,7 @@ public class FEvcostJ001JourneyTest {
         InMemoryLedger ledger = new InMemoryLedger();
 
         DefaultEvaluationSessionFactory factory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
-        EvaluationSession session = factory.open(new EvaluationRunPolicy(5, false, null), evaluator);
+        EvaluationSession session = factory.open(new EvaluationBudget(5), evaluator);
 
         EvaluationResolution resolution = session.resolve(new EvaluationSubject("quiz-1", content));
 
@@ -224,7 +224,7 @@ public class FEvcostJ001JourneyTest {
         when(subsequentEvaluator.evaluatorId()).thenReturn("qinst-judge");
         when(subsequentEvaluator.evaluatorVersion()).thenReturn("v1");
         EvaluationSession subsequentAnalysis =
-                factory.open(new EvaluationRunPolicy(5, false, null), subsequentEvaluator);
+                factory.open(new EvaluationBudget(5), subsequentEvaluator);
         EvaluationResolution subsequentResolution =
                 subsequentAnalysis.resolve(new EvaluationSubject("quiz-1", content));
 

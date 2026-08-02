@@ -16,16 +16,17 @@ import com.learney.contentaudit.auditdomain.AuditableCourse;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.EvaluationAnalyzerFactory;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.ScoreAggregator;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import com.learney.contentaudit.evaluationledgerdomain.ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
-import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
@@ -57,7 +58,20 @@ import org.junit.jupiter.api.TestMethodOrder;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FQinstJ003JourneyTest {
 
-    private static final String EVALUATOR_ID = "quiz-instruction-judge";
+    // Role A/B: the analyzer's own name -- what the report shows and what the run's
+    // exclusion set / per-analyzer policy map are keyed by (F-QINST-R015: a single name,
+    // read == written). This is DISTINCT from the judge's evaluatorId (role C, below):
+    // conflating them let a bug reach production where --exclude-analyzers and
+    // --instruction-budget silently matched nothing.
+    private static final String ANALYZER_NAME = "quiz-instruction";
+
+    // Role C: the judge's identity in the evaluation ledger -- used only for the
+    // EvaluationKey/history lookups, never for exclusion/policy keys.
+    private static final String EVALUATOR_ID = "quiz-instruction-validator";
+
+    // Mirrors DefaultQuizInstructionConfig's tested default (F-QINST-R006, verified in
+    // DefaultQuizInstructionConfigTest): 500 new judge queries per run.
+    private static final int DEFAULT_MAX_NEW_EVALUATIONS = 500;
 
     @Test
     @Order(1)
@@ -91,11 +105,12 @@ public class FQinstJ003JourneyTest {
         FakeEvaluator evaluator = new FakeEvaluator(EVALUATOR_ID, "v1");
 
         EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.evaluatorId()).thenReturn(EVALUATOR_ID);
+        when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
         when(quizInstructionFactory.create(any())).thenAnswer(invocation -> {
             EvaluationRunPolicy policy = invocation.getArgument(0);
-            EvaluationSession session = sessionFactory.open(policy, evaluator);
-            return sessionBackedAnalyzer(session, policy);
+            EvaluationRunPolicy effectivePolicy = withDefaultBudgetWhenAbsent(policy);
+            EvaluationSession session = sessionFactory.open(budgetFrom(effectivePolicy), evaluator);
+            return sessionBackedAnalyzer(session, effectivePolicy);
         });
 
         DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
@@ -145,12 +160,12 @@ public class FQinstJ003JourneyTest {
         ledger.seed(new EvaluationRecord(previousKey, "{\"compliant\":true}", "quiz-1", Instant.now()));
 
         EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.evaluatorId()).thenReturn(EVALUATOR_ID);
+        when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
 
         DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
                 List.of(), scoreAggregator, List.of(quizInstructionFactory));
 
-        AuditRunRequest request = new AuditRunRequest(null, Set.of(EVALUATOR_ID), null);
+        AuditRunRequest request = new AuditRunRequest(null, Set.of(ANALYZER_NAME), null);
         runner.runAudit(coursePath, request);
 
         // R011: excluded means the analyzer is never built and the judge never consulted.
@@ -197,10 +212,10 @@ public class FQinstJ003JourneyTest {
         ledger.seed(new EvaluationRecord(currentKey, "{\"compliant\":true}", "quiz-1", Instant.now()));
 
         EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.evaluatorId()).thenReturn(EVALUATOR_ID);
+        when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
         when(quizInstructionFactory.create(any())).thenAnswer(invocation -> {
             EvaluationRunPolicy policy = invocation.getArgument(0);
-            EvaluationSession session = sessionFactory.open(policy, evaluator);
+            EvaluationSession session = sessionFactory.open(budgetFrom(policy), evaluator);
             return sessionBackedAnalyzer(session, policy);
         });
 
@@ -208,7 +223,7 @@ public class FQinstJ003JourneyTest {
                 List.of(), scoreAggregator, List.of(quizInstructionFactory));
 
         EvaluationRunPolicy reevaluationPolicy = new EvaluationRunPolicy(500, true, null);
-        AuditRunRequest request = new AuditRunRequest(null, null, Map.of(EVALUATOR_ID, reevaluationPolicy));
+        AuditRunRequest request = new AuditRunRequest(null, null, Map.of(ANALYZER_NAME, reevaluationPolicy));
         runner.runAudit(coursePath, request);
 
         // R012: the judge is consulted again despite a current verdict already existing.
@@ -256,11 +271,12 @@ public class FQinstJ003JourneyTest {
         ledger.seed(new EvaluationRecord(previousVersionKey, "{\"compliant\":true}", "quiz-1", Instant.now()));
 
         EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.evaluatorId()).thenReturn(EVALUATOR_ID);
+        when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
         when(quizInstructionFactory.create(any())).thenAnswer(invocation -> {
             EvaluationRunPolicy policy = invocation.getArgument(0);
-            EvaluationSession session = sessionFactory.open(policy, evaluator);
-            return sessionBackedAnalyzer(session, policy);
+            EvaluationRunPolicy effectivePolicy = withDefaultBudgetWhenAbsent(policy);
+            EvaluationSession session = sessionFactory.open(budgetFrom(effectivePolicy), evaluator);
+            return sessionBackedAnalyzer(session, effectivePolicy);
         });
 
         DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
@@ -311,6 +327,29 @@ public class FQinstJ003JourneyTest {
 
     private static Map<String, String> subjectContent(String quizId) {
         return Map.of("marker", quizId);
+    }
+
+    /**
+     * Replicates, in this fake, the default-substitution that the real
+     * DefaultQuizInstructionAnalyzerFactory (audit-domain) performs when a run declares no
+     * policy for this evaluator: {@code policy != null ? policy : new
+     * EvaluationRunPolicy(config.getDefaultMaxNewEvaluations(), false, null)}. Without this,
+     * a null policy reaches EvaluationSession directly, which the real factory never does.
+     */
+    private static EvaluationRunPolicy withDefaultBudgetWhenAbsent(EvaluationRunPolicy policy) {
+        return policy != null ? policy : new EvaluationRunPolicy(DEFAULT_MAX_NEW_EVALUATIONS, false, null);
+    }
+
+    /**
+     * Replicates, in this fake, the split the real DefaultQuizInstructionAnalyzerFactory
+     * performs between opening the session and deciding whether to force re-evaluation: the
+     * session only needs the run's budget (a cap on new evaluations); the policy's
+     * reevaluate/reevaluationScope flags stay with the caller, which is why
+     * {@link #sessionBackedAnalyzer(EvaluationSession, EvaluationRunPolicy)} still receives the
+     * full policy alongside the budget-backed session.
+     */
+    private static EvaluationBudget budgetFrom(EvaluationRunPolicy policy) {
+        return new EvaluationBudget(policy.getMaxNewEvaluations());
     }
 
     /**

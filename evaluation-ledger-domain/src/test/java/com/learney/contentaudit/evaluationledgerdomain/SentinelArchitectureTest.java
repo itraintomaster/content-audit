@@ -82,9 +82,9 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: EvaluationCoverage - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy");
+      Class.forName("com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget");
     } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: EvaluationRunPolicy - " + e.getMessage());
+      Assertions.fail("Missing declared class: EvaluationBudget - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome");

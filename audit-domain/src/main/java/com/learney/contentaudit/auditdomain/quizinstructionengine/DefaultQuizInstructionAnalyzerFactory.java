@@ -2,9 +2,11 @@ package com.learney.contentaudit.auditdomain.quizinstructionengine;
 
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.EvaluationAnalyzerFactory;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.QuizInstructionConfig;
 import com.learney.contentaudit.auditdomain.QuizInstructionVerdictReader;
-import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
 import javax.annotation.processing.Generated;
@@ -32,12 +34,30 @@ public class DefaultQuizInstructionAnalyzerFactory implements EvaluationAnalyzer
     }
 
     @Override
-    public String evaluatorId() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public ContentAnalyzer create(EvaluationRunPolicy policy) {
+        // R006: budget and coverage are run state, built fresh per run. When the
+        // run declares no policy for this judge, fall back to the configured
+        // default budget instead of leaving the analyzer without one.
+        EvaluationRunPolicy effectivePolicy = policy != null
+                ? policy
+                : new EvaluationRunPolicy(config.getDefaultMaxNewEvaluations(), false, null);
+
+        // The session only honors the budget (F-EVCOST-R003); reevaluate/reevaluationScope
+        // are the analyzer's own vocabulary (F-EVCOST-R008) and never reach the session.
+        EvaluationBudget budget = new EvaluationBudget(effectivePolicy.getMaxNewEvaluations());
+        EvaluationSession session = sessionFactory.open(budget, evaluator);
+
+        return new QuizInstructionAnalyzer(session, new DefaultQuizInstructionSubjectBuilder(),
+                new DefaultQuizInstructionScorer(config), new DefaultQuizInstructionScopeMatcher(),
+                verdictReader, effectivePolicy);
     }
 
     @Override
-    public ContentAnalyzer create(EvaluationRunPolicy policy) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public String analyzerName() {
+        // Same constant QuizInstructionAnalyzer.getName() publishes: what the run
+        // filters/budgets by and what the report shows stay identical by
+        // construction, not by discipline (F-QINST-R015).
+        return QuizInstructionAnalyzer.ANALYZER_NAME;
     }
+
 }

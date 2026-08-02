@@ -182,18 +182,22 @@ unicamente, y los pendientes no tienen ni puntaje ni diagnostico de consigna.
 </details>
 
 <a id="F-QINST-R005"></a>
-### Rule[F-QINST-R005] - El informe declara la cobertura del analisis
+### Rule[F-QINST-R005] - El informe declara la cobertura del analisis y con que version del juez se evaluo
 **Severity**: critical | **Validation**: VALIDATED
 
-> El informe de auditoria expone, para este analisis, cuantos ejercicios alcanza,
-> cuantos tienen veredicto (distinguiendo los evaluados en esta corrida de los
-> reutilizados de corridas anteriores), cuantos quedaron pendientes y cuantos
-> fallaron. El puntaje del analisis se lee **siempre** junto a esa cobertura.
+> El informe de auditoria expone, para este analisis, **con que version del juez**
+> se evaluo, cuantos ejercicios alcanza, cuantos tienen veredicto (distinguiendo
+> los evaluados en esta corrida de los reutilizados de corridas anteriores),
+> cuantos quedaron pendientes y cuantos fallaron. La version declarada es la
+> vigente en la corrida y, por lo tanto, la de **todos** los veredictos que el
+> informe puntua, sean nuevos o reutilizados. El puntaje del analisis se lee
+> **siempre** junto a esa cobertura.
 
 <details><summary>Detalle</summary>
 
 | Dato de cobertura | Significado |
 |---|---|
+| Version del juez | La version vigente en la corrida, y la de todos los veredictos puntuados: los de otra version no se reutilizan ([F-QINST-R010](#F-QINST-R010)) |
 | Alcanzados | Ejercicios del curso que este analisis debe evaluar ([F-QINST-R014](#F-QINST-R014)) |
 | Con veredicto | Ejercicios con puntaje en esta auditoria |
 | — evaluados en esta corrida | Consumieron presupuesto ([F-QINST-R006](#F-QINST-R006)) |
@@ -201,8 +205,8 @@ unicamente, y los pendientes no tienen ni puntaje ni diagnostico de consigna.
 | Pendientes | Sin veredicto por tope de presupuesto; los toma la corrida siguiente |
 | Fallidos | El juez no llego a pronunciarse en esta corrida ([F-QINST-R007](#F-QINST-R007)) |
 
-Sin este dato el puntaje es directamente **engañoso**: un 0,95 sobre 40
-ejercicios evaluados de 11.500 se lee igual que un 0,95 sobre el curso entero, y
+Sin los numeros de cobertura el puntaje es directamente **engañoso**: un 0,95 sobre
+40 ejercicios evaluados de 11.500 se lee igual que un 0,95 sobre el curso entero, y
 solo uno de los dos autoriza a concluir algo. Esta regla es la que hace legitima
 la cobertura parcial de [F-QINST-R004](#F-QINST-R004): el analisis puede informar
 sobre una parte del curso siempre que diga **cual**.
@@ -210,12 +214,27 @@ sobre una parte del curso siempre que diga **cual**.
 La suma de con-veredicto, pendientes y fallidos debe dar el total de alcanzados:
 todo ejercicio alcanzado esta en exactamente uno de los tres estados.
 
-**Criterio de aceptacion**: tras una corrida que evalua solo una parte del curso,
-el informe declara los cinco numeros, la suma cierra contra el total de
-alcanzados, y una segunda corrida muestra crecer los reutilizados y decrecer los
-pendientes.
+**Por que la version se declara aca.** Es el dato que vuelve **auditable** a
+[F-QINST-R010](#F-QINST-R010). Esa regla exige que los veredictos de una version
+anterior del juez no se reutilicen, pero si el informe no dice con que version se
+evaluo lo que **si** se reutilizo, nadie puede verificar que se haya cumplido: los
+numeros de reutilizados se leen igual estando bien y estando mal. Y como los
+veredictos de varias versiones **conviven** en el registro
+([F-EVCOST-R006](../2026-07-29.03_evaluaciones-costosas-reutilizables/REQUIREMENT.md#F-EVCOST-R006)),
+declararla es la unica forma de saber cual de todas es la que el informe esta
+mirando.
 
-**Error**: "La cobertura declarada del analisis de consigna no cierra: {conVeredicto} + {pendientes} + {fallidos} != {alcanzados}"
+Que la version sea **una sola** por informe no es una simplificacion: se sigue de
+que solo se reutilizan veredictos de la version vigente. Un informe con puntajes
+de dos versiones distintas seria, directamente, una violacion de
+[F-QINST-R010](#F-QINST-R010).
+
+**Criterio de aceptacion**: tras una corrida que evalua solo una parte del curso,
+el informe declara los cinco numeros y la version del juez con la que se evaluo, la
+suma cierra contra el total de alcanzados, y una segunda corrida muestra crecer los
+reutilizados y decrecer los pendientes declarando la misma version.
+
+**Error**: "La cobertura declarada del analisis de consigna no cierra: {conVeredicto} + {pendientes} + {fallidos} != {alcanzados}" / "El informe declara puntajes de consigna sin decir con que version del juez se evaluaron"
 
 </details>
 
@@ -390,15 +409,21 @@ ninguna consulta nueva.
 </details>
 
 <a id="F-QINST-R010"></a>
-### Rule[F-QINST-R010] - Cambiar el juez no borra ni re-evalua nada por si solo
+### Rule[F-QINST-R010] - La version del juez gobierna la vigencia de los veredictos
 **Severity**: critical | **Validation**: VALIDATED
 
 > La version del juez —su forma de preguntar y la estructura de lo que devuelve—
-> forma parte de la identidad del veredicto. Al cambiarla, los veredictos
-> anteriores **dejan de ser vigentes** pero **no se borran**: quedan como
-> historia. Volver a evaluar el curso con el juez nuevo es una decision explicita
-> del usuario ([F-QINST-R012](#F-QINST-R012)), nunca un efecto colateral de haber
-> tocado el juez.
+> forma parte de la identidad del veredicto, y de ahi salen tres invariantes:
+> 1. Al cambiar la version, los veredictos anteriores **dejan de ser vigentes**
+>    pero **no se borran**: quedan como historia.
+> 2. Volver a evaluar el curso con el juez nuevo es una decision explicita del
+>    usuario ([F-QINST-R012](#F-QINST-R012)), nunca un efecto colateral de haber
+>    tocado el juez.
+> 3. Cuando el sistema **no logra derivar** la version a partir de la definicion
+>    del juez, no la presenta como una version valida: no coincide con ninguna
+>    version derivada de una definicion accesible, ningun veredicto guardado se da
+>    por vigente bajo ella, y esa corrida trata al juez como **no disponible**
+>    ([F-QINST-R007](#F-QINST-R007)).
 
 <details><summary>Detalle</summary>
 
@@ -414,16 +439,39 @@ Es el comportamiento general de
 aplicado a este juez.
 
 Tras cambiar la version, y hasta que el usuario decida re-evaluar, los ejercicios
-figuran como **pendientes** en la cobertura ([F-QINST-R005](#F-QINST-R005)): el
-informe dice con precision que el curso quedo sin juicio vigente, en lugar de
-mostrar puntajes que ya no corresponden al juez actual.
+figuran como **pendientes** en la cobertura ([F-QINST-R005](#F-QINST-R005)), que
+ademas declara con que version se evaluo lo que si tiene puntaje: el informe dice
+con precision que el curso quedo sin juicio vigente, en lugar de mostrar puntajes
+que ya no corresponden al juez actual.
 
-**Criterio de aceptacion**: cambiada la version del juez, ninguna corrida
+**Por que la version que no pudo derivarse tiene que distinguirse (invariante 3).**
+Las dos primeras invariantes se apoyan enteramente en que la version se **derive de
+la definicion del juez**: es eso lo que hace que cambiar su forma de preguntar o la
+estructura de lo que devuelve cambie la version y, con ella, la vigencia. Si el
+sistema no consigue acceder a esa definicion y aun asi produce una version con la
+misma forma que una legitima, la cadena se corta en silencio: retocar el juez deja
+de invalidar nada, la corrida da por vigentes veredictos emitidos por **otra**
+version y los puntua como si fueran del juez actual. Nadie lo detecta —no hay
+error, no hay diferencia visible en el informe— y es exactamente el escenario que
+las invariantes 1 y 2 existen para impedir.
+
+Por eso el desenlace exigido es el conservador y visible: esa corrida no puntua
+nada de este analisis. No reutiliza ningun veredicto guardado, no puede registrar
+uno nuevo bajo una version que no vale, y los ejercicios quedan pendientes o
+fallidos en la cobertura ([F-QINST-R005](#F-QINST-R005)) como ante cualquier otra
+indisponibilidad del juez ([F-QINST-R007](#F-QINST-R007)). Se pierde una corrida de
+este analisis; lo que no se pierde es la garantia de que un puntaje de consigna
+siempre corresponde al juez que el informe declara.
+
+**Criterio de aceptacion**: (a) cambiada la version del juez, ninguna corrida
 posterior reutiliza los veredictos anteriores, esos veredictos siguen
 consultables, y no se dispara ninguna consulta nueva mas alla del presupuesto
-ordinario de la corrida.
+ordinario de la corrida; (b) si la version no puede derivarse de la definicion del
+juez, la corrida no reutiliza ningun veredicto guardado —ni siquiera los emitidos
+por la ultima version conocida—, no registra ninguno nuevo, y sus ejercicios quedan
+sin puntaje.
 
-**Error**: "El cambio de version del juez de consigna elimino {cantidad} veredictos anteriores"
+**Error**: "El cambio de version del juez de consigna elimino {cantidad} veredictos anteriores" / "Se dio por vigente un veredicto bajo una version del juez que no pudo derivarse de su definicion"
 
 </details>
 
@@ -560,6 +608,70 @@ coincide con la cantidad de ejercicios del curso, sin exclusiones.
 
 </details>
 
+<a id="F-QINST-R015"></a>
+### Rule[F-QINST-R015] - El analisis tiene un solo nombre: el que se lee es el que se escribe
+**Severity**: critical | **Validation**: VALIDATED
+
+> El vocabulario con el que el usuario nombra a este analisis es **unico**. El
+> nombre con el que el analisis aparece en el informe de auditoria es exactamente
+> el mismo con el que se lo excluye de una corrida
+> ([F-QINST-R011](#F-QINST-R011)), se le fija el tope de consultas
+> ([F-QINST-R006](#F-QINST-R006)) y se le pide re-evaluacion
+> ([F-QINST-R012](#F-QINST-R012)). No existe un segundo nombre que el usuario
+> deba averiguar.
+
+<details><summary>Detalle</summary>
+
+Las tres reglas anteriores describen **que** puede pedir el usuario, pero ninguna
+fija **con que palabra** lo pide. Esta si, y por eso vale por separado: es la
+unica que se rompe sin romper a las otras tres. Cada una de ellas funciona
+perfectamente cuando el pedido llega; lo que falla es que el pedido llegue,
+porque el usuario lo dirigio al unico nombre que el sistema le mostro.
+
+**El defecto que la motiva es silencioso, y ese es el problema.** Verificado sobre
+el curso real: el informe presenta el analisis bajo un nombre, pero al excluirlo,
+acotarle el presupuesto o pedirle re-evaluacion con **ese** nombre el pedido no
+tiene efecto alguno, porque internamente el analisis se busca bajo otro —el del
+juez que lo respalda—. No hay error, no hay aviso y el informe se ve igual: quien
+fija un tope de 10 consultas para acotar el gasto corre con el tope por defecto de
+500 y se entera por la factura. Quien excluye el analisis para hacer una auditoria
+rapida y gratuita paga la auditoria completa. Un pedido ignorado en silencio es
+peor que un pedido rechazado: el rechazo se ve, la omision no.
+
+| Lo que el usuario hace | Lo que espera | Lo que ocurre sin esta regla |
+|---|---|---|
+| Lee el informe y anota el nombre del analisis | Tener el nombre con el que operarlo | Tiene un nombre que solo sirve para leer |
+| Lo excluye por ese nombre ([F-QINST-R011](#F-QINST-R011)) | El analisis no corre | Corre igual, y consulta al juez |
+| Le fija un tope de N consultas ([F-QINST-R006](#F-QINST-R006)) | A lo sumo N consultas | Corre con el tope por defecto |
+| Le pide re-evaluacion ([F-QINST-R012](#F-QINST-R012)) | Vuelve a juzgar lo ya juzgado | Reutiliza todo y no re-evalua nada |
+
+**Por que se enuncia sobre este analisis y no sobre todos.** La propiedad es
+general —los demas analisis del sistema ya se nombran igual en el informe y en las
+opciones que los seleccionan, y la plataforma ya reconoce un nombre canonico
+publicado por analisis
+([F-CLIRV-R016](../2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md#F-CLIRV-R016))—
+pero este es el primer analisis con **dos** nombres candidatos: el suyo y el del
+juez que lo respalda. La coincidencia, que en los demas es un hecho, aca es una
+exigencia. Enunciarla como invariante de toda la plataforma es deseable y no
+pertenece a este requerimiento.
+
+**Que NO exige esta regla**: no define como reacciona el sistema ante un nombre de
+analisis desconocido. Que un pedido dirigido a un nombre inexistente se rechace en
+lugar de ignorarse es una mejora legitima —y es lo que habria hecho visible este
+defecto— pero es una propiedad de la interfaz de la auditoria sobre cualquier
+analisis, no de este.
+
+**Criterio de aceptacion**: tomando el nombre del analisis **tal como el informe lo
+muestra**, y usando ese mismo nombre y ningun otro: (a) excluirlo deja al juez sin
+ninguna consulta y al informe sin cobertura de consigna; (b) fijarle un tope de N
+consultas hace que la corrida consulte a lo sumo N veces, y no el valor por
+defecto; (c) pedirle re-evaluacion vuelve a consultar por contenido que ya tenia
+veredicto vigente.
+
+**Error**: "Se pidio '{opcion}' para el analisis '{nombre}' y la corrida lo ignoro: el informe publica ese analisis con ese mismo nombre" (condicion prohibida: un pedido dirigido al nombre publicado no debe quedar sin efecto)
+
+</details>
+
 ## Contexto
 
 La auditoria de ContentAudit mide hoy propiedades **calculables** del contenido:
@@ -646,12 +758,15 @@ todavia no se miraron".
     agregacion por la jerarquia con el mecanismo generico de la plataforma.
   - Diagnostico por ejercicio evaluado, con violaciones y evidencia.
   - Ejecucion por omision en toda auditoria y exclusion explicita.
+  - Un unico nombre del analisis: el que publica el informe es el que el usuario
+    escribe para excluirlo, acotarlo y re-evaluarlo.
   - Presupuesto acotado de consultas nuevas por corrida y reanudacion en corridas
     posteriores.
-  - Cobertura declarada: alcanzados, con veredicto, reutilizados, pendientes y
-    fallidos.
+  - Cobertura declarada: version del juez, alcanzados, con veredicto, reutilizados,
+    pendientes y fallidos.
   - Separacion entre falla transitoria y veredicto negativo legitimo.
-  - Identidad del veredicto por contenido juzgado, incluida la version del juez.
+  - Identidad del veredicto por contenido juzgado, incluida la version del juez, y
+    tratamiento de la version que no pudo derivarse de la definicion del juez.
   - Re-evaluacion explicita.
 - **Fuera de alcance**:
   - **El criterio con que el juez decide.** Que revisa, como pondera y como
@@ -1005,6 +1120,11 @@ manos de la arquitectura.
 - **FEAT-DSLEN** — Precedente de diagnostico tipado por ejercicio: exponer los
   datos que determinaron el puntaje, no solo el puntaje. Citada por
   [F-QINST-R003](#F-QINST-R003).
+- **FEAT-CLIRV** — Establece que cada analisis tiene un nombre canonico publicado
+  por el sistema, y que ese es el nombre con el que se lo direcciona. Es el
+  precedente del que [F-QINST-R015](#F-QINST-R015) es un caso: aca la coincidencia
+  entre el nombre publicado y el nombre operable deja de ser un hecho y pasa a ser
+  una exigencia. Citada por [F-QINST-R015](#F-QINST-R015).
 - **FEAT-QSENT** — Define las partes de la oracion de un ejercicio (texto fijo y
   hueco) y las opciones aceptadas de cada hueco, que son el contenido que el juez
   necesita completo. Citada por [DOUBT-QUIZ-COMPLETO](#DOUBT-QUIZ-COMPLETO).

@@ -17,7 +17,7 @@ import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionDiagn
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionVerdict;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
-import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import java.util.ArrayList;

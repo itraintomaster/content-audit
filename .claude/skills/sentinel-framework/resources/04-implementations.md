@@ -1710,7 +1710,7 @@ public FileSystemImpactPreviewStore(Path baseDir) {
 | `ledger` | `EvaluationLedger` |
 | `fingerprinter` | `ContentFingerprinter` |
 | `evaluator` | `Evaluator` |
-| `policy` | `EvaluationRunPolicy` |
+| `budget` | `EvaluationBudget` |
 
 #### Sha256ContentFingerprinter (package: contentfingerprint)
 
@@ -1760,6 +1760,25 @@ public FileSystemEvaluationLedger(Path baseDir) {
 | Name | Type |
 |------|------|
 | `config` | `AgentGraphRunnerConfig` |
+| `agentDefinitionLocator` | `AgentDefinitionLocator` |
+
+#### DefaultAgentDefinitionLocatorFactory (package: graphexecution)
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure.graphexecution`
+**Visibility:** public
+**Implements:** AgentDefinitionLocatorFactory
+
+#### DefaultAgentDefinitionLocator (package: graphexecution)
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure.graphexecution`
+**Visibility:** public
+**Implements:** AgentDefinitionLocator
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `config` | `AgentGraphRunnerConfig` |
 
 ### Module: quiz-instruction-infrastructure
 
@@ -1788,6 +1807,12 @@ public FileSystemEvaluationLedger(Path baseDir) {
 **Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
 **Visibility:** public
 **Implements:** QuizInstructionJudgeVersionResolver
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `agentDefinitionLocator` | `AgentDefinitionLocator` |
 
 #### JacksonQuizInstructionVerdictReader (package: instructionverdict)
 

@@ -1,5 +1,9 @@
 package com.learney.contentaudit.agentruntimeinfrastructure.graphexecution;
+import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocator;
 
+import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionFound;
+import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocation;
+import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionUnresolved;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunner;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunnerConfig;
 import com.sentinel.agents.framework.definition.Node;
@@ -30,10 +34,9 @@ import javax.annotation.processing.Generated;
  * RunPersistence, run-id format, {@code run_dir} enrichment), unified base-dir
  * resolution.
  *
- * <p><strong>Base-dir resolution (both {@code agentsBaseDir} and {@code
- * runsBaseDir}):</strong> a three-step chain that is the union — not the
- * intersection — of the two original behaviors, so every existing caller
- * keeps getting exactly the paths it got before:
+ * <p><strong>{@code runsBaseDir} resolution:</strong> a three-step chain that is
+ * the union — not the intersection — of the two original behaviors, so every
+ * existing caller keeps getting exactly the paths it got before:
  * <ol>
  *   <li>{@link AgentGraphRunnerConfig}'s explicit value, when set;</li>
  *   <li>else {@code inputs["project_root"]}, when present and non-blank
@@ -42,6 +45,13 @@ import javax.annotation.processing.Generated;
  *       resolution; it never populates {@code project_root}, so it falls
  *       through to this step exactly as before).</li>
  * </ol>
+ *
+ * <p><strong>Agent definition directory resolution:</strong> delegated
+ * entirely to the injected {@link AgentDefinitionLocator} — the same instance
+ * built alongside this runner from the same {@link AgentGraphRunnerConfig} —
+ * so the directory this runner loads the graph from and the directory a
+ * consumer (e.g. a judge version resolver) digests are the same by
+ * construction, never two independently-resolved paths that could diverge.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -49,7 +59,6 @@ import javax.annotation.processing.Generated;
 )
 class DefaultAgentGraphRunner implements AgentGraphRunner {
 
-    private static final String AGENTS_BASE_DIR = ".sentinel/agents";
     private static final String RUNS_BASE_DIR = ".sentinel/runs";
 
     private static final DateTimeFormatter RUN_ID_FMT =
@@ -57,19 +66,20 @@ class DefaultAgentGraphRunner implements AgentGraphRunner {
 
     private final AgentGraphRunnerConfig config;
 
-    public DefaultAgentGraphRunner(AgentGraphRunnerConfig config) {
-        this.config = config;
-    }
+private final AgentDefinitionLocator agentDefinitionLocator;
+
+public DefaultAgentGraphRunner(AgentGraphRunnerConfig config, AgentDefinitionLocator agentDefinitionLocator) {
+    this.config = config;
+    this.agentDefinitionLocator = agentDefinitionLocator;
+}
 
     @Override
     public RunState run(String agentName, Map<String, String> inputs, ChatModel chatModel,
             Map<String, Object> tools) {
-        Path agentsBase = resolveBaseDir(
-                config != null ? config.getAgentsBaseDir() : null, AGENTS_BASE_DIR, inputs);
         Path runsBase = resolveBaseDir(
                 config != null ? config.getRunsBaseDir() : null, RUNS_BASE_DIR, inputs);
 
-        Path agentDir = agentsBase.resolve(agentName).toAbsolutePath();
+        Path agentDir = resolveAgentDir(agentName, inputs);
         Node entryNode = AgentLoader.loadFromDirectory(agentDir);
 
         String runId = RUN_ID_FMT.format(Instant.now()) + "-" + UUID.randomUUID().toString().substring(0, 8);
@@ -111,6 +121,29 @@ class DefaultAgentGraphRunner implements AgentGraphRunner {
         boolean halted = state.runStatus().name().equals("HALTED");
         persistence.finish(halted ? "failed" : "completed", RunPersistence.outcomeOf(state));
         return state;
+    }
+
+    /**
+     * Mirrors the union of the two original consumers at the locator boundary:
+     * knowledge-title-agent populates {@code inputs["project_root"]}, so its
+     * runs resolve {@code locateUnderProjectRoot}; lemma-absence-agent never
+     * does, so its runs resolve plain {@code locate} (config, else CWD).
+     */
+    private Path resolveAgentDir(String agentName, Map<String, String> inputs) {
+        String projectRoot = inputs != null ? inputs.get("project_root") : null;
+        AgentDefinitionLocation location = (projectRoot != null && !projectRoot.isBlank())
+                ? agentDefinitionLocator.locateUnderProjectRoot(projectRoot, agentName)
+                : agentDefinitionLocator.locate(agentName);
+
+        if (location instanceof AgentDefinitionFound found) {
+            return found.getDirectory();
+        }
+        if (location instanceof AgentDefinitionUnresolved unresolved) {
+            throw new IllegalStateException(
+                    "No se encontro la definicion del agente '" + unresolved.getAgentName()
+                            + "' buscada en " + unresolved.getSearchedIn());
+        }
+        throw new IllegalStateException("AgentDefinitionLocation desconocido: " + location);
     }
 
     private static Path resolveBaseDir(Path configured, String defaultRelative, Map<String, String> inputs) {

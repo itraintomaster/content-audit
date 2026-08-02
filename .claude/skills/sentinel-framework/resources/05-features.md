@@ -1400,16 +1400,17 @@ contradicen su propia instruccion y ningun analisis los detecta.
 | F-QINST-R002 | Del veredicto al puntaje: la severidad define la escala | critical | Puntaje fuera del rango [0,0 - 1,0] para el ejercicio '{quizId}' del knowledge '{knowledgeId}' |
 | F-QINST-R003 | Cada ejercicio evaluado deja un diagnostico inspeccionable | critical | El ejercicio '{quizId}' fue evaluado pero no registro diagnostico de consigna |
 | F-QINST-R004 | Un ejercicio no evaluado no recibe puntaje ni diagnostico | critical | El ejercicio '{quizId}' no fue evaluado y sin embargo recibio puntaje de consigna |
-| F-QINST-R005 | El informe declara la cobertura del analisis | critical | La cobertura declarada del analisis de consigna no cierra: {conVeredicto} + {pendientes} + {fallidos} != {alcanzados} |
+| F-QINST-R005 | El informe declara la cobertura del analisis y con que version del juez se evaluo | critical | La cobertura declarada del analisis de consigna no cierra: {conVeredicto} + {pendientes} + {fallidos} != {alcanzados} |
 | F-QINST-R006 | Cada corrida acota cuantas consultas nuevas hace al juez | critical | - |
 | F-QINST-R007 | Una falla del juez no aborta la auditoria ni corrompe lo ya guardado | critical | La auditoria se interrumpio por una falla del juez de consigna |
 | F-QINST-R008 | Una corrida no vuelve a consultar por lo ya evaluado | critical | Se consulto al juez por el ejercicio '{quizId}', que ya tenia veredicto vigente |
 | F-QINST-R009 | La identidad del veredicto es el contenido juzgado, no el ejercicio | critical | Se reutilizo el veredicto del ejercicio '{quizId}' pese a que su contenido juzgado cambio |
-| F-QINST-R010 | Cambiar el juez no borra ni re-evalua nada por si solo | critical | El cambio de version del juez de consigna elimino {cantidad} veredictos anteriores |
+| F-QINST-R010 | La version del juez gobierna la vigencia de los veredictos | critical | El cambio de version del juez de consigna elimino {cantidad} veredictos anteriores |
 | F-QINST-R011 | El usuario puede excluir el analisis de una corrida | major | - |
 | F-QINST-R012 | La re-evaluacion es explicita y acotable | major | - |
 | F-QINST-R013 | Un veredicto de infraestructura del juez es una falla, no un juicio | critical | Se registro como veredicto una respuesta de infraestructura del juez para el ejercicio '{quizId}' |
 | F-QINST-R014 | Alcance: todo ejercicio del curso, tenga o no restricciones explicitas | major | - |
+| F-QINST-R015 | El analisis tiene un solo nombre: el que se lee es el que se escribe | critical | Se pidio '{opcion}' para el analisis '{nombre}' y la corrida lo ignoro: el informe publica ese analisis con ese mismo nombre |
 
 **User Journeys:**
 

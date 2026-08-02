@@ -2,8 +2,14 @@ package com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionFound;
+import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocator;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
+import java.nio.file.Path;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -31,7 +37,10 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R010")
     public void shouldDeriveADifferentJudgeVersionWhenTheAgentDefinitionOrTheModelChanges() {
-        DefaultQuizInstructionJudgeVersionResolver resolver = new DefaultQuizInstructionJudgeVersionResolver();
+        AgentDefinitionLocator locator = mock(AgentDefinitionLocator.class);
+        when(locator.locate(anyString())).thenAnswer(invocation ->
+                new AgentDefinitionFound(Path.of(".sentinel/agents/" + invocation.getArgument(0, String.class))));
+        DefaultQuizInstructionJudgeVersionResolver resolver = new DefaultQuizInstructionJudgeVersionResolver(locator);
 
         QuizInstructionJudgeConfig baseline = config("gpt-4o-mini", "quiz-instruction-validator");
         QuizInstructionJudgeConfig differentModel = config("gpt-4o", "quiz-instruction-validator");
@@ -50,7 +59,10 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R010")
     public void shouldKeepTheJudgeVersionStableWhileTheAgentDefinitionAndTheModelStayTheSame() {
-        DefaultQuizInstructionJudgeVersionResolver resolver = new DefaultQuizInstructionJudgeVersionResolver();
+        AgentDefinitionLocator locator = mock(AgentDefinitionLocator.class);
+        when(locator.locate(anyString())).thenAnswer(invocation ->
+                new AgentDefinitionFound(Path.of(".sentinel/agents/" + invocation.getArgument(0, String.class))));
+        DefaultQuizInstructionJudgeVersionResolver resolver = new DefaultQuizInstructionJudgeVersionResolver(locator);
 
         QuizInstructionJudgeConfig first = new QuizInstructionJudgeConfig(
                 "http://localhost:1234/v1", "key-a", "gpt-4o-mini", 0.0, 30,
@@ -69,7 +81,8 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R010")
     public void shouldHonourTheJudgeVersionFixedByConfiguration() {
-        DefaultQuizInstructionJudgeVersionResolver resolver = new DefaultQuizInstructionJudgeVersionResolver();
+        AgentDefinitionLocator locator = mock(AgentDefinitionLocator.class);
+        DefaultQuizInstructionJudgeVersionResolver resolver = new DefaultQuizInstructionJudgeVersionResolver(locator);
 
         QuizInstructionJudgeConfig overridden = new QuizInstructionJudgeConfig(
                 "http://localhost:1234/v1", "test-api-key", "gpt-4o-mini", 0.0, 30,

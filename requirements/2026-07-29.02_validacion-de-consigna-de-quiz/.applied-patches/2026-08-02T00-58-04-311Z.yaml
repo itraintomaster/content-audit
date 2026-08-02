@@ -1,0 +1,201 @@
+code: FEAT-QINST
+description: |
+  Cierra cuatro huecos de contrato de FEAT-QINST/FEAT-EVCOST, todos variantes del mismo defecto -el error silencioso-: (1) la sesion declara bajo que version resolvio, para que la cobertura del informe deje de decir 'null'; (2) la definicion del agente se localiza por una unica cadena compartida con el runner, y su ausencia produce un resultado distinguible en vez de un digest con forma legitima; (3) la sesion deja de recibir los dos campos de politica que nunca lee; (4) el seam por el que el runner decide incluir, excluir y presupuestar un analisis de evaluacion habla el nombre del analizador -el unico que el usuario ve- en vez del id del evaluador.
+modules:
+- name: evaluation-ledger-domain
+  models:
+  - name: EvaluationBudget
+    type: record
+    fields:
+    - name: maxNewEvaluations
+      type: int
+      description: Tope de evaluaciones nuevas de la corrida. Es lo unico de la politica
+        del consumidor que la sesion honra (F-EVCOST-R003); el reuso nunca lo consume.
+    _change: add
+  - name: EvaluationRunPolicy
+    type: record
+    _change: delete
+  interfaces:
+  - name: EvaluationSession
+    sealed: false
+    exposes:
+    - signature: "evaluatorVersion(): String"
+      _change: add
+    _change: modify
+  - name: EvaluationSessionFactory
+    sealed: false
+    exposes:
+    - signature: "open(EvaluationRunPolicy policy,Evaluator evaluator): EvaluationSession"
+      _change: delete
+    - signature: "open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession"
+      _change: add
+    _change: modify
+  packages:
+  - name: evaluationsession
+    description: |
+      Coordinacion reanudable de una corrida sobre un evaluador. La sesion se abre con un presupuesto y un evaluador, y esos dos datos fijan su identidad para toda la corrida: evaluatorVersion() devuelve la version bajo la que resolvio, congelada al abrir, que es la misma que entra en cada EvaluationKey (F-EVCOST-R001). Exponerla evita que el consumidor tenga que reconstruirla desde el Evaluator para declararla en su informe: la unica fuente de verdad de esa version es la sesion que la usa. La sesion recibe unicamente el presupuesto: quien decide que sujeto se vuelve a evaluar es el consumidor, sujeto por sujeto, via resolveForced (F-EVCOST-R008).
+    implementations:
+    - name: DefaultEvaluationSession
+      requiresInject:
+      - name: policy
+        type: EvaluationRunPolicy
+        _change: delete
+      - name: budget
+        type: EvaluationBudget
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-domain
+  models:
+  - name: EvaluationRunPolicy
+    type: record
+    fields:
+    - name: maxNewEvaluations
+      type: int
+      description: Tope de consultas nuevas al evaluador en esta corrida (F-QINST-R006).
+        El analizador lo traduce a EvaluationBudget al abrir la sesion.
+    - name: reevaluate
+      type: boolean
+      description: "Pedido explicito de volver a evaluar (F-EVCOST-R008). Lo interpreta\
+        \ el analizador, nunca la sesion: la sesion solo re-evalua el sujeto puntual\
+        \ que se le pide con resolveForced."
+    - name: reevaluationScope
+      type: String
+      description: "Parte acotada alcanzada por el pedido, expresada en el vocabulario\
+        \ del consumidor (id de knowledge, F-QINST-R012). Vive en audit-domain porque\
+        \ solo aca hay con que resolverlo: de un sujeto la sesion solo conoce su subjectRef\
+        \ y su contenido."
+    _change: add
+  interfaces:
+  - name: EvaluationAnalyzerFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "evaluatorId(): String"
+      _change: delete
+    - signature: "analyzerName(): String"
+      _change: add
+    _change: modify
+  _change: modify
+- name: agent-runtime-infrastructure
+  models:
+  - name: AgentDefinitionFound
+    type: record
+    fields:
+    - name: directory
+      type: Path
+      description: Directorio existente de la definicion del agente. Es el mismo que
+        se carga para correr el grafo.
+    _change: add
+    implements:
+    - AgentDefinitionLocation
+  - name: AgentDefinitionUnresolved
+    type: record
+    fields:
+    - name: agentName
+      type: String
+      description: Agente que se busco.
+    - name: searchedIn
+      type: Path
+      description: "Ruta absoluta donde se busco y no hay definicion. Va en el resultado\
+        \ para que el mensaje diga donde miro, no solo que fallo."
+    _change: add
+    implements:
+    - AgentDefinitionLocation
+  interfaces:
+  - name: AgentDefinitionLocation
+    sealed: false
+    _change: add
+  - name: AgentDefinitionLocator
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "locate(String agentName): AgentDefinitionLocation"
+      _change: add
+    - signature: "locateUnderProjectRoot(String projectRoot,String agentName): AgentDefinitionLocation"
+      _change: add
+    _change: add
+  - name: AgentDefinitionLocatorFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(AgentGraphRunnerConfig config): AgentDefinitionLocator"
+      _change: add
+    _change: add
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultAgentGraphRunnerFactory
+    suppressed: false
+    interface: AgentGraphRunnerFactory
+  - type: Factory
+    implementations:
+    - DefaultAgentDefinitionLocatorFactory
+    suppressed: false
+    interface: AgentDefinitionLocatorFactory
+  packages:
+  - name: graphexecution
+    description: |
+      Motor del runtime. Solo las factories son publicas; el runner y el locator son package-private. El locator es la unica implementacion de la cadena de resolucion del directorio de definiciones (config -> project_root -> CWD): el runner ya no la resuelve por su cuenta, de modo que el directorio que se ejecuta y el directorio sobre el que un consumidor calcula una version derivada son necesariamente el mismo. Cuando no hay definicion, el locator devuelve AgentDefinitionUnresolved en vez de una ruta inexistente: no existe un camino donde "no encontre nada" se pueda confundir con "encontre un directorio vacio".
+    implementations:
+    - name: DefaultAgentDefinitionLocatorFactory
+      visibility: public
+      implements:
+      - AgentDefinitionLocatorFactory
+      _change: add
+    - name: DefaultAgentDefinitionLocator
+      requiresInject:
+      - name: config
+        type: AgentGraphRunnerConfig
+      implements:
+      - AgentDefinitionLocator
+      _change: add
+    - name: DefaultAgentGraphRunner
+      requiresInject:
+      - name: agentDefinitionLocator
+        type: AgentDefinitionLocator
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: quiz-instruction-infrastructure
+  interfaces:
+  - name: QuizInstructionJudgeFactory
+    sealed: false
+    exposes:
+    - signature: "create(QuizInstructionJudgeConfig config,AgentGraphRunner agentGraphRunner):\
+        \ Evaluator"
+      _change: delete
+    - signature: "create(QuizInstructionJudgeConfig config,AgentGraphRunner agentGraphRunner,AgentDefinitionLocator\
+        \ agentDefinitionLocator): Evaluator"
+      _change: add
+    _change: modify
+  packages:
+  - name: instructionjudge
+    description: |
+      Motor del adaptador del juez. Solo la factory es publica; el juez, el resolutor de version y el armado de entradas son package-private. El resolutor de version no conoce rutas: le pide la definicion al mismo AgentDefinitionLocator con el que se construye el runner, asi que el digest de los archivos del agente se calcula siempre sobre la definicion que efectivamente se ejecuta (F-QINST-R010). Cuando el locator responde AgentDefinitionUnresolved, la version derivada se emite con el prefijo reservado "unresolved-agent-definition:" en lugar de un digest con la misma forma que uno legitimo: una version que ignora la definicion del agente tiene que decirlo. Esa version no coincide con ninguna registrada, asi que no reutiliza veredictos ajenos, y como el runner comparte el mismo locator la corrida devuelve ademas EVALUATOR_UNAVAILABLE al intentar cargar el grafo (F-QINST-R007): el ejercicio queda pendiente, sin puntaje ni diagnostico, y nada se registra.
+    implementations:
+    - name: DefaultQuizInstructionJudgeVersionResolver
+      requiresInject:
+      - name: agentDefinitionLocator
+        type: AgentDefinitionLocator
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-application
+  models:
+  - name: AuditRunRequest
+    type: record
+    fields:
+    - name: evaluationPolicies
+      _change: delete
+    - name: analyzerPolicies
+      type: "Map<String,EvaluationRunPolicy>"
+      description: "Politica de corrida por nombre de analizador, en el mismo vocabulario\
+        \ que includedAnalyzers y excludedAnalyzers. Ausente = la politica por defecto\
+        \ que declare el analizador (F-QINST-R006)."
+      _change: add
+    _change: modify
+  _change: modify

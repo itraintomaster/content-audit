@@ -1,4 +1,4 @@
-package com.learney.contentaudit.evaluationledgerdomain;
+package com.learney.contentaudit.auditdomain;
 
 import java.util.Objects;
 import javax.annotation.processing.Generated;

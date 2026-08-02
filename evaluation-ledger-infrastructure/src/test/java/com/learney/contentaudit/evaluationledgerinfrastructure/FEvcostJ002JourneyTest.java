@@ -10,7 +10,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
-import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
@@ -51,19 +51,19 @@ public class FEvcostJ002JourneyTest {
      * fingerprinter under the given base directory. The Evaluator is the only
      * external boundary of this journey, so it is the only thing scripted/faked.
      */
-    private static EvaluationSession openSession(Path baseDir, EvaluationRunPolicy policy, Evaluator evaluator) {
+    private static EvaluationSession openSession(Path baseDir, EvaluationBudget budget, Evaluator evaluator) {
         EvaluationLedger ledger = new FileSystemEvaluationLedger(baseDir);
         ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
         EvaluationSessionFactory factory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
-        return factory.open(policy, evaluator);
+        return factory.open(budget, evaluator);
     }
 
     private static EvaluationSubject subject(String subjectRef, String instructionText) {
         return new EvaluationSubject(subjectRef, Map.of("instruction", instructionText));
     }
 
-    private static EvaluationRunPolicy generousPolicy() {
-        return new EvaluationRunPolicy(10, false, null);
+    private static EvaluationBudget generousPolicy() {
+        return new EvaluationBudget(10);
     }
 
     /** Scripts one outcome per subjectRef; any unscripted subjectRef fails the test loudly. */

@@ -250,7 +250,10 @@ consulta al evaluador.
 > Re-evaluar contenido que ya tiene resultado registrado ocurre **solo** cuando el
 > usuario lo pide explicitamente. Ningun otro hecho —cambiar el evaluador, borrar
 > informes, cambiar la configuracion del analisis— la dispara. La re-evaluacion
-> registra los resultados nuevos **sin destruir** los anteriores.
+> registra los resultados nuevos **sin destruir** los anteriores. El **alcance** lo
+> acota el consumidor, contenido por contenido: esta capacidad vuelve a evaluar el
+> contenido puntual que se le pide y **ningun otro**, de modo que el contenido
+> vecino con resultado vigente se sigue reutilizando en esa misma corrida.
 
 <details><summary>Detalle</summary>
 
@@ -264,10 +267,26 @@ una parte acotada de el; en ambos casos respeta los limites de gasto que imponga
 el consumidor que la ejecuta (por ejemplo
 [F-QINST-R006](../2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md#F-QINST-R006)).
 
+**Quien acota ese alcance: el consumidor, no esta capacidad.** La aclaracion no
+cambia ninguna decision —"todo" y "una parte" ya estaban admitidos— sino que dice
+donde vive el recorte, y la razon es concreta: los recortes que un consumidor usa
+estan expresados en su propio vocabulario (por ejemplo "todos los ejercicios de un
+knowledge"), y de un contenido esta capacidad solo conoce una **referencia opaca**
+al elemento del curso del que salio. No puede agrupar por algo que no interpreta, y
+si lo intentara duplicaria un criterio que el consumidor ya aplica cuando decide
+que contenido le entrega.
+
+Por eso el reparto es: el consumidor elige **cuales**, esta capacidad garantiza que
+volver a evaluar **uno** no arrastre a los demas. Un pedido de re-evaluacion sobre
+un contenido deja intacto el reuso del resto: es lo que permite que un consumidor
+componga cualquier alcance —uno, un grupo, todo— sin que esta capacidad tenga que
+conocer ninguno de los tres.
+
 **Criterio de aceptacion**: (a) sin pedido explicito, ninguna corrida vuelve a
 consultar al evaluador por contenido con resultado vigente registrado; (b) con
-pedido explicito, el contenido alcanzado se vuelve a evaluar y los resultados
-anteriores siguen consultables.
+pedido explicito sobre un contenido, ese contenido se vuelve a evaluar, los
+resultados anteriores siguen consultables, y el resto del contenido con resultado
+vigente se reutiliza sin consultar al evaluador en esa misma corrida.
 
 **Error**: "Se re-evaluo contenido con resultado vigente sin pedido explicito del usuario"
 
@@ -408,8 +427,11 @@ dos elementos con contenido identico comparten resultado y se pagan una sola vez
     sin abortar el analisis.
   - Convivencia e historia de resultados de versiones distintas del evaluador.
   - Independencia respecto de los informes de analisis.
-  - Re-evaluacion explicita del usuario.
+  - Re-evaluacion explicita del usuario, contenido por contenido.
 - **Fuera de alcance**:
+  - **Que contenido alcanza una re-evaluacion** (todo, un grupo, uno solo). El
+    recorte esta expresado en el vocabulario del consumidor y lo decide el
+    consumidor; ver [F-EVCOST-R008](#F-EVCOST-R008).
   - **Que evalua cada evaluador y como se traduce su resultado a un puntaje.** Lo
     define cada consumidor (para el primero,
     [F-QINST-R002](../2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md#F-QINST-R002)).

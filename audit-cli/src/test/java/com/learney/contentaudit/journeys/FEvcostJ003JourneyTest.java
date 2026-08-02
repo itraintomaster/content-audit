@@ -14,12 +14,12 @@ import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.auditinfrastructure.FileSystemAuditReportStore;
 import com.learney.contentaudit.evaluationledgerdomain.ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
-import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
@@ -82,7 +82,7 @@ public class FEvcostJ003JourneyTest {
         ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
         EvaluationSessionFactory firstFactory = new DefaultEvaluationSessionFactory(
                 new FileSystemEvaluationLedger(tempDir), fingerprinter);
-        EvaluationSession firstRun = firstFactory.open(new EvaluationRunPolicy(10, false, null), firstRunEvaluator);
+        EvaluationSession firstRun = firstFactory.open(new EvaluationBudget(10), firstRunEvaluator);
         EvaluationResolution firstResolution = firstRun.resolve(subject);
         assertEquals(EvaluationResolutionKind.EVALUATED, firstResolution.getKind());
 
@@ -107,7 +107,7 @@ public class FEvcostJ003JourneyTest {
 
         EvaluationSessionFactory secondFactory = new DefaultEvaluationSessionFactory(
                 new FileSystemEvaluationLedger(tempDir), new Sha256ContentFingerprinter());
-        EvaluationSession secondRun = secondFactory.open(new EvaluationRunPolicy(10, false, null), secondRunEvaluator);
+        EvaluationSession secondRun = secondFactory.open(new EvaluationBudget(10), secondRunEvaluator);
 
         // Step: reusa_igual (gate F-EVCOST-R007, F-EVCOST-R008) — the registered result
         // survived the deletion of the analysis reports and is reused without consulting
@@ -139,7 +139,7 @@ public class FEvcostJ003JourneyTest {
         ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
         EvaluationSessionFactory firstFactory = new DefaultEvaluationSessionFactory(
                 new FileSystemEvaluationLedger(tempDir), fingerprinter);
-        EvaluationSession firstRun = firstFactory.open(new EvaluationRunPolicy(10, false, null), firstRunEvaluator);
+        EvaluationSession firstRun = firstFactory.open(new EvaluationBudget(10), firstRunEvaluator);
         EvaluationResolution firstResolution = firstRun.resolve(subject);
         assertEquals(EvaluationResolutionKind.EVALUATED, firstResolution.getKind());
 
@@ -167,13 +167,17 @@ public class FEvcostJ003JourneyTest {
         ContentFingerprinter secondFingerprinter = new Sha256ContentFingerprinter();
         EvaluationSessionFactory secondFactory = new DefaultEvaluationSessionFactory(
                 new FileSystemEvaluationLedger(tempDir), secondFingerprinter);
-        // reevaluate = true, null scope: the user asked to re-judge all reached content.
-        EvaluationSession secondRun = secondFactory.open(new EvaluationRunPolicy(10, true, null), secondRunEvaluator);
+        // F-EVCOST-R008: re-evaluation is never a general run capability -- the general
+        // budget only caps NEW evaluations, it carries no reevaluate flag or scope. The
+        // consumer decides to re-judge THIS specific piece of content by calling
+        // resolveForced(subject) directly, content by content, instead of asking the
+        // session to reuse.
+        EvaluationSession secondRun = secondFactory.open(new EvaluationBudget(10), secondRunEvaluator);
 
         // Step: reevalua_a_pedido (gate F-EVCOST-R008) — the content is re-evaluated
         // despite having a valid registered result, and the previous result remains
         // consultable -> success.
-        EvaluationResolution reevaluated = secondRun.resolve(subject);
+        EvaluationResolution reevaluated = secondRun.resolveForced(subject);
 
         assertEquals(EvaluationResolutionKind.EVALUATED, reevaluated.getKind());
         assertEquals("compliant: re-checked after the explicit re-evaluation request", reevaluated.getPayload());

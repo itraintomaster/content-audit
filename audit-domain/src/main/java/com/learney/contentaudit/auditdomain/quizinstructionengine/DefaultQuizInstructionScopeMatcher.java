@@ -1,6 +1,8 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -10,6 +12,16 @@ import javax.annotation.processing.Generated;
 class DefaultQuizInstructionScopeMatcher implements QuizInstructionScopeMatcher {
     @Override
     public boolean matches(AuditNode quizNode, String reevaluationScope) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R012: a null scope reaches the whole course; a declared scope narrows
+        // the explicit re-evaluation to the quizzes of that knowledge only.
+        if (reevaluationScope == null) {
+            return true;
+        }
+        return quizNode.ancestor(AuditTarget.KNOWLEDGE)
+                .map(AuditNode::getEntity)
+                .filter(entity -> entity instanceof AuditableKnowledge)
+                .map(entity -> ((AuditableKnowledge) entity).getId())
+                .map(reevaluationScope::equals)
+                .orElse(false);
     }
 }

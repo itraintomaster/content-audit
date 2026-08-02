@@ -87,13 +87,14 @@ public class CourseToAuditableMapper implements CourseMapper {
         if (knowledges == null) {
             knowledges = List.of();
         }
+        String topicName = topic.getLabel();
         List<AuditableKnowledge> auditableKnowledges = knowledges.stream()
-                .map(this::mapKnowledge)
+                .map(ke -> mapKnowledge(ke, topicName))
                 .collect(Collectors.toList());
         return new AuditableTopic(auditableKnowledges, topic.getId(), topic.getLabel(), topic.getCode());
     }
 
-    private AuditableKnowledge mapKnowledge(KnowledgeEntity ke) {
+    private AuditableKnowledge mapKnowledge(KnowledgeEntity ke, String topicName) {
         List<QuizTemplateEntity> quizTemplates = ke.getQuizTemplates();
         if (quizTemplates == null) {
             quizTemplates = List.of();
@@ -102,7 +103,9 @@ public class CourseToAuditableMapper implements CourseMapper {
         List<AuditableQuiz> quizzes = quizTemplates.stream()
                 .map(this::mapQuiz)
                 .collect(Collectors.toList());
-        return new AuditableKnowledge(quizzes, ke.getLabel(), ke.getInstructions(), isSentence, ke.getId(), ke.getLabel(), ke.getCode(), ke.getSentenceMode(), null);
+        // F-QINST-R009: the judge needs the topic name (from the ancestor topic, not the quiz's
+        // own denormalized copy) to reconstruct the fingerprinted content.
+        return new AuditableKnowledge(quizzes, ke.getLabel(), ke.getInstructions(), isSentence, ke.getId(), ke.getLabel(), ke.getCode(), ke.getSentenceMode(), topicName);
     }
 
     private boolean hasSentenceParts(QuizTemplateEntity qt) {
@@ -125,7 +128,13 @@ public class CourseToAuditableMapper implements CourseMapper {
         // FEAT-RCLAQS R001/R002: quizSentence is derived in the same pass; null only when
         // the form has no sentenceParts (quizSentenceByQuiz will not contain an entry for it).
         String quizSentence = quizSentenceByQuiz.get(qt);
-        return new AuditableQuiz(tokens, qt.getId(), qt.getTitle(), qt.getCode(), qt.getTranslation(), sentences, quizSentence, null, null);
+        // F-QINST-R009: instructions and sentenceParts are copied verbatim from the entity --
+        // never re-derived by parsing the quizSentence DSL. QuizSentenceParser.buildForm()
+        // fabricates an empty FormEntity, which would mutilate exactly the content the
+        // fingerprint protects (see FEAT-RPRES known bug).
+        FormEntity form = qt.getForm();
+        List<SentencePartEntity> sentenceParts = form != null ? form.getSentenceParts() : null;
+        return new AuditableQuiz(tokens, qt.getId(), qt.getTitle(), qt.getCode(), qt.getTranslation(), sentences, quizSentence, qt.getInstructions(), sentenceParts);
     }
 
     private List<String> deriveSentences(QuizTemplateEntity qt) {

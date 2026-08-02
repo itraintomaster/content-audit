@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verifyNoInteractions;
 
+import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocator;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunner;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationFailureKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
@@ -35,10 +36,12 @@ public class DefaultQuizInstructionJudgeFactoryTest {
             ) {
         DefaultQuizInstructionJudgeFactory factory = new DefaultQuizInstructionJudgeFactory();
         AgentGraphRunner agentGraphRunner = mock(AgentGraphRunner.class);
+        AgentDefinitionLocator agentDefinitionLocator = mock(AgentDefinitionLocator.class);
         QuizInstructionJudgeConfig missingConfig =
                 new QuizInstructionJudgeConfig(null, null, null, null, null, null, null);
 
-        Evaluator evaluator = assertDoesNotThrow(() -> factory.create(missingConfig, agentGraphRunner),
+        Evaluator evaluator = assertDoesNotThrow(
+                () -> factory.create(missingConfig, agentGraphRunner, agentDefinitionLocator),
                 "una configuracion ausente o invalida no puede tumbar la construccion del evaluador");
         assertNotNull(evaluator);
 

@@ -17,7 +17,6 @@ import static org.mockito.Mockito.lenient;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage;
-import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -331,7 +330,7 @@ public class DefaultAuditRunnerTest {
         // about analyzers, the runner must still build the quiz instruction analyzer from its
         // factory (the observable proof that it participated in this audit).
         EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.evaluatorId()).thenReturn("quiz-instruction");
+        when(quizInstructionFactory.analyzerName()).thenReturn("quiz-instruction");
         when(quizInstructionFactory.create(any())).thenReturn(mock(ContentAnalyzer.class));
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
@@ -393,7 +392,7 @@ public class DefaultAuditRunnerTest {
         }).when(quizInstructionAnalyzer).onCourseComplete(any());
 
         EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.evaluatorId()).thenReturn("quiz-instruction");
+        when(quizInstructionFactory.analyzerName()).thenReturn("quiz-instruction");
         when(quizInstructionFactory.create(any())).thenReturn(quizInstructionAnalyzer);
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
@@ -429,7 +428,7 @@ public class DefaultAuditRunnerTest {
         // R011: an explicit exclusion must stop the analyzer from ever being built -- excluded
         // means "do not run", not "run and find nothing".
         EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.evaluatorId()).thenReturn("quiz-instruction");
+        when(quizInstructionFactory.analyzerName()).thenReturn("quiz-instruction");
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
@@ -470,7 +469,7 @@ public class DefaultAuditRunnerTest {
         AuditReport baseReport = new AuditReport(rootNode);
 
         EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.evaluatorId()).thenReturn("quiz-instruction");
+        when(quizInstructionFactory.analyzerName()).thenReturn("quiz-instruction");
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
@@ -503,7 +502,7 @@ public class DefaultAuditRunnerTest {
         // R011: asking for an audit narrowed to other analyzers has the same effect as
         // excluding the quiz instruction analysis explicitly -- it must not be built either.
         EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.evaluatorId()).thenReturn("quiz-instruction");
+        when(quizInstructionFactory.analyzerName()).thenReturn("quiz-instruction");
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
         when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
@@ -548,7 +547,7 @@ public class DefaultAuditRunnerTest {
                 .when(quizInstructionAnalyzer).onCourseComplete(any());
 
         EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.evaluatorId()).thenReturn("quiz-instruction");
+        when(quizInstructionFactory.analyzerName()).thenReturn("quiz-instruction");
         when(quizInstructionFactory.create(any())).thenReturn(quizInstructionAnalyzer);
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);
@@ -575,7 +574,7 @@ public class DefaultAuditRunnerTest {
         // R006: each run bounds new judge queries through a configurable policy; the runner
         // must hand the exact policy the request declared for this evaluator to its factory.
         EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
-        when(quizInstructionFactory.evaluatorId()).thenReturn("quiz-instruction");
+        when(quizInstructionFactory.analyzerName()).thenReturn("quiz-instruction");
         when(quizInstructionFactory.create(any())).thenReturn(mock(ContentAnalyzer.class));
 
         when(courseRepository.load(coursePath)).thenReturn(courseEntity);

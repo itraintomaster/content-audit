@@ -1,6 +1,18 @@
 package com.learney.contentaudit.auditcli.formatting;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.CourseDiagnoses;
+import com.learney.contentaudit.auditdomain.QuizDiagnoses;
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionViolation;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionDiagnosis;
+import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionVerdict;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -10,6 +22,127 @@ import javax.annotation.processing.Generated;
 class QuizInstructionDetailedFormatter implements DetailedFormatter {
     @Override
     public String format(String analyzerName, AuditNode rootNode, String outputFormat) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        StringBuilder sb = new StringBuilder();
+        sb.append("Quiz Instruction Compliance Analysis\n\n");
+
+        // F-QINST-R005: the score is meaningless without the coverage it was computed
+        // over, so both are always rendered together.
+        Double score = mainScore(rootNode, analyzerName);
+        if (score != null) {
+            sb.append(String.format(Locale.ROOT, "Score: %.2f%n", score));
+        }
+
+        QuizInstructionCoverageDiagnosis coverageDiagnosis = coverageDiagnosis(rootNode);
+        if (coverageDiagnosis != null) {
+            EvaluationCoverage coverage = coverageDiagnosis.getCoverage();
+            sb.append("Coverage (judge version: ").append(coverageDiagnosis.getEvaluatorVersion()).append("):\n");
+            if (coverage != null) {
+                sb.append("  Reached:               ").append(coverage.getReached()).append("\n");
+                sb.append("  With verdict:          ").append(coverage.getWithResult()).append("\n");
+                sb.append("    Evaluated this run:  ").append(coverage.getEvaluatedInRun()).append("\n");
+                sb.append("    Reused:              ").append(coverage.getReused()).append("\n");
+                sb.append("  Pending:               ").append(coverage.getPending()).append("\n");
+                sb.append("  Failed:                ").append(coverage.getFailed()).append("\n");
+            }
+            sb.append("\n");
+        }
+
+        // F-QINST-R003: the evidence is what separates this diagnosis from a plain
+        // low score -- every violation of every breaching quiz is rendered with its
+        // cited fragment and explanation.
+        List<AuditNode> breachingQuizzes = new ArrayList<>();
+        collectBreachingQuizzes(rootNode, breachingQuizzes);
+        if (!breachingQuizzes.isEmpty()) {
+            sb.append("Quizzes with violations:\n");
+            for (AuditNode quiz : breachingQuizzes) {
+                appendBreachingQuiz(sb, quiz, analyzerName);
+            }
+        }
+
+        return sb.toString();
+    }
+
+    private void appendBreachingQuiz(StringBuilder sb, AuditNode quiz, String analyzerName) {
+        QuizInstructionDiagnosis diagnosis = quizDiagnosis(quiz);
+        if (diagnosis == null || diagnosis.getVerdict() == null) {
+            return;
+        }
+        QuizInstructionVerdict verdict = diagnosis.getVerdict();
+        Double quizScore = mainScore(quiz, analyzerName);
+
+        sb.append("- ").append(nodeLabel(quiz))
+                .append(" [score=").append(quizScore != null ? String.format(Locale.ROOT, "%.2f", quizScore) : "N/A")
+                .append(", severity=").append(verdict.getSeverity())
+                .append(", confidence=").append(verdict.getConfidence())
+                .append("]\n");
+        sb.append("  Reason: ").append(verdict.getReason()).append("\n");
+
+        List<InstructionViolation> violations = verdict.getViolations();
+        if (violations != null) {
+            for (InstructionViolation violation : violations) {
+                sb.append("  - [").append(violation.getCode()).append("] ")
+                        .append(violation.getConstraint()).append("\n");
+                sb.append("      Evidence: ").append(violation.getEvidence()).append("\n");
+                sb.append("      Explanation: ").append(violation.getExplanation()).append("\n");
+            }
+        }
+    }
+
+    /**
+     * Walks the whole tree (any depth) collecting QUIZ nodes that were evaluated
+     * by the quiz instruction judge and have at least one violation.
+     */
+    private void collectBreachingQuizzes(AuditNode node, List<AuditNode> accumulator) {
+        if (node == null) {
+            return;
+        }
+        if (node.getTarget() == AuditTarget.QUIZ) {
+            QuizInstructionDiagnosis diagnosis = quizDiagnosis(node);
+            if (diagnosis != null && diagnosis.getVerdict() != null
+                    && diagnosis.getVerdict().getViolations() != null
+                    && !diagnosis.getVerdict().getViolations().isEmpty()) {
+                accumulator.add(node);
+            }
+        }
+        if (node.getChildren() != null) {
+            for (AuditNode child : node.getChildren()) {
+                collectBreachingQuizzes(child, accumulator);
+            }
+        }
+    }
+
+    private static QuizInstructionCoverageDiagnosis coverageDiagnosis(AuditNode node) {
+        if (node != null && node.getDiagnoses() instanceof CourseDiagnoses cd) {
+            return cd.getQuizInstructionCoverage().orElse(null);
+        }
+        return null;
+    }
+
+    private static QuizInstructionDiagnosis quizDiagnosis(AuditNode node) {
+        if (node != null && node.getDiagnoses() instanceof QuizDiagnoses qd) {
+            return qd.getQuizInstructionDiagnosis().orElse(null);
+        }
+        return null;
+    }
+
+    private static Double mainScore(AuditNode node, String analyzerName) {
+        if (node == null) {
+            return null;
+        }
+        Map<String, Double> scores = node.getScores();
+        if (scores == null) {
+            return null;
+        }
+        return scores.get(analyzerName);
+    }
+
+    private static String nodeLabel(AuditNode node) {
+        if (node.getEntity() != null && node.getEntity().getLabel() != null) {
+            return node.getEntity().getLabel();
+        }
+        if (node.getEntity() != null && node.getEntity().getId() != null) {
+            return node.getEntity().getId();
+        }
+        return "<unknown>";
     }
 }

@@ -15,6 +15,19 @@ Capacidad compartida para correr un agente declarativo de sentinel-agents in-pro
 | agentsBaseDir | `Path` |
 | runsBaseDir | `Path` |
 
+### AgentDefinitionFound (`record`)
+
+| Field | Type |
+|-------|------|
+| directory | `Path` |
+
+### AgentDefinitionUnresolved (`record`)
+
+| Field | Type |
+|-------|------|
+| agentName | `String` |
+| searchedIn | `Path` |
+
 ## Interfaces
 
 ### AgentGraphRunner (port)
@@ -28,4 +41,19 @@ Methods:
 Methods:
 
 - `create(AgentGraphRunnerConfig config): AgentGraphRunner`
+
+### AgentDefinitionLocation
+
+### AgentDefinitionLocator (port)
+
+Methods:
+
+- `locate(String agentName): AgentDefinitionLocation`
+- `locateUnderProjectRoot(String projectRoot,String agentName): AgentDefinitionLocation`
+
+### AgentDefinitionLocatorFactory (factory)
+
+Methods:
+
+- `create(AgentGraphRunnerConfig config): AgentDefinitionLocator`
 

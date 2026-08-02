@@ -142,6 +142,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: ActiveAnalysisSelection - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditdomain.EvaluationRunPolicy");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: EvaluationRunPolicy - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditdomain.AuditEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AuditEngine - " + e.getMessage());

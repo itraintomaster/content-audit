@@ -3,7 +3,7 @@ package com.learney.contentaudit.auditdomain.quizinstructionengine;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.QuizInstructionConfig;
 import com.learney.contentaudit.auditdomain.QuizInstructionVerdictReader;
-import com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
@@ -60,9 +60,9 @@ public class DefaultQuizInstructionAnalyzerFactoryTest {
         Assertions.assertNotNull(analyzer,
                 "R006: the factory must still build a usable analyzer without an explicit run policy");
 
-        ArgumentCaptor<EvaluationRunPolicy> policyCaptor = ArgumentCaptor.forClass(EvaluationRunPolicy.class);
+        ArgumentCaptor<EvaluationBudget> policyCaptor = ArgumentCaptor.forClass(EvaluationBudget.class);
         Mockito.verify(sessionFactory).open(policyCaptor.capture(), Mockito.eq(evaluator));
-        EvaluationRunPolicy usedPolicy = policyCaptor.getValue();
+        EvaluationBudget usedPolicy = policyCaptor.getValue();
 
         Assertions.assertNotNull(usedPolicy,
                 "R006: a session must be opened with a concrete policy even absent an explicit one");

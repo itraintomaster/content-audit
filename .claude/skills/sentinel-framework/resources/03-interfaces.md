@@ -316,8 +316,8 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `evaluatorId(): String` | (none) |
 | `create(EvaluationRunPolicy policy): ContentAnalyzer` | (none) |
+| `analyzerName(): String` | (none) |
 
 #### QuizInstructionVerdictReader (port)
 
@@ -1301,6 +1301,7 @@ Examples:
 | `resolve(EvaluationSubject subject): EvaluationResolution` | (none) |
 | `resolveForced(EvaluationSubject subject): EvaluationResolution` | (none) |
 | `coverage(): EvaluationCoverage` | (none) |
+| `evaluatorVersion(): String` | (none) |
 
 #### EvaluationSessionFactory (factory)
 
@@ -1308,7 +1309,7 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `open(EvaluationRunPolicy policy,Evaluator evaluator): EvaluationSession` | (none) |
+| `open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession` | (none) |
 
 ### Module: agent-runtime-infrastructure
 
@@ -1328,6 +1329,27 @@ Examples:
 |--------|--------|
 | `create(AgentGraphRunnerConfig config): AgentGraphRunner` | (none) |
 
+#### AgentDefinitionLocation
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure`
+
+#### AgentDefinitionLocator (port)
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure`
+
+| Method | Throws |
+|--------|--------|
+| `locate(String agentName): AgentDefinitionLocation` | (none) |
+| `locateUnderProjectRoot(String projectRoot,String agentName): AgentDefinitionLocation` | (none) |
+
+#### AgentDefinitionLocatorFactory (factory)
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure`
+
+| Method | Throws |
+|--------|--------|
+| `create(AgentGraphRunnerConfig config): AgentDefinitionLocator` | (none) |
+
 ### Module: quiz-instruction-infrastructure
 
 #### QuizInstructionJudgeFactory (factory)
@@ -1336,7 +1358,7 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `create(QuizInstructionJudgeConfig config,AgentGraphRunner agentGraphRunner): Evaluator` | (none) |
+| `create(QuizInstructionJudgeConfig config,AgentGraphRunner agentGraphRunner,AgentDefinitionLocator agentDefinitionLocator): Evaluator` | (none) |
 
 #### QuizInstructionJudgeVersionResolver (package: instructionjudge)
 

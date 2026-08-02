@@ -111,6 +111,7 @@ import com.learney.contentaudit.auditcli.formatting.DetailedFormatter;
 import com.learney.contentaudit.auditcli.formatting.DrillDownResolver;
 import com.learney.contentaudit.auditcli.formatting.JsonReportFormatter;
 import com.learney.contentaudit.auditcli.formatting.LemmaAbsenceDetailedFormatter;
+import com.learney.contentaudit.auditcli.formatting.QuizInstructionDetailedFormatterBootstrap;
 import com.learney.contentaudit.auditcli.formatting.RawReportFormatter;
 import com.learney.contentaudit.auditcli.formatting.RawJsonReportFormatter;
 import com.learney.contentaudit.auditcli.formatting.ReportFormatter;
@@ -132,6 +133,28 @@ import com.learney.contentaudit.auditcli.formatting.DefaultConsolidatedViewForma
 import com.learney.contentaudit.revisiondomain.PreservationFactory;
 import com.learney.contentaudit.revisiondomain.preservation.PreservationRepair;
 import com.learney.contentaudit.revisiondomain.preservationengine.DefaultPreservationFactory;
+import com.learney.contentaudit.auditdomain.EvaluationAnalyzerFactory;
+import com.learney.contentaudit.auditdomain.QuizInstructionConfig;
+import com.learney.contentaudit.auditdomain.QuizInstructionVerdictReader;
+import com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory;
+import com.learney.contentaudit.auditcli.bootstrap.QuizInstructionJudgeConfigResolverBootstrap;
+import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocator;
+import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunner;
+import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunnerConfig;
+import com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentDefinitionLocatorFactory;
+import com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentGraphRunnerFactory;
+import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
+import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeFactory;
+import com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.DefaultQuizInstructionJudgeFactory;
+import com.learney.contentaudit.quizinstructioninfrastructure.instructionverdict.JacksonQuizInstructionVerdictReader;
+import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory;
+import com.learney.contentaudit.evaluationledgerinfrastructure.FileSystemEvaluationLedger;
+import com.learney.contentaudit.auditapplication.DefaultQuizInstructionConfig;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -287,15 +310,53 @@ class Main {
                 new com.learney.contentaudit.auditdomain.labs.LemmaAbsenceScoreAggregator();
         IAuditEngine auditEngine = new IAuditEngine(contentAnalyzers, scoreAggregator);
 
-        // evaluationAnalyzerFactories: FEAT-QINST wiring is intentionally empty.
-        // DefaultQuizInstructionAnalyzerFactory and every piece of its construction chain
-        // (DefaultEvaluationSessionFactory, JacksonQuizInstructionVerdictReader,
-        // DefaultQuizInstructionConfig, DefaultQuizInstructionJudgeFactory) are still
-        // @Generated stubs that throw UnsupportedOperationException. Wiring them here would
-        // compile but do nothing real at runtime, so this list stays List.of() until those
-        // implementations exist. See audit-cli restore-compilation task summary.
-        List<com.learney.contentaudit.auditdomain.EvaluationAnalyzerFactory> evaluationAnalyzerFactories =
-                List.of();
+        // ----------------------------------------------------------------
+        // Step 4b: FEAT-QINST / FEAT-EVCOST wiring — quiz instruction compliance
+        // analyzer, backed by the general reusable-evaluation-result infrastructure.
+        //
+        // Config resolution -> judge factory -> evaluator -> filesystem ledger ->
+        // session factory -> analyzer factory. F-QINST-R007: an absent or invalid
+        // judge configuration must never fail audit bootstrap -- someone without
+        // CONTENT_AUDIT_QINST_JUDGE_* configured must still be able to run `analyze`
+        // and see every other analyzer. DefaultQuizInstructionJudgeFactory already
+        // hands back an "unavailable" evaluator in that case (never throws), so this
+        // wiring preserves that guarantee end to end.
+        //
+        // QuizInstructionJudgeConfigResolverBootstrap is a hand-written (non-@Generated)
+        // bridge, not the resolver itself: sentinel.yaml currently declares
+        // QuizInstructionJudgeConfigResolver/DefaultQuizInstructionJudgeConfigResolver
+        // package-private (visibility: internal), unlike every sibling resolver used
+        // below (DefaultWorkdirResolver, DefaultApprovalModeResolver, etc.), all of which
+        // are public and constructed directly here. Escalated to @architect to align the
+        // visibility; see the bridge's Javadoc for detail.
+        // ----------------------------------------------------------------
+        QuizInstructionJudgeConfig quizInstructionJudgeConfig =
+                QuizInstructionJudgeConfigResolverBootstrap.resolve();
+
+        AgentGraphRunnerConfig quizInstructionAgentGraphRunnerConfig = new AgentGraphRunnerConfig();
+        AgentGraphRunner quizInstructionAgentGraphRunner =
+                new DefaultAgentGraphRunnerFactory().create(quizInstructionAgentGraphRunnerConfig);
+        AgentDefinitionLocator quizInstructionAgentDefinitionLocator =
+                new DefaultAgentDefinitionLocatorFactory().create(quizInstructionAgentGraphRunnerConfig);
+
+        QuizInstructionJudgeFactory quizInstructionJudgeFactory = new DefaultQuizInstructionJudgeFactory();
+        Evaluator quizInstructionJudge = quizInstructionJudgeFactory.create(
+                quizInstructionJudgeConfig, quizInstructionAgentGraphRunner,
+                quizInstructionAgentDefinitionLocator);
+
+        ContentFingerprinter evaluationContentFingerprinter = new Sha256ContentFingerprinter();
+        EvaluationLedger evaluationLedger = new FileSystemEvaluationLedger(baseDir);
+        EvaluationSessionFactory evaluationSessionFactory =
+                new DefaultEvaluationSessionFactory(evaluationLedger, evaluationContentFingerprinter);
+
+        QuizInstructionVerdictReader quizInstructionVerdictReader = new JacksonQuizInstructionVerdictReader();
+        QuizInstructionConfig quizInstructionConfig = new DefaultQuizInstructionConfig();
+
+        EvaluationAnalyzerFactory quizInstructionAnalyzerFactory = new DefaultQuizInstructionAnalyzerFactory(
+                evaluationSessionFactory, quizInstructionJudge, quizInstructionVerdictReader, quizInstructionConfig);
+
+        List<EvaluationAnalyzerFactory> evaluationAnalyzerFactories =
+                List.of(quizInstructionAnalyzerFactory);
 
         DefaultAuditRunner auditRunner = new DefaultAuditRunner(
                 courseRepository, courseToAuditableMapper, auditEngine,
@@ -327,6 +388,9 @@ class Main {
         Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
         detailedFormatters.put("lemma-absence", new LemmaAbsenceDetailedFormatter());
         detailedFormatters.put("coca-buckets-distribution", new CocaBucketsDetailedFormatter());
+        // QuizInstructionDetailedFormatter is package-private (visibility escalated to
+        // @architect, see its bootstrap's Javadoc); obtained via the same-package bridge.
+        detailedFormatters.put("quiz-instruction", QuizInstructionDetailedFormatterBootstrap.create());
 
         // ----------------------------------------------------------------
         // Step 6: Persistence stores — all constructed with resolved baseDir

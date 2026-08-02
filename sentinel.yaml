@@ -272,6 +272,24 @@ modules:
       description: Identificador del RefinementPlan activo dentro del analisis (referencia
         a RefinementPlan.id).
     visibility: public
+  - name: EvaluationRunPolicy
+    type: record
+    fields:
+    - name: maxNewEvaluations
+      type: int
+      description: Tope de consultas nuevas al evaluador en esta corrida (F-QINST-R006).
+        El analizador lo traduce a EvaluationBudget al abrir la sesion.
+    - name: reevaluate
+      type: boolean
+      description: "Pedido explicito de volver a evaluar (F-EVCOST-R008). Lo interpreta\
+        \ el analizador, nunca la sesion: la sesion solo re-evalua el sujeto puntual\
+        \ que se le pide con resolveForced."
+    - name: reevaluationScope
+      type: String
+      description: "Parte acotada alcanzada por el pedido, expresada en el vocabulario\
+        \ del consumidor (id de knowledge, F-QINST-R012). Vive en audit-domain porque\
+        \ solo aca hay con que resolverlo: de un sujeto la sesion solo conoce su subjectRef\
+        \ y su contenido."
   interfaces:
   - name: AuditEngine
     stereotype: port
@@ -472,8 +490,8 @@ modules:
     stereotype: factory
     sealed: false
     exposes:
-    - signature: "evaluatorId(): String"
     - signature: "create(EvaluationRunPolicy policy): ContentAnalyzer"
+    - signature: "analyzerName(): String"
   - name: QuizInstructionVerdictReader
     stereotype: port
     sealed: false
@@ -5285,10 +5303,11 @@ modules:
       type: Set<String>
       description: "Analizadores excluidos explicitamente. Un analizador excluido\
         \ no aparece en el informe, en vez de aparecer con cobertura cero (F-QINST-R011)."
-    - name: evaluationPolicies
+    - name: analyzerPolicies
       type: "Map<String,EvaluationRunPolicy>"
-      description: Politica por evaluatorId. Ausente = la politica por defecto que
-        declare el analizador.
+      description: "Politica de corrida por nombre de analizador, en el mismo vocabulario\
+        \ que includedAnalyzers y excludedAnalyzers. Ausente = la politica por defecto\
+        \ que declare el analizador (F-QINST-R006)."
   interfaces:
   - name: AuditRunner
     stereotype: service
@@ -12669,20 +12688,13 @@ modules:
     - name: failed
       type: int
       description: El evaluador no llego a pronunciarse sobre ellos en esta corrida
-  - name: EvaluationRunPolicy
+  - name: EvaluationBudget
     type: record
     fields:
     - name: maxNewEvaluations
       type: int
-      description: Tope de consultas NUEVAS. La reutilizacion nunca lo consume (F-EVCOST-R003).
-    - name: reevaluate
-      type: boolean
-      description: Pedido explicito de volver a evaluar contenido con resultado vigente
-        (F-EVCOST-R008).
-    - name: reevaluationScope
-      type: String
-      description: Selector opaco del alcance de la re-evaluacion. Null o vacio =
-        todo el contenido alcanzado.
+      description: Tope de evaluaciones nuevas de la corrida. Es lo unico de la politica
+        del consumidor que la sesion honra (F-EVCOST-R003); el reuso nunca lo consume.
   interfaces:
   - name: EvaluationOutcome
     stereotype: port
@@ -12713,11 +12725,12 @@ modules:
     - signature: "resolve(EvaluationSubject subject): EvaluationResolution"
     - signature: "resolveForced(EvaluationSubject subject): EvaluationResolution"
     - signature: "coverage(): EvaluationCoverage"
+    - signature: "evaluatorVersion(): String"
   - name: EvaluationSessionFactory
     stereotype: factory
     sealed: false
     exposes:
-    - signature: "open(EvaluationRunPolicy policy,Evaluator evaluator): EvaluationSession"
+    - signature: "open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession"
   patterns:
   - type: Factory
     implementations:
@@ -12726,9 +12739,8 @@ modules:
     interface: EvaluationSessionFactory
   packages:
   - name: evaluationsession
-    description: "Motor de la coordinacion por corrida: consulta de vigencia, tope\
-      \ de consultas nuevas, corte ante servicio caido, registro inmediato y recuento\
-      \ de cobertura. Solo la factory es publica; la sesion es package-private."
+    description: |
+      Coordinacion reanudable de una corrida sobre un evaluador. La sesion se abre con un presupuesto y un evaluador, y esos dos datos fijan su identidad para toda la corrida: evaluatorVersion() devuelve la version bajo la que resolvio, congelada al abrir, que es la misma que entra en cada EvaluationKey (F-EVCOST-R001). Exponerla evita que el consumidor tenga que reconstruirla desde el Evaluator para declararla en su informe: la unica fuente de verdad de esa version es la sesion que la usa. La sesion recibe unicamente el presupuesto: quien decide que sujeto se vuelve a evaluar es el consumidor, sujeto por sujeto, via resolveForced (F-EVCOST-R008).
     visibility: public
     implementations:
     - name: DefaultEvaluationSessionFactory
@@ -12748,8 +12760,8 @@ modules:
         type: ContentFingerprinter
       - name: evaluator
         type: Evaluator
-      - name: policy
-        type: EvaluationRunPolicy
+      - name: budget
+        type: EvaluationBudget
       handwrittenTests:
       - name: should reuse the registered result for identical content belonging to
           a different course element
@@ -12904,6 +12916,27 @@ modules:
       type: Path
       description: "Directorio donde se persisten los runs. Null = misma cadena de\
         \ resolucion que agentsBaseDir, sobre .sentinel/runs."
+  - name: AgentDefinitionFound
+    type: record
+    fields:
+    - name: directory
+      type: Path
+      description: Directorio existente de la definicion del agente. Es el mismo que
+        se carga para correr el grafo.
+    implements:
+    - AgentDefinitionLocation
+  - name: AgentDefinitionUnresolved
+    type: record
+    fields:
+    - name: agentName
+      type: String
+      description: Agente que se busco.
+    - name: searchedIn
+      type: Path
+      description: "Ruta absoluta donde se busco y no hay definicion. Va en el resultado\
+        \ para que el mensaje diga donde miro, no solo que fallo."
+    implements:
+    - AgentDefinitionLocation
   interfaces:
   - name: AgentGraphRunner
     stereotype: port
@@ -12916,6 +12949,19 @@ modules:
     sealed: false
     exposes:
     - signature: "create(AgentGraphRunnerConfig config): AgentGraphRunner"
+  - name: AgentDefinitionLocation
+    sealed: false
+  - name: AgentDefinitionLocator
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "locate(String agentName): AgentDefinitionLocation"
+    - signature: "locateUnderProjectRoot(String projectRoot,String agentName): AgentDefinitionLocation"
+  - name: AgentDefinitionLocatorFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(AgentGraphRunnerConfig config): AgentDefinitionLocator"
   allowedClients:
   - quiz-instruction-infrastructure
   - audit-cli
@@ -12926,12 +12972,18 @@ modules:
     - DefaultAgentGraphRunnerFactory
     suppressed: false
     interface: AgentGraphRunnerFactory
+  - type: Factory
+    implementations:
+    - DefaultAgentDefinitionLocatorFactory
+    suppressed: false
+    interface: AgentDefinitionLocatorFactory
   uses:
   - sentinel-agents
   - langchain4j-core
   packages:
   - name: graphexecution
-    description: Motor del runtime. Solo la factory es publica; el runner es package-private.
+    description: |
+      Motor del runtime. Solo las factories son publicas; el runner y el locator son package-private. El locator es la unica implementacion de la cadena de resolucion del directorio de definiciones (config -> project_root -> CWD): el runner ya no la resuelve por su cuenta, de modo que el directorio que se ejecuta y el directorio sobre el que un consumidor calcula una version derivada son necesariamente el mismo. Cuando no hay definicion, el locator devuelve AgentDefinitionUnresolved en vez de una ruta inexistente: no existe un camino donde "no encontre nada" se pueda confundir con "encontre un directorio vacio".
     visibility: public
     implementations:
     - name: DefaultAgentGraphRunnerFactory
@@ -12942,8 +12994,20 @@ modules:
       requiresInject:
       - name: config
         type: AgentGraphRunnerConfig
+      - name: agentDefinitionLocator
+        type: AgentDefinitionLocator
       implements:
       - AgentGraphRunner
+    - name: DefaultAgentDefinitionLocatorFactory
+      visibility: public
+      implements:
+      - AgentDefinitionLocatorFactory
+    - name: DefaultAgentDefinitionLocator
+      requiresInject:
+      - name: config
+        type: AgentGraphRunnerConfig
+      implements:
+      - AgentDefinitionLocator
 - name: quiz-instruction-infrastructure
   description: |
     Adaptador del juez de consigna: implementa el SPI Evaluator de evaluation-ledger-domain corriendo el agente declarativo quiz-instruction-validator sobre el runtime compartido. Traduce EvaluationSubject.content a las cinco entradas declaradas del agente (cefrLevel, topic, title, instructions, quiz) verbatim, sin agregar ni quitar nada — es lo que hace que la huella cubra exactamente lo juzgado (F-EVCOST-R002). Reconoce el veredicto conservador de infraestructura del juez (confianza nula y violacion JUDGE_OUTPUT_INVALID) y lo devuelve como EvaluationNotEmitted(OUTPUT_UNUSABLE), de modo que nunca llega al registro (F-QINST-R013); toda falla de servicio, timeout, autenticacion o credito se devuelve como EvaluationNotEmitted(EVALUATOR_UNAVAILABLE) en lugar de propagarse como excepcion (F-QINST-R007). Construye el ChatModel de forma perezosa: una configuracion ausente o invalida es un evaluador no disponible, no una auditoria caida. allowedClients=[audit-cli] porque es un detalle de implementacion de la composition root.
@@ -12979,8 +13043,8 @@ modules:
     stereotype: factory
     sealed: false
     exposes:
-    - signature: "create(QuizInstructionJudgeConfig config,AgentGraphRunner agentGraphRunner):\
-        \ Evaluator"
+    - signature: "create(QuizInstructionJudgeConfig config,AgentGraphRunner agentGraphRunner,AgentDefinitionLocator\
+        \ agentDefinitionLocator): Evaluator"
   allowedClients:
   - audit-cli
   patterns:
@@ -12996,8 +13060,8 @@ modules:
   - sentinel-agents
   packages:
   - name: instructionjudge
-    description: "Motor del adaptador del juez. Solo la factory es publica; el juez,\
-      \ el resolutor de version y el armado de entradas son package-private."
+    description: |
+      Motor del adaptador del juez. Solo la factory es publica; el juez, el resolutor de version y el armado de entradas son package-private. El resolutor de version no conoce rutas: le pide la definicion al mismo AgentDefinitionLocator con el que se construye el runner, asi que el digest de los archivos del agente se calcula siempre sobre la definicion que efectivamente se ejecuta (F-QINST-R010). Cuando el locator responde AgentDefinitionUnresolved, la version derivada se emite con el prefijo reservado "unresolved-agent-definition:" en lugar de un digest con la misma forma que uno legitimo: una version que ignora la definicion del agente tiene que decirlo. Esa version no coincide con ninguna registrada, asi que no reutiliza veredictos ajenos, y como el runner comparte el mismo locator la corrida devuelve ademas EVALUATOR_UNAVAILABLE al intentar cargar el grafo (F-QINST-R007): el ejercicio queda pendiente, sin puntaje ni diagnostico, y nada se registra.
     visibility: public
     interfaces:
     - name: QuizInstructionJudgeVersionResolver
@@ -13049,6 +13113,9 @@ modules:
       implements:
       - Evaluator
     - name: DefaultQuizInstructionJudgeVersionResolver
+      requiresInject:
+      - name: agentDefinitionLocator
+        type: AgentDefinitionLocator
       handwrittenTests:
       - name: should derive a different judge version when the agent definition or
           the model changes

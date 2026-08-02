@@ -542,7 +542,7 @@ See the **Discovering versions and types** section in the `sentinel-dsl-ref` ski
 | revision-infrastructure | revision-domain, refiner-domain, agent-runtime-infrastructure | — | — | lagen [public], lemmaabsenceagent [internal], knowledgetitleagent [public] |
 | evaluation-ledger-domain | — | EvaluationOutcome, EvaluationLedger, ContentFingerprinter, Evaluator, EvaluationSession, EvaluationSessionFactory | — | evaluationsession [public], contentfingerprint [public] |
 | evaluation-ledger-infrastructure | evaluation-ledger-domain | — | FileSystemEvaluationLedger | — |
-| agent-runtime-infrastructure | — | AgentGraphRunner, AgentGraphRunnerFactory | — | graphexecution [public] |
+| agent-runtime-infrastructure | — | AgentGraphRunner, AgentGraphRunnerFactory, AgentDefinitionLocation, AgentDefinitionLocator, AgentDefinitionLocatorFactory | — | graphexecution [public] |
 | quiz-instruction-infrastructure | audit-domain, evaluation-ledger-domain, agent-runtime-infrastructure | QuizInstructionJudgeFactory | — | instructionjudge [public], instructionverdict [public] |
 
 ### Boundaries
