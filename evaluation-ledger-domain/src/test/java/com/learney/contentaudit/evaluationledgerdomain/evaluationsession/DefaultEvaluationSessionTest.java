@@ -619,4 +619,62 @@ public class DefaultEvaluationSessionTest {
         assertEquals(EvaluationResolutionKind.PENDING, resolutions[2].getKind());
         verify(evaluator, times(1)).evaluate(any());
     }
+    @Test
+    @DisplayName("should keep reusing the registered current result of the neighbouring content in the same run when re evaluation is requested for one content only")
+    @Tag("FEAT-EVCOST")
+    @Tag("F-EVCOST-R008")
+    public void shouldKeepReusingTheRegisteredCurrentResultOfTheNeighbouringContentInTheSameRunWhenReEvaluationIsRequestedForOneContentOnly(
+            ) {
+        // R008: the scope of an explicit re-evaluation request is bounded by the
+        // consumer, content by content — re-evaluating one content must not drag
+        // along a neighbouring content that already has a current result; the
+        // neighbour keeps being reused in this very same run.
+        Map<String, String> contentA = Map.of("instruction", "Content A - re-evaluation requested for this one.");
+        Map<String, String> contentB = Map.of("instruction", "Content B - neighbour with a current result.");
+
+        ContentFingerprinter fingerprinter = mock(ContentFingerprinter.class);
+        when(fingerprinter.fingerprint(contentA)).thenReturn("fp-a");
+        when(fingerprinter.fingerprint(contentB)).thenReturn("fp-b");
+
+        Evaluator evaluator = mock(Evaluator.class);
+        when(evaluator.evaluatorId()).thenReturn("qinst-judge");
+        when(evaluator.evaluatorVersion()).thenReturn("v1");
+        when(evaluator.evaluate(any())).thenReturn(new EvaluationEmitted("APPROVED-A-AGAIN"));
+
+        InMemoryLedger ledger = new InMemoryLedger();
+        ledger.append(new EvaluationRecord(
+                new EvaluationKey("qinst-judge", "v1", "fp-a"),
+                "APPROVED-A-FIRST",
+                "quiz-a",
+                Instant.parse("2026-07-01T00:00:00Z")));
+        ledger.append(new EvaluationRecord(
+                new EvaluationKey("qinst-judge", "v1", "fp-b"),
+                "APPROVED-B",
+                "quiz-b",
+                Instant.parse("2026-07-01T00:00:00Z")));
+
+        EvaluationBudget policy = new EvaluationBudget(5);
+        DefaultEvaluationSession session =
+                new DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy);
+
+        EvaluationSubject subjectA = new EvaluationSubject("quiz-a", contentA);
+        EvaluationSubject subjectB = new EvaluationSubject("quiz-b", contentB);
+
+        // Explicit re-evaluation requested for A only.
+        EvaluationResolution resolutionA = session.resolveForced(subjectA);
+        assertEquals(EvaluationResolutionKind.EVALUATED, resolutionA.getKind());
+        assertEquals("APPROVED-A-AGAIN", resolutionA.getPayload());
+
+        // B was never targeted by the re-evaluation request: it must keep being
+        // reused in this same run, and the evaluator must never see it.
+        EvaluationResolution resolutionB = session.resolve(subjectB);
+        assertEquals(EvaluationResolutionKind.REUSED, resolutionB.getKind());
+        assertEquals("APPROVED-B", resolutionB.getPayload());
+
+        ArgumentCaptor<EvaluationSubject> evaluatedSubjects = ArgumentCaptor.forClass(EvaluationSubject.class);
+        verify(evaluator, times(1)).evaluate(evaluatedSubjects.capture());
+        assertEquals(contentA, evaluatedSubjects.getValue().getContent(),
+                "the evaluator must be consulted only for the content whose re-evaluation was explicitly requested, "
+                        + "and never for the neighbour (F-EVCOST-R008)");
+    }
 }

@@ -114,4 +114,33 @@ public class QuizInstructionDetailedFormatterTest {
         assertTrue(result.contains("sentence: 'She always drinks coffee in the morning.' has no blank"),
                 "R003: rendered output must cite the evidence fragment of the second breaching quiz; got: " + result);
     }
+    @Test
+    @DisplayName("should render the judge version the analysis evaluated with next to the coverage numbers")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R005")
+    public void shouldRenderTheJudgeVersionTheAnalysisEvaluatedWithNextToTheCoverageNumbers() {
+        // R005: the version declared is the one in force during the run, and therefore the one
+        // every scored verdict (new or reused) belongs to — the reader needs it to know what
+        // they are looking at, so it must appear alongside the coverage numbers, not just in
+        // the typed diagnosis.
+        EvaluationCoverage coverage = new EvaluationCoverage(742, 610, 88, 522, 120, 12);
+        String judgeVersion = "qij-8f3d1c-2026.07";
+        QuizInstructionCoverageDiagnosis coverageDiagnosis =
+                new QuizInstructionCoverageDiagnosis(coverage, judgeVersion);
+
+        CourseDiagnoses courseDiagnoses = mock(CourseDiagnoses.class);
+        when(courseDiagnoses.getQuizInstructionCoverage()).thenReturn(Optional.of(coverageDiagnosis));
+
+        AuditNode courseNode = new AuditNode(null, AuditTarget.COURSE, null, List.of(),
+                Map.of("quiz-instruction", 0.48), Map.of(), courseDiagnoses);
+
+        QuizInstructionDetailedFormatter formatter = new QuizInstructionDetailedFormatter();
+
+        String result = formatter.format("quiz-instruction", courseNode, "text");
+
+        assertNotNull(result, "R005: formatter must produce output");
+        assertTrue(result.contains("742"), "R005: rendered output must show reached count; got: " + result);
+        assertTrue(result.contains(judgeVersion),
+                "R005: rendered output must cite the judge version alongside the coverage numbers; got: " + result);
+    }
 }

@@ -108,6 +108,9 @@ Methods:
 - should not run the quiz instruction analysis when the request narrows the audit to other analyzers → FEAT-QINST/F-QINST-R011
 - should finish the audit and keep the results of the other analyzers when the quiz instruction judge fails → FEAT-QINST/F-QINST-R007
 - should hand the quiz instruction analyzer the run policy the request declared for its judge → FEAT-QINST/F-QINST-R006
+- should not run the quiz instruction analysis when the run excludes it by the very name the report publishes, while the judge behind it answers to a different name → FEAT-QINST/F-QINST-R015
+- should cap the judge queries at the number requested for the name the report publishes instead of falling back to the default cap, while the judge behind it answers to a different name → FEAT-QINST/F-QINST-R015
+- should re evaluate quizzes that already had a verdict when re evaluation is requested for the name the report publishes, while the judge behind it answers to a different name → FEAT-QINST/F-QINST-R015
 
 ### DefaultCocaBucketsConfig
 

@@ -2,18 +2,23 @@ package com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionFound;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocator;
+import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionUnresolved;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -90,5 +95,66 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
 
         assertEquals("manual-judge-version-7", resolver.resolve(overridden),
                 "F-QINST-R010: un judgeVersionOverride explicito fija la version, sin derivarla del digest");
+    }
+    @Test
+    @DisplayName("should derive a different judge version when only the text of the agent definition changes, with the agent name and the model untouched")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R010")
+    public void shouldDeriveADifferentJudgeVersionWhenOnlyTheTextOfTheAgentDefinitionChangesWithTheAgentNameAndTheModelUntouched(
+            @TempDir Path agentDefinitionDir) throws IOException {
+        Path promptFile = agentDefinitionDir.resolve("evaluate.md");
+        Files.writeString(promptFile, "Judge whether the quiz respects its instructions.");
+
+        AgentDefinitionLocator locator = mock(AgentDefinitionLocator.class);
+        when(locator.locate("quiz-instruction-validator")).thenReturn(new AgentDefinitionFound(agentDefinitionDir));
+        DefaultQuizInstructionJudgeVersionResolver resolver = new DefaultQuizInstructionJudgeVersionResolver(locator);
+
+        QuizInstructionJudgeConfig config = config("gpt-4o-mini", "quiz-instruction-validator");
+
+        String versionBeforeEditingThePrompt = resolver.resolve(config);
+
+        Files.writeString(promptFile,
+                "Judge whether the quiz respects its instructions, and flag ambiguous wording.");
+
+        String versionAfterEditingThePrompt = resolver.resolve(config);
+
+        assertNotEquals(versionBeforeEditingThePrompt, versionAfterEditingThePrompt,
+                "F-QINST-R010: editar el texto de la definicion del agente tiene que cambiar la version derivada, "
+                        + "aunque el nombre del agente y el modelo queden intactos");
+    }
+
+    @Test
+    @DisplayName("should derive a judge version that cannot coincide with any version derived from a reachable agent definition when the definition cannot be located, so that no recorded verdict is current under it")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R010")
+    public void shouldDeriveAJudgeVersionThatCannotCoincideWithAnyVersionDerivedFromAReachableAgentDefinitionWhenTheDefinitionCannotBeLocatedSoThatNoRecordedVerdictIsCurrentUnderIt(
+            @TempDir Path agentDefinitionDir) throws IOException {
+        Files.writeString(agentDefinitionDir.resolve("evaluate.md"),
+                "Judge whether the quiz respects its instructions.");
+
+        AgentDefinitionLocator locatorWithAccessibleDefinition = mock(AgentDefinitionLocator.class);
+        when(locatorWithAccessibleDefinition.locate("quiz-instruction-validator"))
+                .thenReturn(new AgentDefinitionFound(agentDefinitionDir));
+        DefaultQuizInstructionJudgeVersionResolver resolverWithAccessibleDefinition =
+                new DefaultQuizInstructionJudgeVersionResolver(locatorWithAccessibleDefinition);
+
+        QuizInstructionJudgeConfig config = config("gpt-4o-mini", "quiz-instruction-validator");
+        String versionDerivedFromAccessibleDefinition = resolverWithAccessibleDefinition.resolve(config);
+
+        AgentDefinitionLocator locatorUnableToLocateTheDefinition = mock(AgentDefinitionLocator.class);
+        when(locatorUnableToLocateTheDefinition.locate("quiz-instruction-validator"))
+                .thenReturn(new AgentDefinitionUnresolved("quiz-instruction-validator",
+                        agentDefinitionDir.resolve("does-not-exist")));
+        DefaultQuizInstructionJudgeVersionResolver resolverUnableToLocateTheDefinition =
+                new DefaultQuizInstructionJudgeVersionResolver(locatorUnableToLocateTheDefinition);
+
+        String versionWhenTheDefinitionCannotBeLocated = resolverUnableToLocateTheDefinition.resolve(config);
+
+        assertNotEquals(versionDerivedFromAccessibleDefinition, versionWhenTheDefinitionCannotBeLocated,
+                "F-QINST-R010 invariante 3: la version no derivable no puede coincidir con una version derivada de "
+                        + "una definicion accesible");
+        assertTrue(versionWhenTheDefinitionCannotBeLocated.startsWith("unresolved-agent-definition:"),
+                "F-QINST-R010 invariante 3: la version no derivable tiene que traer una forma reconocible propia, "
+                        + "no simplemente cualquier valor distinto de un digest legitimo");
     }
 }

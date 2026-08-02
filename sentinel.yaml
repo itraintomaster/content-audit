@@ -3259,6 +3259,11 @@ modules:
         traceability:
           feature: FEAT-QINST
           rule: F-QINST-R006
+      - name: should publish for selection exactly the name under which the analyzer
+          it builds reports its score
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R015
       implements:
       - EvaluationAnalyzerFactory
     - name: QuizInstructionAnalyzer
@@ -3377,6 +3382,15 @@ modules:
         traceability:
           feature: FEAT-QINST
           rule: F-QINST-R014
+      - name: should declare in the coverage the judge version the run evaluated with
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
+      - name: "should declare a single judge version, the one in effect, for a run\
+          \ that both reuses verdicts from earlier runs and evaluates new ones"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
       implements:
       - ContentAnalyzer
     - name: DefaultQuizInstructionSubjectBuilder
@@ -5543,6 +5557,24 @@ modules:
       traceability:
         feature: FEAT-QINST
         rule: F-QINST-R006
+    - name: "should not run the quiz instruction analysis when the run excludes it\
+        \ by the very name the report publishes, while the judge behind it answers\
+        \ to a different name"
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R015
+    - name: "should cap the judge queries at the number requested for the name the\
+        \ report publishes instead of falling back to the default cap, while the judge\
+        \ behind it answers to a different name"
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R015
+    - name: "should re evaluate quizzes that already had a verdict when re evaluation\
+        \ is requested for the name the report publishes, while the judge behind it\
+        \ answers to a different name"
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R015
     implements:
     - AuditRunner
   - name: DefaultCocaBucketsConfig
@@ -8500,6 +8532,11 @@ modules:
         traceability:
           feature: FEAT-QINST
           rule: F-QINST-R003
+      - name: should render the judge version the analysis evaluated with next to
+          the coverage numbers
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
       implements:
       - DetailedFormatter
   - name: bootstrap
@@ -12827,6 +12864,12 @@ modules:
         traceability:
           feature: FEAT-EVCOST
           rule: F-EVCOST-R009
+      - name: should keep reusing the registered current result of the neighbouring
+          content in the same run when re evaluation is requested for one content
+          only
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R008
       implements:
       - EvaluationSession
   - name: contentfingerprint
@@ -13078,6 +13121,12 @@ modules:
         traceability:
           feature: FEAT-QINST
           rule: F-QINST-R007
+      - name: should yield an evaluator that reports itself unavailable and emits
+          no verdict when the agent definition its version derives from cannot be
+          located
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R010
       implements:
       - QuizInstructionJudgeFactory
     - name: QuizInstructionAgentJudge
@@ -13128,6 +13177,17 @@ modules:
           feature: FEAT-QINST
           rule: F-QINST-R010
       - name: should honour the judge version fixed by configuration
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R010
+      - name: "should derive a different judge version when only the text of the agent\
+          \ definition changes, with the agent name and the model untouched"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R010
+      - name: "should derive a judge version that cannot coincide with any version\
+          \ derived from a reachable agent definition when the definition cannot be\
+          \ located, so that no recorded verdict is current under it"
         traceability:
           feature: FEAT-QINST
           rule: F-QINST-R010

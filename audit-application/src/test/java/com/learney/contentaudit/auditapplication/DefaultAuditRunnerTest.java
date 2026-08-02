@@ -16,14 +16,28 @@ import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionVerdi
 import static org.mockito.Mockito.lenient;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.evaluationledgerdomain.ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory;
 import java.nio.file.Path;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -34,6 +48,20 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 public class DefaultAuditRunnerTest {
+
+    // Role A/B (F-QINST-R015): the name under which the analyzer is selected/excluded/
+    // budgeted -- what factory.analyzerName() returns, and the exact key used both in
+    // AuditRunRequest.excludedAnalyzers and in AuditRunRequest.analyzerPolicies. This is
+    // the name the audit report publishes.
+    private static final String ANALYZER_NAME = "quiz-instruction";
+
+    // Role C (F-QINST-R015): the judge's own identity in the evaluation ledger --
+    // deliberately a DIFFERENT literal from ANALYZER_NAME. Collapsing both roles into a
+    // single string is exactly the blind spot that let production filter/budget by the
+    // wrong identity while 22 tests stayed green: with only one string, any identity the
+    // runner reads produces the same result and the test cannot distinguish right from
+    // wrong.
+    private static final String EVALUATOR_ID = "quiz-instruction-validator";
 
     @Mock private CourseRepository courseRepository;
     @Mock private CourseToAuditableMapper courseToAuditableMapper;
@@ -590,5 +618,313 @@ public class DefaultAuditRunnerTest {
         runner.runAudit(coursePath, request);
 
         verify(quizInstructionFactory).create(policy);
+    }
+
+    @Test
+    @DisplayName("should not run the quiz instruction analysis when the run excludes it by the very name the report publishes, while the judge behind it answers to a different name")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R015")
+    public void shouldNotRunTheQuizInstructionAnalysisWhenTheRunExcludesItByTheVeryNameTheReportPublishesWhileTheJudgeBehindItAnswersToADifferentName() {
+        // R015: exclusion must be keyed by the name the report publishes (ANALYZER_NAME).
+        // The judge wired behind this analysis answers to a DIFFERENT identity
+        // (EVALUATOR_ID) on purpose -- if the runner ever confused the two (the exact
+        // blind spot this rule exists to close), excluding by ANALYZER_NAME would fail
+        // to stop anything and the judge would still be consulted.
+        AuditNode quizNode = quizInstructionQuizNode("quiz-1");
+        AuditNode rootNode = quizInstructionRootWithChildren(quizNode);
+        AuditReport baseReport = new AuditReport(rootNode);
+
+        FakeQuizInstructionEvaluationLedger ledger = new FakeQuizInstructionEvaluationLedger();
+        FakeQuizInstructionContentFingerprinter fingerprinter = new FakeQuizInstructionContentFingerprinter();
+        EvaluationSessionFactory sessionFactory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
+        FakeQuizInstructionEvaluator evaluator = new FakeQuizInstructionEvaluator(EVALUATOR_ID, "v1");
+
+        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
+        when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
+        lenient().when(quizInstructionFactory.create(any())).thenAnswer(invocation -> {
+            EvaluationRunPolicy policy = invocation.getArgument(0);
+            EvaluationRunPolicy effectivePolicy = policy != null ? policy : new EvaluationRunPolicy(500, false, null);
+            EvaluationSession session = sessionFactory.open(quizInstructionBudgetFrom(effectivePolicy), evaluator);
+            return quizInstructionSessionBackedAnalyzer(session, effectivePolicy);
+        });
+
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
+        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
+
+        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
+                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+
+        AuditRunRequest request = new AuditRunRequest(null, Set.of(ANALYZER_NAME), null);
+        runner.runAudit(coursePath, request);
+
+        verify(quizInstructionFactory, never()).create(any());
+        assertTrue(evaluator.getEvaluatedSubjects().isEmpty(),
+                "R015: excluding by the name the report publishes must stop the judge from ever being consulted, "
+                + "even though the judge answers to a different identity (EVALUATOR_ID) than that name");
+    }
+
+    @Test
+    @DisplayName("should cap the judge queries at the number requested for the name the report publishes instead of falling back to the default cap, while the judge behind it answers to a different name")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R015")
+    public void shouldCapTheJudgeQueriesAtTheNumberRequestedForTheNameTheReportPublishesInsteadOfFallingBackToTheDefaultCapWhileTheJudgeBehindItAnswersToADifferentName() {
+        // R015: the cap declared for ANALYZER_NAME (the name the report publishes) must be
+        // the one applied -- not the analyzer's default (500). Three quizzes reach the
+        // judge but the request caps new queries at 2: if the runner looked up the policy
+        // under any identity other than ANALYZER_NAME, it would find nothing and fall back
+        // to the default, and all three quizzes would be consulted instead of two.
+        AuditNode quiz1 = quizInstructionQuizNode("quiz-1");
+        AuditNode quiz2 = quizInstructionQuizNode("quiz-2");
+        AuditNode quiz3 = quizInstructionQuizNode("quiz-3");
+        AuditNode rootNode = quizInstructionRootWithChildren(quiz1, quiz2, quiz3);
+        AuditReport baseReport = new AuditReport(rootNode);
+
+        FakeQuizInstructionEvaluationLedger ledger = new FakeQuizInstructionEvaluationLedger();
+        FakeQuizInstructionContentFingerprinter fingerprinter = new FakeQuizInstructionContentFingerprinter();
+        EvaluationSessionFactory sessionFactory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
+        FakeQuizInstructionEvaluator evaluator = new FakeQuizInstructionEvaluator(EVALUATOR_ID, "v1");
+
+        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
+        when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
+        when(quizInstructionFactory.create(any())).thenAnswer(invocation -> {
+            EvaluationRunPolicy policy = invocation.getArgument(0);
+            EvaluationSession session = sessionFactory.open(quizInstructionBudgetFrom(policy), evaluator);
+            return quizInstructionSessionBackedAnalyzer(session, policy);
+        });
+
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
+        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
+
+        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
+                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+
+        EvaluationRunPolicy cappedPolicy = new EvaluationRunPolicy(2, false, null);
+        AuditRunRequest request = new AuditRunRequest(null, null, Map.of(ANALYZER_NAME, cappedPolicy));
+        runner.runAudit(coursePath, request);
+
+        verify(quizInstructionFactory).create(cappedPolicy);
+        assertEquals(2, evaluator.getEvaluatedSubjects().size(),
+                "R015: the run must cap new judge queries at the number requested for the name the report "
+                + "publishes (2 of 3 quizzes) instead of falling back to the analyzer's default cap");
+    }
+
+    @Test
+    @DisplayName("should re evaluate quizzes that already had a verdict when re evaluation is requested for the name the report publishes, while the judge behind it answers to a different name")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R015")
+    public void shouldReEvaluateQuizzesThatAlreadyHadAVerdictWhenReEvaluationIsRequestedForTheNameTheReportPublishesWhileTheJudgeBehindItAnswersToADifferentName() {
+        // R015: an explicit re-evaluation request keyed by ANALYZER_NAME must reach the
+        // judge again for a quiz that already has a current verdict -- even though the
+        // judge's own identity in the ledger (EVALUATOR_ID) is a different string. If the
+        // runner looked up the reevaluation policy under any name other than the one the
+        // report publishes, the request would silently find nothing and every verdict
+        // would just be reused.
+        AuditNode quizNode = quizInstructionQuizNode("quiz-1");
+        AuditNode rootNode = quizInstructionRootWithChildren(quizNode);
+        AuditReport baseReport = new AuditReport(rootNode);
+
+        FakeQuizInstructionEvaluationLedger ledger = new FakeQuizInstructionEvaluationLedger();
+        FakeQuizInstructionContentFingerprinter fingerprinter = new FakeQuizInstructionContentFingerprinter();
+        EvaluationSessionFactory sessionFactory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
+        FakeQuizInstructionEvaluator evaluator = new FakeQuizInstructionEvaluator(EVALUATOR_ID, "v1");
+
+        String fingerprint = fingerprinter.fingerprint(quizInstructionSubjectContent("quiz-1"));
+        EvaluationKey currentKey = new EvaluationKey(EVALUATOR_ID, "v1", fingerprint);
+        ledger.seed(new EvaluationRecord(currentKey, "{\"compliant\":true}", "quiz-1", Instant.now()));
+
+        EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
+        when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
+        when(quizInstructionFactory.create(any())).thenAnswer(invocation -> {
+            EvaluationRunPolicy policy = invocation.getArgument(0);
+            EvaluationSession session = sessionFactory.open(quizInstructionBudgetFrom(policy), evaluator);
+            return quizInstructionSessionBackedAnalyzer(session, policy);
+        });
+
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(auditableCourse);
+        when(auditEngine.runAudit(auditableCourse)).thenReturn(baseReport);
+
+        DefaultAuditRunner runner = new DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine,
+                List.of(), scoreAggregator, List.of(quizInstructionFactory));
+
+        EvaluationRunPolicy reevaluationPolicy = new EvaluationRunPolicy(500, true, null);
+        AuditRunRequest request = new AuditRunRequest(null, null, Map.of(ANALYZER_NAME, reevaluationPolicy));
+        runner.runAudit(coursePath, request);
+
+        verify(quizInstructionFactory).create(reevaluationPolicy);
+        assertEquals(1, evaluator.getEvaluatedSubjects().size(),
+                "R015: re-evaluation requested for the name the report publishes must reach the judge again "
+                + "despite a current verdict already existing");
+        assertEquals(2, ledger.history(EVALUATOR_ID, fingerprint).size(),
+                "R015: re-evaluation must not destroy the previous verdict -- both must coexist as history");
+    }
+
+    // -----------------------------------------------------------------------
+    // Fixtures shared across the F-QINST-R015 tests
+    // -----------------------------------------------------------------------
+
+    private static AuditNode quizInstructionQuizNode(String quizId) {
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.QUIZ);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        node.setEntity(new AuditableQuiz(List.of(), quizId, "label", "code", null,
+                List.of("She is happy."), null, null, List.of()));
+        return node;
+    }
+
+    private static AuditNode quizInstructionRootWithChildren(AuditNode... children) {
+        AuditNode root = new AuditNode();
+        root.setTarget(AuditTarget.COURSE);
+        List<AuditNode> childList = new ArrayList<>(List.of(children));
+        root.setChildren(childList);
+        root.setScores(new LinkedHashMap<>());
+        root.setMetadata(new LinkedHashMap<>());
+        for (AuditNode child : children) {
+            child.setParent(root);
+        }
+        return root;
+    }
+
+    private static Map<String, String> quizInstructionSubjectContent(String quizId) {
+        return Map.of("marker", quizId);
+    }
+
+    private static EvaluationBudget quizInstructionBudgetFrom(EvaluationRunPolicy policy) {
+        return new EvaluationBudget(policy.getMaxNewEvaluations());
+    }
+
+    /**
+     * A minimal ContentAnalyzer that delegates each quiz to a real EvaluationSession, so
+     * these tests exercise the actual reuse/budget/version machinery (FEAT-EVCOST) instead
+     * of a fully-mocked analyzer -- necessary to observe the cap and the re-evaluation
+     * behavior for real. Only the judge (Evaluator) and the ledger are faked.
+     */
+    private static ContentAnalyzer quizInstructionSessionBackedAnalyzer(EvaluationSession session,
+            EvaluationRunPolicy policy) {
+        return new ContentAnalyzer() {
+            @Override
+            public Void onQuiz(AuditNode node) {
+                String subjectRef = node.getEntity() != null ? node.getEntity().getId() : null;
+                EvaluationSubject subject = new EvaluationSubject(subjectRef, quizInstructionSubjectContent(subjectRef));
+                if (policy != null && policy.isReevaluate()) {
+                    session.resolveForced(subject);
+                } else {
+                    session.resolve(subject);
+                }
+                return null;
+            }
+
+            @Override
+            public Void onKnowledge(AuditNode node) {
+                return null;
+            }
+
+            @Override
+            public Void onMilestone(AuditNode node) {
+                return null;
+            }
+
+            @Override
+            public Void onTopic(AuditNode node) {
+                return null;
+            }
+
+            @Override
+            public Void onCourseComplete(AuditNode rootNode) {
+                return null;
+            }
+
+            @Override
+            public String getName() {
+                return ANALYZER_NAME;
+            }
+
+            @Override
+            public AuditTarget getTarget() {
+                return AuditTarget.QUIZ;
+            }
+
+            @Override
+            public String getDescription() {
+                return "fake quiz instruction analyzer for F-QINST-R015 tests";
+            }
+        };
+    }
+
+    /** Deterministic fake fingerprinter: same content map always yields the same fingerprint. */
+    private static final class FakeQuizInstructionContentFingerprinter implements ContentFingerprinter {
+        @Override
+        public String fingerprint(Map<String, String> content) {
+            return new TreeMap<>(content).toString();
+        }
+    }
+
+    /** In-memory fake ledger -- the real FileSystemEvaluationLedger lives in a module that
+     * audit-application does not depend on. */
+    private static final class FakeQuizInstructionEvaluationLedger implements EvaluationLedger {
+        private final List<EvaluationRecord> records = new ArrayList<>();
+
+        @Override
+        public Optional<EvaluationRecord> find(EvaluationKey key) {
+            return records.stream().filter(r -> r.getKey().equals(key)).findFirst();
+        }
+
+        @Override
+        public void append(EvaluationRecord record) {
+            records.add(record);
+        }
+
+        @Override
+        public List<EvaluationRecord> history(String evaluatorId, String contentFingerprint) {
+            List<EvaluationRecord> result = new ArrayList<>();
+            for (EvaluationRecord record : records) {
+                if (record.getKey().getEvaluatorId().equals(evaluatorId)
+                        && record.getKey().getContentFingerprint().equals(contentFingerprint)) {
+                    result.add(record);
+                }
+            }
+            return result;
+        }
+
+        private void seed(EvaluationRecord record) {
+            records.add(record);
+        }
+    }
+
+    /** Fake judge -- never calls a real LLM. Records every subject it was asked to judge,
+     * under an identity (EVALUATOR_ID) deliberately distinct from ANALYZER_NAME. */
+    private static final class FakeQuizInstructionEvaluator implements Evaluator {
+        private final String id;
+        private final String version;
+        private final List<EvaluationSubject> evaluatedSubjects = new ArrayList<>();
+
+        private FakeQuizInstructionEvaluator(String id, String version) {
+            this.id = id;
+            this.version = version;
+        }
+
+        @Override
+        public String evaluatorId() {
+            return id;
+        }
+
+        @Override
+        public String evaluatorVersion() {
+            return version;
+        }
+
+        @Override
+        public EvaluationOutcome evaluate(EvaluationSubject subject) {
+            evaluatedSubjects.add(subject);
+            return new EvaluationEmitted("{\"compliant\":true}");
+        }
+
+        private List<EvaluationSubject> getEvaluatedSubjects() {
+            return evaluatedSubjects;
+        }
     }
 }

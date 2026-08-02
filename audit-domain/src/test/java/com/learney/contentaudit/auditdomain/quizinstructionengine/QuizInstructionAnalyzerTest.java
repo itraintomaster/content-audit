@@ -856,4 +856,94 @@ public class QuizInstructionAnalyzerTest {
         assertEquals(11487, declared.getCoverage().getReached(),
                 "El total de alcanzados debe igualar la cantidad de ejercicios del curso, sin exclusiones (R014)");
     }
+    @Test
+    @DisplayName("should declare in the coverage the judge version the run evaluated with")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R005")
+    public void shouldDeclareInTheCoverageTheJudgeVersionTheRunEvaluatedWith() {
+        EvaluationSession session = mock(EvaluationSession.class);
+        QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
+        QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
+        QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
+        QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
+        EvaluationRunPolicy policy = normalPolicy(500);
+
+        EvaluationCoverage coverage = new EvaluationCoverage(5, 3, 2, 1, 1, 1);
+        when(session.coverage()).thenReturn(coverage);
+        // Version del juez vigente durante la corrida (R005)
+        when(session.evaluatorVersion()).thenReturn("quiz-instruction-validator@sha256:v7");
+
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        AuditNode courseNode = buildCourseNode();
+        analyzer.onCourseComplete(courseNode);
+
+        QuizInstructionCoverageDiagnosis declared = ((CourseDiagnoses) courseNode.getDiagnoses())
+                .getQuizInstructionCoverage()
+                .orElseThrow(() -> new AssertionError("La cobertura del analisis de consigna debe quedar declarada (R005)"));
+
+        assertEquals("quiz-instruction-validator@sha256:v7", declared.getEvaluatorVersion(),
+                "La cobertura declarada debe indicar con que version del juez se evaluo la corrida (R005)");
+    }
+    @Test
+    @DisplayName("should declare a single judge version, the one in effect, for a run that both reuses verdicts from earlier runs and evaluates new ones")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R005")
+    public void shouldDeclareASingleJudgeVersionTheOneInEffectForARunThatBothReusesVerdictsFromEarlierRunsAndEvaluatesNewOnes(
+            ) {
+        EvaluationSession session = mock(EvaluationSession.class);
+        QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
+        QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
+        QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
+        QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
+        EvaluationRunPolicy policy = normalPolicy(500);
+        // Version vigente del juez durante TODA la corrida: es la unica que se reutiliza (R010)
+        // y por lo tanto la unica que la cobertura puede declarar (R005), aunque la corrida
+        // mezcle veredictos nuevos y reutilizados
+        String currentJudgeVersion = "quiz-instruction-validator@sha256:v9";
+        when(session.evaluatorVersion()).thenReturn(currentJudgeVersion);
+
+        AuditNode evaluatedInThisRun = buildQuizNode(buildQuiz("q1"));
+        EvaluationSubject subj1 = new EvaluationSubject("q1", Map.of());
+        when(subjectBuilder.build(evaluatedInThisRun)).thenReturn(subj1);
+        // q1: sin veredicto vigente todavia, se consulta al juez en esta corrida
+        when(session.resolve(subj1)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-new"));
+        QuizInstructionVerdict newVerdict = new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "cumple", List.of(), List.of());
+        when(verdictReader.read("payload-new")).thenReturn(newVerdict);
+        when(scorer.score(newVerdict)).thenReturn(1.0);
+
+        AuditNode reusedFromEarlierRun = buildQuizNode(buildQuiz("q2"));
+        EvaluationSubject subj2 = new EvaluationSubject("q2", Map.of());
+        when(subjectBuilder.build(reusedFromEarlierRun)).thenReturn(subj2);
+        // q2: ya tenia veredicto vigente de una corrida anterior, bajo la MISMA version vigente:
+        // se reutiliza sin consultar al juez (R008/R010)
+        when(session.resolve(subj2)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-reused"));
+        QuizInstructionVerdict reusedVerdict = new QuizInstructionVerdict(true, 0.95, InstructionSeverity.NONE, "cumple", List.of(), List.of());
+        when(verdictReader.read("payload-reused")).thenReturn(reusedVerdict);
+        when(scorer.score(reusedVerdict)).thenReturn(1.0);
+
+        QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy);
+        analyzer.onQuiz(evaluatedInThisRun);
+        analyzer.onQuiz(reusedFromEarlierRun);
+
+        // La corrida efectivamente mezclo las dos clases de veredicto: precondicion del escenario
+        assertFalse(((QuizDiagnoses) evaluatedInThisRun.getDiagnoses()).getQuizInstructionDiagnosis()
+                .orElseThrow().isReusedFromPreviousRun(),
+                "q1 debe quedar marcado como evaluado en esta corrida, no reutilizado");
+        assertTrue(((QuizDiagnoses) reusedFromEarlierRun.getDiagnoses()).getQuizInstructionDiagnosis()
+                .orElseThrow().isReusedFromPreviousRun(),
+                "q2 debe quedar marcado como reutilizado de una corrida anterior");
+
+        EvaluationCoverage coverage = new EvaluationCoverage(2, 2, 1, 1, 0, 0);
+        when(session.coverage()).thenReturn(coverage);
+        AuditNode courseNode = buildCourseNode();
+        analyzer.onCourseComplete(courseNode);
+
+        QuizInstructionCoverageDiagnosis declared = ((CourseDiagnoses) courseNode.getDiagnoses())
+                .getQuizInstructionCoverage()
+                .orElseThrow(() -> new AssertionError("La cobertura del analisis de consigna debe quedar declarada (R005)"));
+
+        assertEquals(currentJudgeVersion, declared.getEvaluatorVersion(),
+                "La cobertura debe declarar una unica version del juez, la vigente, aunque la corrida "
+                        + "mezcle veredictos reutilizados y nuevos (R005)");
+    }
 }

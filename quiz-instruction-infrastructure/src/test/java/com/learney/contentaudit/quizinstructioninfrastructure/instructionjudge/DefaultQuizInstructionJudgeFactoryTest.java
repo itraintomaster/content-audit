@@ -9,18 +9,23 @@ import static org.mockito.Mockito.verifyNoInteractions;
 
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocator;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunner;
+import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunnerConfig;
+import com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentDefinitionLocatorFactory;
+import com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentGraphRunnerFactory;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationFailureKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
+import java.nio.file.Path;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -59,5 +64,40 @@ public class DefaultQuizInstructionJudgeFactoryTest {
         EvaluationNotEmitted notEmitted = assertInstanceOf(EvaluationNotEmitted.class, outcome);
         assertEquals(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, notEmitted.getKind());
         verifyNoInteractions(agentGraphRunner);
+    }
+
+    @Test
+    @DisplayName("should yield an evaluator that reports itself unavailable and emits no verdict when the agent definition its version derives from cannot be located")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R010")
+    public void shouldYieldAnEvaluatorThatReportsItselfUnavailableAndEmitsNoVerdictWhenTheAgentDefinitionItsVersionDerivesFromCannotBeLocated(
+            @TempDir Path emptyAgentsDir) {
+        // El directorio de agentes esta vacio: ninguna definicion "quiz-instruction-validator" existe bajo el.
+        AgentGraphRunnerConfig runnerConfig = new AgentGraphRunnerConfig(emptyAgentsDir, null);
+        AgentGraphRunner realAgentGraphRunner = new DefaultAgentGraphRunnerFactory().create(runnerConfig);
+        AgentDefinitionLocator realAgentDefinitionLocator =
+                new DefaultAgentDefinitionLocatorFactory().create(runnerConfig);
+
+        QuizInstructionJudgeConfig config = new QuizInstructionJudgeConfig(
+                "http://localhost:1234/v1", "test-api-key", "gpt-4o-mini", 0.0, 30,
+                "quiz-instruction-validator", null);
+
+        DefaultQuizInstructionJudgeFactory factory = new DefaultQuizInstructionJudgeFactory();
+        Evaluator evaluator = factory.create(config, realAgentGraphRunner, realAgentDefinitionLocator);
+
+        Map<String, String> content = new LinkedHashMap<>();
+        content.put("cefrLevel", "A2");
+        content.put("topic", "Daily routines");
+        content.put("title", "Future with will");
+        content.put("instructions", "Fill in the blank using short forms.");
+        content.put("quiz", "{\"id\":\"quiz-1\"}");
+        EvaluationSubject subject = new EvaluationSubject("quiz-1", content);
+
+        EvaluationOutcome outcome = assertDoesNotThrow(() -> evaluator.evaluate(subject),
+                "F-QINST-R010: la corrida trata al juez como no disponible en vez de abortar la auditoria cuando "
+                        + "la definicion de la que sale su version no se puede localizar");
+
+        EvaluationNotEmitted notEmitted = assertInstanceOf(EvaluationNotEmitted.class, outcome);
+        assertEquals(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, notEmitted.getKind());
     }
 }

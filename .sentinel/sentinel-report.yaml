@@ -1,4 +1,4 @@
-generatedAt: 2026-08-02T00:58:26.990897Z
+generatedAt: 2026-08-02T01:54:21.370343Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -232,14 +232,14 @@ features:
       branchCoveragePct: 79
       blendPct: 87
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 186
+      killed: 74
+      survived: 103
+      noCoverage: 9
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 39
+      testStrengthPct: 41
     crap:
       totalMethods: 65
       hotspots: 0
@@ -250,8 +250,10 @@ features:
       high: 4
       veryHigh: 0
       healthPct: 90
-    healthScore: 49
-    verdict: PASSED
+    healthScore: 66
+    verdict: WARNED
+    violations:
+    - mutationScore 39% < 60%
 - id: FEAT-REVCTX
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-05-09.01_revise-correction-context-override/REQUIREMENT.md
@@ -1470,14 +1472,14 @@ features:
       branchCoveragePct: 78
       blendPct: 86
     mutation:
-      totalMutants: 4
-      killed: 3
-      survived: 0
-      noCoverage: 1
+      totalMutants: 110
+      killed: 69
+      survived: 35
+      noCoverage: 6
       timedOut: 0
       other: 0
-      mutationScorePct: 75
-      testStrengthPct: 100
+      mutationScorePct: 62
+      testStrengthPct: 66
     crap:
       totalMethods: 28
       hotspots: 0
@@ -1488,7 +1490,7 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 100
-    healthScore: 85
+    healthScore: 79
     verdict: PASSED
 - id: FEAT-RPRES
   state: IMPLEMENTED
@@ -1790,13 +1792,13 @@ features:
       branchCoveragePct: 51
       blendPct: 61
     mutation:
-      totalMutants: 125
-      killed: 49
-      survived: 15
-      noCoverage: 61
+      totalMutants: 256
+      killed: 110
+      survived: 34
+      noCoverage: 112
       timedOut: 0
       other: 0
-      mutationScorePct: 39
+      mutationScorePct: 42
       testStrengthPct: 76
     crap:
       totalMethods: 66
@@ -1830,11 +1832,11 @@ features:
         cyclomatic: 10
         lineCoveragePct: 0
         crap: 110.0
-    healthScore: 57
+    healthScore: 59
     verdict: WARNED
     violations:
     - branchCoverage 51% < 60%
-    - mutationScore 39% < 60%
+    - mutationScore 42% < 60%
 - id: FEAT-RCLAQS
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
@@ -1979,14 +1981,14 @@ features:
       branchCoveragePct: 53
       blendPct: 58
     mutation:
-      totalMutants: 207
-      killed: 98
-      survived: 65
-      noCoverage: 44
+      totalMutants: 211
+      killed: 84
+      survived: 50
+      noCoverage: 77
       timedOut: 0
       other: 0
-      mutationScorePct: 47
-      testStrengthPct: 60
+      mutationScorePct: 39
+      testStrengthPct: 62
     crap:
       totalMethods: 97
       hotspots: 6
@@ -2040,12 +2042,12 @@ features:
         cyclomatic: 29
         lineCoveragePct: 77
         crap: 39.23244699999999
-    healthScore: 59
+    healthScore: 55
     verdict: WARNED
     violations:
     - lineCoverage 63% < 70%
     - branchCoverage 53% < 60%
-    - mutationScore 47% < 60%
+    - mutationScore 39% < 60%
     - crapHotspots 6 > 5
 - id: FEAT-DCOCA
   state: IMPLEMENTED
@@ -2184,14 +2186,14 @@ features:
       branchCoveragePct: 56
       blendPct: 68
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 126
+      killed: 68
+      survived: 49
+      noCoverage: 9
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 53
+      testStrengthPct: 58
     crap:
       totalMethods: 46
       hotspots: 2
@@ -2217,10 +2219,11 @@ features:
         cyclomatic: 25
         lineCoveragePct: 69
         crap: 43.619375000000005
-    healthScore: 42
+    healthScore: 66
     verdict: WARNED
     violations:
     - branchCoverage 56% < 60%
+    - mutationScore 53% < 60%
 - id: FEAT-CSLATDC
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-05-21.05_consultar-suggested-lemmas-a-trav-s-del-cli/REQUIREMENT.md
@@ -2468,13 +2471,13 @@ features:
       blendPct: 57
     mutation:
       totalMutants: 40
-      killed: 30
-      survived: 8
+      killed: 31
+      survived: 7
       noCoverage: 2
       timedOut: 0
       other: 0
-      mutationScorePct: 75
-      testStrengthPct: 78
+      mutationScorePct: 77
+      testStrengthPct: 81
     crap:
       totalMethods: 77
       hotspots: 5
@@ -2521,7 +2524,7 @@ features:
         cyclomatic: 29
         lineCoveragePct: 77
         crap: 39.23244699999999
-    healthScore: 71
+    healthScore: 72
     verdict: WARNED
     violations:
     - lineCoverage 62% < 70%
@@ -3632,14 +3635,14 @@ features:
       branchCoveragePct: 57
       blendPct: 66
     mutation:
-      totalMutants: 191
-      killed: 67
-      survived: 58
-      noCoverage: 66
+      totalMutants: 241
+      killed: 98
+      survived: 73
+      noCoverage: 70
       timedOut: 0
       other: 0
-      mutationScorePct: 35
-      testStrengthPct: 53
+      mutationScorePct: 40
+      testStrengthPct: 57
     crap:
       totalMethods: 64
       hotspots: 2
@@ -3665,11 +3668,11 @@ features:
         cyclomatic: 76
         lineCoveragePct: 85
         crap: 95.494
-    healthScore: 58
+    healthScore: 60
     verdict: WARNED
     violations:
     - branchCoverage 57% < 60%
-    - mutationScore 35% < 60%
+    - mutationScore 40% < 60%
 - id: FEAT-QINST
   state: IMPLEMENTING
   requirementFile: ./requirements/2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md
@@ -3802,7 +3805,7 @@ features:
       module: audit-domain
       implementation: QuizInstructionAnalyzer
   - ruleId: F-QINST-R005
-    state: PASSING
+    state: FAILING
     tests:
     - name: "should declare on the course node how many quizzes were reached, resolved,\
         \ evaluated in this run, reused, pending and failed"
@@ -3822,10 +3825,27 @@ features:
       passing: true
       module: audit-domain
       implementation: QuizInstructionAnalyzer
+    - name: should declare in the coverage the judge version the run evaluated with
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
+    - name: "should declare a single judge version, the one in effect, for a run that\
+        \ both reuses verdicts from earlier runs and evaluates new ones"
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: QuizInstructionAnalyzer
     - name: should render the declared coverage of the quiz instruction analysis next
         to its score
       implemented: true
       passing: true
+      module: audit-cli
+      implementation: QuizInstructionDetailedFormatter
+    - name: should render the judge version the analysis evaluated with next to the
+        coverage numbers
+      implemented: true
+      passing: false
       module: audit-cli
       implementation: QuizInstructionDetailedFormatter
   - ruleId: F-QINST-R006
@@ -3971,7 +3991,7 @@ features:
       module: quiz-instruction-infrastructure
       implementation: QuizInstructionAgentJudge
   - ruleId: F-QINST-R010
-    state: PASSING
+    state: FAILING
     tests:
     - name: should not reuse the verdicts recorded by a previous judge version and
         report those quizzes as pending
@@ -3979,6 +3999,12 @@ features:
       passing: true
       module: audit-domain
       implementation: QuizInstructionAnalyzer
+    - name: should yield an evaluator that reports itself unavailable and emits no
+        verdict when the agent definition its version derives from cannot be located
+      implemented: true
+      passing: false
+      module: quiz-instruction-infrastructure
+      implementation: DefaultQuizInstructionJudgeFactory
     - name: should derive a different judge version when the agent definition or the
         model changes
       implemented: true
@@ -3994,6 +4020,19 @@ features:
     - name: should honour the judge version fixed by configuration
       implemented: true
       passing: true
+      module: quiz-instruction-infrastructure
+      implementation: DefaultQuizInstructionJudgeVersionResolver
+    - name: "should derive a different judge version when only the text of the agent\
+        \ definition changes, with the agent name and the model untouched"
+      implemented: true
+      passing: false
+      module: quiz-instruction-infrastructure
+      implementation: DefaultQuizInstructionJudgeVersionResolver
+    - name: "should derive a judge version that cannot coincide with any version derived\
+        \ from a reachable agent definition when the definition cannot be located,\
+        \ so that no recorded verdict is current under it"
+      implemented: true
+      passing: false
       module: quiz-instruction-infrastructure
       implementation: DefaultQuizInstructionJudgeVersionResolver
   - ruleId: F-QINST-R011
@@ -4104,7 +4143,35 @@ features:
       module: audit-domain
       implementation: DefaultQuizInstructionSubjectBuilder
   - ruleId: F-QINST-R015
-    state: NO_TESTS
+    state: FAILING
+    tests:
+    - name: should publish for selection exactly the name under which the analyzer
+        it builds reports its score
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: DefaultQuizInstructionAnalyzerFactory
+    - name: "should not run the quiz instruction analysis when the run excludes it\
+        \ by the very name the report publishes, while the judge behind it answers\
+        \ to a different name"
+      implemented: true
+      passing: false
+      module: audit-application
+      implementation: DefaultAuditRunner
+    - name: "should cap the judge queries at the number requested for the name the\
+        \ report publishes instead of falling back to the default cap, while the judge\
+        \ behind it answers to a different name"
+      implemented: true
+      passing: false
+      module: audit-application
+      implementation: DefaultAuditRunner
+    - name: "should re evaluate quizzes that already had a verdict when re evaluation\
+        \ is requested for the name the report publishes, while the judge behind it\
+        \ answers to a different name"
+      implemented: true
+      passing: false
+      module: audit-application
+      implementation: DefaultAuditRunner
   journeysCoverage:
   - journeyId: F-QINST-J001
     state: PASSING
@@ -4256,29 +4323,29 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 484
-      linesMissed: 131
-      linesTotal: 615
-      lineCoveragePct: 78
+      linesCovered: 490
+      linesMissed: 130
+      linesTotal: 620
+      lineCoveragePct: 79
       branchesCovered: 192
       branchesMissed: 141
       branchesTotal: 333
       branchCoveragePct: 57
-      blendPct: 67
+      blendPct: 68
     mutation:
-      totalMutants: 48
-      killed: 17
-      survived: 18
-      noCoverage: 13
+      totalMutants: 182
+      killed: 40
+      survived: 4
+      noCoverage: 138
       timedOut: 0
       other: 0
-      mutationScorePct: 35
-      testStrengthPct: 48
+      mutationScorePct: 21
+      testStrengthPct: 90
     crap:
       totalMethods: 82
       hotspots: 2
       maxCrap: 34.67481600000001
-      averageCrap: 3.975326048780488
+      averageCrap: 3.9679561463414634
       simple: 75
       moderate: 5
       high: 2
@@ -4299,11 +4366,11 @@ features:
         cyclomatic: 13
         lineCoveragePct: 51
         crap: 32.882681
-    healthScore: 60
+    healthScore: 54
     verdict: WARNED
     violations:
     - branchCoverage 57% < 60%
-    - mutationScore 35% < 60%
+    - mutationScore 21% < 60%
 - id: FEAT-INCEXP
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-06-18.01_incluir-lemas-ya-expuestos-en-suggested-lemmas/REQUIREMENT.md
@@ -4473,13 +4540,13 @@ features:
       blendPct: 82
     mutation:
       totalMutants: 39
-      killed: 29
-      survived: 8
+      killed: 30
+      survived: 7
       noCoverage: 2
       timedOut: 0
       other: 0
-      mutationScorePct: 74
-      testStrengthPct: 78
+      mutationScorePct: 76
+      testStrengthPct: 81
     crap:
       totalMethods: 8
       hotspots: 0
@@ -4490,7 +4557,7 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 94
-    healthScore: 81
+    healthScore: 82
     verdict: PASSED
 - id: FEAT-COCA
   state: IMPLEMENTED
@@ -4910,14 +4977,14 @@ features:
       branchCoveragePct: 72
       blendPct: 80
     mutation:
-      totalMutants: 9
-      killed: 5
-      survived: 0
-      noCoverage: 4
+      totalMutants: 207
+      killed: 112
+      survived: 70
+      noCoverage: 25
       timedOut: 0
       other: 0
-      mutationScorePct: 55
-      testStrengthPct: 100
+      mutationScorePct: 54
+      testStrengthPct: 61
     crap:
       totalMethods: 44
       hotspots: 0
@@ -4928,10 +4995,10 @@ features:
       high: 1
       veryHigh: 0
       healthPct: 95
-    healthScore: 73
+    healthScore: 72
     verdict: WARNED
     violations:
-    - mutationScore 55% < 60%
+    - mutationScore 54% < 60%
 - id: FEAT-DBSENT
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-05-20.01_plain-sentences-from-db/REQUIREMENT.md
@@ -5024,14 +5091,14 @@ features:
       branchCoveragePct: 67
       blendPct: 80
     mutation:
-      totalMutants: 215
-      killed: 131
-      survived: 64
-      noCoverage: 20
+      totalMutants: 219
+      killed: 117
+      survived: 49
+      noCoverage: 53
       timedOut: 0
       other: 0
-      mutationScorePct: 60
-      testStrengthPct: 67
+      mutationScorePct: 53
+      testStrengthPct: 70
     crap:
       totalMethods: 47
       hotspots: 0
@@ -5042,8 +5109,10 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 98
-    healthScore: 76
-    verdict: PASSED
+    healthScore: 72
+    verdict: WARNED
+    violations:
+    - mutationScore 53% < 60%
 - id: FEAT-LASAG
   state: IMPLEMENTING
   requirementFile: ./requirements/2026-06-18.01_lemma-absence-agent-migration/REQUIREMENT.md
@@ -5437,12 +5506,18 @@ features:
       module: evaluation-ledger-infrastructure
       implementation: FileSystemEvaluationLedger
   - ruleId: F-EVCOST-R008
-    state: PASSING
+    state: FAILING
     tests:
     - name: should consult the evaluator again for content with a current result only
         when re-evaluation is explicitly requested
       implemented: true
       passing: true
+      module: evaluation-ledger-domain
+      implementation: DefaultEvaluationSession
+    - name: should keep reusing the registered current result of the neighbouring
+        content in the same run when re evaluation is requested for one content only
+      implemented: true
+      passing: false
       module: evaluation-ledger-domain
       implementation: DefaultEvaluationSession
     - name: should keep the earlier entry consultable in history when the same key
@@ -5546,7 +5621,7 @@ features:
         module: evaluation-ledger-infrastructure
         implementation: FEvcostJ002JourneyTest
   - journeyId: F-EVCOST-J003
-    state: FAILING
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
@@ -5559,14 +5634,11 @@ features:
         implementation: FEvcostJ003JourneyTest
     - pathId: path-2
       result: success
-      state: FAILING
+      state: PASSING
       tests:
       - name: path2_elUsuarioPidioExplicitamenteVolverAEvaluarEseEvaluador_success
         implemented: true
-        passing: false
-        failureMessage: "org.opentest4j.AssertionFailedError: expected: <EVALUATED>\
-          \ but was: <REUSED>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\
-          \tat org.junit.jupiter.api.Asserti..."
+        passing: true
         module: audit-cli
         implementation: FEvcostJ003JourneyTest
   quality:
@@ -5582,35 +5654,37 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 124
-      linesMissed: 21
-      linesTotal: 145
-      lineCoveragePct: 85
+      linesMissed: 22
+      linesTotal: 146
+      lineCoveragePct: 84
       branchesCovered: 38
       branchesMissed: 10
       branchesTotal: 48
       branchCoveragePct: 79
-      blendPct: 82
+      blendPct: 81
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 39
+      killed: 20
+      survived: 15
+      noCoverage: 4
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 51
+      testStrengthPct: 57
     crap:
-      totalMethods: 20
+      totalMethods: 21
       hotspots: 0
       maxCrap: 8.021952
-      averageCrap: 2.2889921
-      simple: 20
+      averageCrap: 2.2752305714285717
+      simple: 21
       moderate: 0
       high: 0
       veryHigh: 0
       healthPct: 100
-    healthScore: 50
-    verdict: PASSED
+    healthScore: 72
+    verdict: WARNED
+    violations:
+    - mutationScore 51% < 60%
 - id: FEAT-NLP
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
@@ -5957,14 +6031,14 @@ features:
       branchCoveragePct: 65
       blendPct: 73
     mutation:
-      totalMutants: 58
-      killed: 20
-      survived: 25
-      noCoverage: 13
+      totalMutants: 62
+      killed: 6
+      survived: 10
+      noCoverage: 46
       timedOut: 0
       other: 0
-      mutationScorePct: 34
-      testStrengthPct: 44
+      mutationScorePct: 9
+      testStrengthPct: 37
     crap:
       totalMethods: 31
       hotspots: 0
@@ -5975,10 +6049,10 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 98
-    healthScore: 62
+    healthScore: 50
     verdict: WARNED
     violations:
-    - mutationScore 34% < 60%
+    - mutationScore 9% < 60%
 - id: FEAT-LABS
   state: IMPLEMENTING
   requirementFile: ./requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
@@ -7487,14 +7561,14 @@ features:
       branchCoveragePct: 69
       blendPct: 74
     mutation:
-      totalMutants: 255
-      killed: 127
-      survived: 68
-      noCoverage: 60
+      totalMutants: 458
+      killed: 206
+      survived: 169
+      noCoverage: 83
       timedOut: 0
       other: 0
-      mutationScorePct: 49
-      testStrengthPct: 65
+      mutationScorePct: 44
+      testStrengthPct: 54
     crap:
       totalMethods: 100
       hotspots: 1
@@ -7513,10 +7587,10 @@ features:
         cyclomatic: 29
         lineCoveragePct: 0
         crap: 870.0
-    healthScore: 67
+    healthScore: 65
     verdict: WARNED
     violations:
-    - mutationScore 49% < 60%
+    - mutationScore 44% < 60%
 - id: FEAT-CLI
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
@@ -7684,23 +7758,23 @@ features:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 128
-      linesMissed: 312
-      linesTotal: 440
-      lineCoveragePct: 29
+      linesMissed: 315
+      linesTotal: 443
+      lineCoveragePct: 28
       branchesCovered: 52
       branchesMissed: 67
       branchesTotal: 119
       branchCoveragePct: 43
-      blendPct: 36
+      blendPct: 35
     mutation:
-      totalMutants: 15
-      killed: 3
-      survived: 3
-      noCoverage: 9
+      totalMutants: 31
+      killed: 0
+      survived: 0
+      noCoverage: 31
       timedOut: 0
       other: 0
-      mutationScorePct: 20
-      testStrengthPct: 50
+      mutationScorePct: 0
+      testStrengthPct: 0
     crap:
       totalMethods: 21
       hotspots: 3
@@ -7715,7 +7789,7 @@ features:
       - className: com.learney.contentaudit.auditcli.commands.Main
         methodName: main
         methodDesc: "([Ljava/lang/String;)V"
-        line: 178
+        line: 180
         cyclomatic: 9
         lineCoveragePct: 0
         crap: 90.0
@@ -7733,12 +7807,12 @@ features:
         cyclomatic: 13
         lineCoveragePct: 51
         crap: 32.882681
-    healthScore: 40
+    healthScore: 30
     verdict: WARNED
     violations:
-    - lineCoverage 29% < 70%
+    - lineCoverage 28% < 70%
     - branchCoverage 43% < 60%
-    - mutationScore 20% < 60%
+    - mutationScore 0% < 60%
 - id: FEAT-PIPRE
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
@@ -8028,13 +8102,13 @@ features:
       blendPct: 59
     mutation:
       totalMutants: 91
-      killed: 46
-      survived: 19
-      noCoverage: 26
+      killed: 55
+      survived: 25
+      noCoverage: 11
       timedOut: 0
       other: 0
-      mutationScorePct: 50
-      testStrengthPct: 70
+      mutationScorePct: 60
+      testStrengthPct: 68
     crap:
       totalMethods: 95
       hotspots: 5
@@ -8081,12 +8155,11 @@ features:
         cyclomatic: 29
         lineCoveragePct: 77
         crap: 39.23244699999999
-    healthScore: 61
+    healthScore: 66
     verdict: WARNED
     violations:
     - lineCoverage 64% < 70%
     - branchCoverage 54% < 60%
-    - mutationScore 50% < 60%
 - id: FEAT-CLEX
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-07-22.01_consulta-lexica-de-oracion-por-cli/REQUIREMENT.md
@@ -8241,14 +8314,14 @@ features:
       branchCoveragePct: 83
       blendPct: 87
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
+      totalMutants: 56
+      killed: 46
+      survived: 10
       noCoverage: 0
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 82
+      testStrengthPct: 82
     crap:
       totalMethods: 12
       hotspots: 0
@@ -8259,7 +8332,7 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 96
-    healthScore: 50
+    healthScore: 87
     verdict: PASSED
 - id: FEAT-KTLEN
   state: IMPLEMENTED
@@ -8610,14 +8683,14 @@ features:
       branchCoveragePct: 97
       blendPct: 97
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 71
+      killed: 47
+      survived: 22
+      noCoverage: 2
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 66
+      testStrengthPct: 68
     crap:
       totalMethods: 26
       hotspots: 0
@@ -8628,7 +8701,7 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 100
-    healthScore: 54
+    healthScore: 84
     verdict: PASSED
 - id: FEAT-CDIFF
   state: IMPLEMENTED
@@ -9849,13 +9922,13 @@ features:
       branchCoveragePct: 52
       blendPct: 60
     mutation:
-      totalMutants: 178
-      killed: 60
-      survived: 34
-      noCoverage: 84
+      totalMutants: 193
+      killed: 67
+      survived: 39
+      noCoverage: 87
       timedOut: 0
       other: 0
-      mutationScorePct: 33
+      mutationScorePct: 34
       testStrengthPct: 63
     crap:
       totalMethods: 61
@@ -9875,12 +9948,12 @@ features:
         cyclomatic: 10
         lineCoveragePct: 0
         crap: 110.0
-    healthScore: 55
+    healthScore: 56
     verdict: WARNED
     violations:
     - lineCoverage 68% < 70%
     - branchCoverage 52% < 60%
-    - mutationScore 33% < 60%
+    - mutationScore 34% < 60%
 - id: FEAT-REVAPR
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
@@ -10496,14 +10569,14 @@ features:
       branchCoveragePct: 57
       blendPct: 61
     mutation:
-      totalMutants: 94
-      killed: 40
-      survived: 13
-      noCoverage: 41
+      totalMutants: 98
+      killed: 68
+      survived: 19
+      noCoverage: 11
       timedOut: 0
       other: 0
-      mutationScorePct: 42
-      testStrengthPct: 75
+      mutationScorePct: 69
+      testStrengthPct: 78
     crap:
       totalMethods: 122
       hotspots: 6
@@ -10557,12 +10630,11 @@ features:
         cyclomatic: 29
         lineCoveragePct: 77
         crap: 39.23244699999999
-    healthScore: 59
+    healthScore: 71
     verdict: WARNED
     violations:
     - lineCoverage 66% < 70%
     - branchCoverage 57% < 60%
-    - mutationScore 42% < 60%
     - crapHotspots 6 > 5
 - id: FEAT-LAPS
   state: IMPLEMENTING
@@ -11025,14 +11097,14 @@ features:
       branchCoveragePct: 66
       blendPct: 74
     mutation:
-      totalMutants: 64
-      killed: 41
+      totalMutants: 71
+      killed: 48
       survived: 13
       noCoverage: 10
       timedOut: 0
       other: 0
-      mutationScorePct: 64
-      testStrengthPct: 75
+      mutationScorePct: 67
+      testStrengthPct: 78
     crap:
       totalMethods: 32
       hotspots: 0
@@ -11043,7 +11115,7 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 100
-    healthScore: 76
+    healthScore: 77
     verdict: PASSED
 - id: FEAT-DSLEN
   state: IMPLEMENTED
@@ -11137,14 +11209,14 @@ features:
       branchCoveragePct: 89
       blendPct: 93
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 34
+      killed: 23
+      survived: 10
+      noCoverage: 1
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 67
+      testStrengthPct: 69
     crap:
       totalMethods: 11
       hotspots: 0
@@ -11155,7 +11227,7 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 100
-    healthScore: 53
+    healthScore: 83
     verdict: PASSED
 - id: FEAT-LEMMA-SUGGESTIONS
   state: IMPLEMENTING
@@ -11468,13 +11540,13 @@ features:
       branchCoveragePct: 55
       blendPct: 59
     mutation:
-      totalMutants: 269
-      killed: 118
-      survived: 95
-      noCoverage: 56
+      totalMutants: 285
+      killed: 115
+      survived: 92
+      noCoverage: 78
       timedOut: 0
       other: 0
-      mutationScorePct: 43
+      mutationScorePct: 40
       testStrengthPct: 55
     crap:
       totalMethods: 47
@@ -11508,12 +11580,12 @@ features:
         cyclomatic: 76
         lineCoveragePct: 85
         crap: 95.494
-    healthScore: 57
+    healthScore: 55
     verdict: WARNED
     violations:
     - lineCoverage 63% < 70%
     - branchCoverage 55% < 60%
-    - mutationScore 43% < 60%
+    - mutationScore 40% < 60%
 - id: FEAT-SLEN
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
@@ -11726,14 +11798,14 @@ features:
       branchCoveragePct: 93
       blendPct: 96
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 72
+      killed: 45
+      survived: 26
+      noCoverage: 1
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 62
+      testStrengthPct: 63
     crap:
       totalMethods: 15
       hotspots: 0
@@ -11744,7 +11816,7 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 100
-    healthScore: 54
+    healthScore: 82
     verdict: PASSED
 - id: FEAT-SLREGEX
   state: IMPLEMENTED
@@ -11905,13 +11977,13 @@ features:
       blendPct: 57
     mutation:
       totalMutants: 39
-      killed: 29
-      survived: 8
+      killed: 30
+      survived: 7
       noCoverage: 2
       timedOut: 0
       other: 0
-      mutationScorePct: 74
-      testStrengthPct: 78
+      mutationScorePct: 76
+      testStrengthPct: 81
     crap:
       totalMethods: 75
       hotspots: 5
@@ -11958,7 +12030,7 @@ features:
         cyclomatic: 29
         lineCoveragePct: 77
         crap: 39.23244699999999
-    healthScore: 71
+    healthScore: 72
     verdict: WARNED
     violations:
     - lineCoverage 61% < 70%
@@ -12262,14 +12334,14 @@ features:
       branchCoveragePct: 74
       blendPct: 78
     mutation:
-      totalMutants: 7
-      killed: 4
-      survived: 2
-      noCoverage: 1
+      totalMutants: 38
+      killed: 19
+      survived: 5
+      noCoverage: 14
       timedOut: 0
       other: 0
-      mutationScorePct: 57
-      testStrengthPct: 66
+      mutationScorePct: 50
+      testStrengthPct: 79
     crap:
       totalMethods: 16
       hotspots: 0
@@ -12280,10 +12352,10 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 94
-    healthScore: 73
+    healthScore: 69
     verdict: WARNED
     violations:
-    - mutationScore 57% < 60%
+    - mutationScore 50% < 60%
 - id: FEAT-REVBYP
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
@@ -12515,13 +12587,13 @@ features:
       blendPct: 76
     mutation:
       totalMutants: 103
-      killed: 35
-      survived: 21
-      noCoverage: 47
+      killed: 59
+      survived: 27
+      noCoverage: 17
       timedOut: 0
       other: 0
-      mutationScorePct: 33
-      testStrengthPct: 62
+      mutationScorePct: 57
+      testStrengthPct: 68
     crap:
       totalMethods: 31
       hotspots: 0
@@ -12532,10 +12604,10 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 98
-    healthScore: 62
+    healthScore: 73
     verdict: WARNED
     violations:
-    - mutationScore 33% < 60%
+    - mutationScore 57% < 60%
 - id: FEAT-LAGEN
   state: IMPLEMENTING
   requirementFile: ./requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
@@ -14441,14 +14513,14 @@ elements:
         branchCoveragePct: 100
         blendPct: 100
       mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
+        totalMutants: 38
+        killed: 22
+        survived: 16
         noCoverage: 0
         timedOut: 0
         other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
+        mutationScorePct: 57
+        testStrengthPct: 57
       crap:
         totalMethods: 4
         hotspots: 0
@@ -14484,11 +14556,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 2
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 3
+        mutantsKilled: 3
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 2.0
       - name: buildTree
         desc: (Lcom/learney/contentaudit/auditdomain/AuditableCourse;)Lcom/learney/contentaudit/auditdomain/AuditNode;
@@ -14499,11 +14571,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 8
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsTotal: 35
+        mutantsKilled: 19
+        mutantsSurvived: 16
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 54
         crap: 5.0
       - name: traverseAndNotify
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Lcom/learney/contentaudit/auditdomain/ContentAnalyzer;)V
@@ -14902,14 +14974,14 @@ elements:
         branchCoveragePct: 100
         blendPct: 98
       mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
+        totalMutants: 17
+        killed: 13
+        survived: 3
+        noCoverage: 1
         timedOut: 0
         other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
+        mutationScorePct: 76
+        testStrengthPct: 81
       crap:
         totalMethods: 11
         hotspots: 0
@@ -14945,11 +15017,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 1
+        mutantsKilled: 1
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 1.0
       - name: getTarget
         desc: ()Lcom/learney/contentaudit/auditdomain/AuditTarget;
@@ -14960,11 +15032,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 1
+        mutantsKilled: 1
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 1.0
       - name: onMilestone
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
@@ -15005,11 +15077,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 6
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsTotal: 7
+        mutantsKilled: 5
+        mutantsSurvived: 2
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 71
         crap: 4.0
       - name: computeWeightedLength
         desc: (Ljava/lang/String;)D
@@ -15020,11 +15092,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 2
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 4
+        mutantsKilled: 4
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 2.0
       - name: charWeight
         desc: (C)D
@@ -15035,11 +15107,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 4
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsTotal: 3
+        mutantsKilled: 2
+        mutantsSurvived: 1
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 66
         crap: 4.0
       - name: onQuiz
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
@@ -15080,10 +15152,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
+        mutantsTotal: 1
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 1
         mutationScorePct: 0
         crap: 2.0
   - name: KnowledgeInstructionsLengthAnalyzer
@@ -15412,14 +15484,14 @@ elements:
         branchCoveragePct: 92
         blendPct: 92
       mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
+        totalMutants: 16
+        killed: 12
+        survived: 3
+        noCoverage: 1
         timedOut: 0
         other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
+        mutationScorePct: 75
+        testStrengthPct: 80
       crap:
         totalMethods: 11
         hotspots: 0
@@ -15455,11 +15527,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 1
+        mutantsKilled: 1
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 1.0
       - name: getTarget
         desc: ()Lcom/learney/contentaudit/auditdomain/AuditTarget;
@@ -15470,11 +15542,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 1
+        mutantsKilled: 1
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 1.0
       - name: onMilestone
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
@@ -15515,11 +15587,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 8
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsTotal: 6
+        mutantsKilled: 5
+        mutantsSurvived: 1
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 83
         crap: 5.0
       - name: computeWeightedLength
         desc: (Ljava/lang/String;)D
@@ -15530,11 +15602,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 2
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 4
+        mutantsKilled: 4
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 2.0
       - name: charWeight
         desc: (C)D
@@ -15545,11 +15617,11 @@ elements:
         lineCoveragePct: 80
         branchesCovered: 3
         branchesMissed: 1
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsTotal: 3
+        mutantsKilled: 1
+        mutantsSurvived: 2
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 33
         crap: 4.128
       - name: onQuiz
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
@@ -15590,10 +15662,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
+        mutantsTotal: 1
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 1
         mutationScorePct: 0
         crap: 2.0
   - name: SentenceLengthAnalyzer
@@ -16135,14 +16207,14 @@ elements:
         branchCoveragePct: 89
         blendPct: 93
       mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
+        totalMutants: 34
+        killed: 23
+        survived: 10
+        noCoverage: 1
         timedOut: 0
         other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
+        mutationScorePct: 67
+        testStrengthPct: 69
       crap:
         totalMethods: 11
         hotspots: 0
@@ -16178,11 +16250,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 1
+        mutantsKilled: 1
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 1.0
       - name: getTarget
         desc: ()Lcom/learney/contentaudit/auditdomain/AuditTarget;
@@ -16193,11 +16265,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 1
+        mutantsKilled: 1
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 1.0
       - name: onMilestone
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
@@ -16253,11 +16325,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 13
         branchesMissed: 1
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsTotal: 13
+        mutantsKilled: 8
+        mutantsSurvived: 5
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 61
         crap: 8.0
       - name: onCourseComplete
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/Void;
@@ -16283,11 +16355,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 8
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsTotal: 14
+        mutantsKilled: 10
+        mutantsSurvived: 4
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 71
         crap: 5.0
       - name: parseCefrLevel
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Lcom/learney/contentaudit/auditdomain/CefrLevel;
@@ -16298,11 +16370,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 4
         branchesMissed: 2
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsTotal: 4
+        mutantsKilled: 3
+        mutantsSurvived: 1
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 75
         crap: 4.0
       - name: getDescription
         desc: ()Ljava/lang/String;
@@ -16313,10 +16385,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
+        mutantsTotal: 1
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 1
         mutationScorePct: 0
         crap: 2.0
   - name: IScoreAggregator
@@ -16357,14 +16429,14 @@ elements:
         branchCoveragePct: 83
         blendPct: 89
       mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
-        noCoverage: 0
+        totalMutants: 9
+        killed: 6
+        survived: 2
+        noCoverage: 1
         timedOut: 0
         other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
+        mutationScorePct: 66
+        testStrengthPct: 75
       crap:
         totalMethods: 4
         hotspots: 0
@@ -16400,11 +16472,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 1
+        mutantsKilled: 1
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 1.0
       - name: bubbleUp
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)V
@@ -16415,11 +16487,11 @@ elements:
         lineCoveragePct: 95
         branchesCovered: 15
         branchesMissed: 3
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutantsTotal: 7
+        mutantsKilled: 4
+        mutantsSurvived: 2
+        mutantsNoCoverage: 1
+        mutationScorePct: 57
         crap: 10.0125
       - name: lambda$bubbleUp$0
         desc: (Ljava/lang/String;)Ljava/util/List;
@@ -16430,11 +16502,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 1
+        mutantsKilled: 1
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 1.0
   - name: CocaBucketsAnalyzer
     status: EXISTS
@@ -21822,6 +21894,10 @@ elements:
         run declares no policy for the judge
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionAnalyzerFactoryTest.java
+    - name: should publish for selection exactly the name under which the analyzer
+        it builds reports its score
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionAnalyzerFactoryTest.java
     testCleanViews:
     - |
       test: "should build the analyzer with the configured default budget when the run declares no policy for the judge"
@@ -21829,7 +21905,7 @@ elements:
 
       given:
         analyzer = sut.create(null)
-        policyCaptor = ArgumentCaptor.forClass(EvaluationRunPolicy.class)
+        policyCaptor = ArgumentCaptor.forClass(EvaluationBudget.class)
         usedPolicy = policyCaptor.getValue()
 
       mock:
@@ -21924,6 +22000,13 @@ elements:
     - name: "should declare a reached count equal to the number of quizzes of the\
         \ course, with no exclusions"
       status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: should declare in the coverage the judge version the run evaluated with
+      status: MISSING
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
+    - name: "should declare a single judge version, the one in effect, for a run that\
+        \ both reuses verdicts from earlier runs and evaluates new ones"
+      status: MISSING
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
     testCleanViews:
     - |
@@ -22880,33 +22963,33 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 2051
-      linesMissed: 1146
-      linesTotal: 3197
-      lineCoveragePct: 64
+      linesCovered: 2061
+      linesMissed: 1161
+      linesTotal: 3222
+      lineCoveragePct: 63
       branchesCovered: 670
-      branchesMissed: 901
-      branchesTotal: 1571
+      branchesMissed: 913
+      branchesTotal: 1583
       branchCoveragePct: 42
-      blendPct: 53
+      blendPct: 52
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 1538
+      killed: 593
+      survived: 296
+      noCoverage: 649
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 38
+      testStrengthPct: 66
     crap:
-      totalMethods: 907
-      hotspots: 46
+      totalMethods: 917
+      hotspots: 47
       maxCrap: 342.0
-      averageCrap: 6.117249374862182
-      simple: 839
+      averageCrap: 6.126862415485277
+      simple: 848
       moderate: 19
       high: 11
-      veryHigh: 38
+      veryHigh: 39
       healthPct: 94
       top:
       - className: com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis
@@ -22979,12 +23062,13 @@ elements:
         cyclomatic: 11
         lineCoveragePct: 10
         crap: 99.20900000000002
-    healthScore: 39
+    healthScore: 56
     verdict: WARNED
     violations:
-    - lineCoverage 64% < 70%
+    - lineCoverage 63% < 70%
     - branchCoverage 42% < 60%
-    - crapHotspots 46 > 5
+    - mutationScore 38% < 60%
+    - crapHotspots 47 > 5
 - module: course-domain
   status: EXISTS
   models:
@@ -29008,8 +29092,8 @@ elements:
       blendPct: 51
     mutation:
       totalMutants: 710
-      killed: 310
-      survived: 122
+      killed: 311
+      survived: 121
       noCoverage: 278
       timedOut: 0
       other: 0
@@ -29647,14 +29731,14 @@ elements:
         branchCoveragePct: 62
         blendPct: 75
       mutation:
-        totalMutants: 33
-        killed: 14
-        survived: 15
-        noCoverage: 4
+        totalMutants: 37
+        killed: 0
+        survived: 0
+        noCoverage: 37
         timedOut: 0
         other: 0
-        mutationScorePct: 42
-        testStrengthPct: 48
+        mutationScorePct: 0
+        testStrengthPct: 0
       crap:
         totalMethods: 10
         hotspots: 0
@@ -29691,10 +29775,10 @@ elements:
         branchesCovered: 4
         branchesMissed: 2
         mutantsTotal: 6
-        mutantsKilled: 2
-        mutantsSurvived: 2
-        mutantsNoCoverage: 2
-        mutationScorePct: 33
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 6
+        mutationScorePct: 0
         crap: 4.043904
       - name: mapMilestone
         desc: (Lcom/learney/contentaudit/coursedomain/MilestoneEntity;)Lcom/learney/contentaudit/auditdomain/AuditableMilestone;
@@ -29706,10 +29790,10 @@ elements:
         branchesCovered: 1
         branchesMissed: 1
         mutantsTotal: 2
-        mutantsKilled: 1
-        mutantsSurvived: 1
-        mutantsNoCoverage: 0
-        mutationScorePct: 50
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 2
+        mutationScorePct: 0
         crap: 2.0135
       - name: mapTopic
         desc: (Lcom/learney/contentaudit/coursedomain/TopicEntity;)Lcom/learney/contentaudit/auditdomain/AuditableTopic;
@@ -29721,10 +29805,10 @@ elements:
         branchesCovered: 1
         branchesMissed: 1
         mutantsTotal: 2
-        mutantsKilled: 1
-        mutantsSurvived: 1
-        mutantsNoCoverage: 0
-        mutationScorePct: 50
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 2
+        mutationScorePct: 0
         crap: 2.008788
       - name: mapKnowledge
         desc: (Lcom/learney/contentaudit/coursedomain/KnowledgeEntity;Ljava/lang/String;)Lcom/learney/contentaudit/auditdomain/AuditableKnowledge;
@@ -29735,10 +29819,10 @@ elements:
         lineCoveragePct: 87
         branchesCovered: 1
         branchesMissed: 1
-        mutantsTotal: 0
+        mutantsTotal: 2
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 2
         mutationScorePct: 0
         crap: 2.008788
       - name: hasSentenceParts
@@ -29752,8 +29836,8 @@ elements:
         branchesMissed: 3
         mutantsTotal: 5
         mutantsKilled: 0
-        mutantsSurvived: 4
-        mutantsNoCoverage: 1
+        mutantsSurvived: 0
+        mutantsNoCoverage: 5
         mutationScorePct: 0
         crap: 4.128
       - name: mapQuiz
@@ -29765,11 +29849,11 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 2
         branchesMissed: 2
-        mutantsTotal: 2
-        mutantsKilled: 1
-        mutantsSurvived: 1
-        mutantsNoCoverage: 0
-        mutationScorePct: 50
+        mutantsTotal: 3
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 3
+        mutationScorePct: 0
         crap: 3.0
       - name: deriveSentences
         desc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/util/List;
@@ -29781,10 +29865,10 @@ elements:
         branchesCovered: 7
         branchesMissed: 5
         mutantsTotal: 7
-        mutantsKilled: 6
-        mutantsSurvived: 1
-        mutantsNoCoverage: 0
-        mutationScorePct: 85
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 7
+        mutationScorePct: 0
         crap: 7.134456
       - name: collectAllCanonicalSentences
         desc: (Lcom/learney/contentaudit/coursedomain/CourseEntity;)Ljava/util/List;
@@ -29796,10 +29880,10 @@ elements:
         branchesCovered: 15
         branchesMissed: 5
         mutantsTotal: 9
-        mutantsKilled: 3
-        mutantsSurvived: 5
-        mutantsNoCoverage: 1
-        mutationScorePct: 33
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 9
+        mutationScorePct: 0
         crap: 11.408375
       - name: lambda$mapTopic$0
         desc: (Ljava/lang/String;Lcom/learney/contentaudit/coursedomain/KnowledgeEntity;)Lcom/learney/contentaudit/auditdomain/AuditableKnowledge;
@@ -29810,10 +29894,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
+        mutantsTotal: 1
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 1
         mutationScorePct: 0
         crap: 1.0
   - name: DefaultSentenceLengthConfig
@@ -30004,6 +30088,21 @@ elements:
         for its judge
       status: EXISTS
       testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
+    - name: "should not run the quiz instruction analysis when the run excludes it\
+        \ by the very name the report publishes, while the judge behind it answers\
+        \ to a different name"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
+    - name: "should cap the judge queries at the number requested for the name the\
+        \ report publishes instead of falling back to the default cap, while the judge\
+        \ behind it answers to a different name"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
+    - name: "should re evaluate quizzes that already had a verdict when re evaluation\
+        \ is requested for the name the report publishes, while the judge behind it\
+        \ answers to a different name"
+      status: EXISTS
+      testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
     testCleanViews:
     - |
       test: "Given a valid course path, when runAudit is called, then returns the audit report from the full chain"
@@ -30190,7 +30289,7 @@ elements:
         request = AuditRunRequest(null, null, null)
 
       mock:
-        quizInstructionFactory.evaluatorId() -> "quiz-instruction"
+        quizInstructionFactory.analyzerName() -> "quiz-instruction"
         quizInstructionFactory.create(any()) -> mock(ContentAnalyzer.class)
         courseRepository.load(coursePath) -> courseEntity
         courseToAuditableMapper.map(courseEntity) -> auditableCourse
@@ -30222,7 +30321,7 @@ elements:
         resultCourseDiagnoses = (CourseDiagnoses) result.getRoot().getDiagnoses()
 
       mock:
-        quizInstructionFactory.evaluatorId() -> "quiz-instruction"
+        quizInstructionFactory.analyzerName() -> "quiz-instruction"
         quizInstructionFactory.create(any()) -> quizInstructionAnalyzer
         courseRepository.load(coursePath) -> courseEntity
         courseToAuditableMapper.map(courseEntity) -> auditableCourse
@@ -30247,7 +30346,7 @@ elements:
         request = AuditRunRequest(null, Set.of("quiz-instruction"), null)
 
       mock:
-        quizInstructionFactory.evaluatorId() -> "quiz-instruction"
+        quizInstructionFactory.analyzerName() -> "quiz-instruction"
         courseRepository.load(coursePath) -> courseEntity
         courseToAuditableMapper.map(courseEntity) -> auditableCourse
         auditEngine.runAudit(auditableCourse) -> auditReport
@@ -30273,7 +30372,7 @@ elements:
         resultCourseDiagnoses = (CourseDiagnoses) result.getRoot().getDiagnoses()
 
       mock:
-        quizInstructionFactory.evaluatorId() -> "quiz-instruction"
+        quizInstructionFactory.analyzerName() -> "quiz-instruction"
         courseRepository.load(coursePath) -> courseEntity
         courseToAuditableMapper.map(courseEntity) -> auditableCourse
         auditEngine.runAudit(auditableCourse) -> baseReport
@@ -30296,7 +30395,7 @@ elements:
         request = AuditRunRequest(Set.of("sentence-length"), null, null)
 
       mock:
-        quizInstructionFactory.evaluatorId() -> "quiz-instruction"
+        quizInstructionFactory.analyzerName() -> "quiz-instruction"
         courseRepository.load(coursePath) -> courseEntity
         courseToAuditableMapper.map(courseEntity) -> auditableCourse
         auditEngine.runAudit(auditableCourse) -> auditReport
@@ -30324,7 +30423,7 @@ elements:
       mock:
         quizInstructionAnalyzer.onQuiz(any()) -> throws RuntimeException("quiz instruction judge unavailable")
         quizInstructionAnalyzer.onCourseComplete(any()) -> throws RuntimeException("quiz instruction judge unavailable")
-        quizInstructionFactory.evaluatorId() -> "quiz-instruction"
+        quizInstructionFactory.analyzerName() -> "quiz-instruction"
         quizInstructionFactory.create(any()) -> quizInstructionAnalyzer
         courseRepository.load(coursePath) -> courseEntity
         courseToAuditableMapper.map(courseEntity) -> auditableCourse
@@ -30346,7 +30445,7 @@ elements:
         request = AuditRunRequest(null, null, Map.of("quiz-instruction", policy))
 
       mock:
-        quizInstructionFactory.evaluatorId() -> "quiz-instruction"
+        quizInstructionFactory.analyzerName() -> "quiz-instruction"
         quizInstructionFactory.create(any()) -> mock(ContentAnalyzer.class)
         courseRepository.load(coursePath) -> courseEntity
         courseToAuditableMapper.map(courseEntity) -> auditableCourse
@@ -30369,14 +30468,14 @@ elements:
         branchCoveragePct: 60
         blendPct: 66
       mutation:
-        totalMutants: 15
-        killed: 3
-        survived: 3
-        noCoverage: 9
+        totalMutants: 31
+        killed: 0
+        survived: 0
+        noCoverage: 31
         timedOut: 0
         other: 0
-        mutationScorePct: 20
-        testStrengthPct: 50
+        mutationScorePct: 0
+        testStrengthPct: 0
       crap:
         totalMethods: 9
         hotspots: 0
@@ -30413,10 +30512,10 @@ elements:
         branchesCovered: 1
         branchesMissed: 3
         mutantsTotal: 4
-        mutantsKilled: 1
-        mutantsSurvived: 1
-        mutantsNoCoverage: 2
-        mutationScorePct: 25
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 4
+        mutationScorePct: 0
         crap: 5.250423
       - name: runAudit
         desc: (Ljava/nio/file/Path;Lcom/learney/contentaudit/auditapplication/AuditRunRequest;)Lcom/learney/contentaudit/auditdomain/AuditReport;
@@ -30427,10 +30526,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 14
         branchesMissed: 6
-        mutantsTotal: 0
+        mutantsTotal: 11
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 11
         mutationScorePct: 0
         crap: 11.0
       - name: applyEvaluationAnalyzer
@@ -30442,10 +30541,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
+        mutantsTotal: 1
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 1
         mutationScorePct: 0
         crap: 1.0
       - name: traverseForEvaluationAnalyzer
@@ -30457,10 +30556,10 @@ elements:
         lineCoveragePct: 75
         branchesCovered: 9
         branchesMissed: 4
-        mutantsTotal: 0
+        mutantsTotal: 4
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 4
         mutationScorePct: 0
         crap: 10.265625
       - name: runDetailedAudit
@@ -30473,10 +30572,10 @@ elements:
         branchesCovered: 2
         branchesMissed: 4
         mutantsTotal: 6
-        mutantsKilled: 1
-        mutantsSurvived: 2
-        mutantsNoCoverage: 3
-        mutationScorePct: 16
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 6
+        mutationScorePct: 0
         crap: 10.224272
       - name: loadCourse
         desc: (Ljava/nio/file/Path;)Lcom/learney/contentaudit/auditdomain/AuditableCourse;
@@ -30488,10 +30587,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: lambda$runDetailedAudit$0
         desc: (Ljava/lang/String;Lcom/learney/contentaudit/auditdomain/ContentAnalyzer;)Z
@@ -30621,13 +30720,13 @@ elements:
         blendPct: 28
       mutation:
         totalMutants: 9
-        killed: 5
+        killed: 0
         survived: 0
-        noCoverage: 4
+        noCoverage: 9
         timedOut: 0
         other: 0
-        mutationScorePct: 55
-        testStrengthPct: 100
+        mutationScorePct: 0
+        testStrengthPct: 0
       crap:
         totalMethods: 11
         hotspots: 0
@@ -30664,10 +30763,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: getTargetsForLevel
         desc: (Ljava/lang/String;)Ljava/util/List;
@@ -30694,10 +30793,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: getToleranceMargin
         desc: ()D
@@ -30709,10 +30808,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: getAnalysisStrategy
         desc: ()Lcom/learney/contentaudit/auditdomain/coca/AnalysisStrategy;
@@ -30724,10 +30823,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: getProgressionExpectations
         desc: ()Ljava/util/List;
@@ -30739,10 +30838,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: describe
         desc: ()Ljava/util/Map;
@@ -30840,13 +30939,13 @@ elements:
         blendPct: 50
       mutation:
         totalMutants: 4
-        killed: 3
+        killed: 0
         survived: 0
-        noCoverage: 1
+        noCoverage: 4
         timedOut: 0
         other: 0
-        mutationScorePct: 75
-        testStrengthPct: 100
+        mutationScorePct: 0
+        testStrengthPct: 0
       crap:
         totalMethods: 5
         hotspots: 0
@@ -30883,10 +30982,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: getSubExposedThreshold
         desc: ()D
@@ -30898,10 +30997,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: getOverExposedThreshold
         desc: ()D
@@ -30913,10 +31012,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: describe
         desc: ()Ljava/util/Map;
@@ -31441,13 +31540,13 @@ elements:
         blendPct: 59
       mutation:
         totalMutants: 21
-        killed: 19
+        killed: 0
         survived: 0
-        noCoverage: 2
+        noCoverage: 21
         timedOut: 0
         other: 0
-        mutationScorePct: 90
-        testStrengthPct: 100
+        mutationScorePct: 0
+        testStrengthPct: 0
       crap:
         totalMethods: 24
         hotspots: 0
@@ -31499,10 +31598,10 @@ elements:
         branchesCovered: 4
         branchesMissed: 1
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 5.122825
       - name: getPercentageThreshold
         desc: (Lcom/learney/contentaudit/auditdomain/CefrLevel;)D
@@ -31514,10 +31613,10 @@ elements:
         branchesCovered: 4
         branchesMissed: 1
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 5.122825
       - name: getLevelWeight
         desc: (Lcom/learney/contentaudit/auditdomain/CefrLevel;)D
@@ -31529,10 +31628,10 @@ elements:
         branchesCovered: 2
         branchesMissed: 1
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 3.140625
       - name: getHighPriorityBound
         desc: ()I
@@ -31544,10 +31643,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: getMediumPriorityBound
         desc: ()I
@@ -31559,10 +31658,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: getLowPriorityBound
         desc: ()I
@@ -31574,10 +31673,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: getHighPriorityAlertThreshold
         desc: ()I
@@ -31604,10 +31703,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: getLowPriorityAlertThreshold
         desc: ()I
@@ -31619,10 +31718,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: getCriticalAbsenceThreshold
         desc: ()I
@@ -31634,10 +31733,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: getAcceptableAbsenceThreshold
         desc: ()I
@@ -31649,10 +31748,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: getHighReportLimit
         desc: ()I
@@ -31664,10 +31763,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: getMediumReportLimit
         desc: ()I
@@ -31679,10 +31778,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: getLowReportLimit
         desc: ()I
@@ -31694,10 +31793,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: getDiscountPerLevel
         desc: ()D
@@ -31709,10 +31808,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: describe
         desc: ()Ljava/util/Map;
@@ -31739,10 +31838,10 @@ elements:
         branchesCovered: 4
         branchesMissed: 1
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 5.122825
       - name: getOutOfCatalogNoPenaltyRankBound
         desc: (Lcom/learney/contentaudit/auditdomain/CefrLevel;)I
@@ -31754,10 +31853,10 @@ elements:
         branchesCovered: 4
         branchesMissed: 1
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 5.122825
       - name: getOutOfCatalogMildDiscountRankBound
         desc: (Lcom/learney/contentaudit/auditdomain/CefrLevel;)I
@@ -31769,10 +31868,10 @@ elements:
         branchesCovered: 4
         branchesMissed: 1
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 5.122825
       - name: getOutOfCatalogMildDiscount
         desc: ()D
@@ -31784,10 +31883,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: getOutOfCatalogStrongDiscount
         desc: ()D
@@ -31799,10 +31898,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: <clinit>
         desc: ()V
@@ -31944,13 +32043,13 @@ elements:
         blendPct: 66
       mutation:
         totalMutants: 2
-        killed: 1
+        killed: 0
         survived: 0
-        noCoverage: 1
+        noCoverage: 2
         timedOut: 0
         other: 0
-        mutationScorePct: 50
-        testStrengthPct: 100
+        mutationScorePct: 0
+        testStrengthPct: 0
       crap:
         totalMethods: 3
         hotspots: 0
@@ -31987,10 +32086,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 1
+        mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
-        mutationScorePct: 100
+        mutantsNoCoverage: 1
+        mutationScorePct: 0
         crap: 1.0
       - name: describe
         desc: ()Ljava/util/Map;
@@ -32083,13 +32182,13 @@ elements:
         blendPct: 90
       mutation:
         totalMutants: 7
-        killed: 4
-        survived: 2
-        noCoverage: 1
+        killed: 0
+        survived: 0
+        noCoverage: 7
         timedOut: 0
         other: 0
-        mutationScorePct: 57
-        testStrengthPct: 66
+        mutationScorePct: 0
+        testStrengthPct: 0
       crap:
         totalMethods: 2
         hotspots: 0
@@ -32126,10 +32225,10 @@ elements:
         branchesCovered: 7
         branchesMissed: 1
         mutantsTotal: 7
-        mutantsKilled: 4
-        mutantsSurvived: 2
-        mutantsNoCoverage: 1
-        mutationScorePct: 57
+        mutantsKilled: 0
+        mutantsSurvived: 0
+        mutantsNoCoverage: 7
+        mutationScorePct: 0
         crap: 5.0128
   - name: DefaultQuizInstructionConfig
     status: EXISTS
@@ -32176,10 +32275,10 @@ elements:
         branchCoveragePct: 0
         blendPct: 30
       mutation:
-        totalMutants: 0
+        totalMutants: 3
         killed: 0
         survived: 0
-        noCoverage: 0
+        noCoverage: 3
         timedOut: 0
         other: 0
         mutationScorePct: 0
@@ -32219,10 +32318,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
+        mutantsTotal: 1
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 1
         mutationScorePct: 0
         crap: 1.0
       - name: getScoreFor
@@ -32234,10 +32333,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
+        mutantsTotal: 1
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 1
         mutationScorePct: 0
         crap: 1.0
       - name: describe
@@ -32249,10 +32348,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 2
-        mutantsTotal: 0
+        mutantsTotal: 1
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 0
+        mutantsNoCoverage: 1
         mutationScorePct: 0
         crap: 6.0
       - name: <clinit>
@@ -32289,14 +32388,14 @@ elements:
       branchCoveragePct: 57
       blendPct: 60
     mutation:
-      totalMutants: 99
-      killed: 49
-      survived: 20
-      noCoverage: 30
+      totalMutants: 134
+      killed: 0
+      survived: 0
+      noCoverage: 134
       timedOut: 0
       other: 0
-      mutationScorePct: 49
-      testStrengthPct: 71
+      mutationScorePct: 0
+      testStrengthPct: 0
     crap:
       totalMethods: 89
       hotspots: 1
@@ -32315,12 +32414,12 @@ elements:
         cyclomatic: 7
         lineCoveragePct: 0
         crap: 56.0
-    healthScore: 64
+    healthScore: 42
     verdict: WARNED
     violations:
     - lineCoverage 63% < 70%
     - branchCoverage 57% < 60%
-    - mutationScore 49% < 60%
+    - mutationScore 0% < 60%
 - module: course-infrastructure
   status: EXISTS
   implementations:
@@ -33701,7 +33800,7 @@ elements:
         originalOut = System.out
         captor = ArgumentCaptor.forClass(AuditRunRequest.class)
         request = captor.getValue()
-        policy = request.getEvaluationPolicies().get("quiz-instruction")
+        policy = request.getAnalyzerPolicies().get("quiz-instruction")
 
       mock:
         auditRunner.runAudit(any(Path.class), any(AuditRunRequest.class)) -> report
@@ -33715,7 +33814,7 @@ elements:
 
       then:
         exitCode == 0
-        request.getEvaluationPolicies() is not null
+        request.getAnalyzerPolicies() is not null
         policy is not null
         policy.getMaxNewEvaluations() == 250
         verify: auditRunner.runAudit(any(Path.class), captor.capture())
@@ -33738,7 +33837,7 @@ elements:
         originalOut = System.out
         captor = ArgumentCaptor.forClass(AuditRunRequest.class)
         request = captor.getValue()
-        policy = request.getEvaluationPolicies().get("quiz-instruction")
+        policy = request.getAnalyzerPolicies().get("quiz-instruction")
 
       mock:
         auditRunner.runAudit(any(Path.class), any(AuditRunRequest.class)) -> report
@@ -33752,7 +33851,7 @@ elements:
 
       then:
         exitCode == 0
-        request.getEvaluationPolicies() is not null
+        request.getAnalyzerPolicies() is not null
         policy is not null
         policy.isReevaluate() is true
         policy.getReevaluationScope() == "knowledge:K-042"
@@ -33777,7 +33876,7 @@ elements:
         captor = ArgumentCaptor.forClass(AuditRunRequest.class)
         request = captor.getValue()
         excluded = request.getExcludedAnalyzers() != null && request.getExcludedAnalyzers().contains("quiz-instruction")
-        narrowed = request.getEvaluationPolicies() != null && request.getEvaluationPolicies().containsKey("quiz-instruction")
+        narrowed = request.getAnalyzerPolicies() != null && request.getAnalyzerPolicies().containsKey("quiz-instruction")
 
       mock:
         auditRunner.runAudit(any(Path.class), any(AuditRunRequest.class)) -> report
@@ -38549,6 +38648,10 @@ elements:
     - name: should render for each breaching quiz its violations with their evidence
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/QuizInstructionDetailedFormatterTest.java
+    - name: should render the judge version the analysis evaluated with next to the
+        coverage numbers
+      status: MISSING
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/QuizInstructionDetailedFormatterTest.java
     testCleanViews:
     - |
       test: "should render the declared coverage of the quiz instruction analysis next to its score"
@@ -39166,8 +39269,8 @@ elements:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 2046
-      linesMissed: 2113
-      linesTotal: 4159
+      linesMissed: 2116
+      linesTotal: 4162
       lineCoveragePct: 49
       branchesCovered: 910
       branchesMissed: 1398
@@ -40369,14 +40472,14 @@ elements:
       branchCoveragePct: 73
       blendPct: 81
     mutation:
-      totalMutants: 60
-      killed: 24
-      survived: 18
-      noCoverage: 18
+      totalMutants: 77
+      killed: 48
+      survived: 16
+      noCoverage: 13
       timedOut: 0
       other: 0
-      mutationScorePct: 40
-      testStrengthPct: 57
+      mutationScorePct: 62
+      testStrengthPct: 75
     crap:
       totalMethods: 21
       hotspots: 0
@@ -40387,10 +40490,8 @@ elements:
       high: 2
       veryHigh: 0
       healthPct: 88
-    healthScore: 64
-    verdict: WARNED
-    violations:
-    - mutationScore 40% < 60%
+    healthScore: 74
+    verdict: PASSED
 - module: audit-infrastructure
   status: EXISTS
   implementations:
@@ -40591,13 +40692,13 @@ elements:
         blendPct: 71
       mutation:
         totalMutants: 34
-        killed: 0
-        survived: 0
-        noCoverage: 34
+        killed: 24
+        survived: 7
+        noCoverage: 3
         timedOut: 0
         other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
+        mutationScorePct: 70
+        testStrengthPct: 77
       crap:
         totalMethods: 17
         hotspots: 0
@@ -40634,10 +40735,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 2
-        mutantsKilled: 0
+        mutantsKilled: 2
         mutantsSurvived: 0
-        mutantsNoCoverage: 2
-        mutationScorePct: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
         crap: 1.039304
       - name: load
         desc: (Ljava/lang/String;)Ljava/util/Optional;
@@ -40649,10 +40750,10 @@ elements:
         branchesCovered: 2
         branchesMissed: 0
         mutantsTotal: 2
-        mutantsKilled: 0
+        mutantsKilled: 2
         mutantsSurvived: 0
-        mutantsNoCoverage: 2
-        mutationScorePct: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
         crap: 2.0
       - name: loadLatest
         desc: ()Ljava/util/Optional;
@@ -40664,10 +40765,10 @@ elements:
         branchesCovered: 2
         branchesMissed: 0
         mutantsTotal: 2
-        mutantsKilled: 0
+        mutantsKilled: 2
         mutantsSurvived: 0
-        mutantsNoCoverage: 2
-        mutationScorePct: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
         crap: 2.032
       - name: list
         desc: ()Ljava/util/List;
@@ -40679,10 +40780,10 @@ elements:
         branchesCovered: 4
         branchesMissed: 0
         mutantsTotal: 3
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 3
-        mutationScorePct: 0
+        mutantsKilled: 2
+        mutantsSurvived: 1
+        mutantsNoCoverage: 0
+        mutationScorePct: 66
         crap: 3.024696
       - name: resolveAuditsDir
         desc: ()Ljava/nio/file/Path;
@@ -40694,10 +40795,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 0
+        mutantsKilled: 1
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
-        mutationScorePct: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
         crap: 1.0
       - name: loadFromFile
         desc: (Ljava/nio/file/Path;)Lcom/learney/contentaudit/auditdomain/AuditReport;
@@ -40709,10 +40810,10 @@ elements:
         branchesCovered: 1
         branchesMissed: 1
         mutantsTotal: 3
-        mutantsKilled: 0
+        mutantsKilled: 3
         mutantsSurvived: 0
-        mutantsNoCoverage: 3
-        mutationScorePct: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
         crap: 2.157216
       - name: rebuildParentReferences
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Lcom/learney/contentaudit/auditdomain/AuditNode;)V
@@ -40724,10 +40825,10 @@ elements:
         branchesCovered: 3
         branchesMissed: 1
         mutantsTotal: 3
-        mutantsKilled: 0
+        mutantsKilled: 3
         mutantsSurvived: 0
-        mutantsNoCoverage: 3
-        mutationScorePct: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
         crap: 3.0
       - name: extractIdFromFilename
         desc: (Ljava/lang/String;)Ljava/lang/String;
@@ -40739,10 +40840,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 2
-        mutantsKilled: 0
+        mutantsKilled: 2
         mutantsSurvived: 0
-        mutantsNoCoverage: 2
-        mutationScorePct: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
         crap: 1.0
       - name: parseTimestampFromId
         desc: (Ljava/lang/String;)Ljava/time/Instant;
@@ -40755,8 +40856,8 @@ elements:
         branchesMissed: 0
         mutantsTotal: 2
         mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 2
+        mutantsSurvived: 1
+        mutantsNoCoverage: 1
         mutationScorePct: 0
         crap: 1.300763
       - name: extractCourseName
@@ -40769,10 +40870,10 @@ elements:
         branchesCovered: 2
         branchesMissed: 4
         mutantsTotal: 3
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 3
-        mutationScorePct: 0
+        mutantsKilled: 1
+        mutantsSurvived: 1
+        mutantsNoCoverage: 1
+        mutationScorePct: 33
         crap: 6.0
       - name: extractOverallScore
         desc: (Lcom/learney/contentaudit/auditdomain/AuditReport;)D
@@ -40784,10 +40885,10 @@ elements:
         branchesCovered: 2
         branchesMissed: 2
         mutantsTotal: 3
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 3
-        mutationScorePct: 0
+        mutantsKilled: 2
+        mutantsSurvived: 1
+        mutantsNoCoverage: 0
+        mutationScorePct: 66
         crap: 3.044217
       - name: lambda$list$1
         desc: (Ljava/nio/file/Path;)Ljava/lang/String;
@@ -40814,10 +40915,10 @@ elements:
         branchesCovered: 2
         branchesMissed: 2
         mutantsTotal: 3
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 3
-        mutationScorePct: 0
+        mutantsKilled: 2
+        mutantsSurvived: 1
+        mutantsNoCoverage: 0
+        mutationScorePct: 66
         crap: 3.0
       - name: lambda$loadLatest$1
         desc: (Ljava/nio/file/Path;)Ljava/lang/String;
@@ -40830,8 +40931,8 @@ elements:
         branchesMissed: 0
         mutantsTotal: 1
         mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsSurvived: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: lambda$loadLatest$0
@@ -40844,10 +40945,10 @@ elements:
         branchesCovered: 2
         branchesMissed: 2
         mutantsTotal: 3
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 3
-        mutationScorePct: 0
+        mutantsKilled: 2
+        mutantsSurvived: 1
+        mutantsNoCoverage: 0
+        mutationScorePct: 66
         crap: 3.0
       - name: <clinit>
         desc: ()V
@@ -41341,13 +41442,13 @@ elements:
         blendPct: 80
       mutation:
         totalMutants: 31
-        killed: 0
-        survived: 0
-        noCoverage: 31
+        killed: 24
+        survived: 6
+        noCoverage: 1
         timedOut: 0
         other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
+        mutationScorePct: 77
+        testStrengthPct: 80
       crap:
         totalMethods: 13
         hotspots: 0
@@ -41384,10 +41485,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 2
-        mutantsKilled: 0
+        mutantsKilled: 2
         mutantsSurvived: 0
-        mutantsNoCoverage: 2
-        mutationScorePct: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
         crap: 1.064
       - name: load
         desc: (Ljava/lang/String;Ljava/lang/String;)Ljava/util/Optional;
@@ -41399,10 +41500,10 @@ elements:
         branchesCovered: 2
         branchesMissed: 0
         mutantsTotal: 2
-        mutantsKilled: 0
+        mutantsKilled: 2
         mutantsSurvived: 0
-        mutantsNoCoverage: 2
-        mutationScorePct: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
         crap: 2.0
       - name: listByPlan
         desc: (Ljava/lang/String;)Ljava/util/List;
@@ -41414,10 +41515,10 @@ elements:
         branchesCovered: 3
         branchesMissed: 1
         mutantsTotal: 3
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 3
-        mutationScorePct: 0
+        mutantsKilled: 1
+        mutantsSurvived: 1
+        mutantsNoCoverage: 1
+        mutationScorePct: 33
         crap: 3.124416
       - name: isArtifactFile
         desc: (Ljava/nio/file/Path;)Z
@@ -41429,10 +41530,10 @@ elements:
         branchesCovered: 2
         branchesMissed: 2
         mutantsTotal: 3
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 3
-        mutationScorePct: 0
+        mutantsKilled: 2
+        mutantsSurvived: 1
+        mutantsNoCoverage: 0
+        mutationScorePct: 66
         crap: 3.0
       - name: resolveRevisionsDir
         desc: ()Ljava/nio/file/Path;
@@ -41444,10 +41545,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 0
+        mutantsKilled: 1
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
-        mutationScorePct: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
         crap: 1.0
       - name: loadFromFile
         desc: (Ljava/nio/file/Path;)Lcom/learney/contentaudit/revisiondomain/RevisionArtifact;
@@ -41459,10 +41560,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 0
+        mutantsKilled: 1
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
-        mutationScorePct: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
         crap: 1.421875
       - name: createObjectMapper
         desc: ()Lcom/fasterxml/jackson/databind/ObjectMapper;
@@ -41474,10 +41575,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 0
+        mutantsKilled: 1
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
-        mutationScorePct: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
         crap: 1.0
       - name: findByProposalId
         desc: (Ljava/lang/String;Ljava/util/Optional;)Ljava/util/Optional;
@@ -41489,10 +41590,10 @@ elements:
         branchesCovered: 7
         branchesMissed: 1
         mutantsTotal: 5
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 5
-        mutationScorePct: 0
+        mutantsKilled: 4
+        mutantsSurvived: 1
+        mutantsNoCoverage: 0
+        mutationScorePct: 80
         crap: 5.3456
       - name: hasPendingProposalForTask
         desc: (Ljava/lang/String;Ljava/lang/String;)Z
@@ -41504,10 +41605,10 @@ elements:
         branchesCovered: 7
         branchesMissed: 1
         mutantsTotal: 6
-        mutantsKilled: 0
+        mutantsKilled: 6
         mutantsSurvived: 0
-        mutantsNoCoverage: 6
-        mutationScorePct: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
         crap: 5.171475
       - name: list
         desc: ()Ljava/util/List;
@@ -41519,10 +41620,10 @@ elements:
         branchesCovered: 4
         branchesMissed: 0
         mutantsTotal: 3
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 3
-        mutationScorePct: 0
+        mutantsKilled: 2
+        mutantsSurvived: 1
+        mutantsNoCoverage: 0
+        mutationScorePct: 66
         crap: 3.072
       - name: lambda$list$0
         desc: (Ljava/nio/file/Path;)Z
@@ -41534,10 +41635,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 2
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 2
-        mutationScorePct: 0
+        mutantsKilled: 1
+        mutantsSurvived: 1
+        mutantsNoCoverage: 0
+        mutationScorePct: 50
         crap: 1.0
       - name: lambda$findByProposalId$0
         desc: (Ljava/nio/file/Path;)Z
@@ -41549,10 +41650,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 2
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 2
-        mutationScorePct: 0
+        mutantsKilled: 1
+        mutantsSurvived: 1
+        mutantsNoCoverage: 0
+        mutationScorePct: 50
         crap: 1.0
   - name: FileSystemImpactPreviewStore
     status: EXISTS
@@ -41626,13 +41727,13 @@ elements:
         blendPct: 69
       mutation:
         totalMutants: 16
-        killed: 0
-        survived: 0
-        noCoverage: 16
+        killed: 9
+        survived: 6
+        noCoverage: 1
         timedOut: 0
         other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
+        mutationScorePct: 56
+        testStrengthPct: 60
       crap:
         totalMethods: 9
         hotspots: 0
@@ -41669,10 +41770,10 @@ elements:
         branchesCovered: 3
         branchesMissed: 1
         mutantsTotal: 3
-        mutantsKilled: 0
+        mutantsKilled: 3
         mutantsSurvived: 0
-        mutantsNoCoverage: 3
-        mutationScorePct: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
         crap: 3.353736
       - name: findByProposalId
         desc: (Ljava/lang/String;)Ljava/util/Optional;
@@ -41684,10 +41785,10 @@ elements:
         branchesCovered: 3
         branchesMissed: 3
         mutantsTotal: 3
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 3
-        mutationScorePct: 0
+        mutantsKilled: 2
+        mutantsSurvived: 1
+        mutantsNoCoverage: 0
+        mutationScorePct: 66
         crap: 4.8779520000000005
       - name: resolveRevisionsDir
         desc: ()Ljava/nio/file/Path;
@@ -41699,10 +41800,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 0
+        mutantsKilled: 1
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
-        mutationScorePct: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
         crap: 1.0
       - name: resolvePlanDirForProposal
         desc: (Ljava/lang/String;)Ljava/nio/file/Path;
@@ -41715,8 +41816,8 @@ elements:
         branchesMissed: 1
         mutantsTotal: 3
         mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 3
+        mutantsSurvived: 2
+        mutantsNoCoverage: 1
         mutationScorePct: 0
         crap: 4.170368
       - name: loadFromFile
@@ -41729,10 +41830,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 0
+        mutantsKilled: 1
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
-        mutationScorePct: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
         crap: 1.421875
       - name: createObjectMapper
         desc: ()Lcom/fasterxml/jackson/databind/ObjectMapper;
@@ -41744,10 +41845,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 1
-        mutantsKilled: 0
+        mutantsKilled: 1
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
-        mutationScorePct: 0
+        mutantsNoCoverage: 0
+        mutationScorePct: 100
         crap: 1.0
       - name: lambda$resolvePlanDirForProposal$0
         desc: (Ljava/nio/file/Path;)Z
@@ -41760,8 +41861,8 @@ elements:
         branchesMissed: 0
         mutantsTotal: 2
         mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 2
+        mutantsSurvived: 2
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: lambda$findByProposalId$0
@@ -41774,10 +41875,10 @@ elements:
         branchesCovered: 0
         branchesMissed: 0
         mutantsTotal: 2
-        mutantsKilled: 0
-        mutantsSurvived: 0
-        mutantsNoCoverage: 2
-        mutationScorePct: 0
+        mutantsKilled: 1
+        mutantsSurvived: 1
+        mutantsNoCoverage: 0
+        mutationScorePct: 50
         crap: 1.0
   - name: FileSystemActiveAnalysisSelectionStore
     status: EXISTS
@@ -42043,13 +42144,13 @@ elements:
       blendPct: 66
     mutation:
       totalMutants: 102
-      killed: 7
-      survived: 0
-      noCoverage: 95
+      killed: 65
+      survived: 19
+      noCoverage: 18
       timedOut: 0
       other: 0
-      mutationScorePct: 6
-      testStrengthPct: 100
+      mutationScorePct: 63
+      testStrengthPct: 77
     crap:
       totalMethods: 60
       hotspots: 0
@@ -42060,11 +42161,10 @@ elements:
       high: 0
       veryHigh: 0
       healthPct: 99
-    healthScore: 47
+    healthScore: 73
     verdict: WARNED
     violations:
     - lineCoverage 66% < 70%
-    - mutationScore 6% < 60%
 - module: revision-domain
   status: EXISTS
   models:
@@ -48208,13 +48308,13 @@ elements:
       branchCoveragePct: 41
       blendPct: 52
     mutation:
-      totalMutants: 1034
-      killed: 352
-      survived: 223
-      noCoverage: 459
+      totalMutants: 1301
+      killed: 461
+      survived: 294
+      noCoverage: 546
       timedOut: 0
       other: 0
-      mutationScorePct: 34
+      mutationScorePct: 35
       testStrengthPct: 61
     crap:
       totalMethods: 605
@@ -48297,12 +48397,12 @@ elements:
         cyclomatic: 76
         lineCoveragePct: 85
         crap: 95.494
-    healthScore: 54
+    healthScore: 55
     verdict: WARNED
     violations:
     - lineCoverage 64% < 70%
     - branchCoverage 41% < 60%
-    - mutationScore 34% < 60%
+    - mutationScore 35% < 60%
     - crapHotspots 33 > 5
 - module: revision-infrastructure
   status: EXISTS
@@ -48981,6 +49081,10 @@ elements:
         the run leaving the remaining content pending
       status: EXISTS
       testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSessionTest.java
+    - name: should keep reusing the registered current result of the neighbouring
+        content in the same run when re evaluation is requested for one content only
+      status: MISSING
+      testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSessionTest.java
     testCleanViews:
     - |
       test: "should reuse the registered result for identical content belonging to a different course element"
@@ -48991,7 +49095,7 @@ elements:
         fingerprinter = mock(ContentFingerprinter.class)
         evaluator = mock(Evaluator.class)
         ledger = InMemoryLedger()
-        policy = EvaluationRunPolicy(5, false, null)
+        policy = EvaluationBudget(5)
         session = DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy)
         resolutionA = session.resolve(new EvaluationSubject("quiz-elementA", sharedContent))
         resolutionB = session.resolve(new EvaluationSubject("quiz-elementB", sharedContent))
@@ -49020,7 +49124,7 @@ elements:
         fingerprinter = mock(ContentFingerprinter.class)
         evaluator = mock(Evaluator.class)
         ledger = InMemoryLedger()
-        policy = EvaluationRunPolicy(0, false, null)
+        policy = EvaluationBudget(0)
         session = DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy)
         resolution = session.resolve(new EvaluationSubject("quiz-elementA", newContent))
 
@@ -49045,7 +49149,7 @@ elements:
         fingerprinter = mock(ContentFingerprinter.class)
         evaluator = mock(Evaluator.class)
         ledger = InMemoryLedger()
-        policy = EvaluationRunPolicy(5, false, null)
+        policy = EvaluationBudget(5)
         session = DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy)
         fingerprintedContent = ArgumentCaptor.forClass(Map.class)
         evaluatedSubject = ArgumentCaptor.forClass(EvaluationSubject.class)
@@ -49073,7 +49177,7 @@ elements:
         fingerprinter = mock(ContentFingerprinter.class)
         evaluator = mock(Evaluator.class)
         ledger = InMemoryLedger()
-        policy = EvaluationRunPolicy(5, false, null)
+        policy = EvaluationBudget(5)
         session = DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy)
         resolution = session.resolve(new EvaluationSubject("quiz-1", content))
 
@@ -49098,7 +49202,7 @@ elements:
         fingerprinter = mock(ContentFingerprinter.class)
         evaluator = mock(Evaluator.class)
         ledger = InMemoryLedger()
-        policy = EvaluationRunPolicy(0, false, null)
+        policy = EvaluationBudget(0)
         session = DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy)
         resolution = session.resolve(new EvaluationSubject("quiz-1", content))
 
@@ -49122,7 +49226,7 @@ elements:
         fingerprinter = mock(ContentFingerprinter.class)
         evaluator = mock(Evaluator.class)
         ledger = InMemoryLedger()
-        policy = EvaluationRunPolicy(1, false, null)
+        policy = EvaluationBudget(1)
         session = DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy)
         newResolution = session.resolve(new EvaluationSubject("quiz-new", contentNew))
         resolutionB = session.resolve(new EvaluationSubject("quiz-b", contentB))
@@ -49156,7 +49260,7 @@ elements:
         fingerprinter = mock(ContentFingerprinter.class)
         evaluator = mock(Evaluator.class)
         ledger = InMemoryLedger()
-        policy = EvaluationRunPolicy(2, false, null)
+        policy = EvaluationBudget(2)
         session = DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy)
 
       mock:
@@ -49184,7 +49288,7 @@ elements:
         fingerprinter = mock(ContentFingerprinter.class)
         firstRunEvaluator = mock(Evaluator.class)
         ledger = InMemoryLedger()
-        policy = EvaluationRunPolicy(5, false, null)
+        policy = EvaluationBudget(5)
         firstRun = DefaultEvaluationSession(ledger, fingerprinter, firstRunEvaluator, policy)
         firstResolution = firstRun.resolve(new EvaluationSubject("quiz-1", content))
         secondRunEvaluator = mock(Evaluator.class)
@@ -49214,7 +49318,7 @@ elements:
         fingerprinter = mock(ContentFingerprinter.class)
         firstRunEvaluator = mock(Evaluator.class)
         ledger = InMemoryLedger()
-        policy = EvaluationRunPolicy(5, false, null)
+        policy = EvaluationBudget(5)
         firstRun = DefaultEvaluationSession(ledger, fingerprinter, firstRunEvaluator, policy)
         firstResolution = firstRun.resolve(new EvaluationSubject("quiz-1", content))
         secondRunEvaluator = mock(Evaluator.class)
@@ -49245,7 +49349,7 @@ elements:
         fingerprinter = mock(ContentFingerprinter.class)
         ledger = InMemoryLedger()
         evaluatorV2 = mock(Evaluator.class)
-        policy = EvaluationRunPolicy(0, false, null)
+        policy = EvaluationBudget(0)
         session = DefaultEvaluationSession(ledger, fingerprinter, evaluatorV2, policy)
         resolution = session.resolve(new EvaluationSubject("quiz-1", content))
         history = ledger.history("qinst-judge", "fp-versioned")
@@ -49272,7 +49376,7 @@ elements:
         fingerprinter = mock(ContentFingerprinter.class)
         evaluator = mock(Evaluator.class)
         ledger = InMemoryLedger()
-        policy = EvaluationRunPolicy(5, false, null)
+        policy = EvaluationBudget(5)
         session = DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy)
         subject = EvaluationSubject("quiz-1", content)
         implicit = session.resolve(subject)
@@ -49306,7 +49410,7 @@ elements:
         fingerprinter = mock(ContentFingerprinter.class)
         evaluator = mock(Evaluator.class)
         ledger = InMemoryLedger()
-        policy = EvaluationRunPolicy(10, false, null)
+        policy = EvaluationBudget(10)
         session = DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy)
         resolution1 = session.resolve(new EvaluationSubject("quiz-1", content1))
         resolution2 = session.resolve(new EvaluationSubject("quiz-2", content2))
@@ -49340,7 +49444,7 @@ elements:
         fingerprinter = mock(ContentFingerprinter.class)
         evaluator = mock(Evaluator.class)
         ledger = InMemoryLedger()
-        policy = EvaluationRunPolicy(10, false, null)
+        policy = EvaluationBudget(10)
         session = DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy)
         resolutions = EvaluationResolution[3]
 
@@ -49417,33 +49521,33 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 122
-      linesMissed: 140
-      linesTotal: 262
-      lineCoveragePct: 46
+      linesCovered: 120
+      linesMissed: 133
+      linesTotal: 253
+      lineCoveragePct: 47
       branchesCovered: 25
-      branchesMissed: 87
-      branchesTotal: 112
-      branchCoveragePct: 22
-      blendPct: 34
+      branchesMissed: 81
+      branchesTotal: 106
+      branchCoveragePct: 23
+      blendPct: 35
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
-      noCoverage: 0
+      totalMutants: 131
+      killed: 36
+      survived: 18
+      noCoverage: 77
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 27
+      testStrengthPct: 66
     crap:
-      totalMethods: 92
-      hotspots: 6
+      totalMethods: 89
+      hotspots: 5
       maxCrap: 110.0
-      averageCrap: 5.853722076086956
-      simple: 85
-      moderate: 1
+      averageCrap: 5.579128438202248
+      simple: 82
+      moderate: 2
       high: 3
-      veryHigh: 3
+      veryHigh: 2
       healthPct: 93
       top:
       - className: com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage
@@ -49460,13 +49564,6 @@ elements:
         cyclomatic: 8
         lineCoveragePct: 0
         crap: 72.0
-      - className: com.learney.contentaudit.evaluationledgerdomain.EvaluationRunPolicy
-        methodName: equals
-        methodDesc: (Ljava/lang/Object;)Z
-        line: 53
-        cyclomatic: 7
-        lineCoveragePct: 0
-        crap: 56.0
       - className: com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted
         methodName: equals
         methodDesc: (Ljava/lang/Object;)Z
@@ -49488,12 +49585,12 @@ elements:
         cyclomatic: 6
         lineCoveragePct: 0
         crap: 42.0
-    healthScore: 33
+    healthScore: 46
     verdict: WARNED
     violations:
-    - lineCoverage 46% < 70%
-    - branchCoverage 22% < 60%
-    - crapHotspots 6 > 5
+    - lineCoverage 47% < 70%
+    - branchCoverage 23% < 60%
+    - mutationScore 27% < 60%
 - module: evaluation-ledger-infrastructure
   status: EXISTS
   implementations:
@@ -49943,14 +50040,14 @@ elements:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 2
-      linesMissed: 63
-      linesTotal: 65
-      lineCoveragePct: 3
+      linesMissed: 122
+      linesTotal: 124
+      lineCoveragePct: 1
       branchesCovered: 0
-      branchesMissed: 30
-      branchesTotal: 30
+      branchesMissed: 64
+      branchesTotal: 64
       branchCoveragePct: 0
-      blendPct: 1
+      blendPct: 0
     mutation:
       totalMutants: 0
       killed: 0
@@ -49961,20 +50058,27 @@ elements:
       mutationScorePct: 0
       testStrengthPct: 0
     crap:
-      totalMethods: 16
-      hotspots: 2
+      totalMethods: 38
+      hotspots: 5
       maxCrap: 42.0
-      averageCrap: 8.6875
-      simple: 12
-      moderate: 2
-      high: 2
+      averageCrap: 7.921052631578948
+      simple: 30
+      moderate: 3
+      high: 5
       veryHigh: 0
-      healthPct: 81
+      healthPct: 83
       top:
       - className: com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentGraphRunner
-        methodName: run
-        methodDesc: (Ljava/lang/String;Ljava/util/Map;Ldev/langchain4j/model/chat/ChatModel;Ljava/util/Map;)Lcom/sentinel/agents/framework/state/RunState;
-        line: 67
+        methodName: resolveAgentDir
+        methodDesc: (Ljava/lang/String;Ljava/util/Map;)Ljava/nio/file/Path;
+        line: 133
+        cyclomatic: 6
+        lineCoveragePct: 0
+        crap: 42.0
+      - className: com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionUnresolved
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 42
         cyclomatic: 6
         lineCoveragePct: 0
         crap: 42.0
@@ -49985,10 +50089,24 @@ elements:
         cyclomatic: 6
         lineCoveragePct: 0
         crap: 42.0
+      - className: com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentGraphRunner
+        methodName: run
+        methodDesc: (Ljava/lang/String;Ljava/util/Map;Ldev/langchain4j/model/chat/ChatModel;Ljava/util/Map;)Lcom/sentinel/agents/framework/state/RunState;
+        line: 79
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
+      - className: com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentDefinitionLocator
+        methodName: resolveBase
+        methodDesc: (Ljava/lang/String;)Ljava/nio/file/Path;
+        line: 50
+        cyclomatic: 5
+        lineCoveragePct: 0
+        crap: 30.0
     healthScore: 21
     verdict: WARNED
     violations:
-    - lineCoverage 3% < 70%
+    - lineCoverage 1% < 70%
     - branchCoverage 0% < 60%
 - module: quiz-instruction-infrastructure
   status: EXISTS
@@ -50028,6 +50146,10 @@ elements:
         \ configuration is missing or invalid, instead of failing the audit"
       status: EXISTS
       testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeFactoryTest.java
+    - name: should yield an evaluator that reports itself unavailable and emits no
+        verdict when the agent definition its version derives from cannot be located
+      status: EXISTS
+      testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeFactoryTest.java
     testCleanViews:
     - |
       test: "should yield an evaluator that reports itself unavailable when the judge configuration is missing or invalid, instead of failing the audit"
@@ -50036,8 +50158,9 @@ elements:
       given:
         factory = DefaultQuizInstructionJudgeFactory()
         agentGraphRunner = mock(AgentGraphRunner.class)
+        agentDefinitionLocator = mock(AgentDefinitionLocator.class)
         missingConfig = QuizInstructionJudgeConfig(null, null, null, null, null, null, null)
-        evaluator = assertDoesNotThrow(() -> factory.create(missingConfig, agentGraphRunner), "una configuracion ausente o invalida no puede tumbar la construccion del evaluador")
+        evaluator = assertDoesNotThrow(() -> factory.create(missingConfig, agentGraphRunner, agentDefinitionLocator), "una configuracion ausente o invalida no puede tumbar la construccion del evaluador")
         content = LinkedHashMap<>()
         subject = EvaluationSubject("quiz-1", content)
         outcome = assertDoesNotThrow(() -> evaluator.evaluate(subject), "F-QINST-R007: tampoco puede tumbar la auditoria al evaluar con esa configuracion")
@@ -50164,17 +50287,30 @@ elements:
     - name: should honour the judge version fixed by configuration
       status: EXISTS
       testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeVersionResolverTest.java
+    - name: "should derive a different judge version when only the text of the agent\
+        \ definition changes, with the agent name and the model untouched"
+      status: MISSING
+      testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeVersionResolverTest.java
+    - name: "should derive a judge version that cannot coincide with any version derived\
+        \ from a reachable agent definition when the definition cannot be located,\
+        \ so that no recorded verdict is current under it"
+      status: MISSING
+      testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeVersionResolverTest.java
     testCleanViews:
     - |
       test: "should derive a different judge version when the agent definition or the model changes"
       trace: FEAT-QINST / F-QINST-R010
 
       given:
-        resolver = DefaultQuizInstructionJudgeVersionResolver()
+        locator = mock(AgentDefinitionLocator.class)
+        resolver = DefaultQuizInstructionJudgeVersionResolver(locator)
         baseline = config("gpt-4o-mini", "quiz-instruction-validator")
         differentModel = config("gpt-4o", "quiz-instruction-validator")
         differentAgentDefinition = config("gpt-4o-mini", "lemma-absence-agent")
         baselineVersion = resolver.resolve(baseline)
+
+      when:
+        sut.thenAnswer(invocation -> new AgentDefinitionFound(Path.of(".sentinel/agents/" + invocation.getArgument(0, String.class))))
 
       then:
         baselineVersion != null
@@ -50184,9 +50320,13 @@ elements:
       trace: FEAT-QINST / F-QINST-R010
 
       given:
-        resolver = DefaultQuizInstructionJudgeVersionResolver()
+        locator = mock(AgentDefinitionLocator.class)
+        resolver = DefaultQuizInstructionJudgeVersionResolver(locator)
         first = QuizInstructionJudgeConfig("http://localhost:1234/v1", "key-a", "gpt-4o-mini", 0.0, 30, "quiz-instruction-validator", null)
         second = QuizInstructionJudgeConfig("https://api.example.com/v1", "key-b", "gpt-4o-mini", 0.7, 90, "quiz-instruction-validator", null)
+
+      when:
+        sut.thenAnswer(invocation -> new AgentDefinitionFound(Path.of(".sentinel/agents/" + invocation.getArgument(0, String.class))))
 
       then:
         resolver.resolve(second) == resolver.resolve(first)
@@ -50195,7 +50335,8 @@ elements:
       trace: FEAT-QINST / F-QINST-R010
 
       given:
-        resolver = DefaultQuizInstructionJudgeVersionResolver()
+        locator = mock(AgentDefinitionLocator.class)
+        resolver = DefaultQuizInstructionJudgeVersionResolver(locator)
         overridden = QuizInstructionJudgeConfig("http://localhost:1234/v1", "test-api-key", "gpt-4o-mini", 0.0, 30, "quiz-instruction-validator", "manual-judge-version-7")
 
       then:
@@ -50251,20 +50392,20 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 90
-      linesMissed: 51
-      linesTotal: 141
-      lineCoveragePct: 63
+      linesCovered: 94
+      linesMissed: 50
+      linesTotal: 144
+      lineCoveragePct: 65
       branchesCovered: 28
       branchesMissed: 52
       branchesTotal: 80
       branchCoveragePct: 35
-      blendPct: 49
+      blendPct: 50
     mutation:
-      totalMutants: 0
+      totalMutants: 85
       killed: 0
       survived: 0
-      noCoverage: 0
+      noCoverage: 85
       timedOut: 0
       other: 0
       mutationScorePct: 0
@@ -50273,7 +50414,7 @@ elements:
       totalMethods: 42
       hotspots: 1
       maxCrap: 132.0
-      averageCrap: 5.242224476190477
+      averageCrap: 5.228129619047619
       simple: 41
       moderate: 0
       high: 0
@@ -50287,16 +50428,17 @@ elements:
         cyclomatic: 11
         lineCoveragePct: 0
         crap: 132.0
-    healthScore: 39
+    healthScore: 40
     verdict: WARNED
     violations:
-    - lineCoverage 63% < 70%
+    - lineCoverage 65% < 70%
     - branchCoverage 35% < 60%
+    - mutationScore 0% < 60%
 testSummary:
-  total: 1204
-  passing: 1188
+  total: 1215
+  passing: 1193
   failing: 0
-  notImplemented: 16
+  notImplemented: 22
 qualitySummary:
   enforcement: warn
   thresholds:
@@ -50306,32 +50448,32 @@ qualitySummary:
     crapHotspotThreshold: 30
     crapHotspotsMax: 5
   coverage:
-    linesCovered: 8836
-    linesMissed: 6285
-    linesTotal: 15121
+    linesCovered: 8848
+    linesMissed: 6354
+    linesTotal: 15202
     lineCoveragePct: 58
     branchesCovered: 3257
-    branchesMissed: 4591
-    branchesTotal: 7848
+    branchesMissed: 4631
+    branchesTotal: 7888
     branchCoveragePct: 41
     blendPct: 49
   mutation:
-    totalMutants: 2632
-    killed: 976
-    survived: 545
-    noCoverage: 1111
+    totalMutants: 4705
+    killed: 1748
+    survived: 926
+    noCoverage: 2031
     timedOut: 0
     other: 0
     mutationScorePct: 37
-    testStrengthPct: 64
+    testStrengthPct: 65
   crap:
-    totalMethods: 3118
-    hotspots: 172
+    totalMethods: 3147
+    hotspots: 175
     maxCrap: 870.0
-    averageCrap: 8.298101922386145
-    simple: 2804
-    moderate: 125
-    high: 58
+    averageCrap: 8.281816797585
+    simple: 2828
+    moderate: 127
+    high: 61
     veryHigh: 131
     healthPct: 92
     top:
@@ -50411,7 +50553,7 @@ qualitySummary:
   - lineCoverage 58% < 70%
   - branchCoverage 41% < 60%
   - mutationScore 37% < 60%
-  - crapHotspots 172 > 5
+  - crapHotspots 175 > 5
 patterns:
 - id: declared-1
   pattern: Factory

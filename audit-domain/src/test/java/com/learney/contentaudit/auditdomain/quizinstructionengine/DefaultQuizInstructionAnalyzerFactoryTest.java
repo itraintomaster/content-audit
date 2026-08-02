@@ -69,4 +69,25 @@ public class DefaultQuizInstructionAnalyzerFactoryTest {
         Assertions.assertEquals(500, usedPolicy.getMaxNewEvaluations(),
                 "R006: absent a per-run policy, the configured default budget must be used");
     }
+
+    @Test
+    @DisplayName("should publish for selection exactly the name under which the analyzer it builds reports its score")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R015")
+    public void shouldPublishForSelectionExactlyTheNameUnderWhichTheAnalyzerItBuildsReportsItsScore() {
+        // R015: the name under which this analysis is selected/excluded/budgeted --
+        // analyzerName(), read by DefaultAuditRunner -- must be exactly the name under
+        // which the analyzer this same factory builds reports its own score in the audit
+        // report (ContentAnalyzer.getName()). These are two methods on two different
+        // objects (the factory and the analyzer it assembles); nothing in the contract
+        // keeps them equal by construction except the factory's own coherence.
+        Mockito.when(config.getDefaultMaxNewEvaluations()).thenReturn(500);
+        Mockito.when(sessionFactory.open(Mockito.any(), Mockito.eq(evaluator))).thenReturn(session);
+
+        ContentAnalyzer analyzer = sut.create(null);
+
+        Assertions.assertEquals(sut.analyzerName(), analyzer.getName(),
+                "R015: the factory's published analyzerName() must be exactly the name the analyzer it builds "
+                + "reports via getName() -- a single name, the one read is the one written");
+    }
 }
