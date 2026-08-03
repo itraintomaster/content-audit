@@ -21,6 +21,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -86,8 +87,8 @@ public class FEvcostJ002JourneyTest {
         }
 
         @Override
-        public String evaluatorVersion() {
-            return evaluatorVersion;
+        public Optional<String> evaluatorVersion() {
+            return Optional.ofNullable(evaluatorVersion);
         }
 
         @Override
@@ -200,7 +201,7 @@ public class FEvcostJ002JourneyTest {
         EvaluationLedger ledger = new FileSystemEvaluationLedger(tempDir);
         ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
         String failedFingerprint = fingerprinter.fingerprint(quiz2.getContent());
-        assertTrue(ledger.find(new EvaluationKey(EVALUATOR_ID, EVALUATOR_VERSION, failedFingerprint)).isEmpty(),
+        assertTrue(ledger.findLatest(new EvaluationKey(EVALUATOR_ID, failedFingerprint)).isEmpty(),
                 "F-EVCOST-R005: a failure must never be registered as a result");
 
         // The run finished normally, and the next run finds quiz-2 pending and
@@ -304,11 +305,11 @@ public class FEvcostJ002JourneyTest {
 
         EvaluationLedger ledger = new FileSystemEvaluationLedger(tempDir);
         ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
-        assertTrue(ledger.find(new EvaluationKey(EVALUATOR_ID, EVALUATOR_VERSION,
+        assertTrue(ledger.findLatest(new EvaluationKey(EVALUATOR_ID,
                 fingerprinter.fingerprint(quiz2.getContent()))).isEmpty());
-        assertTrue(ledger.find(new EvaluationKey(EVALUATOR_ID, EVALUATOR_VERSION,
+        assertTrue(ledger.findLatest(new EvaluationKey(EVALUATOR_ID,
                 fingerprinter.fingerprint(quiz3.getContent()))).isEmpty());
-        assertTrue(ledger.find(new EvaluationKey(EVALUATOR_ID, EVALUATOR_VERSION,
+        assertTrue(ledger.findLatest(new EvaluationKey(EVALUATOR_ID,
                 fingerprinter.fingerprint(quiz4.getContent()))).isEmpty());
 
         // The next run reuses quiz-1's already-registered result and consults the

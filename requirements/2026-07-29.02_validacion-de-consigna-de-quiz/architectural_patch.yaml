@@ -1,0 +1,26 @@
+code: FEAT-QINST
+modules:
+- name: quiz-instruction-infrastructure
+  packages:
+  - name: instructionjudge
+    implementations:
+    - name: DefaultQuizInstructionJudgeVersionResolver
+      handwrittenTests:
+      - name: should honour the judge version fixed by configuration
+        _change: delete
+- name: audit-cli
+  packages:
+  - name: formatting
+    implementations:
+    - name: QuizInstructionDetailedFormatter
+      handwrittenTests:
+      - name: should render one row per originating judge version with how many of
+          the scored verdicts each one contributes
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
+      - name: should state explicitly that the run consulted no judge version when
+          it made no new consultation
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005

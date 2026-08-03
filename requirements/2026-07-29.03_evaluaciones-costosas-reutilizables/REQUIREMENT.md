@@ -20,32 +20,59 @@ lo vuelve a pagar entero, y una caida a mitad de camino pierde todo el trabajo.
 ## Reglas de Negocio
 
 <a id="F-EVCOST-R001"></a>
-### Rule[F-EVCOST-R001] - La identidad de un resultado es evaluador + version + huella del contenido
+### Rule[F-EVCOST-R001] - La identidad de un resultado es evaluador + huella del contenido; la version es procedencia
 **Severity**: critical | **Validation**: VALIDATED
 
-> Cada resultado registrado se identifica por tres datos: **que evaluador** lo
-> produjo, **en que version** de ese evaluador, y la **huella del contenido**
-> que se le entrego. El identificador del elemento del curso al que el contenido
-> pertenece **no** forma parte de la identidad.
+> Cada resultado registrado se identifica por dos datos: **que evaluador** lo
+> produjo y la **huella del contenido** que se le entrego. La **version** del
+> evaluador se registra **junto a** cada resultado y se devuelve con el cada vez
+> que se lo consulta, pero **no** integra la identidad y **no** decide si un
+> resultado aplica: es procedencia, no vigencia. El identificador del elemento del
+> curso al que el contenido pertenece tampoco integra la identidad.
 
 <details><summary>Detalle</summary>
 
-La razon es directa: modificar un elemento del curso **no cambia su
-identificador**. Si la identidad fuera el identificador, un elemento corregido
-seguiria devolviendo el resultado de su version anterior, que ya no describe el
-contenido actual. La huella invierte esa relacion: el mismo contenido siempre
-encuentra su resultado, y un contenido distinto nunca encuentra uno ajeno.
+**Por que la huella y no el identificador del elemento.** Modificar un elemento
+del curso **no cambia su identificador**. Si la identidad fuera el identificador,
+un elemento corregido seguiria devolviendo el resultado de su version anterior,
+que ya no describe el contenido actual. La huella invierte esa relacion: el mismo
+contenido siempre encuentra su resultado, y un contenido distinto nunca encuentra
+uno ajeno. El identificador del elemento puede quedar registrado **junto al**
+resultado, como dato informativo para inspeccionarlo o rastrearlo; lo que la regla
+prohibe es usarlo para decidir si un resultado aplica.
 
-El identificador del elemento puede quedar registrado **junto al** resultado,
-como dato informativo para inspeccionarlo o rastrearlo; lo que la regla prohibe
-es usarlo para decidir si un resultado aplica.
+**Por que el evaluador si integra la identidad.** No identifica *quien juzga* sino
+**que pregunta se hizo**. El resultado de un evaluador de calidad de traduccion
+sobre un contenido no es intercambiable con el de un evaluador de cumplimiento de
+consigna sobre ese mismo contenido: son dos preguntas distintas y sus respuestas no
+se sustituyen. Confundirlas devolveria la respuesta de una pregunta que nadie hizo.
 
-**Criterio de aceptacion**: dos contenidos identicos evaluados por el mismo
-evaluador y version encuentran el mismo resultado registrado, aunque pertenezcan
-a elementos distintos del curso; y un elemento cuyo contenido cambio no encuentra
-resultado registrado, aunque conserve su identificador.
+**Por que la version NO integra la identidad.** Que un contenido cumpla o no lo que
+se le pregunta es una propiedad **del contenido**, no de quien la juzgo. Cambiar de
+modelo —por costo, por disponibilidad, por una migracion de proveedor— no puede
+invalidar de un plumazo miles de resultados ya pagados. Por eso la version se
+registra como **procedencia**: dice con que version se obtuvo cada resultado, queda
+consultable junto a el y permite comparar como juzgo cada version, pero ningun
+cambio de version vuelve inaplicable un resultado ya registrado. El unico modo de
+rehacer un resultado es pedirlo explicitamente
+([F-EVCOST-R008](#F-EVCOST-R008)). La alternativa —version dentro de la identidad—
+se evaluo y se descarto; ver
+[DOUBT-IDENTIDAD-VERSION](#DOUBT-IDENTIDAD-VERSION).
 
-**Error**: "El resultado registrado para el evaluador '{evaluador}' no corresponde al contenido consultado"
+**La procedencia es obligatoria, no opcional.** Un resultado registrado sin la
+version que lo produjo rompe todo lo que la decision anterior deja en pie:
+consultarla, compararla y declararla en un informe
+([F-QINST-R005](../2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md#F-QINST-R005)).
+
+**Criterio de aceptacion**: (a) dos contenidos identicos evaluados por el mismo
+evaluador encuentran el mismo resultado registrado, aunque pertenezcan a elementos
+distintos del curso; (b) un elemento cuyo contenido cambio no encuentra resultado
+registrado, aunque conserve su identificador; (c) un resultado registrado bajo la
+version A se encuentra igual cuando la version vigente es B, y la consulta informa
+que lo produjo la version A; (d) un resultado registrado por el evaluador X nunca
+se devuelve como resultado del evaluador Y para la misma huella.
+
+**Error**: "El resultado registrado para el evaluador '{evaluador}' no corresponde al contenido consultado" / "Se registro un resultado del evaluador '{evaluador}' sin la version que lo produjo"
 
 </details>
 
@@ -82,13 +109,14 @@ el mismo contenido, en otro momento y en otra corrida, produce la misma huella.
 </details>
 
 <a id="F-EVCOST-R003"></a>
-### Rule[F-EVCOST-R003] - Antes de evaluar se consulta el resultado vigente
+### Rule[F-EVCOST-R003] - Antes de evaluar se consulta el resultado ya registrado
 **Severity**: critical | **Validation**: VALIDATED
 
 > Ante un contenido a evaluar, el sistema consulta primero si existe un resultado
-> registrado para ese evaluador, en su version vigente, y para esa huella. Si
-> existe, lo devuelve y **no** consulta al evaluador. Si no existe, el contenido
-> queda **pendiente** de evaluacion.
+> registrado para ese evaluador y esa huella, **cualquiera sea la version del
+> evaluador que lo produjo**. Si existe, lo devuelve —junto con la version que lo
+> produjo ([F-EVCOST-R001](#F-EVCOST-R001))— y **no** consulta al evaluador. Si no
+> existe, el contenido queda **pendiente** de evaluacion.
 
 <details><summary>Detalle</summary>
 
@@ -98,13 +126,21 @@ los pendientes —evaluarlos ahora, dejarlos para la corrida siguiente, informar
 como cobertura faltante— lo decide cada consumidor de esta capacidad, no esta
 regla.
 
+**Pendiente significa "nunca se registro un resultado para esta huella", y nada
+mas.** No hay ninguna otra via por la que un contenido con resultado registrado
+vuelva a estar pendiente: ni cambiar la version del evaluador, ni el paso del
+tiempo, ni borrar informes. El unico modo de volver a evaluarlo es pedirlo
+explicitamente ([F-EVCOST-R008](#F-EVCOST-R008)).
+
 La reutilizacion **no tiene tope**: cualquier cantidad de resultados registrados
 se reutiliza sin costo. Los limites que un consumidor imponga se aplican sobre
 las evaluaciones nuevas, nunca sobre la reutilizacion.
 
-**Criterio de aceptacion**: con un resultado ya registrado para la huella
-consultada, la consulta lo devuelve y el evaluador no recibe ninguna solicitud;
-sin resultado registrado, la consulta informa que el contenido esta pendiente.
+**Criterio de aceptacion**: (a) con un resultado ya registrado para la huella
+consultada, la consulta lo devuelve —con la version que lo produjo— y el evaluador
+no recibe ninguna solicitud; (b) eso vale tambien cuando la version vigente del
+evaluador es distinta de la que produjo el resultado; (c) sin resultado registrado
+para esa huella, la consulta informa que el contenido esta pendiente.
 
 **Error**: N/A (esta regla describe una consulta, no una condicion de error)
 
@@ -182,37 +218,50 @@ vuelve a consultar.
 </details>
 
 <a id="F-EVCOST-R006"></a>
-### Rule[F-EVCOST-R006] - Conviven resultados de distintas versiones del evaluador; nada se borra solo
+### Rule[F-EVCOST-R006] - Conviven resultados de distintas versiones del evaluador; todos se reutilizan y nada se borra solo
 **Severity**: critical | **Validation**: VALIDATED
 
 > Los resultados producidos por versiones distintas del mismo evaluador
-> **conviven** en el registro. Solo los de la version vigente se consideran
-> vigentes y se reutilizan; los demas quedan como historia consultable. Cambiar la
-> version del evaluador **no borra** ningun resultado anterior y **no dispara**
-> ninguna re-evaluacion.
+> **conviven** en el registro y **todos** se reutilizan, sea cual sea la version
+> que los produjo. Cambiar la version del evaluador **no borra**, **no invalida** y
+> **no dispara** ninguna re-evaluacion. Cuando hay mas de un resultado para el
+> mismo evaluador y la misma huella, se reutiliza el **registrado mas
+> recientemente**; los anteriores quedan como historia consultable, cada uno con la
+> version que lo produjo.
 
 <details><summary>Detalle</summary>
 
 Cambiar un evaluador —su forma de preguntar, la estructura de lo que devuelve, su
-criterio— es una operacion frecuente y barata; volver a evaluar todo el contenido
-con la version nueva es lenta y cara. Si lo primero disparara lo segundo, cada
-ajuste menor del evaluador se convertiria en una factura sorpresa.
+criterio, el modelo que lo respalda— es una operacion frecuente y barata; volver a
+evaluar todo el contenido con la version nueva es lenta y cara. Si lo primero
+disparara lo segundo, cada ajuste menor del evaluador se convertiria en una factura
+sorpresa.
 
-Por eso el efecto de cambiar la version es exactamente uno: los resultados de la
-version anterior **dejan de ser vigentes** y sus contenidos vuelven a estar
-pendientes ([F-EVCOST-R003](#F-EVCOST-R003)). Cuando y con que alcance se los
-evalua de nuevo lo decide el usuario ([F-EVCOST-R008](#F-EVCOST-R008)); no
-evaluarlos nunca es una opcion valida.
+Por eso cambiar la version **no tiene ningun efecto sobre los resultados ya
+registrados**: se siguen consultando y reutilizando exactamente igual, y lo unico
+que cambia es la version que se registrara junto a los resultados **nuevos**.
+Cuando y con que alcance se vuelve a evaluar lo decide el usuario
+([F-EVCOST-R008](#F-EVCOST-R008)); no volver a evaluar nunca es una opcion valida.
+
+**Por que gana el mas reciente.** Es lo unico compatible con
+[F-EVCOST-R008](#F-EVCOST-R008): si tras una re-evaluacion explicita la consulta
+siguiera devolviendo el resultado viejo, pedir la re-evaluacion no tendria efecto
+observable y el usuario habria pagado por nada. La regla no borra el anterior —lo
+conserva como historia— pero fija sin ambiguedad cual de los dos aplica.
 
 Conservar la historia tiene valor propio: permite comparar como juzgo el mismo
 contenido cada version del evaluador, que es la unica forma de saber si un cambio
-lo mejoro.
+lo mejoro. Esa comparacion solo es posible porque cada resultado lleva registrada
+su procedencia ([F-EVCOST-R001](#F-EVCOST-R001)).
 
-**Criterio de aceptacion**: registrados resultados con la version A, se pasa a la
-version B; los resultados de A siguen presentes y consultables, ninguno se
-reutiliza como vigente, y los contenidos correspondientes aparecen pendientes.
+**Criterio de aceptacion**: (a) registrados resultados con la version A, se pasa a
+la version B: los resultados de A se siguen reutilizando, el evaluador no recibe
+ninguna consulta por ellos, ninguno queda pendiente, y la consulta informa que los
+produjo la version A; (b) tras una re-evaluacion explicita del mismo contenido bajo
+la version B, la consulta devuelve el resultado de B y el de A sigue siendo
+consultable como historia.
 
-**Error**: "El cambio de version del evaluador '{evaluador}' elimino {cantidad} resultados de la version anterior"
+**Error**: "El cambio de version del evaluador '{evaluador}' elimino {cantidad} resultados de la version anterior" / "El cambio de version del evaluador '{evaluador}' dejo de reutilizar {cantidad} resultados ya registrados"
 
 </details>
 
@@ -244,16 +293,19 @@ consulta al evaluador.
 </details>
 
 <a id="F-EVCOST-R008"></a>
-### Rule[F-EVCOST-R008] - Volver a evaluar es siempre una decision explicita
+### Rule[F-EVCOST-R008] - La re-evaluacion explicita es el unico modo de rehacer un resultado
 **Severity**: critical | **Validation**: VALIDATED
 
-> Re-evaluar contenido que ya tiene resultado registrado ocurre **solo** cuando el
-> usuario lo pide explicitamente. Ningun otro hecho —cambiar el evaluador, borrar
-> informes, cambiar la configuracion del analisis— la dispara. La re-evaluacion
-> registra los resultados nuevos **sin destruir** los anteriores. El **alcance** lo
+> Un resultado ya registrado se rehace **unicamente** cuando el usuario pide
+> explicitamente volver a evaluar ese contenido: es el **unico** mecanismo, y no
+> existe ningun otro. Ningun hecho del sistema —cambiar la version del evaluador,
+> borrar informes, cambiar la configuracion del analisis, el paso del tiempo— lo
+> dispara, lo invalida ni lo vuelve a dejar pendiente. La re-evaluacion registra el
+> resultado nuevo **sin destruir** los anteriores, y a partir de entonces la
+> consulta devuelve el nuevo ([F-EVCOST-R006](#F-EVCOST-R006)). El **alcance** lo
 > acota el consumidor, contenido por contenido: esta capacidad vuelve a evaluar el
 > contenido puntual que se le pide y **ningun otro**, de modo que el contenido
-> vecino con resultado vigente se sigue reutilizando en esa misma corrida.
+> vecino con resultado registrado se sigue reutilizando en esa misma corrida.
 
 <details><summary>Detalle</summary>
 
@@ -261,6 +313,13 @@ Esta regla es la contracara de todas las anteriores: si el sistema puede decidir
 por su cuenta volver a evaluar, el ahorro deja de ser predecible y el gasto deja
 de ser gobernable. Un usuario tiene que poder cambiar el evaluador, limpiar
 informes y correr analisis sin miedo a desatar una factura.
+
+**Que sea el unico mecanismo es una exigencia, no una consecuencia.** Con la
+version fuera de la identidad ([F-EVCOST-R001](#F-EVCOST-R001)) no queda ninguna
+otra via por la cual un resultado registrado pueda dejar de aplicar: no hay
+invalidacion automatica, no hay caducidad, no hay efecto colateral. Todo lo que se
+vuelve a pagar se vuelve a pagar porque alguien lo pidio, y eso hace que el gasto
+sea siempre atribuible a una decision.
 
 La re-evaluacion explicita puede alcanzar a todo el contenido de un evaluador o a
 una parte acotada de el; en ambos casos respeta los limites de gasto que imponga
@@ -283,12 +342,14 @@ componga cualquier alcance —uno, un grupo, todo— sin que esta capacidad teng
 conocer ninguno de los tres.
 
 **Criterio de aceptacion**: (a) sin pedido explicito, ninguna corrida vuelve a
-consultar al evaluador por contenido con resultado vigente registrado; (b) con
-pedido explicito sobre un contenido, ese contenido se vuelve a evaluar, los
-resultados anteriores siguen consultables, y el resto del contenido con resultado
-vigente se reutiliza sin consultar al evaluador en esa misma corrida.
+consultar al evaluador por contenido con resultado registrado, **cualquiera sea la
+version que lo produjo y aunque la version vigente sea otra**; (b) con pedido
+explicito sobre un contenido, ese contenido se vuelve a evaluar, la consulta pasa a
+devolver el resultado nuevo, los resultados anteriores siguen consultables, y el
+resto del contenido con resultado registrado se reutiliza sin consultar al
+evaluador en esa misma corrida.
 
-**Error**: "Se re-evaluo contenido con resultado vigente sin pedido explicito del usuario"
+**Error**: "Se re-evaluo contenido con resultado registrado sin pedido explicito del usuario"
 
 </details>
 
@@ -414,21 +475,53 @@ Por eso la identidad es la huella del contenido efectivamente evaluado
 **que se juzgo**, no **sobre que elemento**. Trae ademas un beneficio no buscado:
 dos elementos con contenido identico comparten resultado y se pagan una sola vez.
 
+### La version del evaluador: procedencia, no vigencia
+
+Queda una segunda pregunta, independiente de la anterior: si cambia **el
+evaluador** —su forma de preguntar, la estructura de lo que devuelve, el modelo que
+lo respalda—, ¿siguen aplicando los resultados que emitio antes?
+
+La respuesta especificada es **si**. Que un contenido cumpla o no lo que se le
+pregunta es una propiedad del contenido, no de quien la juzgo; una migracion de
+proveedor o un ajuste de costo no puede invalidar de golpe miles de resultados ya
+pagados. La version se registra como **procedencia** —queda junto al resultado,
+viaja con el al consultarlo y permite comparar como juzgo cada version— pero no
+gobierna la vigencia. Nada se invalida solo: lo unico que rehace un resultado es un
+pedido explicito ([F-EVCOST-R008](#F-EVCOST-R008)).
+
+Lo que si sigue dentro de la identidad es **que evaluador** produjo el resultado, y
+no contradice el criterio anterior: no identifica quien juzga sino **que pregunta se
+hizo**. El juicio de un futuro evaluador de calidad de traduccion sobre un contenido
+no sustituye al de un evaluador de cumplimiento de consigna sobre el mismo
+contenido.
+
+La contra de esta eleccion es real y se acepta a conciencia: al corregir un
+evaluador que juzgaba mal, los resultados ya emitidos siguen aplicando aunque se los
+sepa incorrectos, hasta que alguien pida re-evaluarlos. Ver
+[DOUBT-IDENTIDAD-VERSION](#DOUBT-IDENTIDAD-VERSION).
+
 ## Alcance
 
 - **En alcance**:
-  - Registro de resultados de evaluacion costosa por evaluador, version y huella
-    de contenido.
-  - Consulta del resultado vigente y estado "pendiente" cuando no lo hay.
+  - Registro de resultados de evaluacion costosa por evaluador y huella de
+    contenido, con la version del evaluador como procedencia consultable.
+  - Consulta del resultado registrado y estado "pendiente" cuando no lo hay.
   - Disponibilidad inmediata de cada resultado y tolerancia a interrupcion.
   - Distincion entre resultado definitivo y falla transitoria del evaluador.
   - Distincion, dentro de la falla transitoria, entre la que afecta a un contenido
     puntual y la que afecta al servicio, con corte de consultas ante la segunda y
     sin abortar el analisis.
-  - Convivencia e historia de resultados de versiones distintas del evaluador.
+  - Convivencia, reuso e historia de resultados de versiones distintas del
+    evaluador, con la regla de cual aplica cuando hay mas de uno para la misma
+    huella.
   - Independencia respecto de los informes de analisis.
-  - Re-evaluacion explicita del usuario, contenido por contenido.
+  - Re-evaluacion explicita del usuario, contenido por contenido, como unico
+    mecanismo por el que un resultado se rehace.
 - **Fuera de alcance**:
+  - **Cualquier invalidacion automatica de resultados registrados**: por cambio de
+    version del evaluador, por antiguedad o por cualquier otro hecho del sistema;
+    ver [F-EVCOST-R008](#F-EVCOST-R008) y
+    [DOUBT-IDENTIDAD-VERSION](#DOUBT-IDENTIDAD-VERSION).
   - **Que contenido alcanza una re-evaluacion** (todo, un grupo, uno solo). El
     recorte esta expresado en el vocabulario del consumidor y lo decide el
     consumidor; ver [F-EVCOST-R008](#F-EVCOST-R008).
@@ -456,7 +549,8 @@ dos elementos con contenido identico comparten resultado y se pagan una sola vez
 **Validation**: VALIDATED
 
 Cubre las cuatro respuestas posibles a "ya tengo este resultado?": reuso,
-contenido cambiado, version del evaluador cambiada y contenido nunca evaluado.
+contenido cambiado, resultado producido por otra version del evaluador (que se
+reutiliza igual, declarando su procedencia) y contenido nunca evaluado.
 Cubre R001, R002, R003, R004 y R006.
 
 ```yaml
@@ -468,27 +562,27 @@ journeys:
         action: "Un analisis solicita el resultado de un evaluador costoso para un contenido del curso"
         gate: [F-EVCOST-R003]
         outcomes:
-          - when: "Hay un resultado registrado para ese evaluador, en su version vigente y para la misma huella de contenido"
+          - when: "Hay un resultado registrado para ese evaluador y para la misma huella de contenido, producido por la version vigente"
             then: reusa
           - when: "Hay un resultado registrado, pero el contenido cambio desde que se lo evaluo (el elemento conserva su identificador)"
             then: contenido_cambiado
-          - when: "Hay un resultado registrado, pero fue producido por una version anterior del evaluador"
+          - when: "Hay un resultado registrado para la misma huella, pero fue producido por una version anterior del evaluador"
             then: version_anterior
           - when: "No hay ningun resultado registrado para esa huella"
             then: primera_vez
 
       - id: reusa
-        action: "El analisis obtiene el resultado registrado y el evaluador no recibe ninguna solicitud por ese contenido"
+        action: "El analisis obtiene el resultado registrado, junto con la version del evaluador que lo produjo, y el evaluador no recibe ninguna solicitud por ese contenido"
         gate: [F-EVCOST-R001, F-EVCOST-R003]
         result: success
 
       - id: contenido_cambiado
-        action: "El resultado registrado no se considera vigente: el contenido queda pendiente y, al evaluarse, se registra un resultado nuevo bajo la huella nueva, sin destruir el anterior"
+        action: "El resultado registrado no corresponde al contenido consultado: el contenido queda pendiente y, al evaluarse, se registra un resultado nuevo bajo la huella nueva, sin destruir el anterior"
         gate: [F-EVCOST-R002]
         result: success
 
       - id: version_anterior
-        action: "El resultado de la version anterior se conserva consultable y no se reutiliza; el contenido queda pendiente de evaluacion con la version vigente"
+        action: "El resultado se reutiliza igual —el evaluador no recibe ninguna solicitud y el contenido no queda pendiente— y la consulta informa que lo produjo la version anterior"
         gate: [F-EVCOST-R006]
         result: success
 
@@ -575,12 +669,63 @@ journeys:
         result: success
 
       - id: reevalua_a_pedido
-        action: "El contenido alcanzado se vuelve a evaluar pese a tener resultado vigente, y los resultados anteriores siguen consultables"
+        action: "El contenido alcanzado se vuelve a evaluar pese a tener resultado registrado, la consulta pasa a devolver el resultado nuevo, y los resultados anteriores siguen consultables"
         gate: [F-EVCOST-R008]
         result: success
 ```
 
 ## Open Questions
+
+<a id="DOUBT-IDENTIDAD-VERSION"></a>
+### Doubt[DOUBT-IDENTIDAD-VERSION] - La version del evaluador, integra la identidad de un resultado o es solo procedencia?
+**Status**: RESOLVED
+
+Es la pregunta que decide **que invalida** un resultado ya pagado. Con la version
+dentro de la identidad, retocar el evaluador deja pendientes de golpe todos sus
+resultados; con la version afuera, ningun cambio del evaluador invalida nada y solo
+un pedido explicito rehace un resultado.
+
+- [x] Opcion A: **Solo el contenido determina la identidad** (evaluador + huella).
+  La version se registra como procedencia consultable. Nada se invalida
+  automaticamente; re-evaluar es siempre una accion explicita.
+- [ ] Opcion B: **La version integra la identidad.** Cambiarla deja pendientes
+  todos los resultados de la version anterior, que quedan como historia. Garantiza
+  que un puntaje siempre corresponda a la version corriente, al precio de invalidar
+  miles de resultados pagados ante cualquier ajuste.
+- [ ] Opcion C: **Intermedia** — la version integra la identidad, pero el usuario
+  puede declarar una version como compatible con la anterior para que sus
+  resultados sigan aplicando.
+- [ ] Opcion D: **Intermedia** — los resultados de versiones anteriores se reutilizan
+  pero se marcan como "de otra version", y el consumidor decide si los puntua.
+
+**Answer**: **Opcion A**, elegida por el usuario a conciencia y con la contra sobre
+la mesa.
+
+**El argumento a favor**: *"me interesa lo que se testea, no quien lo hace"*. Si un
+contenido cumple o no lo que se le pregunta es una propiedad **del contenido**, no
+de quien la juzgo. Cambiar de modelo —por costo, por disponibilidad, por una
+migracion de proveedor— no deberia invalidar miles de veredictos ya pagados
+(11.487 ejercicios en el curso real del primer consumidor).
+
+**La contra que se planteo y se descarto**: la definicion del evaluador **es el
+criterio de juicio**. Al corregir un evaluador que juzgaba mal, sus resultados
+anteriores siguen aplicando siendo ya sabidamente incorrectos, y nadie los revisa a
+menos que alguien se acuerde de pedir la re-evaluacion. Se ofrecieron ademas las dos
+alternativas intermedias (C y D) y el usuario eligio explicitamente la mas simple.
+
+**Lo que queda en pie de la contra**: el riesgo no desaparece, se traslada a una
+accion del usuario. Por eso [F-EVCOST-R008](#F-EVCOST-R008) enuncia que la
+re-evaluacion explicita es el **unico** mecanismo por el que un resultado se rehace,
+y [F-EVCOST-R001](#F-EVCOST-R001) exige que la procedencia quede registrada y
+consultable: sin ella, el usuario no tendria como saber que resultados vienen de la
+version que acaba de corregir. Del lado del primer consumidor, esa procedencia se
+declara en el informe
+([F-QINST-R005](../2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md#F-QINST-R005)).
+
+**No reabrir sin leer este bloque.** La decision es deliberada; lo que la haria
+revisable es evidencia de que en la practica nadie pide la re-evaluacion tras
+corregir un evaluador y los informes se llenan de resultados de versiones que se
+sabe malas.
 
 <a id="DOUBT-PRESUPUESTO-GENERAL"></a>
 ### Doubt[DOUBT-PRESUPUESTO-GENERAL] - El limite de evaluaciones por corrida, es parte de esta capacidad o de cada consumidor?
@@ -611,25 +756,31 @@ capacidad general es preferible a repetirlo.
 ### Doubt[DOUBT-RETENCION-HISTORIA] - Hasta cuando se conserva la historia de versiones anteriores?
 **Status**: OPEN
 
-[F-EVCOST-R006](#F-EVCOST-R006) conserva los resultados de versiones anteriores
-como historia y prohibe borrarlos automaticamente. Con un evaluador que cambia
-varias veces y ~11.500 elementos por version, la historia crece sin techo.
+[F-EVCOST-R006](#F-EVCOST-R006) conserva como historia los resultados anteriores de
+una misma huella —los que quedaron desplazados por una re-evaluacion posterior— y
+prohibe borrarlos automaticamente. Con re-evaluaciones sucesivas sobre ~11.500
+elementos, la historia crece sin techo.
 
 - [ ] Opcion A: **Nunca se poda automaticamente.** El usuario puede pedir
-  explicitamente descartar la historia de una version. Simple y sin sorpresas; el
-  volumen queda a cargo del usuario.
-- [ ] Opcion B: **Se conservan las ultimas N versiones** y las anteriores se
-  descartan solas. Acota el volumen; reintroduce una perdida automatica, que es
-  justo lo que R006 prohibe.
-- [ ] Opcion C: **Se conserva solo la version vigente** y la anterior se descarta
-  al cambiar de version. Volumen minimo; elimina la posibilidad de comparar como
-  juzgo cada version.
+  explicitamente descartar la historia anterior a un punto. Simple y sin sorpresas;
+  el volumen queda a cargo del usuario.
+- [ ] Opcion B: **Se conservan los ultimos N resultados por huella** y los
+  anteriores se descartan solos. Acota el volumen; reintroduce una perdida
+  automatica, que es justo lo que R006 prohibe.
+- [ ] Opcion C: **Se conserva solo el resultado que aplica** y el desplazado se
+  descarta. Volumen minimo; elimina la posibilidad de comparar como juzgo cada
+  version.
 
 **Answer**: Pendiente. Se especifica la Opcion A [ASSUMPTION]: el volumen que
-preocupa es hipotetico (todavia no hubo un solo cambio de version) y la
-comparacion entre versiones es hoy el unico modo de saber si un cambio del
-evaluador lo mejoro. Si el volumen se vuelve un problema medible, la poda explicita
-de la Opcion A ya lo resuelve sin cambiar ninguna regla.
+preocupa es hipotetico (todavia no hubo una sola re-evaluacion sobre contenido ya
+evaluado) y la comparacion entre versiones es hoy el unico modo de saber si un
+cambio del evaluador lo mejoro. Si el volumen se vuelve un problema medible, la poda
+explicita de la Opcion A ya lo resuelve sin cambiar ninguna regla.
+
+**Nota**: el crecimiento que esta duda anticipaba se volvio mas lento tras
+[DOUBT-IDENTIDAD-VERSION](#DOUBT-IDENTIDAD-VERSION). Antes, cada cambio de version
+sumaba una copia entera del curso apenas se lo volviera a auditar; ahora solo suma
+historia el contenido que alguien pide re-evaluar explicitamente.
 
 <a id="DOUBT-CONCURRENCIA"></a>
 ### Doubt[DOUBT-CONCURRENCIA] - Que pasa si dos analisis corren a la vez sobre el mismo registro?
@@ -677,9 +828,12 @@ se vuelve habitual y el gasto duplicado se mide y molesta, la duda se reabre.
   ademas las dos caras del comportamiento ante fallas visto desde el consumidor:
   **F-QINST-R007** (una falla del juez no aborta la auditoria, que termina con la
   cobertura que alcanzo) y **F-QINST-R013** (la salida no utilizable del juez es
-  falla y no juicio, y afecta solo a ese ejercicio). Citada por
+  falla y no juicio, y afecta solo a ese ejercicio). Es ademas el primer consumidor
+  de la procedencia: **F-QINST-R005** declara en el informe de que versiones vienen
+  los veredictos que puntua. Citada por [F-EVCOST-R001](#F-EVCOST-R001),
   [F-EVCOST-R005](#F-EVCOST-R005), [F-EVCOST-R008](#F-EVCOST-R008),
-  [F-EVCOST-R009](#F-EVCOST-R009), el Alcance y el Contexto.
+  [F-EVCOST-R009](#F-EVCOST-R009), el Alcance, el Contexto y
+  [DOUBT-IDENTIDAD-VERSION](#DOUBT-IDENTIDAD-VERSION).
 - **FEAT-RPRES** — Establece que corregir un elemento del curso cambia su contenido
   pero no su identificador, que es la razon por la que la identidad de un resultado
   es la huella del contenido y no el identificador. Citada por el Contexto.

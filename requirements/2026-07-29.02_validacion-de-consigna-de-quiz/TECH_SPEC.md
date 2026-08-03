@@ -1,31 +1,183 @@
 ---
 patch: FEAT-QINST
 requirement: 2026-07-29.02_validacion-de-consigna-de-quiz
-generated: 2026-08-01T00:00:00Z
+generated: 2026-08-02T00:00:00Z
 ---
 
-# Tech Spec: cierre de cuatro huecos de contrato (patch correctivo)
+# Tech Spec: la version del evaluador sale de la identidad y pasa a ser procedencia
 
-> Este documento es la foto del **patch correctivo** posterior a la arquitectura
-> original de FEAT-QINST/FEAT-EVCOST. La foto de aquel primer patch (752 lineas,
-> 15 fences) sigue disponible en git:
-> `git show 17449eca:requirements/2026-07-29.02_validacion-de-consigna-de-quiz/TECH_SPEC.md`,
-> y el patch correspondiente en `.applied-patches/`.
+> Foto del **tercer** patch de FEAT-QINST/FEAT-EVCOST. Las dos fotos anteriores
+> siguen en git: la arquitectura original en
+> `git show 17449eca:requirements/2026-07-29.02_validacion-de-consigna-de-quiz/TECH_SPEC.md`
+> y el patch correctivo de los cuatro huecos en el commit siguiente; ambos patches
+> aplicados estan en `.applied-patches/`.
 
-El patch no agrega capacidades: cierra cuatro lugares donde el contrato permitia
-que un dato se perdiera, se degradara o se ignorara **sin que nada lo dijera**.
-Los cuatro son variantes del mismo defecto —el error silencioso— que es justamente
-lo que estas dos features existen para evitar.
+El requerimiento cambio de fondo: la version del evaluador **deja de integrar la
+identidad de un resultado** y pasa a ser procedencia registrada
+(`DOUBT-IDENTIDAD-VERSION`, Opcion A). El argumento del usuario es que si un
+contenido cumple lo que se le pregunta es una propiedad **del contenido**, no de
+quien lo juzgo, y cambiar de modelo no puede invalidar 11.487 veredictos pagados.
+La contra —que al corregir un juez que juzgaba mal sus veredictos siguen puntuando
+sabiendose incorrectos— se planteo y se acepto a conciencia.
 
-## Hacer que la sesion declare bajo que version resolvio
+Este patch traduce esa decision al contrato. No agrega ninguna capacidad nueva:
+mueve un dato de un lugar donde decidia **vigencia** a un lugar donde declara
+**origen**, y cambia todo lo que dependia de que estuviera en el primero.
 
-`QuizInstructionCoverageDiagnosis.evaluatorVersion` quedaba siempre en `null`: el
-analizador recibe una `EvaluationSession` ya abierta, no el `Evaluator`, y solo la
-factory tenia acceso a `evaluator.evaluatorVersion()`. Pasarla por constructor
-habria duplicado la fuente de verdad, porque la sesion **ya usa** esa version para
-armar cada `EvaluationKey` (F-EVCOST-R001). Se expone donde ya vive: la sesion
-declara la version bajo la que resolvio, congelada al abrir, y el analizador la
-republica en la cobertura sin cambiar su `requiresInject`.
+## Sacar la version de la clave y dejar la identidad en dos datos
+
+La identidad de un resultado pasa a ser exactamente `(evaluatorId,
+contentFingerprint)`. El `evaluatorId` **se queda** y no contradice la decision:
+no identifica quien juzga sino **que pregunta se hizo**, y el veredicto de un
+futuro evaluador de calidad de traduccion no sustituye al del juez de consigna
+sobre el mismo contenido. Las descripciones de los dos campos sobrevivientes se
+reescriben porque eran justamente donde vivia la justificacion vieja.
+
+```architecture
+modules:
+  - name: evaluation-ledger-domain
+    _change: modify
+    models:
+      - name: EvaluationKey
+        _change: modify
+        fields:
+          - name: evaluatorId
+            type: String
+            _change: modify
+            description: "Identificador estable del evaluador. No dice quien juzga sino QUE PREGUNTA SE HIZO."
+          - name: evaluatorVersion
+            _change: delete
+          - name: contentFingerprint
+            type: String
+            _change: modify
+            description: "Junto con evaluatorId agota la identidad de un resultado."
+```
+
+## Registrar la version como procedencia obligatoria del resultado
+
+Sacada de la clave, la version tiene que quedar en algun lado o se pierde. Va al
+propio `EvaluationRecord` como dato **obligatorio**: tras esta decision la
+procedencia es la unica señal con la que el usuario decide cuando pedir una
+re-evaluacion, y un registro sin ella vuelve indefendible la opcion elegida —nadie
+sabria que resultados vienen del evaluador que acaba de corregir—. Por eso
+F-EVCOST-R001 le da error propio.
+
+```architecture
+modules:
+  - name: evaluation-ledger-domain
+    _change: modify
+    models:
+      - name: EvaluationRecord
+        _change: modify
+        fields:
+          - name: evaluatorVersion
+            type: String
+            _change: add
+            description: "Procedencia OBLIGATORIA: no participa de la identidad y no decide vigencia."
+```
+
+## Devolver la procedencia con cada resultado consultado
+
+F-EVCOST-R001 exige que la version se devuelva **con el resultado en cada
+consulta**, no solo que quede guardada. Sin esto el consumidor tendria que ir al
+registro por su cuenta para saber de donde salio lo que acaba de puntuar, y el
+recuento por version de F-QINST-R005 seria imposible de construir. El campo se
+puebla exactamente cuando hay resultado; su ausencia en `PENDING` y `FAILED` no es
+un dato faltante sino la afirmacion de que no hubo nada que atribuir.
+
+```architecture
+modules:
+  - name: evaluation-ledger-domain
+    _change: modify
+    models:
+      - name: EvaluationResolution
+        _change: modify
+        fields:
+          - name: evaluatorVersion
+            type: String
+            _change: add
+            description: "Poblada exactamente cuando kind es REUSED o EVALUATED."
+```
+
+## Renombrar `find` a `findLatest` porque la clave dejo de ser unica
+
+Mientras la version estaba en la clave, `find` devolvia a lo sumo una entrada y el
+nombre era exacto. Ahora una re-evaluacion explicita produce un segundo resultado
+bajo la **misma** clave, y F-EVCOST-R006 fija el desempate: gana el registrado mas
+recientemente. Dejar el nombre `find` esconderia esa eleccion en una descripcion;
+`findLatest` la pone en la firma y obliga a cualquier implementacion futura a
+pasar por ella. `history` deja de recibir dos `String` sueltos y adyacentes —una
+conflacion esperando ocurrir, del mismo tipo que ya costo cinco defectos
+silenciosos en esta feature— y recibe la clave, que ahora es exactamente esos dos
+datos.
+
+```architecture
+modules:
+  - name: evaluation-ledger-domain
+    _change: modify
+    interfaces:
+      - name: EvaluationLedger
+        _change: modify
+        exposes:
+          - signature: "find(EvaluationKey key): Optional<EvaluationRecord>"
+            _change: delete
+          - signature: "findLatest(EvaluationKey key): Optional<EvaluationRecord>"
+            _change: add
+          - signature: "history(String evaluatorId,String contentFingerprint): List<EvaluationRecord>"
+            _change: delete
+          - signature: "history(EvaluationKey key): List<EvaluationRecord>"
+            _change: add
+```
+
+## Desempatar por orden de append y no por reloj
+
+El adaptador filesystem es el unico lugar donde el desempate de F-EVCOST-R006 se
+vuelve concreto, y la eleccion no es indiferente: se desempata por **posicion en
+el archivo**, no por `recordedAt`. El append es monotono y es la misma propiedad
+sobre la que ya se apoya la seguridad ante dos corridas simultaneas, mientras que
+un reloj puede empatar o retroceder. `recordedAt` queda como dato informativo.
+
+```architecture
+modules:
+  - name: evaluation-ledger-infrastructure
+    _change: modify
+    description: |
+      El orden de append es la unica fuente del desempate que exige F-EVCOST-R006: findLatest devuelve la ULTIMA escrita y history las devuelve todas, de la mas reciente a la mas antigua.
+```
+
+## Hacer que un evaluador sin version sea un evaluador no disponible
+
+La invariante 3 de F-QINST-R010 se sostenia con una **convencion de strings**: una
+version que no pudo derivarse llevaba el prefijo `unresolved-agent-definition:` y
+por eso no coincidia con ninguna clave registrada. Ese mecanismo dejo de proteger:
+con la version fuera de la identidad nadie compara versiones, asi que un String
+fabricado se registraria como procedencia legitima, contaminaria los recuentos de
+F-QINST-R005 y —como nada se invalida solo— seria permanente. Se reemplaza la
+convencion por un tipo: `Optional.empty()` significa "no puedo enunciar mi
+version", y la sesion lo trata desde el primer sujeto como evaluador caido.
+
+```architecture
+modules:
+  - name: evaluation-ledger-domain
+    _change: modify
+    interfaces:
+      - name: Evaluator
+        _change: modify
+        exposes:
+          - signature: "evaluatorVersion(): String"
+            _change: delete
+          - signature: "evaluatorVersion(): Optional<String>"
+            _change: add
+```
+
+## Declarar la version consultada solo si la corrida consulto
+
+`evaluatorVersion()` en la sesion afirmaba "la version bajo la que resolvi", que
+era cierto porque toda resolucion pasaba por esa version. Ya no: una corrida puede
+puntuar miles de veredictos **sin consultar ni una vez**, y F-QINST-R005 exige
+declarar exactamente eso. El nuevo nombre dice que se responde y el `Optional`
+admite el caso en que la respuesta es "ninguna" —todo reutilizado, sin
+presupuesto, o juez que no pudo enunciar su version—.
 
 ```architecture
 modules:
@@ -36,183 +188,95 @@ modules:
         _change: modify
         exposes:
           - signature: "evaluatorVersion(): String"
-            _change: add
-```
-
-## Separar el presupuesto que la sesion honra de la politica que interpreta el consumidor
-
-`EvaluationRunPolicy` llevaba tres campos y la sesion leia uno solo: `reevaluate`
-y `reevaluationScope` entraban por `open(...)` y nunca se miraban. Un contrato que
-recibe datos que ignora invita al error que ya ocurrio —pedir re-evaluacion y no
-re-evaluar, en silencio—. La sesion pasa a abrirse con `EvaluationBudget`, que
-contiene exactamente lo que honra; la re-evaluacion sigue siendo explicita y
-per-sujeto via `resolveForced` (F-EVCOST-R008), que es la unica forma en que la
-capacidad general puede expresarla sin conocer el vocabulario del consumidor.
-
-```architecture
-modules:
-  - name: evaluation-ledger-domain
-    _change: modify
-    models:
-      - name: EvaluationBudget
-        _change: add
-        type: record
-        fields:
-          - { name: maxNewEvaluations, type: int }
-    interfaces:
-      - name: EvaluationSessionFactory
-        _change: modify
-        exposes:
-          - signature: "open(EvaluationRunPolicy policy,Evaluator evaluator): EvaluationSession"
             _change: delete
-          - signature: "open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession"
+          - signature: "consultedEvaluatorVersion(): Optional<String>"
             _change: add
     packages:
       - name: evaluationsession
         _change: modify
-        implementations:
-          - name: DefaultEvaluationSession
-            _change: modify
-            requiresInject:
-              - { name: policy, type: EvaluationRunPolicy, _change: delete }
-              - { name: budget, type: EvaluationBudget, _change: add }
+        description: |
+          Un evaluador que devuelve Optional.empty() en evaluatorVersion() es, desde el primer sujeto, un evaluador NO DISPONIBLE, pero el reuso sigue ocurriendo intacto.
 ```
 
-## Mudar EvaluationRunPolicy al dominio que si puede resolverla
+## Separar en la cobertura la version consultada del recuento por procedencia
 
-El desajuste de fondo es que `reevaluationScope` es un id de knowledge y lo unico
-que la sesion conoce de un sujeto es su `subjectRef`, que es el id del ejercicio:
-la capacidad general **no puede** aplicar ese alcance ni aunque quisiera. El
-alcance solo tiene sentido donde existe la jerarquia del curso, asi que la
-politica de corrida se muda a `audit-domain`, junto al `QuizInstructionScopeMatcher`
-que ya la interpreta. `evaluation-ledger-domain` queda sin ningun tipo que declare
-campos que no lee.
+F-QINST-R005 declara ahora **dos** datos de version porque responden preguntas
+distintas: con que criterio se juzgo lo nuevo de esta corrida, y de que criterios
+viene el puntaje que se esta leyendo. Mezclarlos reintroduce la confusion, y ademas
+el primero puede no existir mientras el segundo puntua miles de veredictos.
+Declarar solo la version vigente seria hoy una afirmacion falsa sobre la mayoria
+del informe; declarar el conjunto de versiones sin recuentos seria honesto pero no
+accionable —no distingue un veredicto viejo de ocho mil, que es justo la cifra que
+decide si conviene re-evaluar—.
 
 ```architecture
 modules:
-  - name: evaluation-ledger-domain
-    _change: modify
-    models:
-      - name: EvaluationRunPolicy
-        _change: delete
   - name: audit-domain
     _change: modify
-    models:
-      - name: EvaluationRunPolicy
-        _change: add
-        type: record
-        fields:
-          - { name: maxNewEvaluations, type: int }
-          - { name: reevaluate, type: boolean }
-          - { name: reevaluationScope, type: String }
-```
-
-## Extraer a un unico locator la cadena de resolucion del directorio del agente
-
-El runner resolvia el directorio de definiciones con una cadena de tres pasos
-(config, `project_root`, CWD) y el resolutor de version tenia su propia copia
-CWD-relativa. Dos implementaciones de la misma pregunta es lo que permitio que
-divergieran, y la divergencia hace que el digest se calcule sobre un directorio
-distinto del que se ejecuta. Se extrae una unica implementacion de la cadena, con
-las dos entradas explicitas que el runtime necesita: con `project_root` cuando el
-consumidor lo aporta, y sin el cuando no.
-
-```architecture
-modules:
-  - name: agent-runtime-infrastructure
-    _change: modify
-    interfaces:
-      - name: AgentDefinitionLocator
-        _change: add
-        stereotype: port
-        exposes:
-          - signature: "locate(String agentName): AgentDefinitionLocation"
-            _change: add
-          - signature: "locateUnderProjectRoot(String projectRoot,String agentName): AgentDefinitionLocation"
-            _change: add
-      - name: AgentDefinitionLocatorFactory
-        _change: add
-        stereotype: factory
-        exposes:
-          - signature: "create(AgentGraphRunnerConfig config): AgentDefinitionLocator"
-            _change: add
-```
-
-## Hacer que "no encontre la definicion" sea un valor y no una ausencia
-
-La degradacion silenciosa era posible porque el resultado de buscar el directorio
-era un booleano descartable (`Files.isDirectory`) y el camino "no existe" no
-obligaba a nadie a hacer nada. El resultado pasa a ser un valor con dos formas
-distintas, de manera que ningun consumidor puede seguir de largo por accidente, y
-el caso negativo lleva la ruta donde se busco para que el diagnostico diga **donde
-miro**, no solo que fallo.
-
-```architecture
-modules:
-  - name: agent-runtime-infrastructure
-    _change: modify
-    interfaces:
-      - name: AgentDefinitionLocation
-        _change: add
-        exposes: []
-    models:
-      - name: AgentDefinitionFound
-        _change: add
-        type: record
-        implements: [AgentDefinitionLocation]
-        fields:
-          - { name: directory, type: Path }
-      - name: AgentDefinitionUnresolved
-        _change: add
-        type: record
-        implements: [AgentDefinitionLocation]
-        fields:
-          - { name: agentName, type: String }
-          - { name: searchedIn, type: Path }
-```
-
-## Hacer que el runner use el locator, para que digest y ejecucion no puedan divergir
-
-Que el resolutor de version use el locator no alcanza si el runner sigue teniendo
-su copia: quedarian dos cadenas que pueden separarse otra vez. Con el runner
-delegando, "el directorio del que sale el digest" y "el directorio que se carga
-para correr el grafo" son el mismo por construccion, no por disciplina. El locator
-es package-private junto al runner y solo su factory es publica, asi que la
-superficie del modulo crece en un seam, no en un motor.
-
-```architecture
-modules:
-  - name: agent-runtime-infrastructure
-    _change: modify
     packages:
-      - name: graphexecution
+      - name: quizinstruction
         _change: modify
-        implementations:
-          - name: DefaultAgentDefinitionLocatorFactory
+        models:
+          - name: JudgeVersionVerdictCount
             _change: add
-            visibility: public
-            implements: [AgentDefinitionLocatorFactory]
-          - name: DefaultAgentDefinitionLocator
-            _change: add
-            implements: [AgentDefinitionLocator]
-            requiresInject:
-              - { name: config, type: AgentGraphRunnerConfig }
-          - name: DefaultAgentGraphRunner
+            type: record
+            fields:
+              - name: judgeVersion
+                type: String
+              - name: verdictCount
+                type: int
+          - name: QuizInstructionCoverageDiagnosis
             _change: modify
-            requiresInject:
-              - { name: agentDefinitionLocator, type: AgentDefinitionLocator, _change: add }
+            fields:
+              - name: evaluatorVersion
+                _change: delete
+              - name: consultedJudgeVersion
+                type: String
+                _change: add
+              - name: verdictsByJudgeVersion
+                type: List<JudgeVersionVerdictCount>
+                _change: add
 ```
 
-## Dar al resolutor de version la definicion en vez de una ruta
+El recuento lo construye el analizador y no la sesion, aunque la sesion ya lleve
+todos los demas numeros de cobertura. La razon es que el recuento es sobre "los
+veredictos que el informe **puntua**", que es una nocion del consumidor: un
+veredicto de infraestructura resuelve la consulta pero no se puntua
+(F-QINST-R013), y lo pendiente y lo fallido tampoco (F-QINST-R004). La sesion no
+puede saber cual de sus resoluciones termino en un puntaje. Por la misma razon la
+segunda suma que exige F-QINST-R005 —recuentos = con veredicto— es una invariante
+verificable sobre la contabilidad propia del analizador.
 
-El resolutor deja de conocer rutas: pide la definicion al mismo locator con el que
-se construye el runner. Con eso, la mitad de F-QINST-R010 que exige que retocar el
-prompt invalide los veredictos guardados vuelve a ser cierta fuera de la raiz del
-repo, y ademas pasa a ser probable con un directorio de prueba, que es lo que hoy
-ningun test puede hacer. Cuando el locator responde `AgentDefinitionUnresolved`, la
-version se emite con un prefijo reservado en lugar de un digest con la misma forma
-que uno legitimo: una version que ignora la definicion del agente tiene que
-decirlo, y ademas nunca coincide con ninguna registrada.
+## Retirar `judgeVersionOverride` en vez de dejarlo sin efecto
+
+El campo existia para poder retocar el juez **sin invalidar el cache**. Como ya
+nada invalida nada, ese proposito desaparecio por completo. Lo que quedaria de el
+es peor que inutil: permitiria estampar a mano una procedencia que no deriva de la
+definicion del juez, que es exactamente la enfermedad que la invariante 3 de
+F-QINST-R010 declara inaceptable —solo que causada por el usuario en vez de por el
+sistema— y que ahora seria permanente. Se retira, con el mismo criterio con el que
+se retiro `evaluatorId()` de la factory en el patch anterior: una perilla que no
+hace lo que promete es peor que su ausencia.
+
+```architecture
+modules:
+  - name: quiz-instruction-infrastructure
+    _change: modify
+    models:
+      - name: QuizInstructionJudgeConfig
+        _change: modify
+        fields:
+          - name: judgeVersionOverride
+            _change: delete
+```
+
+## Devolver una version ausente en vez de una version fabricada
+
+El resolutor era el productor del String con prefijo reservado. Con la convencion
+retirada, devuelve `Optional.empty()` cuando el locator no encuentra la definicion.
+El cambio es el mismo de siempre en este proyecto: representar una ausencia con un
+tipo en lugar de con un valor de la misma forma que uno legitimo, para que nadie
+pueda confundirlos por descuido.
 
 ```architecture
 modules:
@@ -221,110 +285,49 @@ modules:
     packages:
       - name: instructionjudge
         _change: modify
-        implementations:
-          - name: DefaultQuizInstructionJudgeVersionResolver
+        interfaces:
+          - name: QuizInstructionJudgeVersionResolver
             _change: modify
-            requiresInject:
-              - { name: agentDefinitionLocator, type: AgentDefinitionLocator, _change: add }
+            exposes:
+              - signature: "resolve(QuizInstructionJudgeConfig config): String"
+                _change: delete
+              - signature: "resolve(QuizInstructionJudgeConfig config): Optional<String>"
+                _change: add
 ```
 
-## Entregar el locator por el mismo seam por el que ya se entrega el runner
+## Corregir el vocabulario de la cobertura general
 
-El locator y el runner se construyen los dos desde `AgentGraphRunnerConfig` en la
-composition root, que es el unico lugar autorizado a conocer ambos concretos. Se
-entrega junto al runner en la misma llamada, en vez de inyectarlo en la factory:
-mantiene la factory sin estado y deja explicito en la firma que un juez necesita
-las dos capacidades del runtime —correr el grafo y saber donde vive su definicion—
-y no una sola.
+`reused` y `pending` describian su significado en terminos de resultado
+"**vigente**", que era la palabra correcta cuando la version decidia vigencia. Hoy
+no hay vigencia: hay resultado registrado o no lo hay. Dejar la palabra vieja en el
+contrato es la forma mas barata de que alguien reimplemente la regla derogada.
 
 ```architecture
 modules:
-  - name: quiz-instruction-infrastructure
-    _change: modify
-    interfaces:
-      - name: QuizInstructionJudgeFactory
-        _change: modify
-        exposes:
-          - signature: "create(QuizInstructionJudgeConfig config,AgentGraphRunner agentGraphRunner): Evaluator"
-            _change: delete
-          - signature: "create(QuizInstructionJudgeConfig config,AgentGraphRunner agentGraphRunner,AgentDefinitionLocator agentDefinitionLocator): Evaluator"
-            _change: add
-```
-
-## Hacer que la factory de analizadores hable el nombre que el usuario ve
-
-El runner decidia incluir, excluir y presupuestar comparando contra
-`evaluatorId()`, que es el nombre del agente (`quiz-instruction-validator`),
-mientras que el informe muestra el nombre del analizador (`quiz-instruction`). El
-usuario leia un nombre y escribia ese nombre, y no pasaba nada: sin error y sin
-aviso. Son dos identidades legitimamente distintas —el id del evaluador forma
-parte de la clave del registro (F-EVCOST-R001) y cambiarlo invalidaria todos los
-veredictos guardados— pero solo una de las dos es vocabulario de auditoria, y es
-la que este seam tiene que exponer. Se expone en la factory y no en el analizador
-porque F-QINST-R011 exige que un analizador excluido **no se construya**: el
-nombre tiene que conocerse sin instanciar nada.
-
-```architecture
-modules:
-  - name: audit-domain
-    _change: modify
-    interfaces:
-      - name: EvaluationAnalyzerFactory
-        _change: modify
-        stereotype: factory
-        exposes:
-          - signature: "analyzerName(): String"
-            _change: add
-```
-
-## Retirar evaluatorId de la factory en vez de dejarlo conviviendo con el nombre
-
-Despues del cambio, `EvaluationAnalyzerFactory.evaluatorId()` se queda sin ningun
-consumidor: su unico llamador era el runner, exactamente en las tres decisiones
-equivocadas. Dejarlo por si algun informe futuro quiere decir que evaluador
-respalda a un analizador conservaria justamente la trampa que hizo posible el
-error —dos metodos que devuelven `String` y parecen intercambiables, en la
-interfaz que el runner mira— para un caso que hoy nadie pidio. `Evaluator.evaluatorId()`
-queda intacto: es la identidad del registro y los veredictos guardados siguen
-siendo validos. Del lado de la implementacion, la factory del juez vive en el
-mismo paquete que su analizador, asi que puede devolver la misma constante que
-`getName()` publica: la coincidencia entre lo que se filtra y lo que se muestra
-queda por construccion, no por disciplina.
-
-```architecture
-modules:
-  - name: audit-domain
-    _change: modify
-    interfaces:
-      - name: EvaluationAnalyzerFactory
-        _change: modify
-        exposes:
-          - signature: "evaluatorId(): String"
-            _change: delete
-```
-
-## Indexar las politicas de corrida por nombre de analizador
-
-El mapa de politicas era la segunda victima del mismo desajuste, y la mas cara: el
-CLI armaba la entrada con la clave `quiz-instruction` y el runner la buscaba por
-`quiz-instruction-validator`, asi que el `get` nunca acertaba y la corrida caia al
-presupuesto por defecto. Es decir, `--instruction-budget 10` —el flag cuyo
-proposito entero es que el costo no aparezca por sorpresa— corria con 500 sin
-avisar, y `--reevaluate-instructions` no re-evaluaba nada. Se renombra el campo
-ademas de cambiar la clave: con `includedAnalyzers`, `excludedAnalyzers` y
-`analyzerPolicies` los tres en el mismo vocabulario, un `Map<String,...>` deja de
-ser una cadena anonima y volver a mezclar identidades se vuelve visible al leer el
-record.
-
-```architecture
-modules:
-  - name: audit-application
+  - name: evaluation-ledger-domain
     _change: modify
     models:
-      - name: AuditRunRequest
+      - name: EvaluationCoverage
         _change: modify
-        type: record
         fields:
-          - { name: evaluationPolicies, _change: delete }
-          - { name: analyzerPolicies, type: "Map<String,EvaluationRunPolicy>", _change: add }
+          - name: reused
+            type: int
+            _change: modify
+            description: "Resueltos con un resultado ya registrado, cualquiera sea la version que lo produjo."
+          - name: pending
+            type: int
+            _change: modify
+            description: "Cambiar la version del evaluador nunca deja nada pendiente."
 ```
+
+## Nota de despliegue: el formato del registro cambia
+
+`EvaluationKey` pierde un campo y `EvaluationRecord` gana otro, asi que las lineas
+ya escritas en `.content-audit/evaluations/` dejan de parsear — y F-EVCOST-R004
+manda **descartar en silencio** la linea que no se puede interpretar. Es decir: si
+existieran resultados registrados, este patch los borraria sin un solo mensaje de
+error, que es exactamente lo que la decision del usuario existe para evitar.
+Verificado que hoy no existe ese directorio y que la corrida en vivo del juez esta
+pendiente, asi que **no hay dato que migrar**. La ventana se cierra apenas se
+registre el primer veredicto pagado: si el patch no se aplica antes, hace falta una
+lectura compatible que levante la version desde la clave vieja.

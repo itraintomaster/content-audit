@@ -101,8 +101,7 @@ public class QuizInstructionAgentJudgeTest {
                 "gpt-4o-mini",
                 0.0,
                 30,
-                "quiz-instruction-validator",
-                "judge-version-fixed-for-test");
+                "quiz-instruction-validator");
     }
 
     private Map<String, String> buildDeclaredInputs() {

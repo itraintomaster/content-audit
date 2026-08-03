@@ -1,4 +1,4 @@
-generatedAt: 2026-08-02T01:54:21.370343Z
+generatedAt: 2026-08-03T01:42:26.879644Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -3674,7 +3674,7 @@ features:
     - branchCoverage 57% < 60%
     - mutationScore 40% < 60%
 - id: FEAT-QINST
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: ./requirements/2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-QINST-R001
@@ -3805,7 +3805,7 @@ features:
       module: audit-domain
       implementation: QuizInstructionAnalyzer
   - ruleId: F-QINST-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should declare on the course node how many quizzes were reached, resolved,\
         \ evaluated in this run, reused, pending and failed"
@@ -3827,13 +3827,13 @@ features:
       implementation: QuizInstructionAnalyzer
     - name: should declare in the coverage the judge version the run evaluated with
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: QuizInstructionAnalyzer
     - name: "should declare a single judge version, the one in effect, for a run that\
         \ both reuses verdicts from earlier runs and evaluates new ones"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: QuizInstructionAnalyzer
     - name: should render the declared coverage of the quiz instruction analysis next
@@ -3845,7 +3845,7 @@ features:
     - name: should render the judge version the analysis evaluated with next to the
         coverage numbers
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: QuizInstructionDetailedFormatter
   - ruleId: F-QINST-R006
@@ -3991,7 +3991,7 @@ features:
       module: quiz-instruction-infrastructure
       implementation: QuizInstructionAgentJudge
   - ruleId: F-QINST-R010
-    state: FAILING
+    state: PASSING
     tests:
     - name: should not reuse the verdicts recorded by a previous judge version and
         report those quizzes as pending
@@ -4002,7 +4002,7 @@ features:
     - name: should yield an evaluator that reports itself unavailable and emits no
         verdict when the agent definition its version derives from cannot be located
       implemented: true
-      passing: false
+      passing: true
       module: quiz-instruction-infrastructure
       implementation: DefaultQuizInstructionJudgeFactory
     - name: should derive a different judge version when the agent definition or the
@@ -4025,14 +4025,14 @@ features:
     - name: "should derive a different judge version when only the text of the agent\
         \ definition changes, with the agent name and the model untouched"
       implemented: true
-      passing: false
+      passing: true
       module: quiz-instruction-infrastructure
       implementation: DefaultQuizInstructionJudgeVersionResolver
     - name: "should derive a judge version that cannot coincide with any version derived\
         \ from a reachable agent definition when the definition cannot be located,\
         \ so that no recorded verdict is current under it"
       implemented: true
-      passing: false
+      passing: true
       module: quiz-instruction-infrastructure
       implementation: DefaultQuizInstructionJudgeVersionResolver
   - ruleId: F-QINST-R011
@@ -4143,33 +4143,33 @@ features:
       module: audit-domain
       implementation: DefaultQuizInstructionSubjectBuilder
   - ruleId: F-QINST-R015
-    state: FAILING
+    state: PASSING
     tests:
     - name: should publish for selection exactly the name under which the analyzer
         it builds reports its score
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultQuizInstructionAnalyzerFactory
     - name: "should not run the quiz instruction analysis when the run excludes it\
         \ by the very name the report publishes, while the judge behind it answers\
         \ to a different name"
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: DefaultAuditRunner
     - name: "should cap the judge queries at the number requested for the name the\
         \ report publishes instead of falling back to the default cap, while the judge\
         \ behind it answers to a different name"
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: DefaultAuditRunner
     - name: "should re evaluate quizzes that already had a verdict when re evaluation\
         \ is requested for the name the report publishes, while the judge behind it\
         \ answers to a different name"
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: DefaultAuditRunner
   journeysCoverage:
@@ -4323,15 +4323,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 490
-      linesMissed: 130
+      linesCovered: 505
+      linesMissed: 115
       linesTotal: 620
-      lineCoveragePct: 79
-      branchesCovered: 192
-      branchesMissed: 141
+      lineCoveragePct: 81
+      branchesCovered: 201
+      branchesMissed: 132
       branchesTotal: 333
-      branchCoveragePct: 57
-      blendPct: 68
+      branchCoveragePct: 60
+      blendPct: 70
     mutation:
       totalMutants: 182
       killed: 40
@@ -4345,7 +4345,7 @@ features:
       totalMethods: 82
       hotspots: 2
       maxCrap: 34.67481600000001
-      averageCrap: 3.9679561463414634
+      averageCrap: 3.908139548780488
       simple: 75
       moderate: 5
       high: 2
@@ -4369,7 +4369,6 @@ features:
     healthScore: 54
     verdict: WARNED
     violations:
-    - branchCoverage 57% < 60%
     - mutationScore 21% < 60%
 - id: FEAT-INCEXP
   state: IMPLEMENTED
@@ -5506,7 +5505,7 @@ features:
       module: evaluation-ledger-infrastructure
       implementation: FileSystemEvaluationLedger
   - ruleId: F-EVCOST-R008
-    state: FAILING
+    state: PASSING
     tests:
     - name: should consult the evaluator again for content with a current result only
         when re-evaluation is explicitly requested
@@ -5517,7 +5516,7 @@ features:
     - name: should keep reusing the registered current result of the neighbouring
         content in the same run when re evaluation is requested for one content only
       implemented: true
-      passing: false
+      passing: true
       module: evaluation-ledger-domain
       implementation: DefaultEvaluationSession
     - name: should keep the earlier entry consultable in history when the same key
@@ -5543,15 +5542,15 @@ features:
       implementation: DefaultEvaluationSession
   journeysCoverage:
   - journeyId: F-EVCOST-J001
-    state: PASSING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: PASSING
+      state: DECLARED
       tests:
-      - name: path1_hayUnResultadoRegistradoParaEseEvaluadorEnSuVersionVigenteYParaLaMismaHuellaDeContenido_success
-        implemented: true
-        passing: true
+      - name: path1_hayUnResultadoRegistradoParaEseEvaluadorYParaLaMismaHuellaDeContenidoProducidoPorLaVersionVigente_success
+        implemented: false
+        passing: false
         module: evaluation-ledger-domain
         implementation: FEvcostJ001JourneyTest
     - pathId: path-2
@@ -5565,11 +5564,11 @@ features:
         implementation: FEvcostJ001JourneyTest
     - pathId: path-3
       result: success
-      state: PASSING
+      state: DECLARED
       tests:
-      - name: path3_hayUnResultadoRegistradoPeroFueProducidoPorUnaVersionAnteriorDelEvaluador_success
-        implemented: true
-        passing: true
+      - name: path3_hayUnResultadoRegistradoParaLaMismaHuellaPeroFueProducidoPorUnaVersionAnteriorDelEvaluador_success
+        implemented: false
+        passing: false
         module: evaluation-ledger-domain
         implementation: FEvcostJ001JourneyTest
     - pathId: path-4
@@ -21917,6 +21916,19 @@ elements:
         usedPolicy is not null
         usedPolicy.getMaxNewEvaluations() == 500
         verify: sessionFactory.open(policyCaptor.capture(), eq(evaluator))
+    - |
+      test: "should publish for selection exactly the name under which the analyzer it builds reports its score"
+      trace: FEAT-QINST / F-QINST-R015
+
+      given:
+        analyzer = sut.create(null)
+
+      mock:
+        config.getDefaultMaxNewEvaluations() -> 500
+        sessionFactory.open(any(), eq(evaluator)) -> session
+
+      then:
+        analyzer.getName() == sut.analyzerName()
   - name: QuizInstructionAnalyzer
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzer.java
@@ -22002,11 +22014,11 @@ elements:
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
     - name: should declare in the coverage the judge version the run evaluated with
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
     - name: "should declare a single judge version, the one in effect, for a run that\
         \ both reuses verdicts from earlier runs and evaluates new ones"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/QuizInstructionAnalyzerTest.java
     testCleanViews:
     - |
@@ -22666,6 +22678,73 @@ elements:
 
       then:
         declared.getCoverage().getReached() == 11487
+    - |
+      test: "should declare in the coverage the judge version the run evaluated with"
+      trace: FEAT-QINST / F-QINST-R005
+
+      given:
+        session = mock(EvaluationSession.class)
+        subjectBuilder = mock(QuizInstructionSubjectBuilder.class)
+        scorer = mock(QuizInstructionScorer.class)
+        scopeMatcher = mock(QuizInstructionScopeMatcher.class)
+        verdictReader = mock(QuizInstructionVerdictReader.class)
+        policy = normalPolicy(500)
+        coverage = EvaluationCoverage(5, 3, 2, 1, 1, 1)
+        analyzer = QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy)
+        courseNode = buildCourseNode()
+        declared = ((CourseDiagnoses) courseNode.getDiagnoses()).getQuizInstructionCoverage().orElseThrow(() -> new AssertionError("La cobertura del analisis de consigna debe quedar declarada (R005)"))
+
+      mock:
+        session.coverage() -> coverage
+        session.evaluatorVersion() -> "quiz-instruction-validator@sha256:v7"
+
+      when:
+        sut.onCourseComplete(courseNode)
+
+      then:
+        declared.getEvaluatorVersion() == "quiz-instruction-validator@sha256:v7"
+    - |
+      test: "should declare a single judge version, the one in effect, for a run that both reuses verdicts from earlier runs and evaluates new ones"
+      trace: FEAT-QINST / F-QINST-R005
+
+      given:
+        session = mock(EvaluationSession.class)
+        subjectBuilder = mock(QuizInstructionSubjectBuilder.class)
+        scorer = mock(QuizInstructionScorer.class)
+        scopeMatcher = mock(QuizInstructionScopeMatcher.class)
+        verdictReader = mock(QuizInstructionVerdictReader.class)
+        policy = normalPolicy(500)
+        currentJudgeVersion = "quiz-instruction-validator@sha256:v9"
+        evaluatedInThisRun = buildQuizNode(buildQuiz("q1"))
+        subj1 = EvaluationSubject("q1", Map.of())
+        newVerdict = QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "cumple", List.of(), List.of())
+        reusedFromEarlierRun = buildQuizNode(buildQuiz("q2"))
+        subj2 = EvaluationSubject("q2", Map.of())
+        reusedVerdict = QuizInstructionVerdict(true, 0.95, InstructionSeverity.NONE, "cumple", List.of(), List.of())
+        analyzer = QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy)
+        coverage = EvaluationCoverage(2, 2, 1, 1, 0, 0)
+        courseNode = buildCourseNode()
+        declared = ((CourseDiagnoses) courseNode.getDiagnoses()).getQuizInstructionCoverage().orElseThrow(() -> new AssertionError("La cobertura del analisis de consigna debe quedar declarada (R005)"))
+
+      mock:
+        session.evaluatorVersion() -> currentJudgeVersion
+        subjectBuilder.build(evaluatedInThisRun) -> subj1
+        session.resolve(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-new")
+        verdictReader.read("payload-new") -> newVerdict
+        scorer.score(newVerdict) -> 1.0
+        subjectBuilder.build(reusedFromEarlierRun) -> subj2
+        session.resolve(subj2) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-reused")
+        verdictReader.read("payload-reused") -> reusedVerdict
+        scorer.score(reusedVerdict) -> 1.0
+        session.coverage() -> coverage
+
+      when:
+        sut.onQuiz(evaluatedInThisRun)
+
+      then:
+        ((QuizDiagnoses) evaluatedInThisRun.getDiagnoses()).getQuizInstructionDiagnosis().orElseThrow().isReusedFromPreviousRun() is false
+        ((QuizDiagnoses) reusedFromEarlierRun.getDiagnoses()).getQuizInstructionDiagnosis().orElseThrow().isReusedFromPreviousRun() is true
+        declared.getEvaluatorVersion() == currentJudgeVersion
   - name: DefaultQuizInstructionSubjectBuilder
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionSubjectBuilder.java
@@ -22963,15 +23042,15 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 2061
-      linesMissed: 1161
+      linesCovered: 2064
+      linesMissed: 1158
       linesTotal: 3222
-      lineCoveragePct: 63
-      branchesCovered: 670
-      branchesMissed: 913
+      lineCoveragePct: 64
+      branchesCovered: 671
+      branchesMissed: 912
       branchesTotal: 1583
       branchCoveragePct: 42
-      blendPct: 52
+      blendPct: 53
     mutation:
       totalMutants: 1538
       killed: 593
@@ -22985,7 +23064,7 @@ elements:
       totalMethods: 917
       hotspots: 47
       maxCrap: 342.0
-      averageCrap: 6.126862415485277
+      averageCrap: 6.123590877862594
       simple: 848
       moderate: 19
       high: 11
@@ -23062,10 +23141,10 @@ elements:
         cyclomatic: 11
         lineCoveragePct: 10
         crap: 99.20900000000002
-    healthScore: 56
+    healthScore: 57
     verdict: WARNED
     violations:
-    - lineCoverage 63% < 70%
+    - lineCoverage 64% < 70%
     - branchCoverage 42% < 60%
     - mutationScore 38% < 60%
     - crapHotspots 47 > 5
@@ -30456,6 +30535,106 @@ elements:
 
       then:
         verify: quizInstructionFactory.create(policy)
+    - |
+      test: "should not run the quiz instruction analysis when the run excludes it by the very name the report publishes, while the judge behind it answers to a different name"
+      trace: FEAT-QINST / F-QINST-R015
+
+      given:
+        quizNode = quizInstructionQuizNode("quiz-1")
+        rootNode = quizInstructionRootWithChildren(quizNode)
+        baseReport = AuditReport(rootNode)
+        ledger = FakeQuizInstructionEvaluationLedger()
+        fingerprinter = FakeQuizInstructionContentFingerprinter()
+        sessionFactory = DefaultEvaluationSessionFactory(ledger, fingerprinter)
+        evaluator = FakeQuizInstructionEvaluator(EVALUATOR_ID, "v1")
+        quizInstructionFactory = mock(EvaluationAnalyzerFactory.class)
+        runner = DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine, List.of(), scoreAggregator, List.of(quizInstructionFactory))
+        request = AuditRunRequest(null, Set.of(ANALYZER_NAME), null)
+
+      mock:
+        quizInstructionFactory.analyzerName() -> ANALYZER_NAME
+        courseRepository.load(coursePath) -> courseEntity
+        courseToAuditableMapper.map(courseEntity) -> auditableCourse
+        auditEngine.runAudit(auditableCourse) -> baseReport
+
+      when:
+        sut.thenAnswer(invocation -> {
+          EvaluationRunPolicy policy = invocation.getArgument(0);
+          EvaluationRunPolicy effectivePolicy = policy != null ? policy : new EvaluationRunPolicy(500, false, null);
+          EvaluationSession session = sessionFactory.open(quizInstructionBudgetFrom(effectivePolicy), evaluator);
+          return quizInstructionSessionBackedAnalyzer(session, effectivePolicy);
+      })
+
+      then:
+        evaluator.getEvaluatedSubjects().isEmpty() is true
+        verify: quizInstructionFactory.create(any()) x 0
+    - |
+      test: "should cap the judge queries at the number requested for the name the report publishes instead of falling back to the default cap, while the judge behind it answers to a different name"
+      trace: FEAT-QINST / F-QINST-R015
+
+      given:
+        quiz1 = quizInstructionQuizNode("quiz-1")
+        quiz2 = quizInstructionQuizNode("quiz-2")
+        quiz3 = quizInstructionQuizNode("quiz-3")
+        rootNode = quizInstructionRootWithChildren(quiz1, quiz2, quiz3)
+        baseReport = AuditReport(rootNode)
+        ledger = FakeQuizInstructionEvaluationLedger()
+        fingerprinter = FakeQuizInstructionContentFingerprinter()
+        sessionFactory = DefaultEvaluationSessionFactory(ledger, fingerprinter)
+        evaluator = FakeQuizInstructionEvaluator(EVALUATOR_ID, "v1")
+        quizInstructionFactory = mock(EvaluationAnalyzerFactory.class)
+        runner = DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine, List.of(), scoreAggregator, List.of(quizInstructionFactory))
+        cappedPolicy = EvaluationRunPolicy(2, false, null)
+        request = AuditRunRequest(null, null, Map.of(ANALYZER_NAME, cappedPolicy))
+
+      mock:
+        quizInstructionFactory.analyzerName() -> ANALYZER_NAME
+        courseRepository.load(coursePath) -> courseEntity
+        courseToAuditableMapper.map(courseEntity) -> auditableCourse
+        auditEngine.runAudit(auditableCourse) -> baseReport
+
+      when:
+        sut.thenAnswer(invocation -> {
+          EvaluationRunPolicy policy = invocation.getArgument(0);
+          EvaluationSession session = sessionFactory.open(quizInstructionBudgetFrom(policy), evaluator);
+          return quizInstructionSessionBackedAnalyzer(session, policy);
+      })
+
+      then:
+        evaluator.getEvaluatedSubjects().size() == 2
+        verify: quizInstructionFactory.create(cappedPolicy)
+    - |
+      test: "should re evaluate quizzes that already had a verdict when re evaluation is requested for the name the report publishes, while the judge behind it answers to a different name"
+      trace: FEAT-QINST / F-QINST-R015
+
+      given:
+        quizNode = quizInstructionQuizNode("quiz-1")
+        rootNode = quizInstructionRootWithChildren(quizNode)
+        baseReport = AuditReport(rootNode)
+        ledger = FakeQuizInstructionEvaluationLedger()
+        fingerprinter = FakeQuizInstructionContentFingerprinter()
+        sessionFactory = DefaultEvaluationSessionFactory(ledger, fingerprinter)
+        evaluator = FakeQuizInstructionEvaluator(EVALUATOR_ID, "v1")
+        fingerprint = fingerprinter.fingerprint(quizInstructionSubjectContent("quiz-1"))
+        currentKey = EvaluationKey(EVALUATOR_ID, "v1", fingerprint)
+        quizInstructionFactory = mock(EvaluationAnalyzerFactory.class)
+        runner = DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine, List.of(), scoreAggregator, List.of(quizInstructionFactory))
+        reevaluationPolicy = EvaluationRunPolicy(500, true, null)
+        request = AuditRunRequest(null, null, Map.of(ANALYZER_NAME, reevaluationPolicy))
+
+      mock:
+        quizInstructionFactory.analyzerName() -> ANALYZER_NAME
+        courseRepository.load(coursePath) -> courseEntity
+        courseToAuditableMapper.map(courseEntity) -> auditableCourse
+        auditEngine.runAudit(auditableCourse) -> baseReport
+
+      when:
+        sut.seed(new EvaluationRecord(currentKey, "{\"compliant\":true}", "quiz-1", Instant.now()))
+
+      then:
+        evaluator.getEvaluatedSubjects().size() == 1
+        ledger.history(EVALUATOR_ID, fingerprint).size() == 2
+        verify: quizInstructionFactory.create(reevaluationPolicy)
     quality:
       coverage:
         linesCovered: 49
@@ -38650,7 +38829,7 @@ elements:
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/QuizInstructionDetailedFormatterTest.java
     - name: should render the judge version the analysis evaluated with next to the
         coverage numbers
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/QuizInstructionDetailedFormatterTest.java
     testCleanViews:
     - |
@@ -38704,6 +38883,26 @@ elements:
         result.contains("the sentence uses 'run' instead of 'running'") is true
         result.contains("NO-BLANK") is true
         result.contains("sentence: 'She always drinks coffee in the morning.' has no blank") is true
+    - |
+      test: "should render the judge version the analysis evaluated with next to the coverage numbers"
+      trace: FEAT-QINST / F-QINST-R005
+
+      given:
+        coverage = EvaluationCoverage(742, 610, 88, 522, 120, 12)
+        judgeVersion = "qij-8f3d1c-2026.07"
+        coverageDiagnosis = QuizInstructionCoverageDiagnosis(coverage, judgeVersion)
+        courseDiagnoses = mock(CourseDiagnoses.class)
+        courseNode = AuditNode(null, AuditTarget.COURSE, null, List.of(), Map.of("quiz-instruction", 0.48), Map.of(), courseDiagnoses)
+        formatter = QuizInstructionDetailedFormatter()
+        result = formatter.format("quiz-instruction", courseNode, "text")
+
+      mock:
+        courseDiagnoses.getQuizInstructionCoverage() -> Optional.of(coverageDiagnosis)
+
+      then:
+        result is not null
+        result.contains("742") is true
+        result.contains(judgeVersion) is true
   - name: DefaultWorkdirResolver
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/bootstrap/DefaultWorkdirResolver.java
@@ -48886,8 +49085,6 @@ elements:
     fields:
     - name: evaluatorId
       status: EXISTS
-    - name: evaluatorVersion
-      status: EXISTS
     - name: contentFingerprint
       status: EXISTS
   - name: EvaluationSubject
@@ -48909,6 +49106,8 @@ elements:
     - name: subjectRef
       status: EXISTS
     - name: recordedAt
+      status: EXISTS
+    - name: evaluatorVersion
       status: EXISTS
   - name: EvaluationEmitted
     status: EXISTS
@@ -48952,6 +49151,8 @@ elements:
       status: EXISTS
     - name: payload
       status: EXISTS
+    - name: evaluatorVersion
+      status: EXISTS
   - name: EvaluationCoverage
     status: EXISTS
     filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/EvaluationCoverage.java
@@ -48982,11 +49183,11 @@ elements:
     status: EXISTS
     filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/EvaluationLedger.java
     methods:
-    - signature: "find(EvaluationKey key): Optional<EvaluationRecord>"
-      status: EXISTS
     - signature: "append(EvaluationRecord record): void"
       status: EXISTS
-    - signature: "history(String evaluatorId,String contentFingerprint): List<EvaluationRecord>"
+    - signature: "findLatest(EvaluationKey key): Optional<EvaluationRecord>"
+      status: EXISTS
+    - signature: "history(EvaluationKey key): List<EvaluationRecord>"
       status: EXISTS
   - name: ContentFingerprinter
     status: EXISTS
@@ -49000,9 +49201,9 @@ elements:
     methods:
     - signature: "evaluatorId(): String"
       status: EXISTS
-    - signature: "evaluatorVersion(): String"
-      status: EXISTS
     - signature: "evaluate(EvaluationSubject subject): EvaluationOutcome"
+      status: EXISTS
+    - signature: "evaluatorVersion(): Optional<String>"
       status: EXISTS
   - name: EvaluationSession
     status: EXISTS
@@ -49014,7 +49215,7 @@ elements:
       status: EXISTS
     - signature: "coverage(): EvaluationCoverage"
       status: EXISTS
-    - signature: "evaluatorVersion(): String"
+    - signature: "consultedEvaluatorVersion(): Optional<String>"
       status: EXISTS
   - name: EvaluationSessionFactory
     status: EXISTS
@@ -49083,7 +49284,7 @@ elements:
       testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSessionTest.java
     - name: should keep reusing the registered current result of the neighbouring
         content in the same run when re evaluation is requested for one content only
-      status: MISSING
+      status: EXISTS
       testFilePath: evaluation-ledger-domain/src/test/java/com/learney/contentaudit/evaluationledgerdomain/evaluationsession/DefaultEvaluationSessionTest.java
     testCleanViews:
     - |
@@ -49466,6 +49667,41 @@ elements:
         resolutions[1].getKind() == EvaluationResolutionKind.PENDING
         resolutions[2].getKind() == EvaluationResolutionKind.PENDING
         verify: evaluator.evaluate(any())
+    - |
+      test: "should keep reusing the registered current result of the neighbouring content in the same run when re evaluation is requested for one content only"
+      trace: FEAT-EVCOST / F-EVCOST-R008
+
+      given:
+        contentA = Map.of("instruction", "Content A - re-evaluation requested for this one.")
+        contentB = Map.of("instruction", "Content B - neighbour with a current result.")
+        fingerprinter = mock(ContentFingerprinter.class)
+        evaluator = mock(Evaluator.class)
+        ledger = InMemoryLedger()
+        policy = EvaluationBudget(5)
+        session = DefaultEvaluationSession(ledger, fingerprinter, evaluator, policy)
+        subjectA = EvaluationSubject("quiz-a", contentA)
+        subjectB = EvaluationSubject("quiz-b", contentB)
+        resolutionA = session.resolveForced(subjectA)
+        resolutionB = session.resolve(subjectB)
+        evaluatedSubjects = ArgumentCaptor.forClass(EvaluationSubject.class)
+
+      mock:
+        fingerprinter.fingerprint(contentA) -> "fp-a"
+        fingerprinter.fingerprint(contentB) -> "fp-b"
+        evaluator.evaluatorId() -> "qinst-judge"
+        evaluator.evaluatorVersion() -> "v1"
+        evaluator.evaluate(any()) -> new EvaluationEmitted("APPROVED-A-AGAIN")
+
+      when:
+        sut.append(new EvaluationRecord(new EvaluationKey("qinst-judge", "v1", "fp-a"), "APPROVED-A-FIRST", "quiz-a", Instant.parse("2026-07-01T00:00:00Z")))
+
+      then:
+        resolutionA.getKind() == EvaluationResolutionKind.EVALUATED
+        resolutionA.getPayload() == "APPROVED-A-AGAIN"
+        resolutionB.getKind() == EvaluationResolutionKind.REUSED
+        resolutionB.getPayload() == "APPROVED-B"
+        evaluatedSubjects.getValue().getContent() == contentA
+        verify: evaluator.evaluate(evaluatedSubjects.capture())
   - name: Sha256ContentFingerprinter
     status: EXISTS
     filePath: evaluation-ledger-domain/src/main/java/com/learney/contentaudit/evaluationledgerdomain/contentfingerprint/Sha256ContentFingerprinter.java
@@ -50127,8 +50363,6 @@ elements:
       status: EXISTS
     - name: agentName
       status: EXISTS
-    - name: judgeVersionOverride
-      status: EXISTS
   interfaces:
   - name: QuizInstructionJudgeFactory
     status: EXISTS
@@ -50171,6 +50405,27 @@ elements:
 
       then:
         evaluator is not null
+        notEmitted.getKind() == EvaluationFailureKind.EVALUATOR_UNAVAILABLE
+    - |
+      test: "should yield an evaluator that reports itself unavailable and emits no verdict when the agent definition its version derives from cannot be located"
+      trace: FEAT-QINST / F-QINST-R010
+
+      given:
+        runnerConfig = AgentGraphRunnerConfig(emptyAgentsDir, null)
+        realAgentGraphRunner = DefaultAgentGraphRunnerFactory().create(runnerConfig)
+        realAgentDefinitionLocator = DefaultAgentDefinitionLocatorFactory().create(runnerConfig)
+        config = QuizInstructionJudgeConfig("http://localhost:1234/v1", "test-api-key", "gpt-4o-mini", 0.0, 30, "quiz-instruction-validator", null)
+        factory = DefaultQuizInstructionJudgeFactory()
+        evaluator = factory.create(config, realAgentGraphRunner, realAgentDefinitionLocator)
+        content = LinkedHashMap<>()
+        subject = EvaluationSubject("quiz-1", content)
+        outcome = assertDoesNotThrow(() -> evaluator.evaluate(subject), "F-QINST-R010: la corrida trata al juez como no disponible en vez de abortar la auditoria cuando " + "la definicion de la que sale su version no se puede localizar")
+        notEmitted = assertInstanceOf(EvaluationNotEmitted.class, outcome)
+
+      when:
+        sut.put("cefrLevel", "A2")
+
+      then:
         notEmitted.getKind() == EvaluationFailureKind.EVALUATOR_UNAVAILABLE
   - name: QuizInstructionAgentJudge
     status: EXISTS
@@ -50289,12 +50544,12 @@ elements:
       testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeVersionResolverTest.java
     - name: "should derive a different judge version when only the text of the agent\
         \ definition changes, with the agent name and the model untouched"
-      status: MISSING
+      status: EXISTS
       testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeVersionResolverTest.java
     - name: "should derive a judge version that cannot coincide with any version derived\
         \ from a reachable agent definition when the definition cannot be located,\
         \ so that no recorded verdict is current under it"
-      status: MISSING
+      status: EXISTS
       testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeVersionResolverTest.java
     testCleanViews:
     - |
@@ -50341,6 +50596,49 @@ elements:
 
       then:
         resolver.resolve(overridden) == "manual-judge-version-7"
+    - |
+      test: "should derive a different judge version when only the text of the agent definition changes, with the agent name and the model untouched"
+      trace: FEAT-QINST / F-QINST-R010
+
+      given:
+        promptFile = agentDefinitionDir.resolve("evaluate.md")
+        locator = mock(AgentDefinitionLocator.class)
+        resolver = DefaultQuizInstructionJudgeVersionResolver(locator)
+        config = config("gpt-4o-mini", "quiz-instruction-validator")
+        versionBeforeEditingThePrompt = resolver.resolve(config)
+        versionAfterEditingThePrompt = resolver.resolve(config)
+
+      mock:
+        locator.locate("quiz-instruction-validator") -> new AgentDefinitionFound(agentDefinitionDir)
+
+      when:
+        sut.writeString(promptFile, "Judge whether the quiz respects its instructions.")
+
+      then:
+        versionBeforeEditingThePrompt != null
+    - |
+      test: "should derive a judge version that cannot coincide with any version derived from a reachable agent definition when the definition cannot be located, so that no recorded verdict is current under it"
+      trace: FEAT-QINST / F-QINST-R010
+
+      given:
+        locatorWithAccessibleDefinition = mock(AgentDefinitionLocator.class)
+        resolverWithAccessibleDefinition = DefaultQuizInstructionJudgeVersionResolver(locatorWithAccessibleDefinition)
+        config = config("gpt-4o-mini", "quiz-instruction-validator")
+        versionDerivedFromAccessibleDefinition = resolverWithAccessibleDefinition.resolve(config)
+        locatorUnableToLocateTheDefinition = mock(AgentDefinitionLocator.class)
+        resolverUnableToLocateTheDefinition = DefaultQuizInstructionJudgeVersionResolver(locatorUnableToLocateTheDefinition)
+        versionWhenTheDefinitionCannotBeLocated = resolverUnableToLocateTheDefinition.resolve(config)
+
+      mock:
+        locatorWithAccessibleDefinition.locate("quiz-instruction-validator") -> new AgentDefinitionFound(agentDefinitionDir)
+        locatorUnableToLocateTheDefinition.locate("quiz-instruction-validator") -> new AgentDefinitionUnresolved("quiz-instruction-validator", agentDefinitionDir.resolve("does-not-exist"))
+
+      when:
+        sut.writeString(agentDefinitionDir.resolve("evaluate.md"), "Judge whether the quiz respects its instructions.")
+
+      then:
+        versionDerivedFromAccessibleDefinition != null
+        versionWhenTheDefinitionCannotBeLocated.startsWith("unresolved-agent-definition:") is true
   - name: JacksonQuizInstructionVerdictReader
     status: EXISTS
     filePath: quiz-instruction-infrastructure/src/main/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionverdict/JacksonQuizInstructionVerdictReader.java
@@ -50392,15 +50690,15 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 94
-      linesMissed: 50
+      linesCovered: 107
+      linesMissed: 37
       linesTotal: 144
-      lineCoveragePct: 65
-      branchesCovered: 28
-      branchesMissed: 52
+      lineCoveragePct: 74
+      branchesCovered: 37
+      branchesMissed: 43
       branchesTotal: 80
-      branchCoveragePct: 35
-      blendPct: 50
+      branchCoveragePct: 46
+      blendPct: 60
     mutation:
       totalMutants: 85
       killed: 0
@@ -50414,7 +50712,7 @@ elements:
       totalMethods: 42
       hotspots: 1
       maxCrap: 132.0
-      averageCrap: 5.228129619047619
+      averageCrap: 5.15896388095238
       simple: 41
       moderate: 0
       high: 0
@@ -50428,17 +50726,16 @@ elements:
         cyclomatic: 11
         lineCoveragePct: 0
         crap: 132.0
-    healthScore: 40
+    healthScore: 43
     verdict: WARNED
     violations:
-    - lineCoverage 65% < 70%
-    - branchCoverage 35% < 60%
+    - branchCoverage 46% < 60%
     - mutationScore 0% < 60%
 testSummary:
   total: 1215
-  passing: 1193
+  passing: 1199
   failing: 0
-  notImplemented: 22
+  notImplemented: 16
 qualitySummary:
   enforcement: warn
   thresholds:
@@ -50448,12 +50745,12 @@ qualitySummary:
     crapHotspotThreshold: 30
     crapHotspotsMax: 5
   coverage:
-    linesCovered: 8848
-    linesMissed: 6354
+    linesCovered: 8864
+    linesMissed: 6338
     linesTotal: 15202
     lineCoveragePct: 58
-    branchesCovered: 3257
-    branchesMissed: 4631
+    branchesCovered: 3267
+    branchesMissed: 4621
     branchesTotal: 7888
     branchCoveragePct: 41
     blendPct: 49
@@ -50470,7 +50767,7 @@ qualitySummary:
     totalMethods: 3147
     hotspots: 175
     maxCrap: 870.0
-    averageCrap: 8.281816797585
+    averageCrap: 8.279940419764854
     simple: 2828
     moderate: 127
     high: 61

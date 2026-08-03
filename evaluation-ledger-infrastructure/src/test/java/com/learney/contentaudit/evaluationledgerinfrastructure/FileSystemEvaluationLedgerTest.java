@@ -38,10 +38,11 @@ public class FileSystemEvaluationLedgerTest {
     private static EvaluationRecord record(String fingerprint, String payload, String subjectRef,
             Instant recordedAt) {
         return new EvaluationRecord(
-                new EvaluationKey(EVALUATOR_ID, EVALUATOR_VERSION, fingerprint),
+                new EvaluationKey(EVALUATOR_ID, fingerprint),
                 payload,
                 subjectRef,
-                recordedAt);
+                recordedAt,
+                EVALUATOR_VERSION);
     }
 
     /**
@@ -87,9 +88,9 @@ public class FileSystemEvaluationLedgerTest {
 
         EvaluationLedger resumedRun = new FileSystemEvaluationLedger(tempDir);
 
-        Optional<EvaluationRecord> foundFirst = resumedRun.find(first.getKey());
-        Optional<EvaluationRecord> foundSecond = resumedRun.find(second.getKey());
-        Optional<EvaluationRecord> foundThird = resumedRun.find(third.getKey());
+        Optional<EvaluationRecord> foundFirst = resumedRun.findLatest(first.getKey());
+        Optional<EvaluationRecord> foundSecond = resumedRun.findLatest(second.getKey());
+        Optional<EvaluationRecord> foundThird = resumedRun.findLatest(third.getKey());
 
         assertTrue(foundFirst.isPresent());
         assertEquals(first, foundFirst.get());
@@ -130,12 +131,12 @@ public class FileSystemEvaluationLedgerTest {
 
         FileSystemEvaluationLedger reader = new FileSystemEvaluationLedger(tempDir);
 
-        Optional<EvaluationRecord> foundComplete = reader.find(complete.getKey());
+        Optional<EvaluationRecord> foundComplete = reader.findLatest(complete.getKey());
         assertTrue(foundComplete.isPresent(),
                 "The entry written before the truncated one must remain fully readable");
         assertEquals(complete, foundComplete.get());
 
-        Optional<EvaluationRecord> foundTruncated = reader.find(aboutToBeTruncated.getKey());
+        Optional<EvaluationRecord> foundTruncated = reader.findLatest(aboutToBeTruncated.getKey());
         assertFalse(foundTruncated.isPresent(),
                 "A half-written trailing entry must behave as if it was never registered");
     }
@@ -167,7 +168,7 @@ public class FileSystemEvaluationLedgerTest {
         allExpected.addAll(runBRecords);
 
         for (EvaluationRecord expected : allExpected) {
-            Optional<EvaluationRecord> found = reader.find(expected.getKey());
+            Optional<EvaluationRecord> found = reader.findLatest(expected.getKey());
             assertTrue(found.isPresent(),
                     "Result for " + expected.getKey() + " must survive two runs appending concurrently");
             assertEquals(expected, found.get());
@@ -205,20 +206,22 @@ public class FileSystemEvaluationLedgerTest {
         EvaluationLedger ledger = new FileSystemEvaluationLedger(tempDir);
 
         EvaluationRecord recordedByPreviousVersion = new EvaluationRecord(
-                new EvaluationKey(EVALUATOR_ID, "v1", "fp-shared"),
+                new EvaluationKey(EVALUATOR_ID, "fp-shared"),
                 "verdict under v1",
                 "quiz-42",
-                Instant.parse("2026-01-01T00:00:00Z"));
+                Instant.parse("2026-01-01T00:00:00Z"),
+                "v1");
         ledger.append(recordedByPreviousVersion);
 
         EvaluationRecord recordedByNewVersion = new EvaluationRecord(
-                new EvaluationKey(EVALUATOR_ID, "v2", "fp-shared"),
+                new EvaluationKey(EVALUATOR_ID, "fp-shared"),
                 "verdict under v2",
                 "quiz-42",
-                Instant.parse("2026-02-01T00:00:00Z"));
+                Instant.parse("2026-02-01T00:00:00Z"),
+                "v2");
         ledger.append(recordedByNewVersion);
 
-        List<EvaluationRecord> history = ledger.history(EVALUATOR_ID, "fp-shared");
+        List<EvaluationRecord> history = ledger.history(new EvaluationKey(EVALUATOR_ID, "fp-shared"));
 
         assertTrue(history.contains(recordedByPreviousVersion),
                 "The previous version's result must remain consultable in history after the new version records its own");
@@ -246,7 +249,7 @@ public class FileSystemEvaluationLedgerTest {
         assertFalse(Files.exists(reportsDir), "Precondition: the analysis reports must actually be gone");
 
         EvaluationLedger ledgerAfterCleanup = new FileSystemEvaluationLedger(tempDir);
-        Optional<EvaluationRecord> found = ledgerAfterCleanup.find(recorded.getKey());
+        Optional<EvaluationRecord> found = ledgerAfterCleanup.findLatest(recorded.getKey());
 
         assertTrue(found.isPresent(),
                 "The registered result must survive the deletion of analysis reports under the same base directory");
@@ -260,17 +263,17 @@ public class FileSystemEvaluationLedgerTest {
     public void shouldKeepTheEarlierEntryConsultableInHistoryWhenTheSameKeyIsRecordedAgain(
             @TempDir Path tempDir) {
         EvaluationLedger ledger = new FileSystemEvaluationLedger(tempDir);
-        EvaluationKey key = new EvaluationKey(EVALUATOR_ID, EVALUATOR_VERSION, "fp-repeat");
+        EvaluationKey key = new EvaluationKey(EVALUATOR_ID, "fp-repeat");
 
         EvaluationRecord firstAttempt = new EvaluationRecord(key, "first verdict", "quiz-7",
-                Instant.parse("2026-01-01T00:00:00Z"));
+                Instant.parse("2026-01-01T00:00:00Z"), EVALUATOR_VERSION);
         ledger.append(firstAttempt);
 
         EvaluationRecord reevaluated = new EvaluationRecord(key, "second verdict after re-evaluation", "quiz-7",
-                Instant.parse("2026-03-01T00:00:00Z"));
+                Instant.parse("2026-03-01T00:00:00Z"), EVALUATOR_VERSION);
         ledger.append(reevaluated);
 
-        List<EvaluationRecord> history = ledger.history(EVALUATOR_ID, "fp-repeat");
+        List<EvaluationRecord> history = ledger.history(key);
 
         assertTrue(history.contains(firstAttempt),
                 "The earlier entry must remain consultable in history after the same key is recorded again");

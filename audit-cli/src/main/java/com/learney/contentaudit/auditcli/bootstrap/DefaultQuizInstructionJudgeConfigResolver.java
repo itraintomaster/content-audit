@@ -18,7 +18,6 @@ class DefaultQuizInstructionJudgeConfigResolver implements QuizInstructionJudgeC
     static final String KEY_TEMPERATURE = "CONTENT_AUDIT_QINST_JUDGE_TEMPERATURE";
     static final String KEY_TIMEOUT_SECONDS = "CONTENT_AUDIT_QINST_JUDGE_TIMEOUT_SECONDS";
     static final String KEY_AGENT_NAME = "CONTENT_AUDIT_QINST_JUDGE_AGENT_NAME";
-    static final String KEY_VERSION_OVERRIDE = "CONTENT_AUDIT_QINST_JUDGE_VERSION_OVERRIDE";
 
     @Override
     public QuizInstructionJudgeConfig resolve() {
@@ -29,18 +28,21 @@ class DefaultQuizInstructionJudgeConfigResolver implements QuizInstructionJudgeC
         // fields as null. DefaultQuizInstructionJudgeFactory is the one that
         // decides whether the resulting config is usable and falls back to an
         // "unavailable" evaluator when it is not.
+        //
+        // No env var exists to override the judge version: the version is now
+        // provenance (F-QINST-R010, invariant 3), and it must derive from the
+        // judge definition itself, never be stamped by hand.
         Map<String, String> env = System.getenv();
 
         String baseUrl = nonBlank(env.get(KEY_BASE_URL));
         String apiKey = nonBlank(env.get(KEY_API_KEY));
         String modelName = nonBlank(env.get(KEY_MODEL));
         String agentName = nonBlank(env.get(KEY_AGENT_NAME));
-        String judgeVersionOverride = nonBlank(env.get(KEY_VERSION_OVERRIDE));
         Double temperature = parseDouble(env.get(KEY_TEMPERATURE));
         Integer timeoutSeconds = parseInt(env.get(KEY_TIMEOUT_SECONDS));
 
         return new QuizInstructionJudgeConfig(baseUrl, apiKey, modelName, temperature,
-                timeoutSeconds, agentName, judgeVersionOverride);
+                timeoutSeconds, agentName);
     }
 
     private static String nonBlank(String value) {

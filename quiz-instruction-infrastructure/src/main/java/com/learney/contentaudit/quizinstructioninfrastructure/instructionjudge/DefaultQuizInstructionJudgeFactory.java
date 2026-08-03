@@ -9,6 +9,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeFactory;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -68,8 +69,12 @@ public class DefaultQuizInstructionJudgeFactory implements QuizInstructionJudgeF
         }
 
         @Override
-        public String evaluatorVersion() {
-            return "unavailable";
+        public Optional<String> evaluatorVersion() {
+            // Sin configuracion usable no hay definicion de juez de la que derivar
+            // nada: F-QINST-R010 invariante 3 -- ninguna version, ni siquiera una
+            // etiqueta placeholder, para no contaminar el recuento por version
+            // (F-QINST-R005) con una procedencia que no corresponde a ningun juez.
+            return Optional.empty();
         }
 
         @Override

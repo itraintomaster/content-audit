@@ -50,7 +50,7 @@ public class DefaultEvaluationSessionTest {
         private final List<EvaluationRecord> records = new ArrayList<>();
 
         @Override
-        public Optional<EvaluationRecord> find(EvaluationKey key) {
+        public Optional<EvaluationRecord> findLatest(EvaluationKey key) {
             return records.stream()
                     .filter(record -> record.getKey().equals(key))
                     .reduce((first, second) -> second);
@@ -62,10 +62,9 @@ public class DefaultEvaluationSessionTest {
         }
 
         @Override
-        public List<EvaluationRecord> history(String evaluatorId, String contentFingerprint) {
+        public List<EvaluationRecord> history(EvaluationKey key) {
             return records.stream()
-                    .filter(record -> record.getKey().getEvaluatorId().equals(evaluatorId)
-                            && record.getKey().getContentFingerprint().equals(contentFingerprint))
+                    .filter(record -> record.getKey().equals(key))
                     .collect(Collectors.toList());
         }
     }
@@ -86,14 +85,15 @@ public class DefaultEvaluationSessionTest {
 
         Evaluator evaluator = mock(Evaluator.class);
         when(evaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(evaluator.evaluatorVersion()).thenReturn("v1");
+        when(evaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
 
         InMemoryLedger ledger = new InMemoryLedger();
         ledger.append(new EvaluationRecord(
-                new EvaluationKey("qinst-judge", "v1", "fp-shared"),
+                new EvaluationKey("qinst-judge", "fp-shared"),
                 "APPROVED",
                 "quiz-elementA",
-                Instant.parse("2026-07-01T00:00:00Z")));
+                Instant.parse("2026-07-01T00:00:00Z"),
+                "v1"));
 
         EvaluationBudget policy = new EvaluationBudget(5);
         DefaultEvaluationSession session =
@@ -129,14 +129,15 @@ public class DefaultEvaluationSessionTest {
 
         Evaluator evaluator = mock(Evaluator.class);
         when(evaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(evaluator.evaluatorVersion()).thenReturn("v1");
+        when(evaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
 
         InMemoryLedger ledger = new InMemoryLedger();
         ledger.append(new EvaluationRecord(
-                new EvaluationKey("qinst-judge", "v1", "fp-old"),
+                new EvaluationKey("qinst-judge", "fp-old"),
                 "APPROVED",
                 "quiz-elementA",
-                Instant.parse("2026-07-01T00:00:00Z")));
+                Instant.parse("2026-07-01T00:00:00Z"),
+                "v1"));
 
         // No budget for a new evaluation: isolates the ledger-lookup behaviour (R001)
         // from any new-evaluation behaviour, which is R003's concern.
@@ -170,7 +171,7 @@ public class DefaultEvaluationSessionTest {
 
         Evaluator evaluator = mock(Evaluator.class);
         when(evaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(evaluator.evaluatorVersion()).thenReturn("v1");
+        when(evaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
         when(evaluator.evaluate(any())).thenReturn(new EvaluationEmitted("APPROVED"));
 
         InMemoryLedger ledger = new InMemoryLedger();
@@ -206,14 +207,15 @@ public class DefaultEvaluationSessionTest {
 
         Evaluator evaluator = mock(Evaluator.class);
         when(evaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(evaluator.evaluatorVersion()).thenReturn("v1");
+        when(evaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
 
         InMemoryLedger ledger = new InMemoryLedger();
         ledger.append(new EvaluationRecord(
-                new EvaluationKey("qinst-judge", "v1", "fp-content"),
+                new EvaluationKey("qinst-judge", "fp-content"),
                 "APPROVED",
                 "quiz-1",
-                Instant.parse("2026-07-01T00:00:00Z")));
+                Instant.parse("2026-07-01T00:00:00Z"),
+                "v1"));
 
         EvaluationBudget policy = new EvaluationBudget(5);
         DefaultEvaluationSession session =
@@ -241,7 +243,7 @@ public class DefaultEvaluationSessionTest {
 
         Evaluator evaluator = mock(Evaluator.class);
         when(evaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(evaluator.evaluatorVersion()).thenReturn("v1");
+        when(evaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
 
         InMemoryLedger ledger = new InMemoryLedger();
         EvaluationBudget policy = new EvaluationBudget(0);
@@ -273,20 +275,22 @@ public class DefaultEvaluationSessionTest {
 
         Evaluator evaluator = mock(Evaluator.class);
         when(evaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(evaluator.evaluatorVersion()).thenReturn("v1");
+        when(evaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
         when(evaluator.evaluate(any())).thenReturn(new EvaluationEmitted("EVALUATED-NEW"));
 
         InMemoryLedger ledger = new InMemoryLedger();
         ledger.append(new EvaluationRecord(
-                new EvaluationKey("qinst-judge", "v1", "fp-b"),
+                new EvaluationKey("qinst-judge", "fp-b"),
                 "APPROVED-B",
                 "quiz-b",
-                Instant.parse("2026-07-01T00:00:00Z")));
+                Instant.parse("2026-07-01T00:00:00Z"),
+                "v1"));
         ledger.append(new EvaluationRecord(
-                new EvaluationKey("qinst-judge", "v1", "fp-c"),
+                new EvaluationKey("qinst-judge", "fp-c"),
                 "APPROVED-C",
                 "quiz-c",
-                Instant.parse("2026-07-01T00:00:00Z")));
+                Instant.parse("2026-07-01T00:00:00Z"),
+                "v1"));
 
         // Budget for exactly one new evaluation.
         EvaluationBudget policy = new EvaluationBudget(1);
@@ -327,7 +331,7 @@ public class DefaultEvaluationSessionTest {
 
         Evaluator evaluator = mock(Evaluator.class);
         when(evaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(evaluator.evaluatorVersion()).thenReturn("v1");
+        when(evaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
         when(evaluator.evaluate(any()))
                 .thenReturn(new EvaluationEmitted("VERDICT-1"))
                 .thenReturn(new EvaluationEmitted("VERDICT-2"));
@@ -365,7 +369,7 @@ public class DefaultEvaluationSessionTest {
 
         Evaluator firstRunEvaluator = mock(Evaluator.class);
         when(firstRunEvaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(firstRunEvaluator.evaluatorVersion()).thenReturn("v1");
+        when(firstRunEvaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
         when(firstRunEvaluator.evaluate(any()))
                 .thenReturn(new EvaluationEmitted("UNFAVOURABLE:instruction unclear"));
 
@@ -384,7 +388,7 @@ public class DefaultEvaluationSessionTest {
         // verdict instead of consulting the evaluator again.
         Evaluator secondRunEvaluator = mock(Evaluator.class);
         when(secondRunEvaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(secondRunEvaluator.evaluatorVersion()).thenReturn("v1");
+        when(secondRunEvaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
 
         DefaultEvaluationSession secondRun =
                 new DefaultEvaluationSession(ledger, fingerprinter, secondRunEvaluator, policy);
@@ -412,7 +416,7 @@ public class DefaultEvaluationSessionTest {
 
         Evaluator firstRunEvaluator = mock(Evaluator.class);
         when(firstRunEvaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(firstRunEvaluator.evaluatorVersion()).thenReturn("v1");
+        when(firstRunEvaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
         when(firstRunEvaluator.evaluate(any())).thenReturn(
                 new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE, "judge output was not parseable"));
 
@@ -431,7 +435,7 @@ public class DefaultEvaluationSessionTest {
         // Next run: the content is still pending and gets consulted again.
         Evaluator secondRunEvaluator = mock(Evaluator.class);
         when(secondRunEvaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(secondRunEvaluator.evaluatorVersion()).thenReturn("v1");
+        when(secondRunEvaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
         when(secondRunEvaluator.evaluate(any())).thenReturn(new EvaluationEmitted("APPROVED-ON-RETRY"));
 
         DefaultEvaluationSession secondRun =
@@ -450,38 +454,52 @@ public class DefaultEvaluationSessionTest {
     @Tag("F-EVCOST-R006")
     public void shouldLeaveContentPendingInsteadOfReusingAResultProducedByAPreviousVersionOfTheEvaluator(
             ) {
-        // R006: only results from the CURRENT evaluator version are reused. A result
-        // from a previous version leaves the content pending, and the old result
-        // survives untouched as consultable history.
+        // R006 (version = procedencia, no vigencia -- F-EVCOST-R001): un resultado registrado
+        // por una version anterior del evaluador se sigue reutilizando cuando el evaluador
+        // cambio de version. El evaluador no recibe ninguna consulta y la consulta informa la
+        // version REAL que lo produjo, no la vigente. Ademas, con mas de un resultado bajo la
+        // MISMA clave (evaluador + huella, la version ya no participa de ella), gana el
+        // registrado mas recientemente; el anterior sobrevive intacto como historia consultable.
         Map<String, String> content = Map.of("instruction", "Instruction judged by both versions.");
 
         ContentFingerprinter fingerprinter = mock(ContentFingerprinter.class);
         when(fingerprinter.fingerprint(content)).thenReturn("fp-versioned");
 
+        EvaluationKey key = new EvaluationKey("qinst-judge", "fp-versioned");
+
         InMemoryLedger ledger = new InMemoryLedger();
         ledger.append(new EvaluationRecord(
-                new EvaluationKey("qinst-judge", "v1", "fp-versioned"),
-                "APPROVED-BY-V1",
-                "quiz-1",
-                Instant.parse("2026-07-01T00:00:00Z")));
+                key, "APPROVED-BY-V1", "quiz-1",
+                Instant.parse("2026-07-01T00:00:00Z"), "v1"));
+        ledger.append(new EvaluationRecord(
+                key, "APPROVED-BY-V2", "quiz-1",
+                Instant.parse("2026-07-02T00:00:00Z"), "v2"));
 
-        Evaluator evaluatorV2 = mock(Evaluator.class);
-        when(evaluatorV2.evaluatorId()).thenReturn("qinst-judge");
-        when(evaluatorV2.evaluatorVersion()).thenReturn("v2");
+        Evaluator evaluatorV3 = mock(Evaluator.class);
+        when(evaluatorV3.evaluatorId()).thenReturn("qinst-judge");
+        when(evaluatorV3.evaluatorVersion()).thenReturn(Optional.of("v3"));
 
-        // No budget for a new evaluation: isolates the "not reused" half of R006.
-        EvaluationBudget policy = new EvaluationBudget(0);
+        // Sin presupuesto para una evaluacion nueva: aisla la mitad "se reutiliza igual" sin
+        // mezclarla con el comportamiento de evaluacion nueva (eso es F-EVCOST-R003).
+        EvaluationBudget budget = new EvaluationBudget(0);
         DefaultEvaluationSession session =
-                new DefaultEvaluationSession(ledger, fingerprinter, evaluatorV2, policy);
+                new DefaultEvaluationSession(ledger, fingerprinter, evaluatorV3, budget);
 
         EvaluationResolution resolution = session.resolve(new EvaluationSubject("quiz-1", content));
 
-        assertEquals(EvaluationResolutionKind.PENDING, resolution.getKind());
-        verify(evaluatorV2, never()).evaluate(any());
+        assertEquals(EvaluationResolutionKind.REUSED, resolution.getKind(),
+                "Un resultado de una version anterior del evaluador se sigue reutilizando (F-EVCOST-R006)");
+        assertEquals("APPROVED-BY-V2", resolution.getPayload(),
+                "Con mas de un resultado bajo la misma clave, gana el registrado mas recientemente (F-EVCOST-R006)");
+        assertEquals("v2", resolution.getEvaluatorVersion(),
+                "La consulta debe informar la version REAL que produjo el resultado devuelto, no la vigente (F-EVCOST-R001, F-EVCOST-R006)");
+        verify(evaluatorV3, never()).evaluate(any());
 
-        List<EvaluationRecord> history = ledger.history("qinst-judge", "fp-versioned");
-        assertEquals(1, history.size(), "the v1 result must survive, untouched, as history (F-EVCOST-R006)");
+        List<EvaluationRecord> history = ledger.history(key);
+        assertEquals(2, history.size(),
+                "Ambos resultados deben seguir siendo consultables como historia; ninguno se borra solo (F-EVCOST-R006)");
         assertEquals("APPROVED-BY-V1", history.get(0).getPayload());
+        assertEquals("APPROVED-BY-V2", history.get(1).getPayload());
     }
 
     @Test
@@ -500,15 +518,16 @@ public class DefaultEvaluationSessionTest {
 
         Evaluator evaluator = mock(Evaluator.class);
         when(evaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(evaluator.evaluatorVersion()).thenReturn("v1");
+        when(evaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
         when(evaluator.evaluate(any())).thenReturn(new EvaluationEmitted("APPROVED-AGAIN"));
 
         InMemoryLedger ledger = new InMemoryLedger();
         ledger.append(new EvaluationRecord(
-                new EvaluationKey("qinst-judge", "v1", "fp-current"),
+                new EvaluationKey("qinst-judge", "fp-current"),
                 "APPROVED-FIRST",
                 "quiz-1",
-                Instant.parse("2026-07-01T00:00:00Z")));
+                Instant.parse("2026-07-01T00:00:00Z"),
+                "v1"));
 
         EvaluationBudget policy = new EvaluationBudget(5);
         DefaultEvaluationSession session =
@@ -530,7 +549,7 @@ public class DefaultEvaluationSessionTest {
         verify(evaluator, times(1)).evaluate(any());
 
         // The previous result must survive the explicit re-evaluation.
-        List<EvaluationRecord> history = ledger.history("qinst-judge", "fp-current");
+        List<EvaluationRecord> history = ledger.history(new EvaluationKey("qinst-judge", "fp-current"));
         assertEquals(2, history.size(),
                 "the previous result must survive the explicit re-evaluation (F-EVCOST-R008)");
     }
@@ -555,7 +574,7 @@ public class DefaultEvaluationSessionTest {
 
         Evaluator evaluator = mock(Evaluator.class);
         when(evaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(evaluator.evaluatorVersion()).thenReturn("v1");
+        when(evaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
         when(evaluator.evaluate(any()))
                 .thenReturn(new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE, "unusable output for content 1"))
                 .thenReturn(new EvaluationEmitted("APPROVED-2"))
@@ -598,7 +617,7 @@ public class DefaultEvaluationSessionTest {
 
         Evaluator evaluator = mock(Evaluator.class);
         when(evaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(evaluator.evaluatorVersion()).thenReturn("v1");
+        when(evaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
         when(evaluator.evaluate(any())).thenReturn(
                 new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, "service is down"));
 
@@ -638,20 +657,22 @@ public class DefaultEvaluationSessionTest {
 
         Evaluator evaluator = mock(Evaluator.class);
         when(evaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(evaluator.evaluatorVersion()).thenReturn("v1");
+        when(evaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
         when(evaluator.evaluate(any())).thenReturn(new EvaluationEmitted("APPROVED-A-AGAIN"));
 
         InMemoryLedger ledger = new InMemoryLedger();
         ledger.append(new EvaluationRecord(
-                new EvaluationKey("qinst-judge", "v1", "fp-a"),
+                new EvaluationKey("qinst-judge", "fp-a"),
                 "APPROVED-A-FIRST",
                 "quiz-a",
-                Instant.parse("2026-07-01T00:00:00Z")));
+                Instant.parse("2026-07-01T00:00:00Z"),
+                "v1"));
         ledger.append(new EvaluationRecord(
-                new EvaluationKey("qinst-judge", "v1", "fp-b"),
+                new EvaluationKey("qinst-judge", "fp-b"),
                 "APPROVED-B",
                 "quiz-b",
-                Instant.parse("2026-07-01T00:00:00Z")));
+                Instant.parse("2026-07-01T00:00:00Z"),
+                "v1"));
 
         EvaluationBudget policy = new EvaluationBudget(5);
         DefaultEvaluationSession session =

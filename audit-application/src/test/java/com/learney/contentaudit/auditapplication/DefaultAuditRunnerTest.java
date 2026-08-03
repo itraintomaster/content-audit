@@ -404,7 +404,7 @@ public class DefaultAuditRunnerTest {
         QuizInstructionDiagnosis quizDiagnosis = new QuizInstructionDiagnosis(verdict, 1.0, false);
         EvaluationCoverage coverage = new EvaluationCoverage(1, 1, 1, 0, 0, 0);
         QuizInstructionCoverageDiagnosis coverageDiagnosis =
-                new QuizInstructionCoverageDiagnosis(coverage, "v1");
+                new QuizInstructionCoverageDiagnosis(coverage, "v1", List.of());
 
         ContentAnalyzer quizInstructionAnalyzer = mock(ContentAnalyzer.class);
         doAnswer(invocation -> {
@@ -731,8 +731,8 @@ public class DefaultAuditRunnerTest {
         FakeQuizInstructionEvaluator evaluator = new FakeQuizInstructionEvaluator(EVALUATOR_ID, "v1");
 
         String fingerprint = fingerprinter.fingerprint(quizInstructionSubjectContent("quiz-1"));
-        EvaluationKey currentKey = new EvaluationKey(EVALUATOR_ID, "v1", fingerprint);
-        ledger.seed(new EvaluationRecord(currentKey, "{\"compliant\":true}", "quiz-1", Instant.now()));
+        EvaluationKey currentKey = new EvaluationKey(EVALUATOR_ID, fingerprint);
+        ledger.seed(new EvaluationRecord(currentKey, "{\"compliant\":true}", "quiz-1", Instant.now(), "v1"));
 
         EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
         when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
@@ -757,7 +757,7 @@ public class DefaultAuditRunnerTest {
         assertEquals(1, evaluator.getEvaluatedSubjects().size(),
                 "R015: re-evaluation requested for the name the report publishes must reach the judge again "
                 + "despite a current verdict already existing");
-        assertEquals(2, ledger.history(EVALUATOR_ID, fingerprint).size(),
+        assertEquals(2, ledger.history(currentKey).size(),
                 "R015: re-evaluation must not destroy the previous verdict -- both must coexist as history");
     }
 
@@ -869,7 +869,7 @@ public class DefaultAuditRunnerTest {
         private final List<EvaluationRecord> records = new ArrayList<>();
 
         @Override
-        public Optional<EvaluationRecord> find(EvaluationKey key) {
+        public Optional<EvaluationRecord> findLatest(EvaluationKey key) {
             return records.stream().filter(r -> r.getKey().equals(key)).findFirst();
         }
 
@@ -879,11 +879,10 @@ public class DefaultAuditRunnerTest {
         }
 
         @Override
-        public List<EvaluationRecord> history(String evaluatorId, String contentFingerprint) {
+        public List<EvaluationRecord> history(EvaluationKey key) {
             List<EvaluationRecord> result = new ArrayList<>();
             for (EvaluationRecord record : records) {
-                if (record.getKey().getEvaluatorId().equals(evaluatorId)
-                        && record.getKey().getContentFingerprint().equals(contentFingerprint)) {
+                if (record.getKey().equals(key)) {
                     result.add(record);
                 }
             }
@@ -913,8 +912,8 @@ public class DefaultAuditRunnerTest {
         }
 
         @Override
-        public String evaluatorVersion() {
-            return version;
+        public Optional<String> evaluatorVersion() {
+            return Optional.ofNullable(version);
         }
 
         @Override

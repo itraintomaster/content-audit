@@ -1270,9 +1270,9 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `find(EvaluationKey key): Optional<EvaluationRecord>` | (none) |
 | `append(EvaluationRecord record): void` | (none) |
-| `history(String evaluatorId,String contentFingerprint): List<EvaluationRecord>` | (none) |
+| `findLatest(EvaluationKey key): Optional<EvaluationRecord>` | (none) |
+| `history(EvaluationKey key): List<EvaluationRecord>` | (none) |
 
 #### ContentFingerprinter (port)
 
@@ -1289,8 +1289,8 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `evaluatorId(): String` | (none) |
-| `evaluatorVersion(): String` | (none) |
 | `evaluate(EvaluationSubject subject): EvaluationOutcome` | (none) |
+| `evaluatorVersion(): Optional<String>` | (none) |
 
 #### EvaluationSession (port)
 
@@ -1301,7 +1301,7 @@ Examples:
 | `resolve(EvaluationSubject subject): EvaluationResolution` | (none) |
 | `resolveForced(EvaluationSubject subject): EvaluationResolution` | (none) |
 | `coverage(): EvaluationCoverage` | (none) |
-| `evaluatorVersion(): String` | (none) |
+| `consultedEvaluatorVersion(): Optional<String>` | (none) |
 
 #### EvaluationSessionFactory (factory)
 
@@ -1367,5 +1367,5 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `resolve(QuizInstructionJudgeConfig config): String` | (none) |
+| `resolve(QuizInstructionJudgeConfig config): Optional<String>` | (none) |
 

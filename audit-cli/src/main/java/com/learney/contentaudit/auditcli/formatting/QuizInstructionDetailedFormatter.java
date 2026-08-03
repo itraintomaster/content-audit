@@ -5,11 +5,13 @@ import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.CourseDiagnoses;
 import com.learney.contentaudit.auditdomain.QuizDiagnoses;
 import com.learney.contentaudit.auditdomain.quizinstruction.InstructionViolation;
+import com.learney.contentaudit.auditdomain.quizinstruction.JudgeVersionVerdictCount;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionCoverageDiagnosis;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionDiagnosis;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionVerdict;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -35,7 +37,15 @@ class QuizInstructionDetailedFormatter implements DetailedFormatter {
         QuizInstructionCoverageDiagnosis coverageDiagnosis = coverageDiagnosis(rootNode);
         if (coverageDiagnosis != null) {
             EvaluationCoverage coverage = coverageDiagnosis.getCoverage();
-            sb.append("Coverage (judge version: ").append(coverageDiagnosis.getEvaluatorVersion()).append("):\n");
+            // F-QINST-R005: the version consulted THIS run and the versions the
+            // scored verdicts come FROM answer different questions and are always
+            // rendered as two separate, explicit pieces of information. A null
+            // consulted version is a fact to state (nothing was consulted this
+            // run), never an omission.
+            String consultedJudgeVersion = coverageDiagnosis.getConsultedJudgeVersion();
+            sb.append("Coverage (judge version consulted this run: ")
+                    .append(consultedJudgeVersion != null ? consultedJudgeVersion : "none (no new consultation this run)")
+                    .append("):\n");
             if (coverage != null) {
                 sb.append("  Reached:               ").append(coverage.getReached()).append("\n");
                 sb.append("  With verdict:          ").append(coverage.getWithResult()).append("\n");
@@ -43,6 +53,20 @@ class QuizInstructionDetailedFormatter implements DetailedFormatter {
                 sb.append("    Reused:              ").append(coverage.getReused()).append("\n");
                 sb.append("  Pending:               ").append(coverage.getPending()).append("\n");
                 sb.append("  Failed:                ").append(coverage.getFailed()).append("\n");
+            }
+
+            // F-QINST-R005: since nothing invalidates a verdict automatically
+            // anymore (F-QINST-R010), this per-version tally is the only signal
+            // left to decide whether a re-evaluation is worth requesting.
+            List<JudgeVersionVerdictCount> verdictsByJudgeVersion = coverageDiagnosis.getVerdictsByJudgeVersion();
+            if (verdictsByJudgeVersion != null && !verdictsByJudgeVersion.isEmpty()) {
+                sb.append("  Verdicts by judge version:\n");
+                List<JudgeVersionVerdictCount> sorted = new ArrayList<>(verdictsByJudgeVersion);
+                sorted.sort(Comparator.comparing(JudgeVersionVerdictCount::getJudgeVersion));
+                for (JudgeVersionVerdictCount count : sorted) {
+                    sb.append("    ").append(count.getJudgeVersion())
+                            .append(": ").append(count.getVerdictCount()).append("\n");
+                }
             }
             sb.append("\n");
         }

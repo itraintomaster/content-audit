@@ -3,7 +3,7 @@
 
 **This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
 
-Adaptador filesystem del registro de evaluaciones costosas. Escribe un archivo por evaluador bajo .content-audit/evaluations/, una entrada por linea, en modo append: cada resultado queda disponible apenas se obtiene (F-EVCOST-R004) y una interrupcion abrupta a lo sumo deja una ultima linea incompleta, que la lectura descarta por no parsear —"se lee completa o no existe"—. Append-only tambien significa que las entradas de versiones anteriores del evaluador conviven como historia consultable y nunca se borran solas (F-EVCOST-R006), y que una re-evaluacion agrega sin destruir (F-EVCOST-R008). Vive aparte de los informes de auditoria a proposito: borrar informes no toca este registro (F-EVCOST-R007).
+Adaptador filesystem del registro de evaluaciones costosas. Escribe un archivo por evaluador bajo .content-audit/evaluations/, una entrada por linea, en modo append: cada resultado queda disponible apenas se obtiene (F-EVCOST-R004) y una interrupcion abrupta a lo sumo deja una ultima linea incompleta, que la lectura descarta por no parsear —"se lee completa o no existe"—. El orden de append es la unica fuente del desempate que exige F-EVCOST-R006: con mas de una entrada para la misma clave (evaluador + huella), findLatest devuelve la ULTIMA escrita y history las devuelve todas, de la mas reciente a la mas antigua, cada una con la version que la produjo. Se desempata por posicion en el archivo y no por recordedAt a proposito: el append es monotono y es la misma propiedad sobre la que se apoya la seguridad ante dos corridas simultaneas, mientras que un reloj puede empatar o retroceder; recordedAt queda como dato informativo. Append-only tambien significa que las entradas de versiones anteriores del evaluador conviven como historia consultable y nunca se borran solas (F-EVCOST-R006), y que una re-evaluacion agrega sin destruir y pasa a ganar el desempate (F-EVCOST-R008). Vive aparte de los informes de auditoria a proposito: borrar informes no toca este registro (F-EVCOST-R007).
 
 
 ## Implementations
@@ -40,7 +40,6 @@ The following models and interfaces are available from dependencies. You can use
 | Field | Type |
 |-------|------|
 | evaluatorId | `String` |
-| evaluatorVersion | `String` |
 | contentFingerprint | `String` |
 
 ### EvaluationSubject (`record`)
@@ -58,6 +57,7 @@ The following models and interfaces are available from dependencies. You can use
 | payload | `String` |
 | subjectRef | `String` |
 | recordedAt | `Instant` |
+| evaluatorVersion | `String` |
 
 ### EvaluationEmitted (`record`)
 
@@ -94,6 +94,7 @@ The following models and interfaces are available from dependencies. You can use
 |-------|------|
 | kind | `EvaluationResolutionKind` |
 | payload | `String` |
+| evaluatorVersion | `String` |
 
 ### EvaluationCoverage (`record`)
 
@@ -118,9 +119,9 @@ The following models and interfaces are available from dependencies. You can use
 
 Methods:
 
-- `find(EvaluationKey key): Optional<EvaluationRecord>`
 - `append(EvaluationRecord record): void`
-- `history(String evaluatorId,String contentFingerprint): List<EvaluationRecord>`
+- `findLatest(EvaluationKey key): Optional<EvaluationRecord>`
+- `history(EvaluationKey key): List<EvaluationRecord>`
 
 ### ContentFingerprinter (port)
 
@@ -133,8 +134,8 @@ Methods:
 Methods:
 
 - `evaluatorId(): String`
-- `evaluatorVersion(): String`
 - `evaluate(EvaluationSubject subject): EvaluationOutcome`
+- `evaluatorVersion(): Optional<String>`
 
 ### EvaluationSession (port)
 
@@ -143,7 +144,7 @@ Methods:
 - `resolve(EvaluationSubject subject): EvaluationResolution`
 - `resolveForced(EvaluationSubject subject): EvaluationResolution`
 - `coverage(): EvaluationCoverage`
-- `evaluatorVersion(): String`
+- `consultedEvaluatorVersion(): Optional<String>`
 
 ### EvaluationSessionFactory (factory)
 

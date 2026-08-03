@@ -1,4 +1,5 @@
 package com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge;
+import java.util.Optional;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocator;
 
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionFound;
@@ -31,26 +32,8 @@ public DefaultQuizInstructionJudgeVersionResolver(AgentDefinitionLocator agentDe
 
     private static final String DEFAULT_AGENT_NAME = "quiz-instruction-validator";
 
-    /**
-     * F-QINST-R010, invariante 3: una version que no pudo derivarse de la
-     * definicion del agente no puede tener la misma forma que un digest
-     * legitimo -- si la tuviera, un retoque del prompt corrido fuera del CWD
-     * correcto dejaria de invalidar nada y el sistema reutilizaria veredictos
-     * de otra version sin que nadie se entere (justo el bug que este locator
-     * compartido existe para cerrar). Nunca coincide con ninguna version
-     * derivada de una definicion accesible.
-     */
-    static final String UNRESOLVED_VERSION_PREFIX = "unresolved-agent-definition:";
-
     @Override
-    public String resolve(QuizInstructionJudgeConfig config) {
-        String override = config != null ? config.getJudgeVersionOverride() : null;
-        if (override != null && !override.isBlank()) {
-            // F-QINST-R010: an explicit override is honoured literally, never mixed
-            // with the derived digest.
-            return override;
-        }
-
+    public Optional<String> resolve(QuizInstructionJudgeConfig config) {
         String agentName = resolveAgentName(config);
         String modelName = config != null ? config.getModelName() : null;
 
@@ -60,13 +43,17 @@ public DefaultQuizInstructionJudgeVersionResolver(AgentDefinitionLocator agentDe
         // the graph from can never diverge.
         AgentDefinitionLocation location = agentDefinitionLocator.locate(agentName);
         if (location instanceof AgentDefinitionFound found) {
-            return digest(agentName, modelName, found.getDirectory());
+            return Optional.of(digest(agentName, modelName, found.getDirectory()));
         }
 
         // AgentDefinitionUnresolved: no definition was accessible to derive
-        // from. This run's judge is treated as unavailable (F-QINST-R007) by
-        // the caller, since this version can never match a registered one.
-        return UNRESOLVED_VERSION_PREFIX + agentName;
+        // from. F-QINST-R010 invariante 3: no se presenta ninguna version --
+        // ni siquiera una que "parezca invalida" -- porque una version con la
+        // misma forma que un digest legitimo se colaria en los recuentos por
+        // version (F-QINST-R005) como si fuera real y permanente. Vacio deja
+        // a la sesion tratar al juez como no disponible (F-QINST-R007) desde
+        // el primer sujeto.
+        return Optional.empty();
     }
 
     private static String resolveAgentName(QuizInstructionJudgeConfig config) {

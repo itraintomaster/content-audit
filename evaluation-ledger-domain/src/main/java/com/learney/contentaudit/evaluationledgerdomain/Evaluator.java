@@ -1,5 +1,6 @@
 package com.learney.contentaudit.evaluationledgerdomain;
 
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -9,7 +10,7 @@ import javax.annotation.processing.Generated;
 public interface Evaluator {
     String evaluatorId();
 
-    String evaluatorVersion();
-
     EvaluationOutcome evaluate(EvaluationSubject subject);
+
+    Optional<String> evaluatorVersion();
 }

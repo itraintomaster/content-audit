@@ -7,6 +7,7 @@ import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
 import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.QuizInstructionVerdictReader;
+import com.learney.contentaudit.auditdomain.quizinstruction.JudgeVersionVerdictCount;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionCoverageDiagnosis;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionDiagnosis;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionVerdict;
@@ -15,6 +16,10 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -39,6 +44,13 @@ class QuizInstructionAnalyzer implements ContentAnalyzer {
     private final QuizInstructionVerdictReader verdictReader;
 
     private final EvaluationRunPolicy policy;
+
+    // F-QINST-R005: recuento de veredictos puntuados por version de procedencia.
+    // Es nocion del consumidor (este analyzer), no de la sesion: solo se
+    // incrementa para las resoluciones que efectivamente terminan puntuando el
+    // ejercicio (EVALUATED/REUSED), nunca para PENDING/FAILED. TreeMap mantiene
+    // el orden ascendente por version que la regla exige sin ordenar aparte.
+    private final Map<String, Integer> verdictCountByJudgeVersion = new TreeMap<>();
 
     public QuizInstructionAnalyzer(EvaluationSession session,
             QuizInstructionSubjectBuilder subjectBuilder, QuizInstructionScorer scorer,
@@ -84,6 +96,10 @@ class QuizInstructionAnalyzer implements ContentAnalyzer {
         double score = scorer.score(verdict);
         node.getScores().put(ANALYZER_NAME, score);
 
+        // F-QINST-R005: este veredicto puntua, asi que su procedencia entra al
+        // recuento por version que el informe declara junto al puntaje.
+        verdictCountByJudgeVersion.merge(resolution.getEvaluatorVersion(), 1, Integer::sum);
+
         if (!(node.getDiagnoses() instanceof DefaultQuizDiagnoses)) {
             node.setDiagnoses(new DefaultQuizDiagnoses());
         }
@@ -115,11 +131,22 @@ class QuizInstructionAnalyzer implements ContentAnalyzer {
             rootNode.setDiagnoses(new DefaultCourseDiagnoses());
         }
         DefaultCourseDiagnoses courseDiagnoses = (DefaultCourseDiagnoses) rootNode.getDiagnoses();
-        // F-QINST-R010: the version stamped on the coverage is what makes it auditable
-        // -- with verdicts of several judge versions coexisting in the ledger, it is the
-        // only way to know which one the report is looking at.
-        courseDiagnoses.setQuizInstructionCoverage(
-                new QuizInstructionCoverageDiagnosis(coverage, session.evaluatorVersion()));
+
+        // F-QINST-R005: con la version fuera de la identidad del veredicto, ya no
+        // alcanza con declarar una sola version -- son dos datos separados. La
+        // version consultada puede no existir (corrida que solo reutiliza, sin
+        // presupuesto, o juez no disponible): se declara null en ese caso.
+        String consultedJudgeVersion = session.consultedEvaluatorVersion().orElse(null);
+
+        // El recuento por version lo arma el analyzer -- unica nocion de "que
+        // veredicto puntua" -- ordenado ascendente por version via TreeMap.
+        List<JudgeVersionVerdictCount> verdictsByJudgeVersion = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : verdictCountByJudgeVersion.entrySet()) {
+            verdictsByJudgeVersion.add(new JudgeVersionVerdictCount(entry.getKey(), entry.getValue()));
+        }
+
+        courseDiagnoses.setQuizInstructionCoverage(new QuizInstructionCoverageDiagnosis(
+                coverage, consultedJudgeVersion, verdictsByJudgeVersion));
 
         return null;
     }

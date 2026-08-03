@@ -1019,7 +1019,19 @@ new EvaluationRunPolicy(int maxNewEvaluations, boolean reevaluate, String reeval
 | Field | Type |
 |-------|------|
 | `coverage` | `EvaluationCoverage` |
-| `evaluatorVersion` | `String` |
+| `consultedJudgeVersion` | `String` |
+| `verdictsByJudgeVersion` | `List<JudgeVersionVerdictCount>` |
+
+#### JudgeVersionVerdictCount (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `judgeVersion` | `String` |
+| `verdictCount` | `int` |
 
 ### Module: course-domain
 
@@ -2724,12 +2736,11 @@ new OverrideRejectedException(String reason)
 | Field | Type | Notes |
 |-------|------|-------|
 | `evaluatorId` | `String` |  |
-| `evaluatorVersion` | `String` |  |
 | `contentFingerprint` | `String` |  |
 
 **Generated constructor:**
 ```java
-new EvaluationKey(String evaluatorId, String evaluatorVersion, String contentFingerprint)
+new EvaluationKey(String evaluatorId, String contentFingerprint)
 ```
 
 #### EvaluationSubject
@@ -2758,10 +2769,11 @@ new EvaluationSubject(String subjectRef, Map<String,String> content)
 | `payload` | `String` |  |
 | `subjectRef` | `String` |  |
 | `recordedAt` | `Instant` |  |
+| `evaluatorVersion` | `String` |  |
 
 **Generated constructor:**
 ```java
-new EvaluationRecord(EvaluationKey key, String payload, String subjectRef, Instant recordedAt)
+new EvaluationRecord(EvaluationKey key, String payload, String subjectRef, Instant recordedAt, String evaluatorVersion)
 ```
 
 #### EvaluationEmitted
@@ -2836,10 +2848,11 @@ new EvaluationResolutionKind(null REUSED, null EVALUATED, null PENDING, null FAI
 |-------|------|-------|
 | `kind` | `EvaluationResolutionKind` |  |
 | `payload` | `String` |  |
+| `evaluatorVersion` | `String` |  |
 
 **Generated constructor:**
 ```java
-new EvaluationResolution(EvaluationResolutionKind kind, String payload)
+new EvaluationResolution(EvaluationResolutionKind kind, String payload, String evaluatorVersion)
 ```
 
 #### EvaluationCoverage
@@ -2938,10 +2951,9 @@ new AgentDefinitionUnresolved(String agentName, Path searchedIn)
 | `temperature` | `Double` |  |
 | `timeoutSeconds` | `Integer` |  |
 | `agentName` | `String` |  |
-| `judgeVersionOverride` | `String` |  |
 
 **Generated constructor:**
 ```java
-new QuizInstructionJudgeConfig(String baseUrl, String apiKey, String modelName, Double temperature, Integer timeoutSeconds, String agentName, String judgeVersionOverride)
+new QuizInstructionJudgeConfig(String baseUrl, String apiKey, String modelName, Double temperature, Integer timeoutSeconds, String agentName)
 ```
 

@@ -1,5 +1,6 @@
 package com.learney.contentaudit.evaluationledgerdomain;
 
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -13,5 +14,5 @@ public interface EvaluationSession {
 
     EvaluationCoverage coverage();
 
-    String evaluatorVersion();
+    Optional<String> consultedEvaluatorVersion();
 }

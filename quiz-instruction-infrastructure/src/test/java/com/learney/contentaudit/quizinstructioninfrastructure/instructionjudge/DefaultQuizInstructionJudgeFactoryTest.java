@@ -43,7 +43,7 @@ public class DefaultQuizInstructionJudgeFactoryTest {
         AgentGraphRunner agentGraphRunner = mock(AgentGraphRunner.class);
         AgentDefinitionLocator agentDefinitionLocator = mock(AgentDefinitionLocator.class);
         QuizInstructionJudgeConfig missingConfig =
-                new QuizInstructionJudgeConfig(null, null, null, null, null, null, null);
+                new QuizInstructionJudgeConfig(null, null, null, null, null, null);
 
         Evaluator evaluator = assertDoesNotThrow(
                 () -> factory.create(missingConfig, agentGraphRunner, agentDefinitionLocator),
@@ -80,7 +80,7 @@ public class DefaultQuizInstructionJudgeFactoryTest {
 
         QuizInstructionJudgeConfig config = new QuizInstructionJudgeConfig(
                 "http://localhost:1234/v1", "test-api-key", "gpt-4o-mini", 0.0, 30,
-                "quiz-instruction-validator", null);
+                "quiz-instruction-validator");
 
         DefaultQuizInstructionJudgeFactory factory = new DefaultQuizInstructionJudgeFactory();
         Evaluator evaluator = factory.create(config, realAgentGraphRunner, realAgentDefinitionLocator);

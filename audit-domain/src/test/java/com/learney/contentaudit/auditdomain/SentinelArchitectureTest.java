@@ -717,6 +717,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: QuizInstructionCoverageDiagnosis - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditdomain.quizinstruction.JudgeVersionVerdictCount");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeVersionVerdictCount - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditdomain.quizinstructionengine.QuizInstructionSubjectBuilder");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: QuizInstructionSubjectBuilder - " + e.getMessage());

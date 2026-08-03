@@ -182,26 +182,28 @@ unicamente, y los pendientes no tienen ni puntaje ni diagnostico de consigna.
 </details>
 
 <a id="F-QINST-R005"></a>
-### Rule[F-QINST-R005] - El informe declara la cobertura del analisis y con que version del juez se evaluo
+### Rule[F-QINST-R005] - El informe declara la cobertura del analisis y de que versiones del juez vienen sus veredictos
 **Severity**: critical | **Validation**: VALIDATED
 
-> El informe de auditoria expone, para este analisis, **con que version del juez**
-> se evaluo, cuantos ejercicios alcanza, cuantos tienen veredicto (distinguiendo
-> los evaluados en esta corrida de los reutilizados de corridas anteriores),
-> cuantos quedaron pendientes y cuantos fallaron. La version declarada es la
-> vigente en la corrida y, por lo tanto, la de **todos** los veredictos que el
-> informe puntua, sean nuevos o reutilizados. El puntaje del analisis se lee
-> **siempre** junto a esa cobertura.
+> El informe de auditoria expone, para este analisis, cuantos ejercicios alcanza,
+> cuantos tienen veredicto (distinguiendo los evaluados en esta corrida de los
+> reutilizados de corridas anteriores), cuantos quedaron pendientes y cuantos
+> fallaron. Declara ademas **dos** datos de version, distintos y separados:
+> **con que version del juez consulto esta corrida** —o que no consulto con
+> ninguna— y **de que versiones provienen los veredictos que el informe puntua, con
+> cuantos veredictos aporta cada una**. El puntaje del analisis se lee **siempre**
+> junto a esa cobertura.
 
 <details><summary>Detalle</summary>
 
 | Dato de cobertura | Significado |
 |---|---|
-| Version del juez | La version vigente en la corrida, y la de todos los veredictos puntuados: los de otra version no se reutilizan ([F-QINST-R010](#F-QINST-R010)) |
+| Version consultada en esta corrida | La version vigente del juez, con la que se hicieron las consultas nuevas. Si la corrida no hizo ninguna consulta nueva —todo reutilizado, analisis sin presupuesto, o juez no disponible ([F-QINST-R010](#F-QINST-R010))— se declara que no hubo version consultada |
+| Versiones de los veredictos puntuados, con su recuento | De donde viene cada veredicto que el informe puntua: una fila por version presente y cuantos veredictos aporta ([F-EVCOST-R001](../2026-07-29.03_evaluaciones-costosas-reutilizables/REQUIREMENT.md#F-EVCOST-R001)) |
 | Alcanzados | Ejercicios del curso que este analisis debe evaluar ([F-QINST-R014](#F-QINST-R014)) |
 | Con veredicto | Ejercicios con puntaje en esta auditoria |
 | — evaluados en esta corrida | Consumieron presupuesto ([F-QINST-R006](#F-QINST-R006)) |
-| — reutilizados | Veredicto vigente de una corrida anterior ([F-QINST-R008](#F-QINST-R008)) |
+| — reutilizados | Veredicto registrado por una corrida anterior ([F-QINST-R008](#F-QINST-R008)) |
 | Pendientes | Sin veredicto por tope de presupuesto; los toma la corrida siguiente |
 | Fallidos | El juez no llego a pronunciarse en esta corrida ([F-QINST-R007](#F-QINST-R007)) |
 
@@ -211,30 +213,57 @@ solo uno de los dos autoriza a concluir algo. Esta regla es la que hace legitima
 la cobertura parcial de [F-QINST-R004](#F-QINST-R004): el analisis puede informar
 sobre una parte del curso siempre que diga **cual**.
 
-La suma de con-veredicto, pendientes y fallidos debe dar el total de alcanzados:
-todo ejercicio alcanzado esta en exactamente uno de los tres estados.
+Dos sumas tienen que cerrar:
 
-**Por que la version se declara aca.** Es el dato que vuelve **auditable** a
-[F-QINST-R010](#F-QINST-R010). Esa regla exige que los veredictos de una version
-anterior del juez no se reutilicen, pero si el informe no dice con que version se
-evaluo lo que **si** se reutilizo, nadie puede verificar que se haya cumplido: los
-numeros de reutilizados se leen igual estando bien y estando mal. Y como los
-veredictos de varias versiones **conviven** en el registro
-([F-EVCOST-R006](../2026-07-29.03_evaluaciones-costosas-reutilizables/REQUIREMENT.md#F-EVCOST-R006)),
-declararla es la unica forma de saber cual de todas es la que el informe esta
-mirando.
+1. con-veredicto + pendientes + fallidos = alcanzados. Todo ejercicio alcanzado
+   esta en exactamente uno de los tres estados.
+2. La suma de los recuentos por version = con-veredicto. Todo veredicto puntuado
+   declara de que version viene, y ninguno se cuenta dos veces.
 
-Que la version sea **una sola** por informe no es una simplificacion: se sigue de
-que solo se reutilizan veredictos de la version vigente. Un informe con puntajes
-de dos versiones distintas seria, directamente, una violacion de
-[F-QINST-R010](#F-QINST-R010).
+**Por que dos datos de version y no uno.** Antes bastaba con uno: se declaraba la
+version vigente y esa era, necesariamente, la de todos los veredictos puntuados,
+porque los de otra version no se reutilizaban. Esa unicidad **ya no existe**: con la
+version fuera de la identidad de un resultado
+([F-EVCOST-R001](../2026-07-29.03_evaluaciones-costosas-reutilizables/REQUIREMENT.md#F-EVCOST-R001)),
+un mismo informe puntua veredictos emitidos por versiones distintas del juez, y es
+el desenlace **normal** —no excepcional— apenas se retoca el juez una vez.
+
+Las dos alternativas mas simples se descartaron por la misma razon:
+
+- **Declarar solo la version vigente** seria hoy una afirmacion falsa sobre la
+  mayoria de los veredictos del informe, y es exactamente el error silencioso que
+  esta regla existe para impedir: los numeros de reutilizados se leen igual estando
+  bien y estando mal.
+- **Declarar el conjunto de versiones presentes, sin recuentos**, es honesto pero no
+  accionable: "este informe mezcla tres versiones" no distingue un veredicto viejo
+  de ocho mil, y esa diferencia es justo la que decide si conviene pedir una
+  re-evaluacion ([F-QINST-R012](#F-QINST-R012)).
+
+Con el recuento por version, el lector responde de un vistazo la unica pregunta que
+importa: **cuanto de lo que estoy leyendo lo juzgo el juez actual, y cuanto lo juzgo
+otro**. Y como nada se invalida solo
+([F-EVCOST-R008](../2026-07-29.03_evaluaciones-costosas-reutilizables/REQUIREMENT.md#F-EVCOST-R008)),
+esa cifra es la unica señal de que conviene re-evaluar; sin ella, la decision de
+re-evaluar seria a ciegas.
+
+**Por que los dos datos se declaran separados.** Responden preguntas distintas: la
+version consultada dice **con que criterio se juzgo lo nuevo de esta corrida**; los
+recuentos por version dicen **de que criterios viene el puntaje que estoy leyendo**.
+Mezclarlos en un solo dato reintroduce la confusion que la separacion evita, y la
+version consultada puede no existir —una corrida que solo reutiliza no consulta
+nada— mientras el informe puntua igual miles de veredictos.
 
 **Criterio de aceptacion**: tras una corrida que evalua solo una parte del curso,
-el informe declara los cinco numeros y la version del juez con la que se evaluo, la
-suma cierra contra el total de alcanzados, y una segunda corrida muestra crecer los
-reutilizados y decrecer los pendientes declarando la misma version.
+(a) el informe declara los cinco numeros y las dos sumas cierran; (b) declara la
+version con la que consulto al juez, y una segunda corrida muestra crecer los
+reutilizados y decrecer los pendientes; (c) con veredictos registrados por la
+version A y una corrida que consulta con la version B, el informe declara B como
+version consultada y declara dos filas de procedencia —A y B— cuyos recuentos suman
+los ejercicios con veredicto; (d) una corrida que no consulta al juez ni una vez
+declara que no hubo version consultada y sigue declarando la procedencia de los
+veredictos que puntua.
 
-**Error**: "La cobertura declarada del analisis de consigna no cierra: {conVeredicto} + {pendientes} + {fallidos} != {alcanzados}" / "El informe declara puntajes de consigna sin decir con que version del juez se evaluaron"
+**Error**: "La cobertura declarada del analisis de consigna no cierra: {conVeredicto} + {pendientes} + {fallidos} != {alcanzados}" / "Los veredictos declarados por version suman {suma} y el informe puntua {conVeredicto}" / "El informe declara puntajes de consigna sin decir de que versiones del juez provienen"
 
 </details>
 
@@ -317,10 +346,10 @@ consultar.
 ### Rule[F-QINST-R008] - Una corrida no vuelve a consultar por lo ya evaluado
 **Severity**: critical | **Validation**: VALIDATED
 
-> Ante un ejercicio cuyo contenido juzgado ya tiene veredicto vigente, la corrida
-> lo reutiliza y **no** consulta al juez. El presupuesto de la corrida se dedica
-> integramente a los ejercicios sin veredicto, de modo que cada corrida avanza
-> sobre lo que falta.
+> Ante un ejercicio cuyo contenido juzgado ya tiene veredicto registrado, la
+> corrida lo reutiliza y **no** consulta al juez, **cualquiera sea la version del
+> juez que lo emitio**. El presupuesto de la corrida se dedica integramente a los
+> ejercicios sin veredicto, de modo que cada corrida avanza sobre lo que falta.
 
 <details><summary>Detalle</summary>
 
@@ -333,11 +362,20 @@ en el contenido cubren N veces el presupuesto de ejercicios distintos, nunca los
 mismos dos veces. Sin esta regla, cada corrida volveria a empezar por el primer
 ejercicio del curso y el avance seria nulo.
 
-**Criterio de aceptacion**: dos corridas consecutivas con tope N sobre un curso
-sin cambios evaluan 2N ejercicios **distintos**; el juez no recibe dos veces el
-mismo contenido.
+**El reuso no mira la version.** Un veredicto emitido por una version anterior del
+juez se reutiliza exactamente igual que uno de la version corriente
+([F-QINST-R010](#F-QINST-R010)): lo unico que cambia es la procedencia que el
+informe declara ([F-QINST-R005](#F-QINST-R005)). Volver a consultar al juez por un
+ejercicio con veredicto registrado —porque su version cambio— es un gasto que esta
+regla prohibe.
 
-**Error**: "Se consulto al juez por el ejercicio '{quizId}', que ya tenia veredicto vigente"
+**Criterio de aceptacion**: (a) dos corridas consecutivas con tope N sobre un curso
+sin cambios evaluan 2N ejercicios **distintos**; el juez no recibe dos veces el
+mismo contenido; (b) cambiada la version del juez entre las dos corridas, el
+resultado es el mismo: la segunda corrida no consulta por ninguno de los N que ya
+tenian veredicto.
+
+**Error**: "Se consulto al juez por el ejercicio '{quizId}', que ya tenia veredicto registrado"
 
 </details>
 
@@ -409,21 +447,24 @@ ninguna consulta nueva.
 </details>
 
 <a id="F-QINST-R010"></a>
-### Rule[F-QINST-R010] - La version del juez gobierna la vigencia de los veredictos
+### Rule[F-QINST-R010] - La version del juez se registra y se declara; cambiarla no invalida ningun veredicto
 **Severity**: critical | **Validation**: VALIDATED
 
 > La version del juez —su forma de preguntar y la estructura de lo que devuelve—
-> forma parte de la identidad del veredicto, y de ahi salen tres invariantes:
-> 1. Al cambiar la version, los veredictos anteriores **dejan de ser vigentes**
->    pero **no se borran**: quedan como historia.
-> 2. Volver a evaluar el curso con el juez nuevo es una decision explicita del
->    usuario ([F-QINST-R012](#F-QINST-R012)), nunca un efecto colateral de haber
->    tocado el juez.
+> es la **procedencia** de cada veredicto: se registra junto a el y se declara en el
+> informe ([F-QINST-R005](#F-QINST-R005)). No decide que veredictos valen. De ahi
+> salen tres invariantes:
+> 1. Cambiar la version **no borra, no invalida y no re-evalua** nada: los
+>    veredictos ya emitidos se siguen reutilizando y puntuando, cualquiera sea la
+>    version que los emitio, y cada uno conserva registrada la suya.
+> 2. Volver a juzgar con el juez nuevo es una decision explicita del usuario
+>    ([F-QINST-R012](#F-QINST-R012)) y es el **unico** mecanismo por el que un
+>    veredicto se rehace; nunca un efecto colateral de haber tocado el juez.
 > 3. Cuando el sistema **no logra derivar** la version a partir de la definicion
 >    del juez, no la presenta como una version valida: no coincide con ninguna
->    version derivada de una definicion accesible, ningun veredicto guardado se da
->    por vigente bajo ella, y esa corrida trata al juez como **no disponible**
->    ([F-QINST-R007](#F-QINST-R007)).
+>    version derivada de una definicion accesible, ningun veredicto nuevo se emite
+>    ni se registra bajo ella, no se declara como version consultada, y esa corrida
+>    trata al juez como **no disponible** ([F-QINST-R007](#F-QINST-R007)).
 
 <details><summary>Detalle</summary>
 
@@ -432,46 +473,61 @@ juzgar 11.500 ejercicios es lento y caro. Si lo primero disparara lo segundo,
 cada retoque del juez se convertiria en una factura sorpresa, y en la practica
 nadie tocaria el juez.
 
-Conservar la historia tiene ademas valor propio: comparar como juzgo el mismo
-ejercicio cada version del juez es la unica forma de saber si el cambio lo mejoro.
-Es el comportamiento general de
+**Que la version no gobierne la vigencia es una decision deliberada del usuario**,
+tomada con su contra sobre la mesa: si un ejercicio cumple o no su consigna es una
+propiedad del ejercicio, no de quien la juzgo, y cambiar de modelo no puede
+invalidar 11.487 veredictos ya pagados. El costo aceptado es que, tras corregir un
+juez que juzgaba mal, sus veredictos siguen puntuando hasta que alguien pida
+re-evaluarlos. Es el comportamiento general de
+[F-EVCOST-R001](../2026-07-29.03_evaluaciones-costosas-reutilizables/REQUIREMENT.md#F-EVCOST-R001)
+y
 [F-EVCOST-R006](../2026-07-29.03_evaluaciones-costosas-reutilizables/REQUIREMENT.md#F-EVCOST-R006)
-aplicado a este juez.
+aplicado a este juez; el razonamiento completo y las alternativas descartadas estan
+en
+[DOUBT-IDENTIDAD-VERSION](../2026-07-29.03_evaluaciones-costosas-reutilizables/REQUIREMENT.md#DOUBT-IDENTIDAD-VERSION).
 
-Tras cambiar la version, y hasta que el usuario decida re-evaluar, los ejercicios
-figuran como **pendientes** en la cobertura ([F-QINST-R005](#F-QINST-R005)), que
-ademas declara con que version se evaluo lo que si tiene puntaje: el informe dice
-con precision que el curso quedo sin juicio vigente, en lugar de mostrar puntajes
-que ya no corresponden al juez actual.
+**Lo que queda en lugar de la vigencia es la visibilidad.** Tras cambiar la version,
+los ejercicios ya evaluados **no** vuelven a figurar como pendientes: siguen
+puntuando. Lo que el informe muestra es de que version viene cada veredicto y
+cuantos aporta cada una ([F-QINST-R005](#F-QINST-R005)), que es lo que le permite al
+usuario decidir si pide una re-evaluacion y con que alcance. Conservar y comparar la
+historia tiene ademas valor propio: es la unica forma de saber si un cambio del juez
+lo mejoro.
 
 **Por que la version que no pudo derivarse tiene que distinguirse (invariante 3).**
-Las dos primeras invariantes se apoyan enteramente en que la version se **derive de
-la definicion del juez**: es eso lo que hace que cambiar su forma de preguntar o la
-estructura de lo que devuelve cambie la version y, con ella, la vigencia. Si el
-sistema no consigue acceder a esa definicion y aun asi produce una version con la
-misma forma que una legitima, la cadena se corta en silencio: retocar el juez deja
-de invalidar nada, la corrida da por vigentes veredictos emitidos por **otra**
-version y los puntua como si fueran del juez actual. Nadie lo detecta —no hay
-error, no hay diferencia visible en el informe— y es exactamente el escenario que
-las invariantes 1 y 2 existen para impedir.
+El razonamiento cambio de sustento pero no de conclusion. Ya no se trata de la
+vigencia —nada invalida nada— sino de la **procedencia**, que tras esta decision es
+la unica señal que el usuario tiene para decidir cuando re-evaluar. Si el sistema no
+consigue acceder a la definicion del juez y aun asi produce una version con la misma
+forma que una legitima, esa etiqueta falsa se estampa sobre los veredictos nuevos y
+se cuela en los recuentos del informe: quedan indistinguibles de los emitidos por
+una version real. Nadie lo detecta —no hay error, no hay diferencia visible— y el
+unico instrumento que la invariante 1 deja en manos del usuario queda envenenado.
+Peor aun, un veredicto asi es **permanente**: como nada se invalida solo, sobrevive
+indefinidamente con una procedencia que no corresponde a ningun juez real.
 
-Por eso el desenlace exigido es el conservador y visible: esa corrida no puntua
-nada de este analisis. No reutiliza ningun veredicto guardado, no puede registrar
-uno nuevo bajo una version que no vale, y los ejercicios quedan pendientes o
-fallidos en la cobertura ([F-QINST-R005](#F-QINST-R005)) como ante cualquier otra
-indisponibilidad del juez ([F-QINST-R007](#F-QINST-R007)). Se pierde una corrida de
-este analisis; lo que no se pierde es la garantia de que un puntaje de consigna
-siempre corresponde al juez que el informe declara.
+Por eso el desenlace exigido sigue siendo el conservador y visible: esa corrida no
+emite ni registra ningun veredicto nuevo, no declara esa version como version
+consultada, y sus ejercicios sin veredicto quedan pendientes o fallidos en la
+cobertura ([F-QINST-R005](#F-QINST-R005)) como ante cualquier otra indisponibilidad
+del juez ([F-QINST-R007](#F-QINST-R007)). **Lo que si sigue ocurriendo es el reuso**:
+los ejercicios con veredicto ya registrado se puntuan igual, declarando la version
+real que los emitio — no depende de la version de la corrida, y negarles el puntaje
+seria inventar una invalidacion que la invariante 1 prohibe. Se pierde el avance de
+una corrida; lo que no se pierde es la garantia de que toda version que el informe
+nombra corresponde a una definicion del juez que existio.
 
-**Criterio de aceptacion**: (a) cambiada la version del juez, ninguna corrida
-posterior reutiliza los veredictos anteriores, esos veredictos siguen
-consultables, y no se dispara ninguna consulta nueva mas alla del presupuesto
-ordinario de la corrida; (b) si la version no puede derivarse de la definicion del
-juez, la corrida no reutiliza ningun veredicto guardado —ni siquiera los emitidos
-por la ultima version conocida—, no registra ninguno nuevo, y sus ejercicios quedan
-sin puntaje.
+**Criterio de aceptacion**: (a) cambiada la version del juez, las corridas
+posteriores **siguen reutilizando** los veredictos anteriores —el juez no recibe
+ninguna consulta por ellos, ninguno de esos ejercicios queda pendiente— y el informe
+los declara bajo la version que los emitio; (b) si la version no puede derivarse de
+la definicion del juez, la corrida no emite ni registra ningun veredicto nuevo, no
+declara esa version como version consultada, y los ejercicios sin veredicto
+registrado quedan sin puntaje; (c) en ese mismo caso, los ejercicios que ya tenian
+veredicto registrado se siguen puntuando y el informe declara la version real que
+los emitio.
 
-**Error**: "El cambio de version del juez de consigna elimino {cantidad} veredictos anteriores" / "Se dio por vigente un veredicto bajo una version del juez que no pudo derivarse de su definicion"
+**Error**: "El cambio de version del juez de consigna elimino {cantidad} veredictos anteriores" / "El cambio de version del juez de consigna dejo de reutilizar {cantidad} veredictos ya registrados" / "Se registro un veredicto bajo una version del juez que no pudo derivarse de su definicion"
 
 </details>
 
@@ -508,13 +564,15 @@ veredictos registrados siguen intactos para la corrida siguiente.
 </details>
 
 <a id="F-QINST-R012"></a>
-### Rule[F-QINST-R012] - La re-evaluacion es explicita y acotable
+### Rule[F-QINST-R012] - La re-evaluacion es explicita, acotable, y el unico modo de rehacer un veredicto
 **Severity**: major | **Validation**: VALIDATED
 
 > El usuario puede pedir explicitamente que se vuelva a juzgar contenido que ya
-> tiene veredicto vigente. El pedido puede alcanzar todo el curso o una parte de
-> el, respeta el presupuesto de la corrida ([F-QINST-R006](#F-QINST-R006)) y no
-> destruye los veredictos anteriores.
+> tiene veredicto registrado. Es el **unico** mecanismo por el que un veredicto se
+> rehace. El pedido puede alcanzar todo el curso o una parte de el, respeta el
+> presupuesto de la corrida ([F-QINST-R006](#F-QINST-R006)), no destruye los
+> veredictos anteriores, y a partir de entonces el informe puntua el veredicto
+> nuevo.
 
 <details><summary>Detalle</summary>
 
@@ -522,14 +580,22 @@ Es la valvula de escape de [F-QINST-R008](#F-QINST-R008) y
 [F-QINST-R010](#F-QINST-R010): sin ella, un veredicto registrado seria definitivo
 para siempre y no habria forma de aprovechar una mejora del juez.
 
+**Que sea el unico mecanismo la vuelve la regla mas importante de esta familia.**
+Como cambiar la version del juez ya no invalida nada
+([F-QINST-R010](#F-QINST-R010)), este pedido es la **unica** via por la que una
+mejora del juez llega a los ejercicios ya juzgados. El dato que le dice al usuario
+cuando conviene usarla es el recuento de veredictos por version del informe
+([F-QINST-R005](#F-QINST-R005)).
+
 Que respete el presupuesto no es un detalle: una re-evaluacion total sin tope seria
 exactamente la factura sorpresa que [F-QINST-R010](#F-QINST-R010) evita. Con tope,
 la re-evaluacion tambien es incremental — se pide una vez y avanza corrida a
 corrida.
 
 **Criterio de aceptacion**: pedida la re-evaluacion, la corrida consulta al juez
-por ejercicios que ya tenian veredicto vigente, sin exceder el presupuesto, y los
-veredictos anteriores siguen consultables.
+por ejercicios que ya tenian veredicto registrado, sin exceder el presupuesto, los
+veredictos anteriores siguen consultables, y el informe pasa a puntuar el veredicto
+nuevo declarandolo bajo la version que lo emitio.
 
 **Error**: N/A (esta regla describe una accion del usuario)
 
@@ -666,7 +732,7 @@ muestra**, y usando ese mismo nombre y ningun otro: (a) excluirlo deja al juez s
 ninguna consulta y al informe sin cobertura de consigna; (b) fijarle un tope de N
 consultas hace que la corrida consulte a lo sumo N veces, y no el valor por
 defecto; (c) pedirle re-evaluacion vuelve a consultar por contenido que ya tenia
-veredicto vigente.
+veredicto registrado.
 
 **Error**: "Se pidio '{opcion}' para el analisis '{nombre}' y la corrida lo ignoro: el informe publica ese analisis con ese mismo nombre" (condicion prohibida: un pedido dirigido al nombre publicado no debe quedar sin efecto)
 
@@ -762,12 +828,14 @@ todavia no se miraron".
     escribe para excluirlo, acotarlo y re-evaluarlo.
   - Presupuesto acotado de consultas nuevas por corrida y reanudacion en corridas
     posteriores.
-  - Cobertura declarada: version del juez, alcanzados, con veredicto, reutilizados,
-    pendientes y fallidos.
+  - Cobertura declarada: alcanzados, con veredicto, reutilizados, pendientes,
+    fallidos, version consultada en la corrida y recuento de veredictos por version
+    de procedencia.
   - Separacion entre falla transitoria y veredicto negativo legitimo.
-  - Identidad del veredicto por contenido juzgado, incluida la version del juez, y
-    tratamiento de la version que no pudo derivarse de la definicion del juez.
-  - Re-evaluacion explicita.
+  - Identidad del veredicto por contenido juzgado; la version del juez como
+    procedencia registrada y declarada, y tratamiento de la version que no pudo
+    derivarse de la definicion del juez.
+  - Re-evaluacion explicita, unico mecanismo por el que un veredicto se rehace.
 - **Fuera de alcance**:
   - **El criterio con que el juez decide.** Que revisa, como pondera y como
     redacta sus violaciones ya esta definido y probado en el juez; este
@@ -894,7 +962,8 @@ journeys:
 **Validation**: VALIDATED
 
 Cubre las tres formas de pedir la auditoria respecto de este analisis y el efecto
-de haber cambiado la version del juez. Cubre R001, R010, R011, R012 y R014.
+de haber cambiado la version del juez —que es reutilizar igual y declarar la
+procedencia—. Cubre R001, R005, R010, R011, R012 y R014.
 
 ```yaml
 journeys:
@@ -911,7 +980,7 @@ journeys:
           - when: "Pide explicitamente volver a juzgar el curso"
             then: reevalua_a_pedido
           - when: "La version del juez cambio desde la ultima auditoria y el usuario no pidio volver a juzgar"
-            then: veredictos_no_vigentes
+            then: version_cambiada
 
       - id: corre_por_omision
         action: "El informe incluye el puntaje, los diagnosticos y la cobertura del analisis de consigna sobre todos los ejercicios del curso"
@@ -924,13 +993,13 @@ journeys:
         result: success
 
       - id: reevalua_a_pedido
-        action: "El sistema vuelve a consultar al juez por ejercicios que ya tenian veredicto vigente, sin exceder el tope de la corrida, y los veredictos anteriores siguen consultables"
+        action: "El sistema vuelve a consultar al juez por ejercicios que ya tenian veredicto registrado, sin exceder el tope de la corrida, los veredictos anteriores siguen consultables, y el informe pasa a puntuar el veredicto nuevo"
         gate: [F-QINST-R012]
         result: success
 
-      - id: veredictos_no_vigentes
-        action: "Los veredictos de la version anterior del juez no se reutilizan ni se borran: los ejercicios figuran como pendientes en la cobertura y solo se vuelven a juzgar dentro del tope ordinario de la corrida"
-        gate: [F-QINST-R010]
+      - id: version_cambiada
+        action: "Los veredictos de la version anterior del juez se siguen reutilizando y puntuando: ningun ejercicio ya evaluado queda pendiente, el juez no recibe consultas por ellos, y la cobertura declara cuantos veredictos aporta cada version"
+        gate: [F-QINST-R005, F-QINST-R010]
         result: success
 ```
 
@@ -1105,10 +1174,12 @@ manos de la arquitectura.
 - **FEAT-EVCOST** — Capacidad general de resultados de evaluacion costosa
   reutilizables entre analisis: registro por huella de contenido, reuso, escritura
   incremental resistente a interrupcion, distincion entre resultado definitivo y
-  falla transitoria, y convivencia de versiones del evaluador. Este analisis es su
-  primer consumidor. Citada por [F-QINST-R006](#F-QINST-R006),
-  [F-QINST-R007](#F-QINST-R007), [F-QINST-R008](#F-QINST-R008),
-  [F-QINST-R010](#F-QINST-R010), [F-QINST-R013](#F-QINST-R013) y el Contexto.
+  falla transitoria, y convivencia y reuso de resultados de versiones distintas del
+  evaluador con la version como procedencia registrada. Este analisis es su primer
+  consumidor. Citada por [F-QINST-R005](#F-QINST-R005),
+  [F-QINST-R006](#F-QINST-R006), [F-QINST-R007](#F-QINST-R007),
+  [F-QINST-R008](#F-QINST-R008), [F-QINST-R010](#F-QINST-R010),
+  [F-QINST-R013](#F-QINST-R013) y el Contexto.
 - **FEAT-RPRES** — Establece que corregir un ejercicio cambia su contenido pero no
   su identificador; es la razon por la que la identidad del veredicto es la huella
   del contenido juzgado. Citada por [F-QINST-R009](#F-QINST-R009) y el Contexto.

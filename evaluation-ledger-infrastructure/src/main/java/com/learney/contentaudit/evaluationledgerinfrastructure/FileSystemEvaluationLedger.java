@@ -67,22 +67,32 @@ public class FileSystemEvaluationLedger implements EvaluationLedger {
     }
 
     @Override
-    public Optional<EvaluationRecord> find(EvaluationKey key) {
-        Optional<EvaluationRecord> current = Optional.empty();
+    public Optional<EvaluationRecord> findLatest(EvaluationKey key) {
+        Optional<EvaluationRecord> latest = Optional.empty();
         for (EvaluationRecord candidate : readAll(key.getEvaluatorId())) {
             if (Objects.equals(candidate.getKey(), key)) {
-                // A key can legitimately be recorded more than once
-                // (F-EVCOST-R008: re-evaluation does not destroy the earlier
-                // entry). Lines are read in append order, so the last match
-                // is the vigent one.
-                current = Optional.of(candidate);
+                // F-EVCOST-R006: a key can legitimately be recorded more than
+                // once (an explicit re-evaluation, F-EVCOST-R008, appends a
+                // new entry without destroying the earlier one). Lines are
+                // read in append order, so the last match is the most
+                // recently registered one — the one that applies.
+                latest = Optional.of(candidate);
             }
         }
-        return current;
+        return latest;
     }
 
     @Override
     public void append(EvaluationRecord record) {
+        if (record.getEvaluatorVersion() == null) {
+            // F-EVCOST-R001: provenance is mandatory. A result registered
+            // without the version that produced it would leave nothing for a
+            // later consultation, comparison or report to rely on.
+            throw new IllegalArgumentException(
+                    "Se registro un resultado del evaluador '" + record.getKey().getEvaluatorId()
+                            + "' sin la version que lo produjo");
+        }
+
         Path file = resolveFile(record.getKey().getEvaluatorId());
         try {
             Files.createDirectories(file.getParent());
@@ -105,11 +115,10 @@ public class FileSystemEvaluationLedger implements EvaluationLedger {
     }
 
     @Override
-    public List<EvaluationRecord> history(String evaluatorId, String contentFingerprint) {
+    public List<EvaluationRecord> history(EvaluationKey key) {
         List<EvaluationRecord> matches = new ArrayList<>();
-        for (EvaluationRecord candidate : readAll(evaluatorId)) {
-            if (Objects.equals(candidate.getKey().getEvaluatorId(), evaluatorId)
-                    && Objects.equals(candidate.getKey().getContentFingerprint(), contentFingerprint)) {
+        for (EvaluationRecord candidate : readAll(key.getEvaluatorId())) {
+            if (Objects.equals(candidate.getKey(), key)) {
                 matches.add(candidate);
             }
         }
@@ -160,11 +169,13 @@ public class FileSystemEvaluationLedger implements EvaluationLedger {
         EvaluationKey key = record.getKey();
         Map<String, String> line = new LinkedHashMap<>();
         line.put("evaluatorId", key.getEvaluatorId());
-        line.put("evaluatorVersion", key.getEvaluatorVersion());
         line.put("contentFingerprint", key.getContentFingerprint());
         line.put("payload", record.getPayload());
         line.put("subjectRef", record.getSubjectRef());
         line.put("recordedAt", record.getRecordedAt() != null ? record.getRecordedAt().toString() : null);
+        // F-EVCOST-R001: the version is provenance carried on the record
+        // itself now, not part of the identity key.
+        line.put("evaluatorVersion", record.getEvaluatorVersion());
         try {
             // The default (non-pretty) writer escapes control characters
             // inside string values, including literal newlines, so one
@@ -178,10 +189,10 @@ public class FileSystemEvaluationLedger implements EvaluationLedger {
 
     /**
      * Parses one physical line into an {@link EvaluationRecord}. Any line that
-     * fails to parse — blank, not valid JSON, or missing part of the identity
-     * — is treated as though it had never been written (F-EVCOST-R004): this
-     * is exactly what a trailing line truncated mid-write by an interruption
-     * looks like.
+     * fails to parse — blank, not valid JSON, missing part of the identity, or
+     * missing its mandatory provenance (F-EVCOST-R001) — is treated as though
+     * it had never been written (F-EVCOST-R004): this is exactly what a
+     * trailing line truncated mid-write by an interruption looks like.
      */
     private Optional<EvaluationRecord> parseLine(String rawLine) {
         if (rawLine == null || rawLine.isBlank()) {
@@ -191,21 +202,22 @@ public class FileSystemEvaluationLedger implements EvaluationLedger {
             Map<String, String> line = OBJECT_MAPPER.readValue(rawLine, new TypeReference<Map<String, String>>() {
             });
             String evaluatorId = line.get("evaluatorId");
-            String evaluatorVersion = line.get("evaluatorVersion");
             String contentFingerprint = line.get("contentFingerprint");
-            if (evaluatorId == null || evaluatorVersion == null || contentFingerprint == null) {
+            String evaluatorVersion = line.get("evaluatorVersion");
+            if (evaluatorId == null || contentFingerprint == null || evaluatorVersion == null) {
                 return Optional.empty();
             }
             String recordedAtRaw = line.get("recordedAt");
             Instant recordedAt = recordedAtRaw != null ? Instant.parse(recordedAtRaw) : null;
             EvaluationRecord record = new EvaluationRecord(
-                    new EvaluationKey(evaluatorId, evaluatorVersion, contentFingerprint),
+                    new EvaluationKey(evaluatorId, contentFingerprint),
                     line.get("payload"),
                     line.get("subjectRef"),
-                    recordedAt);
+                    recordedAt, evaluatorVersion);
             return Optional.of(record);
         } catch (Exception e) {
             return Optional.empty();
         }
     }
+
 }

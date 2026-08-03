@@ -32,6 +32,24 @@ import javax.annotation.processing.Generated;
  * representation — so that F-EVCOST-R002 ("exactly what the evaluator
  * receives, nothing more") holds by construction.
  *
+ * <p>The evaluator's version is no longer part of the identity of a result
+ * (F-EVCOST-R001): it is asked to the evaluator exactly once, when this
+ * session is opened, and stays frozen for the whole run. That cached version
+ * is stamped as provenance on every newly recorded result and is exposed via
+ * {@link #consultedEvaluatorVersion()} — but only once the evaluator was
+ * actually invoked at least once; a run that reused everything, that never
+ * had budget for a new evaluation, or whose evaluator could not state its own
+ * version, never "consulted" it and reports {@link Optional#empty()}.
+ *
+ * <p>An evaluator that cannot state its own version ({@link
+ * Evaluator#evaluatorVersion()} returns {@link Optional#empty()}) is treated,
+ * from the very first subject, exactly like a service that is unavailable
+ * (F-EVCOST-R009): this session never calls {@link
+ * Evaluator#evaluate(EvaluationSubject)} and reports every content that would
+ * need a new evaluation as {@link EvaluationResolutionKind#PENDING}. Reuse of
+ * already-registered results keeps working unaffected, because the reuse path
+ * never looks at the version (F-QINST-R010 criterion c).
+ *
  * <p>A failure attributable to the service ({@link
  * EvaluationFailureKind#EVALUATOR_UNAVAILABLE}) makes this session stop
  * consulting the evaluator for the rest of the run: every subsequent content
@@ -55,9 +73,13 @@ class DefaultEvaluationSession implements EvaluationSession {
 
     private final EvaluationBudget budget;
 
+    private final Optional<String> evaluatorVersion;
+
     private int newEvaluationsUsed = 0;
 
     private boolean evaluatorUnavailable = false;
+
+    private boolean evaluatorVersionConsulted = false;
 
     private int reached = 0;
 
@@ -75,6 +97,14 @@ class DefaultEvaluationSession implements EvaluationSession {
         this.fingerprinter = fingerprinter;
         this.evaluator = evaluator;
         this.budget = budget;
+        // The version is asked exactly once, right when the session opens,
+        // and frozen for the rest of the run.
+        this.evaluatorVersion = evaluator.evaluatorVersion();
+        if (this.evaluatorVersion.isEmpty()) {
+            // F-EVCOST-R009 / F-QINST-R010(c): an evaluator that cannot state
+            // its own version is unavailable from the very first subject.
+            this.evaluatorUnavailable = true;
+        }
     }
 
     @Override
@@ -93,11 +123,6 @@ class DefaultEvaluationSession implements EvaluationSession {
         return new EvaluationCoverage(reached, withResult, evaluatedInRun, reused, pending, failed);
     }
 
-    @Override
-    public String evaluatorVersion() {
-        return evaluator.evaluatorVersion();
-    }
-
     private EvaluationResolution resolveInternal(EvaluationSubject subject, boolean forceReevaluation) {
         reached++;
 
@@ -106,46 +131,55 @@ class DefaultEvaluationSession implements EvaluationSession {
         // second representation built independently.
         Map<String, String> content = subject.getContent();
         String contentFingerprint = fingerprinter.fingerprint(content);
-        EvaluationKey key = new EvaluationKey(
-                evaluator.evaluatorId(), evaluator.evaluatorVersion(), contentFingerprint);
+        // R001: identity is evaluator + fingerprint only; the version is no
+        // longer part of the key.
+        EvaluationKey key = new EvaluationKey(evaluator.evaluatorId(), contentFingerprint);
 
-        // R003 + R006: the current, vigent result (same evaluator, same
-        // version, same fingerprint) is consulted first. R008: it is only
-        // bypassed when re-evaluation was explicitly requested.
+        // R003 + R006: whatever is currently the most recently registered
+        // result for this evaluator+fingerprint is consulted first,
+        // regardless of which version produced it. R008: it is only bypassed
+        // when re-evaluation was explicitly requested.
         if (!forceReevaluation) {
-            Optional<EvaluationRecord> current = ledger.find(key);
+            Optional<EvaluationRecord> current = ledger.findLatest(key);
             if (current.isPresent()) {
                 reused++;
-                return new EvaluationResolution(EvaluationResolutionKind.REUSED, current.get().getPayload());
+                EvaluationRecord record = current.get();
+                return new EvaluationResolution(
+                        EvaluationResolutionKind.REUSED, record.getPayload(), record.getEvaluatorVersion());
             }
         }
 
-        // R009: once a service failure was observed, this session stops
-        // consulting the evaluator for the rest of the run; everything that
-        // still needs a new evaluation is left pending.
+        // R009 / F-QINST-R010(c): once the evaluator is unavailable — either
+        // because it could not state its own version at session open, or
+        // because a service failure was observed earlier in this run — this
+        // session stops consulting it; everything that still needs a new
+        // evaluation is left pending.
         if (evaluatorUnavailable) {
             pending++;
-            return new EvaluationResolution(EvaluationResolutionKind.PENDING, null);
+            return new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null);
         }
 
         // R003: the budget bounds only NEW evaluations; reuse above never
         // consumes it.
         if (newEvaluationsUsed >= budget.getMaxNewEvaluations()) {
             pending++;
-            return new EvaluationResolution(EvaluationResolutionKind.PENDING, null);
+            return new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null);
         }
         newEvaluationsUsed++;
+        evaluatorVersionConsulted = true;
 
         EvaluationOutcome outcome = evaluator.evaluate(subject);
 
         if (outcome instanceof EvaluationEmitted emitted) {
             // R004: recorded immediately, before resolving the next content.
             // R005: only what the evaluator emitted is registered.
+            // R001: the frozen version travels as mandatory provenance.
+            String version = evaluatorVersion.get();
             EvaluationRecord record = new EvaluationRecord(
-                    key, emitted.getPayload(), subject.getSubjectRef(), Instant.now());
+                    key, emitted.getPayload(), subject.getSubjectRef(), Instant.now(), version);
             ledger.append(record);
             evaluatedInRun++;
-            return new EvaluationResolution(EvaluationResolutionKind.EVALUATED, emitted.getPayload());
+            return new EvaluationResolution(EvaluationResolutionKind.EVALUATED, emitted.getPayload(), version);
         }
 
         if (outcome instanceof EvaluationNotEmitted notEmitted) {
@@ -157,10 +191,20 @@ class DefaultEvaluationSession implements EvaluationSession {
                 // consulting it for the remainder of this run.
                 evaluatorUnavailable = true;
             }
-            return new EvaluationResolution(EvaluationResolutionKind.FAILED, null);
+            return new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null);
         }
 
         throw new IllegalStateException(
                 "Unknown EvaluationOutcome implementation: " + outcome.getClass().getName());
     }
+
+    @Override
+    public Optional<String> consultedEvaluatorVersion() {
+        // Empty when the run never actually consulted the evaluator: every
+        // subject was reused, there was no budget left for a new evaluation,
+        // or the evaluator could not state its own version in the first
+        // place (in which case evaluatorVersion is itself empty).
+        return evaluatorVersionConsulted ? evaluatorVersion : Optional.empty();
+    }
+
 }

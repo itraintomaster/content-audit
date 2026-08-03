@@ -1,0 +1,165 @@
+code: FEAT-QINST
+description: "La version del evaluador sale de la identidad de un resultado y pasa\
+  \ a ser procedencia obligatoria. Identidad = (evaluatorId, contentFingerprint);\
+  \ desempate por registro mas reciente; la version viaja con cada resultado consultado;\
+  \ la cobertura de consigna declara version consultada y recuento de veredictos por\
+  \ version. Se retira judgeVersionOverride."
+modules:
+- name: evaluation-ledger-domain
+  description: |
+    FEAT-EVCOST. Capacidad general de resultados de evaluacion costosa reutilizables entre analisis. No sabe nada de auditoria, de cursos ni de LLMs: define la identidad de un resultado —evaluador + huella del contenido, y nada mas (F-EVCOST-R001)—, el registro append-only clave->payload opaco, y la coordinacion reanudable de una corrida (consultar lo registrado -> si falta, evaluar dentro del presupuesto -> registrar apenas se obtiene). La version del evaluador NO integra la identidad: es procedencia obligatoria que se registra junto a cada resultado y viaja con el en cada consulta, de modo que ningun cambio de version invalida, borra ni deja pendiente nada (F-EVCOST-R006, F-EVCOST-R008). Cada consumidor aporta tres cosas y nada mas: como construye el contenido (EvaluationSubject.content), como su evaluador se pronuncia (Evaluator -> EvaluationOutcome) y como interpreta su payload. La huella NO la calcula el consumidor: la deriva la sesion del propio mapa de contenido entregado al evaluador, de modo que F-EVCOST-R002 ("exactamente lo que el evaluador recibe, ni mas ni menos") queda garantizada por construccion y no por disciplina.
+  models:
+  - name: EvaluationKey
+    type: record
+    fields:
+    - name: evaluatorId
+      type: String
+      description: "Identificador estable del evaluador. No dice quien juzga sino\
+        \ QUE PREGUNTA SE HIZO: el resultado de un evaluador no es intercambiable\
+        \ con el de otro sobre la misma huella (F-EVCOST-R001)."
+      _change: modify
+    - name: evaluatorVersion
+      _change: delete
+    - name: contentFingerprint
+      type: String
+      description: Huella derivada del mapa de contenido entregado al evaluador (F-EVCOST-R002).
+        Junto con evaluatorId agota la identidad de un resultado.
+      _change: modify
+    _change: modify
+  - name: EvaluationRecord
+    type: record
+    fields:
+    - name: evaluatorVersion
+      type: String
+      description: "Version del evaluador que produjo este resultado. Procedencia\
+        \ OBLIGATORIA (F-EVCOST-R001): no participa de la identidad y no decide vigencia,\
+        \ pero un registro sin ella es un error porque es la unica señal con la que\
+        \ el usuario decide cuando re-evaluar."
+      _change: add
+    _change: modify
+  - name: EvaluationResolution
+    type: record
+    fields:
+    - name: evaluatorVersion
+      type: String
+      description: "Version que produjo el resultado devuelto (F-EVCOST-R001, F-EVCOST-R003).\
+        \ Poblada exactamente cuando kind es REUSED o EVALUATED; null cuando no hay\
+        \ resultado (PENDING, FAILED)."
+      _change: add
+    _change: modify
+  - name: EvaluationCoverage
+    type: record
+    fields:
+    - name: reused
+      type: int
+      description: "Resueltos con un resultado ya registrado, cualquiera sea la version\
+        \ que lo produjo; no consumieron presupuesto (F-EVCOST-R003, F-EVCOST-R006)."
+      _change: modify
+    - name: pending
+      type: int
+      description: "Sin resultado registrado bajo su huella, por tope de presupuesto\
+        \ o porque la sesion dejo de consultar. Cambiar la version del evaluador nunca\
+        \ deja nada pendiente (F-EVCOST-R006)."
+      _change: modify
+    _change: modify
+  interfaces:
+  - name: EvaluationLedger
+    sealed: false
+    exposes:
+    - signature: "find(EvaluationKey key): Optional<EvaluationRecord>"
+      _change: delete
+    - signature: "findLatest(EvaluationKey key): Optional<EvaluationRecord>"
+      _change: add
+    - signature: "history(String evaluatorId,String contentFingerprint): List<EvaluationRecord>"
+      _change: delete
+    - signature: "history(EvaluationKey key): List<EvaluationRecord>"
+      _change: add
+    _change: modify
+  - name: Evaluator
+    sealed: false
+    exposes:
+    - signature: "evaluatorVersion(): String"
+      _change: delete
+    - signature: "evaluatorVersion(): Optional<String>"
+      _change: add
+    _change: modify
+  - name: EvaluationSession
+    sealed: false
+    exposes:
+    - signature: "evaluatorVersion(): String"
+      _change: delete
+    - signature: "consultedEvaluatorVersion(): Optional<String>"
+      _change: add
+    _change: modify
+  packages:
+  - name: evaluationsession
+    description: |
+      Coordinacion reanudable de una corrida sobre un evaluador. La sesion se abre con un presupuesto y un evaluador y le pide una sola vez su version, que queda congelada para toda la corrida. Esa version ya NO entra en la clave —la identidad es evaluador + huella (F-EVCOST-R001)— sino que se estampa como procedencia sobre cada resultado nuevo y se declara via consultedEvaluatorVersion(). consultedEvaluatorVersion() esta vacia cuando la corrida no consulto al evaluador ni una vez: porque todo se reutilizo, porque no habia presupuesto, o porque el evaluador no pudo enunciar su version. Ese ultimo caso es el que sostiene la invariante 3 de F-QINST-R010 sin ninguna convencion de strings: un evaluador que devuelve Optional.empty() en evaluatorVersion() es, desde el primer sujeto, un evaluador NO DISPONIBLE —la sesion no lo consulta, no registra nada y deja pendiente lo que falta, igual que ante una caida de servicio (F-EVCOST-R009)—, pero el reuso sigue ocurriendo intacto, porque la ruta de reuso no mira la version (F-QINST-R010 criterio c). La sesion recibe unicamente el presupuesto: quien decide que sujeto se vuelve a evaluar es el consumidor, sujeto por sujeto, via resolveForced (F-EVCOST-R008).
+    _change: modify
+  _change: modify
+- name: evaluation-ledger-infrastructure
+  description: |
+    Adaptador filesystem del registro de evaluaciones costosas. Escribe un archivo por evaluador bajo .content-audit/evaluations/, una entrada por linea, en modo append: cada resultado queda disponible apenas se obtiene (F-EVCOST-R004) y una interrupcion abrupta a lo sumo deja una ultima linea incompleta, que la lectura descarta por no parsear —"se lee completa o no existe"—. El orden de append es la unica fuente del desempate que exige F-EVCOST-R006: con mas de una entrada para la misma clave (evaluador + huella), findLatest devuelve la ULTIMA escrita y history las devuelve todas, de la mas reciente a la mas antigua, cada una con la version que la produjo. Se desempata por posicion en el archivo y no por recordedAt a proposito: el append es monotono y es la misma propiedad sobre la que se apoya la seguridad ante dos corridas simultaneas, mientras que un reloj puede empatar o retroceder; recordedAt queda como dato informativo. Append-only tambien significa que las entradas de versiones anteriores del evaluador conviven como historia consultable y nunca se borran solas (F-EVCOST-R006), y que una re-evaluacion agrega sin destruir y pasa a ganar el desempate (F-EVCOST-R008). Vive aparte de los informes de auditoria a proposito: borrar informes no toca este registro (F-EVCOST-R007).
+  _change: modify
+- name: audit-domain
+  packages:
+  - name: quizinstruction
+    models:
+    - name: JudgeVersionVerdictCount
+      type: record
+      fields:
+      - name: judgeVersion
+        type: String
+        description: Version del juez que emitio los veredictos contados.
+      - name: verdictCount
+        type: int
+        description: Cuantos de los veredictos que el informe puntua provienen de
+          esa version.
+      _change: add
+    - name: QuizInstructionCoverageDiagnosis
+      type: record
+      fields:
+      - name: evaluatorVersion
+        _change: delete
+      - name: consultedJudgeVersion
+        type: String
+        description: "Version del juez con la que ESTA CORRIDA consulto (F-QINST-R005).\
+          \ Null cuando la corrida no consulto ni una vez: todo reutilizado, sin presupuesto,\
+          \ o juez no disponible (F-QINST-R010). Null es un valor que el informe debe\
+          \ declarar, no un dato faltante."
+        _change: add
+      - name: verdictsByJudgeVersion
+        type: List<JudgeVersionVerdictCount>
+        description: "Recuento de veredictos por version de procedencia entre los\
+          \ que el informe PUNTUA (F-QINST-R005). Una fila por version presente, ordenadas\
+          \ por version para que el informe y los tests sean reproducibles. Su suma\
+          \ debe cerrar contra coverage.withResult: es la segunda suma que exige F-QINST-R005."
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: quiz-instruction-infrastructure
+  description: |
+    Adaptador del juez de consigna: implementa el SPI Evaluator de evaluation-ledger-domain corriendo el agente declarativo quiz-instruction-validator sobre el runtime compartido. Traduce EvaluationSubject.content a las cinco entradas declaradas del agente (cefrLevel, topic, title, instructions, quiz) verbatim, sin agregar ni quitar nada — es lo que hace que la huella cubra exactamente lo juzgado (F-EVCOST-R002). Reconoce el veredicto conservador de infraestructura del juez (confianza nula y violacion JUDGE_OUTPUT_INVALID) y lo devuelve como EvaluationNotEmitted(OUTPUT_UNUSABLE), de modo que nunca llega al registro (F-QINST-R013); toda falla de servicio, timeout, autenticacion o credito se devuelve como EvaluationNotEmitted(EVALUATOR_UNAVAILABLE) en lugar de propagarse como excepcion (F-QINST-R007). Su version es procedencia, no vigencia: se deriva de la definicion del agente y del modelo, se estampa sobre cada veredicto nuevo y se declara en el informe, pero no decide que veredictos valen (F-QINST-R010). Cuando la definicion no se puede localizar el juez no enuncia version alguna —evaluatorVersion() devuelve Optional.empty()— y con eso queda tratado como no disponible por la propia sesion. Construye el ChatModel de forma perezosa: una configuracion ausente o invalida es un evaluador no disponible, no una auditoria caida. allowedClients=[audit-cli] porque es un detalle de implementacion de la composition root.
+  models:
+  - name: QuizInstructionJudgeConfig
+    type: record
+    fields:
+    - name: judgeVersionOverride
+      _change: delete
+    _change: modify
+  packages:
+  - name: instructionjudge
+    description: |
+      Motor del adaptador del juez. Solo la factory es publica; el juez, el resolutor de version y el armado de entradas son package-private. El resolutor de version no conoce rutas: le pide la definicion al mismo AgentDefinitionLocator con el que se construye el runner, asi que el digest de los archivos del agente se calcula siempre sobre la definicion que efectivamente se ejecuta (F-QINST-R010). Cuando el locator responde AgentDefinitionUnresolved, el resolutor devuelve Optional.empty(): la ausencia de version se representa con un tipo y no con un prefijo reservado dentro del String. La convencion de prefijo anterior protegia por un efecto que ya no existe —una version fabricada no coincidia con ninguna clave registrada y por lo tanto no reutilizaba nada—; con la version fuera de la identidad (F-EVCOST-R001) nadie compara versiones, asi que un String fabricado se registraria como procedencia legitima y contaminaria los recuentos de F-QINST-R005 de forma permanente, porque nada se invalida solo. Con Optional.empty() el juez queda tratado como no disponible por la sesion: no emite ni registra veredicto nuevo, no se declara version consultada, los ejercicios sin veredicto quedan pendientes (F-QINST-R007) y los que ya tenian veredicto se siguen puntuando con su procedencia real (F-QINST-R010 criterio c).
+    interfaces:
+    - name: QuizInstructionJudgeVersionResolver
+      sealed: false
+      exposes:
+      - signature: "resolve(QuizInstructionJudgeConfig config): String"
+        _change: delete
+      - signature: "resolve(QuizInstructionJudgeConfig config): Optional<String>"
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify

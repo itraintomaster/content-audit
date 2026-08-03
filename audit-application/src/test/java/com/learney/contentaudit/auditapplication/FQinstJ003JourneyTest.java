@@ -27,6 +27,8 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
@@ -156,8 +158,8 @@ public class FQinstJ003JourneyTest {
         FakeEvaluationLedger ledger = new FakeEvaluationLedger();
         FakeContentFingerprinter fingerprinter = new FakeContentFingerprinter();
         String fingerprint = fingerprinter.fingerprint(subjectContent("quiz-1"));
-        EvaluationKey previousKey = new EvaluationKey(EVALUATOR_ID, "v1", fingerprint);
-        ledger.seed(new EvaluationRecord(previousKey, "{\"compliant\":true}", "quiz-1", Instant.now()));
+        EvaluationKey previousKey = new EvaluationKey(EVALUATOR_ID, fingerprint);
+        ledger.seed(new EvaluationRecord(previousKey, "{\"compliant\":true}", "quiz-1", Instant.now(), "v1"));
 
         EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
         when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
@@ -170,9 +172,9 @@ public class FQinstJ003JourneyTest {
 
         // R011: excluded means the analyzer is never built and the judge never consulted.
         verify(quizInstructionFactory, never()).create(any());
-        assertTrue(ledger.find(previousKey).isPresent(),
+        assertTrue(ledger.findLatest(previousKey).isPresent(),
                 "R011: verdicts already recorded must remain intact when the analysis is excluded");
-        assertEquals(1, ledger.history(EVALUATOR_ID, fingerprint).size(),
+        assertEquals(1, ledger.history(previousKey).size(),
                 "R011: exclusion must not add or remove any recorded verdict");
     }
 
@@ -208,8 +210,8 @@ public class FQinstJ003JourneyTest {
 
         // Seed a CURRENT verdict (same evaluator version) so the ordinary path would reuse it.
         String fingerprint = fingerprinter.fingerprint(subjectContent("quiz-1"));
-        EvaluationKey currentKey = new EvaluationKey(EVALUATOR_ID, "v1", fingerprint);
-        ledger.seed(new EvaluationRecord(currentKey, "{\"compliant\":true}", "quiz-1", Instant.now()));
+        EvaluationKey currentKey = new EvaluationKey(EVALUATOR_ID, fingerprint);
+        ledger.seed(new EvaluationRecord(currentKey, "{\"compliant\":true}", "quiz-1", Instant.now(), "v1"));
 
         EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
         when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
@@ -230,7 +232,7 @@ public class FQinstJ003JourneyTest {
         assertEquals(1, evaluator.getEvaluatedSubjects().size(),
                 "R012: explicit re-evaluation must query the judge even for content with a current verdict");
         // R012: the previous verdict and the new one coexist -- nothing was destroyed.
-        assertEquals(2, ledger.history(EVALUATOR_ID, fingerprint).size(),
+        assertEquals(2, ledger.history(currentKey).size(),
                 "R012: an explicit re-evaluation must not destroy the previous verdict");
     }
 
@@ -239,9 +241,12 @@ public class FQinstJ003JourneyTest {
     @Tag("path-4")
     @DisplayName("path-4: El usuario pide la auditoria de un curso → Los veredictos de la version anterior... [La version del juez cambio desde la ultima auditoria y el usuario no pidio volver a juzgar] → success")
     public void path4_laVersionDelJuezCambioDesdeLaUltimaAuditoriaYElUsuarioNoPidioVolverAJuzgar_success() {
-        // R010: a verdict recorded under a previous judge version must not be reused; the quiz
-        // is treated as pending and re-consulted within the ordinary run budget -- with no
-        // special re-evaluation request -- and the previous version's verdict is not deleted.
+        // R010 (invertida por F-EVCOST-R001/R006, "version = procedencia, no vigencia"): un
+        // veredicto registrado bajo una version anterior del juez se SIGUE reutilizando y
+        // puntuando -- el ejercicio no vuelve a quedar pendiente y el juez no recibe ninguna
+        // consulta por el -- aunque el usuario no haya pedido explicitamente re-evaluar. La
+        // cobertura/consulta atribuyen el veredicto reutilizado a su version REAL (la anterior),
+        // no a la vigente (F-QINST-R005).
         CourseRepository courseRepository = mock(CourseRepository.class);
         CourseToAuditableMapper courseToAuditableMapper = mock(CourseToAuditableMapper.class);
         AuditEngine auditEngine = mock(AuditEngine.class);
@@ -267,15 +272,17 @@ public class FQinstJ003JourneyTest {
         FakeEvaluator evaluator = new FakeEvaluator(EVALUATOR_ID, "v2");
 
         String fingerprint = fingerprinter.fingerprint(subjectContent("quiz-1"));
-        EvaluationKey previousVersionKey = new EvaluationKey(EVALUATOR_ID, "v1", fingerprint);
-        ledger.seed(new EvaluationRecord(previousVersionKey, "{\"compliant\":true}", "quiz-1", Instant.now()));
+        EvaluationKey key = new EvaluationKey(EVALUATOR_ID, fingerprint);
+        ledger.seed(new EvaluationRecord(key, "{\"compliant\":true}", "quiz-1", Instant.now(), "v1"));
 
+        EvaluationSession[] capturedSession = new EvaluationSession[1];
         EvaluationAnalyzerFactory quizInstructionFactory = mock(EvaluationAnalyzerFactory.class);
         when(quizInstructionFactory.analyzerName()).thenReturn(ANALYZER_NAME);
         when(quizInstructionFactory.create(any())).thenAnswer(invocation -> {
             EvaluationRunPolicy policy = invocation.getArgument(0);
             EvaluationRunPolicy effectivePolicy = withDefaultBudgetWhenAbsent(policy);
             EvaluationSession session = sessionFactory.open(budgetFrom(effectivePolicy), evaluator);
+            capturedSession[0] = session;
             return sessionBackedAnalyzer(session, effectivePolicy);
         });
 
@@ -286,15 +293,25 @@ public class FQinstJ003JourneyTest {
         AuditRunRequest request = new AuditRunRequest(null, null, null);
         runner.runAudit(coursePath, request);
 
-        // R010: the verdict from the previous judge version is not reused -- the quiz is
-        // re-consulted within the run's ordinary budget.
-        assertEquals(1, evaluator.getEvaluatedSubjects().size(),
-                "R010: a verdict from a previous judge version must not be reused, so the ordinary run must query the judge again");
-        // R010: the previous version's verdict is not deleted -- it remains as history.
-        assertTrue(ledger.find(previousVersionKey).isPresent(),
-                "R010: changing the judge version must not delete verdicts recorded under the previous version");
-        assertEquals(2, ledger.history(EVALUATOR_ID, fingerprint).size(),
-                "R010: the previous version's verdict and the new one must coexist as history");
+        // R010 (invertida): the verdict from the previous judge version keeps being reused -- the
+        // judge never receives a query for it, even though its version changed.
+        assertEquals(0, evaluator.getEvaluatedSubjects().size(),
+                "R010: a verdict from a previous judge version keeps being reused, so the ordinary run must not query the judge for it");
+        // R010: nothing was destroyed nor re-evaluated -- still a single record for this content.
+        assertTrue(ledger.findLatest(key).isPresent(),
+                "R010: the previously recorded verdict must remain available");
+        assertEquals(1, ledger.history(key).size(),
+                "R010: reusing across a version change must not add a new record; the run never re-evaluated this content");
+
+        // R005/R010: querying the very same session again confirms the quiz is not left pending
+        // -- it resolves to the reused verdict, whose declared provenance is the REAL version
+        // that produced it ("v1"), not the judge's current one ("v2").
+        EvaluationResolution resolution = capturedSession[0]
+                .resolve(new EvaluationSubject("quiz-1", subjectContent("quiz-1")));
+        assertEquals(EvaluationResolutionKind.REUSED, resolution.getKind(),
+                "R010: the quiz is not left pending -- its previous-version verdict is reused");
+        assertEquals("v1", resolution.getEvaluatorVersion(),
+                "R005/R010: the reused verdict must declare its real provenance (the previous version), not the vigente one");
     }
 
     // -----------------------------------------------------------------------
@@ -423,8 +440,8 @@ public class FQinstJ003JourneyTest {
         private final List<EvaluationRecord> records = new ArrayList<>();
 
         @Override
-        public Optional<EvaluationRecord> find(EvaluationKey key) {
-            return records.stream().filter(r -> r.getKey().equals(key)).findFirst();
+        public Optional<EvaluationRecord> findLatest(EvaluationKey key) {
+            return records.stream().filter(r -> r.getKey().equals(key)).reduce((first, second) -> second);
         }
 
         @Override
@@ -433,11 +450,10 @@ public class FQinstJ003JourneyTest {
         }
 
         @Override
-        public List<EvaluationRecord> history(String evaluatorId, String contentFingerprint) {
+        public List<EvaluationRecord> history(EvaluationKey key) {
             List<EvaluationRecord> result = new ArrayList<>();
             for (EvaluationRecord record : records) {
-                if (record.getKey().getEvaluatorId().equals(evaluatorId)
-                        && record.getKey().getContentFingerprint().equals(contentFingerprint)) {
+                if (record.getKey().equals(key)) {
                     result.add(record);
                 }
             }
@@ -466,8 +482,8 @@ public class FQinstJ003JourneyTest {
         }
 
         @Override
-        public String evaluatorVersion() {
-            return version;
+        public Optional<String> evaluatorVersion() {
+            return Optional.of(version);
         }
 
         @Override

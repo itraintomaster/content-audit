@@ -1,4 +1,5 @@
 package com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge;
+import java.util.Optional;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -65,7 +66,7 @@ class QuizInstructionAgentJudge implements Evaluator {
     }
 
     @Override
-    public String evaluatorVersion() {
+    public Optional<String> evaluatorVersion() {
         return versionResolver.resolve(config);
     }
 

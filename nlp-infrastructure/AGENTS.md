@@ -582,7 +582,6 @@ Methods:
 | Field | Type |
 |-------|------|
 | evaluatorId | `String` |
-| evaluatorVersion | `String` |
 | contentFingerprint | `String` |
 
 ### EvaluationSubject (`record`)
@@ -600,6 +599,7 @@ Methods:
 | payload | `String` |
 | subjectRef | `String` |
 | recordedAt | `Instant` |
+| evaluatorVersion | `String` |
 
 ### EvaluationEmitted (`record`)
 
@@ -636,6 +636,7 @@ Methods:
 |-------|------|
 | kind | `EvaluationResolutionKind` |
 | payload | `String` |
+| evaluatorVersion | `String` |
 
 ### EvaluationCoverage (`record`)
 
@@ -660,9 +661,9 @@ Methods:
 
 Methods:
 
-- `find(EvaluationKey key): Optional<EvaluationRecord>`
 - `append(EvaluationRecord record): void`
-- `history(String evaluatorId,String contentFingerprint): List<EvaluationRecord>`
+- `findLatest(EvaluationKey key): Optional<EvaluationRecord>`
+- `history(EvaluationKey key): List<EvaluationRecord>`
 
 ### ContentFingerprinter (port)
 
@@ -675,8 +676,8 @@ Methods:
 Methods:
 
 - `evaluatorId(): String`
-- `evaluatorVersion(): String`
 - `evaluate(EvaluationSubject subject): EvaluationOutcome`
+- `evaluatorVersion(): Optional<String>`
 
 ### EvaluationSession (port)
 
@@ -685,7 +686,7 @@ Methods:
 - `resolve(EvaluationSubject subject): EvaluationResolution`
 - `resolveForced(EvaluationSubject subject): EvaluationResolution`
 - `coverage(): EvaluationCoverage`
-- `evaluatorVersion(): String`
+- `consultedEvaluatorVersion(): Optional<String>`
 
 ### EvaluationSessionFactory (factory)
 

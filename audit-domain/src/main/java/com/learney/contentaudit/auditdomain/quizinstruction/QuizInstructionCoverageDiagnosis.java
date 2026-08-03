@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.quizinstruction;
 
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage;
+import java.util.List;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
 
@@ -11,14 +12,18 @@ import javax.annotation.processing.Generated;
 public class QuizInstructionCoverageDiagnosis {
     private EvaluationCoverage coverage;
 
-    private String evaluatorVersion;
+    private String consultedJudgeVersion;
+
+    private List<JudgeVersionVerdictCount> verdictsByJudgeVersion;
 
     public QuizInstructionCoverageDiagnosis() {
     }
 
-    public QuizInstructionCoverageDiagnosis(EvaluationCoverage coverage, String evaluatorVersion) {
+    public QuizInstructionCoverageDiagnosis(EvaluationCoverage coverage,
+            String consultedJudgeVersion, List<JudgeVersionVerdictCount> verdictsByJudgeVersion) {
         this.coverage = coverage;
-        this.evaluatorVersion = evaluatorVersion;
+        this.consultedJudgeVersion = consultedJudgeVersion;
+        this.verdictsByJudgeVersion = verdictsByJudgeVersion;
     }
 
     public EvaluationCoverage getCoverage() {
@@ -29,12 +34,20 @@ public class QuizInstructionCoverageDiagnosis {
         this.coverage = coverage;
     }
 
-    public String getEvaluatorVersion() {
-        return this.evaluatorVersion;
+    public String getConsultedJudgeVersion() {
+        return this.consultedJudgeVersion;
     }
 
-    public void setEvaluatorVersion(String evaluatorVersion) {
-        this.evaluatorVersion = evaluatorVersion;
+    public void setConsultedJudgeVersion(String consultedJudgeVersion) {
+        this.consultedJudgeVersion = consultedJudgeVersion;
+    }
+
+    public List<JudgeVersionVerdictCount> getVerdictsByJudgeVersion() {
+        return this.verdictsByJudgeVersion;
+    }
+
+    public void setVerdictsByJudgeVersion(List<JudgeVersionVerdictCount> verdictsByJudgeVersion) {
+        this.verdictsByJudgeVersion = verdictsByJudgeVersion;
     }
 
     @Override
@@ -43,11 +56,12 @@ public class QuizInstructionCoverageDiagnosis {
         if (o == null || getClass() != o.getClass()) return false;
         QuizInstructionCoverageDiagnosis that = (QuizInstructionCoverageDiagnosis) o;
         return Objects.equals(this.coverage, that.coverage)
-                    && Objects.equals(this.evaluatorVersion, that.evaluatorVersion);
+                    && Objects.equals(this.consultedJudgeVersion, that.consultedJudgeVersion)
+                    && Objects.equals(this.verdictsByJudgeVersion, that.verdictsByJudgeVersion);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(coverage, evaluatorVersion);
+        return Objects.hash(coverage, consultedJudgeVersion, verdictsByJudgeVersion);
     }
 }

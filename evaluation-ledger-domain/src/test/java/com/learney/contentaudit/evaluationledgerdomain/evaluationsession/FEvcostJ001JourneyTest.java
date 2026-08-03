@@ -50,7 +50,7 @@ public class FEvcostJ001JourneyTest {
         private final List<EvaluationRecord> records = new ArrayList<>();
 
         @Override
-        public Optional<EvaluationRecord> find(EvaluationKey key) {
+        public Optional<EvaluationRecord> findLatest(EvaluationKey key) {
             return records.stream()
                     .filter(record -> record.getKey().equals(key))
                     .reduce((first, second) -> second);
@@ -62,10 +62,9 @@ public class FEvcostJ001JourneyTest {
         }
 
         @Override
-        public List<EvaluationRecord> history(String evaluatorId, String contentFingerprint) {
+        public List<EvaluationRecord> history(EvaluationKey key) {
             return records.stream()
-                    .filter(record -> record.getKey().getEvaluatorId().equals(evaluatorId)
-                            && record.getKey().getContentFingerprint().equals(contentFingerprint))
+                    .filter(record -> record.getKey().equals(key))
                     .collect(Collectors.toList());
         }
     }
@@ -84,14 +83,15 @@ public class FEvcostJ001JourneyTest {
 
         Evaluator evaluator = mock(Evaluator.class);
         when(evaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(evaluator.evaluatorVersion()).thenReturn("v1");
+        when(evaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
 
         InMemoryLedger ledger = new InMemoryLedger();
         ledger.append(new EvaluationRecord(
-                new EvaluationKey("qinst-judge", "v1", "fp-current"),
+                new EvaluationKey("qinst-judge", "fp-current"),
                 "APPROVED",
                 "quiz-1",
-                Instant.parse("2026-07-01T00:00:00Z")));
+                Instant.parse("2026-07-01T00:00:00Z"),
+                "v1"));
 
         DefaultEvaluationSessionFactory factory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
         EvaluationSession session = factory.open(new EvaluationBudget(5), evaluator);
@@ -122,15 +122,17 @@ public class FEvcostJ001JourneyTest {
 
         Evaluator evaluator = mock(Evaluator.class);
         when(evaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(evaluator.evaluatorVersion()).thenReturn("v1");
+        when(evaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
         when(evaluator.evaluate(any())).thenReturn(new EvaluationEmitted("APPROVED-REVISED"));
 
+        EvaluationKey oldKey = new EvaluationKey("qinst-judge", "fp-old");
         InMemoryLedger ledger = new InMemoryLedger();
         ledger.append(new EvaluationRecord(
-                new EvaluationKey("qinst-judge", "v1", "fp-old"),
+                oldKey,
                 "APPROVED-ORIGINAL",
                 "quiz-1",
-                Instant.parse("2026-07-01T00:00:00Z")));
+                Instant.parse("2026-07-01T00:00:00Z"),
+                "v1"));
 
         DefaultEvaluationSessionFactory factory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
         EvaluationSession session = factory.open(new EvaluationBudget(5), evaluator);
@@ -144,11 +146,11 @@ public class FEvcostJ001JourneyTest {
         assertEquals(EvaluationResolutionKind.EVALUATED, resolution.getKind());
         assertEquals("APPROVED-REVISED", resolution.getPayload());
 
-        List<EvaluationRecord> oldHistory = ledger.history("qinst-judge", "fp-old");
+        List<EvaluationRecord> oldHistory = ledger.history(oldKey);
         assertEquals(1, oldHistory.size());
         assertEquals("APPROVED-ORIGINAL", oldHistory.get(0).getPayload());
 
-        List<EvaluationRecord> newHistory = ledger.history("qinst-judge", "fp-new");
+        List<EvaluationRecord> newHistory = ledger.history(new EvaluationKey("qinst-judge", "fp-new"));
         assertEquals(1, newHistory.size());
         assertEquals("APPROVED-REVISED", newHistory.get(0).getPayload());
     }
@@ -159,35 +161,43 @@ public class FEvcostJ001JourneyTest {
     @DisplayName("path-3: Un analisis solicita el resultado de ... → El resultado de la version anterior s... [Hay un resultado registrado, pero fue producido por una version anterior del evaluador] → success")
     public void path3_hayUnResultadoRegistradoPeroFueProducidoPorUnaVersionAnteriorDelEvaluador_success(
             ) {
-        // solicitar (gate F-EVCOST-R003) -> version_anterior (gate F-EVCOST-R006)
+        // solicitar (gate F-EVCOST-R003) -> version_anterior (gate F-EVCOST-R006): la version
+        // del evaluador es procedencia, no vigencia (F-EVCOST-R001). El resultado registrado por
+        // una version anterior se sigue reutilizando igual; el evaluador no recibe ninguna
+        // consulta, y la consulta informa la version REAL (la anterior) que lo produjo, no la
+        // vigente.
         Map<String, String> content = Map.of("instruction", "Instruction judged by an older evaluator version.");
 
         ContentFingerprinter fingerprinter = mock(ContentFingerprinter.class);
         when(fingerprinter.fingerprint(content)).thenReturn("fp-content");
 
+        EvaluationKey key = new EvaluationKey("qinst-judge", "fp-content");
         InMemoryLedger ledger = new InMemoryLedger();
         ledger.append(new EvaluationRecord(
-                new EvaluationKey("qinst-judge", "v1", "fp-content"),
+                key,
                 "APPROVED-BY-V1",
                 "quiz-1",
-                Instant.parse("2026-07-01T00:00:00Z")));
+                Instant.parse("2026-07-01T00:00:00Z"),
+                "v1"));
 
         Evaluator evaluatorV2 = mock(Evaluator.class);
         when(evaluatorV2.evaluatorId()).thenReturn("qinst-judge");
-        when(evaluatorV2.evaluatorVersion()).thenReturn("v2");
+        when(evaluatorV2.evaluatorVersion()).thenReturn(Optional.of("v2"));
 
         DefaultEvaluationSessionFactory factory = new DefaultEvaluationSessionFactory(ledger, fingerprinter);
-        // No budget for a new evaluation: isolates the "not reused" half of this path.
-        EvaluationSession session = factory.open(new EvaluationBudget(0), evaluatorV2);
+        EvaluationSession session = factory.open(new EvaluationBudget(5), evaluatorV2);
 
         EvaluationResolution resolution = session.resolve(new EvaluationSubject("quiz-1", content));
 
-        // version_anterior: the v1 result is conserved as consultable history and not
-        // reused; the content is pending for evaluation with the current version -> success
-        assertEquals(EvaluationResolutionKind.PENDING, resolution.getKind());
+        // version_anterior: the v1 result is reused just the same; the evaluator receives no
+        // request, and the query reports v1 as the REAL provenance, even though the evaluator's
+        // current version is v2 -> success
+        assertEquals(EvaluationResolutionKind.REUSED, resolution.getKind());
+        assertEquals("APPROVED-BY-V1", resolution.getPayload());
+        assertEquals("v1", resolution.getEvaluatorVersion());
         verify(evaluatorV2, never()).evaluate(any());
 
-        List<EvaluationRecord> history = ledger.history("qinst-judge", "fp-content");
+        List<EvaluationRecord> history = ledger.history(key);
         assertEquals(1, history.size());
         assertEquals("APPROVED-BY-V1", history.get(0).getPayload());
     }
@@ -205,7 +215,7 @@ public class FEvcostJ001JourneyTest {
 
         Evaluator evaluator = mock(Evaluator.class);
         when(evaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(evaluator.evaluatorVersion()).thenReturn("v1");
+        when(evaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
         when(evaluator.evaluate(any())).thenReturn(new EvaluationEmitted("APPROVED-FIRST-TIME"));
 
         InMemoryLedger ledger = new InMemoryLedger();
@@ -222,7 +232,7 @@ public class FEvcostJ001JourneyTest {
 
         Evaluator subsequentEvaluator = mock(Evaluator.class);
         when(subsequentEvaluator.evaluatorId()).thenReturn("qinst-judge");
-        when(subsequentEvaluator.evaluatorVersion()).thenReturn("v1");
+        when(subsequentEvaluator.evaluatorVersion()).thenReturn(Optional.of("v1"));
         EvaluationSession subsequentAnalysis =
                 factory.open(new EvaluationBudget(5), subsequentEvaluator);
         EvaluationResolution subsequentResolution =

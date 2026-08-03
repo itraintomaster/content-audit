@@ -3,7 +3,7 @@
 
 **This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
 
-Adaptador del juez de consigna: implementa el SPI Evaluator de evaluation-ledger-domain corriendo el agente declarativo quiz-instruction-validator sobre el runtime compartido. Traduce EvaluationSubject.content a las cinco entradas declaradas del agente (cefrLevel, topic, title, instructions, quiz) verbatim, sin agregar ni quitar nada — es lo que hace que la huella cubra exactamente lo juzgado (F-EVCOST-R002). Reconoce el veredicto conservador de infraestructura del juez (confianza nula y violacion JUDGE_OUTPUT_INVALID) y lo devuelve como EvaluationNotEmitted(OUTPUT_UNUSABLE), de modo que nunca llega al registro (F-QINST-R013); toda falla de servicio, timeout, autenticacion o credito se devuelve como EvaluationNotEmitted(EVALUATOR_UNAVAILABLE) en lugar de propagarse como excepcion (F-QINST-R007). Construye el ChatModel de forma perezosa: una configuracion ausente o invalida es un evaluador no disponible, no una auditoria caida. allowedClients=[audit-cli] porque es un detalle de implementacion de la composition root.
+Adaptador del juez de consigna: implementa el SPI Evaluator de evaluation-ledger-domain corriendo el agente declarativo quiz-instruction-validator sobre el runtime compartido. Traduce EvaluationSubject.content a las cinco entradas declaradas del agente (cefrLevel, topic, title, instructions, quiz) verbatim, sin agregar ni quitar nada — es lo que hace que la huella cubra exactamente lo juzgado (F-EVCOST-R002). Reconoce el veredicto conservador de infraestructura del juez (confianza nula y violacion JUDGE_OUTPUT_INVALID) y lo devuelve como EvaluationNotEmitted(OUTPUT_UNUSABLE), de modo que nunca llega al registro (F-QINST-R013); toda falla de servicio, timeout, autenticacion o credito se devuelve como EvaluationNotEmitted(EVALUATOR_UNAVAILABLE) en lugar de propagarse como excepcion (F-QINST-R007). Su version es procedencia, no vigencia: se deriva de la definicion del agente y del modelo, se estampa sobre cada veredicto nuevo y se declara en el informe, pero no decide que veredictos valen (F-QINST-R010). Cuando la definicion no se puede localizar el juez no enuncia version alguna —evaluatorVersion() devuelve Optional.empty()— y con eso queda tratado como no disponible por la propia sesion. Construye el ChatModel de forma perezosa: una configuracion ausente o invalida es un evaluador no disponible, no una auditoria caida. allowedClients=[audit-cli] porque es un detalle de implementacion de la composition root.
 
 
 ## Models
@@ -18,7 +18,6 @@ Adaptador del juez de consigna: implementa el SPI Evaluator de evaluation-ledger
 | temperature | `Double` |
 | timeoutSeconds | `Integer` |
 | agentName | `String` |
-| judgeVersionOverride | `String` |
 
 ## Interfaces
 
@@ -587,7 +586,6 @@ Methods:
 | Field | Type |
 |-------|------|
 | evaluatorId | `String` |
-| evaluatorVersion | `String` |
 | contentFingerprint | `String` |
 
 ### EvaluationSubject (`record`)
@@ -605,6 +603,7 @@ Methods:
 | payload | `String` |
 | subjectRef | `String` |
 | recordedAt | `Instant` |
+| evaluatorVersion | `String` |
 
 ### EvaluationEmitted (`record`)
 
@@ -641,6 +640,7 @@ Methods:
 |-------|------|
 | kind | `EvaluationResolutionKind` |
 | payload | `String` |
+| evaluatorVersion | `String` |
 
 ### EvaluationCoverage (`record`)
 
@@ -665,9 +665,9 @@ Methods:
 
 Methods:
 
-- `find(EvaluationKey key): Optional<EvaluationRecord>`
 - `append(EvaluationRecord record): void`
-- `history(String evaluatorId,String contentFingerprint): List<EvaluationRecord>`
+- `findLatest(EvaluationKey key): Optional<EvaluationRecord>`
+- `history(EvaluationKey key): List<EvaluationRecord>`
 
 ### ContentFingerprinter (port)
 
@@ -680,8 +680,8 @@ Methods:
 Methods:
 
 - `evaluatorId(): String`
-- `evaluatorVersion(): String`
 - `evaluate(EvaluationSubject subject): EvaluationOutcome`
+- `evaluatorVersion(): Optional<String>`
 
 ### EvaluationSession (port)
 
@@ -690,7 +690,7 @@ Methods:
 - `resolve(EvaluationSubject subject): EvaluationResolution`
 - `resolveForced(EvaluationSubject subject): EvaluationResolution`
 - `coverage(): EvaluationCoverage`
-- `evaluatorVersion(): String`
+- `consultedEvaluatorVersion(): Optional<String>`
 
 ### EvaluationSessionFactory (factory)
 

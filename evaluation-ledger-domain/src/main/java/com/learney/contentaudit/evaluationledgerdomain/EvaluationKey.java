@@ -10,16 +10,13 @@ import javax.annotation.processing.Generated;
 public class EvaluationKey {
     private String evaluatorId;
 
-    private String evaluatorVersion;
-
     private String contentFingerprint;
 
     public EvaluationKey() {
     }
 
-    public EvaluationKey(String evaluatorId, String evaluatorVersion, String contentFingerprint) {
+    public EvaluationKey(String evaluatorId, String contentFingerprint) {
         this.evaluatorId = evaluatorId;
-        this.evaluatorVersion = evaluatorVersion;
         this.contentFingerprint = contentFingerprint;
     }
 
@@ -29,14 +26,6 @@ public class EvaluationKey {
 
     public void setEvaluatorId(String evaluatorId) {
         this.evaluatorId = evaluatorId;
-    }
-
-    public String getEvaluatorVersion() {
-        return this.evaluatorVersion;
-    }
-
-    public void setEvaluatorVersion(String evaluatorVersion) {
-        this.evaluatorVersion = evaluatorVersion;
     }
 
     public String getContentFingerprint() {
@@ -53,12 +42,11 @@ public class EvaluationKey {
         if (o == null || getClass() != o.getClass()) return false;
         EvaluationKey that = (EvaluationKey) o;
         return Objects.equals(this.evaluatorId, that.evaluatorId)
-                    && Objects.equals(this.evaluatorVersion, that.evaluatorVersion)
                     && Objects.equals(this.contentFingerprint, that.contentFingerprint);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(evaluatorId, evaluatorVersion, contentFingerprint);
+        return Objects.hash(evaluatorId, contentFingerprint);
     }
 }

@@ -1400,14 +1400,14 @@ contradicen su propia instruccion y ningun analisis los detecta.
 | F-QINST-R002 | Del veredicto al puntaje: la severidad define la escala | critical | Puntaje fuera del rango [0,0 - 1,0] para el ejercicio '{quizId}' del knowledge '{knowledgeId}' |
 | F-QINST-R003 | Cada ejercicio evaluado deja un diagnostico inspeccionable | critical | El ejercicio '{quizId}' fue evaluado pero no registro diagnostico de consigna |
 | F-QINST-R004 | Un ejercicio no evaluado no recibe puntaje ni diagnostico | critical | El ejercicio '{quizId}' no fue evaluado y sin embargo recibio puntaje de consigna |
-| F-QINST-R005 | El informe declara la cobertura del analisis y con que version del juez se evaluo | critical | La cobertura declarada del analisis de consigna no cierra: {conVeredicto} + {pendientes} + {fallidos} != {alcanzados} |
+| F-QINST-R005 | El informe declara la cobertura del analisis y de que versiones del juez vienen sus veredictos | critical | La cobertura declarada del analisis de consigna no cierra: {conVeredicto} + {pendientes} + {fallidos} != {alcanzados} |
 | F-QINST-R006 | Cada corrida acota cuantas consultas nuevas hace al juez | critical | - |
 | F-QINST-R007 | Una falla del juez no aborta la auditoria ni corrompe lo ya guardado | critical | La auditoria se interrumpio por una falla del juez de consigna |
-| F-QINST-R008 | Una corrida no vuelve a consultar por lo ya evaluado | critical | Se consulto al juez por el ejercicio '{quizId}', que ya tenia veredicto vigente |
+| F-QINST-R008 | Una corrida no vuelve a consultar por lo ya evaluado | critical | Se consulto al juez por el ejercicio '{quizId}', que ya tenia veredicto registrado |
 | F-QINST-R009 | La identidad del veredicto es el contenido juzgado, no el ejercicio | critical | Se reutilizo el veredicto del ejercicio '{quizId}' pese a que su contenido juzgado cambio |
-| F-QINST-R010 | La version del juez gobierna la vigencia de los veredictos | critical | El cambio de version del juez de consigna elimino {cantidad} veredictos anteriores |
+| F-QINST-R010 | La version del juez se registra y se declara; cambiarla no invalida ningun veredicto | critical | El cambio de version del juez de consigna elimino {cantidad} veredictos anteriores |
 | F-QINST-R011 | El usuario puede excluir el analisis de una corrida | major | - |
-| F-QINST-R012 | La re-evaluacion es explicita y acotable | major | - |
+| F-QINST-R012 | La re-evaluacion es explicita, acotable, y el unico modo de rehacer un veredicto | major | - |
 | F-QINST-R013 | Un veredicto de infraestructura del juez es una falla, no un juicio | critical | Se registro como veredicto una respuesta de infraestructura del juez para el ejercicio '{quizId}' |
 | F-QINST-R014 | Alcance: todo ejercicio del curso, tenga o no restricciones explicitas | major | - |
 | F-QINST-R015 | El analisis tiene un solo nombre: el que se lee es el que se escribe | critical | Se pidio '{opcion}' para el analisis '{nombre}' y la corrida lo ignoro: el informe publica ese analisis con ese mismo nombre |
@@ -1433,14 +1433,14 @@ lo vuelve a pagar entero, y una caida a mitad de camino pierde todo el trabajo.
 
 | ID | Rule | Severity | Error Message |
 |----|------|----------|---------------|
-| F-EVCOST-R001 | La identidad de un resultado es evaluador + version + huella del contenido | critical | El resultado registrado para el evaluador '{evaluador}' no corresponde al contenido consultado |
+| F-EVCOST-R001 | La identidad de un resultado es evaluador + huella del contenido; la version es procedencia | critical | El resultado registrado para el evaluador '{evaluador}' no corresponde al contenido consultado |
 | F-EVCOST-R002 | La huella se deriva de todo el contenido entregado al evaluador, y de nada mas | critical | La huella del contenido para el evaluador '{evaluador}' no es reproducible entre corridas |
-| F-EVCOST-R003 | Antes de evaluar se consulta el resultado vigente | critical | - |
+| F-EVCOST-R003 | Antes de evaluar se consulta el resultado ya registrado | critical | - |
 | F-EVCOST-R004 | Cada resultado queda disponible apenas se obtiene | critical | El registro de resultados del evaluador '{evaluador}' contiene una entrada incompleta |
 | F-EVCOST-R005 | Solo se registra el resultado definitivo; la falla transitoria no se registra | critical | Se registro como resultado una falla del evaluador '{evaluador}' sobre el contenido {huella} |
-| F-EVCOST-R006 | Conviven resultados de distintas versiones del evaluador; nada se borra solo | critical | El cambio de version del evaluador '{evaluador}' elimino {cantidad} resultados de la version anterior |
+| F-EVCOST-R006 | Conviven resultados de distintas versiones del evaluador; todos se reutilizan y nada se borra solo | critical | El cambio de version del evaluador '{evaluador}' elimino {cantidad} resultados de la version anterior |
 | F-EVCOST-R007 | El registro es estado propio: sobrevive a los informes y se comparte entre analisis | critical | Los resultados registrados del evaluador '{evaluador}' se perdieron al eliminar informes de analisis |
-| F-EVCOST-R008 | Volver a evaluar es siempre una decision explicita | critical | Se re-evaluo contenido con resultado vigente sin pedido explicito del usuario |
+| F-EVCOST-R008 | La re-evaluacion explicita es el unico modo de rehacer un resultado | critical | Se re-evaluo contenido con resultado registrado sin pedido explicito del usuario |
 | F-EVCOST-R009 | Ante una falla, la corrida distingue si fallo ese contenido o fallo el servicio | critical | La corrida siguio consultando al evaluador '{evaluador}' tras una falla
 del servicio |
 

@@ -17,15 +17,18 @@ public class EvaluationRecord {
 
     private Instant recordedAt;
 
+    private String evaluatorVersion;
+
     public EvaluationRecord() {
     }
 
     public EvaluationRecord(EvaluationKey key, String payload, String subjectRef,
-            Instant recordedAt) {
+            Instant recordedAt, String evaluatorVersion) {
         this.key = key;
         this.payload = payload;
         this.subjectRef = subjectRef;
         this.recordedAt = recordedAt;
+        this.evaluatorVersion = evaluatorVersion;
     }
 
     public EvaluationKey getKey() {
@@ -60,6 +63,14 @@ public class EvaluationRecord {
         this.recordedAt = recordedAt;
     }
 
+    public String getEvaluatorVersion() {
+        return this.evaluatorVersion;
+    }
+
+    public void setEvaluatorVersion(String evaluatorVersion) {
+        this.evaluatorVersion = evaluatorVersion;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,11 +79,12 @@ public class EvaluationRecord {
         return Objects.equals(this.key, that.key)
                     && Objects.equals(this.payload, that.payload)
                     && Objects.equals(this.subjectRef, that.subjectRef)
-                    && Objects.equals(this.recordedAt, that.recordedAt);
+                    && Objects.equals(this.recordedAt, that.recordedAt)
+                    && Objects.equals(this.evaluatorVersion, that.evaluatorVersion);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(key, payload, subjectRef, recordedAt);
+        return Objects.hash(key, payload, subjectRef, recordedAt, evaluatorVersion);
     }
 }

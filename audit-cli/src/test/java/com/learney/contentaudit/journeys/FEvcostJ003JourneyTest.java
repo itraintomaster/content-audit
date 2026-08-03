@@ -16,6 +16,7 @@ import com.learney.contentaudit.auditinfrastructure.FileSystemAuditReportStore;
 import com.learney.contentaudit.evaluationledgerdomain.ContentFingerprinter;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
@@ -33,6 +34,7 @@ import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
@@ -75,7 +77,7 @@ public class FEvcostJ003JourneyTest {
         // and a registered evaluation result over the same base directory.
         Evaluator firstRunEvaluator = mock(Evaluator.class);
         when(firstRunEvaluator.evaluatorId()).thenReturn(EVALUATOR_ID);
-        when(firstRunEvaluator.evaluatorVersion()).thenReturn(EVALUATOR_VERSION);
+        when(firstRunEvaluator.evaluatorVersion()).thenReturn(Optional.of(EVALUATOR_VERSION));
         when(firstRunEvaluator.evaluate(any())).thenReturn(
                 new EvaluationEmitted("compliant: matches the instructed tense"));
 
@@ -103,7 +105,7 @@ public class FEvcostJ003JourneyTest {
         // content. The user did not ask to re-evaluate anything.
         Evaluator secondRunEvaluator = mock(Evaluator.class);
         when(secondRunEvaluator.evaluatorId()).thenReturn(EVALUATOR_ID);
-        when(secondRunEvaluator.evaluatorVersion()).thenReturn(EVALUATOR_VERSION);
+        when(secondRunEvaluator.evaluatorVersion()).thenReturn(Optional.of(EVALUATOR_VERSION));
 
         EvaluationSessionFactory secondFactory = new DefaultEvaluationSessionFactory(
                 new FileSystemEvaluationLedger(tempDir), new Sha256ContentFingerprinter());
@@ -132,7 +134,7 @@ public class FEvcostJ003JourneyTest {
         // and a registered evaluation result over the same base directory.
         Evaluator firstRunEvaluator = mock(Evaluator.class);
         when(firstRunEvaluator.evaluatorId()).thenReturn(EVALUATOR_ID);
-        when(firstRunEvaluator.evaluatorVersion()).thenReturn(EVALUATOR_VERSION);
+        when(firstRunEvaluator.evaluatorVersion()).thenReturn(Optional.of(EVALUATOR_VERSION));
         when(firstRunEvaluator.evaluate(any())).thenReturn(
                 new EvaluationEmitted("compliant: matches the instructed tense"));
 
@@ -160,7 +162,7 @@ public class FEvcostJ003JourneyTest {
         // content, and this time the user explicitly asked to judge it again.
         Evaluator secondRunEvaluator = mock(Evaluator.class);
         when(secondRunEvaluator.evaluatorId()).thenReturn(EVALUATOR_ID);
-        when(secondRunEvaluator.evaluatorVersion()).thenReturn(EVALUATOR_VERSION);
+        when(secondRunEvaluator.evaluatorVersion()).thenReturn(Optional.of(EVALUATOR_VERSION));
         when(secondRunEvaluator.evaluate(any())).thenReturn(
                 new EvaluationEmitted("compliant: re-checked after the explicit re-evaluation request"));
 
@@ -185,7 +187,7 @@ public class FEvcostJ003JourneyTest {
 
         EvaluationLedger ledgerAfterReevaluation = new FileSystemEvaluationLedger(tempDir);
         List<EvaluationRecord> history = ledgerAfterReevaluation.history(
-                EVALUATOR_ID, secondFingerprinter.fingerprint(subject.getContent()));
+                new EvaluationKey(EVALUATOR_ID, secondFingerprinter.fingerprint(subject.getContent())));
         assertTrue(history.stream().anyMatch(record -> record.getPayload().equals(firstResolution.getPayload())),
                 "F-EVCOST-R008: the previous result must remain consultable after the explicit re-evaluation");
         assertTrue(history.stream().anyMatch(record -> record.getPayload().equals(reevaluated.getPayload())),
