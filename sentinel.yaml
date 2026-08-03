@@ -8555,6 +8555,16 @@ modules:
         traceability:
           feature: FEAT-QINST
           rule: F-QINST-R005
+      - name: should render one row per originating judge version with how many of
+          the scored verdicts each one contributes
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
+      - name: should state explicitly that the run consulted no judge version when
+          it made no new consultation
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
       implements:
       - DetailedFormatter
   - name: bootstrap
@@ -13197,10 +13207,6 @@ modules:
           rule: F-QINST-R010
       - name: should keep the judge version stable while the agent definition and
           the model stay the same
-        traceability:
-          feature: FEAT-QINST
-          rule: F-QINST-R010
-      - name: should honour the judge version fixed by configuration
         traceability:
           feature: FEAT-QINST
           rule: F-QINST-R010

@@ -1,4 +1,4 @@
-generatedAt: 2026-08-03T01:42:26.879644Z
+generatedAt: 2026-08-03T02:15:28.996357Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -1472,13 +1472,13 @@ features:
       branchCoveragePct: 78
       blendPct: 86
     mutation:
-      totalMutants: 110
+      totalMutants: 106
       killed: 69
       survived: 35
-      noCoverage: 6
+      noCoverage: 2
       timedOut: 0
       other: 0
-      mutationScorePct: 62
+      mutationScorePct: 65
       testStrengthPct: 66
     crap:
       totalMethods: 28
@@ -1490,7 +1490,7 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 100
-    healthScore: 79
+    healthScore: 80
     verdict: PASSED
 - id: FEAT-RPRES
   state: IMPLEMENTED
@@ -1981,13 +1981,13 @@ features:
       branchCoveragePct: 53
       blendPct: 58
     mutation:
-      totalMutants: 211
+      totalMutants: 174
       killed: 84
       survived: 50
-      noCoverage: 77
+      noCoverage: 40
       timedOut: 0
       other: 0
-      mutationScorePct: 39
+      mutationScorePct: 48
       testStrengthPct: 62
     crap:
       totalMethods: 97
@@ -2042,12 +2042,12 @@ features:
         cyclomatic: 29
         lineCoveragePct: 77
         crap: 39.23244699999999
-    healthScore: 55
+    healthScore: 59
     verdict: WARNED
     violations:
     - lineCoverage 63% < 70%
     - branchCoverage 53% < 60%
-    - mutationScore 39% < 60%
+    - mutationScore 48% < 60%
     - crapHotspots 6 > 5
 - id: FEAT-DCOCA
   state: IMPLEMENTED
@@ -3674,7 +3674,7 @@ features:
     - branchCoverage 57% < 60%
     - mutationScore 40% < 60%
 - id: FEAT-QINST
-  state: IMPLEMENTED
+  state: IMPLEMENTING
   requirementFile: ./requirements/2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-QINST-R001
@@ -3805,7 +3805,7 @@ features:
       module: audit-domain
       implementation: QuizInstructionAnalyzer
   - ruleId: F-QINST-R005
-    state: PASSING
+    state: FAILING
     tests:
     - name: "should declare on the course node how many quizzes were reached, resolved,\
         \ evaluated in this run, reused, pending and failed"
@@ -3846,6 +3846,18 @@ features:
         coverage numbers
       implemented: true
       passing: true
+      module: audit-cli
+      implementation: QuizInstructionDetailedFormatter
+    - name: should render one row per originating judge version with how many of the
+        scored verdicts each one contributes
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: QuizInstructionDetailedFormatter
+    - name: should state explicitly that the run consulted no judge version when it
+        made no new consultation
+      implemented: true
+      passing: false
       module: audit-cli
       implementation: QuizInstructionDetailedFormatter
   - ruleId: F-QINST-R006
@@ -4013,11 +4025,6 @@ features:
       implementation: DefaultQuizInstructionJudgeVersionResolver
     - name: should keep the judge version stable while the agent definition and the
         model stay the same
-      implemented: true
-      passing: true
-      module: quiz-instruction-infrastructure
-      implementation: DefaultQuizInstructionJudgeVersionResolver
-    - name: should honour the judge version fixed by configuration
       implemented: true
       passing: true
       module: quiz-instruction-infrastructure
@@ -4323,34 +4330,34 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 505
-      linesMissed: 115
-      linesTotal: 620
-      lineCoveragePct: 81
-      branchesCovered: 201
-      branchesMissed: 132
-      branchesTotal: 333
-      branchCoveragePct: 60
-      blendPct: 70
+      linesCovered: 513
+      linesMissed: 122
+      linesTotal: 635
+      lineCoveragePct: 80
+      branchesCovered: 202
+      branchesMissed: 135
+      branchesTotal: 337
+      branchCoveragePct: 59
+      blendPct: 69
     mutation:
-      totalMutants: 182
-      killed: 40
-      survived: 4
-      noCoverage: 138
+      totalMutants: 106
+      killed: 69
+      survived: 29
+      noCoverage: 8
       timedOut: 0
       other: 0
-      mutationScorePct: 21
-      testStrengthPct: 90
+      mutationScorePct: 65
+      testStrengthPct: 70
     crap:
       totalMethods: 82
       hotspots: 2
       maxCrap: 34.67481600000001
-      averageCrap: 3.908139548780488
-      simple: 75
-      moderate: 5
+      averageCrap: 3.9408944268292685
+      simple: 74
+      moderate: 6
       high: 2
       veryHigh: 0
-      healthPct: 95
+      healthPct: 94
       top:
       - className: com.learney.contentaudit.auditcli.commands.AnalyzeCmd
         methodName: analyze
@@ -4366,10 +4373,10 @@ features:
         cyclomatic: 13
         lineCoveragePct: 51
         crap: 32.882681
-    healthScore: 54
+    healthScore: 73
     verdict: WARNED
     violations:
-    - mutationScore 21% < 60%
+    - branchCoverage 59% < 60%
 - id: FEAT-INCEXP
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-06-18.01_incluir-lemas-ya-expuestos-en-suggested-lemmas/REQUIREMENT.md
@@ -4976,13 +4983,13 @@ features:
       branchCoveragePct: 72
       blendPct: 80
     mutation:
-      totalMutants: 207
+      totalMutants: 198
       killed: 112
       survived: 70
-      noCoverage: 25
+      noCoverage: 16
       timedOut: 0
       other: 0
-      mutationScorePct: 54
+      mutationScorePct: 56
       testStrengthPct: 61
     crap:
       totalMethods: 44
@@ -4994,10 +5001,10 @@ features:
       high: 1
       veryHigh: 0
       healthPct: 95
-    healthScore: 72
+    healthScore: 73
     verdict: WARNED
     violations:
-    - mutationScore 54% < 60%
+    - mutationScore 56% < 60%
 - id: FEAT-DBSENT
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-05-20.01_plain-sentences-from-db/REQUIREMENT.md
@@ -5090,13 +5097,13 @@ features:
       branchCoveragePct: 67
       blendPct: 80
     mutation:
-      totalMutants: 219
+      totalMutants: 182
       killed: 117
       survived: 49
-      noCoverage: 53
+      noCoverage: 16
       timedOut: 0
       other: 0
-      mutationScorePct: 53
+      mutationScorePct: 64
       testStrengthPct: 70
     crap:
       totalMethods: 47
@@ -5108,10 +5115,8 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 98
-    healthScore: 72
-    verdict: WARNED
-    violations:
-    - mutationScore 53% < 60%
+    healthScore: 77
+    verdict: PASSED
 - id: FEAT-LASAG
   state: IMPLEMENTING
   requirementFile: ./requirements/2026-06-18.01_lemma-absence-agent-migration/REQUIREMENT.md
@@ -5652,38 +5657,36 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 124
-      linesMissed: 22
-      linesTotal: 146
-      lineCoveragePct: 84
-      branchesCovered: 38
-      branchesMissed: 10
-      branchesTotal: 48
-      branchCoveragePct: 79
-      blendPct: 81
+      linesCovered: 130
+      linesMissed: 25
+      linesTotal: 155
+      lineCoveragePct: 83
+      branchesCovered: 39
+      branchesMissed: 13
+      branchesTotal: 52
+      branchCoveragePct: 75
+      blendPct: 79
     mutation:
-      totalMutants: 39
-      killed: 20
-      survived: 15
+      totalMutants: 60
+      killed: 36
+      survived: 20
       noCoverage: 4
       timedOut: 0
       other: 0
-      mutationScorePct: 51
-      testStrengthPct: 57
+      mutationScorePct: 60
+      testStrengthPct: 64
     crap:
       totalMethods: 21
       hotspots: 0
-      maxCrap: 8.021952
-      averageCrap: 2.2752305714285717
+      maxCrap: 8.013824
+      averageCrap: 2.536602523809524
       simple: 21
       moderate: 0
       high: 0
       veryHigh: 0
       healthPct: 100
-    healthScore: 72
-    verdict: WARNED
-    violations:
-    - mutationScore 51% < 60%
+    healthScore: 76
+    verdict: PASSED
 - id: FEAT-NLP
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
@@ -6030,13 +6033,13 @@ features:
       branchCoveragePct: 65
       blendPct: 73
     mutation:
-      totalMutants: 62
+      totalMutants: 25
       killed: 6
       survived: 10
-      noCoverage: 46
+      noCoverage: 9
       timedOut: 0
       other: 0
-      mutationScorePct: 9
+      mutationScorePct: 24
       testStrengthPct: 37
     crap:
       totalMethods: 31
@@ -6048,10 +6051,10 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 98
-    healthScore: 50
+    healthScore: 57
     verdict: WARNED
     violations:
-    - mutationScore 9% < 60%
+    - mutationScore 24% < 60%
 - id: FEAT-LABS
   state: IMPLEMENTING
   requirementFile: ./requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
@@ -7560,13 +7563,13 @@ features:
       branchCoveragePct: 69
       blendPct: 74
     mutation:
-      totalMutants: 458
+      totalMutants: 437
       killed: 206
       survived: 169
-      noCoverage: 83
+      noCoverage: 62
       timedOut: 0
       other: 0
-      mutationScorePct: 44
+      mutationScorePct: 47
       testStrengthPct: 54
     crap:
       totalMethods: 100
@@ -7586,10 +7589,10 @@ features:
         cyclomatic: 29
         lineCoveragePct: 0
         crap: 870.0
-    healthScore: 65
+    healthScore: 66
     verdict: WARNED
     violations:
-    - mutationScore 44% < 60%
+    - mutationScore 47% < 60%
 - id: FEAT-CLI
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
@@ -7766,10 +7769,10 @@ features:
       branchCoveragePct: 43
       blendPct: 35
     mutation:
-      totalMutants: 31
+      totalMutants: 0
       killed: 0
       survived: 0
-      noCoverage: 31
+      noCoverage: 0
       timedOut: 0
       other: 0
       mutationScorePct: 0
@@ -7811,7 +7814,6 @@ features:
     violations:
     - lineCoverage 28% < 70%
     - branchCoverage 43% < 60%
-    - mutationScore 0% < 60%
 - id: FEAT-PIPRE
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
@@ -11539,13 +11541,13 @@ features:
       branchCoveragePct: 55
       blendPct: 59
     mutation:
-      totalMutants: 285
+      totalMutants: 254
       killed: 115
       survived: 92
-      noCoverage: 78
+      noCoverage: 47
       timedOut: 0
       other: 0
-      mutationScorePct: 40
+      mutationScorePct: 45
       testStrengthPct: 55
     crap:
       totalMethods: 47
@@ -11579,12 +11581,12 @@ features:
         cyclomatic: 76
         lineCoveragePct: 85
         crap: 95.494
-    healthScore: 55
+    healthScore: 58
     verdict: WARNED
     violations:
     - lineCoverage 63% < 70%
     - branchCoverage 55% < 60%
-    - mutationScore 40% < 60%
+    - mutationScore 45% < 60%
 - id: FEAT-SLEN
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
@@ -12333,13 +12335,13 @@ features:
       branchCoveragePct: 74
       blendPct: 78
     mutation:
-      totalMutants: 38
+      totalMutants: 31
       killed: 19
       survived: 5
-      noCoverage: 14
+      noCoverage: 7
       timedOut: 0
       other: 0
-      mutationScorePct: 50
+      mutationScorePct: 61
       testStrengthPct: 79
     crap:
       totalMethods: 16
@@ -12351,10 +12353,8 @@ features:
       high: 0
       veryHigh: 0
       healthPct: 94
-    healthScore: 69
-    verdict: WARNED
-    violations:
-    - mutationScore 50% < 60%
+    healthScore: 74
+    verdict: PASSED
 - id: FEAT-REVBYP
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
@@ -22043,7 +22043,7 @@ elements:
 
       mock:
         subjectBuilder.build(node) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload")
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1")
         verdictReader.read("payload") -> verdict
         scorer.score(verdict) -> 0.3
 
@@ -22082,7 +22082,7 @@ elements:
 
       mock:
         subjectBuilder.build(node) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload")
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1")
         verdictReader.read("payload") -> verdict
         scorer.score(verdict) -> 1.0
 
@@ -22114,7 +22114,7 @@ elements:
 
       mock:
         subjectBuilder.build(node) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload")
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1")
         verdictReader.read("payload") -> verdict
         scorer.score(verdict) -> 0.6
 
@@ -22142,7 +22142,7 @@ elements:
 
       mock:
         subjectBuilder.build(node) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null)
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null)
 
       when:
         sut.onQuiz(node)
@@ -22169,7 +22169,7 @@ elements:
 
       mock:
         subjectBuilder.build(node) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null)
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null)
 
       when:
         sut.onQuiz(node)
@@ -22257,7 +22257,7 @@ elements:
 
       mock:
         subjectBuilder.build(quizNode) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "stored-payload")
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "stored-payload", "v1")
         verdictReader.read("stored-payload") -> verdict
         scorer.score(verdict) -> 1.0
         session.coverage() -> coverage
@@ -22289,10 +22289,10 @@ elements:
       mock:
         subjectBuilder.build(withinBudget) -> subj1
         subjectBuilder.build(beyondBudget) -> subj2
-        session.resolve(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1")
+        session.resolve(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1")
         verdictReader.read("payload-1") -> verdict
         scorer.score(verdict) -> 0.6
-        session.resolve(subj2) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null)
+        session.resolve(subj2) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null)
 
       then:
         assertDoesNotThrow(() -> {
@@ -22325,9 +22325,9 @@ elements:
         verdictReader.read("reused-payload") -> verdict
         scorer.score(verdict) -> 1.0
         subjectBuilder.build(zeroBudgetNode) -> zeroBudgetSubject
-        zeroBudgetSession.resolve(zeroBudgetSubject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "reused-payload")
+        zeroBudgetSession.resolve(zeroBudgetSubject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "reused-payload", "v1")
         subjectBuilder.build(highBudgetNode) -> highBudgetSubject
-        highBudgetSession.resolve(highBudgetSubject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "reused-payload")
+        highBudgetSession.resolve(highBudgetSubject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "reused-payload", "v1")
 
       when:
         sut.onQuiz(zeroBudgetNode)
@@ -22358,10 +22358,10 @@ elements:
       mock:
         subjectBuilder.build(judgedBeforeFailure) -> subj1
         subjectBuilder.build(notReachedAfterFailure) -> subj2
-        session.resolve(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1")
+        session.resolve(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1")
         verdictReader.read("payload-1") -> verdict
         scorer.score(verdict) -> 0.3
-        session.resolve(subj2) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null)
+        session.resolve(subj2) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null)
 
       then:
         assertDoesNotThrow(() -> {
@@ -22393,10 +22393,10 @@ elements:
       mock:
         subjectBuilder.build(judgedBeforeFailure) -> subj1
         subjectBuilder.build(notReachedAfterFailure) -> subj2
-        session.resolve(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1")
+        session.resolve(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1")
         verdictReader.read("payload-1") -> verdict
         scorer.score(verdict) -> 0.3
-        session.resolve(subj2) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null)
+        session.resolve(subj2) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null)
 
       when:
         sut.onQuiz(judgedBeforeFailure)
@@ -22425,7 +22425,7 @@ elements:
 
       mock:
         subjectBuilder.build(node) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "stored-payload")
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "stored-payload", "v1")
         verdictReader.read("stored-payload") -> verdict
         scorer.score(verdict) -> 0.6
 
@@ -22461,12 +22461,12 @@ elements:
         subjectBuilder.build(quizB) -> subjB
         verdictReader.read(anyString()) -> verdict
         scorer.score(verdict) -> 0.6
-        session.resolve(subjA) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a")
-        session.resolve(subjB) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null)
+        session.resolve(subjA) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a", "v1")
+        session.resolve(subjB) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null)
         subjectBuilder.build(quizAAgain) -> subjA
         subjectBuilder.build(quizBAgain) -> subjB
-        session.resolve(subjA) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-a")
-        session.resolve(subjB) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-b")
+        session.resolve(subjA) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-a", "v1")
+        session.resolve(subjB) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-b", "v1")
 
       when:
         sut.onQuiz(quizA)
@@ -22488,18 +22488,30 @@ elements:
         policy = normalPolicy(500)
         node = buildQuizNode(buildQuiz("q1"))
         subject = EvaluationSubject("q1", Map.of())
+        previousJudgeVersion = "quiz-instruction-validator@sha256:v1"
+        verdict = QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "cumple", List.of(), List.of())
         analyzer = QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy)
+        diagnosis = ((QuizDiagnoses) node.getDiagnoses()).getQuizInstructionDiagnosis().orElseThrow(() -> new AssertionError("El ejercicio reutilizado debe conservar su diagnostico (R010)"))
+        coverage = EvaluationCoverage(1, 1, 0, 1, 0, 0)
+        courseNode = buildCourseNode()
+        declared = ((CourseDiagnoses) courseNode.getDiagnoses()).getQuizInstructionCoverage().orElseThrow(() -> new AssertionError("La cobertura del analisis de consigna debe quedar declarada (R005)"))
 
       mock:
         subjectBuilder.build(node) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null)
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "APPROVED-BY-PREVIOUS-VERSION", previousJudgeVersion)
+        verdictReader.read("APPROVED-BY-PREVIOUS-VERSION") -> verdict
+        scorer.score(verdict) -> 1.0
+        session.coverage() -> coverage
 
       when:
         sut.onQuiz(node)
 
       then:
-        node.getScores().isEmpty() is true
-        verify: verdictReader.read(any()) x 0
+        node.getScores().isEmpty() is false
+        diagnosis.isReusedFromPreviousRun() is true
+        declared.getVerdictsByJudgeVersion().size() == 1
+        declared.getVerdictsByJudgeVersion().get(0).getJudgeVersion() == previousJudgeVersion
+        declared.getVerdictsByJudgeVersion().get(0).getVerdictCount() == 1
     - |
       test: "should query the judge again for quizzes that already had a current verdict when re evaluation is requested"
       trace: FEAT-QINST / F-QINST-R012
@@ -22519,7 +22531,7 @@ elements:
       mock:
         subjectBuilder.build(node) -> subject
         scopeMatcher.matches(node, "all") -> true
-        session.resolveForced(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new-payload")
+        session.resolveForced(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new-payload", "v1")
         verdictReader.read("new-payload") -> verdict
         scorer.score(verdict) -> 1.0
 
@@ -22553,10 +22565,10 @@ elements:
         subjectBuilder.build(beyondBudget) -> subj2
         scopeMatcher.matches(withinBudget, "all") -> true
         scopeMatcher.matches(beyondBudget, "all") -> true
-        session.resolveForced(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1")
+        session.resolveForced(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1")
         verdictReader.read("payload-1") -> verdict
         scorer.score(verdict) -> 0.6
-        session.resolveForced(subj2) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null)
+        session.resolveForced(subj2) -> new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null)
 
       when:
         sut.onQuiz(withinBudget)
@@ -22583,7 +22595,7 @@ elements:
 
       mock:
         subjectBuilder.build(node) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null)
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null)
 
       when:
         sut.onQuiz(node)
@@ -22612,9 +22624,9 @@ elements:
 
       mock:
         subjectBuilder.build(firstRunNode) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null)
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null)
         subjectBuilder.build(laterRunNode) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-retry")
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-retry", "v1")
         verdictReader.read("payload-retry") -> verdict
         scorer.score(verdict) -> 1.0
 
@@ -22644,7 +22656,7 @@ elements:
 
       mock:
         subjectBuilder.build(node) -> subject
-        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload")
+        session.resolve(subject) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1")
         verdictReader.read("payload") -> verdict
         scorer.score(verdict) -> 1.0
 
@@ -22696,13 +22708,13 @@ elements:
 
       mock:
         session.coverage() -> coverage
-        session.evaluatorVersion() -> "quiz-instruction-validator@sha256:v7"
+        session.consultedEvaluatorVersion() -> Optional.of("quiz-instruction-validator@sha256:v7")
 
       when:
         sut.onCourseComplete(courseNode)
 
       then:
-        declared.getEvaluatorVersion() == "quiz-instruction-validator@sha256:v7"
+        declared.getConsultedJudgeVersion() == "quiz-instruction-validator@sha256:v7"
     - |
       test: "should declare a single judge version, the one in effect, for a run that both reuses verdicts from earlier runs and evaluates new ones"
       trace: FEAT-QINST / F-QINST-R005
@@ -22714,7 +22726,8 @@ elements:
         scopeMatcher = mock(QuizInstructionScopeMatcher.class)
         verdictReader = mock(QuizInstructionVerdictReader.class)
         policy = normalPolicy(500)
-        currentJudgeVersion = "quiz-instruction-validator@sha256:v9"
+        consultedThisRun = "quiz-instruction-validator@sha256:v9"
+        previousProvenance = "quiz-instruction-validator@sha256:v7"
         evaluatedInThisRun = buildQuizNode(buildQuiz("q1"))
         subj1 = EvaluationSubject("q1", Map.of())
         newVerdict = QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "cumple", List.of(), List.of())
@@ -22725,15 +22738,17 @@ elements:
         coverage = EvaluationCoverage(2, 2, 1, 1, 0, 0)
         courseNode = buildCourseNode()
         declared = ((CourseDiagnoses) courseNode.getDiagnoses()).getQuizInstructionCoverage().orElseThrow(() -> new AssertionError("La cobertura del analisis de consigna debe quedar declarada (R005)"))
+        byVersion = declared.getVerdictsByJudgeVersion()
+        sumOfCountsByVersion = byVersion.stream().mapToInt(JudgeVersionVerdictCount::getVerdictCount).sum()
 
       mock:
-        session.evaluatorVersion() -> currentJudgeVersion
+        session.consultedEvaluatorVersion() -> Optional.of(consultedThisRun)
         subjectBuilder.build(evaluatedInThisRun) -> subj1
-        session.resolve(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-new")
+        session.resolve(subj1) -> new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-new", consultedThisRun)
         verdictReader.read("payload-new") -> newVerdict
         scorer.score(newVerdict) -> 1.0
         subjectBuilder.build(reusedFromEarlierRun) -> subj2
-        session.resolve(subj2) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-reused")
+        session.resolve(subj2) -> new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-reused", previousProvenance)
         verdictReader.read("payload-reused") -> reusedVerdict
         scorer.score(reusedVerdict) -> 1.0
         session.coverage() -> coverage
@@ -22744,7 +22759,13 @@ elements:
       then:
         ((QuizDiagnoses) evaluatedInThisRun.getDiagnoses()).getQuizInstructionDiagnosis().orElseThrow().isReusedFromPreviousRun() is false
         ((QuizDiagnoses) reusedFromEarlierRun.getDiagnoses()).getQuizInstructionDiagnosis().orElseThrow().isReusedFromPreviousRun() is true
-        declared.getEvaluatorVersion() == currentJudgeVersion
+        declared.getConsultedJudgeVersion() == consultedThisRun
+        byVersion.size() == 2
+        byVersion.get(0).getJudgeVersion() == previousProvenance
+        byVersion.get(0).getVerdictCount() == 1
+        byVersion.get(1).getJudgeVersion() == consultedThisRun
+        byVersion.get(1).getVerdictCount() == 1
+        sumOfCountsByVersion == declared.getCoverage().getWithResult()
   - name: DefaultQuizInstructionSubjectBuilder
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionSubjectBuilder.java
@@ -23042,34 +23063,34 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 2064
-      linesMissed: 1158
-      linesTotal: 3222
-      lineCoveragePct: 64
-      branchesCovered: 671
-      branchesMissed: 912
-      branchesTotal: 1583
+      linesCovered: 2078
+      linesMissed: 1173
+      linesTotal: 3251
+      lineCoveragePct: 63
+      branchesCovered: 673
+      branchesMissed: 924
+      branchesTotal: 1597
       branchCoveragePct: 42
-      blendPct: 53
+      blendPct: 52
     mutation:
-      totalMutants: 1538
-      killed: 593
-      survived: 296
-      noCoverage: 649
+      totalMutants: 1550
+      killed: 600
+      survived: 295
+      noCoverage: 655
       timedOut: 0
       other: 0
       mutationScorePct: 38
-      testStrengthPct: 66
+      testStrengthPct: 67
     crap:
-      totalMethods: 917
-      hotspots: 47
+      totalMethods: 927
+      hotspots: 48
       maxCrap: 342.0
-      averageCrap: 6.123590877862594
-      simple: 848
+      averageCrap: 6.134123878101401
+      simple: 857
       moderate: 19
       high: 11
-      veryHigh: 39
-      healthPct: 94
+      veryHigh: 40
+      healthPct: 93
       top:
       - className: com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis
         methodName: equals
@@ -23141,13 +23162,13 @@ elements:
         cyclomatic: 11
         lineCoveragePct: 10
         crap: 99.20900000000002
-    healthScore: 57
+    healthScore: 56
     verdict: WARNED
     violations:
-    - lineCoverage 64% < 70%
+    - lineCoverage 63% < 70%
     - branchCoverage 42% < 60%
     - mutationScore 38% < 60%
-    - crapHotspots 47 > 5
+    - crapHotspots 48 > 5
 - module: course-domain
   status: EXISTS
   models:
@@ -29810,10 +29831,10 @@ elements:
         branchCoveragePct: 62
         blendPct: 75
       mutation:
-        totalMutants: 37
+        totalMutants: 0
         killed: 0
         survived: 0
-        noCoverage: 37
+        noCoverage: 0
         timedOut: 0
         other: 0
         mutationScorePct: 0
@@ -29853,10 +29874,10 @@ elements:
         lineCoveragePct: 86
         branchesCovered: 4
         branchesMissed: 2
-        mutantsTotal: 6
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 6
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 4.043904
       - name: mapMilestone
@@ -29868,10 +29889,10 @@ elements:
         lineCoveragePct: 85
         branchesCovered: 1
         branchesMissed: 1
-        mutantsTotal: 2
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 2
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 2.0135
       - name: mapTopic
@@ -29883,10 +29904,10 @@ elements:
         lineCoveragePct: 87
         branchesCovered: 1
         branchesMissed: 1
-        mutantsTotal: 2
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 2
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 2.008788
       - name: mapKnowledge
@@ -29898,10 +29919,10 @@ elements:
         lineCoveragePct: 87
         branchesCovered: 1
         branchesMissed: 1
-        mutantsTotal: 2
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 2
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 2.008788
       - name: hasSentenceParts
@@ -29913,10 +29934,10 @@ elements:
         lineCoveragePct: 80
         branchesCovered: 3
         branchesMissed: 3
-        mutantsTotal: 5
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 5
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 4.128
       - name: mapQuiz
@@ -29928,10 +29949,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 2
         branchesMissed: 2
-        mutantsTotal: 3
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 3
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 3.0
       - name: deriveSentences
@@ -29943,10 +29964,10 @@ elements:
         lineCoveragePct: 86
         branchesCovered: 7
         branchesMissed: 5
-        mutantsTotal: 7
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 7
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 7.134456
       - name: collectAllCanonicalSentences
@@ -29958,10 +29979,10 @@ elements:
         lineCoveragePct: 85
         branchesCovered: 15
         branchesMissed: 5
-        mutantsTotal: 9
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 9
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 11.408375
       - name: lambda$mapTopic$0
@@ -29973,10 +29994,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
   - name: DefaultSentenceLengthConfig
@@ -29994,10 +30015,10 @@ elements:
         branchCoveragePct: 0
         blendPct: 16
       mutation:
-        totalMutants: 3
+        totalMutants: 0
         killed: 0
         survived: 0
-        noCoverage: 3
+        noCoverage: 0
         timedOut: 0
         other: 0
         mutationScorePct: 0
@@ -30037,10 +30058,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 2.0
       - name: getToleranceMargin
@@ -30052,10 +30073,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 2.0
       - name: describe
@@ -30067,10 +30088,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 2
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 6.0
       - name: <clinit>
@@ -30390,7 +30411,7 @@ elements:
         verdict = QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "Cumple la consigna", List.of(), List.of())
         quizDiagnosis = QuizInstructionDiagnosis(verdict, 1.0, false)
         coverage = EvaluationCoverage(1, 1, 1, 0, 0, 0)
-        coverageDiagnosis = QuizInstructionCoverageDiagnosis(coverage, "v1")
+        coverageDiagnosis = QuizInstructionCoverageDiagnosis(coverage, "v1", List.of())
         quizInstructionAnalyzer = mock(ContentAnalyzer.class)
         quizInstructionFactory = mock(EvaluationAnalyzerFactory.class)
         runner = DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine, List.of(), scoreAggregator, List.of(quizInstructionFactory))
@@ -30616,7 +30637,7 @@ elements:
         sessionFactory = DefaultEvaluationSessionFactory(ledger, fingerprinter)
         evaluator = FakeQuizInstructionEvaluator(EVALUATOR_ID, "v1")
         fingerprint = fingerprinter.fingerprint(quizInstructionSubjectContent("quiz-1"))
-        currentKey = EvaluationKey(EVALUATOR_ID, "v1", fingerprint)
+        currentKey = EvaluationKey(EVALUATOR_ID, fingerprint)
         quizInstructionFactory = mock(EvaluationAnalyzerFactory.class)
         runner = DefaultAuditRunner(courseRepository, courseToAuditableMapper, auditEngine, List.of(), scoreAggregator, List.of(quizInstructionFactory))
         reevaluationPolicy = EvaluationRunPolicy(500, true, null)
@@ -30629,11 +30650,11 @@ elements:
         auditEngine.runAudit(auditableCourse) -> baseReport
 
       when:
-        sut.seed(new EvaluationRecord(currentKey, "{\"compliant\":true}", "quiz-1", Instant.now()))
+        sut.seed(new EvaluationRecord(currentKey, "{\"compliant\":true}", "quiz-1", Instant.now(), "v1"))
 
       then:
         evaluator.getEvaluatedSubjects().size() == 1
-        ledger.history(EVALUATOR_ID, fingerprint).size() == 2
+        ledger.history(currentKey).size() == 2
         verify: quizInstructionFactory.create(reevaluationPolicy)
     quality:
       coverage:
@@ -30647,10 +30668,10 @@ elements:
         branchCoveragePct: 60
         blendPct: 66
       mutation:
-        totalMutants: 31
+        totalMutants: 0
         killed: 0
         survived: 0
-        noCoverage: 31
+        noCoverage: 0
         timedOut: 0
         other: 0
         mutationScorePct: 0
@@ -30690,10 +30711,10 @@ elements:
         lineCoveragePct: 37
         branchesCovered: 1
         branchesMissed: 3
-        mutantsTotal: 4
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 4
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 5.250423
       - name: runAudit
@@ -30705,10 +30726,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 14
         branchesMissed: 6
-        mutantsTotal: 11
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 11
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 11.0
       - name: applyEvaluationAnalyzer
@@ -30720,10 +30741,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: traverseForEvaluationAnalyzer
@@ -30735,10 +30756,10 @@ elements:
         lineCoveragePct: 75
         branchesCovered: 9
         branchesMissed: 4
-        mutantsTotal: 4
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 4
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 10.265625
       - name: runDetailedAudit
@@ -30750,10 +30771,10 @@ elements:
         lineCoveragePct: 27
         branchesCovered: 2
         branchesMissed: 4
-        mutantsTotal: 6
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 6
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 10.224272
       - name: loadCourse
@@ -30765,10 +30786,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: lambda$runDetailedAudit$0
@@ -30780,10 +30801,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 2
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 2
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 2.0
       - name: lambda$runAudit$0
@@ -30795,10 +30816,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 2
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 2
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 2.0
   - name: DefaultCocaBucketsConfig
@@ -30898,10 +30919,10 @@ elements:
         branchCoveragePct: 0
         blendPct: 28
       mutation:
-        totalMutants: 9
+        totalMutants: 0
         killed: 0
         survived: 0
-        noCoverage: 9
+        noCoverage: 0
         timedOut: 0
         other: 0
         mutationScorePct: 0
@@ -30941,10 +30962,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: getTargetsForLevel
@@ -30956,10 +30977,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 2.0
       - name: getQuarterTargetsForLevel
@@ -30971,10 +30992,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: getToleranceMargin
@@ -30986,10 +31007,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: getAnalysisStrategy
@@ -31001,10 +31022,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: getProgressionExpectations
@@ -31016,10 +31037,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: describe
@@ -31031,10 +31052,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 2
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 6.0
       - name: lambda$describe$1
@@ -31046,10 +31067,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 2.0
       - name: lambda$describe$0
@@ -31061,10 +31082,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 2.0
       - name: <clinit>
@@ -31117,10 +31138,10 @@ elements:
         branchCoveragePct: 0
         blendPct: 50
       mutation:
-        totalMutants: 4
+        totalMutants: 0
         killed: 0
         survived: 0
-        noCoverage: 4
+        noCoverage: 0
         timedOut: 0
         other: 0
         mutationScorePct: 0
@@ -31160,10 +31181,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: getSubExposedThreshold
@@ -31175,10 +31196,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: getOverExposedThreshold
@@ -31190,10 +31211,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: describe
@@ -31205,10 +31226,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 2.0
   - name: DefaultLemmaAbsenceConfig
@@ -31718,10 +31739,10 @@ elements:
         branchCoveragePct: 68
         blendPct: 59
       mutation:
-        totalMutants: 21
+        totalMutants: 0
         killed: 0
         survived: 0
-        noCoverage: 21
+        noCoverage: 0
         timedOut: 0
         other: 0
         mutationScorePct: 0
@@ -31761,10 +31782,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 2.0
       - name: getAbsoluteThreshold
@@ -31776,10 +31797,10 @@ elements:
         lineCoveragePct: 83
         branchesCovered: 4
         branchesMissed: 1
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 5.122825
       - name: getPercentageThreshold
@@ -31791,10 +31812,10 @@ elements:
         lineCoveragePct: 83
         branchesCovered: 4
         branchesMissed: 1
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 5.122825
       - name: getLevelWeight
@@ -31806,10 +31827,10 @@ elements:
         lineCoveragePct: 75
         branchesCovered: 2
         branchesMissed: 1
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 3.140625
       - name: getHighPriorityBound
@@ -31821,10 +31842,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: getMediumPriorityBound
@@ -31836,10 +31857,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: getLowPriorityBound
@@ -31851,10 +31872,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: getHighPriorityAlertThreshold
@@ -31881,10 +31902,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: getLowPriorityAlertThreshold
@@ -31896,10 +31917,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: getCriticalAbsenceThreshold
@@ -31911,10 +31932,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: getAcceptableAbsenceThreshold
@@ -31926,10 +31947,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: getHighReportLimit
@@ -31941,10 +31962,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: getMediumReportLimit
@@ -31956,10 +31977,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: getLowReportLimit
@@ -31971,10 +31992,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: getDiscountPerLevel
@@ -31986,10 +32007,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: describe
@@ -32001,10 +32022,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 4
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 12.0
       - name: getCoverageTarget
@@ -32016,10 +32037,10 @@ elements:
         lineCoveragePct: 83
         branchesCovered: 4
         branchesMissed: 1
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 5.122825
       - name: getOutOfCatalogNoPenaltyRankBound
@@ -32031,10 +32052,10 @@ elements:
         lineCoveragePct: 83
         branchesCovered: 4
         branchesMissed: 1
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 5.122825
       - name: getOutOfCatalogMildDiscountRankBound
@@ -32046,10 +32067,10 @@ elements:
         lineCoveragePct: 83
         branchesCovered: 4
         branchesMissed: 1
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 5.122825
       - name: getOutOfCatalogMildDiscount
@@ -32061,10 +32082,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: getOutOfCatalogStrongDiscount
@@ -32076,10 +32097,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: <clinit>
@@ -32112,10 +32133,10 @@ elements:
         branchCoveragePct: 0
         blendPct: 0
       mutation:
-        totalMutants: 5
+        totalMutants: 0
         killed: 0
         survived: 0
-        noCoverage: 5
+        noCoverage: 0
         timedOut: 0
         other: 0
         mutationScorePct: 0
@@ -32155,10 +32176,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 2.0
       - name: getAnalyzerConfig
@@ -32170,10 +32191,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 2.0
       - name: lambda$getAnalyzerConfig$0
@@ -32185,10 +32206,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 2
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 2
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 2.0
       - name: lambda$listAnalyzers$0
@@ -32200,10 +32221,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 2.0
   - name: DefaultLemmaCountConfig
@@ -32221,10 +32242,10 @@ elements:
         branchCoveragePct: 0
         blendPct: 66
       mutation:
-        totalMutants: 2
+        totalMutants: 0
         killed: 0
         survived: 0
-        noCoverage: 2
+        noCoverage: 0
         timedOut: 0
         other: 0
         mutationScorePct: 0
@@ -32264,10 +32285,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: describe
@@ -32279,10 +32300,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 2.0
   - name: DefaultLemmaCountConfigLoader
@@ -32360,10 +32381,10 @@ elements:
         branchCoveragePct: 87
         blendPct: 90
       mutation:
-        totalMutants: 7
+        totalMutants: 0
         killed: 0
         survived: 0
-        noCoverage: 7
+        noCoverage: 0
         timedOut: 0
         other: 0
         mutationScorePct: 0
@@ -32403,10 +32424,10 @@ elements:
         lineCoveragePct: 92
         branchesCovered: 7
         branchesMissed: 1
-        mutantsTotal: 7
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 7
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 5.0128
   - name: DefaultQuizInstructionConfig
@@ -32454,10 +32475,10 @@ elements:
         branchCoveragePct: 0
         blendPct: 30
       mutation:
-        totalMutants: 3
+        totalMutants: 0
         killed: 0
         survived: 0
-        noCoverage: 3
+        noCoverage: 0
         timedOut: 0
         other: 0
         mutationScorePct: 0
@@ -32497,10 +32518,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: getScoreFor
@@ -32512,10 +32533,10 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: describe
@@ -32527,10 +32548,10 @@ elements:
         lineCoveragePct: 0
         branchesCovered: 0
         branchesMissed: 2
-        mutantsTotal: 1
+        mutantsTotal: 0
         mutantsKilled: 0
         mutantsSurvived: 0
-        mutantsNoCoverage: 1
+        mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 6.0
       - name: <clinit>
@@ -32567,10 +32588,10 @@ elements:
       branchCoveragePct: 57
       blendPct: 60
     mutation:
-      totalMutants: 134
+      totalMutants: 0
       killed: 0
       survived: 0
-      noCoverage: 134
+      noCoverage: 0
       timedOut: 0
       other: 0
       mutationScorePct: 0
@@ -32598,7 +32619,6 @@ elements:
     violations:
     - lineCoverage 63% < 70%
     - branchCoverage 57% < 60%
-    - mutationScore 0% < 60%
 - module: course-infrastructure
   status: EXISTS
   implementations:
@@ -38831,6 +38851,14 @@ elements:
         coverage numbers
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/QuizInstructionDetailedFormatterTest.java
+    - name: should render one row per originating judge version with how many of the
+        scored verdicts each one contributes
+      status: MISSING
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/QuizInstructionDetailedFormatterTest.java
+    - name: should state explicitly that the run consulted no judge version when it
+        made no new consultation
+      status: MISSING
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/QuizInstructionDetailedFormatterTest.java
     testCleanViews:
     - |
       test: "should render the declared coverage of the quiz instruction analysis next to its score"
@@ -38838,7 +38866,7 @@ elements:
 
       given:
         coverage = EvaluationCoverage(1060, 156, 52, 104, 811, 93)
-        coverageDiagnosis = QuizInstructionCoverageDiagnosis(coverage, "judge-v1")
+        coverageDiagnosis = QuizInstructionCoverageDiagnosis(coverage, "judge-v1", List.of())
         courseDiagnoses = mock(CourseDiagnoses.class)
         courseNode = AuditNode(null, AuditTarget.COURSE, null, List.of(), Map.of("quiz-instruction", 0.62), Map.of(), courseDiagnoses)
         formatter = QuizInstructionDetailedFormatter()
@@ -38890,7 +38918,7 @@ elements:
       given:
         coverage = EvaluationCoverage(742, 610, 88, 522, 120, 12)
         judgeVersion = "qij-8f3d1c-2026.07"
-        coverageDiagnosis = QuizInstructionCoverageDiagnosis(coverage, judgeVersion)
+        coverageDiagnosis = QuizInstructionCoverageDiagnosis(coverage, judgeVersion, List.of())
         courseDiagnoses = mock(CourseDiagnoses.class)
         courseNode = AuditNode(null, AuditTarget.COURSE, null, List.of(), Map.of("quiz-instruction", 0.48), Map.of(), courseDiagnoses)
         formatter = QuizInstructionDetailedFormatter()
@@ -39467,13 +39495,13 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 2046
-      linesMissed: 2116
-      linesTotal: 4162
+      linesCovered: 2051
+      linesMissed: 2122
+      linesTotal: 4173
       lineCoveragePct: 49
-      branchesCovered: 910
-      branchesMissed: 1398
-      branchesTotal: 2308
+      branchesCovered: 913
+      branchesMissed: 1403
+      branchesTotal: 2316
       branchCoveragePct: 39
       blendPct: 44
     mutation:
@@ -39489,12 +39517,12 @@ elements:
       totalMethods: 574
       hotspots: 51
       maxCrap: 306.0
-      averageCrap: 11.62081546515679
-      simple: 465
-      moderate: 52
+      averageCrap: 11.628979054006965
+      simple: 464
+      moderate: 53
       high: 21
       veryHigh: 36
-      healthPct: 86
+      healthPct: 85
       top:
       - className: com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter
         methodName: formatTable
@@ -39566,7 +39594,7 @@ elements:
         cyclomatic: 11
         lineCoveragePct: 0
         crap: 132.0
-    healthScore: 35
+    healthScore: 34
     verdict: WARNED
     violations:
     - lineCoverage 49% < 70%
@@ -49304,10 +49332,10 @@ elements:
       mock:
         fingerprinter.fingerprint(sharedContent) -> "fp-shared"
         evaluator.evaluatorId() -> "qinst-judge"
-        evaluator.evaluatorVersion() -> "v1"
+        evaluator.evaluatorVersion() -> Optional.of("v1")
 
       when:
-        sut.append(new EvaluationRecord(new EvaluationKey("qinst-judge", "v1", "fp-shared"), "APPROVED", "quiz-elementA", Instant.parse("2026-07-01T00:00:00Z")))
+        sut.append(new EvaluationRecord(new EvaluationKey("qinst-judge", "fp-shared"), "APPROVED", "quiz-elementA", Instant.parse("2026-07-01T00:00:00Z"), "v1"))
 
       then:
         resolutionA.getKind() == EvaluationResolutionKind.REUSED
@@ -49333,10 +49361,10 @@ elements:
         fingerprinter.fingerprint(oldContent) -> "fp-old"
         fingerprinter.fingerprint(newContent) -> "fp-new"
         evaluator.evaluatorId() -> "qinst-judge"
-        evaluator.evaluatorVersion() -> "v1"
+        evaluator.evaluatorVersion() -> Optional.of("v1")
 
       when:
-        sut.append(new EvaluationRecord(new EvaluationKey("qinst-judge", "v1", "fp-old"), "APPROVED", "quiz-elementA", Instant.parse("2026-07-01T00:00:00Z")))
+        sut.append(new EvaluationRecord(new EvaluationKey("qinst-judge", "fp-old"), "APPROVED", "quiz-elementA", Instant.parse("2026-07-01T00:00:00Z"), "v1"))
 
       then:
         resolution.getKind() == EvaluationResolutionKind.PENDING
@@ -49358,7 +49386,7 @@ elements:
       mock:
         fingerprinter.fingerprint(content) -> "fp-content"
         evaluator.evaluatorId() -> "qinst-judge"
-        evaluator.evaluatorVersion() -> "v1"
+        evaluator.evaluatorVersion() -> Optional.of("v1")
         evaluator.evaluate(any()) -> new EvaluationEmitted("APPROVED")
 
       when:
@@ -49385,10 +49413,10 @@ elements:
       mock:
         fingerprinter.fingerprint(content) -> "fp-content"
         evaluator.evaluatorId() -> "qinst-judge"
-        evaluator.evaluatorVersion() -> "v1"
+        evaluator.evaluatorVersion() -> Optional.of("v1")
 
       when:
-        sut.append(new EvaluationRecord(new EvaluationKey("qinst-judge", "v1", "fp-content"), "APPROVED", "quiz-1", Instant.parse("2026-07-01T00:00:00Z")))
+        sut.append(new EvaluationRecord(new EvaluationKey("qinst-judge", "fp-content"), "APPROVED", "quiz-1", Instant.parse("2026-07-01T00:00:00Z"), "v1"))
 
       then:
         resolution.getKind() == EvaluationResolutionKind.REUSED
@@ -49410,7 +49438,7 @@ elements:
       mock:
         fingerprinter.fingerprint(content) -> "fp-content"
         evaluator.evaluatorId() -> "qinst-judge"
-        evaluator.evaluatorVersion() -> "v1"
+        evaluator.evaluatorVersion() -> Optional.of("v1")
 
       then:
         resolution.getKind() == EvaluationResolutionKind.PENDING
@@ -49438,11 +49466,11 @@ elements:
         fingerprinter.fingerprint(contentB) -> "fp-b"
         fingerprinter.fingerprint(contentC) -> "fp-c"
         evaluator.evaluatorId() -> "qinst-judge"
-        evaluator.evaluatorVersion() -> "v1"
+        evaluator.evaluatorVersion() -> Optional.of("v1")
         evaluator.evaluate(any()) -> new EvaluationEmitted("EVALUATED-NEW")
 
       when:
-        sut.append(new EvaluationRecord(new EvaluationKey("qinst-judge", "v1", "fp-b"), "APPROVED-B", "quiz-b", Instant.parse("2026-07-01T00:00:00Z")))
+        sut.append(new EvaluationRecord(new EvaluationKey("qinst-judge", "fp-b"), "APPROVED-B", "quiz-b", Instant.parse("2026-07-01T00:00:00Z"), "v1"))
 
       then:
         newResolution.getKind() == EvaluationResolutionKind.EVALUATED
@@ -49468,7 +49496,7 @@ elements:
         fingerprinter.fingerprint(content1) -> "fp-1"
         fingerprinter.fingerprint(content2) -> "fp-2"
         evaluator.evaluatorId() -> "qinst-judge"
-        evaluator.evaluatorVersion() -> "v1"
+        evaluator.evaluatorVersion() -> Optional.of("v1")
 
       when:
         sut.thenReturn(new EvaluationEmitted("VERDICT-2"))
@@ -49499,10 +49527,10 @@ elements:
       mock:
         fingerprinter.fingerprint(content) -> "fp-unfavourable"
         firstRunEvaluator.evaluatorId() -> "qinst-judge"
-        firstRunEvaluator.evaluatorVersion() -> "v1"
+        firstRunEvaluator.evaluatorVersion() -> Optional.of("v1")
         firstRunEvaluator.evaluate(any()) -> new EvaluationEmitted("UNFAVOURABLE:instruction unclear")
         secondRunEvaluator.evaluatorId() -> "qinst-judge"
-        secondRunEvaluator.evaluatorVersion() -> "v1"
+        secondRunEvaluator.evaluatorVersion() -> Optional.of("v1")
 
       then:
         firstResolution.getKind() == EvaluationResolutionKind.EVALUATED
@@ -49529,10 +49557,10 @@ elements:
       mock:
         fingerprinter.fingerprint(content) -> "fp-failure"
         firstRunEvaluator.evaluatorId() -> "qinst-judge"
-        firstRunEvaluator.evaluatorVersion() -> "v1"
+        firstRunEvaluator.evaluatorVersion() -> Optional.of("v1")
         firstRunEvaluator.evaluate(any()) -> new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE, "judge output was not parseable")
         secondRunEvaluator.evaluatorId() -> "qinst-judge"
-        secondRunEvaluator.evaluatorVersion() -> "v1"
+        secondRunEvaluator.evaluatorVersion() -> Optional.of("v1")
         secondRunEvaluator.evaluate(any()) -> new EvaluationEmitted("APPROVED-ON-RETRY")
 
       then:
@@ -49548,26 +49576,30 @@ elements:
       given:
         content = Map.of("instruction", "Instruction judged by both versions.")
         fingerprinter = mock(ContentFingerprinter.class)
+        key = EvaluationKey("qinst-judge", "fp-versioned")
         ledger = InMemoryLedger()
-        evaluatorV2 = mock(Evaluator.class)
-        policy = EvaluationBudget(0)
-        session = DefaultEvaluationSession(ledger, fingerprinter, evaluatorV2, policy)
+        evaluatorV3 = mock(Evaluator.class)
+        budget = EvaluationBudget(0)
+        session = DefaultEvaluationSession(ledger, fingerprinter, evaluatorV3, budget)
         resolution = session.resolve(new EvaluationSubject("quiz-1", content))
-        history = ledger.history("qinst-judge", "fp-versioned")
+        history = ledger.history(key)
 
       mock:
         fingerprinter.fingerprint(content) -> "fp-versioned"
-        evaluatorV2.evaluatorId() -> "qinst-judge"
-        evaluatorV2.evaluatorVersion() -> "v2"
+        evaluatorV3.evaluatorId() -> "qinst-judge"
+        evaluatorV3.evaluatorVersion() -> Optional.of("v3")
 
       when:
-        sut.append(new EvaluationRecord(new EvaluationKey("qinst-judge", "v1", "fp-versioned"), "APPROVED-BY-V1", "quiz-1", Instant.parse("2026-07-01T00:00:00Z")))
+        sut.append(new EvaluationRecord(key, "APPROVED-BY-V1", "quiz-1", Instant.parse("2026-07-01T00:00:00Z"), "v1"))
 
       then:
-        resolution.getKind() == EvaluationResolutionKind.PENDING
-        history.size() == 1
+        resolution.getKind() == EvaluationResolutionKind.REUSED
+        resolution.getPayload() == "APPROVED-BY-V2"
+        resolution.getEvaluatorVersion() == "v2"
+        history.size() == 2
         history.get(0).getPayload() == "APPROVED-BY-V1"
-        verify: evaluatorV2.evaluate(any()) x 0
+        history.get(1).getPayload() == "APPROVED-BY-V2"
+        verify: evaluatorV3.evaluate(any()) x 0
     - |
       test: "should consult the evaluator again for content with a current result only when re-evaluation is explicitly requested"
       trace: FEAT-EVCOST / F-EVCOST-R008
@@ -49582,16 +49614,16 @@ elements:
         subject = EvaluationSubject("quiz-1", content)
         implicit = session.resolve(subject)
         forced = session.resolveForced(subject)
-        history = ledger.history("qinst-judge", "fp-current")
+        history = ledger.history(new EvaluationKey("qinst-judge", "fp-current"))
 
       mock:
         fingerprinter.fingerprint(content) -> "fp-current"
         evaluator.evaluatorId() -> "qinst-judge"
-        evaluator.evaluatorVersion() -> "v1"
+        evaluator.evaluatorVersion() -> Optional.of("v1")
         evaluator.evaluate(any()) -> new EvaluationEmitted("APPROVED-AGAIN")
 
       when:
-        sut.append(new EvaluationRecord(new EvaluationKey("qinst-judge", "v1", "fp-current"), "APPROVED-FIRST", "quiz-1", Instant.parse("2026-07-01T00:00:00Z")))
+        sut.append(new EvaluationRecord(new EvaluationKey("qinst-judge", "fp-current"), "APPROVED-FIRST", "quiz-1", Instant.parse("2026-07-01T00:00:00Z"), "v1"))
 
       then:
         implicit.getKind() == EvaluationResolutionKind.REUSED
@@ -49622,7 +49654,7 @@ elements:
         fingerprinter.fingerprint(content2) -> "fp-2"
         fingerprinter.fingerprint(content3) -> "fp-3"
         evaluator.evaluatorId() -> "qinst-judge"
-        evaluator.evaluatorVersion() -> "v1"
+        evaluator.evaluatorVersion() -> Optional.of("v1")
 
       when:
         sut.thenReturn(new EvaluationEmitted("APPROVED-3"))
@@ -49654,7 +49686,7 @@ elements:
         fingerprinter.fingerprint(content2) -> "fp-2"
         fingerprinter.fingerprint(content3) -> "fp-3"
         evaluator.evaluatorId() -> "qinst-judge"
-        evaluator.evaluatorVersion() -> "v1"
+        evaluator.evaluatorVersion() -> Optional.of("v1")
         evaluator.evaluate(any()) -> new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, "service is down")
 
       then:
@@ -49689,11 +49721,11 @@ elements:
         fingerprinter.fingerprint(contentA) -> "fp-a"
         fingerprinter.fingerprint(contentB) -> "fp-b"
         evaluator.evaluatorId() -> "qinst-judge"
-        evaluator.evaluatorVersion() -> "v1"
+        evaluator.evaluatorVersion() -> Optional.of("v1")
         evaluator.evaluate(any()) -> new EvaluationEmitted("APPROVED-A-AGAIN")
 
       when:
-        sut.append(new EvaluationRecord(new EvaluationKey("qinst-judge", "v1", "fp-a"), "APPROVED-A-FIRST", "quiz-a", Instant.parse("2026-07-01T00:00:00Z")))
+        sut.append(new EvaluationRecord(new EvaluationKey("qinst-judge", "fp-a"), "APPROVED-A-FIRST", "quiz-a", Instant.parse("2026-07-01T00:00:00Z"), "v1"))
 
       then:
         resolutionA.getKind() == EvaluationResolutionKind.EVALUATED
@@ -49757,33 +49789,33 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 120
-      linesMissed: 133
-      linesTotal: 253
+      linesCovered: 127
+      linesMissed: 138
+      linesTotal: 265
       lineCoveragePct: 47
       branchesCovered: 25
-      branchesMissed: 81
-      branchesTotal: 106
-      branchCoveragePct: 23
-      blendPct: 35
+      branchesMissed: 87
+      branchesTotal: 112
+      branchCoveragePct: 22
+      blendPct: 34
     mutation:
-      totalMutants: 131
+      totalMutants: 134
       killed: 36
       survived: 18
-      noCoverage: 77
+      noCoverage: 80
       timedOut: 0
       other: 0
-      mutationScorePct: 27
+      mutationScorePct: 26
       testStrengthPct: 66
     crap:
-      totalMethods: 89
+      totalMethods: 91
       hotspots: 5
       maxCrap: 110.0
-      averageCrap: 5.579128438202248
-      simple: 82
+      averageCrap: 5.885001835164834
+      simple: 84
       moderate: 2
-      high: 3
-      veryHigh: 2
+      high: 2
+      veryHigh: 3
       healthPct: 93
       top:
       - className: com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage
@@ -49796,10 +49828,17 @@ elements:
       - className: com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord
         methodName: equals
         methodDesc: (Ljava/lang/Object;)Z
-        line: 65
-        cyclomatic: 8
+        line: 76
+        cyclomatic: 9
         lineCoveragePct: 0
-        crap: 72.0
+        crap: 90.0
+      - className: com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 53
+        cyclomatic: 7
+        lineCoveragePct: 0
+        crap: 56.0
       - className: com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted
         methodName: equals
         methodDesc: (Ljava/lang/Object;)Z
@@ -49814,19 +49853,12 @@ elements:
         cyclomatic: 6
         lineCoveragePct: 0
         crap: 42.0
-      - className: com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution
-        methodName: equals
-        methodDesc: (Ljava/lang/Object;)Z
-        line: 41
-        cyclomatic: 6
-        lineCoveragePct: 0
-        crap: 42.0
-    healthScore: 46
+    healthScore: 45
     verdict: WARNED
     violations:
     - lineCoverage 47% < 70%
-    - branchCoverage 23% < 60%
-    - mutationScore 27% < 60%
+    - branchCoverage 22% < 60%
+    - mutationScore 26% < 60%
 - module: evaluation-ledger-infrastructure
   status: EXISTS
   implementations:
@@ -49869,9 +49901,9 @@ elements:
         second = record("fp-2", "verdict-2", "quiz-2", Instant.parse("2026-01-01T10:00:05Z"))
         third = record("fp-3", "verdict-3", "quiz-3", Instant.parse("2026-01-01T10:00:10Z"))
         resumedRun = FileSystemEvaluationLedger(tempDir)
-        foundFirst = resumedRun.find(first.getKey())
-        foundSecond = resumedRun.find(second.getKey())
-        foundThird = resumedRun.find(third.getKey())
+        foundFirst = resumedRun.findLatest(first.getKey())
+        foundSecond = resumedRun.findLatest(second.getKey())
+        foundThird = resumedRun.findLatest(third.getKey())
 
       when:
         sut.append(first)
@@ -49897,8 +49929,8 @@ elements:
         gap = sizeAfterBoth - sizeAfterComplete
         truncatedLength = sizeAfterComplete + Math.max(1, gap / 2)
         reader = FileSystemEvaluationLedger(tempDir)
-        foundComplete = reader.find(complete.getKey())
-        foundTruncated = reader.find(aboutToBeTruncated.getKey())
+        foundComplete = reader.findLatest(complete.getKey())
+        foundTruncated = reader.findLatest(aboutToBeTruncated.getKey())
 
       when:
         sut.append(complete)
@@ -49932,9 +49964,9 @@ elements:
 
       given:
         ledger = FileSystemEvaluationLedger(tempDir)
-        recordedByPreviousVersion = EvaluationRecord(new EvaluationKey(EVALUATOR_ID, "v1", "fp-shared"), "verdict under v1", "quiz-42", Instant.parse("2026-01-01T00:00:00Z"))
-        recordedByNewVersion = EvaluationRecord(new EvaluationKey(EVALUATOR_ID, "v2", "fp-shared"), "verdict under v2", "quiz-42", Instant.parse("2026-02-01T00:00:00Z"))
-        history = ledger.history(EVALUATOR_ID, "fp-shared")
+        recordedByPreviousVersion = EvaluationRecord(new EvaluationKey(EVALUATOR_ID, "fp-shared"), "verdict under v1", "quiz-42", Instant.parse("2026-01-01T00:00:00Z"), "v1")
+        recordedByNewVersion = EvaluationRecord(new EvaluationKey(EVALUATOR_ID, "fp-shared"), "verdict under v2", "quiz-42", Instant.parse("2026-02-01T00:00:00Z"), "v2")
+        history = ledger.history(new EvaluationKey(EVALUATOR_ID, "fp-shared"))
 
       when:
         sut.append(recordedByPreviousVersion)
@@ -49951,7 +49983,7 @@ elements:
         ledger = FileSystemEvaluationLedger(tempDir)
         recorded = record("fp-99", "verdict-99", "quiz-99", Instant.parse("2026-01-01T10:00:00Z"))
         ledgerAfterCleanup = FileSystemEvaluationLedger(tempDir)
-        found = ledgerAfterCleanup.find(recorded.getKey())
+        found = ledgerAfterCleanup.findLatest(recorded.getKey())
 
       when:
         sut.createDirectories(reportsDir)
@@ -49966,10 +49998,10 @@ elements:
 
       given:
         ledger = FileSystemEvaluationLedger(tempDir)
-        key = EvaluationKey(EVALUATOR_ID, EVALUATOR_VERSION, "fp-repeat")
-        firstAttempt = EvaluationRecord(key, "first verdict", "quiz-7", Instant.parse("2026-01-01T00:00:00Z"))
-        reevaluated = EvaluationRecord(key, "second verdict after re-evaluation", "quiz-7", Instant.parse("2026-03-01T00:00:00Z"))
-        history = ledger.history(EVALUATOR_ID, "fp-repeat")
+        key = EvaluationKey(EVALUATOR_ID, "fp-repeat")
+        firstAttempt = EvaluationRecord(key, "first verdict", "quiz-7", Instant.parse("2026-01-01T00:00:00Z"), EVALUATOR_VERSION)
+        reevaluated = EvaluationRecord(key, "second verdict after re-evaluation", "quiz-7", Instant.parse("2026-03-01T00:00:00Z"), EVALUATOR_VERSION)
+        history = ledger.history(key)
 
       when:
         sut.append(firstAttempt)
@@ -49980,28 +50012,28 @@ elements:
     quality:
       coverage:
         linesCovered: 64
-        linesMissed: 13
-        linesTotal: 77
-        lineCoveragePct: 83
+        linesMissed: 15
+        linesTotal: 79
+        lineCoveragePct: 81
         branchesCovered: 22
         branchesMissed: 8
         branchesTotal: 30
         branchCoveragePct: 73
-        blendPct: 78
+        blendPct: 77
       mutation:
-        totalMutants: 0
-        killed: 0
-        survived: 0
+        totalMutants: 20
+        killed: 16
+        survived: 4
         noCoverage: 0
         timedOut: 0
         other: 0
-        mutationScorePct: 0
-        testStrengthPct: 0
+        mutationScorePct: 80
+        testStrengthPct: 80
       crap:
         totalMethods: 10
         hotspots: 0
         maxCrap: 7.016807
-        averageCrap: 2.5394627
+        averageCrap: 2.5890701999999997
         simple: 10
         moderate: 0
         high: 0
@@ -50023,7 +50055,7 @@ elements:
         mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
-      - name: find
+      - name: findLatest
         desc: (Lcom/learney/contentaudit/evaluationledgerdomain/EvaluationKey;)Ljava/util/Optional;
         line: 71
         cyclomatic: 3
@@ -50032,116 +50064,116 @@ elements:
         lineCoveragePct: 100
         branchesCovered: 4
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 2
+        mutantsKilled: 2
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 3.0
       - name: append
         desc: (Lcom/learney/contentaudit/evaluationledgerdomain/EvaluationRecord;)V
-        line: 86
-        cyclomatic: 2
-        linesCovered: 10
-        linesMissed: 6
-        lineCoveragePct: 62
-        branchesCovered: 2
-        branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        line: 87
+        cyclomatic: 3
+        linesCovered: 11
+        linesMissed: 8
+        lineCoveragePct: 57
+        branchesCovered: 3
+        branchesMissed: 1
+        mutantsTotal: 2
+        mutantsKilled: 1
+        mutantsSurvived: 1
         mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 2.219488
+        mutationScorePct: 50
+        crap: 3.7155630000000004
       - name: history
-        desc: (Ljava/lang/String;Ljava/lang/String;)Ljava/util/List;
-        line: 109
-        cyclomatic: 4
-        linesCovered: 7
+        desc: (Lcom/learney/contentaudit/evaluationledgerdomain/EvaluationKey;)Ljava/util/List;
+        line: 119
+        cyclomatic: 3
+        linesCovered: 6
         linesMissed: 0
         lineCoveragePct: 100
-        branchesCovered: 4
-        branchesMissed: 2
-        mutantsTotal: 0
-        mutantsKilled: 0
+        branchesCovered: 3
+        branchesMissed: 1
+        mutantsTotal: 2
+        mutantsKilled: 2
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
-        crap: 4.0
+        mutationScorePct: 100
+        crap: 3.0
       - name: resolveFile
         desc: (Ljava/lang/String;)Ljava/nio/file/Path;
-        line: 124
+        line: 133
         cyclomatic: 1
         linesCovered: 1
         linesMissed: 0
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 1
+        mutantsKilled: 1
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 1.0
       - name: sanitize
         desc: (Ljava/lang/String;)Ljava/lang/String;
-        line: 128
+        line: 137
         cyclomatic: 1
         linesCovered: 1
         linesMissed: 0
         lineCoveragePct: 100
         branchesCovered: 0
         branchesMissed: 0
-        mutantsTotal: 0
+        mutantsTotal: 1
         mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsSurvived: 1
         mutantsNoCoverage: 0
         mutationScorePct: 0
         crap: 1.0
       - name: readAll
         desc: (Ljava/lang/String;)Ljava/util/List;
-        line: 132
+        line: 141
         cyclomatic: 3
         linesCovered: 11
         linesMissed: 3
         lineCoveragePct: 78
         branchesCovered: 4
         branchesMissed: 0
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 3
+        mutantsKilled: 3
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 3.095832
       - name: serialize
         desc: (Lcom/learney/contentaudit/evaluationledgerdomain/EvaluationRecord;)Ljava/lang/String;
-        line: 160
+        line: 169
         cyclomatic: 2
         linesCovered: 9
         linesMissed: 3
         lineCoveragePct: 75
         branchesCovered: 1
         branchesMissed: 1
-        mutantsTotal: 0
-        mutantsKilled: 0
+        mutantsTotal: 2
+        mutantsKilled: 2
         mutantsSurvived: 0
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 100
         crap: 2.0625
       - name: parseLine
         desc: (Ljava/lang/String;)Ljava/util/Optional;
-        line: 187
+        line: 198
         cyclomatic: 7
         linesCovered: 15
         linesMissed: 1
         lineCoveragePct: 93
         branchesCovered: 7
         branchesMissed: 5
-        mutantsTotal: 0
-        mutantsKilled: 0
-        mutantsSurvived: 0
+        mutantsTotal: 7
+        mutantsKilled: 5
+        mutantsSurvived: 2
         mutantsNoCoverage: 0
-        mutationScorePct: 0
+        mutationScorePct: 71
         crap: 7.016807
       - name: <clinit>
         desc: ()V
@@ -50168,34 +50200,34 @@ elements:
       crapHotspotsMax: 5
     coverage:
       linesCovered: 65
-      linesMissed: 15
-      linesTotal: 80
-      lineCoveragePct: 81
+      linesMissed: 17
+      linesTotal: 82
+      lineCoveragePct: 79
       branchesCovered: 22
       branchesMissed: 8
       branchesTotal: 30
       branchCoveragePct: 73
-      blendPct: 77
+      blendPct: 76
     mutation:
-      totalMutants: 0
-      killed: 0
-      survived: 0
+      totalMutants: 20
+      killed: 16
+      survived: 4
       noCoverage: 0
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 80
+      testStrengthPct: 80
     crap:
       totalMethods: 12
       hotspots: 0
       maxCrap: 7.016807
-      averageCrap: 2.3662189166666665
+      averageCrap: 2.4075585
       simple: 12
       moderate: 0
       high: 0
       veryHigh: 0
       healthPct: 100
-    healthScore: 48
+    healthScore: 84
     verdict: PASSED
 - module: agent-runtime-infrastructure
   status: EXISTS
@@ -50393,7 +50425,7 @@ elements:
         factory = DefaultQuizInstructionJudgeFactory()
         agentGraphRunner = mock(AgentGraphRunner.class)
         agentDefinitionLocator = mock(AgentDefinitionLocator.class)
-        missingConfig = QuizInstructionJudgeConfig(null, null, null, null, null, null, null)
+        missingConfig = QuizInstructionJudgeConfig(null, null, null, null, null, null)
         evaluator = assertDoesNotThrow(() -> factory.create(missingConfig, agentGraphRunner, agentDefinitionLocator), "una configuracion ausente o invalida no puede tumbar la construccion del evaluador")
         content = LinkedHashMap<>()
         subject = EvaluationSubject("quiz-1", content)
@@ -50414,7 +50446,7 @@ elements:
         runnerConfig = AgentGraphRunnerConfig(emptyAgentsDir, null)
         realAgentGraphRunner = DefaultAgentGraphRunnerFactory().create(runnerConfig)
         realAgentDefinitionLocator = DefaultAgentDefinitionLocatorFactory().create(runnerConfig)
-        config = QuizInstructionJudgeConfig("http://localhost:1234/v1", "test-api-key", "gpt-4o-mini", 0.0, 30, "quiz-instruction-validator", null)
+        config = QuizInstructionJudgeConfig("http://localhost:1234/v1", "test-api-key", "gpt-4o-mini", 0.0, 30, "quiz-instruction-validator")
         factory = DefaultQuizInstructionJudgeFactory()
         evaluator = factory.create(config, realAgentGraphRunner, realAgentDefinitionLocator)
         content = LinkedHashMap<>()
@@ -50539,9 +50571,6 @@ elements:
         model stay the same
       status: EXISTS
       testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeVersionResolverTest.java
-    - name: should honour the judge version fixed by configuration
-      status: EXISTS
-      testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeVersionResolverTest.java
     - name: "should derive a different judge version when only the text of the agent\
         \ definition changes, with the agent name and the model untouched"
       status: EXISTS
@@ -50562,7 +50591,7 @@ elements:
         baseline = config("gpt-4o-mini", "quiz-instruction-validator")
         differentModel = config("gpt-4o", "quiz-instruction-validator")
         differentAgentDefinition = config("gpt-4o-mini", "lemma-absence-agent")
-        baselineVersion = resolver.resolve(baseline)
+        baselineVersion = resolver.resolve(baseline).orElseThrow()
 
       when:
         sut.thenAnswer(invocation -> new AgentDefinitionFound(Path.of(".sentinel/agents/" + invocation.getArgument(0, String.class))))
@@ -50577,25 +50606,14 @@ elements:
       given:
         locator = mock(AgentDefinitionLocator.class)
         resolver = DefaultQuizInstructionJudgeVersionResolver(locator)
-        first = QuizInstructionJudgeConfig("http://localhost:1234/v1", "key-a", "gpt-4o-mini", 0.0, 30, "quiz-instruction-validator", null)
-        second = QuizInstructionJudgeConfig("https://api.example.com/v1", "key-b", "gpt-4o-mini", 0.7, 90, "quiz-instruction-validator", null)
+        first = QuizInstructionJudgeConfig("http://localhost:1234/v1", "key-a", "gpt-4o-mini", 0.0, 30, "quiz-instruction-validator")
+        second = QuizInstructionJudgeConfig("https://api.example.com/v1", "key-b", "gpt-4o-mini", 0.7, 90, "quiz-instruction-validator")
 
       when:
         sut.thenAnswer(invocation -> new AgentDefinitionFound(Path.of(".sentinel/agents/" + invocation.getArgument(0, String.class))))
 
       then:
-        resolver.resolve(second) == resolver.resolve(first)
-    - |
-      test: "should honour the judge version fixed by configuration"
-      trace: FEAT-QINST / F-QINST-R010
-
-      given:
-        locator = mock(AgentDefinitionLocator.class)
-        resolver = DefaultQuizInstructionJudgeVersionResolver(locator)
-        overridden = QuizInstructionJudgeConfig("http://localhost:1234/v1", "test-api-key", "gpt-4o-mini", 0.0, 30, "quiz-instruction-validator", "manual-judge-version-7")
-
-      then:
-        resolver.resolve(overridden) == "manual-judge-version-7"
+        resolver.resolve(second).orElseThrow() == resolver.resolve(first).orElseThrow()
     - |
       test: "should derive a different judge version when only the text of the agent definition changes, with the agent name and the model untouched"
       trace: FEAT-QINST / F-QINST-R010
@@ -50605,8 +50623,8 @@ elements:
         locator = mock(AgentDefinitionLocator.class)
         resolver = DefaultQuizInstructionJudgeVersionResolver(locator)
         config = config("gpt-4o-mini", "quiz-instruction-validator")
-        versionBeforeEditingThePrompt = resolver.resolve(config)
-        versionAfterEditingThePrompt = resolver.resolve(config)
+        versionBeforeEditingThePrompt = resolver.resolve(config).orElseThrow()
+        versionAfterEditingThePrompt = resolver.resolve(config).orElseThrow()
 
       mock:
         locator.locate("quiz-instruction-validator") -> new AgentDefinitionFound(agentDefinitionDir)
@@ -50637,8 +50655,8 @@ elements:
         sut.writeString(agentDefinitionDir.resolve("evaluate.md"), "Judge whether the quiz respects its instructions.")
 
       then:
-        versionDerivedFromAccessibleDefinition != null
-        versionWhenTheDefinitionCannotBeLocated.startsWith("unresolved-agent-definition:") is true
+        versionDerivedFromAccessibleDefinition.isPresent() is true
+        versionWhenTheDefinitionCannotBeLocated.isEmpty() is true
   - name: JacksonQuizInstructionVerdictReader
     status: EXISTS
     filePath: quiz-instruction-infrastructure/src/main/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionverdict/JacksonQuizInstructionVerdictReader.java
@@ -50690,30 +50708,30 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 107
-      linesMissed: 37
-      linesTotal: 144
-      lineCoveragePct: 74
-      branchesCovered: 37
-      branchesMissed: 43
-      branchesTotal: 80
-      branchCoveragePct: 46
+      linesCovered: 102
+      linesMissed: 34
+      linesTotal: 136
+      lineCoveragePct: 75
+      branchesCovered: 33
+      branchesMissed: 39
+      branchesTotal: 72
+      branchCoveragePct: 45
       blendPct: 60
     mutation:
-      totalMutants: 85
-      killed: 0
-      survived: 0
-      noCoverage: 85
+      totalMutants: 77
+      killed: 32
+      survived: 27
+      noCoverage: 18
       timedOut: 0
       other: 0
-      mutationScorePct: 0
-      testStrengthPct: 0
+      mutationScorePct: 41
+      testStrengthPct: 54
     crap:
-      totalMethods: 42
+      totalMethods: 40
       hotspots: 1
-      maxCrap: 132.0
-      averageCrap: 5.15896388095238
-      simple: 41
+      maxCrap: 110.0
+      averageCrap: 4.716912075
+      simple: 39
       moderate: 0
       high: 0
       veryHigh: 1
@@ -50722,20 +50740,20 @@ elements:
       - className: com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig
         methodName: equals
         methodDesc: (Ljava/lang/Object;)Z
-        line: 98
-        cyclomatic: 11
+        line: 86
+        cyclomatic: 10
         lineCoveragePct: 0
-        crap: 132.0
-    healthScore: 43
+        crap: 110.0
+    healthScore: 61
     verdict: WARNED
     violations:
-    - branchCoverage 46% < 60%
-    - mutationScore 0% < 60%
+    - branchCoverage 45% < 60%
+    - mutationScore 41% < 60%
 testSummary:
-  total: 1215
-  passing: 1199
+  total: 1216
+  passing: 1198
   failing: 0
-  notImplemented: 16
+  notImplemented: 18
 qualitySummary:
   enforcement: warn
   thresholds:
@@ -50745,33 +50763,33 @@ qualitySummary:
     crapHotspotThreshold: 30
     crapHotspotsMax: 5
   coverage:
-    linesCovered: 8864
-    linesMissed: 6338
-    linesTotal: 15202
+    linesCovered: 8885
+    linesMissed: 6363
+    linesTotal: 15248
     lineCoveragePct: 58
-    branchesCovered: 3267
-    branchesMissed: 4621
-    branchesTotal: 7888
+    branchesCovered: 3268
+    branchesMissed: 4640
+    branchesTotal: 7908
     branchCoveragePct: 41
     blendPct: 49
   mutation:
-    totalMutants: 4705
-    killed: 1748
-    survived: 926
-    noCoverage: 2031
+    totalMutants: 4598
+    killed: 1803
+    survived: 956
+    noCoverage: 1839
     timedOut: 0
     other: 0
-    mutationScorePct: 37
+    mutationScorePct: 39
     testStrengthPct: 65
   crap:
-    totalMethods: 3147
-    hotspots: 175
+    totalMethods: 3157
+    hotspots: 176
     maxCrap: 870.0
-    averageCrap: 8.279940419764854
-    simple: 2828
-    moderate: 127
-    high: 61
-    veryHigh: 131
+    averageCrap: 8.281326326259105
+    simple: 2836
+    moderate: 128
+    high: 60
+    veryHigh: 133
     healthPct: 92
     top:
     - className: com.learney.contentaudit.refinerdomain.LemmaAbsenceContextResolver
@@ -50844,13 +50862,13 @@ qualitySummary:
       cyclomatic: 16
       lineCoveragePct: 0
       crap: 272.0
-  healthScore: 54
+  healthScore: 55
   verdict: WARNED
   violations:
   - lineCoverage 58% < 70%
   - branchCoverage 41% < 60%
-  - mutationScore 37% < 60%
-  - crapHotspots 175 > 5
+  - mutationScore 39% < 60%
+  - crapHotspots 176 > 5
 patterns:
 - id: declared-1
   pattern: Factory

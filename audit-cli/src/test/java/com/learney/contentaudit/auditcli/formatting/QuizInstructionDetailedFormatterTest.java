@@ -1,5 +1,7 @@
 package com.learney.contentaudit.auditcli.formatting;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -11,6 +13,7 @@ import com.learney.contentaudit.auditdomain.CourseDiagnoses;
 import com.learney.contentaudit.auditdomain.QuizDiagnoses;
 import com.learney.contentaudit.auditdomain.quizinstruction.InstructionSeverity;
 import com.learney.contentaudit.auditdomain.quizinstruction.InstructionViolation;
+import com.learney.contentaudit.auditdomain.quizinstruction.JudgeVersionVerdictCount;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionCoverageDiagnosis;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionDiagnosis;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionVerdict;
@@ -142,5 +145,106 @@ public class QuizInstructionDetailedFormatterTest {
         assertTrue(result.contains("742"), "R005: rendered output must show reached count; got: " + result);
         assertTrue(result.contains(judgeVersion),
                 "R005: rendered output must cite the judge version alongside the coverage numbers; got: " + result);
+    }
+
+    @Test
+    @DisplayName("should render one row per originating judge version with how many of the scored verdicts each one contributes")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R005")
+    public void shouldRenderOneRowPerOriginatingJudgeVersionWithHowManyOfTheScoredVerdictsEachOneContributes(
+            ) {
+        // R005: a version discloses only "which versions are mixed here"; the report must
+        // also show how many scored verdicts each origin contributes, because that count is
+        // what decides whether re-evaluation is worth asking for. Second closing sum: the
+        // counts per version must add up to "with verdict".
+        EvaluationCoverage coverage = new EvaluationCoverage(500, 300, 200, 100, 150, 50);
+        String judgeVersionOlder = "qij-aaa111";
+        String judgeVersionNewer = "qij-bbb222";
+        List<JudgeVersionVerdictCount> verdictsByJudgeVersion = List.of(
+                new JudgeVersionVerdictCount(judgeVersionOlder, 47),
+                new JudgeVersionVerdictCount(judgeVersionNewer, 253));
+        QuizInstructionCoverageDiagnosis coverageDiagnosis =
+                new QuizInstructionCoverageDiagnosis(coverage, judgeVersionNewer, verdictsByJudgeVersion);
+
+        CourseDiagnoses courseDiagnoses = mock(CourseDiagnoses.class);
+        when(courseDiagnoses.getQuizInstructionCoverage()).thenReturn(Optional.of(coverageDiagnosis));
+
+        AuditNode courseNode = new AuditNode(null, AuditTarget.COURSE, null, List.of(),
+                Map.of("quiz-instruction", 0.55), Map.of(), courseDiagnoses);
+
+        QuizInstructionDetailedFormatter formatter = new QuizInstructionDetailedFormatter();
+
+        String result = formatter.format("quiz-instruction", courseNode, "text");
+
+        assertNotNull(result, "R005: formatter must produce output");
+        assertTrue(result.contains(judgeVersionOlder),
+                "R005: rendered output must show the older originating judge version; got: " + result);
+        assertTrue(result.contains("47"),
+                "R005: rendered output must show how many scored verdicts the older version contributes; got: "
+                        + result);
+        assertTrue(result.contains(judgeVersionNewer),
+                "R005: rendered output must show the newer originating judge version; got: " + result);
+        assertTrue(result.contains("253"),
+                "R005: rendered output must show how many scored verdicts the newer version contributes; got: "
+                        + result);
+        assertTrue(result.contains("300"),
+                "R005: the with-verdict count must appear so the two per-version counts (47 + 253) can be checked "
+                        + "against it; got: " + result);
+    }
+
+    @Test
+    @DisplayName("should state explicitly that the run consulted no judge version when it made no new consultation")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R005")
+    public void shouldStateExplicitlyThatTheRunConsultedNoJudgeVersionWhenItMadeNoNewConsultation(
+            ) {
+        // R005: when the run made no new consultation at all (full reuse, exhausted budget,
+        // or the judge unavailable), the consulted-version datum is null. A blank field is
+        // indistinguishable from a broken report, so the report must state this explicitly.
+        //
+        // The exact wording of that statement is production's choice, not ours to fix here.
+        // What is stable, per R005, is that the "version consulted this run" datum is always
+        // declared as its own line in the report -- present in every case, only its value
+        // changes. So we render the very same coverage/table twice, changing only the
+        // consulted version (a real one vs. null), and require the report to keep the same
+        // line count. If the renderer instead silently omits the line when there is no
+        // consulted version, the no-version report comes out one line shorter -- which is
+        // exactly the failure mode this test exists to catch, without pinning any phrasing.
+        EvaluationCoverage coverage = new EvaluationCoverage(200, 180, 0, 180, 15, 5);
+        List<JudgeVersionVerdictCount> verdictsByJudgeVersion =
+                List.of(new JudgeVersionVerdictCount("qij-old999", 180));
+
+        QuizInstructionCoverageDiagnosis coverageDiagnosisWithVersion =
+                new QuizInstructionCoverageDiagnosis(coverage, "qij-old999", verdictsByJudgeVersion);
+        CourseDiagnoses courseDiagnosesWithVersion = mock(CourseDiagnoses.class);
+        when(courseDiagnosesWithVersion.getQuizInstructionCoverage())
+                .thenReturn(Optional.of(coverageDiagnosisWithVersion));
+        AuditNode courseNodeWithVersion = new AuditNode(null, AuditTarget.COURSE, null, List.of(),
+                Map.of("quiz-instruction", 0.4), Map.of(), courseDiagnosesWithVersion);
+
+        QuizInstructionCoverageDiagnosis coverageDiagnosisNoVersion =
+                new QuizInstructionCoverageDiagnosis(coverage, null, verdictsByJudgeVersion);
+        CourseDiagnoses courseDiagnosesNoVersion = mock(CourseDiagnoses.class);
+        when(courseDiagnosesNoVersion.getQuizInstructionCoverage())
+                .thenReturn(Optional.of(coverageDiagnosisNoVersion));
+        AuditNode courseNodeNoVersion = new AuditNode(null, AuditTarget.COURSE, null, List.of(),
+                Map.of("quiz-instruction", 0.4), Map.of(), courseDiagnosesNoVersion);
+
+        QuizInstructionDetailedFormatter formatter = new QuizInstructionDetailedFormatter();
+
+        String resultWithVersion = formatter.format("quiz-instruction", courseNodeWithVersion, "text");
+        String resultNoVersion = formatter.format("quiz-instruction", courseNodeNoVersion, "text");
+
+        assertNotNull(resultNoVersion, "R005: formatter must produce output");
+        assertFalse(resultNoVersion.isBlank(), "R005: formatter must not produce a blank report");
+        assertFalse(resultNoVersion.contains("null"),
+                "R005: the report must state explicitly that no version was consulted, not print the literal "
+                        + "'null'; got: " + resultNoVersion);
+        assertEquals(resultWithVersion.lines().count(), resultNoVersion.lines().count(),
+                "R005: the consulted-version datum must occupy its own line whether or not a version was "
+                        + "consulted -- everything else about the two renders is identical, so a shorter report "
+                        + "here means the line was silently dropped instead of stating explicitly that no "
+                        + "version was consulted; with-version got: " + resultWithVersion + "; no-version got: "
+                        + resultNoVersion);
     }
 }
