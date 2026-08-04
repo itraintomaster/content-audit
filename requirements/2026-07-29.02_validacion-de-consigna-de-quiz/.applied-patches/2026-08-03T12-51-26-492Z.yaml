@@ -1,0 +1,56 @@
+code: FEAT-QINST
+modules:
+- name: quiz-instruction-infrastructure
+  packages:
+  - name: instructionjudge
+    implementations:
+    - name: DefaultQuizInstructionJudgeFactory
+      handwrittenTests:
+      - name: should consult the judge and emit its verdict when the configuration
+          declares a provider that authenticates with the local user session and carries
+          neither service address nor credential
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R016
+      - name: "should not emit a single query to the judge, and should name the missing\
+          \ service address and the provider that requires it, when the configuration\
+          \ declares a provider consulted by service address and omits that address"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R016
+      - name: should not emit a single query to the judge when the configuration declares
+          a provider the system does not know how to consult
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R016
+      - name: "should still emit the query to the judge when the configuration carries\
+          \ no credential, because the credential is not a datum the declared provider\
+          \ needs to direct the query"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R016
+- name: refiner-domain
+  implementations:
+  - name: DefaultRefinerEngine
+    handwrittenTests:
+    - name: should include one QUIZ_INSTRUCTION task targeting the quiz for each quiz
+        whose quiz-instruction score is below 1.0
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R017
+    - name: should not include any QUIZ_INSTRUCTION task for a quiz that complies
+        with its instruction nor for a quiz with no quiz-instruction score at all
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R017
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: GetCmd
+      handwrittenTests:
+      - name: "should return the QUIZ_INSTRUCTION tasks of the plan, and only those,\
+          \ when 'get tasks --diagnosis QUIZ_INSTRUCTION' is supplied"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R017

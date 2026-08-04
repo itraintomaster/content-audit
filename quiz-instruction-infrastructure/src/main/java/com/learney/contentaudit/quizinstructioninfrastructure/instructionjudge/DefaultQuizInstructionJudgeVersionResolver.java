@@ -33,9 +33,11 @@ public DefaultQuizInstructionJudgeVersionResolver(AgentDefinitionLocator agentDe
     private static final String DEFAULT_AGENT_NAME = "quiz-instruction-validator";
 
     @Override
-    public Optional<String> resolve(QuizInstructionJudgeConfig config) {
+    public Optional<String> resolve(QuizInstructionJudgeConfig config,
+            JudgeProviderResolved provider) {
         String agentName = resolveAgentName(config);
         String modelName = config != null ? config.getModelName() : null;
+        String providerName = provider != null ? provider.getProviderName() : null;
 
         // Delegates to the very same locator DefaultAgentGraphRunner is built
         // with (see DefaultAgentGraphRunnerFactory), so the directory this
@@ -43,7 +45,7 @@ public DefaultQuizInstructionJudgeVersionResolver(AgentDefinitionLocator agentDe
         // the graph from can never diverge.
         AgentDefinitionLocation location = agentDefinitionLocator.locate(agentName);
         if (location instanceof AgentDefinitionFound found) {
-            return Optional.of(digest(agentName, modelName, found.getDirectory()));
+            return Optional.of(digest(agentName, modelName, providerName, found.getDirectory()));
         }
 
         // AgentDefinitionUnresolved: no definition was accessible to derive
@@ -63,12 +65,19 @@ public DefaultQuizInstructionJudgeVersionResolver(AgentDefinitionLocator agentDe
 
     /**
      * F-QINST-R010: the derived version depends only on the agent definition
-     * (its way of asking, i.e. every file under the located agent directory)
-     * and the model name — never on baseUrl, apiKey, temperature or
-     * timeoutSeconds, so retouching those never invalidates verdicts already
-     * recorded.
+     * (its way of asking, i.e. every file under the located agent directory),
+     * the model name and the effective provider — never on baseUrl, apiKey,
+     * temperature or timeoutSeconds, so retouching those never invalidates
+     * verdicts already recorded.
+     *
+     * <p>The provider belongs here because two queries to the same model through
+     * different routes are not the same way of asking. Since the version no
+     * longer invalidates anything (F-EVCOST-R001), including it costs no
+     * re-evaluations and makes the provenance reported by F-QINST-R005 tell the
+     * whole truth.
      */
-    private static String digest(String agentName, String modelName, Path agentDir) {
+    private static String digest(String agentName, String modelName, String providerName,
+            Path agentDir) {
         try {
             MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
             sha256.update("agent:".getBytes(StandardCharsets.UTF_8));
@@ -77,6 +86,11 @@ public DefaultQuizInstructionJudgeVersionResolver(AgentDefinitionLocator agentDe
             sha256.update("model:".getBytes(StandardCharsets.UTF_8));
             if (modelName != null) {
                 sha256.update(modelName.getBytes(StandardCharsets.UTF_8));
+            }
+            sha256.update((byte) '\n');
+            sha256.update("provider:".getBytes(StandardCharsets.UTF_8));
+            if (providerName != null) {
+                sha256.update(providerName.getBytes(StandardCharsets.UTF_8));
             }
             sha256.update((byte) '\n');
 

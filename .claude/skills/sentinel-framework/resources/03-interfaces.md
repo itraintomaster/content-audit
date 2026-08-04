@@ -559,6 +559,7 @@ Examples:
 | `runAudit(Path coursePath,Set<String> analyzerNames): AuditReport` | (none) |
 | `runDetailedAudit(Path coursePath,String analyzerName): AuditNode` | (none) |
 | `runAudit(Path coursePath,AuditRunRequest request): AuditReport` | (none) |
+| `runDetailedAudit(Path coursePath,AuditRunRequest request): AuditNode` | (none) |
 
 #### AnalyzerRegistry (service)
 
@@ -1367,5 +1368,28 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `resolve(QuizInstructionJudgeConfig config): Optional<String>` | (none) |
+| `resolve(QuizInstructionJudgeConfig config,JudgeProviderResolved provider): Optional<String>` | (none) |
+
+#### JudgeProviderResolution (package: instructionjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
+**Visibility:** public
+
+#### QuizInstructionJudgeProviderResolver (package: instructionjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `resolve(QuizInstructionJudgeConfig config): JudgeProviderResolution` | (none) |
+
+#### JudgeChatModelFactory (package: instructionjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `create(QuizInstructionJudgeConfig config,JudgeProviderResolved provider): ChatModel` | (none) |
 

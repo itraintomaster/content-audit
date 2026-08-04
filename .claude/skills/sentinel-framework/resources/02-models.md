@@ -1313,10 +1313,11 @@ new SentenceMode(null REWRITE, null FILL)
 | `LEMMA_RECURRENCE` | `null` |  |
 | `KNOWLEDGE_TITLE_LENGTH` | `null` |  |
 | `KNOWLEDGE_INSTRUCTIONS_LENGTH` | `null` |  |
+| `QUIZ_INSTRUCTION` | `null` |  |
 
 **Generated constructor:**
 ```java
-new DiagnosisKind(null SENTENCE_LENGTH, null LEMMA_ABSENCE, null COCA_BUCKETS, null LEMMA_RECURRENCE, null KNOWLEDGE_TITLE_LENGTH, null KNOWLEDGE_INSTRUCTIONS_LENGTH)
+new DiagnosisKind(null SENTENCE_LENGTH, null LEMMA_ABSENCE, null COCA_BUCKETS, null LEMMA_RECURRENCE, null KNOWLEDGE_TITLE_LENGTH, null KNOWLEDGE_INSTRUCTIONS_LENGTH, null QUIZ_INSTRUCTION)
 ```
 
 #### RefinementTaskStatus
@@ -2951,9 +2952,55 @@ new AgentDefinitionUnresolved(String agentName, Path searchedIn)
 | `temperature` | `Double` |  |
 | `timeoutSeconds` | `Integer` |  |
 | `agentName` | `String` |  |
+| `providerName` | `String` |  |
 
 **Generated constructor:**
 ```java
-new QuizInstructionJudgeConfig(String baseUrl, String apiKey, String modelName, Double temperature, Integer timeoutSeconds, String agentName)
+new QuizInstructionJudgeConfig(String baseUrl, String apiKey, String modelName, Double temperature, Integer timeoutSeconds, String agentName, String providerName)
 ```
+
+#### JudgeProviderClass (package: instructionjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `LOCAL_SESSION` | `null` |
+| `REMOTE_SERVICE` | `null` |
+
+#### JudgeProviderResolved (package: instructionjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `providerName` | `String` |
+| `providerClass` | `JudgeProviderClass` |
+
+#### JudgeProviderRejectionKind (package: instructionjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `UNSUPPORTED_PROVIDER` | `null` |
+| `MISSING_REQUIRED_INPUT` | `null` |
+
+#### JudgeProviderRejected (package: instructionjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `providerName` | `String` |
+| `missingInput` | `String` |
+| `kind` | `JudgeProviderRejectionKind` |
 

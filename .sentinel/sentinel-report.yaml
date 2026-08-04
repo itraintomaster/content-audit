@@ -1,10 +1,10 @@
-generatedAt: 2026-08-03T02:15:28.996357Z
+generatedAt: 2026-08-03T16:27:39.370853Z
 system: ContentAudit
 version: 0.0.1
 features:
 - id: FEAT-DLABS
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
+  requirementFile: requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DLABS-R001
     state: PASSING
@@ -256,7 +256,7 @@ features:
     - mutationScore 39% < 60%
 - id: FEAT-REVCTX
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-05-09.01_revise-correction-context-override/REQUIREMENT.md
+  requirementFile: requirements/2026-05-09.01_revise-correction-context-override/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVCTX-R001
     state: PASSING
@@ -543,7 +543,7 @@ features:
     - mutationScore 37% < 60%
 - id: FEAT-CLIRV
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
+  requirementFile: requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLIRV-R001
     state: PASSING
@@ -1107,12 +1107,12 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 800
-      linesMissed: 589
+      linesCovered: 803
+      linesMissed: 586
       linesTotal: 1389
       lineCoveragePct: 57
-      branchesCovered: 398
-      branchesMissed: 374
+      branchesCovered: 400
+      branchesMissed: 372
       branchesTotal: 772
       branchCoveragePct: 51
       blendPct: 54
@@ -1129,7 +1129,7 @@ features:
       totalMethods: 117
       hotspots: 8
       maxCrap: 274.514688
-      averageCrap: 12.09595228205128
+      averageCrap: 12.057452735042734
       simple: 87
       moderate: 19
       high: 6
@@ -1176,8 +1176,8 @@ features:
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
         line: 501
         cyclomatic: 29
-        lineCoveragePct: 77
-        crap: 39.23244699999999
+        lineCoveragePct: 80
+        crap: 35.727999999999994
       - className: com.learney.contentaudit.auditcli.commands.AnalyzeCmd
         methodName: analyze
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/AnalyzeOptions;)Ljava/lang/Integer;
@@ -1200,7 +1200,7 @@ features:
     - crapHotspots 8 > 5
 - id: FEAT-LREC
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
+  requirementFile: requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LREC-R001
     state: PASSING
@@ -1494,7 +1494,7 @@ features:
     verdict: PASSED
 - id: FEAT-RPRES
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-07-29.01_preservacion-del-contenido-no-revisado/REQUIREMENT.md
+  requirementFile: requirements/2026-07-29.01_preservacion-del-contenido-no-revisado/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RPRES-R001
     state: PASSING
@@ -1839,7 +1839,7 @@ features:
     - mutationScore 42% < 60%
 - id: FEAT-RCLAQS
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
+  requirementFile: requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLAQS-R001
     state: PASSING
@@ -1971,12 +1971,12 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 865
-      linesMissed: 492
+      linesCovered: 868
+      linesMissed: 489
       linesTotal: 1357
       lineCoveragePct: 63
-      branchesCovered: 448
-      branchesMissed: 387
+      branchesCovered: 450
+      branchesMissed: 385
       branchesTotal: 835
       branchCoveragePct: 53
       blendPct: 58
@@ -1993,7 +1993,7 @@ features:
       totalMethods: 97
       hotspots: 6
       maxCrap: 870.0
-      averageCrap: 19.595774742268038
+      averageCrap: 19.549337144329893
       simple: 71
       moderate: 16
       high: 5
@@ -2040,8 +2040,8 @@ features:
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
         line: 501
         cyclomatic: 29
-        lineCoveragePct: 77
-        crap: 39.23244699999999
+        lineCoveragePct: 80
+        crap: 35.727999999999994
     healthScore: 59
     verdict: WARNED
     violations:
@@ -2051,7 +2051,7 @@ features:
     - crapHotspots 6 > 5
 - id: FEAT-DCOCA
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
+  requirementFile: requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DCOCA-R001
     state: PASSING
@@ -2226,7 +2226,7 @@ features:
     - mutationScore 53% < 60%
 - id: FEAT-CSLATDC
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-05-21.05_consultar-suggested-lemmas-a-trav-s-del-cli/REQUIREMENT.md
+  requirementFile: requirements/2026-05-21.05_consultar-suggested-lemmas-a-trav-s-del-cli/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CSLATDC-R001
     state: PASSING
@@ -2460,12 +2460,12 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 562
-      linesMissed: 343
+      linesCovered: 565
+      linesMissed: 340
       linesTotal: 905
       lineCoveragePct: 62
-      branchesCovered: 298
-      branchesMissed: 261
+      branchesCovered: 300
+      branchesMissed: 259
       branchesTotal: 559
       branchCoveragePct: 53
       blendPct: 57
@@ -2482,7 +2482,7 @@ features:
       totalMethods: 77
       hotspots: 5
       maxCrap: 143.066588
-      averageCrap: 11.671436337662337
+      averageCrap: 11.612937025974023
       simple: 56
       moderate: 13
       high: 4
@@ -2522,8 +2522,8 @@ features:
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
         line: 501
         cyclomatic: 29
-        lineCoveragePct: 77
-        crap: 39.23244699999999
+        lineCoveragePct: 80
+        crap: 35.727999999999994
     healthScore: 72
     verdict: WARNED
     violations:
@@ -2531,7 +2531,7 @@ features:
     - branchCoverage 53% < 60%
 - id: FEAT-QSENT
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
+  requirementFile: requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-QSENT-R001
     state: PASSING
@@ -2832,7 +2832,7 @@ features:
     verdict: PASSED
 - id: FEAT-COURSE
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-15.01_course-structure/REQUIREMENT.md
+  requirementFile: requirements/2026-03-15.01_course-structure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COURSE-R001
     state: PASSING
@@ -3111,7 +3111,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLALEN
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
+  requirementFile: requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLALEN-R001
     state: PASSING
@@ -3324,12 +3324,12 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 777
-      linesMissed: 480
+      linesCovered: 780
+      linesMissed: 477
       linesTotal: 1257
-      lineCoveragePct: 61
-      branchesCovered: 414
-      branchesMissed: 367
+      lineCoveragePct: 62
+      branchesCovered: 416
+      branchesMissed: 365
       branchesTotal: 781
       branchCoveragePct: 53
       blendPct: 57
@@ -3346,7 +3346,7 @@ features:
       totalMethods: 87
       hotspots: 6
       maxCrap: 870.0
-      averageCrap: 21.414302747126435
+      averageCrap: 21.36252749425287
       simple: 62
       moderate: 15
       high: 5
@@ -3393,18 +3393,18 @@ features:
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
         line: 501
         cyclomatic: 29
-        lineCoveragePct: 77
-        crap: 39.23244699999999
+        lineCoveragePct: 80
+        crap: 35.727999999999994
     healthScore: 59
     verdict: WARNED
     violations:
-    - lineCoverage 61% < 70%
+    - lineCoverage 62% < 70%
     - branchCoverage 53% < 60%
     - mutationScore 48% < 60%
     - crapHotspots 6 > 5
 - id: FEAT-LAGAG
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-05-29.01_generacion-interactiva-suggested-lemmas/REQUIREMENT.md
+  requirementFile: requirements/2026-05-29.01_generacion-interactiva-suggested-lemmas/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAGAG-R001
     state: NO_TESTS
@@ -3470,7 +3470,7 @@ features:
     - mutationScore 33% < 60%
 - id: FEAT-SMODE
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-06-25.01_sentence-mode-canonical-sentence/REQUIREMENT.md
+  requirementFile: requirements/2026-06-25.01_sentence-mode-canonical-sentence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-SMODE-R001
     state: NO_TESTS
@@ -3675,7 +3675,7 @@ features:
     - mutationScore 40% < 60%
 - id: FEAT-QINST
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md
+  requirementFile: requirements/2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-QINST-R001
     state: PASSING
@@ -3805,7 +3805,7 @@ features:
       module: audit-domain
       implementation: QuizInstructionAnalyzer
   - ruleId: F-QINST-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should declare on the course node how many quizzes were reached, resolved,\
         \ evaluated in this run, reused, pending and failed"
@@ -3851,13 +3851,13 @@ features:
     - name: should render one row per originating judge version with how many of the
         scored verdicts each one contributes
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: QuizInstructionDetailedFormatter
     - name: should state explicitly that the run consulted no judge version when it
         made no new consultation
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: QuizInstructionDetailedFormatter
   - ruleId: F-QINST-R006
@@ -4179,6 +4179,63 @@ features:
       passing: true
       module: audit-application
       implementation: DefaultAuditRunner
+  - ruleId: F-QINST-R016
+    state: PASSING
+    tests:
+    - name: should consult the judge and emit its verdict when the configuration declares
+        a provider that authenticates with the local user session and carries neither
+        service address nor credential
+      implemented: true
+      passing: true
+      module: quiz-instruction-infrastructure
+      implementation: DefaultQuizInstructionJudgeFactory
+    - name: "should not emit a single query to the judge, and should name the missing\
+        \ service address and the provider that requires it, when the configuration\
+        \ declares a provider consulted by service address and omits that address"
+      implemented: true
+      passing: true
+      module: quiz-instruction-infrastructure
+      implementation: DefaultQuizInstructionJudgeFactory
+    - name: should not emit a single query to the judge when the configuration declares
+        a provider the system does not know how to consult
+      implemented: true
+      passing: true
+      module: quiz-instruction-infrastructure
+      implementation: DefaultQuizInstructionJudgeFactory
+    - name: "should still emit the query to the judge when the configuration carries\
+        \ no credential, because the credential is not a datum the declared provider\
+        \ needs to direct the query"
+      implemented: true
+      passing: true
+      module: quiz-instruction-infrastructure
+      implementation: DefaultQuizInstructionJudgeFactory
+  - ruleId: F-QINST-R017
+    state: FAILING
+    tests:
+    - name: should include one QUIZ_INSTRUCTION task targeting the quiz for each quiz
+        whose quiz-instruction score is below 1.0
+      implemented: true
+      passing: false
+      failureMessage: "org.opentest4j.AssertionFailedError: Expected exactly one QUIZ_INSTRUCTION\
+        \ task per quiz with a non-compliant verdict ==> expected: <3> but was: <0>\n\
+        \tat org.junit.jupiter.api.AssertionFailureBuilder.b..."
+      module: refiner-domain
+      implementation: DefaultRefinerEngine
+    - name: should not include any QUIZ_INSTRUCTION task for a quiz that complies
+        with its instruction nor for a quiz with no quiz-instruction score at all
+      implemented: true
+      passing: false
+      failureMessage: |-
+        org.opentest4j.AssertionFailedError: Only the genuinely non-compliant control quiz should get a QUIZ_INSTRUCTION task; the compliant quiz and the unjudged quiz must not ==> expected: <1> but was: <0>
+        ...
+      module: refiner-domain
+      implementation: DefaultRefinerEngine
+    - name: "should return the QUIZ_INSTRUCTION tasks of the plan, and only those,\
+        \ when 'get tasks --diagnosis QUIZ_INSTRUCTION' is supplied"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: GetCmd
   journeysCoverage:
   - journeyId: F-QINST-J001
     state: PASSING
@@ -4312,6 +4369,7 @@ features:
     - com.learney.contentaudit.auditapplication.DefaultAuditRunner
     - com.learney.contentaudit.auditapplication.DefaultQuizInstructionConfig
     - com.learney.contentaudit.auditcli.commands.AnalyzeCmd
+    - com.learney.contentaudit.auditcli.commands.GetCmd
     - com.learney.contentaudit.auditcli.formatting.QuizInstructionDetailedFormatter
     - com.learney.contentaudit.auditdomain.IScoreAggregator
     - com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory
@@ -4323,6 +4381,7 @@ features:
     - com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.DefaultQuizInstructionJudgeVersionResolver
     - com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.QuizInstructionAgentJudge
     - com.learney.contentaudit.quizinstructioninfrastructure.instructionverdict.JacksonQuizInstructionVerdictReader
+    - com.learney.contentaudit.refinerdomain.DefaultRefinerEngine
     thresholds:
       lineCoverage: 70
       branchCoverage: 60
@@ -4330,35 +4389,70 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 513
-      linesMissed: 122
-      linesTotal: 635
-      lineCoveragePct: 80
-      branchesCovered: 202
-      branchesMissed: 135
-      branchesTotal: 337
-      branchCoveragePct: 59
-      blendPct: 69
+      linesCovered: 1057
+      linesMissed: 463
+      linesTotal: 1520
+      lineCoveragePct: 69
+      branchesCovered: 489
+      branchesMissed: 390
+      branchesTotal: 879
+      branchCoveragePct: 55
+      blendPct: 62
     mutation:
-      totalMutants: 106
-      killed: 69
-      survived: 29
-      noCoverage: 8
+      totalMutants: 130
+      killed: 83
+      survived: 25
+      noCoverage: 22
       timedOut: 0
       other: 0
-      mutationScorePct: 65
-      testStrengthPct: 70
+      mutationScorePct: 63
+      testStrengthPct: 76
     crap:
-      totalMethods: 82
-      hotspots: 2
-      maxCrap: 34.67481600000001
-      averageCrap: 3.9408944268292685
-      simple: 74
-      moderate: 6
-      high: 2
-      veryHigh: 0
-      healthPct: 94
+      totalMethods: 160
+      hotspots: 7
+      maxCrap: 143.066588
+      averageCrap: 7.656702618749999
+      simple: 133
+      moderate: 17
+      high: 6
+      veryHigh: 4
+      healthPct: 88
       top:
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: printSnapshotSummary
+        methodDesc: (Lcom/learney/contentaudit/revisiondomain/CourseElementSnapshot;)V
+        line: 1149
+        cyclomatic: 14
+        lineCoveragePct: 13
+        crap: 143.066588
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: renderSentence
+        methodDesc: (Lcom/learney/contentaudit/coursedomain/QuizTemplateEntity;)Ljava/lang/String;
+        line: 1179
+        cyclomatic: 11
+        lineCoveragePct: 0
+        crap: 132.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: call
+        methodDesc: ()Ljava/lang/Integer;
+        line: 213
+        cyclomatic: 8
+        lineCoveragePct: 0
+        crap: 72.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: handleAnalyzers
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 1263
+        cyclomatic: 7
+        lineCoveragePct: 0
+        crap: 56.0
+      - className: com.learney.contentaudit.auditcli.commands.GetCmd
+        methodName: handleTasks
+        methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
+        line: 501
+        cyclomatic: 29
+        lineCoveragePct: 80
+        crap: 35.727999999999994
       - className: com.learney.contentaudit.auditcli.commands.AnalyzeCmd
         methodName: analyze
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/AnalyzeOptions;)Ljava/lang/Integer;
@@ -4373,13 +4467,15 @@ features:
         cyclomatic: 13
         lineCoveragePct: 51
         crap: 32.882681
-    healthScore: 73
+    healthScore: 69
     verdict: WARNED
     violations:
-    - branchCoverage 59% < 60%
+    - lineCoverage 69% < 70%
+    - branchCoverage 55% < 60%
+    - crapHotspots 7 > 5
 - id: FEAT-INCEXP
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-06-18.01_incluir-lemas-ya-expuestos-en-suggested-lemmas/REQUIREMENT.md
+  requirementFile: requirements/2026-06-18.01_incluir-lemas-ya-expuestos-en-suggested-lemmas/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-INCEXP-R001
     state: PASSING
@@ -4567,7 +4663,7 @@ features:
     verdict: PASSED
 - id: FEAT-COCA
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
+  requirementFile: requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COCA-R001
     state: PASSING
@@ -5007,7 +5103,7 @@ features:
     - mutationScore 56% < 60%
 - id: FEAT-DBSENT
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-05-20.01_plain-sentences-from-db/REQUIREMENT.md
+  requirementFile: requirements/2026-05-20.01_plain-sentences-from-db/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DBSENT-R001
     state: PASSING
@@ -5119,7 +5215,7 @@ features:
     verdict: PASSED
 - id: FEAT-LASAG
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-06-18.01_lemma-absence-agent-migration/REQUIREMENT.md
+  requirementFile: requirements/2026-06-18.01_lemma-absence-agent-migration/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LASAG-R001
     state: PASSING
@@ -5385,7 +5481,7 @@ features:
     - branchCoverage 52% < 60%
 - id: FEAT-EVCOST
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-07-29.03_evaluaciones-costosas-reutilizables/REQUIREMENT.md
+  requirementFile: requirements/2026-07-29.03_evaluaciones-costosas-reutilizables/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-EVCOST-R001
     state: PASSING
@@ -5689,7 +5785,7 @@ features:
     verdict: PASSED
 - id: FEAT-NLP
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
+  requirementFile: requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-NLP-R001
     state: PASSING
@@ -6057,7 +6153,7 @@ features:
     - mutationScore 24% < 60%
 - id: FEAT-LABS
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
+  requirementFile: requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LABS-R001
     state: PASSING
@@ -7595,7 +7691,7 @@ features:
     - mutationScore 47% < 60%
 - id: FEAT-CLI
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
+  requirementFile: requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLI-R001
     state: PASSING
@@ -7816,7 +7912,7 @@ features:
     - branchCoverage 43% < 60%
 - id: FEAT-PIPRE
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
+  requirementFile: requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-PIPRE-R001
     state: PASSING
@@ -8092,15 +8188,15 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 724
-      linesMissed: 390
+      linesCovered: 727
+      linesMissed: 387
       linesTotal: 1114
-      lineCoveragePct: 64
-      branchesCovered: 336
-      branchesMissed: 275
+      lineCoveragePct: 65
+      branchesCovered: 338
+      branchesMissed: 273
       branchesTotal: 611
-      branchCoveragePct: 54
-      blendPct: 59
+      branchCoveragePct: 55
+      blendPct: 60
     mutation:
       totalMutants: 91
       killed: 55
@@ -8114,7 +8210,7 @@ features:
       totalMethods: 95
       hotspots: 5
       maxCrap: 143.066588
-      averageCrap: 9.98602972631579
+      averageCrap: 9.938614494736841
       simple: 74
       moderate: 13
       high: 4
@@ -8154,16 +8250,16 @@ features:
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
         line: 501
         cyclomatic: 29
-        lineCoveragePct: 77
-        crap: 39.23244699999999
+        lineCoveragePct: 80
+        crap: 35.727999999999994
     healthScore: 66
     verdict: WARNED
     violations:
-    - lineCoverage 64% < 70%
-    - branchCoverage 54% < 60%
+    - lineCoverage 65% < 70%
+    - branchCoverage 55% < 60%
 - id: FEAT-CLEX
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-07-22.01_consulta-lexica-de-oracion-por-cli/REQUIREMENT.md
+  requirementFile: requirements/2026-07-22.01_consulta-lexica-de-oracion-por-cli/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLEX-R001
     state: PASSING
@@ -8337,7 +8433,7 @@ features:
     verdict: PASSED
 - id: FEAT-KTLEN
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
+  requirementFile: requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-KTLEN-R001
     state: PASSING
@@ -8706,7 +8802,7 @@ features:
     verdict: PASSED
 - id: FEAT-CDIFF
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-05-06.01_consolidated-differential-view/REQUIREMENT.md
+  requirementFile: requirements/2026-05-06.01_consolidated-differential-view/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CDIFF-R001
     state: PASSING
@@ -9477,7 +9573,7 @@ features:
     - mutationScore 54% < 60%
 - id: FEAT-PLANEF
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-05-07.01_plan-efimero-no-persistido/REQUIREMENT.md
+  requirementFile: requirements/2026-05-07.01_plan-efimero-no-persistido/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-PLANEF-R001
     state: PASSING
@@ -9725,7 +9821,7 @@ features:
     - branchCoverage 47% < 60%
 - id: FEAT-KTLR
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-07-06.01_revisar-knowledge-title-length-con-agente/REQUIREMENT.md
+  requirementFile: requirements/2026-07-06.01_revisar-knowledge-title-length-con-agente/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-KTLR-R001
     state: PASSING
@@ -9957,7 +10053,7 @@ features:
     - mutationScore 34% < 60%
 - id: FEAT-REVAPR
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
+  requirementFile: requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVAPR-R001
     state: PASSING
@@ -10560,12 +10656,12 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 941
-      linesMissed: 480
+      linesCovered: 944
+      linesMissed: 477
       linesTotal: 1421
       lineCoveragePct: 66
-      branchesCovered: 428
-      branchesMissed: 321
+      branchesCovered: 430
+      branchesMissed: 319
       branchesTotal: 749
       branchCoveragePct: 57
       blendPct: 61
@@ -10582,7 +10678,7 @@ features:
       totalMethods: 122
       hotspots: 6
       maxCrap: 274.514688
-      averageCrap: 10.829466065573769
+      averageCrap: 10.79254436885246
       simple: 96
       moderate: 17
       high: 4
@@ -10629,8 +10725,8 @@ features:
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
         line: 501
         cyclomatic: 29
-        lineCoveragePct: 77
-        crap: 39.23244699999999
+        lineCoveragePct: 80
+        crap: 35.727999999999994
     healthScore: 71
     verdict: WARNED
     violations:
@@ -10639,7 +10735,7 @@ features:
     - crapHotspots 6 > 5
 - id: FEAT-LAPS
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
+  requirementFile: requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAPS-R001
     state: PASSING
@@ -11120,7 +11216,7 @@ features:
     verdict: PASSED
 - id: FEAT-DSLEN
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
+  requirementFile: requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DSLEN-R001
     state: PASSING
@@ -11232,7 +11328,7 @@ features:
     verdict: PASSED
 - id: FEAT-LEMMA-SUGGESTIONS
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-05-15.04_agregar-lemmacount-como-variable-de-suggestedlemmas-en-el-contexto/REQUIREMENT.md
+  requirementFile: requirements/2026-05-15.04_agregar-lemmacount-como-variable-de-suggestedlemmas-en-el-contexto/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-SLEM-R001
     state: PASSING
@@ -11589,7 +11685,7 @@ features:
     - mutationScore 45% < 60%
 - id: FEAT-SLEN
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
+  requirementFile: requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-SLEN-R001
     state: PASSING
@@ -11821,7 +11917,7 @@ features:
     verdict: PASSED
 - id: FEAT-SLREGEX
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-06-26.01_filtrar-suggested-lemmas-por-regex/REQUIREMENT.md
+  requirementFile: requirements/2026-06-26.01_filtrar-suggested-lemmas-por-regex/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-SLREGEX-R001
     state: PASSING
@@ -11967,12 +12063,12 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 556
-      linesMissed: 343
+      linesCovered: 559
+      linesMissed: 340
       linesTotal: 899
-      lineCoveragePct: 61
-      branchesCovered: 298
-      branchesMissed: 261
+      lineCoveragePct: 62
+      branchesCovered: 300
+      branchesMissed: 259
       branchesTotal: 559
       branchCoveragePct: 53
       blendPct: 57
@@ -11989,7 +12085,7 @@ features:
       totalMethods: 75
       hotspots: 5
       maxCrap: 143.066588
-      averageCrap: 11.956007973333332
+      averageCrap: 11.895948679999998
       simple: 54
       moderate: 13
       high: 4
@@ -12029,16 +12125,16 @@ features:
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
         line: 501
         cyclomatic: 29
-        lineCoveragePct: 77
-        crap: 39.23244699999999
+        lineCoveragePct: 80
+        crap: 35.727999999999994
     healthScore: 72
     verdict: WARNED
     violations:
-    - lineCoverage 61% < 70%
+    - lineCoverage 62% < 70%
     - branchCoverage 53% < 60%
 - id: FEAT-LCOUNT
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
+  requirementFile: requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LCOUNT-R001
     state: PASSING
@@ -12357,7 +12453,7 @@ features:
     verdict: PASSED
 - id: FEAT-REVBYP
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
+  requirementFile: requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVBYP-R001
     state: PASSING
@@ -12609,7 +12705,7 @@ features:
     - mutationScore 57% < 60%
 - id: FEAT-LAGEN
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
+  requirementFile: requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAGEN-R001
     state: PASSING
@@ -12824,7 +12920,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLA
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
+  requirementFile: requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLA-R001
     state: PASSING
@@ -13246,12 +13342,12 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 944
-      linesMissed: 528
+      linesCovered: 949
+      linesMissed: 523
       linesTotal: 1472
       lineCoveragePct: 64
-      branchesCovered: 476
-      branchesMissed: 414
+      branchesCovered: 480
+      branchesMissed: 410
       branchesTotal: 890
       branchCoveragePct: 53
       blendPct: 58
@@ -13268,9 +13364,9 @@ features:
       totalMethods: 120
       hotspots: 6
       maxCrap: 870.0
-      averageCrap: 16.70794055833333
-      simple: 91
-      moderate: 19
+      averageCrap: 16.641679699999997
+      simple: 92
+      moderate: 18
       high: 5
       veryHigh: 5
       healthPct: 84
@@ -13315,8 +13411,8 @@ features:
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
         line: 501
         cyclomatic: 29
-        lineCoveragePct: 77
-        crap: 39.23244699999999
+        lineCoveragePct: 80
+        crap: 35.727999999999994
     healthScore: 59
     verdict: WARNED
     violations:
@@ -13326,7 +13422,7 @@ features:
     - crapHotspots 6 > 5
 - id: FEAT-RCSL
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
+  requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCSL-R001
     state: PASSING
@@ -13669,12 +13765,12 @@ features:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 561
-      linesMissed: 416
+      linesCovered: 564
+      linesMissed: 413
       linesTotal: 977
       lineCoveragePct: 57
-      branchesCovered: 298
-      branchesMissed: 309
+      branchesCovered: 300
+      branchesMissed: 307
       branchesTotal: 607
       branchCoveragePct: 49
       blendPct: 53
@@ -13691,7 +13787,7 @@ features:
       totalMethods: 78
       hotspots: 6
       maxCrap: 272.0
-      averageCrap: 15.536272089743589
+      averageCrap: 15.478522769230768
       simple: 53
       moderate: 16
       high: 4
@@ -13738,8 +13834,8 @@ features:
         methodDesc: (Ljava/lang/String;Lcom/learney/contentaudit/auditcli/GetTasksFilter;)I
         line: 501
         cyclomatic: 29
-        lineCoveragePct: 77
-        crap: 39.23244699999999
+        lineCoveragePct: 80
+        crap: 35.727999999999994
     healthScore: 59
     verdict: WARNED
     violations:
@@ -24256,6 +24352,8 @@ elements:
       status: EXISTS
     - name: KNOWLEDGE_INSTRUCTIONS_LENGTH
       status: EXISTS
+    - name: QUIZ_INSTRUCTION
+      status: EXISTS
   - name: RefinementTaskStatus
     status: EXISTS
     filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/RefinementTaskStatus.java
@@ -27819,6 +27917,14 @@ elements:
         and COURSE level after re-routing
       status: EXISTS
       testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/DefaultRefinerEngineTest.java
+    - name: should include one QUIZ_INSTRUCTION task targeting the quiz for each quiz
+        whose quiz-instruction score is below 1.0
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/DefaultRefinerEngineTest.java
+    - name: should not include any QUIZ_INSTRUCTION task for a quiz that complies
+        with its instruction nor for a quiz with no quiz-instruction score at all
+      status: EXISTS
+      testFilePath: refiner-domain/src/test/java/com/learney/contentaudit/refinerdomain/DefaultRefinerEngineTest.java
     testCleanViews:
     - |
       test: "should include LEMMA_ABSENCE tasks targeting QUIZ when quiz has lemma-absence score below 1.0"
@@ -27879,17 +27985,57 @@ elements:
         cocaTaskCount > 0 is true
         lrecTaskCount > 0 is true
         lemmaAbsenceCount == 0
+    - |
+      test: "should include one QUIZ_INSTRUCTION task targeting the quiz for each quiz whose quiz-instruction score is below 1.0"
+      trace: FEAT-QINST / F-QINST-R017
+
+      given:
+        courseNode = buildNode(AuditTarget.COURSE, "course-1", "My Course", Collections.emptyMap())
+        milestoneNode = buildNode(AuditTarget.MILESTONE, "ms-1", "Milestone A1", Collections.emptyMap())
+        topicNode = buildNode(AuditTarget.TOPIC, "topic-1", "Topic 1", Collections.emptyMap())
+        knowledgeNode = buildNode(AuditTarget.KNOWLEDGE, "knowledge-1", "Knowledge 1", Collections.emptyMap())
+        quizMinor = buildNode(AuditTarget.QUIZ, "quiz-minor", "Quiz Minor", Map.of("quiz-instruction", 0.6))
+        quizMajor = buildNode(AuditTarget.QUIZ, "quiz-major", "Quiz Major", Map.of("quiz-instruction", 0.3))
+        quizCritical = buildNode(AuditTarget.QUIZ, "quiz-critical", "Quiz Critical", Map.of("quiz-instruction", 0.0))
+        report = AuditReport(courseNode)
+        plan = sut.plan(report, "audit-qinst-001")
+        quizInstructionTasks = plan.getTasks().stream().filter(t -> t.getDiagnosisKind() == DiagnosisKind.QUIZ_INSTRUCTION).toList()
+        taskedQuizIds = quizInstructionTasks.stream().map(RefinementTask::getNodeId).sorted().toList()
+
+      then:
+        quizInstructionTasks.size() == 3
+        quizInstructionTasks.stream().allMatch(t -> t.getNodeTarget() == AuditTarget.QUIZ) is true
+        taskedQuizIds == List.of("quiz-critical", "quiz-major", "quiz-minor")
+    - |
+      test: "should not include any QUIZ_INSTRUCTION task for a quiz that complies with its instruction nor for a quiz with no quiz-instruction score at all"
+      trace: FEAT-QINST / F-QINST-R017
+
+      given:
+        courseNode = buildNode(AuditTarget.COURSE, "course-1", "My Course", Collections.emptyMap())
+        milestoneNode = buildNode(AuditTarget.MILESTONE, "ms-1", "Milestone A1", Collections.emptyMap())
+        topicNode = buildNode(AuditTarget.TOPIC, "topic-1", "Topic 1", Collections.emptyMap())
+        knowledgeNode = buildNode(AuditTarget.KNOWLEDGE, "knowledge-1", "Knowledge 1", Collections.emptyMap())
+        quizCompliant = buildNode(AuditTarget.QUIZ, "quiz-compliant", "Quiz Compliant", Map.of("quiz-instruction", 1.0))
+        quizUnjudged = buildNode(AuditTarget.QUIZ, "quiz-unjudged", "Quiz Unjudged", Map.of("lemma-absence", 0.9))
+        quizControlNonCompliant = buildNode(AuditTarget.QUIZ, "quiz-control-noncompliant", "Quiz Control Non-compliant", Map.of("quiz-instruction", 0.6))
+        report = AuditReport(courseNode)
+        plan = sut.plan(report, "audit-qinst-002")
+        quizInstructionTasks = plan.getTasks().stream().filter(t -> t.getDiagnosisKind() == DiagnosisKind.QUIZ_INSTRUCTION).toList()
+
+      then:
+        quizInstructionTasks.size() == 1
+        quizInstructionTasks.get(0).getNodeId() == "quiz-control-noncompliant"
     quality:
       coverage:
-        linesCovered: 56
-        linesMissed: 17
+        linesCovered: 58
+        linesMissed: 15
         linesTotal: 73
-        lineCoveragePct: 76
-        branchesCovered: 28
-        branchesMissed: 23
+        lineCoveragePct: 79
+        branchesCovered: 30
+        branchesMissed: 21
         branchesTotal: 51
-        branchCoveragePct: 54
-        blendPct: 65
+        branchCoveragePct: 58
+        blendPct: 68
       mutation:
         totalMutants: 46
         killed: 22
@@ -27902,13 +28048,13 @@ elements:
       crap:
         totalMethods: 12
         hotspots: 0
-        maxCrap: 13.125
-        averageCrap: 4.900044
-        simple: 11
-        moderate: 1
+        maxCrap: 9.688728000000001
+        averageCrap: 4.612806
+        simple: 12
+        moderate: 0
         high: 0
         veryHigh: 0
-        healthPct: 96
+        healthPct: 100
       methods:
       - name: <init>
         desc: ()V
@@ -27974,17 +28120,17 @@ elements:
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;Ljava/util/List;)V
         line: 115
         cyclomatic: 7
-        linesCovered: 18
-        linesMissed: 1
-        lineCoveragePct: 94
-        branchesCovered: 10
-        branchesMissed: 2
+        linesCovered: 19
+        linesMissed: 0
+        lineCoveragePct: 100
+        branchesCovered: 11
+        branchesMissed: 1
         mutantsTotal: 6
         mutantsKilled: 4
         mutantsSurvived: 2
         mutantsNoCoverage: 0
         mutationScorePct: 66
-        crap: 7.010584
+        crap: 7.0
       - name: isRelevantForTarget
         desc: (Ljava/lang/String;Lcom/learney/contentaudit/auditdomain/AuditTarget;)Z
         line: 150
@@ -28004,17 +28150,17 @@ elements:
         desc: (Ljava/lang/String;)Lcom/learney/contentaudit/refinerdomain/DiagnosisKind;
         line: 167
         cyclomatic: 7
-        linesCovered: 4
-        linesMissed: 4
-        lineCoveragePct: 50
-        branchesCovered: 3
-        branchesMissed: 4
+        linesCovered: 5
+        linesMissed: 3
+        lineCoveragePct: 62
+        branchesCovered: 4
+        branchesMissed: 3
         mutantsTotal: 6
         mutantsKilled: 3
         mutantsSurvived: 0
         mutantsNoCoverage: 3
         mutationScorePct: 50
-        crap: 13.125
+        crap: 9.688728000000001
       - name: resolveId
         desc: (Lcom/learney/contentaudit/auditdomain/AuditNode;)Ljava/lang/String;
         line: 179
@@ -29181,12 +29327,12 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 956
-      linesMissed: 622
-      linesTotal: 1578
+      linesCovered: 959
+      linesMissed: 620
+      linesTotal: 1579
       lineCoveragePct: 60
-      branchesCovered: 394
-      branchesMissed: 533
+      branchesCovered: 396
+      branchesMissed: 531
       branchesTotal: 927
       branchCoveragePct: 42
       blendPct: 51
@@ -29203,9 +29349,9 @@ elements:
       totalMethods: 306
       hotspots: 13
       maxCrap: 870.0
-      averageCrap: 12.432748892156862
-      simple: 278
-      moderate: 14
+      averageCrap: 12.421484656862745
+      simple: 279
+      moderate: 13
       high: 1
       veryHigh: 13
       healthPct: 93
@@ -29310,6 +29456,8 @@ elements:
     - signature: "runDetailedAudit(Path coursePath,String analyzerName): AuditNode"
       status: EXISTS
     - signature: "runAudit(Path coursePath,AuditRunRequest request): AuditReport"
+      status: EXISTS
+    - signature: "runDetailedAudit(Path coursePath,AuditRunRequest request): AuditNode"
       status: EXISTS
   - name: AnalyzerRegistry
     status: EXISTS
@@ -34408,6 +34556,10 @@ elements:
         context has no out-of-catalog words in text output
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: "should return the QUIZ_INSTRUCTION tasks of the plan, and only those,\
+        \ when 'get tasks --diagnosis QUIZ_INSTRUCTION' is supplied"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
     testCleanViews:
     - |
       test: "should list all stored audits when invoked as 'get audits' without a name"
@@ -36349,6 +36501,34 @@ elements:
         exit == 0
         output.contains("Out-of-catalog words") is true
         output.contains("(none)") is true
+    - |
+      test: "should return the QUIZ_INSTRUCTION tasks of the plan, and only those, when 'get tasks --diagnosis QUIZ_INSTRUCTION' is supplied"
+      trace: FEAT-QINST / F-QINST-R017
+
+      given:
+        formatField = GetCmd.class.getDeclaredField("formatName")
+        sourceAuditId = "audit-2026-08-03T00-00-00"
+        quizInstructionTask = RefinementTask("task-qi-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING)
+        sentenceLengthTask = RefinementTask("task-sl-001", AuditTarget.QUIZ, "quiz-node-2", "Quiz 2", DiagnosisKind.SENTENCE_LENGTH, 2, RefinementTaskStatus.PENDING)
+        plan = RefinementPlan("plan-2026-08-03", sourceAuditId, Instant.parse("2026-08-03T00:00:00Z"), List.of(quizInstructionTask, sentenceLengthTask))
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.empty(), Optional.empty(), Optional.of(DiagnosisKind.QUIZ_INSTRUCTION))
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+
+      when:
+        sut.setAccessible(true)
+
+      then:
+        exit == 0
+        output.contains("task-qi-001") is true
+        output.contains("task-sl-001") is false
+        verify: correctionContextResolver.resolve(any(AuditReport.class), eq(quizInstructionTask)) x 0
+        verify: correctionContextResolver.resolve(any(AuditReport.class), eq(sentenceLengthTask)) x 0
+        verify: auditReportStore.load(any(String.class)) x 0
   - name: DeleteCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/DeleteCmd.java
@@ -38853,11 +39033,11 @@ elements:
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/QuizInstructionDetailedFormatterTest.java
     - name: should render one row per originating judge version with how many of the
         scored verdicts each one contributes
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/QuizInstructionDetailedFormatterTest.java
     - name: should state explicitly that the run consulted no judge version when it
         made no new consultation
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/QuizInstructionDetailedFormatterTest.java
     testCleanViews:
     - |
@@ -38931,6 +39111,57 @@ elements:
         result is not null
         result.contains("742") is true
         result.contains(judgeVersion) is true
+    - |
+      test: "should render one row per originating judge version with how many of the scored verdicts each one contributes"
+      trace: FEAT-QINST / F-QINST-R005
+
+      given:
+        coverage = EvaluationCoverage(500, 300, 200, 100, 150, 50)
+        judgeVersionOlder = "qij-aaa111"
+        judgeVersionNewer = "qij-bbb222"
+        verdictsByJudgeVersion = List.of(new JudgeVersionVerdictCount(judgeVersionOlder, 47), new JudgeVersionVerdictCount(judgeVersionNewer, 253))
+        coverageDiagnosis = QuizInstructionCoverageDiagnosis(coverage, judgeVersionNewer, verdictsByJudgeVersion)
+        courseDiagnoses = mock(CourseDiagnoses.class)
+        courseNode = AuditNode(null, AuditTarget.COURSE, null, List.of(), Map.of("quiz-instruction", 0.55), Map.of(), courseDiagnoses)
+        formatter = QuizInstructionDetailedFormatter()
+        result = formatter.format("quiz-instruction", courseNode, "text")
+
+      mock:
+        courseDiagnoses.getQuizInstructionCoverage() -> Optional.of(coverageDiagnosis)
+
+      then:
+        result is not null
+        result.contains(judgeVersionOlder) is true
+        result.contains("47") is true
+        result.contains(judgeVersionNewer) is true
+        result.contains("253") is true
+        result.contains("300") is true
+    - |
+      test: "should state explicitly that the run consulted no judge version when it made no new consultation"
+      trace: FEAT-QINST / F-QINST-R005
+
+      given:
+        coverage = EvaluationCoverage(200, 180, 0, 180, 15, 5)
+        verdictsByJudgeVersion = List.of(new JudgeVersionVerdictCount("qij-old999", 180))
+        coverageDiagnosisWithVersion = QuizInstructionCoverageDiagnosis(coverage, "qij-old999", verdictsByJudgeVersion)
+        courseDiagnosesWithVersion = mock(CourseDiagnoses.class)
+        courseNodeWithVersion = AuditNode(null, AuditTarget.COURSE, null, List.of(), Map.of("quiz-instruction", 0.4), Map.of(), courseDiagnosesWithVersion)
+        coverageDiagnosisNoVersion = QuizInstructionCoverageDiagnosis(coverage, null, verdictsByJudgeVersion)
+        courseDiagnosesNoVersion = mock(CourseDiagnoses.class)
+        courseNodeNoVersion = AuditNode(null, AuditTarget.COURSE, null, List.of(), Map.of("quiz-instruction", 0.4), Map.of(), courseDiagnosesNoVersion)
+        formatter = QuizInstructionDetailedFormatter()
+        resultWithVersion = formatter.format("quiz-instruction", courseNodeWithVersion, "text")
+        resultNoVersion = formatter.format("quiz-instruction", courseNodeNoVersion, "text")
+
+      mock:
+        courseDiagnosesWithVersion.getQuizInstructionCoverage() -> Optional.of(coverageDiagnosisWithVersion)
+        courseDiagnosesNoVersion.getQuizInstructionCoverage() -> Optional.of(coverageDiagnosisNoVersion)
+
+      then:
+        resultNoVersion is not null
+        resultNoVersion.isBlank() is false
+        resultNoVersion.contains("null") is false
+        resultNoVersion.lines().count() == resultWithVersion.lines().count()
   - name: DefaultWorkdirResolver
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/bootstrap/DefaultWorkdirResolver.java
@@ -39495,12 +39726,12 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 2051
-      linesMissed: 2122
-      linesTotal: 4173
+      linesCovered: 2061
+      linesMissed: 2113
+      linesTotal: 4174
       lineCoveragePct: 49
-      branchesCovered: 913
-      branchesMissed: 1403
+      branchesCovered: 919
+      branchesMissed: 1397
       branchesTotal: 2316
       branchCoveragePct: 39
       blendPct: 44
@@ -39517,12 +39748,12 @@ elements:
       totalMethods: 574
       hotspots: 51
       maxCrap: 306.0
-      averageCrap: 11.628979054006965
-      simple: 464
-      moderate: 53
+      averageCrap: 11.619936637630659
+      simple: 465
+      moderate: 52
       high: 21
       veryHigh: 36
-      healthPct: 85
+      healthPct: 86
       top:
       - className: com.learney.contentaudit.auditcli.formatting.CocaBucketsDetailedFormatter
         methodName: formatTable
@@ -39594,7 +39825,7 @@ elements:
         cyclomatic: 11
         lineCoveragePct: 0
         crap: 132.0
-    healthScore: 34
+    healthScore: 35
     verdict: WARNED
     violations:
     - lineCoverage 49% < 70%
@@ -50395,6 +50626,8 @@ elements:
       status: EXISTS
     - name: agentName
       status: EXISTS
+    - name: providerName
+      status: EXISTS
   interfaces:
   - name: QuizInstructionJudgeFactory
     status: EXISTS
@@ -50416,6 +50649,25 @@ elements:
         verdict when the agent definition its version derives from cannot be located
       status: EXISTS
       testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeFactoryTest.java
+    - name: should consult the judge and emit its verdict when the configuration declares
+        a provider that authenticates with the local user session and carries neither
+        service address nor credential
+      status: EXISTS
+      testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeFactoryTest.java
+    - name: "should not emit a single query to the judge, and should name the missing\
+        \ service address and the provider that requires it, when the configuration\
+        \ declares a provider consulted by service address and omits that address"
+      status: EXISTS
+      testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeFactoryTest.java
+    - name: should not emit a single query to the judge when the configuration declares
+        a provider the system does not know how to consult
+      status: EXISTS
+      testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeFactoryTest.java
+    - name: "should still emit the query to the judge when the configuration carries\
+        \ no credential, because the credential is not a datum the declared provider\
+        \ needs to direct the query"
+      status: EXISTS
+      testFilePath: quiz-instruction-infrastructure/src/test/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeFactoryTest.java
     testCleanViews:
     - |
       test: "should yield an evaluator that reports itself unavailable when the judge configuration is missing or invalid, instead of failing the audit"
@@ -50425,7 +50677,7 @@ elements:
         factory = DefaultQuizInstructionJudgeFactory()
         agentGraphRunner = mock(AgentGraphRunner.class)
         agentDefinitionLocator = mock(AgentDefinitionLocator.class)
-        missingConfig = QuizInstructionJudgeConfig(null, null, null, null, null, null)
+        missingConfig = QuizInstructionJudgeConfig(null, null, "gpt-4o-mini", null, null, null, "some-remote-service")
         evaluator = assertDoesNotThrow(() -> factory.create(missingConfig, agentGraphRunner, agentDefinitionLocator), "una configuracion ausente o invalida no puede tumbar la construccion del evaluador")
         content = LinkedHashMap<>()
         subject = EvaluationSubject("quiz-1", content)
@@ -50446,7 +50698,7 @@ elements:
         runnerConfig = AgentGraphRunnerConfig(emptyAgentsDir, null)
         realAgentGraphRunner = DefaultAgentGraphRunnerFactory().create(runnerConfig)
         realAgentDefinitionLocator = DefaultAgentDefinitionLocatorFactory().create(runnerConfig)
-        config = QuizInstructionJudgeConfig("http://localhost:1234/v1", "test-api-key", "gpt-4o-mini", 0.0, 30, "quiz-instruction-validator")
+        config = QuizInstructionJudgeConfig("http://localhost:1234/v1", "test-api-key", "gpt-4o-mini", 0.0, 30, "quiz-instruction-validator", "openai")
         factory = DefaultQuizInstructionJudgeFactory()
         evaluator = factory.create(config, realAgentGraphRunner, realAgentDefinitionLocator)
         content = LinkedHashMap<>()
@@ -50459,6 +50711,85 @@ elements:
 
       then:
         notEmitted.getKind() == EvaluationFailureKind.EVALUATOR_UNAVAILABLE
+    - |
+      test: "should consult the judge and emit its verdict when the configuration declares a provider that authenticates with the local user session and carries neither service address nor credential"
+      trace: FEAT-QINST / F-QINST-R016
+
+      given:
+        config = QuizInstructionJudgeConfig(null, null, "claude-3-5-sonnet-20241022", null, null, null, "claude-cli")
+        agentGraphRunner = mock(AgentGraphRunner.class)
+        agentDefinitionLocator = mock(AgentDefinitionLocator.class)
+        factory = DefaultQuizInstructionJudgeFactory()
+        evaluator = factory.create(config, agentGraphRunner, agentDefinitionLocator)
+        outcome = assertDoesNotThrow(() -> evaluator.evaluate(subjectFor("quiz-1")), "F-QINST-R016 invariante 1: una configuracion de sesion local valida no puede tumbar la evaluacion")
+        emitted = assertInstanceOf(EvaluationEmitted.class, outcome, "F-QINST-R016 invariante 1: sin direccion de servicio ni credencial, un proveedor de sesion " + "local sigue siendo una configuracion valida y el juez debe quedar disponible y " + "consultarse")
+
+      mock:
+        agentGraphRunner.run(anyString(), anyMap(), any(ChatModel.class), anyMap()) -> runStateWithVerdictArtifact(COMPLIANT_VERDICT_JSON)
+        agentDefinitionLocator.locate(anyString()) -> new AgentDefinitionFound(agentDefinitionDir)
+
+      then:
+        emitted.getPayload() is not null
+        verify: agentGraphRunner.run(anyString(), anyMap(), any(ChatModel.class), anyMap())
+    - |
+      test: "should not emit a single query to the judge, and should name the missing service address and the provider that requires it, when the configuration declares a provider consulted by service address and omits that address"
+      trace: FEAT-QINST / F-QINST-R016
+
+      given:
+        missingBaseUrl = QuizInstructionJudgeConfig(null, "test-api-key", "gpt-4o-mini", null, null, null, "some-remote-service")
+        agentGraphRunner = mock(AgentGraphRunner.class)
+        agentDefinitionLocator = mock(AgentDefinitionLocator.class)
+        factory = DefaultQuizInstructionJudgeFactory()
+        evaluator = factory.create(missingBaseUrl, agentGraphRunner, agentDefinitionLocator)
+        firstOutcome = assertDoesNotThrow(() -> evaluator.evaluate(subjectFor("quiz-1")))
+        secondOutcome = assertDoesNotThrow(() -> evaluator.evaluate(subjectFor("quiz-2")))
+        thirdOutcome = assertDoesNotThrow(() -> evaluator.evaluate(subjectFor("quiz-3")))
+        firstNotEmitted = assertInstanceOf(EvaluationNotEmitted.class, firstOutcome)
+        reason = firstNotEmitted.getReason()
+
+      then:
+        assertInstanceOf(EvaluationNotEmitted.class)
+        assertInstanceOf(EvaluationNotEmitted.class)
+        firstNotEmitted.getKind() == EvaluationFailureKind.EVALUATOR_UNAVAILABLE
+        reason.contains("baseUrl") is true
+        reason.contains("some-remote-service") is true
+    - |
+      test: "should not emit a single query to the judge when the configuration declares a provider the system does not know how to consult"
+      trace: FEAT-QINST / F-QINST-R016
+
+      given:
+        unknownProvider = QuizInstructionJudgeConfig("http://localhost:1234/v1", "test-api-key", "gpt-4o-mini", 0.0, 30, null, "unknown:provider")
+        agentGraphRunner = mock(AgentGraphRunner.class)
+        agentDefinitionLocator = mock(AgentDefinitionLocator.class)
+        factory = DefaultQuizInstructionJudgeFactory()
+        evaluator = factory.create(unknownProvider, agentGraphRunner, agentDefinitionLocator)
+        firstOutcome = assertDoesNotThrow(() -> evaluator.evaluate(subjectFor("quiz-1")))
+        secondOutcome = assertDoesNotThrow(() -> evaluator.evaluate(subjectFor("quiz-2")))
+        firstNotEmitted = assertInstanceOf(EvaluationNotEmitted.class, firstOutcome, "F-QINST-R016 criterio (c): un proveedor que el sistema no sabe consultar deja al juez no " + "disponible sin emitir ninguna consulta")
+
+      then:
+        assertInstanceOf(EvaluationNotEmitted.class)
+        firstNotEmitted.getKind() == EvaluationFailureKind.EVALUATOR_UNAVAILABLE
+    - |
+      test: "should still emit the query to the judge when the configuration carries no credential, because the credential is not a datum the declared provider needs to direct the query"
+      trace: FEAT-QINST / F-QINST-R016
+
+      given:
+        noCredential = QuizInstructionJudgeConfig("http://localhost:1234/v1", null, "gpt-4o-mini", 0.0, 30, "quiz-instruction-validator", "openai")
+        agentGraphRunner = mock(AgentGraphRunner.class)
+        agentDefinitionLocator = mock(AgentDefinitionLocator.class)
+        factory = DefaultQuizInstructionJudgeFactory()
+        evaluator = factory.create(noCredential, agentGraphRunner, agentDefinitionLocator)
+        outcome = assertDoesNotThrow(() -> evaluator.evaluate(subjectFor("quiz-1")), "F-QINST-R016 criterio (d): la falta de credencial no puede tumbar la evaluacion")
+        emitted = assertInstanceOf(EvaluationEmitted.class, outcome, "F-QINST-R016 criterio (d): sin credencial la consulta se emite igual, porque el proveedor " + "declarado no la necesita para dirigirla")
+
+      mock:
+        agentGraphRunner.run(anyString(), anyMap(), any(ChatModel.class), anyMap()) -> runStateWithVerdictArtifact(COMPLIANT_VERDICT_JSON)
+        agentDefinitionLocator.locate(anyString()) -> new AgentDefinitionFound(agentDefinitionDir)
+
+      then:
+        emitted.getPayload() is not null
+        verify: agentGraphRunner.run(anyString(), anyMap(), any(ChatModel.class), anyMap())
   - name: QuizInstructionAgentJudge
     status: EXISTS
     filePath: quiz-instruction-infrastructure/src/main/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/QuizInstructionAgentJudge.java
@@ -50489,7 +50820,7 @@ elements:
         config = buildConfig()
         agentGraphRunner = mock(AgentGraphRunner.class)
         versionResolver = mock(QuizInstructionJudgeVersionResolver.class)
-        judge = QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver)
+        judge = QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver, CHAT_MODEL_FACTORY, PROVIDER)
         subject = EvaluationSubject("quiz-77", buildDeclaredInputs())
         outcome = judge.evaluate(subject)
         notEmitted = assertInstanceOf(EvaluationNotEmitted.class, outcome, "F-QINST-R013: el veredicto conservador de infraestructura del juez no es un juicio, es una falla transitoria")
@@ -50507,7 +50838,7 @@ elements:
         config = buildConfig()
         agentGraphRunner = mock(AgentGraphRunner.class)
         versionResolver = mock(QuizInstructionJudgeVersionResolver.class)
-        judge = QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver)
+        judge = QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver, CHAT_MODEL_FACTORY, PROVIDER)
         subject = EvaluationSubject("quiz-77", buildDeclaredInputs())
         outcome = judge.evaluate(subject)
         emitted = assertInstanceOf(EvaluationEmitted.class, outcome, "F-QINST-R013: un incumplimiento legitimo (el juez se pronuncio) es un resultado emitido, no una falla")
@@ -50527,7 +50858,7 @@ elements:
         config = buildConfig()
         agentGraphRunner = mock(AgentGraphRunner.class)
         versionResolver = mock(QuizInstructionJudgeVersionResolver.class)
-        judge = QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver)
+        judge = QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver, CHAT_MODEL_FACTORY, PROVIDER)
         subject = EvaluationSubject("quiz-77", buildDeclaredInputs())
         outcome = assertDoesNotThrow(() -> judge.evaluate(subject), "F-QINST-R007: una falla del servicio del juez no debe propagarse como excepcion")
         notEmitted = assertInstanceOf(EvaluationNotEmitted.class, outcome)
@@ -50545,7 +50876,7 @@ elements:
         config = buildConfig()
         agentGraphRunner = mock(AgentGraphRunner.class)
         versionResolver = mock(QuizInstructionJudgeVersionResolver.class)
-        judge = QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver)
+        judge = QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver, CHAT_MODEL_FACTORY, PROVIDER)
         declaredInputs = buildDeclaredInputs()
         subject = EvaluationSubject("quiz-77", declaredInputs)
         inputsCaptor = ArgumentCaptor.forClass(Map.class)
@@ -50591,7 +50922,7 @@ elements:
         baseline = config("gpt-4o-mini", "quiz-instruction-validator")
         differentModel = config("gpt-4o", "quiz-instruction-validator")
         differentAgentDefinition = config("gpt-4o-mini", "lemma-absence-agent")
-        baselineVersion = resolver.resolve(baseline).orElseThrow()
+        baselineVersion = resolver.resolve(baseline, PROVIDER).orElseThrow()
 
       when:
         sut.thenAnswer(invocation -> new AgentDefinitionFound(Path.of(".sentinel/agents/" + invocation.getArgument(0, String.class))))
@@ -50606,14 +50937,14 @@ elements:
       given:
         locator = mock(AgentDefinitionLocator.class)
         resolver = DefaultQuizInstructionJudgeVersionResolver(locator)
-        first = QuizInstructionJudgeConfig("http://localhost:1234/v1", "key-a", "gpt-4o-mini", 0.0, 30, "quiz-instruction-validator")
-        second = QuizInstructionJudgeConfig("https://api.example.com/v1", "key-b", "gpt-4o-mini", 0.7, 90, "quiz-instruction-validator")
+        first = QuizInstructionJudgeConfig("http://localhost:1234/v1", "key-a", "gpt-4o-mini", 0.0, 30, "quiz-instruction-validator", null)
+        second = QuizInstructionJudgeConfig("https://api.example.com/v1", "key-b", "gpt-4o-mini", 0.7, 90, "quiz-instruction-validator", null)
 
       when:
         sut.thenAnswer(invocation -> new AgentDefinitionFound(Path.of(".sentinel/agents/" + invocation.getArgument(0, String.class))))
 
       then:
-        resolver.resolve(second).orElseThrow() == resolver.resolve(first).orElseThrow()
+        resolver.resolve(second, PROVIDER).orElseThrow() == resolver.resolve(first, PROVIDER).orElseThrow()
     - |
       test: "should derive a different judge version when only the text of the agent definition changes, with the agent name and the model untouched"
       trace: FEAT-QINST / F-QINST-R010
@@ -50623,8 +50954,8 @@ elements:
         locator = mock(AgentDefinitionLocator.class)
         resolver = DefaultQuizInstructionJudgeVersionResolver(locator)
         config = config("gpt-4o-mini", "quiz-instruction-validator")
-        versionBeforeEditingThePrompt = resolver.resolve(config).orElseThrow()
-        versionAfterEditingThePrompt = resolver.resolve(config).orElseThrow()
+        versionBeforeEditingThePrompt = resolver.resolve(config, PROVIDER).orElseThrow()
+        versionAfterEditingThePrompt = resolver.resolve(config, PROVIDER).orElseThrow()
 
       mock:
         locator.locate("quiz-instruction-validator") -> new AgentDefinitionFound(agentDefinitionDir)
@@ -50642,10 +50973,10 @@ elements:
         locatorWithAccessibleDefinition = mock(AgentDefinitionLocator.class)
         resolverWithAccessibleDefinition = DefaultQuizInstructionJudgeVersionResolver(locatorWithAccessibleDefinition)
         config = config("gpt-4o-mini", "quiz-instruction-validator")
-        versionDerivedFromAccessibleDefinition = resolverWithAccessibleDefinition.resolve(config)
+        versionDerivedFromAccessibleDefinition = resolverWithAccessibleDefinition.resolve(config, PROVIDER)
         locatorUnableToLocateTheDefinition = mock(AgentDefinitionLocator.class)
         resolverUnableToLocateTheDefinition = DefaultQuizInstructionJudgeVersionResolver(locatorUnableToLocateTheDefinition)
-        versionWhenTheDefinitionCannotBeLocated = resolverUnableToLocateTheDefinition.resolve(config)
+        versionWhenTheDefinitionCannotBeLocated = resolverUnableToLocateTheDefinition.resolve(config, PROVIDER)
 
       mock:
         locatorWithAccessibleDefinition.locate("quiz-instruction-validator") -> new AgentDefinitionFound(agentDefinitionDir)
@@ -50657,6 +50988,12 @@ elements:
       then:
         versionDerivedFromAccessibleDefinition.isPresent() is true
         versionWhenTheDefinitionCannotBeLocated.isEmpty() is true
+  - name: DefaultQuizInstructionJudgeProviderResolver
+    status: EXISTS
+    filePath: quiz-instruction-infrastructure/src/main/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/DefaultQuizInstructionJudgeProviderResolver.java
+  - name: SentinelAgentsJudgeChatModelFactory
+    status: EXISTS
+    filePath: quiz-instruction-infrastructure/src/main/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionjudge/SentinelAgentsJudgeChatModelFactory.java
   - name: JacksonQuizInstructionVerdictReader
     status: EXISTS
     filePath: quiz-instruction-infrastructure/src/main/java/com/learney/contentaudit/quizinstructioninfrastructure/instructionverdict/JacksonQuizInstructionVerdictReader.java
@@ -50708,52 +51045,67 @@ elements:
       crapHotspotThreshold: 30
       crapHotspotsMax: 5
     coverage:
-      linesCovered: 102
-      linesMissed: 34
-      linesTotal: 136
-      lineCoveragePct: 75
-      branchesCovered: 33
-      branchesMissed: 39
-      branchesTotal: 72
-      branchCoveragePct: 45
-      blendPct: 60
+      linesCovered: 151
+      linesMissed: 66
+      linesTotal: 217
+      lineCoveragePct: 69
+      branchesCovered: 48
+      branchesMissed: 66
+      branchesTotal: 114
+      branchCoveragePct: 42
+      blendPct: 55
     mutation:
-      totalMutants: 77
-      killed: 32
-      survived: 27
+      totalMutants: 55
+      killed: 24
+      survived: 13
       noCoverage: 18
       timedOut: 0
       other: 0
-      mutationScorePct: 41
-      testStrengthPct: 54
+      mutationScorePct: 43
+      testStrengthPct: 64
     crap:
-      totalMethods: 40
-      hotspots: 1
-      maxCrap: 110.0
-      averageCrap: 4.716912075
-      simple: 39
+      totalMethods: 68
+      hotspots: 3
+      maxCrap: 132.0
+      averageCrap: 5.230536514705882
+      simple: 65
       moderate: 0
-      high: 0
-      veryHigh: 1
-      healthPct: 98
+      high: 1
+      veryHigh: 2
+      healthPct: 96
       top:
       - className: com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig
         methodName: equals
         methodDesc: (Ljava/lang/Object;)Z
-        line: 86
-        cyclomatic: 10
+        line: 97
+        cyclomatic: 11
         lineCoveragePct: 0
-        crap: 110.0
-    healthScore: 61
+        crap: 132.0
+      - className: com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.JudgeProviderRejected
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 53
+        cyclomatic: 7
+        lineCoveragePct: 0
+        crap: 56.0
+      - className: com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.JudgeProviderResolved
+        methodName: equals
+        methodDesc: (Ljava/lang/Object;)Z
+        line: 41
+        cyclomatic: 6
+        lineCoveragePct: 0
+        crap: 42.0
+    healthScore: 60
     verdict: WARNED
     violations:
-    - branchCoverage 45% < 60%
-    - mutationScore 41% < 60%
+    - lineCoverage 69% < 70%
+    - branchCoverage 42% < 60%
+    - mutationScore 43% < 60%
 testSummary:
-  total: 1216
-  passing: 1198
+  total: 1223
+  passing: 1207
   failing: 0
-  notImplemented: 18
+  notImplemented: 16
 qualitySummary:
   enforcement: warn
   thresholds:
@@ -50763,33 +51115,33 @@ qualitySummary:
     crapHotspotThreshold: 30
     crapHotspotsMax: 5
   coverage:
-    linesCovered: 8885
-    linesMissed: 6363
-    linesTotal: 15248
+    linesCovered: 8947
+    linesMissed: 6384
+    linesTotal: 15331
     lineCoveragePct: 58
-    branchesCovered: 3268
-    branchesMissed: 4640
-    branchesTotal: 7908
+    branchesCovered: 3291
+    branchesMissed: 4659
+    branchesTotal: 7950
     branchCoveragePct: 41
     blendPct: 49
   mutation:
-    totalMutants: 4598
-    killed: 1803
-    survived: 956
+    totalMutants: 4576
+    killed: 1795
+    survived: 942
     noCoverage: 1839
     timedOut: 0
     other: 0
     mutationScorePct: 39
     testStrengthPct: 65
   crap:
-    totalMethods: 3157
-    hotspots: 176
+    totalMethods: 3185
+    hotspots: 178
     maxCrap: 870.0
-    averageCrap: 8.281326326259105
-    simple: 2836
-    moderate: 128
-    high: 60
-    veryHigh: 133
+    averageCrap: 8.258244900784929
+    simple: 2864
+    moderate: 126
+    high: 61
+    veryHigh: 134
     healthPct: 92
     top:
     - className: com.learney.contentaudit.refinerdomain.LemmaAbsenceContextResolver
@@ -50868,7 +51220,7 @@ qualitySummary:
   - lineCoverage 58% < 70%
   - branchCoverage 41% < 60%
   - mutationScore 39% < 60%
-  - crapHotspots 176 > 5
+  - crapHotspots 178 > 5
 patterns:
 - id: declared-1
   pattern: Factory

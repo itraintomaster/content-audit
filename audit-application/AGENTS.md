@@ -22,6 +22,7 @@ Methods:
 - `runAudit(Path coursePath,Set<String> analyzerNames): AuditReport`
 - `runDetailedAudit(Path coursePath,String analyzerName): AuditNode`
 - `runAudit(Path coursePath,AuditRunRequest request): AuditReport`
+- `runDetailedAudit(Path coursePath,AuditRunRequest request): AuditNode`
 
 ### AnalyzerRegistry (service)
 
@@ -935,6 +936,7 @@ Methods:
 | LEMMA_RECURRENCE | `null` |
 | KNOWLEDGE_TITLE_LENGTH | `null` |
 | KNOWLEDGE_INSTRUCTIONS_LENGTH | `null` |
+| QUIZ_INSTRUCTION | `null` |
 
 ### RefinementTaskStatus (`enum`)
 

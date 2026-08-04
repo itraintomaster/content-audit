@@ -274,8 +274,12 @@ class AnalyzeCmd implements AnalyzeCommand, Callable<Integer> {
                     System.err.println("No detailed view available for: " + analyzerName);
                     return 1;
                 }
+                // La petición completa, no sólo el nombre: así el presupuesto y la
+                // re-evaluación significan lo mismo en la vista detallada que en la
+                // corrida normal (F-QINST-R006/R015). Con el nombre suelto, un
+                // --instruction-budget 2 corría con el default de 500.
                 AuditNode rootNode = auditRunner.runDetailedAudit(
-                        Path.of(resolvedPath), analyzerName);
+                        Path.of(resolvedPath), toAuditRunRequest(options));
                 System.out.println(detailedFormatter.format(analyzerName, rootNode, format));
                 return 0;
             }

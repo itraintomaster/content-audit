@@ -1801,6 +1801,8 @@ public FileSystemEvaluationLedger(Path baseDir) {
 | `config` | `QuizInstructionJudgeConfig` |
 | `agentGraphRunner` | `AgentGraphRunner` |
 | `versionResolver` | `QuizInstructionJudgeVersionResolver` |
+| `chatModelFactory` | `JudgeChatModelFactory` |
+| `provider` | `JudgeProviderResolved` |
 
 #### DefaultQuizInstructionJudgeVersionResolver (package: instructionjudge)
 
@@ -1813,6 +1815,18 @@ public FileSystemEvaluationLedger(Path baseDir) {
 | Name | Type |
 |------|------|
 | `agentDefinitionLocator` | `AgentDefinitionLocator` |
+
+#### DefaultQuizInstructionJudgeProviderResolver (package: instructionjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
+**Visibility:** public
+**Implements:** QuizInstructionJudgeProviderResolver
+
+#### SentinelAgentsJudgeChatModelFactory (package: instructionjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
+**Visibility:** public
+**Implements:** JudgeChatModelFactory
 
 #### JacksonQuizInstructionVerdictReader (package: instructionverdict)
 

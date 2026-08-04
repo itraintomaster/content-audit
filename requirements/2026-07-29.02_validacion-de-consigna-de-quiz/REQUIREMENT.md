@@ -333,6 +333,13 @@ Las fallas se cuentan y se informan como tales
 "no alcanzo el presupuesto" y "el servicio fallo" son dos hechos distintos y el
 usuario reacciona distinto ante cada uno.
 
+**Esta regla no dice cuando se considera que el juez no esta.** Una configuracion
+invalida deja al juez no disponible y produce este mismo desenlace —la auditoria
+termina igual, con la cobertura que alcanzo—, pero **cuales** configuraciones son
+invalidas lo fija [F-QINST-R016](#F-QINST-R016), no esta regla: se juzga contra el
+proveedor que la configuracion declara, y hay proveedores legitimos que no llevan
+direccion de servicio ni credencial.
+
 **Criterio de aceptacion**: interrumpido el servicio del juez tras evaluar K
 ejercicios, la auditoria termina exitosamente, informa K con veredicto y el resto
 como fallidos o pendientes, y una corrida posterior reutiliza esos K sin volver a
@@ -738,6 +745,178 @@ veredicto registrado.
 
 </details>
 
+<a id="F-QINST-R016"></a>
+### Rule[F-QINST-R016] - El juez admite todo proveedor que el sistema sepa consultar; "invalida" se juzga contra el proveedor declarado
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+> El juez de consigna se configura con **las mismas clases de proveedor** que el
+> resto del sistema ya usa para consultar modelos, y la validez de su configuracion
+> se juzga **contra el proveedor que esa configuracion declara**. Tres invariantes:
+> 1. Una configuracion que declara un proveedor **que se autentica con la sesion
+>    local del usuario** —y que por eso no tiene direccion de servicio ni credencial
+>    que configurar— es **valida**: el juez queda disponible, la corrida lo consulta
+>    y sus veredictos puntuan ejercicios.
+> 2. Una configuracion es **invalida** —y solo entonces el juez se declara no
+>    disponible ([F-QINST-R007](#F-QINST-R007))— cuando le falta un dato que **su
+>    proveedor necesita para poder dirigir la consulta**: no se puede determinar que
+>    proveedor usar ([DOUBT-PROVEEDOR-DEL-JUEZ](#DOUBT-PROVEEDOR-DEL-JUEZ)), el
+>    proveedor declarado no es uno que el sistema sepa consultar, o falta un dato que
+>    esa clase de proveedor exige. La ausencia de un dato **que el proveedor
+>    declarado no usa** nunca vuelve invalida a la configuracion.
+> 3. Invalida y fallida se distinguen por **cuando**: con configuracion invalida la
+>    corrida **no emite ni una sola consulta** al juez; un dato presente que el
+>    proveedor rechaza recien al consultarlo —credencial vencida, servicio caido,
+>    cuota agotada— no es configuracion invalida sino falla del juez
+>    ([F-QINST-R007](#F-QINST-R007)).
+
+<details><summary>Detalle</summary>
+
+**El defecto que la motiva es silencioso, y por eso es grave.** Hasta esta regla, la
+unica configuracion que dejaba al juez disponible era la que traia direccion de
+servicio **y** credencial. El resto del sistema, en cambio, ya trabaja desde hace
+tiempo con proveedores que se autentican con la sesion local del usuario —una
+suscripcion ya iniciada en su maquina— y que por lo tanto **no tienen** direccion ni
+credencial que configurar ([F-LAGEN-R008](../2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md#F-LAGEN-R008),
+[F-LAGEN-R009](../2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md#F-LAGEN-R009)).
+Con la configuracion real desde la que se opera el sistema, el juez se reportaria
+**permanentemente no disponible**: la auditoria terminaria bien, sin un solo error
+visible, y la cobertura declararia los 11.487 ejercicios sin veredicto corrida tras
+corrida ([F-QINST-R005](#F-QINST-R005)). La feature entera quedaria inerte por una
+razon que nadie ve. Un analisis que nunca puntua nada y nunca se queja es
+indistinguible de uno que no existe.
+
+**Que exige cada clase de proveedor.** La tabla es ilustrativa —enumera las clases
+que el sistema sabe consultar hoy— y no es el enunciado; lo verificable es la
+invariante 2: se exige lo que el proveedor declarado necesita, y nada mas.
+
+| Clase de proveedor | Como se lo consulta | Datos que exige | Datos que no le aplican |
+|---|---|---|---|
+| Se autentica contra un servicio remoto con una credencial | Por su direccion de servicio | La direccion del servicio | — |
+| Se autentica con la sesion local del usuario | Por la herramienta que el proveedor deja instalada en la maquina | Ninguno propio de la conexion | Direccion de servicio y credencial: **no existen** para esta clase, y exigirlas es exactamente el defecto que esta regla corrige |
+
+**Por que la credencial no entra en la lista de exigidos.** Porque su ausencia no
+hace imposible la consulta: hay servicios que no piden ninguna. Si falta y el
+servicio la exige, la consulta se emite, el servicio la rechaza, y ese rechazo es
+falla del juez ([F-QINST-R007](#F-QINST-R007)) — se cuenta como fallo en la
+cobertura y la corrida siguiente vuelve a intentarlo. Ese desenlace es **mas**
+visible que declarar al juez no disponible, no menos: el fallo aparece contado en el
+informe en lugar de disolverse en un "pendiente" indistinguible del que produce el
+tope de presupuesto ([F-QINST-R006](#F-QINST-R006)).
+
+**Lo que esta regla NO relaja.** La garantia de [F-QINST-R007](#F-QINST-R007) —una
+configuracion rota deja al juez no disponible sin tumbar la auditoria— sigue intacta
+en su totalidad: sigue habiendo configuraciones invalidas (invariante 2) y siguen
+produciendo exactamente el mismo desenlace. Lo unico que cambia es **cual** es el
+conjunto de configuraciones invalidas: deja de ser "las que no traen direccion y
+credencial" y pasa a ser "las que no traen lo que su proveedor necesita". Tampoco
+cambia como se informa el resultado: la cobertura declara los ejercicios sin
+veredicto igual que siempre ([F-QINST-R005](#F-QINST-R005)).
+
+**Por que regla propia y no una extension de R007.** [F-QINST-R007](#F-QINST-R007)
+responde "que pasa con la auditoria cuando el juez no esta"; esta responde "cuando
+se considera que el juez no esta". Son preguntas separables: R007 se rompe si una
+falla del juez aborta la auditoria, y esta se rompe si una configuracion legitima se
+declara invalida — dos defectos distintos, con dos observaciones distintas. Ademas,
+enunciarla dentro de R007 obligaria a que el enunciado de la resiliencia cargara con
+el detalle de que exige cada clase de proveedor, que no tiene nada que ver con la
+resiliencia.
+
+**Criterio de aceptacion**: (a) con una configuracion que declara un proveedor que se
+autentica con la sesion local del usuario y **no** trae direccion de servicio ni
+credencial, la corrida consulta al juez y el informe declara ejercicios con veredicto
+—no cero—; (b) con una configuracion que declara un proveedor que se consulta por
+direccion de servicio y **omite la direccion**, la corrida no emite ninguna consulta,
+la auditoria termina igual y los ejercicios quedan sin puntaje; (c) con una
+configuracion que declara un proveedor que el sistema no sabe consultar, el desenlace
+es el mismo que en (b); (d) la ausencia de credencial, por si sola, no produce el
+desenlace de (b): la consulta se emite.
+
+**Error**: "El juez de consigna se declaro no disponible por falta de '{dato}', que el proveedor '{proveedor}' no utiliza" (condicion prohibida) / "La configuracion del juez de consigna declara el proveedor '{proveedor}' y no puede consultarse: falta '{dato}'"
+
+</details>
+
+<a id="F-QINST-R017"></a>
+### Rule[F-QINST-R017] - El incumplimiento detectado se convierte en trabajo: cada ejercicio que incumple entra al plan como tarea
+**Severity**: critical | **Validation**: VALIDATED
+
+> Todo ejercicio al que este analisis le asigno un puntaje **menor al maximo** —es
+> decir, todo ejercicio con veredicto de incumplimiento— produce una **tarea** en el
+> plan de refinamiento que se genere a partir de ese informe, bajo un tipo de
+> diagnostico propio de este analisis y apuntando al ejercicio. Esas tareas se
+> priorizan, se listan y se filtran por su tipo igual que las de cualquier otro
+> analisis. Lo que esta regla **no** exige es que exista una correccion automatica
+> para ellas.
+
+<details><summary>Detalle</summary>
+
+Sin esta regla el analisis termina en el informe y ahi se detiene. El plan de
+refinamiento es la unica lista de trabajo del sistema —lo que se prioriza, se
+recorre, se revisa y se marca como hecho—, asi que un problema que no llega al plan
+no llega a nadie: el operador lee que hay ejercicios que incumplen su consigna y no
+tiene por donde agarrarlos. Es el mismo salto que ya dieron los demas analisis, que
+no se limitan a puntuar sino que alimentan el plan.
+
+**Que ejercicios generan tarea y cuales no.** El criterio no es propio de este
+analisis: en el plan, un nodo genera tarea cuando el puntaje de un analisis sobre el
+es menor al maximo, y no la genera cuando es maximo
+([F-RCLA-R001](../2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md#F-RCLA-R001)).
+Proyectado sobre la escala de [F-QINST-R002](#F-QINST-R002):
+
+| Estado del ejercicio en este analisis | Puntaje en el informe | Genera tarea |
+|---|---|---|
+| Veredicto de cumplimiento (severidad ninguna) | 1,0 | No: no hay nada que corregir |
+| Veredicto de incumplimiento menor | 0,6 | Si |
+| Veredicto de incumplimiento mayor | 0,3 | Si |
+| Veredicto de incumplimiento critico | 0,0 | Si |
+| Pendiente por tope de presupuesto | sin puntaje | No |
+| Fallido: el juez no llego a pronunciarse | sin puntaje | No |
+
+**Por que los pendientes y los fallidos no generan tarea, y por que eso es lo
+correcto.** Esos ejercicios no tienen puntaje en el informe
+([F-QINST-R004](#F-QINST-R004)): nadie los juzgo. Una tarea sobre un ejercicio no
+juzgado seria **trabajo inventado** — le pediria a alguien que corrija un
+incumplimiento que nadie afirmo que exista, y contaminaria la unica lista que el
+operador usa para decidir que hacer a continuacion. Es la misma mentira que
+[F-QINST-R004](#F-QINST-R004) evita en los promedios, trasladada al plan.
+
+Lo que **si** existe para esos ejercicios es la declaracion explicita de que quedaron
+sin mirar: la cobertura del informe los cuenta como pendientes o fallidos
+([F-QINST-R005](#F-QINST-R005)). Ese es su lugar y es suficiente, porque lo que
+corresponde hacer con ellos no es corregirlos sino **volver a evaluarlos**, y eso lo
+hace la corrida siguiente sin que nadie tenga que anotarlo. Un plan que dijera "0
+tareas de consigna" sobre un curso con 11.000 ejercicios pendientes seria enganoso
+solo si se leyera sin la cobertura; leido junto a ella, dice exactamente lo que
+corresponde: de lo que se juzgo, esto es lo que hay que arreglar.
+
+**Que NO exige esta regla: la correccion automatica.** La regla se cumple con la
+tarea **creada, priorizada y visible**. Producir una propuesta que reescriba el
+ejercicio para que cumpla su consigna es alcance **futuro** y esta deliberadamente
+afuera: es un trabajo grande y separable, y dejarlo pendiente no vuelve incompleta a
+esta feature. El sistema ya tiene precedente de tipos de diagnostico accionables
+**como informacion** antes de serlo como correccion: las tareas de distribucion de
+frecuencia lexica y las de recurrencia de lemas se generan, se priorizan y se listan
+igual que las demas, y pedirles una revision produce una propuesta que no cambia nada
+([F-REVBYP-R004](../2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md#F-REVBYP-R004)).
+Este analisis entra por esa misma puerta: primero el problema se ve y se prioriza,
+despues se automatiza su correccion.
+
+Cuando llegue esa correccion, no va a partir de cero: el diagnostico de cada
+ejercicio ya deja registradas las violaciones con su restriccion incumplida y su
+evidencia textual ([F-QINST-R003](#F-QINST-R003)), que es justamente lo que una
+propuesta necesita para saber que corregir y donde.
+
+**Criterio de aceptacion**: dado un informe en el que N ejercicios tienen veredicto de
+incumplimiento —puntaje de consigna menor al maximo—, el plan generado a partir de
+ese informe contiene exactamente N tareas de este tipo de diagnostico, una por
+ejercicio y apuntando al ejercicio; pedir las tareas filtrando por este tipo de
+diagnostico las devuelve
+([F-CLIRV-R008](../2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md#F-CLIRV-R008));
+y ni los ejercicios que cumplen, ni los pendientes, ni los fallidos aportan ninguna.
+
+**Error**: "El informe declara {n} ejercicios con incumplimiento de consigna y el plan generado a partir de el no contiene ninguna tarea de ese tipo" (condicion prohibida: un incumplimiento con puntaje en el informe no debe quedar fuera del plan) / "El plan contiene una tarea de consigna para el ejercicio '{quizId}', que no tiene puntaje de consigna en el informe"
+
+</details>
+
 ## Contexto
 
 La auditoria de ContentAudit mide hoy propiedades **calculables** del contenido:
@@ -832,10 +1011,16 @@ todavia no se miraron".
     fallidos, version consultada en la corrida y recuento de veredictos por version
     de procedencia.
   - Separacion entre falla transitoria y veredicto negativo legitimo.
+  - Las clases de proveedor con las que el juez se puede configurar —incluidas las
+    que se autentican con la sesion local del usuario, sin direccion de servicio ni
+    credencial— y que datos debe traer una configuracion, segun el proveedor que
+    declara, para que el juez se considere disponible.
   - Identidad del veredicto por contenido juzgado; la version del juez como
     procedencia registrada y declarada, y tratamiento de la version que no pudo
     derivarse de la definicion del juez.
   - Re-evaluacion explicita, unico mecanismo por el que un veredicto se rehace.
+  - La incorporacion de los ejercicios que incumplen al plan de refinamiento como
+    tareas priorizables, listables y filtrables por su tipo de diagnostico.
 - **Fuera de alcance**:
   - **El criterio con que el juez decide.** Que revisa, como pondera y como
     redacta sus violaciones ya esta definido y probado en el juez; este
@@ -843,9 +1028,10 @@ todavia no se miraron".
   - **El mecanismo general de registro, reuso, resistencia a interrupcion e
     historia de versiones**, que especifica
     [FEAT-EVCOST](../2026-07-29.03_evaluaciones-costosas-reutilizables/REQUIREMENT.md).
-  - **Proponer o aplicar correcciones** a los ejercicios que incumplen. El
+  - **Proponer o aplicar correcciones** a los ejercicios que incumplen. La tarea del
+    plan se genera, se prioriza y se ve ([F-QINST-R017](#F-QINST-R017)), y el
     diagnostico ([F-QINST-R003](#F-QINST-R003)) deja la informacion necesaria para
-    que una feature posterior lo haga; esa feature no es esta.
+    que una feature posterior produzca la propuesta; esa feature no es esta.
   - **Estadisticas agregadas por nivel CEFR** de cumplimiento de consigna.
   - **La forma de completar la representacion del ejercicio** que el juez necesita;
     ver [DOUBT-QUIZ-COMPLETO](#DOUBT-QUIZ-COMPLETO).
@@ -1117,6 +1303,38 @@ el costo no aparezca por sorpresa, y un defecto sin tope contradice eso aunque e
 usuario pueda acotarlo despues. El valor exacto conviene ajustarlo tras medir
 cuanto tarda una consulta real al juez.
 
+<a id="DOUBT-PROVEEDOR-DEL-JUEZ"></a>
+### Doubt[DOUBT-PROVEEDOR-DEL-JUEZ] - Que proveedor se usa cuando la configuracion no declara ninguno?
+**Status**: OPEN
+
+[F-QINST-R016](#F-QINST-R016) juzga la validez de la configuracion **contra el
+proveedor que declara**, y cuenta como invalida a la que no permite determinar cual
+usar. Falta decidir si no declararlo es, en si mismo, invalido.
+
+- [ ] Opcion A: **Se aplica el mismo proveedor por defecto que el resto del sistema
+  ya aplica** cuando el operador no lo declara. Una maquina configurada de la forma
+  habitual obtiene veredictos sin configuracion adicional, que es lo que hace cierta
+  la ejecucion por omision de [F-QINST-R001](#F-QINST-R001). A cambio, una
+  instalacion que solo trae direccion de servicio y credencial —sin declarar
+  proveedor— se enruta al proveedor por defecto y no al que su operador imaginaba.
+- [ ] Opcion B: **No declarar proveedor es configuracion invalida** y el juez queda
+  no disponible. Obliga a que la eleccion sea explicita y no adivina nada; a cambio,
+  una instalacion nueva arranca con el analisis inerte hasta que alguien lo
+  configure, que es el sintoma que esta regla vino a eliminar.
+- [ ] Opcion C (**descartada**): **inferir el proveedor de los datos presentes** —si
+  hay direccion de servicio, remoto; si no, sesion local—. Es adivinar: una direccion
+  olvidada de una prueba anterior enrutaria la corrida entera al proveedor
+  equivocado, sin aviso, y volveria a producir un defecto silencioso de la misma
+  familia que el que motivo la regla.
+
+**Answer**: Pendiente. Se especifica la **Opcion A** [ASSUMPTION] por coherencia con
+como ya se resuelve el proveedor en el resto del sistema
+([F-LAGEN-R008](../2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md#F-LAGEN-R008)):
+un solo criterio de resolucion para todos los consumidores de modelos es preferible a
+uno propio de este analisis. Cualquiera sea la eleccion, no cambia el enunciado de
+[F-QINST-R016](#F-QINST-R016): cambia unicamente si "no declara proveedor" cae del
+lado valido o del invalido de su invariante 2.
+
 <a id="DOUBT-ALCANCE-EJERCICIOS"></a>
 ### Doubt[DOUBT-ALCANCE-EJERCICIOS] - Que ejercicios entran en el analisis?
 **Status**: RESOLVED
@@ -1195,7 +1413,23 @@ manos de la arquitectura.
   por el sistema, y que ese es el nombre con el que se lo direcciona. Es el
   precedente del que [F-QINST-R015](#F-QINST-R015) es un caso: aca la coincidencia
   entre el nombre publicado y el nombre operable deja de ser un hecho y pasa a ser
-  una exigencia. Citada por [F-QINST-R015](#F-QINST-R015).
+  una exigencia. Define ademas el filtrado de las tareas del plan por su tipo de
+  diagnostico. Citada por [F-QINST-R015](#F-QINST-R015) y
+  [F-QINST-R017](#F-QINST-R017).
+- **FEAT-RCLA** — Establece el criterio con el que un puntaje de un analisis sobre un
+  nodo se convierte en tarea del plan: genera tarea el nodo cuyo puntaje es menor al
+  maximo, y ninguno mas. Citada por [F-QINST-R017](#F-QINST-R017).
+- **FEAT-REVBYP** — Establece que un tipo de diagnostico sin correccion dedicada cae
+  a una revision de identidad: sus tareas se generan, se priorizan y se listan igual
+  que las demas, aunque pedirles una revision no cambie nada. Es el precedente de que
+  un diagnostico sea accionable como informacion antes de serlo como correccion
+  automatica. Citada por [F-QINST-R017](#F-QINST-R017).
+- **FEAT-LAGEN** — Establece que el operador declara el proveedor de modelo como
+  parte de su configuracion y que ese proveedor identifica quien produjo cada
+  resultado; es el precedente de que el sistema ya trabaja con proveedores que se
+  autentican con la sesion local del usuario y no llevan direccion de servicio ni
+  credencial. Citada por [F-QINST-R016](#F-QINST-R016) y
+  [DOUBT-PROVEEDOR-DEL-JUEZ](#DOUBT-PROVEEDOR-DEL-JUEZ).
 - **FEAT-QSENT** — Define las partes de la oracion de un ejercicio (texto fijo y
   hueco) y las opciones aceptadas de cada hueco, que son el contenido que el juez
   necesita completo. Citada por [DOUBT-QUIZ-COMPLETO](#DOUBT-QUIZ-COMPLETO).

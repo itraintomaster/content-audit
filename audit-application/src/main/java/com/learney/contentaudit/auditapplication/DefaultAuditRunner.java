@@ -125,6 +125,52 @@ public DefaultAuditRunner(CourseRepository courseRepository, CourseToAuditableMa
         }
     }
 
+    /**
+     * F-QINST-R005/R003: the detailed view is how the operator sees this
+     * analysis's coverage and evidence, so it has to be able to run an
+     * evaluation analyzer — the old overload only ever knew the classic
+     * ContentAnalyzers and silently ran everything *except* the one asked for.
+     *
+     * <p>F-QINST-R006/R015: the run policy travels through the request, so
+     * {@code --instruction-budget} means the same here as in a normal run.
+     * Resolving the name from {@code includedAnalyzers} (rather than a separate
+     * String parameter) is deliberate: two identifications of the same analyzer
+     * that nothing forces to agree is exactly what produced the five silent
+     * defects this feature already paid for.
+     */
+    @Override
+    public AuditNode runDetailedAudit(Path coursePath, AuditRunRequest request) {
+        Set<String> included = request != null ? request.getIncludedAnalyzers() : null;
+        Set<String> excluded = request != null ? request.getExcludedAnalyzers() : null;
+
+        String analyzerName = (included != null && included.size() == 1)
+                ? included.iterator().next()
+                : null;
+
+        // F-QINST-R011: excluded means real absence. Asking to detail an analyzer
+        // that was also excluded must not build it -- exclusion wins.
+        if (analyzerName != null && (excluded == null || !excluded.contains(analyzerName))) {
+            EvaluationAnalyzerFactory evaluationFactory = evaluationAnalyzerFactories.stream()
+                    .filter(f -> analyzerName.equals(f.analyzerName()))
+                    .findFirst()
+                    .orElse(null);
+
+            if (evaluationFactory != null) {
+                // The tree still comes from the base engine: an evaluation analyzer
+                // decorates nodes, it does not build them.
+                AuditReport report = auditEngine.runAudit(loadCourse(coursePath));
+                Map<String, EvaluationRunPolicy> policies =
+                        request.getAnalyzerPolicies();
+                EvaluationRunPolicy policy =
+                        policies != null ? policies.get(analyzerName) : null;
+                applyEvaluationAnalyzer(report.getRoot(), evaluationFactory.create(policy));
+                return report.getRoot();
+            }
+        }
+
+        return runDetailedAudit(coursePath, analyzerName);
+    }
+
     @Override
     public AuditNode runDetailedAudit(Path coursePath, String analyzerName) {
         AuditableCourse auditableCourse = loadCourse(coursePath);

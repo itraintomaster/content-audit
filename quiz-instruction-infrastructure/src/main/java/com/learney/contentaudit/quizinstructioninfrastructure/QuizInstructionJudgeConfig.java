@@ -20,17 +20,20 @@ public class QuizInstructionJudgeConfig {
 
     private String agentName;
 
+    private String providerName;
+
     public QuizInstructionJudgeConfig() {
     }
 
     public QuizInstructionJudgeConfig(String baseUrl, String apiKey, String modelName,
-            Double temperature, Integer timeoutSeconds, String agentName) {
+            Double temperature, Integer timeoutSeconds, String agentName, String providerName) {
         this.baseUrl = baseUrl;
         this.apiKey = apiKey;
         this.modelName = modelName;
         this.temperature = temperature;
         this.timeoutSeconds = timeoutSeconds;
         this.agentName = agentName;
+        this.providerName = providerName;
     }
 
     public String getBaseUrl() {
@@ -81,6 +84,14 @@ public class QuizInstructionJudgeConfig {
         this.agentName = agentName;
     }
 
+    public String getProviderName() {
+        return this.providerName;
+    }
+
+    public void setProviderName(String providerName) {
+        this.providerName = providerName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -91,11 +102,12 @@ public class QuizInstructionJudgeConfig {
                     && Objects.equals(this.modelName, that.modelName)
                     && Objects.equals(this.temperature, that.temperature)
                     && Objects.equals(this.timeoutSeconds, that.timeoutSeconds)
-                    && Objects.equals(this.agentName, that.agentName);
+                    && Objects.equals(this.agentName, that.agentName)
+                    && Objects.equals(this.providerName, that.providerName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(baseUrl, apiKey, modelName, temperature, timeoutSeconds, agentName);
+        return Objects.hash(baseUrl, apiKey, modelName, temperature, timeoutSeconds, agentName, providerName);
     }
 }

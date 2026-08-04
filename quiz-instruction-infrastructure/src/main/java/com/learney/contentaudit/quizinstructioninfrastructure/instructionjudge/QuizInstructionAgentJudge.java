@@ -14,9 +14,7 @@ import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJud
 import com.sentinel.agents.framework.state.ArtifactPointer;
 import com.sentinel.agents.framework.state.RunState;
 import dev.langchain4j.model.chat.ChatModel;
-import dev.langchain4j.model.openai.OpenAiChatModel;
 import java.nio.file.Files;
-import java.time.Duration;
 import java.util.Map;
 import javax.annotation.processing.Generated;
 
@@ -38,11 +36,6 @@ class QuizInstructionAgentJudge implements Evaluator {
      * evaluation ledger as an emitted result.
      */
     private static final String JUDGE_OUTPUT_INVALID_CODE = "JUDGE_OUTPUT_INVALID";
-
-    private static final double DEFAULT_TEMPERATURE = 0.0;
-
-    private static final int DEFAULT_TIMEOUT_SECONDS = 60;
-
     private final QuizInstructionJudgeConfig config;
 
     private final AgentGraphRunner agentGraphRunner;
@@ -51,13 +44,17 @@ class QuizInstructionAgentJudge implements Evaluator {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public QuizInstructionAgentJudge(QuizInstructionJudgeConfig config,
-            AgentGraphRunner agentGraphRunner,
-            QuizInstructionJudgeVersionResolver versionResolver) {
-        this.config = config;
-        this.agentGraphRunner = agentGraphRunner;
-        this.versionResolver = versionResolver;
-    }
+private final JudgeChatModelFactory chatModelFactory;
+
+private final JudgeProviderResolved provider;
+
+public QuizInstructionAgentJudge(QuizInstructionJudgeConfig config, AgentGraphRunner agentGraphRunner, QuizInstructionJudgeVersionResolver versionResolver, JudgeChatModelFactory chatModelFactory, JudgeProviderResolved provider) {
+    this.config = config;
+    this.agentGraphRunner = agentGraphRunner;
+    this.versionResolver = versionResolver;
+    this.chatModelFactory = chatModelFactory;
+    this.provider = provider;
+}
 
     @Override
     public String evaluatorId() {
@@ -67,7 +64,7 @@ class QuizInstructionAgentJudge implements Evaluator {
 
     @Override
     public Optional<String> evaluatorVersion() {
-        return versionResolver.resolve(config);
+        return versionResolver.resolve(config, provider);
     }
 
     @Override
@@ -133,15 +130,13 @@ class QuizInstructionAgentJudge implements Evaluator {
         return false;
     }
 
-    private static ChatModel buildChatModel(QuizInstructionJudgeConfig config) {
-        Double temperature = config.getTemperature();
-        Integer timeoutSeconds = config.getTimeoutSeconds();
-        return OpenAiChatModel.builder()
-                .baseUrl(config.getBaseUrl())
-                .apiKey(config.getApiKey())
-                .modelName(config.getModelName())
-                .temperature(temperature != null ? temperature : DEFAULT_TEMPERATURE)
-                .timeout(Duration.ofSeconds(timeoutSeconds != null ? timeoutSeconds : DEFAULT_TIMEOUT_SECONDS))
-                .build();
+    /**
+     * F-QINST-R016: el modelo se construye por la via que la clase del proveedor
+     * resuelto determina, no siempre como cliente compatible OpenAI. Sigue siendo
+     * perezoso: una credencial vencida o un servicio caido aparecen aca como
+     * EVALUATOR_UNAVAILABLE, contados en la cobertura, y no al armar la auditoria.
+     */
+    private ChatModel buildChatModel(QuizInstructionJudgeConfig config) {
+        return chatModelFactory.create(config, provider);
     }
 }

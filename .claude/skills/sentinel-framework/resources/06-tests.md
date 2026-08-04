@@ -229,6 +229,8 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should not include LEMMA_ABSENCE tasks targeting MILESTONE or COURSE in the refinement plan → FEAT-RCLA/F-RCLA-R001
 - should not generate LEMMA_ABSENCE task for quiz with lemma-absence score equal to 1.0 → FEAT-RCLA/F-RCLA-R001
 - should still generate COCA_BUCKETS and LEMMA_RECURRENCE tasks at MILESTONE and COURSE level after re-routing → FEAT-RCLA/F-RCLA-R001
+- should include one QUIZ_INSTRUCTION task targeting the quiz for each quiz whose quiz-instruction score is below 1.0 → FEAT-QINST/F-QINST-R017
+- should not include any QUIZ_INSTRUCTION task for a quiz that complies with its instruction nor for a quiz with no quiz-instruction score at all → FEAT-QINST/F-QINST-R017
 
 ### KnowledgeTitleContextResolver (refiner-domain)
 

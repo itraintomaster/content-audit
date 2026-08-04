@@ -1026,6 +1026,7 @@ Methods:
 | LEMMA_RECURRENCE | `null` |
 | KNOWLEDGE_TITLE_LENGTH | `null` |
 | KNOWLEDGE_INSTRUCTIONS_LENGTH | `null` |
+| QUIZ_INSTRUCTION | `null` |
 
 ### RefinementTaskStatus (`enum`)
 

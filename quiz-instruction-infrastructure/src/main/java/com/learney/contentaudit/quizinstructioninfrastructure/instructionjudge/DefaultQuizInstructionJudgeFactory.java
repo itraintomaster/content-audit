@@ -20,30 +20,51 @@ public class DefaultQuizInstructionJudgeFactory implements QuizInstructionJudgeF
 
     private static final String DEFAULT_AGENT_NAME = "quiz-instruction-validator";
 
+    private final QuizInstructionJudgeProviderResolver providerResolver =
+            new DefaultQuizInstructionJudgeProviderResolver();
+
+    private final JudgeChatModelFactory chatModelFactory =
+            new SentinelAgentsJudgeChatModelFactory();
+
     @Override
     public Evaluator create(QuizInstructionJudgeConfig config, AgentGraphRunner agentGraphRunner,
             AgentDefinitionLocator agentDefinitionLocator) {
-        // F-QINST-R007: an absent or invalid judge configuration must never fail
-        // audit bootstrap. Instead of throwing here (or deferring the problem to a
-        // ChatModel built eagerly), we hand back an evaluator that always reports
-        // itself unavailable and never touches the agent runtime.
-        if (!isUsableConfig(config)) {
-            return new UnavailableQuizInstructionJudge(resolveAgentName(config));
+        // F-QINST-R016: la validez de la configuracion se juzga contra el proveedor
+        // que ella declara, en un solo lugar. Antes se exigia siempre direccion de
+        // servicio y credencial, con lo cual un proveedor que se autentica con la
+        // sesion local del usuario -- el que el resto del sistema usa -- dejaba al
+        // juez permanentemente no disponible sin un solo error visible.
+        JudgeProviderResolution resolution = providerResolver.resolve(config);
+
+        // F-QINST-R007: una configuracion invalida nunca tumba el arranque de la
+        // auditoria. Se devuelve un evaluador que se declara no disponible y jamas
+        // toca el runtime del agente -- y como QuizInstructionAgentJudge solo se
+        // puede construir con un JudgeProviderResolved, la invariante 3 de R016
+        // (con configuracion invalida no se emite ni una sola consulta) queda
+        // garantizada por construccion.
+        if (resolution instanceof JudgeProviderRejected rejected) {
+            return new UnavailableQuizInstructionJudge(resolveAgentName(config),
+                    describeRejection(rejected));
         }
 
+        JudgeProviderResolved provider = (JudgeProviderResolved) resolution;
         return new QuizInstructionAgentJudge(config, agentGraphRunner,
-                new DefaultQuizInstructionJudgeVersionResolver(agentDefinitionLocator));
+                new DefaultQuizInstructionJudgeVersionResolver(agentDefinitionLocator),
+                chatModelFactory, provider);
     }
 
-    private static boolean isUsableConfig(QuizInstructionJudgeConfig config) {
-        return config != null
-                && isNonBlank(config.getBaseUrl())
-                && isNonBlank(config.getApiKey())
-                && isNonBlank(config.getModelName());
-    }
-
-    private static boolean isNonBlank(String value) {
-        return value != null && !value.isBlank();
+    /**
+     * F-QINST-R016: el mensaje dice cual es el dato que falta y que proveedor lo
+     * exige, en lugar de "configuracion invalida" -- que es lo que volvia
+     * indiagnosticable al juez permanentemente no disponible.
+     */
+    private static String describeRejection(JudgeProviderRejected rejected) {
+        if (rejected.getKind() == JudgeProviderRejectionKind.UNSUPPORTED_PROVIDER) {
+            return "El juez de consigna no esta disponible: el proveedor '"
+                    + rejected.getProviderName() + "' no es uno que el sistema sepa consultar";
+        }
+        return "El juez de consigna no esta disponible: falta '" + rejected.getMissingInput()
+                + "', que el proveedor '" + rejected.getProviderName() + "' exige";
     }
 
     private static String resolveAgentName(QuizInstructionJudgeConfig config) {
@@ -59,8 +80,11 @@ public class DefaultQuizInstructionJudgeFactory implements QuizInstructionJudgeF
 
         private final String agentName;
 
-        private UnavailableQuizInstructionJudge(String agentName) {
+        private final String reason;
+
+        private UnavailableQuizInstructionJudge(String agentName, String reason) {
             this.agentName = agentName;
+            this.reason = reason;
         }
 
         @Override
@@ -79,8 +103,7 @@ public class DefaultQuizInstructionJudgeFactory implements QuizInstructionJudgeF
 
         @Override
         public EvaluationOutcome evaluate(EvaluationSubject subject) {
-            return new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE,
-                    "El juez de consigna no esta disponible: configuracion ausente o invalida");
+            return new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, reason);
         }
     }
 }

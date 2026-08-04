@@ -4,21 +4,37 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyMap;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.when;
 
+import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionFound;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentDefinitionLocator;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunner;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunnerConfig;
 import com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentDefinitionLocatorFactory;
 import com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentGraphRunnerFactory;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationFailureKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
+import com.sentinel.agents.framework.state.ArtifactPointer;
+import com.sentinel.agents.framework.state.RunState;
+import com.sentinel.agents.framework.state.RunStatus;
+import dev.langchain4j.model.chat.ChatModel;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Instant;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.annotation.processing.Generated;
@@ -33,6 +49,54 @@ import org.junit.jupiter.api.io.TempDir;
 )
 public class DefaultQuizInstructionJudgeFactoryTest {
 
+    // F-QINST-R016: veredicto de cumplimiento generico, reutilizado por los escenarios
+    // en que la configuracion es valida y lo unico que importa es que la corrida SI
+    // haya consultado al juez y haya recibido un veredicto emitido.
+    private static final String COMPLIANT_VERDICT_JSON = """
+            {
+              "schemaVersion": "1.0",
+              "quizId": "quiz-1",
+              "followsInstructions": true,
+              "confidence": 0.95,
+              "severity": "none",
+              "reason": "El ejercicio respeta todas las restricciones de la consigna.",
+              "violations": [],
+              "checkedConstraints": [
+                { "category": "answer_reconstruction", "constraint": "Reconstruir todas las respuestas aceptadas", "status": "passed", "evidence": "will stay" },
+                { "category": "grammar", "constraint": "Gramatica y naturalidad", "status": "passed", "evidence": "will stay es gramatical" },
+                { "category": "meaning", "constraint": "Significado y traduccion", "status": "passed", "evidence": "Coincide con la traduccion" },
+                { "category": "solvability", "constraint": "Consigna y cues resolubles", "status": "passed", "evidence": "El hueco es inferible" },
+                { "category": "explicit_instruction", "constraint": "Utiliza short forms", "status": "passed", "evidence": "will stay" }
+              ]
+            }
+            """;
+
+    private RunState runStateWithVerdictArtifact(String verdictJson) throws IOException {
+        Path artifactFile = Files.createTempFile("quiz-instruction-verdict", ".json");
+        artifactFile.toFile().deleteOnExit();
+        Files.writeString(artifactFile, verdictJson);
+        ArtifactPointer pointer = new ArtifactPointer(
+                "quizInstructionVerdict",
+                "quizInstructionVerdict",
+                artifactFile,
+                Instant.now(),
+                "emit",
+                "test-content-hash");
+        return RunState.empty()
+                .withRunStatus(RunStatus.COMPLETED)
+                .putArtifact("quizInstructionVerdict", pointer);
+    }
+
+    private EvaluationSubject subjectFor(String quizId) {
+        Map<String, String> content = new LinkedHashMap<>();
+        content.put("cefrLevel", "A2");
+        content.put("topic", "Daily routines");
+        content.put("title", "Future with will");
+        content.put("instructions", "Fill in the blank using short forms.");
+        content.put("quiz", "{\"id\":\"" + quizId + "\"}");
+        return new EvaluationSubject(quizId, content);
+    }
+
     @Test
     @DisplayName("should yield an evaluator that reports itself unavailable when the judge configuration is missing or invalid, instead of failing the audit")
     @Tag("FEAT-QINST")
@@ -42,8 +106,14 @@ public class DefaultQuizInstructionJudgeFactoryTest {
         DefaultQuizInstructionJudgeFactory factory = new DefaultQuizInstructionJudgeFactory();
         AgentGraphRunner agentGraphRunner = mock(AgentGraphRunner.class);
         AgentDefinitionLocator agentDefinitionLocator = mock(AgentDefinitionLocator.class);
-        QuizInstructionJudgeConfig missingConfig =
-                new QuizInstructionJudgeConfig(null, null, null, null, null, null);
+        // F-QINST-R016: "invalida" se juzga contra el proveedor declarado. Esta
+        // configuracion declara un proveedor que se consulta por direccion de
+        // servicio y omite la direccion, que es lo que le impide dirigir la
+        // consulta. Una configuracion enteramente vacia ya NO sirve como fixture de
+        // este escenario: sin proveedor declarado se resuelve al mismo defecto que
+        // el resto del sistema, y eso es valido.
+        QuizInstructionJudgeConfig missingConfig = new QuizInstructionJudgeConfig(
+                null, null, "gpt-4o-mini", null, null, null, "some-remote-service");
 
         Evaluator evaluator = assertDoesNotThrow(
                 () -> factory.create(missingConfig, agentGraphRunner, agentDefinitionLocator),
@@ -80,7 +150,7 @@ public class DefaultQuizInstructionJudgeFactoryTest {
 
         QuizInstructionJudgeConfig config = new QuizInstructionJudgeConfig(
                 "http://localhost:1234/v1", "test-api-key", "gpt-4o-mini", 0.0, 30,
-                "quiz-instruction-validator");
+                "quiz-instruction-validator", "openai");
 
         DefaultQuizInstructionJudgeFactory factory = new DefaultQuizInstructionJudgeFactory();
         Evaluator evaluator = factory.create(config, realAgentGraphRunner, realAgentDefinitionLocator);
@@ -99,5 +169,147 @@ public class DefaultQuizInstructionJudgeFactoryTest {
 
         EvaluationNotEmitted notEmitted = assertInstanceOf(EvaluationNotEmitted.class, outcome);
         assertEquals(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, notEmitted.getKind());
+    }
+
+    @Test
+    @DisplayName("should consult the judge and emit its verdict when the configuration declares a provider that authenticates with the local user session and carries neither service address nor credential")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R016")
+    public void shouldConsultTheJudgeAndEmitItsVerdictWhenTheConfigurationDeclaresAProviderThatAuthenticatesWithTheLocalUserSessionAndCarriesNeitherServiceAddressNorCredential(
+            @TempDir Path agentDefinitionDir) throws IOException {
+        // F-QINST-R016 invariante 1: "claude-cli" se autentica con la sesion local del
+        // usuario y por eso no tiene direccion de servicio ni credencial que
+        // configurar; la configuracion es igualmente valida y la corrida SI debe
+        // consultar al juez.
+        QuizInstructionJudgeConfig config = new QuizInstructionJudgeConfig(
+                null, null, "claude-3-5-sonnet-20241022", null, null, null, "claude-cli");
+
+        AgentGraphRunner agentGraphRunner = mock(AgentGraphRunner.class);
+        when(agentGraphRunner.run(anyString(), anyMap(), any(ChatModel.class), anyMap()))
+                .thenReturn(runStateWithVerdictArtifact(COMPLIANT_VERDICT_JSON));
+
+        AgentDefinitionLocator agentDefinitionLocator = mock(AgentDefinitionLocator.class);
+        when(agentDefinitionLocator.locate(anyString()))
+                .thenReturn(new AgentDefinitionFound(agentDefinitionDir));
+
+        DefaultQuizInstructionJudgeFactory factory = new DefaultQuizInstructionJudgeFactory();
+        Evaluator evaluator = factory.create(config, agentGraphRunner, agentDefinitionLocator);
+
+        EvaluationOutcome outcome = assertDoesNotThrow(() -> evaluator.evaluate(subjectFor("quiz-1")),
+                "F-QINST-R016 invariante 1: una configuracion de sesion local valida no puede tumbar la evaluacion");
+
+        verify(agentGraphRunner, times(1))
+                .run(anyString(), anyMap(), any(ChatModel.class), anyMap());
+        EvaluationEmitted emitted = assertInstanceOf(EvaluationEmitted.class, outcome,
+                "F-QINST-R016 invariante 1: sin direccion de servicio ni credencial, un proveedor de sesion "
+                        + "local sigue siendo una configuracion valida y el juez debe quedar disponible y "
+                        + "consultarse");
+        assertNotNull(emitted.getPayload());
+    }
+
+    @Test
+    @DisplayName("should not emit a single query to the judge, and should name the missing service address and the provider that requires it, when the configuration declares a provider consulted by service address and omits that address")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R016")
+    public void shouldNotEmitASingleQueryToTheJudgeAndShouldNameTheMissingServiceAddressAndTheProviderThatRequiresItWhenTheConfigurationDeclaresAProviderConsultedByServiceAddressAndOmitsThatAddress() {
+        // F-QINST-R016 invariante 2: "some-remote-service" se consulta por direccion de
+        // servicio, y esta configuracion omite justamente esa direccion. La invariante 3
+        // ("ni una sola consulta") no se puede leer del desenlace -- EVALUATOR_UNAVAILABLE
+        // es identico con configuracion invalida y con una consulta emitida que falla
+        // (el catch-all de QuizInstructionAgentJudge.evaluate). Lo unico que discrimina
+        // es un doble de AgentGraphRunner que registre invocaciones, verificado en cero
+        // recien despues de evaluar VARIOS sujetos.
+        QuizInstructionJudgeConfig missingBaseUrl = new QuizInstructionJudgeConfig(
+                null, "test-api-key", "gpt-4o-mini", null, null, null, "some-remote-service");
+
+        AgentGraphRunner agentGraphRunner = mock(AgentGraphRunner.class);
+        AgentDefinitionLocator agentDefinitionLocator = mock(AgentDefinitionLocator.class);
+
+        DefaultQuizInstructionJudgeFactory factory = new DefaultQuizInstructionJudgeFactory();
+        Evaluator evaluator = factory.create(missingBaseUrl, agentGraphRunner, agentDefinitionLocator);
+
+        EvaluationOutcome firstOutcome = assertDoesNotThrow(() -> evaluator.evaluate(subjectFor("quiz-1")));
+        EvaluationOutcome secondOutcome = assertDoesNotThrow(() -> evaluator.evaluate(subjectFor("quiz-2")));
+        EvaluationOutcome thirdOutcome = assertDoesNotThrow(() -> evaluator.evaluate(subjectFor("quiz-3")));
+
+        verifyNoInteractions(agentGraphRunner);
+
+        EvaluationNotEmitted firstNotEmitted = assertInstanceOf(EvaluationNotEmitted.class, firstOutcome);
+        assertInstanceOf(EvaluationNotEmitted.class, secondOutcome);
+        assertInstanceOf(EvaluationNotEmitted.class, thirdOutcome);
+        assertEquals(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, firstNotEmitted.getKind());
+        String reason = firstNotEmitted.getReason();
+        assertTrue(reason.contains("baseUrl"),
+                "F-QINST-R016 invariante 2: el motivo debe nombrar el dato que falta ('baseUrl')");
+        assertTrue(reason.contains("some-remote-service"),
+                "F-QINST-R016 invariante 2: el motivo debe nombrar el proveedor que exige ese dato");
+    }
+
+    @Test
+    @DisplayName("should not emit a single query to the judge when the configuration declares a provider the system does not know how to consult")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R016")
+    public void shouldNotEmitASingleQueryToTheJudgeWhenTheConfigurationDeclaresAProviderTheSystemDoesNotKnowHowToConsult() {
+        // F-QINST-R016 criterio (c): un nombre de proveedor que el sistema no sabe
+        // consultar (aqui, uno con ':') produce el mismo desenlace que (b) -- CERO
+        // consultas -- aun cuando direccion y credencial esten presentes: lo que lo
+        // invalida es el proveedor mismo, no un dato de conexion faltante. Igual que en
+        // (b), solo un doble que registre invocaciones discrimina la invariante 3.
+        QuizInstructionJudgeConfig unknownProvider = new QuizInstructionJudgeConfig(
+                "http://localhost:1234/v1", "test-api-key", "gpt-4o-mini", 0.0, 30,
+                null, "unknown:provider");
+
+        AgentGraphRunner agentGraphRunner = mock(AgentGraphRunner.class);
+        AgentDefinitionLocator agentDefinitionLocator = mock(AgentDefinitionLocator.class);
+
+        DefaultQuizInstructionJudgeFactory factory = new DefaultQuizInstructionJudgeFactory();
+        Evaluator evaluator = factory.create(unknownProvider, agentGraphRunner, agentDefinitionLocator);
+
+        EvaluationOutcome firstOutcome = assertDoesNotThrow(() -> evaluator.evaluate(subjectFor("quiz-1")));
+        EvaluationOutcome secondOutcome = assertDoesNotThrow(() -> evaluator.evaluate(subjectFor("quiz-2")));
+
+        verifyNoInteractions(agentGraphRunner);
+
+        EvaluationNotEmitted firstNotEmitted = assertInstanceOf(EvaluationNotEmitted.class, firstOutcome,
+                "F-QINST-R016 criterio (c): un proveedor que el sistema no sabe consultar deja al juez no "
+                        + "disponible sin emitir ninguna consulta");
+        assertInstanceOf(EvaluationNotEmitted.class, secondOutcome);
+        assertEquals(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, firstNotEmitted.getKind());
+    }
+
+    @Test
+    @DisplayName("should still emit the query to the judge when the configuration carries no credential, because the credential is not a datum the declared provider needs to direct the query")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R016")
+    public void shouldStillEmitTheQueryToTheJudgeWhenTheConfigurationCarriesNoCredentialBecauseTheCredentialIsNotADatumTheDeclaredProviderNeedsToDirectTheQuery(
+            @TempDir Path agentDefinitionDir) throws IOException {
+        // F-QINST-R016 criterio (d): "openai" se consulta por direccion de servicio, que
+        // esta presente aqui; la ausencia de credencial por si sola NO vuelve invalida a
+        // la configuracion -- la consulta se emite igual, y si el servicio la rechaza
+        // eso es falla del juez (F-QINST-R007), no configuracion invalida.
+        QuizInstructionJudgeConfig noCredential = new QuizInstructionJudgeConfig(
+                "http://localhost:1234/v1", null, "gpt-4o-mini", 0.0, 30,
+                "quiz-instruction-validator", "openai");
+
+        AgentGraphRunner agentGraphRunner = mock(AgentGraphRunner.class);
+        when(agentGraphRunner.run(anyString(), anyMap(), any(ChatModel.class), anyMap()))
+                .thenReturn(runStateWithVerdictArtifact(COMPLIANT_VERDICT_JSON));
+
+        AgentDefinitionLocator agentDefinitionLocator = mock(AgentDefinitionLocator.class);
+        when(agentDefinitionLocator.locate(anyString()))
+                .thenReturn(new AgentDefinitionFound(agentDefinitionDir));
+
+        DefaultQuizInstructionJudgeFactory factory = new DefaultQuizInstructionJudgeFactory();
+        Evaluator evaluator = factory.create(noCredential, agentGraphRunner, agentDefinitionLocator);
+
+        EvaluationOutcome outcome = assertDoesNotThrow(() -> evaluator.evaluate(subjectFor("quiz-1")),
+                "F-QINST-R016 criterio (d): la falta de credencial no puede tumbar la evaluacion");
+
+        verify(agentGraphRunner, times(1))
+                .run(anyString(), anyMap(), any(ChatModel.class), anyMap());
+        EvaluationEmitted emitted = assertInstanceOf(EvaluationEmitted.class, outcome,
+                "F-QINST-R016 criterio (d): sin credencial la consulta se emite igual, porque el proveedor "
+                        + "declarado no la necesita para dirigirla");
+        assertNotNull(emitted.getPayload());
     }
 }

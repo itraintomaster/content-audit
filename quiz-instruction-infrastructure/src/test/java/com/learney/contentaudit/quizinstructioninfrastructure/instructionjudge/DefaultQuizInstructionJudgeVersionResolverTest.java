@@ -27,6 +27,14 @@ import org.junit.jupiter.api.io.TempDir;
 )
 public class DefaultQuizInstructionJudgeVersionResolverTest {
 
+    /**
+     * F-QINST-R016: el proveedor efectivo entra en el digest, asi que los tests que
+     * comparan versiones tienen que mantenerlo fijo para aislar la variable que
+     * cada uno estudia (modelo, definicion del agente, o datos de conexion).
+     */
+    private static final JudgeProviderResolved PROVIDER =
+            new JudgeProviderResolved("claude-cli", JudgeProviderClass.LOCAL_SESSION);
+
     private QuizInstructionJudgeConfig config(String modelName, String agentName) {
         return new QuizInstructionJudgeConfig(
                 "http://localhost:1234/v1",
@@ -34,7 +42,8 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
                 modelName,
                 0.0,
                 30,
-                agentName);
+                agentName,
+                null);
     }
 
     @Test
@@ -51,11 +60,11 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
         QuizInstructionJudgeConfig differentModel = config("gpt-4o", "quiz-instruction-validator");
         QuizInstructionJudgeConfig differentAgentDefinition = config("gpt-4o-mini", "lemma-absence-agent");
 
-        String baselineVersion = resolver.resolve(baseline).orElseThrow();
+        String baselineVersion = resolver.resolve(baseline, PROVIDER).orElseThrow();
 
-        assertNotEquals(baselineVersion, resolver.resolve(differentModel).orElseThrow(),
+        assertNotEquals(baselineVersion, resolver.resolve(differentModel, PROVIDER).orElseThrow(),
                 "F-QINST-R010: cambiar el modelo del juez tiene que cambiar la version derivada");
-        assertNotEquals(baselineVersion, resolver.resolve(differentAgentDefinition).orElseThrow(),
+        assertNotEquals(baselineVersion, resolver.resolve(differentAgentDefinition, PROVIDER).orElseThrow(),
                 "F-QINST-R010: cambiar la definicion del agente (su forma de preguntar) tiene que cambiar la version derivada");
     }
 
@@ -71,12 +80,14 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
 
         QuizInstructionJudgeConfig first = new QuizInstructionJudgeConfig(
                 "http://localhost:1234/v1", "key-a", "gpt-4o-mini", 0.0, 30,
-                "quiz-instruction-validator");
+                "quiz-instruction-validator",
+                null);
         QuizInstructionJudgeConfig second = new QuizInstructionJudgeConfig(
                 "https://api.example.com/v1", "key-b", "gpt-4o-mini", 0.7, 90,
-                "quiz-instruction-validator");
+                "quiz-instruction-validator",
+                null);
 
-        assertEquals(resolver.resolve(first).orElseThrow(), resolver.resolve(second).orElseThrow(),
+        assertEquals(resolver.resolve(first, PROVIDER).orElseThrow(), resolver.resolve(second, PROVIDER).orElseThrow(),
                 "F-QINST-R010: baseUrl, apiKey, temperature y timeoutSeconds no forman parte de la identidad del "
                         + "juez; solo la definicion del agente y el modelo la determinan");
     }
@@ -96,12 +107,12 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
 
         QuizInstructionJudgeConfig config = config("gpt-4o-mini", "quiz-instruction-validator");
 
-        String versionBeforeEditingThePrompt = resolver.resolve(config).orElseThrow();
+        String versionBeforeEditingThePrompt = resolver.resolve(config, PROVIDER).orElseThrow();
 
         Files.writeString(promptFile,
                 "Judge whether the quiz respects its instructions, and flag ambiguous wording.");
 
-        String versionAfterEditingThePrompt = resolver.resolve(config).orElseThrow();
+        String versionAfterEditingThePrompt = resolver.resolve(config, PROVIDER).orElseThrow();
 
         assertNotEquals(versionBeforeEditingThePrompt, versionAfterEditingThePrompt,
                 "F-QINST-R010: editar el texto de la definicion del agente tiene que cambiar la version derivada, "
@@ -124,7 +135,7 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
                 new DefaultQuizInstructionJudgeVersionResolver(locatorWithAccessibleDefinition);
 
         QuizInstructionJudgeConfig config = config("gpt-4o-mini", "quiz-instruction-validator");
-        Optional<String> versionDerivedFromAccessibleDefinition = resolverWithAccessibleDefinition.resolve(config);
+        Optional<String> versionDerivedFromAccessibleDefinition = resolverWithAccessibleDefinition.resolve(config, PROVIDER);
         assertTrue(versionDerivedFromAccessibleDefinition.isPresent(),
                 "precondicion del escenario: con la definicion accesible el resolutor deriva una version legitima");
 
@@ -136,7 +147,7 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
                 new DefaultQuizInstructionJudgeVersionResolver(locatorUnableToLocateTheDefinition);
 
         Optional<String> versionWhenTheDefinitionCannotBeLocated =
-                resolverUnableToLocateTheDefinition.resolve(config);
+                resolverUnableToLocateTheDefinition.resolve(config, PROVIDER);
 
         // F-QINST-R010 invariante 3 (reformulada): cuando la definicion no puede localizarse, el
         // resolutor no presenta ninguna version -- ni siquiera una que "parezca" invalida -- porque

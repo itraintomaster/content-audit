@@ -38,6 +38,25 @@ o con `-c/--course-path`. Si se omite, se resuelve en este orden: variable de en
 | `CONTENT_AUDIT_LAGEN_TIMEOUT` | Tiempo de espera por llamada |
 | `CONTENT_AUDIT_LAGEN_MAX_EVAL_RETRIES` | Reintentos de evaluación del generador |
 
+El juez del análisis de consigna se configura con su propio prefijo, separado del
+generador. **Ninguna es obligatoria**: sin proveedor declarado se usa el mismo por
+defecto que el resto del sistema.
+
+| Variable | Para qué |
+|---|---|
+| `CONTENT_AUDIT_QINST_JUDGE_PROVIDER` | Clase de proveedor del juez (p. ej. `claude-cli`, `codex-cli`, `openai`) |
+| `CONTENT_AUDIT_QINST_JUDGE_MODEL` | Modelo con el que juzga |
+| `CONTENT_AUDIT_QINST_JUDGE_BASE_URL` | Dirección del servicio. **Sólo** la exigen los proveedores que se consultan por dirección |
+| `CONTENT_AUDIT_QINST_JUDGE_API_KEY` | Credencial. Opcional para cualquier proveedor |
+| `CONTENT_AUDIT_QINST_JUDGE_TEMPERATURE` | Temperatura del juez |
+| `CONTENT_AUDIT_QINST_JUDGE_TIMEOUT_SECONDS` | Tiempo de espera por consulta |
+| `CONTENT_AUDIT_QINST_JUDGE_AGENT_NAME` | Nombre del grafo del juez. Por defecto `quiz-instruction-validator` |
+
+Un proveedor que se autentica con **la sesión local** (los `*-cli`) no lleva dirección
+ni credencial: no existen para esa clase, y no configurarlas no vuelve inválida la
+configuración. Un proveedor que se consulta **por dirección** sí la exige; si falta, el
+juez se declara no disponible y la corrida no emite ninguna consulta.
+
 ## El flujo habitual
 
 ```
@@ -71,12 +90,57 @@ content-audit analyze [<ruta-curso>] [opciones]
 | `-t, --topic` | Bajar a un topic dentro del nivel. Requiere `--level` |
 | `-k, --knowledge` | Bajar a un knowledge. Requiere `--level` y `--topic` |
 | `--analyzers` | Lista de analizadores separados por coma |
+| `--exclude-analyzers` | Analizadores a dejar afuera de esta corrida, separados por coma |
 | `--detailed` | Salida detallada con metadata. Requiere un único `--analyzers` |
+| `--instruction-budget` | Tope de consultas **nuevas** al juez de consigna en esta corrida |
+| `--reevaluate-instructions` | Vuelve a consultar por contenido que ya tenía veredicto |
 
 ```bash
 content-audit analyze                                   # todo el curso
 content-audit analyze -l B1 -t "Present Simple"         # bajar a un topic
 content-audit analyze --analyzers sentence-length --detailed
+```
+
+#### Cumplimiento de consigna (`quiz-instruction`)
+
+Este análisis juzga, ejercicio por ejercicio, si cumple lo que pide la consigna de
+su knowledge. A diferencia del resto, **consulta un modelo de lenguaje**, así que es
+lento y tiene costo. Por eso su corrida se controla aparte.
+
+Corre **siempre**, salvo que se lo excluya:
+
+```bash
+content-audit analyze --exclude-analyzers quiz-instruction
+```
+
+**Los veredictos se reutilizan.** Cada veredicto queda registrado bajo una huella del
+contenido juzgado, no del id del ejercicio —los ejercicios se modifican sin cambiar de
+id—. Una corrida posterior reutiliza sin costo todo lo que no cambió, y dedica su
+presupuesto íntegro a lo que falta. El registro vive en `.content-audit/evaluations/`.
+
+**El presupuesto es el control de costo.** Acota cuántas consultas nuevas se pagan por
+corrida; los ejercicios que quedan sin consultar se informan como pendientes, y la
+corrida siguiente sigue por ahí:
+
+```bash
+content-audit analyze --instruction-budget 50
+```
+
+Si el juez se cae, se queda sin crédito o expira, **la auditoría igual termina**: los
+ejercicios afectados se cuentan como fallidos y el resto de los análisis no se ve
+afectado. Nada se pierde: lo ya evaluado queda registrado.
+
+Para volver a juzgar contenido que ya tenía veredicto —por ejemplo después de tocar
+la definición del juez—:
+
+```bash
+content-audit analyze --reevaluate-instructions
+```
+
+La cobertura (cuántos con veredicto, cuántos pendientes, cuántos fallidos) se ve con:
+
+```bash
+content-audit analyze --analyzers quiz-instruction --detailed
 ```
 
 ### `config analyzer`
@@ -130,7 +194,7 @@ Tipos: `audits`, `plans`, `tasks`, `analyzers`, `suggested-lemmas`.
 | `--sort` | `tasks` | Solo `priority` |
 | `--limit` | `tasks` | Máximo de resultados (`0` devuelve vacío) |
 | `-t, --target` | `tasks` | `QUIZ`, `KNOWLEDGE`, `TOPIC`, `MILESTONE`, `COURSE` |
-| `-d, --diagnosis` | `tasks` | `SENTENCE_LENGTH`, `LEMMA_ABSENCE`, `COCA_BUCKETS`, … |
+| `-d, --diagnosis` | `tasks` | `SENTENCE_LENGTH`, `LEMMA_ABSENCE`, `COCA_BUCKETS`, `LEMMA_RECURRENCE`, `KNOWLEDGE_TITLE_LENGTH`, `KNOWLEDGE_INSTRUCTIONS_LENGTH`, `QUIZ_INSTRUCTION` |
 | `--without-correction-context` | `tasks -f json` | Omite la resolución del contexto de corrección |
 | `--part-of-speech`, `--pos` | `suggested-lemmas` | Filtra por categoría gramatical (`NOUN`, `VERB`, …) |
 | `--level` | `suggested-lemmas` | Nivel CEFR explícito. Si falta, se infiere de la tarea |
@@ -258,12 +322,3 @@ con la misma paridad estructural que usa la auditoría.
 content-audit lexis -q "She ____ [reads] books." -l B1 [-m FILL|REWRITE]
 ```
 
----
-
-## Pendiente de documentar
-
-El analizador de **cumplimiento de consigna** (`quiz-instruction`) está implementándose.
-Cuando esté disponible, este documento tiene que incorporar sus opciones de `analyze`:
-exclusión del analizador de una corrida, tope de consultas nuevas por corrida, y
-re-evaluación explícita. **No están disponibles todavía** — no las documentamos como
-si lo estuvieran.

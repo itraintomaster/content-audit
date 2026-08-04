@@ -42,6 +42,18 @@ import org.mockito.ArgumentCaptor;
 )
 public class QuizInstructionAgentJudgeTest {
 
+    /**
+     * F-QINST-R016: el juez ya no arma el modelo por si mismo -- lo pide a la
+     * factory segun la clase del proveedor resuelto. Estos escenarios estudian el
+     * tratamiento del veredicto, no el enrutamiento, asi que la factory entrega un
+     * modelo mudo y el proveedor queda fijo.
+     */
+    private static final JudgeProviderResolved PROVIDER =
+            new JudgeProviderResolved("claude-cli", JudgeProviderClass.LOCAL_SESSION);
+
+    private static final JudgeChatModelFactory CHAT_MODEL_FACTORY =
+            (config, provider) -> mock(ChatModel.class);
+
     private static final String CONSERVATIVE_INFRASTRUCTURE_VERDICT_JSON = """
             {
               "schemaVersion": "1.0",
@@ -101,7 +113,8 @@ public class QuizInstructionAgentJudgeTest {
                 "gpt-4o-mini",
                 0.0,
                 30,
-                "quiz-instruction-validator");
+                "quiz-instruction-validator",
+                null);
     }
 
     private Map<String, String> buildDeclaredInputs() {
@@ -142,7 +155,8 @@ public class QuizInstructionAgentJudgeTest {
         when(agentGraphRunner.run(anyString(), anyMap(), any(ChatModel.class), anyMap()))
                 .thenReturn(runStateWithVerdictArtifact(CONSERVATIVE_INFRASTRUCTURE_VERDICT_JSON));
 
-        QuizInstructionAgentJudge judge = new QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver);
+        QuizInstructionAgentJudge judge = new QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver,
+                CHAT_MODEL_FACTORY, PROVIDER);
         EvaluationSubject subject = new EvaluationSubject("quiz-77", buildDeclaredInputs());
 
         EvaluationOutcome outcome = judge.evaluate(subject);
@@ -163,7 +177,8 @@ public class QuizInstructionAgentJudgeTest {
         when(agentGraphRunner.run(anyString(), anyMap(), any(ChatModel.class), anyMap()))
                 .thenReturn(runStateWithVerdictArtifact(GENUINE_NON_COMPLIANT_VERDICT_JSON));
 
-        QuizInstructionAgentJudge judge = new QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver);
+        QuizInstructionAgentJudge judge = new QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver,
+                CHAT_MODEL_FACTORY, PROVIDER);
         EvaluationSubject subject = new EvaluationSubject("quiz-77", buildDeclaredInputs());
 
         EvaluationOutcome outcome = judge.evaluate(subject);
@@ -189,7 +204,8 @@ public class QuizInstructionAgentJudgeTest {
         when(agentGraphRunner.run(anyString(), anyMap(), any(ChatModel.class), anyMap()))
                 .thenThrow(new RuntimeException("judge service timed out / credit exhausted"));
 
-        QuizInstructionAgentJudge judge = new QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver);
+        QuizInstructionAgentJudge judge = new QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver,
+                CHAT_MODEL_FACTORY, PROVIDER);
         EvaluationSubject subject = new EvaluationSubject("quiz-77", buildDeclaredInputs());
 
         EvaluationOutcome outcome = assertDoesNotThrow(() -> judge.evaluate(subject),
@@ -210,7 +226,8 @@ public class QuizInstructionAgentJudgeTest {
         when(agentGraphRunner.run(anyString(), anyMap(), any(ChatModel.class), anyMap()))
                 .thenReturn(runStateWithVerdictArtifact(GENUINE_NON_COMPLIANT_VERDICT_JSON));
 
-        QuizInstructionAgentJudge judge = new QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver);
+        QuizInstructionAgentJudge judge = new QuizInstructionAgentJudge(config, agentGraphRunner, versionResolver,
+                CHAT_MODEL_FACTORY, PROVIDER);
         Map<String, String> declaredInputs = buildDeclaredInputs();
         EvaluationSubject subject = new EvaluationSubject("quiz-77", declaredInputs);
 

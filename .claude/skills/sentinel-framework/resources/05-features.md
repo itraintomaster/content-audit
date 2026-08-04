@@ -1411,6 +1411,8 @@ contradicen su propia instruccion y ningun analisis los detecta.
 | F-QINST-R013 | Un veredicto de infraestructura del juez es una falla, no un juicio | critical | Se registro como veredicto una respuesta de infraestructura del juez para el ejercicio '{quizId}' |
 | F-QINST-R014 | Alcance: todo ejercicio del curso, tenga o no restricciones explicitas | major | - |
 | F-QINST-R015 | El analisis tiene un solo nombre: el que se lee es el que se escribe | critical | Se pidio '{opcion}' para el analisis '{nombre}' y la corrida lo ignoro: el informe publica ese analisis con ese mismo nombre |
+| F-QINST-R016 | El juez admite todo proveedor que el sistema sepa consultar; "invalida" se juzga contra el proveedor declarado | critical | El juez de consigna se declaro no disponible por falta de '{dato}', que el proveedor '{proveedor}' no utiliza |
+| F-QINST-R017 | El incumplimiento detectado se convierte en trabajo: cada ejercicio que incumple entra al plan como tarea | critical | El informe declara {n} ejercicios con incumplimiento de consigna y el plan generado a partir de el no contiene ninguna tarea de ese tipo |
 
 **User Journeys:**
 

@@ -4102,6 +4102,19 @@ modules:
     - name: LEMMA_RECURRENCE
     - name: KNOWLEDGE_TITLE_LENGTH
     - name: KNOWLEDGE_INSTRUCTIONS_LENGTH
+    - name: QUIZ_INSTRUCTION
+      description: "Tarea originada por el analisis de consigna de ejercicio (nombre\
+        \ publico 'quiz-instruction', F-QINST-R015). Existe porque F-QINST-R017 exige\
+        \ que todo ejercicio con veredicto de incumplimiento -puntaje menor al maximo-\
+        \ se convierta en trabajo dentro del plan de refinamiento, con su propio tipo\
+        \ de diagnostico, apuntando al ejercicio (AuditTarget.QUIZ) y priorizable,\
+        \ listable y filtrable como el de cualquier otro analisis. Sin este valor\
+        \ el puntaje de consigna no tiene traduccion a diagnostico y las tareas se\
+        \ descartan en silencio. Los ejercicios pendientes y fallidos no producen\
+        \ tarea sin logica adicional: no tienen puntaje en el informe (F-QINST-R004).\
+        \ Igual que COCA_BUCKETS y LEMMA_RECURRENCE, este tipo es accionable como\
+        \ informacion antes que como correccion: R017 no exige propuesta automatica,\
+        \ que queda como alcance futuro."
   - name: RefinementTaskStatus
     type: enum
     fields:
@@ -5049,6 +5062,16 @@ modules:
       traceability:
         feature: FEAT-RCLA
         rule: F-RCLA-R001
+    - name: should include one QUIZ_INSTRUCTION task targeting the quiz for each quiz
+        whose quiz-instruction score is below 1.0
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R017
+    - name: should not include any QUIZ_INSTRUCTION task for a quiz that complies
+        with its instruction nor for a quiz with no quiz-instruction score at all
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R017
     implements:
     - RefinerEngine
   - name: KnowledgeTitleContextResolver
@@ -5348,6 +5371,7 @@ modules:
     - signature: "runAudit(Path coursePath,Set<String> analyzerNames): AuditReport"
     - signature: "runDetailedAudit(Path coursePath,String analyzerName): AuditNode"
     - signature: "runAudit(Path coursePath,AuditRunRequest request): AuditReport"
+    - signature: "runDetailedAudit(Path coursePath,AuditRunRequest request): AuditNode"
   - name: AnalyzerRegistry
     stereotype: service
     sealed: false
@@ -7399,6 +7423,11 @@ modules:
         traceability:
           feature: FEAT-RCLA
           rule: F-RCLA-R003e
+      - name: "should return the QUIZ_INSTRUCTION tasks of the plan, and only those,\
+          \ when 'get tasks --diagnosis QUIZ_INSTRUCTION' is supplied"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R017
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -13092,7 +13121,7 @@ modules:
       - AgentDefinitionLocator
 - name: quiz-instruction-infrastructure
   description: |
-    Adaptador del juez de consigna: implementa el SPI Evaluator de evaluation-ledger-domain corriendo el agente declarativo quiz-instruction-validator sobre el runtime compartido. Traduce EvaluationSubject.content a las cinco entradas declaradas del agente (cefrLevel, topic, title, instructions, quiz) verbatim, sin agregar ni quitar nada — es lo que hace que la huella cubra exactamente lo juzgado (F-EVCOST-R002). Reconoce el veredicto conservador de infraestructura del juez (confianza nula y violacion JUDGE_OUTPUT_INVALID) y lo devuelve como EvaluationNotEmitted(OUTPUT_UNUSABLE), de modo que nunca llega al registro (F-QINST-R013); toda falla de servicio, timeout, autenticacion o credito se devuelve como EvaluationNotEmitted(EVALUATOR_UNAVAILABLE) en lugar de propagarse como excepcion (F-QINST-R007). Su version es procedencia, no vigencia: se deriva de la definicion del agente y del modelo, se estampa sobre cada veredicto nuevo y se declara en el informe, pero no decide que veredictos valen (F-QINST-R010). Cuando la definicion no se puede localizar el juez no enuncia version alguna —evaluatorVersion() devuelve Optional.empty()— y con eso queda tratado como no disponible por la propia sesion. Construye el ChatModel de forma perezosa: una configuracion ausente o invalida es un evaluador no disponible, no una auditoria caida. allowedClients=[audit-cli] porque es un detalle de implementacion de la composition root.
+    Adaptador del juez de consigna: implementa el SPI Evaluator de evaluation-ledger-domain corriendo el agente declarativo quiz-instruction-validator sobre el runtime compartido. Traduce EvaluationSubject.content a las cinco entradas declaradas del agente (cefrLevel, topic, title, instructions, quiz) verbatim, sin agregar ni quitar nada — es lo que hace que la huella cubra exactamente lo juzgado (F-EVCOST-R002). Reconoce el veredicto conservador de infraestructura del juez (confianza nula y violacion JUDGE_OUTPUT_INVALID) y lo devuelve como EvaluationNotEmitted(OUTPUT_UNUSABLE), de modo que nunca llega al registro (F-QINST-R013); toda falla de servicio, timeout, autenticacion o credito se devuelve como EvaluationNotEmitted(EVALUATOR_UNAVAILABLE) en lugar de propagarse como excepcion (F-QINST-R007). El juez no tiene proveedor propio: admite las mismas clases de proveedor que el resto del sistema —incluidas las que se autentican con la sesion local del usuario y por eso no llevan direccion de servicio ni credencial— y juzga la validez de su configuracion contra el proveedor que ella declara (F-QINST-R016). Su version es procedencia, no vigencia: se deriva de la definicion del agente, del modelo y del proveedor efectivo, se estampa sobre cada veredicto nuevo y se declara en el informe, pero no decide que veredictos valen (F-QINST-R010). Cuando la definicion no se puede localizar el juez no enuncia version alguna —evaluatorVersion() devuelve Optional.empty()— y con eso queda tratado como no disponible por la propia sesion. Construye el ChatModel de forma perezosa: una configuracion ausente o invalida es un evaluador no disponible, no una auditoria caida. allowedClients=[audit-cli] porque es un detalle de implementacion de la composition root.
   dependsOn:
   - audit-domain
   - evaluation-ledger-domain
@@ -13103,9 +13132,12 @@ modules:
     fields:
     - name: baseUrl
       type: String
-      description: Endpoint compatible OpenAI
+      description: |
+        Direccion del servicio. Solo la exigen los proveedores que se consultan por direccion; para un proveedor de sesion local no existe, y exigirla es exactamente el defecto que F-QINST-R016 corrige.
     - name: apiKey
       type: String
+      description: |
+        Credencial opcional para cualquier clase de proveedor. Su ausencia nunca vuelve invalida la configuracion (F-QINST-R016): no impide dirigir la consulta. Si el servicio la exige, la consulta se emite, la rechazan, y ese rechazo se cuenta como falla del juez (F-QINST-R007) — mas visible que declararlo no disponible.
     - name: modelName
       type: String
     - name: temperature
@@ -13115,6 +13147,10 @@ modules:
     - name: agentName
       type: String
       description: Nombre del grafo bajo .sentinel/agents/. Por defecto quiz-instruction-validator.
+    - name: providerName
+      type: String
+      description: |
+        Clase de proveedor declarada por el operador (F-QINST-R016). Es el dato contra el que se juzga que le falta a la configuracion: un proveedor de sesion local no exige direccion ni credencial. Vacio no es invalido: se aplica el mismo proveedor por defecto que el resto del sistema (DOUBT-PROVEEDOR-DEL-JUEZ, Opcion A [ASSUMPTION]).
   interfaces:
   - name: QuizInstructionJudgeFactory
     stereotype: factory
@@ -13138,13 +13174,80 @@ modules:
   packages:
   - name: instructionjudge
     description: |
-      Motor del adaptador del juez. Solo la factory es publica; el juez, el resolutor de version y el armado de entradas son package-private. El resolutor de version no conoce rutas: le pide la definicion al mismo AgentDefinitionLocator con el que se construye el runner, asi que el digest de los archivos del agente se calcula siempre sobre la definicion que efectivamente se ejecuta (F-QINST-R010). Cuando el locator responde AgentDefinitionUnresolved, el resolutor devuelve Optional.empty(): la ausencia de version se representa con un tipo y no con un prefijo reservado dentro del String. La convencion de prefijo anterior protegia por un efecto que ya no existe —una version fabricada no coincidia con ninguna clave registrada y por lo tanto no reutilizaba nada—; con la version fuera de la identidad (F-EVCOST-R001) nadie compara versiones, asi que un String fabricado se registraria como procedencia legitima y contaminaria los recuentos de F-QINST-R005 de forma permanente, porque nada se invalida solo. Con Optional.empty() el juez queda tratado como no disponible por la sesion: no emite ni registra veredicto nuevo, no se declara version consultada, los ejercicios sin veredicto quedan pendientes (F-QINST-R007) y los que ya tenian veredicto se siguen puntuando con su procedencia real (F-QINST-R010 criterio c).
+      Motor del adaptador del juez. Solo la factory es publica; el juez, el resolutor de proveedor, el constructor de ChatModel y el resolutor de version son package-private. La disponibilidad del juez se decide en un solo lugar —QuizInstructionJudgeProviderResolver— que devuelve el proveedor efectivo (JudgeProviderResolved) o el motivo del rechazo (JudgeProviderRejected) con el dato que falta y el proveedor que lo exige, de modo que el mensaje del evaluador no disponible dice cual es el problema en lugar de "configuracion invalida" (F-QINST-R016). Como QuizInstructionAgentJudge solo se puede construir con un JudgeProviderResolved, una configuracion rechazada no puede producir un juez que consulte: la invariante 3 de F-QINST-R016 —con configuracion invalida no se emite ni una sola consulta— queda garantizada por construccion y no por una guarda que alguien pueda olvidar. El enrutamiento por clase de proveedor no se reimplementa aca: JudgeChatModelFactory delega en la libreria de agentes compartida, que ya elige entre shell-out a la herramienta local del proveedor de suscripcion y cliente compatible OpenAI, y conserva el listener del framework para que los transcripts de la conversacion queden en el log de la corrida. El resolutor de version no conoce rutas: le pide la definicion al mismo AgentDefinitionLocator con el que se construye el runner, asi que el digest de los archivos del agente se calcula siempre sobre la definicion que efectivamente se ejecuta (F-QINST-R010). Ese digest cubre agente + modelo + proveedor efectivo: dos consultas al mismo modelo por vias distintas no son la misma forma de preguntar, y como la version ya no invalida nada (F-EVCOST-R001), incluir el proveedor no cuesta re-evaluaciones y hace que la procedencia declarada en F-QINST-R005 diga la verdad completa. Cuando el locator responde AgentDefinitionUnresolved, el resolutor devuelve Optional.empty(): la ausencia de version se representa con un tipo y no con un prefijo reservado dentro del String, porque un String fabricado se registraria como procedencia legitima y contaminaria los recuentos de F-QINST-R005 de forma permanente.
     visibility: public
+    models:
+    - name: JudgeProviderClass
+      type: enum
+      fields:
+      - name: LOCAL_SESSION
+        description: |
+          Se autentica con la sesion local del usuario y se lo consulta por la herramienta que deja instalada en la maquina. No exige ningun dato de conexion: direccion de servicio y credencial no existen para esta clase.
+      - name: REMOTE_SERVICE
+        description: |
+          Se lo consulta por su direccion de servicio. Exige la direccion, y nada mas: la credencial no entra en la lista de exigidos.
+      visibility: internal
+      glossarySuggestions:
+      - name: Clase de proveedor del juez
+        technicalName: JudgeProviderClass
+        kind: integration-language-candidate
+        basedOn: instructionjudge/JudgeProviderClass
+        rationale: |
+          F-QINST-R016 introduce "clase de proveedor" como lenguaje del operador: es lo que decide que datos exige una configuracion y que respuesta da el sistema cuando faltan. Hoy vive solo en este adaptador; si otro evaluador costoso lo necesita, merece ser termino canonico.
+    - name: JudgeProviderResolved
+      type: record
+      fields:
+      - name: providerName
+        type: String
+        description: |
+          Nombre efectivo, no el declarado: "sin declarar" y "declarado igual al defecto" producen el mismo proveedor y por lo tanto la misma version.
+      - name: providerClass
+        type: JudgeProviderClass
+      visibility: internal
+      implements:
+      - JudgeProviderResolution
+    - name: JudgeProviderRejectionKind
+      type: enum
+      fields:
+      - name: UNSUPPORTED_PROVIDER
+        description: El proveedor declarado no es uno que el sistema sepa consultar.
+      - name: MISSING_REQUIRED_INPUT
+        description: Falta un dato que la clase de proveedor declarada exige.
+      visibility: internal
+    - name: JudgeProviderRejected
+      type: record
+      fields:
+      - name: providerName
+        type: String
+      - name: missingInput
+        type: String
+        description: |
+          Nombre del dato ausente que el proveedor declarado exige. Nulo cuando el motivo es UNSUPPORTED_PROVIDER: ahi no falta un dato, falta un proveedor consultable.
+      - name: kind
+        type: JudgeProviderRejectionKind
+      visibility: internal
+      implements:
+      - JudgeProviderResolution
     interfaces:
     - name: QuizInstructionJudgeVersionResolver
       sealed: false
       exposes:
-      - signature: "resolve(QuizInstructionJudgeConfig config): Optional<String>"
+      - signature: "resolve(QuizInstructionJudgeConfig config,JudgeProviderResolved\
+          \ provider): Optional<String>"
+      visibility: internal
+    - name: JudgeProviderResolution
+      sealed: false
+      visibility: internal
+    - name: QuizInstructionJudgeProviderResolver
+      sealed: false
+      exposes:
+      - signature: "resolve(QuizInstructionJudgeConfig config): JudgeProviderResolution"
+      visibility: internal
+    - name: JudgeChatModelFactory
+      sealed: false
+      exposes:
+      - signature: "create(QuizInstructionJudgeConfig config,JudgeProviderResolved\
+          \ provider): ChatModel"
       visibility: internal
     implementations:
     - name: DefaultQuizInstructionJudgeFactory
@@ -13161,6 +13264,29 @@ modules:
         traceability:
           feature: FEAT-QINST
           rule: F-QINST-R010
+      - name: should consult the judge and emit its verdict when the configuration
+          declares a provider that authenticates with the local user session and carries
+          neither service address nor credential
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R016
+      - name: "should not emit a single query to the judge, and should name the missing\
+          \ service address and the provider that requires it, when the configuration\
+          \ declares a provider consulted by service address and omits that address"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R016
+      - name: should not emit a single query to the judge when the configuration declares
+          a provider the system does not know how to consult
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R016
+      - name: "should still emit the query to the judge when the configuration carries\
+          \ no credential, because the credential is not a datum the declared provider\
+          \ needs to direct the query"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R016
       implements:
       - QuizInstructionJudgeFactory
     - name: QuizInstructionAgentJudge
@@ -13171,6 +13297,12 @@ modules:
         type: AgentGraphRunner
       - name: versionResolver
         type: QuizInstructionJudgeVersionResolver
+      - name: chatModelFactory
+        type: JudgeChatModelFactory
+      - name: provider
+        type: JudgeProviderResolved
+        description: |
+          El proveedor efectivo viaja como colaborador, no se re-deriva: el juez consulta y compone su version con exactamente el mismo proveedor que la factory acepto.
       handwrittenTests:
       - name: "should report the conservative infrastructure verdict of the judge,\
           \ with null confidence and a judge output invalid violation, as an unusable\
@@ -13223,6 +13355,12 @@ modules:
           rule: F-QINST-R010
       implements:
       - QuizInstructionJudgeVersionResolver
+    - name: DefaultQuizInstructionJudgeProviderResolver
+      implements:
+      - QuizInstructionJudgeProviderResolver
+    - name: SentinelAgentsJudgeChatModelFactory
+      implements:
+      - JudgeChatModelFactory
   - name: instructionverdict
     description: "Lectura del payload del juez. Publico porque el analizador consume\
       \ veredictos REUTILIZADOS que nunca pasan por el juez: la interpretacion del\

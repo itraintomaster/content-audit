@@ -1,0 +1,136 @@
+code: FEAT-QINST
+description: |
+  F-QINST-R016: el juez de consigna se configura con las mismas clases de proveedor que el resto del sistema, y la validez de su configuracion se juzga contra el proveedor declarado. La configuracion gana providerName; la decision de disponibilidad deja de ser un predicado privado (baseUrl && apiKey && modelName) y pasa a ser un contrato nombrado que devuelve el proveedor efectivo o el motivo del rechazo; la construccion del ChatModel deja de ser OpenAiChatModel a mano y pasa a un seam que delega el enrutamiento por proveedor en la libreria compartida. El proveedor efectivo entra ademas en la version del juez, que es procedencia (F-QINST-R010).
+modules:
+- name: quiz-instruction-infrastructure
+  description: |
+    Adaptador del juez de consigna: implementa el SPI Evaluator de evaluation-ledger-domain corriendo el agente declarativo quiz-instruction-validator sobre el runtime compartido. Traduce EvaluationSubject.content a las cinco entradas declaradas del agente (cefrLevel, topic, title, instructions, quiz) verbatim, sin agregar ni quitar nada — es lo que hace que la huella cubra exactamente lo juzgado (F-EVCOST-R002). Reconoce el veredicto conservador de infraestructura del juez (confianza nula y violacion JUDGE_OUTPUT_INVALID) y lo devuelve como EvaluationNotEmitted(OUTPUT_UNUSABLE), de modo que nunca llega al registro (F-QINST-R013); toda falla de servicio, timeout, autenticacion o credito se devuelve como EvaluationNotEmitted(EVALUATOR_UNAVAILABLE) en lugar de propagarse como excepcion (F-QINST-R007). El juez no tiene proveedor propio: admite las mismas clases de proveedor que el resto del sistema —incluidas las que se autentican con la sesion local del usuario y por eso no llevan direccion de servicio ni credencial— y juzga la validez de su configuracion contra el proveedor que ella declara (F-QINST-R016). Su version es procedencia, no vigencia: se deriva de la definicion del agente, del modelo y del proveedor efectivo, se estampa sobre cada veredicto nuevo y se declara en el informe, pero no decide que veredictos valen (F-QINST-R010). Cuando la definicion no se puede localizar el juez no enuncia version alguna —evaluatorVersion() devuelve Optional.empty()— y con eso queda tratado como no disponible por la propia sesion. Construye el ChatModel de forma perezosa: una configuracion ausente o invalida es un evaluador no disponible, no una auditoria caida. allowedClients=[audit-cli] porque es un detalle de implementacion de la composition root.
+  models:
+  - name: QuizInstructionJudgeConfig
+    type: record
+    fields:
+    - name: providerName
+      type: String
+      description: |
+        Clase de proveedor declarada por el operador (F-QINST-R016). Es el dato contra el que se juzga que le falta a la configuracion: un proveedor de sesion local no exige direccion ni credencial. Vacio no es invalido: se aplica el mismo proveedor por defecto que el resto del sistema (DOUBT-PROVEEDOR-DEL-JUEZ, Opcion A [ASSUMPTION]).
+      _change: add
+    - name: baseUrl
+      type: String
+      description: |
+        Direccion del servicio. Solo la exigen los proveedores que se consultan por direccion; para un proveedor de sesion local no existe, y exigirla es exactamente el defecto que F-QINST-R016 corrige.
+      _change: modify
+    - name: apiKey
+      type: String
+      description: |
+        Credencial opcional para cualquier clase de proveedor. Su ausencia nunca vuelve invalida la configuracion (F-QINST-R016): no impide dirigir la consulta. Si el servicio la exige, la consulta se emite, la rechazan, y ese rechazo se cuenta como falla del juez (F-QINST-R007) — mas visible que declararlo no disponible.
+      _change: modify
+    _change: modify
+  packages:
+  - name: instructionjudge
+    description: |
+      Motor del adaptador del juez. Solo la factory es publica; el juez, el resolutor de proveedor, el constructor de ChatModel y el resolutor de version son package-private. La disponibilidad del juez se decide en un solo lugar —QuizInstructionJudgeProviderResolver— que devuelve el proveedor efectivo (JudgeProviderResolved) o el motivo del rechazo (JudgeProviderRejected) con el dato que falta y el proveedor que lo exige, de modo que el mensaje del evaluador no disponible dice cual es el problema en lugar de "configuracion invalida" (F-QINST-R016). Como QuizInstructionAgentJudge solo se puede construir con un JudgeProviderResolved, una configuracion rechazada no puede producir un juez que consulte: la invariante 3 de F-QINST-R016 —con configuracion invalida no se emite ni una sola consulta— queda garantizada por construccion y no por una guarda que alguien pueda olvidar. El enrutamiento por clase de proveedor no se reimplementa aca: JudgeChatModelFactory delega en la libreria de agentes compartida, que ya elige entre shell-out a la herramienta local del proveedor de suscripcion y cliente compatible OpenAI, y conserva el listener del framework para que los transcripts de la conversacion queden en el log de la corrida. El resolutor de version no conoce rutas: le pide la definicion al mismo AgentDefinitionLocator con el que se construye el runner, asi que el digest de los archivos del agente se calcula siempre sobre la definicion que efectivamente se ejecuta (F-QINST-R010). Ese digest cubre agente + modelo + proveedor efectivo: dos consultas al mismo modelo por vias distintas no son la misma forma de preguntar, y como la version ya no invalida nada (F-EVCOST-R001), incluir el proveedor no cuesta re-evaluaciones y hace que la procedencia declarada en F-QINST-R005 diga la verdad completa. Cuando el locator responde AgentDefinitionUnresolved, el resolutor devuelve Optional.empty(): la ausencia de version se representa con un tipo y no con un prefijo reservado dentro del String, porque un String fabricado se registraria como procedencia legitima y contaminaria los recuentos de F-QINST-R005 de forma permanente.
+    models:
+    - name: JudgeProviderClass
+      type: enum
+      fields:
+      - name: LOCAL_SESSION
+        description: |
+          Se autentica con la sesion local del usuario y se lo consulta por la herramienta que deja instalada en la maquina. No exige ningun dato de conexion: direccion de servicio y credencial no existen para esta clase.
+      - name: REMOTE_SERVICE
+        description: |
+          Se lo consulta por su direccion de servicio. Exige la direccion, y nada mas: la credencial no entra en la lista de exigidos.
+      visibility: internal
+      glossarySuggestions:
+      - name: Clase de proveedor del juez
+        technicalName: JudgeProviderClass
+        kind: integration-language-candidate
+        basedOn: instructionjudge/JudgeProviderClass
+        rationale: |
+          F-QINST-R016 introduce "clase de proveedor" como lenguaje del operador: es lo que decide que datos exige una configuracion y que respuesta da el sistema cuando faltan. Hoy vive solo en este adaptador; si otro evaluador costoso lo necesita, merece ser termino canonico.
+      _change: add
+    - name: JudgeProviderResolved
+      type: record
+      fields:
+      - name: providerName
+        type: String
+        description: |
+          Nombre efectivo, no el declarado: "sin declarar" y "declarado igual al defecto" producen el mismo proveedor y por lo tanto la misma version.
+      - name: providerClass
+        type: JudgeProviderClass
+      visibility: internal
+      _change: add
+      implements:
+      - JudgeProviderResolution
+    - name: JudgeProviderRejectionKind
+      type: enum
+      fields:
+      - name: UNSUPPORTED_PROVIDER
+        description: El proveedor declarado no es uno que el sistema sepa consultar.
+      - name: MISSING_REQUIRED_INPUT
+        description: Falta un dato que la clase de proveedor declarada exige.
+      visibility: internal
+      _change: add
+    - name: JudgeProviderRejected
+      type: record
+      fields:
+      - name: providerName
+        type: String
+      - name: missingInput
+        type: String
+        description: |
+          Nombre del dato ausente que el proveedor declarado exige. Nulo cuando el motivo es UNSUPPORTED_PROVIDER: ahi no falta un dato, falta un proveedor consultable.
+      - name: kind
+        type: JudgeProviderRejectionKind
+      visibility: internal
+      _change: add
+      implements:
+      - JudgeProviderResolution
+    interfaces:
+    - name: JudgeProviderResolution
+      sealed: false
+      visibility: internal
+      _change: add
+    - name: QuizInstructionJudgeProviderResolver
+      sealed: false
+      exposes:
+      - signature: "resolve(QuizInstructionJudgeConfig config): JudgeProviderResolution"
+      visibility: internal
+      _change: add
+    - name: JudgeChatModelFactory
+      sealed: false
+      exposes:
+      - signature: "create(QuizInstructionJudgeConfig config,JudgeProviderResolved\
+          \ provider): ChatModel"
+      visibility: internal
+      _change: add
+    - name: QuizInstructionJudgeVersionResolver
+      sealed: false
+      exposes:
+      - signature: "resolve(QuizInstructionJudgeConfig config): Optional<String>"
+        _change: delete
+      - signature: "resolve(QuizInstructionJudgeConfig config,JudgeProviderResolved\
+          \ provider): Optional<String>"
+        _change: add
+      _change: modify
+    implementations:
+    - name: DefaultQuizInstructionJudgeProviderResolver
+      implements:
+      - QuizInstructionJudgeProviderResolver
+      _change: add
+    - name: SentinelAgentsJudgeChatModelFactory
+      implements:
+      - JudgeChatModelFactory
+      _change: add
+    - name: QuizInstructionAgentJudge
+      requiresInject:
+      - name: chatModelFactory
+        type: JudgeChatModelFactory
+        _change: add
+      - name: provider
+        type: JudgeProviderResolved
+        description: |
+          El proveedor efectivo viaja como colaborador, no se re-deriva: el juez consulta y compone su version con exactamente el mismo proveedor que la factory acepto.
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify

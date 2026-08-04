@@ -47,6 +47,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -4227,5 +4228,63 @@ public class GetCmdTest {
         assertTrue(output.contains("(none)"),
                 "Expected '(none)' in the Out-of-catalog words section when there are no out-of-catalog words: "
                         + output);
+    }
+
+    @Test
+    @DisplayName("should return the QUIZ_INSTRUCTION tasks of the plan, and only those, when 'get tasks --diagnosis QUIZ_INSTRUCTION' is supplied")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R017")
+    public void shouldReturnTheQUIZINSTRUCTIONTasksOfThePlanAndOnlyThoseWhenGetTasksDiagnosisQUIZINSTRUCTIONIsSupplied()
+            throws Exception {
+        Field formatField = GetCmd.class.getDeclaredField("formatName");
+        formatField.setAccessible(true);
+        formatField.set(cmd, "json");
+
+        // Plan mixes a QUIZ_INSTRUCTION task with a task of a different diagnosis kind, so
+        // that filtering by --diagnosis QUIZ_INSTRUCTION can be told apart from "list everything".
+        String sourceAuditId = "audit-2026-08-03T00-00-00";
+        RefinementTask quizInstructionTask = new RefinementTask(
+                "task-qi-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING);
+        RefinementTask sentenceLengthTask = new RefinementTask(
+                "task-sl-001", AuditTarget.QUIZ, "quiz-node-2", "Quiz 2",
+                DiagnosisKind.SENTENCE_LENGTH, 2, RefinementTaskStatus.PENDING);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-08-03", sourceAuditId,
+                Instant.parse("2026-08-03T00:00:00Z"),
+                List.of(quizInstructionTask, sentenceLengthTask));
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+
+        // QUIZ_INSTRUCTION has no CorrectionContextResolver registered — same situation as
+        // COCA_BUCKETS/LEMMA_RECURRENCE today — so 'get tasks' must not attempt to resolve a
+        // correction context for it, and the audit report backing that resolution is never
+        // even loaded. The listing must still succeed regardless.
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.empty(), Optional.empty(), Optional.of(DiagnosisKind.QUIZ_INSTRUCTION));
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        assertTrue(output.contains("task-qi-001"),
+                "Expected the QUIZ_INSTRUCTION task in the filtered listing: " + output);
+        assertFalse(output.contains("task-sl-001"),
+                "Expected the SENTENCE_LENGTH task to be excluded by --diagnosis QUIZ_INSTRUCTION: " + output);
+
+        // No correction context is attempted for either task: QUIZ_INSTRUCTION has no
+        // registered resolver (same as COCA_BUCKETS/LEMMA_RECURRENCE), and the SENTENCE_LENGTH
+        // task was filtered out of the listing entirely, so it is never even considered.
+        verify(correctionContextResolver, never()).resolve(any(AuditReport.class), eq(quizInstructionTask));
+        verify(correctionContextResolver, never()).resolve(any(AuditReport.class), eq(sentenceLengthTask));
+        verify(auditReportStore, never()).load(any(String.class));
     }
 }

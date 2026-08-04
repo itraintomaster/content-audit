@@ -18,6 +18,7 @@ class DefaultQuizInstructionJudgeConfigResolver implements QuizInstructionJudgeC
     static final String KEY_TEMPERATURE = "CONTENT_AUDIT_QINST_JUDGE_TEMPERATURE";
     static final String KEY_TIMEOUT_SECONDS = "CONTENT_AUDIT_QINST_JUDGE_TIMEOUT_SECONDS";
     static final String KEY_AGENT_NAME = "CONTENT_AUDIT_QINST_JUDGE_AGENT_NAME";
+    static final String KEY_PROVIDER = "CONTENT_AUDIT_QINST_JUDGE_PROVIDER";
 
     @Override
     public QuizInstructionJudgeConfig resolve() {
@@ -41,8 +42,13 @@ class DefaultQuizInstructionJudgeConfigResolver implements QuizInstructionJudgeC
         Double temperature = parseDouble(env.get(KEY_TEMPERATURE));
         Integer timeoutSeconds = parseInt(env.get(KEY_TIMEOUT_SECONDS));
 
+        // F-QINST-R016: la clase de proveedor es el dato contra el que se juzga que
+        // le falta a la configuracion. Ausente no es invalido -- se aplica el mismo
+        // proveedor por defecto que el resto del sistema.
+        String providerName = nonBlank(env.get(KEY_PROVIDER));
+
         return new QuizInstructionJudgeConfig(baseUrl, apiKey, modelName, temperature,
-                timeoutSeconds, agentName);
+                timeoutSeconds, agentName, providerName);
     }
 
     private static String nonBlank(String value) {
