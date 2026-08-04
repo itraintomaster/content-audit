@@ -127,12 +127,12 @@ public class FRclalenJ001JourneyTest {
                 List.of(), quizId, "Quiz 14 - L1.T2.K3", "Q014",
                 "Ella necesita negociar el contrato antes del viernes por la tarde",
                 List.of("She needs to negotiate the contract before Friday afternoon"),
-                null);
+                null, null, null);
 
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Affirmative sentences in the present simple",
                 "Escribe la forma afirmativa", true,
-                "knowledge-014", "Knowledge 14", "K014", null);
+                "knowledge-014", "Knowledge 14", "K014", null, null);
 
         AuditableTopic topic = new AuditableTopic(
                 List.of(), "topic-001", "Present Simple", "T001");

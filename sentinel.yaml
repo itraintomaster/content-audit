@@ -7,6 +7,7 @@ modules:
   description: Core business logic
   dependsOn:
   - course-domain
+  - evaluation-ledger-domain
   models:
   - name: AuditReport
     type: record
@@ -48,6 +49,11 @@ modules:
         \ KnowledgeEntity.sentenceMode por CourseToAuditableMapper. Lo lee LemmaAbsenceContextResolver\
         \ del knowledge ancestro para estampar LemmaAbsenceCorrectionContext.sentenceMode.\
         \ Nullable cuando el knowledge no declara modo (no-oracion / no sembrado)."
+    - name: topicName
+      type: String
+      description: "Etiqueta del topic al que pertenece, copiada del quiz template.\
+        \ Evita que el analizador de consigna tenga que navegar dos niveles de ancestros\
+        \ para armar una de las cinco entradas del juez."
     extends: AuditableEntity
   - name: AuditableTopic
     type: record
@@ -110,6 +116,15 @@ modules:
         \ (FEAT-QSENT R027), guaranteeing quizSentence and sentences[0] are derived\
         \ from the same FormEntity in the same derivation step (R003). Null only if\
         \ the course predates FEAT-QSENT — never null for quizzes that pass the mapper."
+    - name: instructions
+      type: String
+      description: "Consigna propia del quiz template, copiada verbatim por CourseToAuditableMapper.\
+        \ 11.467 de 11.487 quizzes del curso la declaran. Entra en el contenido juzgado\
+        \ por el juez de consigna (F-QINST-R009)."
+    - name: sentenceParts
+      type: List<SentencePartEntity>
+      description: |
+        Partes del ejercicio en orden, con todas las opciones aceptadas de cada hueco. Resuelve DOUBT-QUIZ-COMPLETO por la Opcion A. Se copia VERBATIM desde QuizTemplateEntity.form.sentenceParts en el mismo paso del mapper: nunca se re-deriva parseando el DSL de quizSentence, porque QuizSentenceParser.buildForm() fabrica un FormEntity vacio y la huella se calcularia sobre contenido mutilado. Sin este campo el juez no puede verificar la restriccion mas frecuente de una consigna (la forma de la respuesta) y, peor, cambiar una opcion aceptada no invalidaria el veredicto guardado (F-QINST-R009).
     extends: AuditableEntity
   - name: CefrLevel
     type: enum
@@ -257,6 +272,24 @@ modules:
       description: Identificador del RefinementPlan activo dentro del analisis (referencia
         a RefinementPlan.id).
     visibility: public
+  - name: EvaluationRunPolicy
+    type: record
+    fields:
+    - name: maxNewEvaluations
+      type: int
+      description: Tope de consultas nuevas al evaluador en esta corrida (F-QINST-R006).
+        El analizador lo traduce a EvaluationBudget al abrir la sesion.
+    - name: reevaluate
+      type: boolean
+      description: "Pedido explicito de volver a evaluar (F-EVCOST-R008). Lo interpreta\
+        \ el analizador, nunca la sesion: la sesion solo re-evalua el sujeto puntual\
+        \ que se le pide con resolveForced."
+    - name: reevaluationScope
+      type: String
+      description: "Parte acotada alcanzada por el pedido, expresada en el vocabulario\
+        \ del consumidor (id de knowledge, F-QINST-R012). Vive en audit-domain porque\
+        \ solo aca hay con que resolverlo: de un sujeto la sesion solo conoce su subjectRef\
+        \ y su contenido."
   interfaces:
   - name: AuditEngine
     stereotype: port
@@ -387,6 +420,7 @@ modules:
     - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>"
     - signature: "getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>"
     - signature: "getLemmaCountDiagnosis(): Optional<LemmaCountCourseDiagnosis>"
+    - signature: "getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>"
   - name: LevelDiagnoses
     stereotype: port
     sealed: false
@@ -411,6 +445,7 @@ modules:
     exposes:
     - signature: "getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>"
     - signature: "getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>"
+    - signature: "getQuizInstructionDiagnosis(): Optional<QuizInstructionDiagnosis>"
   - name: AuditReportStore
     stereotype: port
     sealed: false
@@ -449,6 +484,25 @@ modules:
     sealed: true
     exposes:
     - signature: "getThreshold(): int"
+    extends:
+    - SelfDescribingConfig
+  - name: EvaluationAnalyzerFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(EvaluationRunPolicy policy): ContentAnalyzer"
+    - signature: "analyzerName(): String"
+  - name: QuizInstructionVerdictReader
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "read(String payload): QuizInstructionVerdict"
+  - name: QuizInstructionConfig
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getDefaultMaxNewEvaluations(): int"
+    - signature: "getScoreFor(InstructionSeverity severity): double"
     extends:
     - SelfDescribingConfig
   implementations:
@@ -917,6 +971,12 @@ modules:
     - ContentAnalyzer
   - name: IScoreAggregator
     visibility: public
+    handwrittenTests:
+    - name: "should average the quiz instruction score of a knowledge over its evaluated\
+        \ quizzes only, leaving the pending ones out"
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R004
     implements:
     - ScoreAggregator
   patterns:
@@ -3084,6 +3144,364 @@ modules:
           rule: F-CLEX-R005
       implements:
       - SentenceLexicalEvaluator
+  - name: quizinstruction
+    description: |
+      FEAT-QINST. Contrato publico del analisis de cumplimiento de consigna: el veredicto tipado del juez, el diagnostico por ejercicio y la cobertura declarada. Publico porque el CLI lo formatea y porque una feature posterior de correccion va a partir de estas violaciones con su evidencia.
+    visibility: public
+    models:
+    - name: InstructionSeverity
+      type: enum
+      fields:
+      - name: NONE
+      - name: MINOR
+      - name: MAJOR
+      - name: CRITICAL
+    - name: InstructionCheckStatus
+      type: enum
+      fields:
+      - name: PASSED
+      - name: FAILED
+      - name: NOT_APPLICABLE
+    - name: InstructionViolation
+      type: record
+      fields:
+      - name: code
+        type: String
+      - name: constraint
+        type: String
+      - name: evidence
+        type: String
+      - name: explanation
+        type: String
+    - name: InstructionCheck
+      type: record
+      fields:
+      - name: category
+        type: String
+      - name: constraint
+        type: String
+      - name: status
+        type: InstructionCheckStatus
+      - name: evidence
+        type: String
+    - name: QuizInstructionVerdict
+      type: record
+      fields:
+      - name: followsInstructions
+        type: boolean
+      - name: confidence
+        type: double
+        description: "Se registra en el diagnostico pero NO modifica el puntaje (F-QINST-R002,\
+          \ DOUBT-CONFIANZA opcion A)."
+      - name: severity
+        type: InstructionSeverity
+      - name: reason
+        type: String
+      - name: violations
+        type: List<InstructionViolation>
+      - name: checkedConstraints
+        type: List<InstructionCheck>
+    - name: QuizInstructionDiagnosis
+      type: record
+      fields:
+      - name: verdict
+        type: QuizInstructionVerdict
+      - name: score
+        type: double
+      - name: reusedFromPreviousRun
+        type: boolean
+        description: Si el veredicto se reutilizo de una corrida anterior en vez de
+          consultarse ahora.
+    - name: QuizInstructionCoverageDiagnosis
+      type: record
+      fields:
+      - name: coverage
+        type: EvaluationCoverage
+      - name: consultedJudgeVersion
+        type: String
+        description: "Version del juez con la que ESTA CORRIDA consulto (F-QINST-R005).\
+          \ Null cuando la corrida no consulto ni una vez: todo reutilizado, sin presupuesto,\
+          \ o juez no disponible (F-QINST-R010). Null es un valor que el informe debe\
+          \ declarar, no un dato faltante."
+      - name: verdictsByJudgeVersion
+        type: List<JudgeVersionVerdictCount>
+        description: "Recuento de veredictos por version de procedencia entre los\
+          \ que el informe PUNTUA (F-QINST-R005). Una fila por version presente, ordenadas\
+          \ por version para que el informe y los tests sean reproducibles. Su suma\
+          \ debe cerrar contra coverage.withResult: es la segunda suma que exige F-QINST-R005."
+    - name: JudgeVersionVerdictCount
+      type: record
+      fields:
+      - name: judgeVersion
+        type: String
+        description: Version del juez que emitio los veredictos contados.
+      - name: verdictCount
+        type: int
+        description: Cuantos de los veredictos que el informe puntua provienen de
+          esa version.
+  - name: quizinstructionengine
+    description: |
+      Motor del analizador de consigna. Solo la factory es publica; el analizador, el armado del contenido juzgado y la traduccion de veredicto a puntaje son package-private.
+    visibility: public
+    interfaces:
+    - name: QuizInstructionSubjectBuilder
+      sealed: false
+      exposes:
+      - signature: "build(AuditNode quizNode): EvaluationSubject"
+      visibility: internal
+    - name: QuizInstructionScorer
+      sealed: false
+      exposes:
+      - signature: "score(QuizInstructionVerdict verdict): double"
+      visibility: internal
+    - name: QuizInstructionScopeMatcher
+      sealed: false
+      exposes:
+      - signature: "matches(AuditNode quizNode,String reevaluationScope): boolean"
+      visibility: internal
+    implementations:
+    - name: DefaultQuizInstructionAnalyzerFactory
+      requiresInject:
+      - name: sessionFactory
+        type: EvaluationSessionFactory
+      - name: evaluator
+        type: Evaluator
+      - name: verdictReader
+        type: QuizInstructionVerdictReader
+      - name: config
+        type: QuizInstructionConfig
+      visibility: public
+      handwrittenTests:
+      - name: should build the analyzer with the configured default budget when the
+          run declares no policy for the judge
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R006
+      - name: should publish for selection exactly the name under which the analyzer
+          it builds reports its score
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R015
+      implements:
+      - EvaluationAnalyzerFactory
+    - name: QuizInstructionAnalyzer
+      requiresInject:
+      - name: session
+        type: EvaluationSession
+      - name: subjectBuilder
+        type: QuizInstructionSubjectBuilder
+      - name: scorer
+        type: QuizInstructionScorer
+      - name: scopeMatcher
+        type: QuizInstructionScopeMatcher
+      - name: verdictReader
+        type: QuizInstructionVerdictReader
+      - name: policy
+        type: EvaluationRunPolicy
+      handwrittenTests:
+      - name: "should record for a breaching quiz a diagnosis with every violation\
+          \ carrying its code, its breached constraint, its evidence and its explanation"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R003
+      - name: should record for a compliant quiz a diagnosis with the checks the judge
+          performed and no violations
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R003
+      - name: "should record in the quiz diagnosis the reason, the severity and the\
+          \ confidence the judge reported"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R003
+      - name: should leave a quiz pending for budget without score and without diagnosis
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R004
+      - name: should leave a failed quiz without score and without diagnosis
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R004
+      - name: "should declare on the course node how many quizzes were reached, resolved,\
+          \ evaluated in this run, reused, pending and failed"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
+      - name: "should declare a coverage whose resolved, pending and failed counts\
+          \ add up to the reached total"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
+      - name: should mark a verdict taken from a previous run as reused both in the
+          quiz diagnosis and in the declared coverage
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
+      - name: should stop querying the judge once the run budget is exhausted and
+          finish without error leaving the rest pending
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R006
+      - name: should audit a fully evaluated course without a single judge query whatever
+          the budget is
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R006
+      - name: "should finish the run when the judge stops responding, counting the\
+          \ quizzes it could not judge as failed"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R007
+      - name: should keep the score and the diagnosis of the quizzes judged before
+          the judge failure
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R007
+      - name: should score a quiz from its recorded verdict without querying the judge
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R008
+      - name: should spend the run budget only on quizzes without a current verdict
+          so consecutive runs advance over different quizzes
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R008
+      - name: should not reuse the verdicts recorded by a previous judge version and
+          report those quizzes as pending
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R010
+      - name: should query the judge again for quizzes that already had a current
+          verdict when re evaluation is requested
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R012
+      - name: should keep an explicit re evaluation within the run budget
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R012
+      - name: should leave without score and without diagnosis and count as failed
+          a quiz whose judge output was unusable
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R013
+      - name: should query the judge again in a later run for a quiz whose previous
+          output was unusable
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R013
+      - name: "should reach every quiz of the course, including those whose knowledge\
+          \ declares no instructions"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R014
+      - name: "should declare a reached count equal to the number of quizzes of the\
+          \ course, with no exclusions"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R014
+      - name: should declare in the coverage the judge version the run evaluated with
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
+      - name: "should declare a single judge version, the one in effect, for a run\
+          \ that both reuses verdicts from earlier runs and evaluates new ones"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
+      implements:
+      - ContentAnalyzer
+    - name: DefaultQuizInstructionSubjectBuilder
+      handwrittenTests:
+      - name: "should hand the judge the cefr level, the topic, the knowledge label,\
+          \ the knowledge instructions and the whole quiz with all its parts and accepted\
+          \ options"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R009
+      - name: should leave the quiz identifier out of the judged content
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R009
+      - name: should produce different judged content when a single accepted option
+          of the quiz changes
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R009
+      - name: should produce different judged content for every quiz of a knowledge
+          when the knowledge instructions change
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R009
+      - name: should produce identical judged content when the same course is reprocessed
+          without content changes
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R009
+      - name: should take the label and the instructions from the knowledge when the
+          quiz carries diverging copies
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R009
+      - name: should build judged content for a quiz whose knowledge declares no instructions
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R014
+      implements:
+      - QuizInstructionSubjectBuilder
+    - name: DefaultQuizInstructionScorer
+      requiresInject:
+      - name: config
+        type: QuizInstructionConfig
+      handwrittenTests:
+      - name: should score the quiz at the maximum when the verdict says it follows
+          the instructions with severity none
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R002
+      - name: should score the quiz at 0.6 when the verdict reports a minor breach
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R002
+      - name: should score the quiz at 0.3 when the verdict reports a major breach
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R002
+      - name: should score the quiz at 0.0 when the verdict reports a critical breach
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R002
+      - name: should let the declared severity prevail when the verdict says the quiz
+          complies but declares a severity other than none
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R002
+      - name: should score as a minor breach when the verdict says the quiz does not
+          comply but declares severity none
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R002
+      - name: should score the same verdict identically whatever confidence the judge
+          reported
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R002
+      implements:
+      - QuizInstructionScorer
+    - name: DefaultQuizInstructionScopeMatcher
+      handwrittenTests:
+      - name: should match only the quizzes selected by the requested re evaluation
+          scope
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R012
+      - name: should match every reached quiz when the re evaluation request declares
+          no scope
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R012
+      implements:
+      - QuizInstructionScopeMatcher
 - name: course-domain
   description: "Domain module for course structure. Contains entity models representing\
     \ the 5-level hierarchy (Course > ROOT > Milestone > Topic > Knowledge > QuizTemplate),\
@@ -3433,6 +3851,7 @@ modules:
       - signature: "parse(String quizSentence): FormEntity"
       - signature: "toPlainSentences(FormEntity form): List<String>"
       - signature: "toPlainSentences(FormEntity form, SentenceMode mode): List<String>"
+      - signature: "parseOnto(String quizSentence, FormEntity base): FormEntity"
       visibility: public
   - name: quizsentenceengine
     description: "Internal engine implementing the quizSentence DSL conversions. The\
@@ -3614,6 +4033,48 @@ modules:
         traceability:
           feature: FEAT-SMODE
           rule: F-SMODE-R004
+      - name: "should keep the form kind, incidence, label and name of the base form\
+          \ when parsing a quizSentence onto it"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014
+      - name: should keep the empty text of each blank part present and empty instead
+          of leaving it absent
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014
+      - name: should take the non-encoded attributes of each part from the base part
+          at the same position when the quizSentence yields the same structure
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014
+      - name: "should replace the sequence of parts, the correct answer of each blank\
+          \ and its accepted variants with what the quizSentence encodes"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R013
+      - name: should give each blank part that the correction adds the same text as
+          the blank parts the exercise already had
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R006
+      - name: should give each fixed-text part that the correction adds its options
+          in the same state as the fixed-text parts the exercise already had
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R006
+      - name: "should never leave a blank part that the correction adds with its text\
+          \ absent or at the default value of its type, even when the exercise had\
+          \ no other blank part"
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R006
+      - name: "should give a fixed-text part that the correction adds its own text\
+          \ and no accepted answers, even when the exercise had no other fixed-text\
+          \ part"
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R006
       implements:
       - QuizSentenceConverter
     - name: QuizSentenceSerializer
@@ -3641,6 +4102,19 @@ modules:
     - name: LEMMA_RECURRENCE
     - name: KNOWLEDGE_TITLE_LENGTH
     - name: KNOWLEDGE_INSTRUCTIONS_LENGTH
+    - name: QUIZ_INSTRUCTION
+      description: "Tarea originada por el analisis de consigna de ejercicio (nombre\
+        \ publico 'quiz-instruction', F-QINST-R015). Existe porque F-QINST-R017 exige\
+        \ que todo ejercicio con veredicto de incumplimiento -puntaje menor al maximo-\
+        \ se convierta en trabajo dentro del plan de refinamiento, con su propio tipo\
+        \ de diagnostico, apuntando al ejercicio (AuditTarget.QUIZ) y priorizable,\
+        \ listable y filtrable como el de cualquier otro analisis. Sin este valor\
+        \ el puntaje de consigna no tiene traduccion a diagnostico y las tareas se\
+        \ descartan en silencio. Los ejercicios pendientes y fallidos no producen\
+        \ tarea sin logica adicional: no tienen puntaje en el informe (F-QINST-R004).\
+        \ Igual que COCA_BUCKETS y LEMMA_RECURRENCE, este tipo es accionable como\
+        \ informacion antes que como correccion: R017 no exige propuesta automatica,\
+        \ que queda como alcance futuro."
   - name: RefinementTaskStatus
     type: enum
     fields:
@@ -4588,6 +5062,16 @@ modules:
       traceability:
         feature: FEAT-RCLA
         rule: F-RCLA-R001
+    - name: should include one QUIZ_INSTRUCTION task targeting the quiz for each quiz
+        whose quiz-instruction score is below 1.0
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R017
+    - name: should not include any QUIZ_INSTRUCTION task for a quiz that complies
+        with its instruction nor for a quiz with no quiz-instruction score at all
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R017
     implements:
     - RefinerEngine
   - name: KnowledgeTitleContextResolver
@@ -4862,6 +5346,23 @@ modules:
   - vocabulary-infrastructure
   - audit-infrastructure
   - revision-domain
+  - evaluation-ledger-domain
+  models:
+  - name: AuditRunRequest
+    type: record
+    fields:
+    - name: includedAnalyzers
+      type: Set<String>
+      description: Subconjunto a correr. Null o vacio = todos.
+    - name: excludedAnalyzers
+      type: Set<String>
+      description: "Analizadores excluidos explicitamente. Un analizador excluido\
+        \ no aparece en el informe, en vez de aparecer con cobertura cero (F-QINST-R011)."
+    - name: analyzerPolicies
+      type: "Map<String,EvaluationRunPolicy>"
+      description: "Politica de corrida por nombre de analizador, en el mismo vocabulario\
+        \ que includedAnalyzers y excludedAnalyzers. Ausente = la politica por defecto\
+        \ que declare el analizador (F-QINST-R006)."
   interfaces:
   - name: AuditRunner
     stereotype: service
@@ -4869,6 +5370,8 @@ modules:
     exposes:
     - signature: "runAudit(Path coursePath,Set<String> analyzerNames): AuditReport"
     - signature: "runDetailedAudit(Path coursePath,String analyzerName): AuditNode"
+    - signature: "runAudit(Path coursePath,AuditRunRequest request): AuditReport"
+    - signature: "runDetailedAudit(Path coursePath,AuditRunRequest request): AuditNode"
   - name: AnalyzerRegistry
     stereotype: service
     sealed: false
@@ -4963,6 +5466,16 @@ modules:
       traceability:
         feature: FEAT-DBSENT
         rule: F-DBSENT-R002
+    - name: should carry every sentence part and every accepted option of the quiz
+        template into the auditable quiz
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R009
+    - name: should carry the knowledge instructions and the topic name into the auditable
+        knowledge
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R009
     implements:
     - CourseMapper
   - name: DefaultSentenceLengthConfig
@@ -4981,15 +5494,13 @@ modules:
       type: AuditEngine
     - name: allAnalyzers
       type: List<ContentAnalyzer>
-      description: "Lista completa de analyzers disponibles. runAudit() y runDetailedAudit()\
-        \ filtran este set por nombre cuando el caller pide un subset; cuando analyzerNames\
-        \ es null o vacio, se delega al auditEngine inyectado (todos los analyzers\
-        \ del default)."
     - name: scoreAggregator
       type: ScoreAggregator
-      description: Agregador de scores que se usa para construir IAuditEngine instances
-        ad-hoc cuando el caller filtra analyzers por nombre. Mismo aggregator que
-        el auditEngine principal usa internamente.
+    - name: evaluationAnalyzerFactories
+      type: List<EvaluationAnalyzerFactory>
+      description: Analizadores que se construyen por corrida porque su presupuesto
+        y su cobertura son estado de la corrida. El runner no conoce ningun evaluador
+        concreto.
     types:
     - Service
     visibility: public
@@ -5053,6 +5564,59 @@ modules:
       traceability:
         feature: FEAT-LEMMA-SUGGESTIONS
         rule: F-SLEM-R001
+    - name: should include the quiz instruction analysis when the audit request says
+        nothing about analyzers
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R001
+    - name: "should report quiz instruction score, diagnoses and coverage on an audit\
+        \ asked with no options"
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R001
+    - name: should not build the quiz instruction analyzer when the request excludes
+        it
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R011
+    - name: "should leave the report without quiz instruction score, diagnosis or\
+        \ coverage when the analysis is excluded"
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R011
+    - name: should not run the quiz instruction analysis when the request narrows
+        the audit to other analyzers
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R011
+    - name: should finish the audit and keep the results of the other analyzers when
+        the quiz instruction judge fails
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R007
+    - name: should hand the quiz instruction analyzer the run policy the request declared
+        for its judge
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R006
+    - name: "should not run the quiz instruction analysis when the run excludes it\
+        \ by the very name the report publishes, while the judge behind it answers\
+        \ to a different name"
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R015
+    - name: "should cap the judge queries at the number requested for the name the\
+        \ report publishes instead of falling back to the default cap, while the judge\
+        \ behind it answers to a different name"
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R015
+    - name: "should re evaluate quizzes that already had a verdict when re evaluation\
+        \ is requested for the name the report publishes, while the judge behind it\
+        \ answers to a different name"
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R015
     implements:
     - AuditRunner
   - name: DefaultCocaBucketsConfig
@@ -5431,6 +5995,22 @@ modules:
         rule: F-LCOUNT-R008
     implements:
     - LemmaCountConfigLoader
+  - name: DefaultQuizInstructionConfig
+    types:
+    - Component
+    visibility: public
+    handwrittenTests:
+    - name: should default the run budget to 500 new judge queries
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R006
+    - name: "should map the severities none, minor, major and critical to the scores\
+        \ 1.0, 0.6, 0.3 and 0.0"
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R002
+    implements:
+    - QuizInstructionConfig
   patterns:
   - type: Decorator
     decorators:
@@ -6041,6 +6621,10 @@ modules:
   - refiner-domain
   - revision-domain
   - revision-infrastructure
+  - evaluation-ledger-domain
+  - evaluation-ledger-infrastructure
+  - agent-runtime-infrastructure
+  - quiz-instruction-infrastructure
   models:
   - name: GetTasksFilter
     type: record
@@ -6141,13 +6725,40 @@ modules:
         \ GetCmd mapea este campo al carrier SuggestedLemmaQueryCriteria.regex (refiner-domain)\
         \ al construir la consulta."
     visibility: public
+  - name: AnalyzeOptions
+    type: record
+    fields:
+    - name: format
+      type: String
+    - name: level
+      type: String
+    - name: topic
+      type: String
+    - name: knowledge
+      type: String
+    - name: analyzers
+      type: List<String>
+    - name: excludeAnalyzers
+      type: List<String>
+      description: --exclude-analyzers (F-QINST-R011)
+    - name: detailed
+      type: boolean
+    - name: instructionBudget
+      type: Integer
+      description: "--instruction-budget: tope de consultas nuevas al juez en esta\
+        \ corrida. Null = el defecto del analizador (F-QINST-R006)."
+    - name: reevaluateInstructions
+      type: String
+      description: "--reevaluate-instructions[=SCOPE]: pide volver a juzgar contenido\
+        \ con veredicto vigente, acotado o total (F-QINST-R012)."
   interfaces:
   - name: AnalyzeCommand
     stereotype: port
-    sealed: true
+    sealed: false
     exposes:
     - signature: "analyze(String coursePath, String format, String level, String topic,\
         \ String knowledge, List<String> analyzers, boolean detailed): Integer"
+    - signature: "analyze(String coursePath,AnalyzeOptions options): Integer"
   - name: GetCommand
     stereotype: port
     sealed: true
@@ -6214,6 +6825,12 @@ modules:
     sealed: true
     exposes:
     - signature: "queryLexis(String quizSentence, String mode, String level): Integer"
+  - name: RepairCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "repair(String resource, String coursePath, boolean dryRun): Integer"
+    visibility: public
   patterns:
   - type: Strategy
     implementations:
@@ -6326,6 +6943,26 @@ modules:
           feature: FEAT-CLI
           rule: F-CLI-R004
           journey: F-CLI-J003
+      - name: should exclude the quiz instruction analysis from the run when the user
+          asks to exclude analyzers
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R011
+      - name: should carry the instruction budget the user asked for into the run
+          policy of the judge
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R006
+      - name: should ask for re evaluation with its scope when the user requests to
+          judge again
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R012
+      - name: should neither exclude nor narrow the quiz instruction analysis when
+          the user passes no analyzer option
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R001
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -6786,6 +7423,11 @@ modules:
         traceability:
           feature: FEAT-RCLA
           rule: F-RCLA-R003e
+      - name: "should return the QUIZ_INSTRUCTION tasks of the plan, and only those,\
+          \ when 'get tasks --diagnosis QUIZ_INSTRUCTION' is supplied"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R017
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -7455,6 +8097,27 @@ modules:
       - java.util.concurrent.Callable<Integer>
       implements:
       - LexisCommand
+    - name: RepairCmd
+      requiresInject:
+      - name: preservationRepair
+        type: PreservationRepair
+        description: Puerto de reparacion de revision-domain.
+      - name: courseRepository
+        type: CourseRepository
+        description: Carga el curso y persiste el resultado reparado; en dry-run solo
+          carga.
+      types:
+      - Component
+      handwrittenTests:
+      - name: should leave no element with degraded attributes in the course reloaded
+          from the data source after repairing it
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R005
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - RepairCommand
   - name: formatting
     description: "Internal formatting infrastructure — report transformers, view models,\
       \ formatters, drill-down resolution, and proposal/preview rendering."
@@ -7905,6 +8568,34 @@ modules:
           rule: F-CDIFF-R011
       implements:
       - ConsolidatedViewFormatter
+    - name: QuizInstructionDetailedFormatter
+      handwrittenTests:
+      - name: should render the declared coverage of the quiz instruction analysis
+          next to its score
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
+      - name: should render for each breaching quiz its violations with their evidence
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R003
+      - name: should render the judge version the analysis evaluated with next to
+          the coverage numbers
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
+      - name: should render one row per originating judge version with how many of
+          the scored verdicts each one contributes
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
+      - name: should state explicitly that the run consulted no judge version when
+          it made no new consultation
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
+      implements:
+      - DetailedFormatter
   - name: bootstrap
     description: "Env-var -> domain-object parsing plus composition-root helpers translating\
       \ external inputs (workdir, approval mode, proposal strategy selection, LAGEN\
@@ -7986,6 +8677,11 @@ modules:
       sealed: true
       exposes:
       - signature: "resolve(Map<String,String> env): LagenConfig"
+    - name: QuizInstructionJudgeConfigResolver
+      sealed: false
+      exposes:
+      - signature: "resolve(): QuizInstructionJudgeConfig"
+      visibility: internal
     implementations:
     - name: DefaultWorkdirResolver
       visibility: public
@@ -8186,6 +8882,9 @@ modules:
           rule: F-LASAG-R011
       implements:
       - LagenConfigResolver
+    - name: DefaultQuizInstructionJudgeConfigResolver
+      implements:
+      - QuizInstructionJudgeConfigResolver
 - name: nlp-infrastructure
   description: "Infrastructure module for NLP processing. Provides SpaCy-backed tokenization\
     \ behind a factory, with internal caching. Only the factory and configuration\
@@ -9009,6 +9708,10 @@ modules:
       description: No proposal matches the supplied id (R002/R011/R012)
     - name: ALREADY_DECIDED
       description: Proposal exists but its verdict is not PENDING_APPROVAL (R013)
+    - name: PRESERVATION_VIOLATED
+      description: "La revision aprobada habria cambiado atributos fuera del alcance\
+        \ declarado de su tipo de correccion (F-RPRES-R001/R002/R003). Ni el artifact\
+        \ pasa a APPROVED ni el curso se escribe: el apply aborta antes de persistir."
   - name: ProposalDecisionOutcome
     type: record
     fields:
@@ -9191,6 +9894,7 @@ modules:
         \ Optional<CourseElementSnapshot>"
     - signature: "replace(CourseEntity course, CourseElementSnapshot replacement):\
         \ CourseEntity"
+    - signature: "alignQuizTitles(CourseEntity course, String knowledgeId): CourseEntity"
   - name: RevisionEngine
     stereotype: port
     sealed: false
@@ -9275,12 +9979,24 @@ modules:
     exposes:
     - signature: "derive(CourseElementSnapshot before, KnowledgeTitleCandidate candidate):\
         \ CourseElementSnapshot"
+  - name: PreservationFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "createCheck(): PreservationCheck"
+    - signature: "createRepair(RevisionArtifactStore artifactStore): PreservationRepair"
+    visibility: public
   patterns:
   - type: Strategy
     implementations:
     - LemmaAbsenceMvpStrategy
     suppressed: false
     interface: LemmaAbsenceProposalStrategy
+  - type: Factory
+    implementations:
+    - DefaultPreservationFactory
+    suppressed: false
+    interface: PreservationFactory
   uses:
   - jackson-databind
   packages:
@@ -9501,6 +10217,20 @@ modules:
         traceability:
           feature: FEAT-KTLR
           rule: F-KTLR-R007
+      - name: should set the title of every quiz of the knowledge to the corrected
+          label
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R004
+      - name: should leave every attribute other than the title of those quizzes unchanged
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R004
+      - name: should leave the quizzes of every other knowledge of the course untouched
+          when aligning titles
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R003
       implements:
       - CourseElementLocator
     - name: DefaultRevisionEngine
@@ -9706,6 +10436,11 @@ modules:
         type: RefinementPlanStore
         description: Needed to clear the task back to PENDING on reject (R014) and
           close it as DONE on approve
+      - name: preservationCheck
+        type: PreservationCheck
+        description: "Guarda de F-RPRES-R001/R002/R003. Se consulta con el curso antes\
+          \ y despues de elementLocator.replace y antes de escribir: si devuelve violaciones,\
+          \ approve retorna PRESERVATION_VIOLATED sin tocar el artifact ni el curso."
       types:
       - Component
       handwrittenTests:
@@ -9782,6 +10517,32 @@ modules:
         traceability:
           feature: FEAT-REVAPR
           rule: F-REVAPR-R013
+      - name: should abort the approval leaving the proposal undecided and the course
+          unwritten when the preservation check reports violations
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R001
+      - name: should align the title of every quiz of the knowledge when approving
+          a correction of its label
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R004
+      - name: should leave the title of the knowledge quizzes untouched when approving
+          a correction of one of those quizzes
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R004
+      - name: should keep the quizzes revised after the proposal was recorded when
+          approving a correction of the knowledge label
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R003
+      - name: "should apply the approval of a lexical correction whose elementAfter\
+          \ comes from the real lemma-absence deriver, saving a course whose revised\
+          \ quiz differs from the original only in the fields the correction covers"
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R001
       implements:
       - ProposalDecisionService
     - name: DefaultLemmaAbsenceProposalStrategyRegistry
@@ -9898,6 +10659,22 @@ modules:
         traceability:
           feature: FEAT-SMODE
           rule: F-SMODE-R007
+      - name: should keep the quiz title identical to the original instead of replacing
+          it with the corrected sentence
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014
+      - name: "should keep the form kind, incidence, label and name and the empty\
+          \ text of each blank identical to the original"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014
+      - name: "should keep on elementAfter the very same quiz title that elementBefore\
+          \ carried, even when the derived plain sentence differs, because the title\
+          \ is not in scope of a lexical correction"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014
       implements:
       - LemmaAbsenceProposalDeriver
     - name: DefaultImpactPreviewComputer
@@ -11264,6 +12041,256 @@ modules:
       visibility: public
       implements:
       - KnowledgeTitleProposalStrategy
+  - name: preservation
+    description: "Contrato publico de la garantia de preservacion (FEAT-RPRES). Aloja\
+      \ la declaracion de alcance por tipo de correccion (CorrectionScope: la respuesta\
+      \ a DOUBT-ALCANCE-DECLARADO), el verificador por complemento que corre antes\
+      \ de persistir un apply (PreservationCheck), el reparador retroactivo del contenido\
+      \ ya degradado (PreservationRepair) y sus carriers (ScopedField, PreservationViolation,\
+      \ AttributeState, RepairReport). Solo puertos y carriers: el motor vive en el\
+      \ package hermano interno 'preservationengine'. Es publico porque el comando\
+      \ repair del CLI consume PreservationRepair; el resto de los consumidores estan\
+      \ dentro de revision-domain."
+    visibility: public
+    models:
+    - name: AttributeState
+      type: enum
+      fields:
+      - name: VALUE_PRESENT
+        description: El atributo esta presente y tiene un valor propio distinto del
+          vacio.
+      - name: EMPTY_PRESENT
+        description: "El atributo esta presente y su valor es legitimamente vacio\
+          \ (cadena vacia, lista vacia). Es una decision de contenido, no una perdida."
+      - name: ABSENT
+        description: "El atributo no esta: null, o el valor por defecto del tipo primitivo\
+          \ alli donde el contenido tenia un valor propio."
+    - name: PreservationViolation
+      type: record
+      fields:
+      - name: elementId
+        type: String
+        description: Id del elemento del curso (quiz o knowledge) donde se observo
+          la diferencia.
+      - name: path
+        type: String
+        description: "Ruta concreta e instanciada donde se observo la diferencia (p.ej.\
+          \ 'form.sentenceParts[2].text'), no el patron declarado en ScopedField.\
+          \ Se resuelve contra el alcance expandiendo cada ScopedField sobre el elemento\
+          \ real."
+      - name: beforeState
+        type: AttributeState
+        description: Estado del atributo en el elemento original.
+      - name: afterState
+        type: AttributeState
+        description: Estado del atributo en el elemento resultante.
+      - name: beforeValue
+        type: String
+        description: "Representacion textual del valor original, para el mensaje de\
+          \ error de R001/R002."
+      - name: afterValue
+        type: String
+        description: Representacion textual del valor resultante.
+    - name: RepairReport
+      type: record
+      fields:
+      - name: course
+        type: CourseEntity
+        description: Curso resultante. En modo inspeccion es el mismo objeto de entrada.
+      - name: elementsInspected
+        type: int
+        description: Cantidad de elementos del curso examinados.
+      - name: elementsRepaired
+        type: int
+        description: Cantidad de elementos con al menos un atributo repuesto.
+      - name: restored
+        type: List<PreservationViolation>
+        description: "Detalle atributo por atributo de lo repuesto (o de lo que se\
+          \ repondria, en modo inspeccion)."
+      - name: unrepairable
+        type: List<String>
+        description: "Ids de elementos degradados sin contraparte integra disponible\
+          \ en los artifacts de revision. Se informan, nunca se inventa un valor por\
+          \ defecto (F-RPRES-R002)."
+    - name: ScopedField
+      type: record
+      fields:
+      - name: path
+        type: String
+        description: "Ruta al leaf dentro del elemento. '[]' marca el paso por una\
+          \ lista. Una ruta que termina en '[]' denota la estructura de la lista (longitud,\
+          \ orden y la clase declarada de cada elemento), no sus leaves: p.ej. 'form.sentenceParts[]'\
+          \ autoriza reordenar/agregar/quitar partes pero no cambiar ningun atributo\
+          \ de una parte. Ejemplos de leaf: 'translation', 'form.incidence', 'quizTemplates[].title',\
+          \ 'form.sentenceParts[].text'."
+      - name: elementKind
+        type: String
+        description: "Nombre de la constante de clase que selecciona los elementos\
+          \ de la lista a los que aplica la entrada; null significa 'todos los elementos'.\
+          \ Es el unico refinamiento admitido sobre la ruta, y solo puede nombrar\
+          \ una clase que el dominio ya declara como enum (p.ej. SentencePartKind.TEXT).\
+          \ Existe porque la correccion lexica cambia el texto de las partes TEXT\
+          \ pero no el de las partes CLOZE, y sin el discriminador ambas quedan bajo\
+          \ la misma ruta 'form.sentenceParts[].text'."
+    interfaces:
+    - name: CorrectionScope
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "changeableFields(DiagnosisKind kind, AuditTarget target): Set<ScopedField>"
+      visibility: public
+    - name: PreservationCheck
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "verify(CourseEntity courseBefore, CourseEntity courseAfter, CourseElementSnapshot\
+          \ revised, DiagnosisKind kind): List<PreservationViolation>"
+      visibility: public
+    - name: PreservationRepair
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "inspect(CourseEntity course): RepairReport"
+      - signature: "repair(CourseEntity course): RepairReport"
+      visibility: public
+  - name: preservationengine
+    description: "Motor interno de la garantia de preservacion. Aloja la tabla de\
+      \ alcances por tipo de correccion (DefaultCorrectionScope), el comparador por\
+      \ complemento que recorre el elemento revisado y verifica el radio de impacto\
+      \ sobre el resto del curso (DefaultPreservationCheck) y el reparador que reconstruye\
+      \ desde los artifacts (DefaultPreservationRepair), todos package-private. Solo\
+      \ DefaultPreservationFactory es publica: es la unica costura por la que el composition\
+      \ root y el resto de revision-domain arman las dos capacidades. Empaquetado\
+      \ aparte de 'preservation' por la misma razon que fielddiff lo esta de consolidatedview:\
+      \ el contrato es estable y el motor no."
+    visibility: internal
+    implementations:
+    - name: DefaultCorrectionScope
+      handwrittenTests:
+      - name: "should declare nothing changeable for a diagnosis kind with no declared\
+          \ scope, so every attribute stays preserved by default"
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R001
+      - name: "should declare a knowledge label correction as changing the label,\
+          \ the instructions and the title of its quizzes"
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R004
+      - name: "should declare a lexical correction of a quiz as changing only the\
+          \ plain sentence, the composition of the statement and the translation"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R013
+      - name: "should leave the quiz title, the form kind, the incidence, the presentation\
+          \ labels and the empty text of each blank outside the scope of a lexical\
+          \ correction"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R013
+      implements:
+      - CorrectionScope
+    - name: DefaultPreservationCheck
+      requiresInject:
+      - name: scope
+        type: CorrectionScope
+        description: Declaracion de alcance contra la que se contrasta el diff observado.
+      handwrittenTests:
+      - name: should report no violation when the revised quiz differs from the original
+          only in the attributes the correction declares changeable
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R001
+      - name: should report a violation when the revised quiz loses the form kind
+          that the correction does not propose to change
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R001
+      - name: should report a violation when an attribute that was present and empty
+          becomes absent
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R002
+      - name: should report a violation when an attribute holding its own value is
+          replaced by the default value of its type
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R002
+      - name: should report a violation when an attribute absent in the original is
+          materialized with a default value
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R002
+      - name: should report a violation when a quiz correction replaces the quiz title
+          with the corrected sentence
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R004
+      - name: should report no violation for the quizzes whose title was aligned to
+          the corrected label of their knowledge
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R004
+      - name: should report a violation when a quiz other than the revised one changed
+          its content
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R003
+      - name: "should report a violation when the course gains, loses or reorders\
+          \ elements around the revised one"
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R003
+      implements:
+      - PreservationCheck
+    - name: DefaultPreservationRepair
+      requiresInject:
+      - name: artifactStore
+        type: RevisionArtifactStore
+        description: "Fuente de las contrapartes integras: el elementBefore de los\
+          \ artifacts APPROVED. Se toma el artifact mas antiguo por nodeId, porque\
+          \ el de una segunda revision ya trae el elemento degradado."
+      - name: scope
+        type: CorrectionScope
+        description: "Delimita que atributos repone la reparacion: exactamente los\
+          \ que quedan fuera del alcance de la correccion que el artifact aplico,\
+          \ de modo que reparar nunca revierte la correccion."
+      handwrittenTests:
+      - name: should restore the degraded attributes of a quiz from the intact counterpart
+          recorded before the revision that degraded it
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R005
+      - name: "should repair a quiz revised twice, whose most recent record already\
+          \ carries the degradation"
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R005
+      - name: should keep the correction that the revision had applied when restoring
+          the lost attributes
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R005
+      - name: should leave every element that was never degraded exactly as it was
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R005
+      - name: should report the degraded elements found in a full walk of the course
+          without modifying it when only inspecting
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R005
+      - name: should report as unrepairable a degraded element with no intact counterpart
+          instead of filling it with the default value of its type
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R002
+      implements:
+      - PreservationRepair
+    - name: DefaultPreservationFactory
+      visibility: public
+      implements:
+      - PreservationFactory
 - name: revision-infrastructure
   description: "Infrastructure adapter for the revision phase. Provides the LLM-backed\
     \ implementation of LemmaAbsenceQuizCandidateGenerator (revision-domain.lemmaabsence\
@@ -11285,6 +12312,7 @@ modules:
   dependsOn:
   - revision-domain
   - refiner-domain
+  - agent-runtime-infrastructure
   allowedClients:
   - audit-cli
   patterns:
@@ -11542,11 +12570,6 @@ modules:
           rule: F-LASAG-R015
       implements:
       - LemmaAbsenceQuizCandidateGenerator
-    - name: DefaultAgentRuntimeLauncher
-      types:
-      - Component
-      implements:
-      - AgentRuntimeLauncher
     - name: DefaultSuggestedLemmaAgentTool
       requiresInject:
       - name: session
@@ -11575,6 +12598,12 @@ modules:
     - name: DefaultAgentCandidateParser
       implements:
       - AgentCandidateParser
+    - name: SharedRuntimeAgentLauncher
+      requiresInject:
+      - name: agentGraphRunner
+        type: AgentGraphRunner
+      implements:
+      - AgentRuntimeLauncher
   - name: knowledgetitleagent
     description: "Adapter agente para KNOWLEDGE_TITLE_LENGTH. Espejo de lemmaabsenceagent/lagen:\
       \ expone un unico factory seam (KnowledgeTitleAgentGeneratorFactory) que construye\
@@ -11640,15 +12669,720 @@ modules:
           rule: F-KTLR-R004
       implements:
       - KnowledgeTitleCandidateGenerator
-    - name: DefaultKnowledgeTitleAgentRuntimeLauncher
-      implements:
-      - KnowledgeTitleAgentRuntimeLauncher
     - name: DefaultKnowledgeTitleAgentCandidateParser
       implements:
       - KnowledgeTitleAgentCandidateParser
     - name: DefaultKnowledgeTitleAgentErrorClassifier
       implements:
       - KnowledgeTitleAgentErrorClassifier
+    - name: SharedRuntimeKnowledgeTitleLauncher
+      requiresInject:
+      - name: agentGraphRunner
+        type: AgentGraphRunner
+      implements:
+      - KnowledgeTitleAgentRuntimeLauncher
+- name: evaluation-ledger-domain
+  description: |
+    FEAT-EVCOST. Capacidad general de resultados de evaluacion costosa reutilizables entre analisis. No sabe nada de auditoria, de cursos ni de LLMs: define la identidad de un resultado —evaluador + huella del contenido, y nada mas (F-EVCOST-R001)—, el registro append-only clave->payload opaco, y la coordinacion reanudable de una corrida (consultar lo registrado -> si falta, evaluar dentro del presupuesto -> registrar apenas se obtiene). La version del evaluador NO integra la identidad: es procedencia obligatoria que se registra junto a cada resultado y viaja con el en cada consulta, de modo que ningun cambio de version invalida, borra ni deja pendiente nada (F-EVCOST-R006, F-EVCOST-R008). Cada consumidor aporta tres cosas y nada mas: como construye el contenido (EvaluationSubject.content), como su evaluador se pronuncia (Evaluator -> EvaluationOutcome) y como interpreta su payload. La huella NO la calcula el consumidor: la deriva la sesion del propio mapa de contenido entregado al evaluador, de modo que F-EVCOST-R002 ("exactamente lo que el evaluador recibe, ni mas ni menos") queda garantizada por construccion y no por disciplina.
+  models:
+  - name: EvaluationKey
+    type: record
+    fields:
+    - name: evaluatorId
+      type: String
+      description: "Identificador estable del evaluador. No dice quien juzga sino\
+        \ QUE PREGUNTA SE HIZO: el resultado de un evaluador no es intercambiable\
+        \ con el de otro sobre la misma huella (F-EVCOST-R001)."
+    - name: contentFingerprint
+      type: String
+      description: Huella derivada del mapa de contenido entregado al evaluador (F-EVCOST-R002).
+        Junto con evaluatorId agota la identidad de un resultado.
+  - name: EvaluationSubject
+    type: record
+    fields:
+    - name: subjectRef
+      type: String
+      description: Referencia informativa al elemento del curso (id del quiz). No
+        participa de la identidad.
+    - name: content
+      type: "Map<String,String>"
+      description: Entradas exactas del evaluador. Todo lo que esta aca se juzga y
+        se fingerprintea; nada mas se juzga ni se fingerprintea.
+  - name: EvaluationRecord
+    type: record
+    fields:
+    - name: key
+      type: EvaluationKey
+    - name: payload
+      type: String
+      description: "Resultado emitido por el evaluador, serializado. Opaco."
+    - name: subjectRef
+      type: String
+      description: "Referencia informativa al elemento evaluado, para inspeccion y\
+        \ rastreo (F-EVCOST-R001)."
+    - name: recordedAt
+      type: Instant
+      description: Momento en que se registro. Informativo; no participa de la identidad.
+    - name: evaluatorVersion
+      type: String
+      description: "Version del evaluador que produjo este resultado. Procedencia\
+        \ OBLIGATORIA (F-EVCOST-R001): no participa de la identidad y no decide vigencia,\
+        \ pero un registro sin ella es un error porque es la unica señal con la que\
+        \ el usuario decide cuando re-evaluar."
+  - name: EvaluationEmitted
+    type: record
+    fields:
+    - name: payload
+      type: String
+    implements:
+    - EvaluationOutcome
+  - name: EvaluationNotEmitted
+    type: record
+    fields:
+    - name: kind
+      type: EvaluationFailureKind
+    - name: reason
+      type: String
+    implements:
+    - EvaluationOutcome
+  - name: EvaluationFailureKind
+    type: enum
+    fields:
+    - name: OUTPUT_UNUSABLE
+    - name: EVALUATOR_UNAVAILABLE
+  - name: EvaluationResolutionKind
+    type: enum
+    fields:
+    - name: REUSED
+    - name: EVALUATED
+    - name: PENDING
+    - name: FAILED
+  - name: EvaluationResolution
+    type: record
+    fields:
+    - name: kind
+      type: EvaluationResolutionKind
+    - name: payload
+      type: String
+    - name: evaluatorVersion
+      type: String
+      description: "Version que produjo el resultado devuelto (F-EVCOST-R001, F-EVCOST-R003).\
+        \ Poblada exactamente cuando kind es REUSED o EVALUATED; null cuando no hay\
+        \ resultado (PENDING, FAILED)."
+  - name: EvaluationCoverage
+    type: record
+    fields:
+    - name: reached
+      type: int
+      description: Contenidos que la corrida debia evaluar
+    - name: withResult
+      type: int
+      description: Contenidos con resultado en esta corrida (reused + evaluatedInRun)
+    - name: evaluatedInRun
+      type: int
+      description: Consumieron presupuesto en esta corrida
+    - name: reused
+      type: int
+      description: "Resueltos con un resultado ya registrado, cualquiera sea la version\
+        \ que lo produjo; no consumieron presupuesto (F-EVCOST-R003, F-EVCOST-R006)."
+    - name: pending
+      type: int
+      description: "Sin resultado registrado bajo su huella, por tope de presupuesto\
+        \ o porque la sesion dejo de consultar. Cambiar la version del evaluador nunca\
+        \ deja nada pendiente (F-EVCOST-R006)."
+    - name: failed
+      type: int
+      description: El evaluador no llego a pronunciarse sobre ellos en esta corrida
+  - name: EvaluationBudget
+    type: record
+    fields:
+    - name: maxNewEvaluations
+      type: int
+      description: Tope de evaluaciones nuevas de la corrida. Es lo unico de la politica
+        del consumidor que la sesion honra (F-EVCOST-R003); el reuso nunca lo consume.
+  interfaces:
+  - name: EvaluationOutcome
+    stereotype: port
+    sealed: false
+  - name: EvaluationLedger
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "append(EvaluationRecord record): void"
+    - signature: "findLatest(EvaluationKey key): Optional<EvaluationRecord>"
+    - signature: "history(EvaluationKey key): List<EvaluationRecord>"
+  - name: ContentFingerprinter
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "fingerprint(Map<String,String> content): String"
+  - name: Evaluator
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "evaluatorId(): String"
+    - signature: "evaluate(EvaluationSubject subject): EvaluationOutcome"
+    - signature: "evaluatorVersion(): Optional<String>"
+  - name: EvaluationSession
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "resolve(EvaluationSubject subject): EvaluationResolution"
+    - signature: "resolveForced(EvaluationSubject subject): EvaluationResolution"
+    - signature: "coverage(): EvaluationCoverage"
+    - signature: "consultedEvaluatorVersion(): Optional<String>"
+  - name: EvaluationSessionFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession"
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultEvaluationSessionFactory
+    suppressed: false
+    interface: EvaluationSessionFactory
+  packages:
+  - name: evaluationsession
+    description: |
+      Coordinacion reanudable de una corrida sobre un evaluador. La sesion se abre con un presupuesto y un evaluador y le pide una sola vez su version, que queda congelada para toda la corrida. Esa version ya NO entra en la clave —la identidad es evaluador + huella (F-EVCOST-R001)— sino que se estampa como procedencia sobre cada resultado nuevo y se declara via consultedEvaluatorVersion(). consultedEvaluatorVersion() esta vacia cuando la corrida no consulto al evaluador ni una vez: porque todo se reutilizo, porque no habia presupuesto, o porque el evaluador no pudo enunciar su version. Ese ultimo caso es el que sostiene la invariante 3 de F-QINST-R010 sin ninguna convencion de strings: un evaluador que devuelve Optional.empty() en evaluatorVersion() es, desde el primer sujeto, un evaluador NO DISPONIBLE —la sesion no lo consulta, no registra nada y deja pendiente lo que falta, igual que ante una caida de servicio (F-EVCOST-R009)—, pero el reuso sigue ocurriendo intacto, porque la ruta de reuso no mira la version (F-QINST-R010 criterio c). La sesion recibe unicamente el presupuesto: quien decide que sujeto se vuelve a evaluar es el consumidor, sujeto por sujeto, via resolveForced (F-EVCOST-R008).
+    visibility: public
+    implementations:
+    - name: DefaultEvaluationSessionFactory
+      requiresInject:
+      - name: ledger
+        type: EvaluationLedger
+      - name: fingerprinter
+        type: ContentFingerprinter
+      visibility: public
+      implements:
+      - EvaluationSessionFactory
+    - name: DefaultEvaluationSession
+      requiresInject:
+      - name: ledger
+        type: EvaluationLedger
+      - name: fingerprinter
+        type: ContentFingerprinter
+      - name: evaluator
+        type: Evaluator
+      - name: budget
+        type: EvaluationBudget
+      handwrittenTests:
+      - name: should reuse the registered result for identical content belonging to
+          a different course element
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R001
+      - name: should not reuse the registered result when the element kept its identifier
+          but its content changed
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R001
+      - name: should derive the fingerprint from exactly the content map handed to
+          the evaluator
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R002
+      - name: should return the registered result without consulting the evaluator
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R003
+      - name: should report the content as pending when no result is registered and
+          no new evaluation can be made
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R003
+      - name: should keep reusing registered results after the budget for new evaluations
+          is exhausted
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R003
+      - name: should record each evaluated result in the ledger before resolving the
+          next content
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R004
+      - name: should record an unfavourable verdict emitted by the evaluator and reuse
+          it in the next run
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R005
+      - name: should record nothing when the evaluator does not emit a verdict and
+          leave the content pending for the next run
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R005
+      - name: should leave content pending instead of reusing a result produced by
+          a previous version of the evaluator
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R006
+      - name: should consult the evaluator again for content with a current result
+          only when re-evaluation is explicitly requested
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R008
+      - name: should keep consulting the evaluator for the remaining content when
+          the failure is attributable to a single content
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R009
+      - name: should stop consulting the evaluator after a service failure and finish
+          the run leaving the remaining content pending
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R009
+      - name: should keep reusing the registered current result of the neighbouring
+          content in the same run when re evaluation is requested for one content
+          only
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R008
+      implements:
+      - EvaluationSession
+  - name: contentfingerprint
+    description: Derivacion de la huella. Publico porque la composition root lo inyecta
+      en la factory de sesiones y porque la reproducibilidad de la huella (F-EVCOST-R002)
+      necesita ser verificable de forma aislada.
+    visibility: public
+    implementations:
+    - name: Sha256ContentFingerprinter
+      visibility: public
+      handwrittenTests:
+      - name: should produce a different fingerprint when any part of the delivered
+          content changes
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R002
+      - name: should produce the same fingerprint when the same content is rebuilt
+          in another run
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R002
+      implements:
+      - ContentFingerprinter
+- name: evaluation-ledger-infrastructure
+  description: |
+    Adaptador filesystem del registro de evaluaciones costosas. Escribe un archivo por evaluador bajo .content-audit/evaluations/, una entrada por linea, en modo append: cada resultado queda disponible apenas se obtiene (F-EVCOST-R004) y una interrupcion abrupta a lo sumo deja una ultima linea incompleta, que la lectura descarta por no parsear —"se lee completa o no existe"—. El orden de append es la unica fuente del desempate que exige F-EVCOST-R006: con mas de una entrada para la misma clave (evaluador + huella), findLatest devuelve la ULTIMA escrita y history las devuelve todas, de la mas reciente a la mas antigua, cada una con la version que la produjo. Se desempata por posicion en el archivo y no por recordedAt a proposito: el append es monotono y es la misma propiedad sobre la que se apoya la seguridad ante dos corridas simultaneas, mientras que un reloj puede empatar o retroceder; recordedAt queda como dato informativo. Append-only tambien significa que las entradas de versiones anteriores del evaluador conviven como historia consultable y nunca se borran solas (F-EVCOST-R006), y que una re-evaluacion agrega sin destruir y pasa a ganar el desempate (F-EVCOST-R008). Vive aparte de los informes de auditoria a proposito: borrar informes no toca este registro (F-EVCOST-R007).
+  dependsOn:
+  - evaluation-ledger-domain
+  implementations:
+  - name: FileSystemEvaluationLedger
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: "Directorio raiz bajo el cual se resuelve .content-audit/evaluations/.\
+        \ Lo provee la composition root, igual que los demas stores filesystem."
+    types:
+    - Repository
+    visibility: public
+    handwrittenTests:
+    - name: should make every appended result readable by a ledger instance opened
+        after the run was interrupted
+      traceability:
+        feature: FEAT-EVCOST
+        rule: F-EVCOST-R004
+    - name: should ignore a truncated trailing entry and report its content as never
+        registered
+      traceability:
+        feature: FEAT-EVCOST
+        rule: F-EVCOST-R004
+    - name: should preserve every result when two runs append to the same evaluator
+        ledger at the same time
+      traceability:
+        feature: FEAT-EVCOST
+        rule: F-EVCOST-R004
+    - name: should keep the results of previous evaluator versions readable in history
+        after a new version records its own
+      traceability:
+        feature: FEAT-EVCOST
+        rule: F-EVCOST-R006
+    - name: should keep every registered result readable after the analysis reports
+        under the same base directory are deleted
+      traceability:
+        feature: FEAT-EVCOST
+        rule: F-EVCOST-R007
+    - name: should keep the earlier entry consultable in history when the same key
+        is recorded again
+      traceability:
+        feature: FEAT-EVCOST
+        rule: F-EVCOST-R008
+    implements:
+    - EvaluationLedger
+  uses:
+  - jackson-databind
+- name: agent-runtime-infrastructure
+  description: |
+    Capacidad compartida para correr un agente declarativo de sentinel-agents in-process: carga el grafo de <agentsBaseDir>/<nombre>/, lo ejecuta con AgentRun.runRecording y persiste el run. Existe porque este lanzador ya se escribio dos veces identico dentro de revision-infrastructure (lemmaabsenceagent y knowledgetitleagent) y el juez de consigna seria la tercera copia — y no puede reusar ninguna, porque revision-infrastructure declara allowedClients=[audit-cli] y cuelga de revision-domain, mientras que este consumidor nuevo cuelga de la auditoria. Deliberadamente NO incluye la clasificacion de errores: el clasificador de cada consumidor devuelve su propia taxonomia de fallas y no es compartible sin arrastrar tipos ajenos. Declarado de forma identica en el patch principal a proposito, para que este patch valide y aplique en cualquier orden.
+  models:
+  - name: AgentGraphRunnerConfig
+    type: record
+    fields:
+    - name: agentsBaseDir
+      type: Path
+      description: "Directorio de definiciones de agentes. Null = se resuelve por\
+        \ inputs[\"project_root\"] si esta presente, y en su defecto .sentinel/agents\
+        \ relativo al CWD."
+    - name: runsBaseDir
+      type: Path
+      description: "Directorio donde se persisten los runs. Null = misma cadena de\
+        \ resolucion que agentsBaseDir, sobre .sentinel/runs."
+  - name: AgentDefinitionFound
+    type: record
+    fields:
+    - name: directory
+      type: Path
+      description: Directorio existente de la definicion del agente. Es el mismo que
+        se carga para correr el grafo.
+    implements:
+    - AgentDefinitionLocation
+  - name: AgentDefinitionUnresolved
+    type: record
+    fields:
+    - name: agentName
+      type: String
+      description: Agente que se busco.
+    - name: searchedIn
+      type: Path
+      description: "Ruta absoluta donde se busco y no hay definicion. Va en el resultado\
+        \ para que el mensaje diga donde miro, no solo que fallo."
+    implements:
+    - AgentDefinitionLocation
+  interfaces:
+  - name: AgentGraphRunner
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "run(String agentName,Map<String,String> inputs,ChatModel chatModel,Map<String,Object>\
+        \ tools): RunState"
+  - name: AgentGraphRunnerFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(AgentGraphRunnerConfig config): AgentGraphRunner"
+  - name: AgentDefinitionLocation
+    sealed: false
+  - name: AgentDefinitionLocator
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "locate(String agentName): AgentDefinitionLocation"
+    - signature: "locateUnderProjectRoot(String projectRoot,String agentName): AgentDefinitionLocation"
+  - name: AgentDefinitionLocatorFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(AgentGraphRunnerConfig config): AgentDefinitionLocator"
+  allowedClients:
+  - quiz-instruction-infrastructure
+  - audit-cli
+  - revision-infrastructure
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultAgentGraphRunnerFactory
+    suppressed: false
+    interface: AgentGraphRunnerFactory
+  - type: Factory
+    implementations:
+    - DefaultAgentDefinitionLocatorFactory
+    suppressed: false
+    interface: AgentDefinitionLocatorFactory
+  uses:
+  - sentinel-agents
+  - langchain4j-core
+  packages:
+  - name: graphexecution
+    description: |
+      Motor del runtime. Solo las factories son publicas; el runner y el locator son package-private. El locator es la unica implementacion de la cadena de resolucion del directorio de definiciones (config -> project_root -> CWD): el runner ya no la resuelve por su cuenta, de modo que el directorio que se ejecuta y el directorio sobre el que un consumidor calcula una version derivada son necesariamente el mismo. Cuando no hay definicion, el locator devuelve AgentDefinitionUnresolved en vez de una ruta inexistente: no existe un camino donde "no encontre nada" se pueda confundir con "encontre un directorio vacio".
+    visibility: public
+    implementations:
+    - name: DefaultAgentGraphRunnerFactory
+      visibility: public
+      implements:
+      - AgentGraphRunnerFactory
+    - name: DefaultAgentGraphRunner
+      requiresInject:
+      - name: config
+        type: AgentGraphRunnerConfig
+      - name: agentDefinitionLocator
+        type: AgentDefinitionLocator
+      implements:
+      - AgentGraphRunner
+    - name: DefaultAgentDefinitionLocatorFactory
+      visibility: public
+      implements:
+      - AgentDefinitionLocatorFactory
+    - name: DefaultAgentDefinitionLocator
+      requiresInject:
+      - name: config
+        type: AgentGraphRunnerConfig
+      implements:
+      - AgentDefinitionLocator
+- name: quiz-instruction-infrastructure
+  description: |
+    Adaptador del juez de consigna: implementa el SPI Evaluator de evaluation-ledger-domain corriendo el agente declarativo quiz-instruction-validator sobre el runtime compartido. Traduce EvaluationSubject.content a las cinco entradas declaradas del agente (cefrLevel, topic, title, instructions, quiz) verbatim, sin agregar ni quitar nada — es lo que hace que la huella cubra exactamente lo juzgado (F-EVCOST-R002). Reconoce el veredicto conservador de infraestructura del juez (confianza nula y violacion JUDGE_OUTPUT_INVALID) y lo devuelve como EvaluationNotEmitted(OUTPUT_UNUSABLE), de modo que nunca llega al registro (F-QINST-R013); toda falla de servicio, timeout, autenticacion o credito se devuelve como EvaluationNotEmitted(EVALUATOR_UNAVAILABLE) en lugar de propagarse como excepcion (F-QINST-R007). El juez no tiene proveedor propio: admite las mismas clases de proveedor que el resto del sistema —incluidas las que se autentican con la sesion local del usuario y por eso no llevan direccion de servicio ni credencial— y juzga la validez de su configuracion contra el proveedor que ella declara (F-QINST-R016). Su version es procedencia, no vigencia: se deriva de la definicion del agente, del modelo y del proveedor efectivo, se estampa sobre cada veredicto nuevo y se declara en el informe, pero no decide que veredictos valen (F-QINST-R010). Cuando la definicion no se puede localizar el juez no enuncia version alguna —evaluatorVersion() devuelve Optional.empty()— y con eso queda tratado como no disponible por la propia sesion. Construye el ChatModel de forma perezosa: una configuracion ausente o invalida es un evaluador no disponible, no una auditoria caida. allowedClients=[audit-cli] porque es un detalle de implementacion de la composition root.
+  dependsOn:
+  - audit-domain
+  - evaluation-ledger-domain
+  - agent-runtime-infrastructure
+  models:
+  - name: QuizInstructionJudgeConfig
+    type: record
+    fields:
+    - name: baseUrl
+      type: String
+      description: |
+        Direccion del servicio. Solo la exigen los proveedores que se consultan por direccion; para un proveedor de sesion local no existe, y exigirla es exactamente el defecto que F-QINST-R016 corrige.
+    - name: apiKey
+      type: String
+      description: |
+        Credencial opcional para cualquier clase de proveedor. Su ausencia nunca vuelve invalida la configuracion (F-QINST-R016): no impide dirigir la consulta. Si el servicio la exige, la consulta se emite, la rechazan, y ese rechazo se cuenta como falla del juez (F-QINST-R007) — mas visible que declararlo no disponible.
+    - name: modelName
+      type: String
+    - name: temperature
+      type: Double
+    - name: timeoutSeconds
+      type: Integer
+    - name: agentName
+      type: String
+      description: Nombre del grafo bajo .sentinel/agents/. Por defecto quiz-instruction-validator.
+    - name: providerName
+      type: String
+      description: |
+        Clase de proveedor declarada por el operador (F-QINST-R016). Es el dato contra el que se juzga que le falta a la configuracion: un proveedor de sesion local no exige direccion ni credencial. Vacio no es invalido: se aplica el mismo proveedor por defecto que el resto del sistema (DOUBT-PROVEEDOR-DEL-JUEZ, Opcion A [ASSUMPTION]).
+  interfaces:
+  - name: QuizInstructionJudgeFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(QuizInstructionJudgeConfig config,AgentGraphRunner agentGraphRunner,AgentDefinitionLocator\
+        \ agentDefinitionLocator): Evaluator"
+  allowedClients:
+  - audit-cli
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultQuizInstructionJudgeFactory
+    suppressed: false
+    interface: QuizInstructionJudgeFactory
+  uses:
+  - jackson-databind
+  - langchain4j-core
+  - langchain4j-openai
+  - sentinel-agents
+  packages:
+  - name: instructionjudge
+    description: |
+      Motor del adaptador del juez. Solo la factory es publica; el juez, el resolutor de proveedor, el constructor de ChatModel y el resolutor de version son package-private. La disponibilidad del juez se decide en un solo lugar —QuizInstructionJudgeProviderResolver— que devuelve el proveedor efectivo (JudgeProviderResolved) o el motivo del rechazo (JudgeProviderRejected) con el dato que falta y el proveedor que lo exige, de modo que el mensaje del evaluador no disponible dice cual es el problema en lugar de "configuracion invalida" (F-QINST-R016). Como QuizInstructionAgentJudge solo se puede construir con un JudgeProviderResolved, una configuracion rechazada no puede producir un juez que consulte: la invariante 3 de F-QINST-R016 —con configuracion invalida no se emite ni una sola consulta— queda garantizada por construccion y no por una guarda que alguien pueda olvidar. El enrutamiento por clase de proveedor no se reimplementa aca: JudgeChatModelFactory delega en la libreria de agentes compartida, que ya elige entre shell-out a la herramienta local del proveedor de suscripcion y cliente compatible OpenAI, y conserva el listener del framework para que los transcripts de la conversacion queden en el log de la corrida. El resolutor de version no conoce rutas: le pide la definicion al mismo AgentDefinitionLocator con el que se construye el runner, asi que el digest de los archivos del agente se calcula siempre sobre la definicion que efectivamente se ejecuta (F-QINST-R010). Ese digest cubre agente + modelo + proveedor efectivo: dos consultas al mismo modelo por vias distintas no son la misma forma de preguntar, y como la version ya no invalida nada (F-EVCOST-R001), incluir el proveedor no cuesta re-evaluaciones y hace que la procedencia declarada en F-QINST-R005 diga la verdad completa. Cuando el locator responde AgentDefinitionUnresolved, el resolutor devuelve Optional.empty(): la ausencia de version se representa con un tipo y no con un prefijo reservado dentro del String, porque un String fabricado se registraria como procedencia legitima y contaminaria los recuentos de F-QINST-R005 de forma permanente.
+    visibility: public
+    models:
+    - name: JudgeProviderClass
+      type: enum
+      fields:
+      - name: LOCAL_SESSION
+        description: |
+          Se autentica con la sesion local del usuario y se lo consulta por la herramienta que deja instalada en la maquina. No exige ningun dato de conexion: direccion de servicio y credencial no existen para esta clase.
+      - name: REMOTE_SERVICE
+        description: |
+          Se lo consulta por su direccion de servicio. Exige la direccion, y nada mas: la credencial no entra en la lista de exigidos.
+      visibility: internal
+      glossarySuggestions:
+      - name: Clase de proveedor del juez
+        technicalName: JudgeProviderClass
+        kind: integration-language-candidate
+        basedOn: instructionjudge/JudgeProviderClass
+        rationale: |
+          F-QINST-R016 introduce "clase de proveedor" como lenguaje del operador: es lo que decide que datos exige una configuracion y que respuesta da el sistema cuando faltan. Hoy vive solo en este adaptador; si otro evaluador costoso lo necesita, merece ser termino canonico.
+    - name: JudgeProviderResolved
+      type: record
+      fields:
+      - name: providerName
+        type: String
+        description: |
+          Nombre efectivo, no el declarado: "sin declarar" y "declarado igual al defecto" producen el mismo proveedor y por lo tanto la misma version.
+      - name: providerClass
+        type: JudgeProviderClass
+      visibility: internal
+      implements:
+      - JudgeProviderResolution
+    - name: JudgeProviderRejectionKind
+      type: enum
+      fields:
+      - name: UNSUPPORTED_PROVIDER
+        description: El proveedor declarado no es uno que el sistema sepa consultar.
+      - name: MISSING_REQUIRED_INPUT
+        description: Falta un dato que la clase de proveedor declarada exige.
+      visibility: internal
+    - name: JudgeProviderRejected
+      type: record
+      fields:
+      - name: providerName
+        type: String
+      - name: missingInput
+        type: String
+        description: |
+          Nombre del dato ausente que el proveedor declarado exige. Nulo cuando el motivo es UNSUPPORTED_PROVIDER: ahi no falta un dato, falta un proveedor consultable.
+      - name: kind
+        type: JudgeProviderRejectionKind
+      visibility: internal
+      implements:
+      - JudgeProviderResolution
+    interfaces:
+    - name: QuizInstructionJudgeVersionResolver
+      sealed: false
+      exposes:
+      - signature: "resolve(QuizInstructionJudgeConfig config,JudgeProviderResolved\
+          \ provider): Optional<String>"
+      visibility: internal
+    - name: JudgeProviderResolution
+      sealed: false
+      visibility: internal
+    - name: QuizInstructionJudgeProviderResolver
+      sealed: false
+      exposes:
+      - signature: "resolve(QuizInstructionJudgeConfig config): JudgeProviderResolution"
+      visibility: internal
+    - name: JudgeChatModelFactory
+      sealed: false
+      exposes:
+      - signature: "create(QuizInstructionJudgeConfig config,JudgeProviderResolved\
+          \ provider): ChatModel"
+      visibility: internal
+    implementations:
+    - name: DefaultQuizInstructionJudgeFactory
+      visibility: public
+      handwrittenTests:
+      - name: "should yield an evaluator that reports itself unavailable when the\
+          \ judge configuration is missing or invalid, instead of failing the audit"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R007
+      - name: should yield an evaluator that reports itself unavailable and emits
+          no verdict when the agent definition its version derives from cannot be
+          located
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R010
+      - name: should consult the judge and emit its verdict when the configuration
+          declares a provider that authenticates with the local user session and carries
+          neither service address nor credential
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R016
+      - name: "should not emit a single query to the judge, and should name the missing\
+          \ service address and the provider that requires it, when the configuration\
+          \ declares a provider consulted by service address and omits that address"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R016
+      - name: should not emit a single query to the judge when the configuration declares
+          a provider the system does not know how to consult
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R016
+      - name: "should still emit the query to the judge when the configuration carries\
+          \ no credential, because the credential is not a datum the declared provider\
+          \ needs to direct the query"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R016
+      implements:
+      - QuizInstructionJudgeFactory
+    - name: QuizInstructionAgentJudge
+      requiresInject:
+      - name: config
+        type: QuizInstructionJudgeConfig
+      - name: agentGraphRunner
+        type: AgentGraphRunner
+      - name: versionResolver
+        type: QuizInstructionJudgeVersionResolver
+      - name: chatModelFactory
+        type: JudgeChatModelFactory
+      - name: provider
+        type: JudgeProviderResolved
+        description: |
+          El proveedor efectivo viaja como colaborador, no se re-deriva: el juez consulta y compone su version con exactamente el mismo proveedor que la factory acepto.
+      handwrittenTests:
+      - name: "should report the conservative infrastructure verdict of the judge,\
+          \ with null confidence and a judge output invalid violation, as an unusable\
+          \ output instead of a verdict"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R013
+      - name: should report a genuine non compliant verdict as an emitted result and
+          not as a failure
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R013
+      - name: "should report a judge service failure, timeout or exhausted credit\
+          \ as an unavailable evaluator instead of throwing"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R007
+      - name: should hand the judge the five declared inputs verbatim from the judged
+          content
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R009
+      implements:
+      - Evaluator
+    - name: DefaultQuizInstructionJudgeVersionResolver
+      requiresInject:
+      - name: agentDefinitionLocator
+        type: AgentDefinitionLocator
+      handwrittenTests:
+      - name: should derive a different judge version when the agent definition or
+          the model changes
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R010
+      - name: should keep the judge version stable while the agent definition and
+          the model stay the same
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R010
+      - name: "should derive a different judge version when only the text of the agent\
+          \ definition changes, with the agent name and the model untouched"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R010
+      - name: "should derive a judge version that cannot coincide with any version\
+          \ derived from a reachable agent definition when the definition cannot be\
+          \ located, so that no recorded verdict is current under it"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R010
+      implements:
+      - QuizInstructionJudgeVersionResolver
+    - name: DefaultQuizInstructionJudgeProviderResolver
+      implements:
+      - QuizInstructionJudgeProviderResolver
+    - name: SentinelAgentsJudgeChatModelFactory
+      implements:
+      - JudgeChatModelFactory
+  - name: instructionverdict
+    description: "Lectura del payload del juez. Publico porque el analizador consume\
+      \ veredictos REUTILIZADOS que nunca pasan por el juez: la interpretacion del\
+      \ payload tiene que existir independientemente del adaptador que lo produjo."
+    visibility: public
+    implementations:
+    - name: JacksonQuizInstructionVerdictReader
+      visibility: public
+      handwrittenTests:
+      - name: "should read the judge payload preserving every violation with its code,\
+          \ constraint, evidence and explanation and every performed check with its\
+          \ state"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R003
+      - name: "should read the compliance flag, the severity and the confidence of\
+          \ the verdict"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R003
+      implements:
+      - QuizInstructionVerdictReader
 definitions:
 - requirements/2026-05-15.04_agregar-lemmacount-como-variable-de-suggestedlemmas-en-el-contexto/REQUIREMENT.md
 - requirements/2026-05-21.05_consultar-suggested-lemmas-a-trav-s-del-cli/REQUIREMENT.md
@@ -12133,6 +13867,51 @@ features:
     validation: AUTO_VALIDATED
     testModule: audit-cli
     testPackage: com.learney.contentaudit.auditcli.commands
+- id: FEAT-RPRES
+  code: F-RPRES
+  journeys:
+  - id: F-RPRES-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-RPRES-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+  - id: F-RPRES-J003
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
+- id: FEAT-QINST
+  code: F-QINST
+  journeys:
+  - id: F-QINST-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.quizinstructionengine
+  - id: F-QINST-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.quizinstructionengine
+  - id: F-QINST-J003
+    validation: AUTO_VALIDATED
+    testModule: audit-application
+    testPackage: com.learney.contentaudit.auditapplication
+- id: FEAT-EVCOST
+  code: F-EVCOST
+  journeys:
+  - id: F-EVCOST-J001
+    validation: AUTO_VALIDATED
+    testModule: evaluation-ledger-domain
+    testPackage: com.learney.contentaudit.evaluationledgerdomain.evaluationsession
+  - id: F-EVCOST-J002
+    validation: AUTO_VALIDATED
+    testModule: evaluation-ledger-infrastructure
+    testPackage: com.learney.contentaudit.evaluationledgerinfrastructure
+  - id: F-EVCOST-J003
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys
 dependencies:
 - alias: langchain4j-openai
   artifact: dev.langchain4j:langchain4j-open-ai:1.13.0

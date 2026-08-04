@@ -146,9 +146,9 @@ public class FRcslJ003JourneyTest {
     public void path1_elMilestoneExistePeroSuLemmaAbsenceLevelDiagnosisIndicaQueTodosLosLemasEsperadosEstanPresentesNoHayAusencias_success(
             ) {
         // Step: solicitar_tarea — User requests a SENTENCE_LENGTH task
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-j003-p1", null, null, "El perro corre rapido.", List.of("The dog runs fast."), null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-j003-p1", null, null, "El perro corre rapido.", List.of("The dog runs fast."), null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Animals in Motion", "Complete the sentence.", true, "know-j003-p1", null, null, null);
+                List.of(), "Animals in Motion", "Complete the sentence.", true, "know-j003-p1", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-j003-p1", "Animals", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-j003-p1", "A1", null);
 
@@ -186,9 +186,9 @@ public class FRcslJ003JourneyTest {
     public void path2_elMilestoneExistePeroTodasLasAusenciasSonDeTipoAPPEARSTOOEARLYExcluidasPorR003_success(
             ) {
         // Step: solicitar_tarea — User requests a SENTENCE_LENGTH task
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-j003-p2", null, null, "Ella lee un libro.", List.of("She reads a book."), null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-j003-p2", null, null, "Ella lee un libro.", List.of("She reads a book."), null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Daily Activities", "Complete the sentence.", true, "know-j003-p2", null, null, null);
+                List.of(), "Daily Activities", "Complete the sentence.", true, "know-j003-p2", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-j003-p2", "Routines", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-j003-p2", "A1", null);
 
@@ -242,9 +242,9 @@ public class FRcslJ003JourneyTest {
     @DisplayName("path-3: El usuario ejecuta 'refiner next' y o... → El sistema localiza el nodo quiz en e... → El sistema navega al milestone ancest... → El sistema construye el contexto con ... [No se encuentra el milestone ancestro (estructura incompleta)] → El comando muestra la tarea con el co... → success")
     public void path3_noSeEncuentraElMilestoneAncestroEstructuraIncompleta_success() {
         // Step: solicitar_tarea — User requests a SENTENCE_LENGTH task
-        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-j003-p3", null, null, "El juega al futbol.", List.of("He plays football."), null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-j003-p3", null, null, "El juega al futbol.", List.of("He plays football."), null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Sports", "Complete the sentence.", true, "know-j003-p3", null, null, null);
+                List.of(), "Sports", "Complete the sentence.", true, "know-j003-p3", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-j003-p3", "Leisure", null);
 
         // Step: localizar_quiz (gate: F-RCSL-R002) — build tree WITHOUT milestone: COURSE→TOPIC→KNOWLEDGE→QUIZ

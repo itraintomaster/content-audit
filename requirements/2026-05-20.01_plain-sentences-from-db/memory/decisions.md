@@ -10,4 +10,5 @@
   why: el usuario lo decidio explicitamente; quedan registrados para futura reapertura por @analyst.
 
 2026-06-25 — analyst — Agregada R004 (critical): el lado de ESCRITURA es espejo de R001. Persistir un curso debe preservar las plain sentences de cada quiz; round-trip cargar->guardar->cargar idempotente respecto de sentences.
+  why (2026-07-29, nota posterior): la generalizacion de R004 al resto del contenido NO vive aca; se creo FEAT-RPRES (requirements/2026-07-29.01_preservacion-del-contenido-no-revisado) porque DBSENT declara su alcance en un unico dato. R004 queda como esta.
   why: bug detectado — al persistir un curso las plain sentences se omitian; como aplicar una revision reescribe el CURSO COMPLETO (no quirurgico), un solo guardado borraba sentences de TODOS los quizzes -> sentence-length scoring en cero -> perdida de datos masiva. `feature list` confirma 4 reglas; validate [OK]; sync sin cambios (0 journeys, reglas se leen de REQUIREMENT.md).

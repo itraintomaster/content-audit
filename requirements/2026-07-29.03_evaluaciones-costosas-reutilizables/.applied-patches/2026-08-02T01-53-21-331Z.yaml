@@ -1,0 +1,14 @@
+code: FEAT-EVCOST
+modules:
+- name: evaluation-ledger-domain
+  packages:
+  - name: evaluationsession
+    implementations:
+    - name: DefaultEvaluationSession
+      handwrittenTests:
+      - name: should keep reusing the registered current result of the neighbouring
+          content in the same run when re evaluation is requested for one content
+          only
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R008

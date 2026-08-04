@@ -23,3 +23,6 @@ Entrada más reciente arriba.
   - why: confirma que el patron LAPS de reinstalar dependencias en cadena (memoria de sesiones
     anteriores) también aplica a revision-infrastructure, con el paso extra de rodear pit vía
     `package` en vez de `install` directo.
+
+2026-07-30 — test-writer — FKtlrJ002JourneyTest path-1: testigo de "quiz corregido persistido igual que antes" (R008) usaba `elementAfterQuiz.getTitle()`. Movido a `getSentences()` — el contenido del quiz, no su titulo — siguiendo el mismo criterio ya aplicado en DefaultCourseElementLocatorTest cuando se movio el testigo de staleness de F-KTLR-R007 del titulo al contenido. Agregada asercion complementaria: el titulo queda preservado del elementBefore (F-LAPS-R014/F-RPRES-R004), tambien "exactamente como antes de esta feature".
+  why: R008 es una regla de no-regresion sobre el camino de quizzes; el titulo dejo de ser un proxy valido del contenido corregido cuando produccion paso a preservarlo del elementBefore (antes ambos campos cargaban la misma oracion plana, por eso el testigo viejo "funcionaba" por accidente).

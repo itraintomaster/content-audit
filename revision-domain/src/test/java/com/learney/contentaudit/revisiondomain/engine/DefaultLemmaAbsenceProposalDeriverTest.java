@@ -109,13 +109,16 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
         // Act — deriver parses candidate.quizSentence via QuizSentenceConverter (R012)
         CourseElementSnapshot after = deriver.derive(before, candidate, null);
 
-        // Assert — elementAfter has a new title (plain sentence) and a new form from the candidate DSL
+        // Assert — elementAfter has a new plain sentence (in sentences, not title — F-LAPS-R014:
+        // the quiz title is not in scope for a lexical correction, see F-RPRES-R004) and a new
+        // form from the candidate DSL
         QuizTemplateEntity afterQuiz = after.getQuiz();
-        // The plain sentence title should be derived from the candidate's quizSentence
+        // The canonical plain sentence should be derived from the candidate's quizSentence and
+        // stored in sentences[0], not in title.
         // For "She ____ [studies] (study) books." the canonical plain sentence is "She studies (study) books."
         // (after removing hints from plain derivation step)
-        assertEquals("She studies books.", afterQuiz.getTitle(),
-                "elementAfter.title must be the canonical plain sentence derived from the candidate's quizSentence (R012)");
+        assertEquals("She studies books.", afterQuiz.getSentences().get(0),
+                "elementAfter.sentences[0] must be the canonical plain sentence derived from the candidate's quizSentence (R012)");
         // The form structure must contain "studies" as the CLOZE answer
         FormEntity afterForm = afterQuiz.getForm();
         boolean hasStudies = afterForm.getSentenceParts().stream()
@@ -482,5 +485,31 @@ public class DefaultLemmaAbsenceProposalDeriverTest {
                 "la revision conserva la longitud de la respuesta: original=" + tokensBefore.length +
                 " tokens, revisado=" + tokensAfter.length + " tokens (R007). " +
                 "Si el conteo difiere, la frase canonica del revisado cargo tokens de la oracion fuente.");
+    }
+
+    @Test
+    @DisplayName("should keep on elementAfter the very same quiz title that elementBefore carried, even when the derived plain sentence differs, because the title is not in scope of a lexical correction")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R014")
+    public void shouldKeepOnElementAfterTheVerySameQuizTitleThatElementBeforeCarriedEvenWhenTheDerivedPlainSentenceDiffersBecauseTheTitleIsNotInScopeOfALexicalCorrection(
+            ) {
+        // Arrange — elementBefore.title is "She reads (read) books."; the candidate's quizSentence
+        // derives a different plain sentence ("She studies books."), so title and the derived
+        // sentence are guaranteed to diverge — the exact condition this test name requires.
+        CourseElementSnapshot before = buildElementBefore();
+        LemmaAbsenceQuizCandidate candidate = buildCandidateWithDifferentAnswer();
+
+        // Act
+        CourseElementSnapshot after = deriver.derive(before, candidate, null);
+
+        // Assert — F-LAPS-R014 (reformulada) / F-RPRES-R004: the quiz title is not in scope of a
+        // lexical correction, so elementAfter.title must equal elementBefore.title bit-for-bit,
+        // even though the derived plain sentence differs from it.
+        assertEquals(before.getQuiz().getTitle(), after.getQuiz().getTitle(),
+                "elementAfter.title must remain exactly elementBefore.title: the quiz title is not "
+                        + "in scope of a lexical correction (F-LAPS-R014, F-RPRES-R004)");
+        assertNotEquals(after.getQuiz().getTitle(), after.getQuiz().getSentences().get(0),
+                "the scenario requires the derived plain sentence to differ from the preserved title; "
+                        + "otherwise this test would pass trivially without exercising the guard");
     }
 }

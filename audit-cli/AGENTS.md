@@ -48,13 +48,28 @@ CLI entry point
 | includeExposed | `boolean` |
 | regex | `Optional<String>` |
 
+### AnalyzeOptions (`record`)
+
+| Field | Type |
+|-------|------|
+| format | `String` |
+| level | `String` |
+| topic | `String` |
+| knowledge | `String` |
+| analyzers | `List<String>` |
+| excludeAnalyzers | `List<String>` |
+| detailed | `boolean` |
+| instructionBudget | `Integer` |
+| reevaluateInstructions | `String` |
+
 ## Interfaces
 
-### AnalyzeCommand (port) [sealed]
+### AnalyzeCommand (port)
 
 Methods:
 
 - `analyze(String coursePath, String format, String level, String topic, String knowledge, List<String> analyzers, boolean detailed): Integer`
+- `analyze(String coursePath,AnalyzeOptions options): Integer`
 
 ### GetCommand (port) [sealed]
 
@@ -129,11 +144,27 @@ Methods:
 
 - `queryLexis(String quizSentence, String mode, String level): Integer`
 
+### RepairCommand (port) [sealed]
+
+Methods:
+
+- `repair(String resource, String coursePath, boolean dryRun): Integer`
+
 ## Dependency Contracts
 
 The following models and interfaces are available from dependencies. You can use these types but cannot see their implementations.
 
 ### From audit-application
+
+## Models
+
+### AuditRunRequest (`record`)
+
+| Field | Type |
+|-------|------|
+| includedAnalyzers | `Set<String>` |
+| excludedAnalyzers | `Set<String>` |
+| analyzerPolicies | `Map<String,EvaluationRunPolicy>` |
 
 ### AuditRunner (service)
 
@@ -141,6 +172,8 @@ Methods:
 
 - `runAudit(Path coursePath,Set<String> analyzerNames): AuditReport`
 - `runDetailedAudit(Path coursePath,String analyzerName): AuditNode`
+- `runAudit(Path coursePath,AuditRunRequest request): AuditReport`
+- `runDetailedAudit(Path coursePath,AuditRunRequest request): AuditNode`
 
 ### AnalyzerRegistry (service)
 
@@ -183,6 +216,7 @@ Methods:
 | label | `String` |
 | code | `String` |
 | sentenceMode | `SentenceMode` |
+| topicName | `String` |
 
 ### AuditableTopic (`record`)
 
@@ -213,6 +247,8 @@ Methods:
 | translation | `String` |
 | sentences | `List<String>` |
 | quizSentence | `String` |
+| instructions | `String` |
+| sentenceParts | `List<SentencePartEntity>` |
 
 ### CefrLevel (`enum`)
 
@@ -300,6 +336,14 @@ Methods:
 |-------|------|
 | auditId | `String` |
 | planId | `String` |
+
+### EvaluationRunPolicy (`record`)
+
+| Field | Type |
+|-------|------|
+| maxNewEvaluations | `int` |
+| reevaluate | `boolean` |
+| reevaluationScope | `String` |
 
 ### AuditEngine (port)
 
@@ -434,6 +478,7 @@ Methods:
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>`
 - `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>`
 - `getLemmaCountDiagnosis(): Optional<LemmaCountCourseDiagnosis>`
+- `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>`
 
 ### LevelDiagnoses (port)
 
@@ -462,6 +507,7 @@ Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
 - `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
+- `getQuizInstructionDiagnosis(): Optional<QuizInstructionDiagnosis>`
 
 ### AuditReportStore (port)
 
@@ -503,6 +549,26 @@ Methods:
 Methods:
 
 - `getThreshold(): int`
+
+### EvaluationAnalyzerFactory (factory)
+
+Methods:
+
+- `create(EvaluationRunPolicy policy): ContentAnalyzer`
+- `analyzerName(): String`
+
+### QuizInstructionVerdictReader (port)
+
+Methods:
+
+- `read(String payload): QuizInstructionVerdict`
+
+### QuizInstructionConfig (port)
+
+Methods:
+
+- `getDefaultMaxNewEvaluations(): int`
+- `getScoreFor(InstructionSeverity severity): double`
 
 ### From course-domain
 
@@ -668,6 +734,127 @@ Methods:
 
 - `validate(CourseEntity course): void`
 
+### From evaluation-ledger-domain
+
+## Models
+
+### EvaluationKey (`record`)
+
+| Field | Type |
+|-------|------|
+| evaluatorId | `String` |
+| contentFingerprint | `String` |
+
+### EvaluationSubject (`record`)
+
+| Field | Type |
+|-------|------|
+| subjectRef | `String` |
+| content | `Map<String,String>` |
+
+### EvaluationRecord (`record`)
+
+| Field | Type |
+|-------|------|
+| key | `EvaluationKey` |
+| payload | `String` |
+| subjectRef | `String` |
+| recordedAt | `Instant` |
+| evaluatorVersion | `String` |
+
+### EvaluationEmitted (`record`)
+
+| Field | Type |
+|-------|------|
+| payload | `String` |
+
+### EvaluationNotEmitted (`record`)
+
+| Field | Type |
+|-------|------|
+| kind | `EvaluationFailureKind` |
+| reason | `String` |
+
+### EvaluationFailureKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| OUTPUT_UNUSABLE | `null` |
+| EVALUATOR_UNAVAILABLE | `null` |
+
+### EvaluationResolutionKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| REUSED | `null` |
+| EVALUATED | `null` |
+| PENDING | `null` |
+| FAILED | `null` |
+
+### EvaluationResolution (`record`)
+
+| Field | Type |
+|-------|------|
+| kind | `EvaluationResolutionKind` |
+| payload | `String` |
+| evaluatorVersion | `String` |
+
+### EvaluationCoverage (`record`)
+
+| Field | Type |
+|-------|------|
+| reached | `int` |
+| withResult | `int` |
+| evaluatedInRun | `int` |
+| reused | `int` |
+| pending | `int` |
+| failed | `int` |
+
+### EvaluationBudget (`record`)
+
+| Field | Type |
+|-------|------|
+| maxNewEvaluations | `int` |
+
+### EvaluationOutcome (port)
+
+### EvaluationLedger (port)
+
+Methods:
+
+- `append(EvaluationRecord record): void`
+- `findLatest(EvaluationKey key): Optional<EvaluationRecord>`
+- `history(EvaluationKey key): List<EvaluationRecord>`
+
+### ContentFingerprinter (port)
+
+Methods:
+
+- `fingerprint(Map<String,String> content): String`
+
+### Evaluator (port)
+
+Methods:
+
+- `evaluatorId(): String`
+- `evaluate(EvaluationSubject subject): EvaluationOutcome`
+- `evaluatorVersion(): Optional<String>`
+
+### EvaluationSession (port)
+
+Methods:
+
+- `resolve(EvaluationSubject subject): EvaluationResolution`
+- `resolveForced(EvaluationSubject subject): EvaluationResolution`
+- `coverage(): EvaluationCoverage`
+- `consultedEvaluatorVersion(): Optional<String>`
+
+### EvaluationSessionFactory (factory)
+
+Methods:
+
+- `open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession`
+
 ### From refiner-domain
 
 ## Models
@@ -682,6 +869,7 @@ Methods:
 | LEMMA_RECURRENCE | `null` |
 | KNOWLEDGE_TITLE_LENGTH | `null` |
 | KNOWLEDGE_INSTRUCTIONS_LENGTH | `null` |
+| QUIZ_INSTRUCTION | `null` |
 
 ### RefinementTaskStatus (`enum`)
 
@@ -1023,6 +1211,7 @@ Methods:
 | REJECTED | `null` |
 | NOT_FOUND | `null` |
 | ALREADY_DECIDED | `null` |
+| PRESERVATION_VIOLATED | `null` |
 
 ### ProposalDecisionOutcome (`record`)
 
@@ -1147,6 +1336,7 @@ Methods:
 
 - `snapshot(CourseEntity course, AuditTarget target, String nodeId): Optional<CourseElementSnapshot>`
 - `replace(CourseEntity course, CourseElementSnapshot replacement): CourseEntity`
+- `alignQuizTitles(CourseEntity course, String knowledgeId): CourseEntity`
 
 ### RevisionEngine (port)
 
@@ -1235,4 +1425,84 @@ Methods:
 Methods:
 
 - `derive(CourseElementSnapshot before, KnowledgeTitleCandidate candidate): CourseElementSnapshot`
+
+### PreservationFactory (factory)
+
+Methods:
+
+- `createCheck(): PreservationCheck`
+- `createRepair(RevisionArtifactStore artifactStore): PreservationRepair`
+
+### From agent-runtime-infrastructure
+
+## Models
+
+### AgentGraphRunnerConfig (`record`)
+
+| Field | Type |
+|-------|------|
+| agentsBaseDir | `Path` |
+| runsBaseDir | `Path` |
+
+### AgentDefinitionFound (`record`)
+
+| Field | Type |
+|-------|------|
+| directory | `Path` |
+
+### AgentDefinitionUnresolved (`record`)
+
+| Field | Type |
+|-------|------|
+| agentName | `String` |
+| searchedIn | `Path` |
+
+### AgentGraphRunner (port)
+
+Methods:
+
+- `run(String agentName,Map<String,String> inputs,ChatModel chatModel,Map<String,Object> tools): RunState`
+
+### AgentGraphRunnerFactory (factory)
+
+Methods:
+
+- `create(AgentGraphRunnerConfig config): AgentGraphRunner`
+
+### AgentDefinitionLocation
+
+### AgentDefinitionLocator (port)
+
+Methods:
+
+- `locate(String agentName): AgentDefinitionLocation`
+- `locateUnderProjectRoot(String projectRoot,String agentName): AgentDefinitionLocation`
+
+### AgentDefinitionLocatorFactory (factory)
+
+Methods:
+
+- `create(AgentGraphRunnerConfig config): AgentDefinitionLocator`
+
+### From quiz-instruction-infrastructure
+
+## Models
+
+### QuizInstructionJudgeConfig (`record`)
+
+| Field | Type |
+|-------|------|
+| baseUrl | `String` |
+| apiKey | `String` |
+| modelName | `String` |
+| temperature | `Double` |
+| timeoutSeconds | `Integer` |
+| agentName | `String` |
+| providerName | `String` |
+
+### QuizInstructionJudgeFactory (factory)
+
+Methods:
+
+- `create(QuizInstructionJudgeConfig config,AgentGraphRunner agentGraphRunner,AgentDefinitionLocator agentDefinitionLocator): Evaluator`
 

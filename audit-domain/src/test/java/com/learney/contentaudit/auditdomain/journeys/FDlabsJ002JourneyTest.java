@@ -71,7 +71,7 @@ public class FDlabsJ002JourneyTest {
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
         quizDiagnoses.setLemmaAbsenceDiagnosis(quizPlacementDiagnosis);
 
-        AuditableQuiz quizEntity = new AuditableQuiz(null, "quiz-001", "She runs every day.", "Q1", null, List.of("She runs every day."), null);
+        AuditableQuiz quizEntity = new AuditableQuiz(null, "quiz-001", "She runs every day.", "Q1", null, List.of("She runs every day."), null, null, null);
         AuditNode quizNode = new AuditNode(quizEntity, AuditTarget.QUIZ, null,
                 Collections.emptyList(), Collections.emptyMap(), Collections.emptyMap(),
                 quizDiagnoses);
@@ -180,7 +180,7 @@ public class FDlabsJ002JourneyTest {
         quizDiagnoses.setLemmaAbsenceDiagnosis(quizPlacementDiagnosis);
 
         // Quiz node has no parent — the tree is incomplete, no milestone ancestor
-        AuditableQuiz quizEntity = new AuditableQuiz(null, "quiz-002", "She eats lunch.", "Q2", null, List.of("She eats lunch."), null);
+        AuditableQuiz quizEntity = new AuditableQuiz(null, "quiz-002", "She eats lunch.", "Q2", null, List.of("She eats lunch."), null, null, null);
         AuditNode quizNode = new AuditNode(quizEntity, AuditTarget.QUIZ, null,
                 Collections.emptyList(), Collections.emptyMap(), Collections.emptyMap(),
                 quizDiagnoses);

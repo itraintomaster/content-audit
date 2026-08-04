@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,7 +11,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.learney.contentaudit.auditapplication.AuditRunRequest;
 import com.learney.contentaudit.auditapplication.AuditRunner;
+import com.learney.contentaudit.auditcli.AnalyzeOptions;
 import com.learney.contentaudit.auditcli.formatting.DefaultDrillDownResolver;
 import com.learney.contentaudit.auditcli.formatting.DetailedFormatter;
 import com.learney.contentaudit.auditcli.formatting.DrillDownResolver;
@@ -22,16 +25,21 @@ import com.learney.contentaudit.auditcli.formatting.ReportViewModelTransformer;
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.ArgumentMatchers;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
@@ -96,7 +104,7 @@ public class AnalyzeCmdTest {
     public void shouldPrintAnErrorAndReturnNonzeroExitCodeWhenInvokedWithACoursePathThatDoesNotExistOnDisk() {
         // R002: non-existent path → auditRunner.runAudit throws RuntimeException → non-zero exit
         AuditRunner auditRunner = mock(AuditRunner.class);
-        when(auditRunner.runAudit(any(Path.class), any())).thenThrow(
+        when(auditRunner.runAudit(any(Path.class), ArgumentMatchers.<Set<String>>any())).thenThrow(
                 new RuntimeException("File not found: /nonexistent/course"));
 
         FormatterRegistry formatterRegistry = mock(FormatterRegistry.class);
@@ -133,7 +141,7 @@ public class AnalyzeCmdTest {
         // R003: default format is "text" — formatter for "text" key is invoked and output goes to stdout
         AuditRunner auditRunner = mock(AuditRunner.class);
         AuditReport report = new AuditReport(new AuditNode());
-        when(auditRunner.runAudit(any(Path.class), any())).thenReturn(report);
+        when(auditRunner.runAudit(any(Path.class), ArgumentMatchers.<Set<String>>any())).thenReturn(report);
 
         ReportFormatter textFormatter = mock(ReportFormatter.class);
         when(textFormatter.format(any(), any())).thenReturn("PLAIN TEXT REPORT");
@@ -180,7 +188,7 @@ public class AnalyzeCmdTest {
         // R003: --format json → formatter for "json" key is invoked and output goes to stdout
         AuditRunner auditRunner = mock(AuditRunner.class);
         AuditReport report = new AuditReport(new AuditNode());
-        when(auditRunner.runAudit(any(Path.class), any())).thenReturn(report);
+        when(auditRunner.runAudit(any(Path.class), ArgumentMatchers.<Set<String>>any())).thenReturn(report);
 
         ReportFormatter jsonFormatter = mock(ReportFormatter.class);
         when(jsonFormatter.format(any(), any())).thenReturn("{\"score\": 0.85}");
@@ -227,7 +235,7 @@ public class AnalyzeCmdTest {
         // R004: successful audit → exit code 0, regardless of score (even if score is 0.0)
         AuditRunner auditRunner = mock(AuditRunner.class);
         AuditReport report = new AuditReport(new AuditNode());
-        when(auditRunner.runAudit(any(Path.class), any())).thenReturn(report);
+        when(auditRunner.runAudit(any(Path.class), ArgumentMatchers.<Set<String>>any())).thenReturn(report);
 
         ReportFormatter textFormatter = mock(ReportFormatter.class);
         when(textFormatter.format(any(), any())).thenReturn("Score: 0.00 (very poor)");
@@ -269,7 +277,7 @@ public class AnalyzeCmdTest {
     public void shouldReturnANonzeroExitCodeWhenAuditRunnerThrowsARuntimeExceptionDuringTheAuditPipelineAndPrintADescriptiveErrorMessageToStderr() {
         // R004 + J003: RuntimeException in audit pipeline → non-zero exit + error message on stderr
         AuditRunner auditRunner = mock(AuditRunner.class);
-        when(auditRunner.runAudit(any(Path.class), any())).thenThrow(
+        when(auditRunner.runAudit(any(Path.class), ArgumentMatchers.<Set<String>>any())).thenThrow(
                 new RuntimeException("malformed JSON in course file"));
 
         FormatterRegistry formatterRegistry = mock(FormatterRegistry.class);
@@ -299,5 +307,226 @@ public class AnalyzeCmdTest {
                 "R004: a descriptive error message must appear on stderr when the audit pipeline fails");
         assertTrue(errOutput.contains("Error") || errOutput.contains("malformed") || errOutput.contains("audit"),
                 "R004: stderr must contain a descriptive message; got: " + errOutput);
+    }
+
+    @Test
+    @DisplayName("should exclude the quiz instruction analysis from the run when the user asks to exclude analyzers")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R011")
+    public void shouldExcludeTheQuizInstructionAnalysisFromTheRunWhenTheUserAsksToExcludeAnalyzers() {
+        // R011: the user can explicitly exclude the quiz-instruction analysis from a run;
+        // the exclusion must be carried into the AuditRunRequest handed to the runner.
+        AuditRunner auditRunner = mock(AuditRunner.class);
+        AuditReport report = new AuditReport(new AuditNode());
+        when(auditRunner.runAudit(any(Path.class), any(AuditRunRequest.class))).thenReturn(report);
+
+        ReportFormatter textFormatter = mock(ReportFormatter.class);
+        when(textFormatter.format(any(), any())).thenReturn("REPORT");
+        FormatterRegistry formatterRegistry = mock(FormatterRegistry.class);
+        when(formatterRegistry.getFormatter("text")).thenReturn(textFormatter);
+
+        ReportViewModelTransformer viewModelTransformer = mock(ReportViewModelTransformer.class);
+        when(viewModelTransformer.transform(report)).thenReturn(mock(ReportViewModel.class));
+
+        RawReportFormatter rawReportFormatter = mock(RawReportFormatter.class);
+        AuditReportStore auditReportStore = mock(AuditReportStore.class);
+        when(auditReportStore.save(any())).thenReturn("audit-qinst-r011");
+
+        DrillDownResolver drillDownResolver = new DefaultDrillDownResolver();
+        Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
+
+        AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
+                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
+                CoursePathResolver::resolve);
+
+        AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
+                List.of("quiz-instruction"), false, null, null);
+
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(new ByteArrayOutputStream()));
+        int exitCode;
+        try {
+            exitCode = sut.analyze("/valid/course", options);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exitCode, "R011: excluding an analyzer must not fail the audit");
+        ArgumentCaptor<AuditRunRequest> captor = ArgumentCaptor.forClass(AuditRunRequest.class);
+        verify(auditRunner).runAudit(any(Path.class), captor.capture());
+        AuditRunRequest request = captor.getValue();
+        assertNotNull(request.getExcludedAnalyzers(),
+                "R011: excluded analyzers must be carried into the run request");
+        assertTrue(request.getExcludedAnalyzers().contains("quiz-instruction"),
+                "R011: quiz-instruction must be excluded when the user asks to exclude it");
+    }
+
+    @Test
+    @DisplayName("should carry the instruction budget the user asked for into the run policy of the judge")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R006")
+    public void shouldCarryTheInstructionBudgetTheUserAskedForIntoTheRunPolicyOfTheJudge() {
+        // R006: --instruction-budget caps the new judge queries for this run; the value
+        // must reach the judge's run policy inside the AuditRunRequest.
+        AuditRunner auditRunner = mock(AuditRunner.class);
+        AuditReport report = new AuditReport(new AuditNode());
+        when(auditRunner.runAudit(any(Path.class), any(AuditRunRequest.class))).thenReturn(report);
+
+        ReportFormatter textFormatter = mock(ReportFormatter.class);
+        when(textFormatter.format(any(), any())).thenReturn("REPORT");
+        FormatterRegistry formatterRegistry = mock(FormatterRegistry.class);
+        when(formatterRegistry.getFormatter("text")).thenReturn(textFormatter);
+
+        ReportViewModelTransformer viewModelTransformer = mock(ReportViewModelTransformer.class);
+        when(viewModelTransformer.transform(report)).thenReturn(mock(ReportViewModel.class));
+
+        RawReportFormatter rawReportFormatter = mock(RawReportFormatter.class);
+        AuditReportStore auditReportStore = mock(AuditReportStore.class);
+        when(auditReportStore.save(any())).thenReturn("audit-qinst-r006");
+
+        DrillDownResolver drillDownResolver = new DefaultDrillDownResolver();
+        Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
+
+        AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
+                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
+                CoursePathResolver::resolve);
+
+        AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
+                null, false, 250, null);
+
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(new ByteArrayOutputStream()));
+        int exitCode;
+        try {
+            exitCode = sut.analyze("/valid/course", options);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exitCode, "R006: a requested instruction budget must not fail the audit");
+        ArgumentCaptor<AuditRunRequest> captor = ArgumentCaptor.forClass(AuditRunRequest.class);
+        verify(auditRunner).runAudit(any(Path.class), captor.capture());
+        AuditRunRequest request = captor.getValue();
+        assertNotNull(request.getAnalyzerPolicies(),
+                "R006: the run policy map must be present when a budget is requested");
+        EvaluationRunPolicy policy = request.getAnalyzerPolicies().get("quiz-instruction");
+        assertNotNull(policy, "R006: the run policy for quiz-instruction must be present when a budget is requested");
+        assertEquals(250, policy.getMaxNewEvaluations(),
+                "R006: the requested instruction budget must be carried into the run policy of the judge");
+    }
+
+    @Test
+    @DisplayName("should ask for re evaluation with its scope when the user requests to judge again")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R012")
+    public void shouldAskForReEvaluationWithItsScopeWhenTheUserRequestsToJudgeAgain() {
+        // R012: re-evaluation is explicit and can be scoped; it must never be a side effect
+        // of any other option, and its scope must reach the judge's run policy.
+        AuditRunner auditRunner = mock(AuditRunner.class);
+        AuditReport report = new AuditReport(new AuditNode());
+        when(auditRunner.runAudit(any(Path.class), any(AuditRunRequest.class))).thenReturn(report);
+
+        ReportFormatter textFormatter = mock(ReportFormatter.class);
+        when(textFormatter.format(any(), any())).thenReturn("REPORT");
+        FormatterRegistry formatterRegistry = mock(FormatterRegistry.class);
+        when(formatterRegistry.getFormatter("text")).thenReturn(textFormatter);
+
+        ReportViewModelTransformer viewModelTransformer = mock(ReportViewModelTransformer.class);
+        when(viewModelTransformer.transform(report)).thenReturn(mock(ReportViewModel.class));
+
+        RawReportFormatter rawReportFormatter = mock(RawReportFormatter.class);
+        AuditReportStore auditReportStore = mock(AuditReportStore.class);
+        when(auditReportStore.save(any())).thenReturn("audit-qinst-r012");
+
+        DrillDownResolver drillDownResolver = new DefaultDrillDownResolver();
+        Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
+
+        AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
+                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
+                CoursePathResolver::resolve);
+
+        AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
+                null, false, null, "knowledge:K-042");
+
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(new ByteArrayOutputStream()));
+        int exitCode;
+        try {
+            exitCode = sut.analyze("/valid/course", options);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exitCode, "R012: a requested re-evaluation must not fail the audit");
+        ArgumentCaptor<AuditRunRequest> captor = ArgumentCaptor.forClass(AuditRunRequest.class);
+        verify(auditRunner).runAudit(any(Path.class), captor.capture());
+        AuditRunRequest request = captor.getValue();
+        assertNotNull(request.getAnalyzerPolicies(),
+                "R012: the run policy map must be present when re-evaluation is requested");
+        EvaluationRunPolicy policy = request.getAnalyzerPolicies().get("quiz-instruction");
+        assertNotNull(policy, "R012: the run policy for quiz-instruction must be present when re-evaluation is requested");
+        assertTrue(policy.isReevaluate(),
+                "R012: re-evaluation must be requested explicitly in the run policy of the judge");
+        assertEquals("knowledge:K-042", policy.getReevaluationScope(),
+                "R012: the scope of the re-evaluation must be carried into the run policy");
+    }
+
+    @Test
+    @DisplayName("should neither exclude nor narrow the quiz instruction analysis when the user passes no analyzer option")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R001")
+    public void shouldNeitherExcludeNorNarrowTheQuizInstructionAnalysisWhenTheUserPassesNoAnalyzerOption() {
+        // R001: the quiz-instruction analysis runs on every audit unless explicitly excluded;
+        // with no analyzer-related option, the run request must neither exclude it nor narrow
+        // its run policy (no budget override, no re-evaluation request).
+        AuditRunner auditRunner = mock(AuditRunner.class);
+        AuditReport report = new AuditReport(new AuditNode());
+        when(auditRunner.runAudit(any(Path.class), any(AuditRunRequest.class))).thenReturn(report);
+
+        ReportFormatter textFormatter = mock(ReportFormatter.class);
+        when(textFormatter.format(any(), any())).thenReturn("REPORT");
+        FormatterRegistry formatterRegistry = mock(FormatterRegistry.class);
+        when(formatterRegistry.getFormatter("text")).thenReturn(textFormatter);
+
+        ReportViewModelTransformer viewModelTransformer = mock(ReportViewModelTransformer.class);
+        when(viewModelTransformer.transform(report)).thenReturn(mock(ReportViewModel.class));
+
+        RawReportFormatter rawReportFormatter = mock(RawReportFormatter.class);
+        AuditReportStore auditReportStore = mock(AuditReportStore.class);
+        when(auditReportStore.save(any())).thenReturn("audit-qinst-r001");
+
+        DrillDownResolver drillDownResolver = new DefaultDrillDownResolver();
+        Map<String, DetailedFormatter> detailedFormatters = new HashMap<>();
+
+        AnalyzeCmd sut = new AnalyzeCmd(auditRunner, formatterRegistry, viewModelTransformer,
+                rawReportFormatter, drillDownResolver, detailedFormatters, auditReportStore,
+                CoursePathResolver::resolve);
+
+        AnalyzeOptions options = new AnalyzeOptions("text", null, null, null, null,
+                null, false, null, null);
+
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(new ByteArrayOutputStream()));
+        int exitCode;
+        try {
+            exitCode = sut.analyze("/valid/course", options);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exitCode, "R001: an audit with no analyzer option must succeed");
+        ArgumentCaptor<AuditRunRequest> captor = ArgumentCaptor.forClass(AuditRunRequest.class);
+        verify(auditRunner).runAudit(any(Path.class), captor.capture());
+        AuditRunRequest request = captor.getValue();
+
+        boolean excluded = request.getExcludedAnalyzers() != null
+                && request.getExcludedAnalyzers().contains("quiz-instruction");
+        assertFalse(excluded,
+                "R001: quiz-instruction must not be excluded when the user passes no analyzer option");
+
+        boolean narrowed = request.getAnalyzerPolicies() != null
+                && request.getAnalyzerPolicies().containsKey("quiz-instruction");
+        assertFalse(narrowed,
+                "R001: quiz-instruction's run policy must not be narrowed when the user passes no analyzer option");
     }
 }

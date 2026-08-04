@@ -85,7 +85,7 @@ public class KnowledgeTitleContextResolverTest {
             ) {
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Present Perfect", "Complete the sentence with the correct form.",
-                true, "know-ktlr-1", "Present Perfect", "PP1", null);
+                true, "know-ktlr-1", "Present Perfect", "PP1", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(knowledge), "topic-ktlr-1", "Verb Tenses", "VT");
 
         AuditNode courseNode = buildCourseNode();
@@ -112,7 +112,7 @@ public class KnowledgeTitleContextResolverTest {
             ) {
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Present Perfect", "Complete the sentence with the correct form.",
-                true, "know-ktlr-2", "Present Perfect", "PP1", null);
+                true, "know-ktlr-2", "Present Perfect", "PP1", null, null);
         AuditableTopic topic = new AuditableTopic(List.of(knowledge), "topic-ktlr-2", "Verb Tenses", "VT");
 
         AuditNode courseNode = buildCourseNode();

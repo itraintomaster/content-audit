@@ -31,7 +31,7 @@ public class SentinelArchitectureTest {
   @Test
   public void enforceModuleBoundaries() {
     JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
-    ArchRuleDefinition.classes().that().resideInAPackage("..auditapplication..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditapplication..", "..auditdomain..", "..coursedomain..", "..refinerdomain..", "..courseinfrastructure..", "..nlpinfrastructure..", "..vocabularyinfrastructure..", "..auditinfrastructure..", "..revisiondomain..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
+    ArchRuleDefinition.classes().that().resideInAPackage("..auditapplication..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditapplication..", "..auditdomain..", "..coursedomain..", "..evaluationledgerdomain..", "..refinerdomain..", "..courseinfrastructure..", "..nlpinfrastructure..", "..vocabularyinfrastructure..", "..auditinfrastructure..", "..revisiondomain..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
   }
 
   @Test
@@ -42,6 +42,11 @@ public class SentinelArchitectureTest {
 
   @Test
   public void enforceAllDeclaredClassesExist() {
+    try {
+      Class.forName("com.learney.contentaudit.auditapplication.AuditRunRequest");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AuditRunRequest - " + e.getMessage());
+    }
     try {
       Class.forName("com.learney.contentaudit.auditapplication.AuditRunner");
     } catch (ClassNotFoundException e) {
@@ -101,6 +106,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditapplication.DefaultLemmaCountConfigLoader");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultLemmaCountConfigLoader - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditapplication.DefaultQuizInstructionConfig");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultQuizInstructionConfig - " + e.getMessage());
     }
   }
 }

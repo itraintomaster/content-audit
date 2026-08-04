@@ -97,16 +97,20 @@ def sync_quiz_titles(repo, db, quizzes_collection, apply_changes):
             old = q.get("title")
             if old == label:
                 stats["title_already_synced"] += 1
-                continue
-            stats["title_file_updates"] += 1
-            if apply_changes and old not in replaced_in_file:
-                pat = '"title" : "%s"' % json_escape(old)
-                repl = '"title" : "%s"' % json_escape(label)
-                if pat not in raw:
-                    stats["title_file_pattern_miss"] += 1
-                else:
-                    raw = raw.replace(pat, repl)
-                    replaced_in_file.add(old)
+            else:
+                stats["title_file_updates"] += 1
+                if apply_changes and old not in replaced_in_file:
+                    pat = '"title" : "%s"' % json_escape(old)
+                    repl = '"title" : "%s"' % json_escape(label)
+                    if pat not in raw:
+                        stats["title_file_pattern_miss"] += 1
+                    else:
+                        raw = raw.replace(pat, repl)
+                        replaced_in_file.add(old)
+            # El estado de Mongo se evalúa SIEMPRE, con independencia de si el
+            # archivo ya estaba sincronizado: son dos destinos distintos y un
+            # archivo en sync no implica un Mongo en sync (es justo lo que pasa
+            # al publicar en un entorno nuevo desde archivos ya sincronizados).
             if q["_id"] in mongo_titles and mongo_titles[q["_id"]] != label:
                 backup.append({"_id": str(q["_id"]), "oldTitle": mongo_titles[q["_id"]],
                                "newTitle": label})

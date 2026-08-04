@@ -101,7 +101,7 @@ final class StatsAnalyzerCmd implements StatsAnalyzerCommand, Callable<Integer> 
         }
 
         try {
-            AuditReport report = auditRunner.runAudit(Path.of(resolvedCoursePath), null);
+            AuditReport report = auditRunner.runAudit(Path.of(resolvedCoursePath), (java.util.Set<String>) null);
             AnalyzerStatsView view = analyzerStatsTransformer.transform(report, analyzerName, analyzerRegistry);
 
             if ("json".equals(formatName)) {

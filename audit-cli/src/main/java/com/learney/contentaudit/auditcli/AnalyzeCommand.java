@@ -10,4 +10,6 @@ import javax.annotation.processing.Generated;
 public interface AnalyzeCommand {
     Integer analyze(String coursePath, String format, String level, String topic, String knowledge,
             List<String> analyzers, boolean detailed);
+
+    Integer analyze(String coursePath, AnalyzeOptions options);
 }

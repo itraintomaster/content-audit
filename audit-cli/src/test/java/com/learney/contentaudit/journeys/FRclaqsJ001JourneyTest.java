@@ -191,12 +191,12 @@ public class FRclaqsJ001JourneyTest {
                 List.of(), "quiz-j001-001", "Quiz 1", "Q001",
                 "Ella necesita negociar el contrato antes del viernes",
                 List.of(plainSentence),
-                stampedDsl);  // quizSentence stamped at mapping time (R002)
+                stampedDsl, null, null);  // quizSentence stamped at mapping time (R002)
 
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Affirmative sentences in the present simple",
                 "Escribe la forma afirmativa", true,
-                "knowledge-j001-001", "Knowledge 1", "K001", null);
+                "knowledge-j001-001", "Knowledge 1", "K001", null, null);
 
         AuditableTopic topic = new AuditableTopic(
                 List.of(), "topic-j001-001", "Present Simple", "T001");
@@ -279,12 +279,12 @@ public class FRclaqsJ001JourneyTest {
                 List.of(), "quiz-j001-002-other", "Other Quiz", "Q002b",
                 "Ella sings.",
                 List.of("She sings."),
-                "She sings.");
+                "She sings.", null, null);
 
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Music",
                 "Complete.", true,
-                "knowledge-j001-002", "Knowledge 2", "K002", null);
+                "knowledge-j001-002", "Knowledge 2", "K002", null, null);
 
         AuditableTopic topic = new AuditableTopic(
                 List.of(), "topic-j001-002", "Arts", "T002");
@@ -337,12 +337,12 @@ public class FRclaqsJ001JourneyTest {
                 List.of(), "quiz-j001-003-other-id", "A different quiz", "Q003b",
                 "A diferente.",
                 List.of("A different."),
-                "A different.");
+                "A different.", null, null);
 
         AuditableKnowledge knowledge = new AuditableKnowledge(
                 List.of(), "Grammar",
                 "Complete.", true,
-                "knowledge-j001-003", "Knowledge 3", "K003", null);
+                "knowledge-j001-003", "Knowledge 3", "K003", null, null);
 
         AuditableTopic topic = new AuditableTopic(
                 List.of(), "topic-j001-003", "Grammar", "T003");

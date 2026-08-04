@@ -1,0 +1,59 @@
+code: FEAT-LAPS
+modules:
+- name: course-domain
+  packages:
+  - name: quizsentenceengine
+    implementations:
+    - name: DefaultQuizSentenceConverter
+      handwrittenTests:
+      - name: "should keep the form kind, incidence, label and name of the base form\
+          \ when parsing a quizSentence onto it"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014
+      - name: should keep the empty text of each blank part present and empty instead
+          of leaving it absent
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014
+      - name: should take the non-encoded attributes of each part from the base part
+          at the same position when the quizSentence yields the same structure
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014
+      - name: "should replace the sequence of parts, the correct answer of each blank\
+          \ and its accepted variants with what the quizSentence encodes"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R013
+- name: revision-domain
+  packages:
+  - name: preservationengine
+    implementations:
+    - name: DefaultCorrectionScope
+      handwrittenTests:
+      - name: "should declare a lexical correction of a quiz as changing only the\
+          \ plain sentence, the composition of the statement and the translation"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R013
+      - name: "should leave the quiz title, the form kind, the incidence, the presentation\
+          \ labels and the empty text of each blank outside the scope of a lexical\
+          \ correction"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R013
+  - name: engine
+    implementations:
+    - name: DefaultLemmaAbsenceProposalDeriver
+      handwrittenTests:
+      - name: should keep the quiz title identical to the original instead of replacing
+          it with the corrected sentence
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014
+      - name: "should keep the form kind, incidence, label and name and the empty\
+          \ text of each blank identical to the original"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014

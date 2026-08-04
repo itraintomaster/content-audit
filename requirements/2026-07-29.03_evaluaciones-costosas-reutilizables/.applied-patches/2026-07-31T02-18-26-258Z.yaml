@@ -1,0 +1,135 @@
+code: FEAT-EVCOST
+modules:
+- name: evaluation-ledger-domain
+  packages:
+  - name: evaluationsession
+    implementations:
+    - name: DefaultEvaluationSession
+      handwrittenTests:
+      - name: should reuse the registered result for identical content belonging to
+          a different course element
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R001
+      - name: should not reuse the registered result when the element kept its identifier
+          but its content changed
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R001
+      - name: should derive the fingerprint from exactly the content map handed to
+          the evaluator
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R002
+      - name: should return the registered result without consulting the evaluator
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R003
+      - name: should report the content as pending when no result is registered and
+          no new evaluation can be made
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R003
+      - name: should keep reusing registered results after the budget for new evaluations
+          is exhausted
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R003
+      - name: should record each evaluated result in the ledger before resolving the
+          next content
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R004
+      - name: should record an unfavourable verdict emitted by the evaluator and reuse
+          it in the next run
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R005
+      - name: should record nothing when the evaluator does not emit a verdict and
+          leave the content pending for the next run
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R005
+      - name: should leave content pending instead of reusing a result produced by
+          a previous version of the evaluator
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R006
+      - name: should consult the evaluator again for content with a current result
+          only when re-evaluation is explicitly requested
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R008
+      - name: should keep consulting the evaluator for the remaining content when
+          the failure is attributable to a single content
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R009
+      - name: should stop consulting the evaluator after a service failure and finish
+          the run leaving the remaining content pending
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R009
+  - name: contentfingerprint
+    implementations:
+    - name: Sha256ContentFingerprinter
+      handwrittenTests:
+      - name: should produce a different fingerprint when any part of the delivered
+          content changes
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R002
+      - name: should produce the same fingerprint when the same content is rebuilt
+          in another run
+        traceability:
+          feature: FEAT-EVCOST
+          rule: F-EVCOST-R002
+- name: evaluation-ledger-infrastructure
+  implementations:
+  - name: FileSystemEvaluationLedger
+    handwrittenTests:
+    - name: should make every appended result readable by a ledger instance opened
+        after the run was interrupted
+      traceability:
+        feature: FEAT-EVCOST
+        rule: F-EVCOST-R004
+    - name: should ignore a truncated trailing entry and report its content as never
+        registered
+      traceability:
+        feature: FEAT-EVCOST
+        rule: F-EVCOST-R004
+    - name: should preserve every result when two runs append to the same evaluator
+        ledger at the same time
+      traceability:
+        feature: FEAT-EVCOST
+        rule: F-EVCOST-R004
+    - name: should keep the results of previous evaluator versions readable in history
+        after a new version records its own
+      traceability:
+        feature: FEAT-EVCOST
+        rule: F-EVCOST-R006
+    - name: should keep every registered result readable after the analysis reports
+        under the same base directory are deleted
+      traceability:
+        feature: FEAT-EVCOST
+        rule: F-EVCOST-R007
+    - name: should keep the earlier entry consultable in history when the same key
+        is recorded again
+      traceability:
+        feature: FEAT-EVCOST
+        rule: F-EVCOST-R008
+features:
+- id: FEAT-EVCOST
+  journeys:
+  - id: F-EVCOST-J001
+    validation: AUTO_VALIDATED
+    testModule: evaluation-ledger-domain
+    testPackage: com.learney.contentaudit.evaluationledgerdomain.evaluationsession
+  - id: F-EVCOST-J002
+    validation: AUTO_VALIDATED
+    testModule: evaluation-ledger-infrastructure
+    testPackage: com.learney.contentaudit.evaluationledgerinfrastructure
+  - id: F-EVCOST-J003
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.journeys

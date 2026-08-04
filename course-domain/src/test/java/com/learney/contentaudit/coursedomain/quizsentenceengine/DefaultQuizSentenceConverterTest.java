@@ -691,32 +691,91 @@ public class DefaultQuizSentenceConverterTest {
     @Tag("F-QSENT-R023")
     public void shouldExposeOnlyTheThreeForwardConversionsAndNoInverseReconstructionFromAPlainSentence(
             ) {
-        // R023: QuizSentenceConverter interface must declare only forward conversions:
-        //   serialize(FormEntity): String
-        //   parse(String): FormEntity
-        //   toPlainSentences(FormEntity): List<String>
-        //   toPlainSentences(FormEntity, SentenceMode): List<String>  [added in FEAT-SMODE]
-        // No fromPlainSentence or any inverse reconstruction method.
+        // R023 is reformulated as three observable invariants about direction, not a
+        // count of conversions: (1) the derivation is not injective, (2) feeding a
+        // plain sentence back into a text-reading conversion never resurrects the lost
+        // structure (even with the original exercise as base), (3) no declared
+        // conversion accepts a plain sentence (or the list of plain sentences) as input.
+
+        // ── Invariant 1: the derivation is not injective ──────────────────────
+        // Three structurally distinct exercises collapse to the same plain sentence
+        // (concrete collision from the requirement).
+        FormEntity withCloze = form(text("He "), cloze("is"), text(" great."));
+        FormEntity withHint = form(text("He is (to be) great."));
+        FormEntity alreadyPlain = form(text("He is great."));
+
+        assertNotEquals(withCloze, withHint, "the two exercises must be structurally distinct");
+        assertNotEquals(withHint, alreadyPlain, "the two exercises must be structurally distinct");
+        assertNotEquals(withCloze, alreadyPlain, "the two exercises must be structurally distinct");
+
+        List<String> plainFromCloze = converter.toPlainSentences(withCloze);
+        List<String> plainFromHint = converter.toPlainSentences(withHint);
+        List<String> plainFromAlreadyPlain = converter.toPlainSentences(alreadyPlain);
+
+        assertEquals("He is great.", normalize(plainFromCloze.get(0)),
+                "canonical plain sentence must match the expected collapse");
+        assertEquals(normalize(plainFromCloze.get(0)), normalize(plainFromHint.get(0)),
+                "structurally distinct exercises must derive the same plain sentence");
+        assertEquals(normalize(plainFromHint.get(0)), normalize(plainFromAlreadyPlain.get(0)),
+                "structurally distinct exercises must derive the same plain sentence");
+        // Non-injectivity: the plain sentence alone cannot tell which of the three
+        // exercises it came from.
+
+        // ── Invariant 2: no recovery when a plain sentence is fed back ────────
+        FormEntity original = form(text("He "), cloze("is"), text(" (to be) great."));
+        String canonicalPlain = converter.toPlainSentences(original).get(0);
+
+        FormEntity reparsed = null;
+        try {
+            reparsed = converter.parse(canonicalPlain);
+        } catch (QuizSentenceParseException expectedExplicitFailure) {
+            // Explicitly refusing to parse a plain sentence also satisfies the invariant.
+        }
+        if (reparsed != null) {
+            assertFalse(
+                    reparsed.getSentenceParts().stream().anyMatch(p -> p.getKind() == SentencePartKind.CLOZE),
+                    "parsing a plain sentence must not resurrect any CLOZE blank");
+            reparsed.getSentenceParts().forEach(p -> assertNull(p.getOptions(),
+                    "no CLOZE options must reappear from a plain sentence"));
+            String joinedText = reparsed.getSentenceParts().stream()
+                    .map(SentencePartEntity::getText)
+                    .collect(Collectors.joining());
+            assertFalse(joinedText.contains("(to be)"),
+                    "no pedagogical hint must reappear from a plain sentence");
+        }
+
+        // Same check for the preservation conversion (parseOnto): even with the
+        // original exercise as base, the base only preserves un-encoded attributes —
+        // it must not resurrect the blanks/answers the plain sentence already lost.
+        FormEntity reparsedOnto = null;
+        try {
+            reparsedOnto = converter.parseOnto(canonicalPlain, original);
+        } catch (QuizSentenceParseException expectedExplicitFailure) {
+            // Explicitly refusing to parse a plain sentence also satisfies the invariant.
+        }
+        if (reparsedOnto != null) {
+            assertFalse(
+                    reparsedOnto.getSentenceParts().stream().anyMatch(p -> p.getKind() == SentencePartKind.CLOZE),
+                    "parseOnto must not resurrect any CLOZE blank even with the original exercise as base");
+        }
+
+        // ── Invariant 3: no declared conversion takes a plain sentence (or the
+        // list of plain sentences) as input, and no method name suggests inversion.
         Method[] methods = QuizSentenceConverter.class.getDeclaredMethods();
-        // Filter to non-default, non-static methods declared on the interface
-        List<String> methodNames = Arrays.stream(methods)
+        List<Method> declaredConversions = Arrays.stream(methods)
                 .filter(m -> !m.isDefault() && !java.lang.reflect.Modifier.isStatic(m.getModifiers()))
-                .map(Method::getName)
-                .sorted()
                 .collect(Collectors.toList());
 
-        // Interface has 4 methods: serialize, parse, toPlainSentences (mode-blind), toPlainSentences (mode-aware FEAT-SMODE)
-        assertEquals(4, methodNames.size(),
-                "QuizSentenceConverter must expose exactly 4 methods (including the FEAT-SMODE overload), found: " + methodNames);
+        for (Method m : declaredConversions) {
+            boolean takesPlainSentenceList = Arrays.stream(m.getParameterTypes())
+                    .anyMatch(t -> t.equals(List.class));
+            assertFalse(takesPlainSentenceList,
+                    "no declared conversion may take a list of plain sentences as input: " + m.getName());
 
-        assertTrue(methodNames.contains("serialize"), "must have serialize method");
-        assertTrue(methodNames.contains("parse"), "must have parse method");
-        assertTrue(methodNames.contains("toPlainSentences"), "must have toPlainSentences method");
-
-        // No inverse method
-        methodNames.forEach(name -> assertFalse(
-                name.toLowerCase().contains("from") || name.toLowerCase().contains("reconstruct"),
-                "interface must not expose inverse reconstruction: " + name));
+            String name = m.getName().toLowerCase();
+            assertFalse(name.contains("from") || name.contains("reconstruct"),
+                    "interface must not expose inverse reconstruction: " + m.getName());
+        }
     }
 
     // ── R028 ─────────────────────────────────────────────────────────────────
@@ -1000,5 +1059,273 @@ public class DefaultQuizSentenceConverterTest {
 
         assertEquals("We eat cake every Friday.", canonical,
                 "la frase canonica REWRITE debe excluir la oracion fuente y su hint inline: " + canonical);
+    }
+
+    @Test
+    @DisplayName("should keep the form kind, incidence, label and name of the base form when parsing a quizSentence onto it")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R014")
+    public void shouldKeepTheFormKindIncidenceLabelAndNameOfTheBaseFormWhenParsingAQuizSentenceOntoIt() {
+        // R014: form-level attributes that the quizSentence never encodes (kind, incidence,
+        // label, name) are copied from the base FormEntity, regardless of what the new
+        // quizSentence describes.
+        FormEntity base = new FormEntity("CLOZE", 0.75, "Custom Label", "quiz-name-42",
+                Arrays.asList(
+                        text("He"),
+                        cloze("is"),
+                        text(" a teacher.")
+                ));
+
+        String quizSentence = "She sang ____ [loudly] (loud / loudly).";
+
+        FormEntity result = converter.parseOnto(quizSentence, base);
+
+        assertEquals(base.getKind(), result.getKind(),
+                "form kind must be copied from the base form, the quizSentence never encodes it");
+        assertEquals(base.getIncidence(), result.getIncidence(), 0.0001,
+                "incidence must be copied from the base form, the quizSentence never encodes it");
+        assertEquals(base.getLabel(), result.getLabel(),
+                "label must be copied from the base form, the quizSentence never encodes it");
+        assertEquals(base.getName(), result.getName(),
+                "name must be copied from the base form, the quizSentence never encodes it");
+    }
+
+    @Test
+    @DisplayName("should keep the empty text of each blank part present and empty instead of leaving it absent")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R014")
+    public void shouldKeepTheEmptyTextOfEachBlankPartPresentAndEmptyInsteadOfLeavingItAbsent() {
+        // R014: the empty text that accompanies every blank (CLOZE) part is one of the
+        // attributes the quizSentence does not encode; it must stay present and empty,
+        // never absent (null), after parsing a new quizSentence onto a base form.
+        FormEntity base = form(
+                text("He"),
+                cloze("is"),
+                text(" a teacher.")
+        );
+
+        String quizSentence = "She sang ____ [loudly] (loud / loudly).";
+
+        FormEntity result = converter.parseOnto(quizSentence, base);
+
+        List<SentencePartEntity> clozeParts = result.getSentenceParts().stream()
+                .filter(p -> p.getKind() == SentencePartKind.CLOZE)
+                .collect(Collectors.toList());
+
+        assertFalse(clozeParts.isEmpty(), "the result must contain at least one blank part");
+        clozeParts.forEach(p -> {
+            assertNotNull(p.getText(), "the blank part's text must be present, not absent");
+            assertEquals("", p.getText(), "the blank part's text must stay empty, not populated nor absent");
+        });
+    }
+
+    @Test
+    @DisplayName("should take the non-encoded attributes of each part from the base part at the same position when the quizSentence yields the same structure")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R014")
+    public void shouldTakeTheNonencodedAttributesOfEachPartFromTheBasePartAtTheSamePositionWhenTheQuizSentenceYieldsTheSameStructure() {
+        // R014: when the new quizSentence yields the same part structure (same kind sequence)
+        // as the base form, each part's non-encoded attribute (the blank's text, since the
+        // quizSentence only encodes its accepted answers) is taken from the base part at that
+        // same position -- proven here by giving each existing blank a distinct marker and
+        // checking it survives at its own position, not swapped with the other blank's.
+        FormEntity base = form(
+                text("He"),
+                new SentencePartEntity(SentencePartKind.CLOZE, "MARKER_A", List.of("is")),
+                text(" and"),
+                new SentencePartEntity(SentencePartKind.CLOZE, "MARKER_B", List.of("does")),
+                text(" busy.")
+        );
+
+        String quizSentence = "She ____ [likes] apples and ____ [enjoys] grapes.";
+
+        FormEntity result = converter.parseOnto(quizSentence, base);
+        List<SentencePartEntity> parts = result.getSentenceParts();
+
+        assertEquals(5, parts.size(), "the quizSentence yields the same 5-part structure as the base form");
+        assertEquals(SentencePartKind.TEXT, parts.get(0).getKind());
+        assertEquals(SentencePartKind.CLOZE, parts.get(1).getKind());
+        assertEquals(SentencePartKind.TEXT, parts.get(2).getKind());
+        assertEquals(SentencePartKind.CLOZE, parts.get(3).getKind());
+        assertEquals(SentencePartKind.TEXT, parts.get(4).getKind());
+
+        assertEquals("MARKER_A", parts.get(1).getText(),
+                "the first blank's non-encoded text attribute must come from the base part at the same position");
+        assertEquals("MARKER_B", parts.get(3).getText(),
+                "the second blank's non-encoded text attribute must come from the base part at the same position, not swapped with the other blank");
+    }
+
+    @Test
+    @DisplayName("should replace the sequence of parts, the correct answer of each blank and its accepted variants with what the quizSentence encodes")
+    @Tag("FEAT-LAPS")
+    @Tag("F-LAPS-R013")
+    public void shouldReplaceTheSequenceOfPartsTheCorrectAnswerOfEachBlankAndItsAcceptedVariantsWithWhatTheQuizSentenceEncodes() {
+        // R013: the sequence of TEXT/CLOZE parts, the correct answer of each blank and its
+        // accepted variants are exactly what the quizSentence encodes -- they replace whatever
+        // the base form had, even when the new quizSentence has a different part composition.
+        FormEntity base = form(
+                text("He"),
+                cloze("is"),
+                text(" a teacher.")
+        );
+
+        String quizSentence = "She ____ [likes] apples and ____ [drinks|has] juice.";
+
+        FormEntity result = converter.parseOnto(quizSentence, base);
+        List<SentencePartEntity> parts = result.getSentenceParts();
+
+        assertEquals(5, parts.size(),
+                "the part sequence must match what the quizSentence encodes (5 parts), not the base form's 3-part composition");
+        assertEquals(SentencePartKind.TEXT, parts.get(0).getKind());
+        assertEquals(SentencePartKind.CLOZE, parts.get(1).getKind());
+        assertEquals(SentencePartKind.TEXT, parts.get(2).getKind());
+        assertEquals(SentencePartKind.CLOZE, parts.get(3).getKind());
+        assertEquals(SentencePartKind.TEXT, parts.get(4).getKind());
+
+        String firstBlankVariants = String.join("|", parts.get(1).getOptions());
+        assertTrue(firstBlankVariants.contains("likes"),
+                "the first blank's accepted answer must be what the quizSentence encodes: " + firstBlankVariants);
+        assertFalse(firstBlankVariants.contains("is"),
+                "the base form's old answer 'is' must not survive, it is replaced by the quizSentence: " + firstBlankVariants);
+
+        String secondBlankVariants = String.join("|", parts.get(3).getOptions());
+        assertTrue(secondBlankVariants.contains("drinks") && secondBlankVariants.contains("has"),
+                "the second blank's accepted variants must be exactly what the quizSentence encodes: " + secondBlankVariants);
+    }
+
+    @Test
+    @DisplayName("should give each blank part that the correction adds the same text as the blank parts the exercise already had")
+    @Tag("FEAT-RPRES")
+    @Tag("F-RPRES-R006")
+    public void shouldGiveEachBlankPartThatTheCorrectionAddsTheSameTextAsTheBlankPartsTheExerciseAlreadyHad() {
+        // F-RPRES-R006 invariant 1: a blank part that the correction adds is indistinguishable,
+        // in its text attribute, from a blank part the exercise already had.
+        FormEntity base = form(
+                text("He"),
+                cloze("is"),
+                text(" a teacher.")
+        );
+
+        String quizSentence = "He ____ [is] a good and ____ [kind] teacher.";
+
+        FormEntity result = converter.parseOnto(quizSentence, base);
+
+        List<SentencePartEntity> clozeParts = result.getSentenceParts().stream()
+                .filter(p -> p.getKind() == SentencePartKind.CLOZE)
+                .collect(Collectors.toList());
+
+        assertEquals(2, clozeParts.size(),
+                "the correction must add a second blank part beyond the one the exercise already had");
+
+        SentencePartEntity existingBlank = clozeParts.get(0);
+        SentencePartEntity addedBlank = clozeParts.get(1);
+
+        assertNotNull(addedBlank.getText(), "the added blank part's text must be present, not absent");
+        assertEquals(existingBlank.getText(), addedBlank.getText(),
+                "the blank part the correction adds must have the same text as the blank part the exercise already had");
+    }
+
+    @Test
+    @DisplayName("should give each fixed-text part that the correction adds its options in the same state as the fixed-text parts the exercise already had")
+    @Tag("FEAT-RPRES")
+    @Tag("F-RPRES-R006")
+    public void shouldGiveEachFixedtextPartThatTheCorrectionAddsItsOptionsInTheSameStateAsTheFixedtextPartsTheExerciseAlreadyHad() {
+        // F-RPRES-R006 invariant 1: a fixed-text part that the correction adds is
+        // indistinguishable, in its options attribute, from the fixed-text parts the exercise
+        // already had -- all of them stay in the same state (absent/null per FEAT-QSENT).
+        FormEntity base = form(
+                text("He"),
+                cloze("is"),
+                text(" a teacher.")
+        );
+
+        String quizSentence = "He ____ [is] a good and ____ [kind] teacher.";
+
+        FormEntity result = converter.parseOnto(quizSentence, base);
+
+        List<SentencePartEntity> textParts = result.getSentenceParts().stream()
+                .filter(p -> p.getKind() == SentencePartKind.TEXT)
+                .collect(Collectors.toList());
+
+        assertTrue(textParts.size() > 2,
+                "the correction must add at least one fixed-text part beyond the two the exercise already had");
+
+        long distinctOptionsStates = textParts.stream()
+                .map(p -> p.getOptions() == null ? "ABSENT" : p.getOptions().toString())
+                .distinct()
+                .count();
+
+        assertEquals(1, distinctOptionsStates,
+                "every fixed-text part -- the ones the exercise already had and the one(s) the correction adds -- "
+                        + "must have its options attribute in the same state");
+    }
+
+    @Test
+    @DisplayName("should never leave a blank part that the correction adds with its text absent or at the default value of its type, even when the exercise had no other blank part")
+    @Tag("FEAT-RPRES")
+    @Tag("F-RPRES-R006")
+    public void shouldNeverLeaveABlankPartThatTheCorrectionAddsWithItsTextAbsentOrAtTheDefaultValueOfItsTypeEvenWhenTheExerciseHadNoOtherBlankPart() {
+        // F-RPRES-R006 invariant 2: when the exercise has no blank part to homogenize with,
+        // the blank part the correction adds must land in the state its class declares --
+        // text empty and present, accepted answers populated with a value of its own.
+        FormEntity base = form(
+                text("He is a teacher.")
+        );
+
+        String quizSentence = "He ____ [is] a teacher.";
+
+        FormEntity result = converter.parseOnto(quizSentence, base);
+
+        List<SentencePartEntity> clozeParts = result.getSentenceParts().stream()
+                .filter(p -> p.getKind() == SentencePartKind.CLOZE)
+                .collect(Collectors.toList());
+
+        assertEquals(1, clozeParts.size(),
+                "the correction adds exactly one blank part, with no sibling of its class in the base form");
+
+        SentencePartEntity addedBlank = clozeParts.get(0);
+
+        assertNotNull(addedBlank.getText(), "the added blank's text must be present, not absent");
+        assertEquals("", addedBlank.getText(),
+                "the added blank's text must be empty, the state its class (CLOZE) declares -- not the default null of its type");
+
+        assertNotNull(addedBlank.getOptions(),
+                "the added blank's accepted answers must be present, not absent, even with no sibling to copy from");
+        assertFalse(addedBlank.getOptions().isEmpty(),
+                "the added blank's accepted answers must have a value of its own, not the default empty state");
+    }
+
+    @Test
+    @DisplayName("should give a fixed-text part that the correction adds its own text and no accepted answers, even when the exercise had no other fixed-text part")
+    @Tag("FEAT-RPRES")
+    @Tag("F-RPRES-R006")
+    public void shouldGiveAFixedtextPartThatTheCorrectionAddsItsOwnTextAndNoAcceptedAnswersEvenWhenTheExerciseHadNoOtherFixedtextPart(
+            ) {
+        // F-RPRES-R006 invariant 2: when the exercise has no fixed-text part to homogenize
+        // with, the fixed-text part(s) the correction adds must land in the state its class
+        // declares -- its own text content, and accepted answers absent (per F-QSENT-R003,
+        // a TEXT part must never carry populated options).
+        FormEntity base = form(
+                cloze("is")
+        );
+
+        String quizSentence = "He ____ [is] a teacher.";
+
+        FormEntity result = converter.parseOnto(quizSentence, base);
+
+        List<SentencePartEntity> textParts = result.getSentenceParts().stream()
+                .filter(p -> p.getKind() == SentencePartKind.TEXT)
+                .collect(Collectors.toList());
+
+        assertFalse(textParts.isEmpty(),
+                "the correction adds fixed-text part(s), with no sibling of its class in the base form");
+
+        textParts.forEach(p -> {
+            assertNotNull(p.getText(), "the added fixed-text part's text must be present, not absent");
+            assertFalse(p.getText().isEmpty(),
+                    "the added fixed-text part's text must carry its own value, not the default empty state");
+            assertNull(p.getOptions(),
+                    "the added fixed-text part's accepted answers must stay absent, the state its class (TEXT) declares");
+        });
     }
 }

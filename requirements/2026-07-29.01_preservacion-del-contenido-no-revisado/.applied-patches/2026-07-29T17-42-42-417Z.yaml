@@ -1,0 +1,286 @@
+code: FEAT-RPRES
+description: "FEAT-RPRES (ronda de correccion). Reenvia el patch completo de la feature\
+  \ y corrige lo que la ronda anterior perdio en el merge por venir marcado `_change:\
+  \ add` sobre elementos que ya existian: (a) la firma de CorrectionScope.changeableFields,\
+  \ que quedo devolviendo Set<String> en vez de Set<ScopedField> y por lo tanto deja\
+  \ al guard ciego a la distincion leaf / estructura-de-lista que F-LAPS-R013 exige;\
+  \ (b) la descripcion del campo PreservationViolation.path, que sigue diciendo que\
+  \ es un patron cuando el diseno lo define como ruta instanciada. El resto del patch\
+  \ se reenvia con los mismos `_change` con que ya se aplico (idempotente). No incluye\
+  \ handwrittenTests: son de @qa-tester y ya estan en sentinel.yaml."
+modules:
+- name: course-domain
+  packages:
+  - name: quizsentence
+    interfaces:
+    - name: QuizSentenceConverter
+      stereotype: service
+      sealed: false
+      exposes:
+      - signature: "parseOnto(String quizSentence, FormEntity base): FormEntity"
+        _change: add
+      visibility: public
+      _change: modify
+    _change: modify
+  _change: modify
+- name: revision-domain
+  models:
+  - name: ProposalDecisionOutcomeKind
+    type: enum
+    fields:
+    - name: PRESERVATION_VIOLATED
+      description: "La revision aprobada habria cambiado atributos fuera del alcance\
+        \ declarado de su tipo de correccion (F-RPRES-R001/R002/R003). Ni el artifact\
+        \ pasa a APPROVED ni el curso se escribe: el apply aborta antes de persistir."
+      _change: add
+    _change: modify
+  interfaces:
+  - name: CourseElementLocator
+    sealed: false
+    exposes:
+    - signature: "alignQuizTitles(CourseEntity course, String knowledgeId): CourseEntity"
+      _change: add
+    _change: modify
+  - name: PreservationFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "createCheck(): PreservationCheck"
+    - signature: "createRepair(RevisionArtifactStore artifactStore): PreservationRepair"
+    visibility: public
+    _change: add
+  patterns:
+  - type: Strategy
+    implementations:
+    - LemmaAbsenceMvpStrategy
+    suppressed: false
+    interface: LemmaAbsenceProposalStrategy
+  - type: Factory
+    implementations:
+    - DefaultPreservationFactory
+    suppressed: false
+    interface: PreservationFactory
+  packages:
+  - name: preservation
+    description: "Contrato publico de la garantia de preservacion (FEAT-RPRES). Aloja\
+      \ la declaracion de alcance por tipo de correccion (CorrectionScope: la respuesta\
+      \ a DOUBT-ALCANCE-DECLARADO), el verificador por complemento que corre antes\
+      \ de persistir un apply (PreservationCheck), el reparador retroactivo del contenido\
+      \ ya degradado (PreservationRepair) y sus carriers (ScopedField, PreservationViolation,\
+      \ AttributeState, RepairReport). Solo puertos y carriers: el motor vive en el\
+      \ package hermano interno 'preservationengine'. Es publico porque el comando\
+      \ repair del CLI consume PreservationRepair; el resto de los consumidores estan\
+      \ dentro de revision-domain."
+    visibility: public
+    models:
+    - name: AttributeState
+      type: enum
+      fields:
+      - name: VALUE_PRESENT
+        description: El atributo esta presente y tiene un valor propio distinto del
+          vacio.
+      - name: EMPTY_PRESENT
+        description: "El atributo esta presente y su valor es legitimamente vacio\
+          \ (cadena vacia, lista vacia). Es una decision de contenido, no una perdida."
+      - name: ABSENT
+        description: "El atributo no esta: null, o el valor por defecto del tipo primitivo\
+          \ alli donde el contenido tenia un valor propio."
+      _change: add
+    - name: ScopedField
+      type: record
+      fields:
+      - name: path
+        type: String
+        description: "Ruta al leaf dentro del elemento. '[]' marca el paso por una\
+          \ lista. Una ruta que termina en '[]' denota la estructura de la lista (longitud,\
+          \ orden y la clase declarada de cada elemento), no sus leaves: p.ej. 'form.sentenceParts[]'\
+          \ autoriza reordenar/agregar/quitar partes pero no cambiar ningun atributo\
+          \ de una parte. Ejemplos de leaf: 'translation', 'form.incidence', 'quizTemplates[].title',\
+          \ 'form.sentenceParts[].text'."
+      - name: elementKind
+        type: String
+        description: "Nombre de la constante de clase que selecciona los elementos\
+          \ de la lista a los que aplica la entrada; null significa 'todos los elementos'.\
+          \ Es el unico refinamiento admitido sobre la ruta, y solo puede nombrar\
+          \ una clase que el dominio ya declara como enum (p.ej. SentencePartKind.TEXT).\
+          \ Existe porque la correccion lexica cambia el texto de las partes TEXT\
+          \ pero no el de las partes CLOZE, y sin el discriminador ambas quedan bajo\
+          \ la misma ruta 'form.sentenceParts[].text'."
+      _change: add
+    - name: PreservationViolation
+      type: record
+      fields:
+      - name: elementId
+        type: String
+        description: Id del elemento del curso (quiz o knowledge) donde se observo
+          la diferencia.
+      - name: path
+        type: String
+        description: "Ruta concreta e instanciada donde se observo la diferencia (p.ej.\
+          \ 'form.sentenceParts[2].text'), no el patron declarado en ScopedField.\
+          \ Se resuelve contra el alcance expandiendo cada ScopedField sobre el elemento\
+          \ real."
+        _change: modify
+      - name: beforeState
+        type: AttributeState
+        description: Estado del atributo en el elemento original.
+      - name: afterState
+        type: AttributeState
+        description: Estado del atributo en el elemento resultante.
+      - name: beforeValue
+        type: String
+        description: "Representacion textual del valor original, para el mensaje de\
+          \ error de R001/R002."
+      - name: afterValue
+        type: String
+        description: Representacion textual del valor resultante.
+      _change: modify
+    - name: RepairReport
+      type: record
+      fields:
+      - name: course
+        type: CourseEntity
+        description: Curso resultante. En modo inspeccion es el mismo objeto de entrada.
+      - name: elementsInspected
+        type: int
+        description: Cantidad de elementos del curso examinados.
+      - name: elementsRepaired
+        type: int
+        description: Cantidad de elementos con al menos un atributo repuesto.
+      - name: restored
+        type: List<PreservationViolation>
+        description: "Detalle atributo por atributo de lo repuesto (o de lo que se\
+          \ repondria, en modo inspeccion)."
+      - name: unrepairable
+        type: List<String>
+        description: "Ids de elementos degradados sin contraparte integra disponible\
+          \ en los artifacts de revision. Se informan, nunca se inventa un valor por\
+          \ defecto (F-RPRES-R002)."
+      _change: add
+    interfaces:
+    - name: CorrectionScope
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "changeableFields(DiagnosisKind kind, AuditTarget target): Set<String>"
+        _change: delete
+      - signature: "changeableFields(DiagnosisKind kind, AuditTarget target): Set<ScopedField>"
+        _change: add
+      visibility: public
+      _change: modify
+    - name: PreservationCheck
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "verify(CourseEntity courseBefore, CourseEntity courseAfter, CourseElementSnapshot\
+          \ revised, DiagnosisKind kind): List<PreservationViolation>"
+      visibility: public
+      _change: add
+    - name: PreservationRepair
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "inspect(CourseEntity course): RepairReport"
+      - signature: "repair(CourseEntity course): RepairReport"
+      visibility: public
+      _change: add
+    _change: modify
+  - name: preservationengine
+    description: "Motor interno de la garantia de preservacion. Aloja la tabla de\
+      \ alcances por tipo de correccion (DefaultCorrectionScope), el comparador por\
+      \ complemento que recorre el elemento revisado y verifica el radio de impacto\
+      \ sobre el resto del curso (DefaultPreservationCheck) y el reparador que reconstruye\
+      \ desde los artifacts (DefaultPreservationRepair), todos package-private. Solo\
+      \ DefaultPreservationFactory es publica: es la unica costura por la que el composition\
+      \ root y el resto de revision-domain arman las dos capacidades. Empaquetado\
+      \ aparte de 'preservation' por la misma razon que fielddiff lo esta de consolidatedview:\
+      \ el contrato es estable y el motor no."
+    visibility: internal
+    implementations:
+    - name: DefaultCorrectionScope
+      implements:
+      - CorrectionScope
+      _change: add
+    - name: DefaultPreservationCheck
+      requiresInject:
+      - name: scope
+        type: CorrectionScope
+        description: Declaracion de alcance contra la que se contrasta el diff observado.
+      implements:
+      - PreservationCheck
+      _change: add
+    - name: DefaultPreservationRepair
+      requiresInject:
+      - name: artifactStore
+        type: RevisionArtifactStore
+        description: "Fuente de las contrapartes integras: el elementBefore de los\
+          \ artifacts APPROVED. Se toma el artifact mas antiguo por nodeId, porque\
+          \ el de una segunda revision ya trae el elemento degradado."
+      - name: scope
+        type: CorrectionScope
+        description: "Delimita que atributos repone la reparacion: exactamente los\
+          \ que quedan fuera del alcance de la correccion que el artifact aplico,\
+          \ de modo que reparar nunca revierte la correccion."
+      implements:
+      - PreservationRepair
+      _change: add
+    - name: DefaultPreservationFactory
+      visibility: public
+      implements:
+      - PreservationFactory
+      _change: add
+    _change: add
+  - name: engine
+    implementations:
+    - name: DefaultProposalDecisionService
+      requiresInject:
+      - name: artifactStore
+        type: RevisionArtifactStore
+      - name: courseRepository
+        type: CourseRepository
+      - name: elementLocator
+        type: CourseElementLocator
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+        description: Needed to clear the task back to PENDING on reject (R014) and
+          close it as DONE on approve
+      - name: preservationCheck
+        type: PreservationCheck
+        description: "Guarda de F-RPRES-R001/R002/R003. Se consulta con el curso antes\
+          \ y despues de elementLocator.replace y antes de escribir: si devuelve violaciones,\
+          \ approve retorna PRESERVATION_VIOLATED sin tocar el artifact ni el curso."
+      types:
+      - Component
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  interfaces:
+  - name: RepairCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "repair(String resource, String coursePath, boolean dryRun): Integer"
+    visibility: public
+    _change: add
+  packages:
+  - name: commands
+    implementations:
+    - name: RepairCmd
+      requiresInject:
+      - name: preservationRepair
+        type: PreservationRepair
+        description: Puerto de reparacion de revision-domain.
+      - name: courseRepository
+        type: CourseRepository
+        description: Carga el curso y persiste el resultado reparado; en dry-run solo
+          carga.
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - RepairCommand
+      _change: add
+    _change: modify
+  _change: modify

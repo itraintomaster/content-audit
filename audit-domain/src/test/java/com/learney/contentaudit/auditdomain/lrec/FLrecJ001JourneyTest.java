@@ -77,8 +77,8 @@ public class FLrecJ001JourneyTest {
         NlpToken runToken2  = new NlpToken("runs", "run",  "VERB", 50,  false, false);
         NlpToken theToken2  = new NlpToken("the",  "the",  "DET",  1,   true,  false);
 
-        AuditableQuiz quiz1 = new AuditableQuiz(List.of(theToken1, runToken1), null, null, null, null, List.of("the run"),  null);
-        AuditableQuiz quiz2 = new AuditableQuiz(List.of(theToken2, runToken2), null, null, null, null, List.of("the runs"), null);
+        AuditableQuiz quiz1 = new AuditableQuiz(List.of(theToken1, runToken1), null, null, null, null, List.of("the run"),  null, null, null);
+        AuditableQuiz quiz2 = new AuditableQuiz(List.of(theToken2, runToken2), null, null, null, null, List.of("the runs"), null, null, null);
 
         AuditNode quizNode1  = buildQuizNode(quiz1);
         AuditNode quizNode2  = buildQuizNode(quiz2);
@@ -125,7 +125,7 @@ public class FLrecJ001JourneyTest {
         NlpToken theToken  = new NlpToken("the", "the", "DET",   1,    true,  false);
         NlpToken dotToken  = new NlpToken(".",   ".",   "PUNCT", 0,    false, true);
 
-        AuditableQuiz quiz = new AuditableQuiz(List.of(theToken, dotToken), null, null, null, null, List.of("the."), null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(theToken, dotToken), null, null, null, null, List.of("the."), null, null, null);
         AuditNode quizNode  = buildQuizNode(quiz);
         AuditNode courseNode = buildCourseNode();
 

@@ -72,10 +72,11 @@ new AuditableCourse(List<AuditableMilestone> milestones)
 | `label` | `String` |  |
 | `code` | `String` |  |
 | `sentenceMode` | `SentenceMode` |  |
+| `topicName` | `String` |  |
 
 **Generated constructor:**
 ```java
-new AuditableKnowledge(List<AuditableQuiz> quizzes, String title, String instructions, boolean isSentence, String id, String label, String code, SentenceMode sentenceMode)
+new AuditableKnowledge(List<AuditableQuiz> quizzes, String title, String instructions, boolean isSentence, String id, String label, String code, SentenceMode sentenceMode, String topicName)
 ```
 
 #### AuditableTopic
@@ -126,10 +127,12 @@ new AuditableMilestone(List<AuditableTopic> topics, String id, String label, Str
 | `translation` | `String` |  |
 | `sentences` | `List<String>` | Import `java.util.List` |
 | `quizSentence` | `String` |  |
+| `instructions` | `String` |  |
+| `sentenceParts` | `List<SentencePartEntity>` | Import `java.util.List` |
 
 **Generated constructor:**
 ```java
-new AuditableQuiz(List<NlpToken> tokens, String id, String label, String code, String translation, List<String> sentences, String quizSentence)
+new AuditableQuiz(List<NlpToken> tokens, String id, String label, String code, String translation, List<String> sentences, String quizSentence, String instructions, List<SentencePartEntity> sentenceParts)
 ```
 
 #### CefrLevel
@@ -289,6 +292,22 @@ new AuditReportSummary(String id, Instant timestamp, String courseName, double o
 **Generated constructor:**
 ```java
 new ActiveAnalysisSelection(String auditId, String planId)
+```
+
+#### EvaluationRunPolicy
+
+**Package:** `com.learney.contentaudit.auditdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `maxNewEvaluations` | `int` |  |
+| `reevaluate` | `boolean` |  |
+| `reevaluationScope` | `String` |  |
+
+**Generated constructor:**
+```java
+new EvaluationRunPolicy(int maxNewEvaluations, boolean reevaluate, String reevaluationScope)
 ```
 
 #### FrequencyBand (package: coca)
@@ -913,6 +932,107 @@ new ActiveAnalysisSelection(String auditId, String planId)
 | `pos` | `String` |
 | `frequencyRank` | `Integer` |
 
+#### InstructionSeverity (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `NONE` | `null` |
+| `MINOR` | `null` |
+| `MAJOR` | `null` |
+| `CRITICAL` | `null` |
+
+#### InstructionCheckStatus (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `PASSED` | `null` |
+| `FAILED` | `null` |
+| `NOT_APPLICABLE` | `null` |
+
+#### InstructionViolation (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `code` | `String` |
+| `constraint` | `String` |
+| `evidence` | `String` |
+| `explanation` | `String` |
+
+#### InstructionCheck (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `category` | `String` |
+| `constraint` | `String` |
+| `status` | `InstructionCheckStatus` |
+| `evidence` | `String` |
+
+#### QuizInstructionVerdict (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `followsInstructions` | `boolean` |
+| `confidence` | `double` |
+| `severity` | `InstructionSeverity` |
+| `reason` | `String` |
+| `violations` | `List<InstructionViolation>` |
+| `checkedConstraints` | `List<InstructionCheck>` |
+
+#### QuizInstructionDiagnosis (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `verdict` | `QuizInstructionVerdict` |
+| `score` | `double` |
+| `reusedFromPreviousRun` | `boolean` |
+
+#### QuizInstructionCoverageDiagnosis (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `coverage` | `EvaluationCoverage` |
+| `consultedJudgeVersion` | `String` |
+| `verdictsByJudgeVersion` | `List<JudgeVersionVerdictCount>` |
+
+#### JudgeVersionVerdictCount (package: quizinstruction)
+
+**Package:** `com.learney.contentaudit.auditdomain.quizinstruction`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `judgeVersion` | `String` |
+| `verdictCount` | `int` |
+
 ### Module: course-domain
 
 #### NodeKind
@@ -1193,10 +1313,11 @@ new SentenceMode(null REWRITE, null FILL)
 | `LEMMA_RECURRENCE` | `null` |  |
 | `KNOWLEDGE_TITLE_LENGTH` | `null` |  |
 | `KNOWLEDGE_INSTRUCTIONS_LENGTH` | `null` |  |
+| `QUIZ_INSTRUCTION` | `null` |  |
 
 **Generated constructor:**
 ```java
-new DiagnosisKind(null SENTENCE_LENGTH, null LEMMA_ABSENCE, null COCA_BUCKETS, null LEMMA_RECURRENCE, null KNOWLEDGE_TITLE_LENGTH, null KNOWLEDGE_INSTRUCTIONS_LENGTH)
+new DiagnosisKind(null SENTENCE_LENGTH, null LEMMA_ABSENCE, null COCA_BUCKETS, null LEMMA_RECURRENCE, null KNOWLEDGE_TITLE_LENGTH, null KNOWLEDGE_INSTRUCTIONS_LENGTH, null QUIZ_INSTRUCTION)
 ```
 
 #### RefinementTaskStatus
@@ -1477,6 +1598,24 @@ new KnowledgeTitleCorrectionContext(String taskId, String knowledgeId, String cu
 new OutOfCatalogWordContext(String lemma, String observedPos, Integer frequencyRank, double discount)
 ```
 
+### Module: audit-application
+
+#### AuditRunRequest
+
+**Package:** `com.learney.contentaudit.auditapplication`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `includedAnalyzers` | `Set<String>` |  |
+| `excludedAnalyzers` | `Set<String>` |  |
+| `analyzerPolicies` | `Map<String,EvaluationRunPolicy>` |  |
+
+**Generated constructor:**
+```java
+new AuditRunRequest(Set<String> includedAnalyzers, Set<String> excludedAnalyzers, Map<String,EvaluationRunPolicy> analyzerPolicies)
+```
+
 ### Module: audit-cli
 
 #### GetTasksFilter
@@ -1558,6 +1697,28 @@ new EphemeralRenderOptions(boolean withCorrectionContext)
 **Generated constructor:**
 ```java
 new SuggestedLemmasFilter(Optional<Integer> limit, Optional<String> partOfSpeech, Optional<CefrLevel> level, boolean includeExposed, Optional<String> regex)
+```
+
+#### AnalyzeOptions
+
+**Package:** `com.learney.contentaudit.auditcli`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `format` | `String` |  |
+| `level` | `String` |  |
+| `topic` | `String` |  |
+| `knowledge` | `String` |  |
+| `analyzers` | `List<String>` | Import `java.util.List` |
+| `excludeAnalyzers` | `List<String>` | Import `java.util.List` |
+| `detailed` | `boolean` |  |
+| `instructionBudget` | `Integer` |  |
+| `reevaluateInstructions` | `String` |  |
+
+**Generated constructor:**
+```java
+new AnalyzeOptions(String format, String level, String topic, String knowledge, List<String> analyzers, List<String> excludeAnalyzers, boolean detailed, Integer instructionBudget, String reevaluateInstructions)
 ```
 
 #### ReportViewModel (package: formatting)
@@ -1996,10 +2157,11 @@ new ApprovalMode(null AUTO, null HUMAN)
 | `REJECTED` | `null` |  |
 | `NOT_FOUND` | `null` |  |
 | `ALREADY_DECIDED` | `null` |  |
+| `PRESERVATION_VIOLATED` | `null` |  |
 
 **Generated constructor:**
 ```java
-new ProposalDecisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NOT_FOUND, null ALREADY_DECIDED)
+new ProposalDecisionOutcomeKind(null APPROVED_APPLIED, null APPROVED_APPLY_FAILED, null REJECTED, null NOT_FOUND, null ALREADY_DECIDED, null PRESERVATION_VIOLATED)
 ```
 
 #### ProposalDecisionOutcome
@@ -2453,6 +2615,58 @@ new OverrideRejectedException(String reason)
 | `title` | `String` |
 | `instructions` | `String` |
 
+#### AttributeState (package: preservation)
+
+**Package:** `com.learney.contentaudit.revisiondomain.preservation`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `VALUE_PRESENT` | `null` |
+| `EMPTY_PRESENT` | `null` |
+| `ABSENT` | `null` |
+
+#### PreservationViolation (package: preservation)
+
+**Package:** `com.learney.contentaudit.revisiondomain.preservation`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `elementId` | `String` |
+| `path` | `String` |
+| `beforeState` | `AttributeState` |
+| `afterState` | `AttributeState` |
+| `beforeValue` | `String` |
+| `afterValue` | `String` |
+
+#### RepairReport (package: preservation)
+
+**Package:** `com.learney.contentaudit.revisiondomain.preservation`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `course` | `CourseEntity` |
+| `elementsInspected` | `int` |
+| `elementsRepaired` | `int` |
+| `restored` | `List<PreservationViolation>` |
+| `unrepairable` | `List<String>` |
+
+#### ScopedField (package: preservation)
+
+**Package:** `com.learney.contentaudit.revisiondomain.preservation`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `path` | `String` |
+| `elementKind` | `String` |
+
 ### Module: revision-infrastructure
 
 #### LagenConfig (package: lagen)
@@ -2512,4 +2726,281 @@ new OverrideRejectedException(String reason)
 |-------|------|
 | `providerName` | `String` |
 | `modelId` | `String` |
+
+### Module: evaluation-ledger-domain
+
+#### EvaluationKey
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `evaluatorId` | `String` |  |
+| `contentFingerprint` | `String` |  |
+
+**Generated constructor:**
+```java
+new EvaluationKey(String evaluatorId, String contentFingerprint)
+```
+
+#### EvaluationSubject
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `subjectRef` | `String` |  |
+| `content` | `Map<String,String>` |  |
+
+**Generated constructor:**
+```java
+new EvaluationSubject(String subjectRef, Map<String,String> content)
+```
+
+#### EvaluationRecord
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `key` | `EvaluationKey` |  |
+| `payload` | `String` |  |
+| `subjectRef` | `String` |  |
+| `recordedAt` | `Instant` |  |
+| `evaluatorVersion` | `String` |  |
+
+**Generated constructor:**
+```java
+new EvaluationRecord(EvaluationKey key, String payload, String subjectRef, Instant recordedAt, String evaluatorVersion)
+```
+
+#### EvaluationEmitted
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** record
+**Implements:** `EvaluationOutcome`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `payload` | `String` |  |
+
+**Generated constructor:**
+```java
+new EvaluationEmitted(String payload)
+```
+
+#### EvaluationNotEmitted
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** record
+**Implements:** `EvaluationOutcome`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `kind` | `EvaluationFailureKind` |  |
+| `reason` | `String` |  |
+
+**Generated constructor:**
+```java
+new EvaluationNotEmitted(EvaluationFailureKind kind, String reason)
+```
+
+#### EvaluationFailureKind
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `OUTPUT_UNUSABLE` | `null` |  |
+| `EVALUATOR_UNAVAILABLE` | `null` |  |
+
+**Generated constructor:**
+```java
+new EvaluationFailureKind(null OUTPUT_UNUSABLE, null EVALUATOR_UNAVAILABLE)
+```
+
+#### EvaluationResolutionKind
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** enum
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `REUSED` | `null` |  |
+| `EVALUATED` | `null` |  |
+| `PENDING` | `null` |  |
+| `FAILED` | `null` |  |
+
+**Generated constructor:**
+```java
+new EvaluationResolutionKind(null REUSED, null EVALUATED, null PENDING, null FAILED)
+```
+
+#### EvaluationResolution
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `kind` | `EvaluationResolutionKind` |  |
+| `payload` | `String` |  |
+| `evaluatorVersion` | `String` |  |
+
+**Generated constructor:**
+```java
+new EvaluationResolution(EvaluationResolutionKind kind, String payload, String evaluatorVersion)
+```
+
+#### EvaluationCoverage
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `reached` | `int` |  |
+| `withResult` | `int` |  |
+| `evaluatedInRun` | `int` |  |
+| `reused` | `int` |  |
+| `pending` | `int` |  |
+| `failed` | `int` |  |
+
+**Generated constructor:**
+```java
+new EvaluationCoverage(int reached, int withResult, int evaluatedInRun, int reused, int pending, int failed)
+```
+
+#### EvaluationBudget
+
+**Package:** `com.learney.contentaudit.evaluationledgerdomain`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `maxNewEvaluations` | `int` |  |
+
+**Generated constructor:**
+```java
+new EvaluationBudget(int maxNewEvaluations)
+```
+
+### Module: agent-runtime-infrastructure
+
+#### AgentGraphRunnerConfig
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `agentsBaseDir` | `Path` |  |
+| `runsBaseDir` | `Path` |  |
+
+**Generated constructor:**
+```java
+new AgentGraphRunnerConfig(Path agentsBaseDir, Path runsBaseDir)
+```
+
+#### AgentDefinitionFound
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure`
+**Type:** record
+**Implements:** `AgentDefinitionLocation`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `directory` | `Path` |  |
+
+**Generated constructor:**
+```java
+new AgentDefinitionFound(Path directory)
+```
+
+#### AgentDefinitionUnresolved
+
+**Package:** `com.learney.contentaudit.agentruntimeinfrastructure`
+**Type:** record
+**Implements:** `AgentDefinitionLocation`
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `agentName` | `String` |  |
+| `searchedIn` | `Path` |  |
+
+**Generated constructor:**
+```java
+new AgentDefinitionUnresolved(String agentName, Path searchedIn)
+```
+
+### Module: quiz-instruction-infrastructure
+
+#### QuizInstructionJudgeConfig
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure`
+**Type:** record
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `baseUrl` | `String` |  |
+| `apiKey` | `String` |  |
+| `modelName` | `String` |  |
+| `temperature` | `Double` |  |
+| `timeoutSeconds` | `Integer` |  |
+| `agentName` | `String` |  |
+| `providerName` | `String` |  |
+
+**Generated constructor:**
+```java
+new QuizInstructionJudgeConfig(String baseUrl, String apiKey, String modelName, Double temperature, Integer timeoutSeconds, String agentName, String providerName)
+```
+
+#### JudgeProviderClass (package: instructionjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `LOCAL_SESSION` | `null` |
+| `REMOTE_SERVICE` | `null` |
+
+#### JudgeProviderResolved (package: instructionjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `providerName` | `String` |
+| `providerClass` | `JudgeProviderClass` |
+
+#### JudgeProviderRejectionKind (package: instructionjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `UNSUPPORTED_PROVIDER` | `null` |
+| `MISSING_REQUIRED_INPUT` | `null` |
+
+#### JudgeProviderRejected (package: instructionjudge)
+
+**Package:** `com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `providerName` | `String` |
+| `missingInput` | `String` |
+| `kind` | `JudgeProviderRejectionKind` |
 

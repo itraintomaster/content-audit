@@ -48,7 +48,7 @@ class FileSystemAuditReportStoreTest {
         // COURSE (entity=null) → MILESTONE → TOPIC → KNOWLEDGE → QUIZ
 
         // --- Quiz node (leaf) ---
-        AuditableQuiz quiz = new AuditableQuiz(List.of(new NlpToken("cat", "cat", "NOUN", 500, false, false)), "quiz-1", "Quiz One", "Q1", null, List.of("The cat sat on the mat."), "The cat sat on the mat.");
+        AuditableQuiz quiz = new AuditableQuiz(List.of(new NlpToken("cat", "cat", "NOUN", 500, false, false)), "quiz-1", "Quiz One", "Q1", null, List.of("The cat sat on the mat."), "The cat sat on the mat.", null, null);
 
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
         SentenceLengthDiagnosis sentenceDiagnosis = new SentenceLengthDiagnosis(7, 5, 10, CefrLevel.A1, 0, 2);
@@ -77,7 +77,7 @@ class FileSystemAuditReportStoreTest {
                 "know-1",
                 "Knowledge One",
                 "K1"
-        , null);
+        , null, null);
 
         DefaultKnowledgeDiagnoses knowledgeDiagnoses = new DefaultKnowledgeDiagnoses();
         LemmaPlacementDiagnosis knowledgeLemmaDiagnosis = new LemmaPlacementDiagnosis(1, List.of(), 0, List.of());

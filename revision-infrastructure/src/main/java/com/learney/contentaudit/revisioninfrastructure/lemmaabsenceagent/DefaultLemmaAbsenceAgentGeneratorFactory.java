@@ -1,5 +1,8 @@
 package com.learney.contentaudit.revisioninfrastructure.lemmaabsenceagent;
 
+import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunner;
+import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunnerConfig;
+import com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentGraphRunnerFactory;
 import com.learney.contentaudit.refinerdomain.SuggestedLemmaQuerySessionFactory;
 import com.learney.contentaudit.revisiondomain.lemmaabsence.LemmaAbsenceQuizCandidateGenerator;
 import com.learney.contentaudit.revisioninfrastructure.lagen.InvalidProviderIdException;
@@ -23,6 +26,15 @@ public class DefaultLemmaAbsenceAgentGeneratorFactory implements LemmaAbsenceAge
             new LagenDefaults(0.7, 2048, Duration.ofSeconds(30));
 
     /**
+     * Shared declarative-graph runtime (agent-runtime-infrastructure). Built with an
+     * empty config so base-dir resolution falls through to its CWD default step —
+     * this generator never populates {@code project_root}, matching the launcher's
+     * pre-consolidation behavior exactly.
+     */
+    private static final AgentGraphRunner AGENT_GRAPH_RUNNER =
+            new DefaultAgentGraphRunnerFactory().create(new AgentGraphRunnerConfig());
+
+    /**
      * Strategy name passed to the generator and preserved in {@link
      * com.learney.contentaudit.revisiondomain.ProposalStrategyFailedException}.
      * This is the provenance label for the sentinel-agent backend, distinct from the
@@ -37,7 +49,7 @@ public class DefaultLemmaAbsenceAgentGeneratorFactory implements LemmaAbsenceAge
 
         return new LemmaAbsenceAgentGenerator(
                 config,
-                new DefaultAgentRuntimeLauncher(),
+                new SharedRuntimeAgentLauncher(AGENT_GRAPH_RUNNER),
                 sessionFactory,
                 new DefaultAgentRuntimeErrorClassifier(),
                 new DefaultAgentCandidateParser(),

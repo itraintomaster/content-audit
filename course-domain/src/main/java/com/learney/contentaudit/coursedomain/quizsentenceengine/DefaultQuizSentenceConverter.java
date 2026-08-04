@@ -2,7 +2,10 @@ package com.learney.contentaudit.coursedomain.quizsentenceengine;
 import com.learney.contentaudit.coursedomain.SentenceMode;
 
 import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceConverter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 
@@ -89,4 +92,83 @@ public class DefaultQuizSentenceConverter implements QuizSentenceConverter {
     public List<String> toPlainSentences(FormEntity form, SentenceMode mode) {
         return plainDeriver.derive(form, mode);
     }
+
+    /**
+     * Parses a quizSentence DSL string, replacing the sentence structure of {@code base}
+     * with what the DSL encodes while preserving everything the DSL does not encode
+     * (F-LAPS-R013/R014, F-RPRES-R006).
+     *
+     * <p>What the quizSentence replaces: the sequence of TEXT/CLOZE parts, and each blank's
+     * correct answer and accepted variants (its {@code options}) — exactly what the DSL
+     * grammar encodes.
+     *
+     * <p>What is preserved from {@code base}: the form-level attributes the DSL never
+     * encodes (kind, incidence, label, name), and each blank's non-encoded {@code text}
+     * attribute (always present and empty, never absent). The non-encoded attribute of a
+     * part is taken from the base part at the same position when that base part is of the
+     * same kind (R014); when the correction adds a part beyond what the base had, it is
+     * homogenized with a sibling of its own kind already present in {@code base}
+     * (F-RPRES-R006 invariant 1), or — when {@code base} has no such sibling — it lands in
+     * the state its own kind declares: a blank's text stays empty-but-present, never absent
+     * or resurrected from a mismatched base part (F-RPRES-R006 invariant 2). A fixed-text
+     * part's {@code options} is never populated regardless of {@code base} (F-QSENT-R003),
+     * so it needs no merging at all.
+     *
+     * @param quizSentence the DSL string encoding the new sentence structure
+     * @param base the prior FormEntity to preserve non-encoded attributes from
+     * @return a FormEntity with the new structure, resting on {@code base} for
+     *         everything the DSL does not encode
+     */
+    @Override
+    public FormEntity parseOnto(String quizSentence, FormEntity base) {
+        FormEntity parsed = parser.parse(quizSentence);
+        List<SentencePartEntity> baseParts = base.getSentenceParts() != null
+                ? base.getSentenceParts()
+                : List.of();
+        List<SentencePartEntity> newParts = parsed.getSentenceParts();
+
+        List<SentencePartEntity> mergedParts = new ArrayList<>(newParts.size());
+        for (int i = 0; i < newParts.size(); i++) {
+            SentencePartEntity part = newParts.get(i);
+            if (part.getKind() == SentencePartKind.CLOZE) {
+                String text = resolveClozeText(i, baseParts);
+                mergedParts.add(new SentencePartEntity(part.getKind(), text, part.getOptions()));
+            } else {
+                // TEXT parts: text is fully encoded by the DSL, and options must stay
+                // absent regardless of base (F-QSENT-R003) — the parser already yields
+                // the correct state, nothing to merge.
+                mergedParts.add(part);
+            }
+        }
+
+        FormEntity result = new FormEntity();
+        result.setKind(base.getKind());
+        result.setIncidence(base.getIncidence());
+        result.setLabel(base.getLabel());
+        result.setName(base.getName());
+        result.setSentenceParts(mergedParts);
+        return result;
+    }
+
+    /**
+     * Resolves the non-encoded {@code text} attribute for a CLOZE part at position
+     * {@code index} in the new sequence: the base part at the same position when it is
+     * also a CLOZE (R014), otherwise the first CLOZE sibling found anywhere in
+     * {@code baseParts} (F-RPRES-R006 invariant 1), otherwise the class's declared default
+     * of empty-but-present (F-RPRES-R006 invariant 2).
+     */
+    private String resolveClozeText(int index, List<SentencePartEntity> baseParts) {
+        if (index < baseParts.size()) {
+            SentencePartEntity samePosition = baseParts.get(index);
+            if (samePosition.getKind() == SentencePartKind.CLOZE) {
+                return samePosition.getText();
+            }
+        }
+        return baseParts.stream()
+                .filter(p -> p.getKind() == SentencePartKind.CLOZE)
+                .map(SentencePartEntity::getText)
+                .findFirst()
+                .orElse("");
+    }
+
 }

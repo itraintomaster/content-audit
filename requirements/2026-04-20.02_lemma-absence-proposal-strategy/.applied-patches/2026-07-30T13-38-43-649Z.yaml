@@ -1,0 +1,14 @@
+code: FEAT-LAPS
+modules:
+- name: revision-domain
+  packages:
+  - name: engine
+    implementations:
+    - name: DefaultLemmaAbsenceProposalDeriver
+      handwrittenTests:
+      - name: "should keep on elementAfter the very same quiz title that elementBefore\
+          \ carried, even when the derived plain sentence differs, because the title\
+          \ is not in scope of a lexical correction"
+        traceability:
+          feature: FEAT-LAPS
+          rule: F-LAPS-R014

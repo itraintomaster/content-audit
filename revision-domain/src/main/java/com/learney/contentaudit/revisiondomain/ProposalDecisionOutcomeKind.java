@@ -15,5 +15,7 @@ public enum ProposalDecisionOutcomeKind {
 
     NOT_FOUND,
 
-    ALREADY_DECIDED
+    ALREADY_DECIDED,
+
+    PRESERVATION_VIOLATED
 }

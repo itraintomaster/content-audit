@@ -61,7 +61,6 @@ The following interfaces are `sealed`. Only the listed classes may implement the
 
 - `NodeDiagnoses` permits: (none declared)
 - `LemmaCountConfig` permits: DefaultLemmaCountConfig
-- `AnalyzeCommand` permits: (none declared)
 - `GetCommand` permits: (none declared)
 - `DeleteCommand` permits: (none declared)
 - `PruneCommand` permits: (none declared)
@@ -73,6 +72,7 @@ The following interfaces are `sealed`. Only the listed classes may implement the
 - `GetConsolidatedCommand` permits: (none declared)
 - `SetActiveAnalysisCommand` permits: (none declared)
 - `LexisCommand` permits: (none declared)
+- `RepairCommand` permits: (none declared)
 - `LemmaAbsenceProposalStrategyRegistry` permits: (none declared)
 - `LemmaAbsenceProposalDeriver` permits: (none declared)
 - `KnowledgeTitleProposalStrategyRegistry` permits: (none declared)
@@ -229,11 +229,11 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 ### audit-domain
 
-**Depends on:** course-domain
+**Depends on:** course-domain, evaluation-ledger-domain
 
-**Models:** AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis, AuditReportSummary, ActiveAnalysisSelection
+**Models:** AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis, AuditReportSummary, ActiveAnalysisSelection, EvaluationRunPolicy
 
-**Interfaces:** AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper, ActiveAnalysisSelectionStore, AuditNodeIndex, AuditNodeIndexFactory, LemmaCountConfig
+**Interfaces:** AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper, ActiveAnalysisSelectionStore, AuditNodeIndex, AuditNodeIndexFactory, LemmaCountConfig, EvaluationAnalyzerFactory, QuizInstructionVerdictReader, QuizInstructionConfig
 
 **Implementations:** IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator
 
@@ -255,11 +255,13 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 ### audit-application
 
-**Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain
+**Depends on:** audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain, evaluation-ledger-domain
+
+**Models:** AuditRunRequest
 
 **Interfaces:** AuditRunner, AnalyzerRegistry, LemmaCountConfigLoader
 
-**Implementations:** CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry, DefaultLemmaCountConfig, DefaultLemmaCountConfigLoader
+**Implementations:** CourseToAuditableMapper, DefaultSentenceLengthConfig, DefaultAuditRunner, DefaultCocaBucketsConfig, DefaultLemmaRecurrenceConfig, DefaultLemmaAbsenceConfig, DefaultAnalyzerRegistry, DefaultLemmaCountConfig, DefaultLemmaCountConfigLoader, DefaultQuizInstructionConfig
 
 ### course-infrastructure
 
@@ -269,11 +271,11 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 ### audit-cli
 
-**Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure
+**Depends on:** audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure, evaluation-ledger-domain, evaluation-ledger-infrastructure, agent-runtime-infrastructure, quiz-instruction-infrastructure
 
-**Models:** GetTasksFilter, LagenMode, PlanStorageMode, EphemeralRenderOptions, SuggestedLemmasFilter
+**Models:** GetTasksFilter, LagenMode, PlanStorageMode, EphemeralRenderOptions, SuggestedLemmasFilter, AnalyzeOptions
 
-**Interfaces:** AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand, LexisCommand
+**Interfaces:** AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand, LexisCommand, RepairCommand
 
 ### nlp-infrastructure
 
@@ -299,11 +301,37 @@ When `@test-writer` escalates with `type: inconsistent_traceability`, the test b
 
 **Models:** RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig, ApprovalMode, ProposalDecisionOutcomeKind, ProposalDecisionOutcome, StrategyId, LemmaAbsenceQuizCandidate, ProposalStrategyFailedException, ProposalDerivationException, ConsolidatedViewBuilderConfig, CorrectionContextSource, CorrectionContextOverride, OverrideRejectedException
 
-**Interfaces:** Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore, CorrectionContextOverrideParser, KnowledgeTitleProposalStrategy, KnowledgeTitleProposalStrategyRegistry, KnowledgeTitleProposalDeriver
+**Interfaces:** Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore, CorrectionContextOverrideParser, KnowledgeTitleProposalStrategy, KnowledgeTitleProposalStrategyRegistry, KnowledgeTitleProposalDeriver, PreservationFactory
 
 ### revision-infrastructure
 
-**Depends on:** revision-domain, refiner-domain
+**Depends on:** revision-domain, refiner-domain, agent-runtime-infrastructure
+
+### evaluation-ledger-domain
+
+**Models:** EvaluationKey, EvaluationSubject, EvaluationRecord, EvaluationEmitted, EvaluationNotEmitted, EvaluationFailureKind, EvaluationResolutionKind, EvaluationResolution, EvaluationCoverage, EvaluationBudget
+
+**Interfaces:** EvaluationOutcome, EvaluationLedger, ContentFingerprinter, Evaluator, EvaluationSession, EvaluationSessionFactory
+
+### evaluation-ledger-infrastructure
+
+**Depends on:** evaluation-ledger-domain
+
+**Implementations:** FileSystemEvaluationLedger
+
+### agent-runtime-infrastructure
+
+**Models:** AgentGraphRunnerConfig, AgentDefinitionFound, AgentDefinitionUnresolved
+
+**Interfaces:** AgentGraphRunner, AgentGraphRunnerFactory, AgentDefinitionLocation, AgentDefinitionLocator, AgentDefinitionLocatorFactory
+
+### quiz-instruction-infrastructure
+
+**Depends on:** audit-domain, evaluation-ledger-domain, agent-runtime-infrastructure
+
+**Models:** QuizInstructionJudgeConfig
+
+**Interfaces:** QuizInstructionJudgeFactory
 
 ## Features & Business Rules
 
@@ -315,21 +343,27 @@ Features, business rules, and user journeys for this project are defined in `REQ
 
 | Module | Can Access |
 |--------|------------|
-| audit-domain | course-domain |
+| audit-domain | course-domain, evaluation-ledger-domain |
 | course-domain | (none) |
 | refiner-domain | audit-domain, course-domain |
-| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain |
+| audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain, evaluation-ledger-domain |
 | course-infrastructure | course-domain |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure, evaluation-ledger-domain, evaluation-ledger-infrastructure, agent-runtime-infrastructure, quiz-instruction-infrastructure |
 | nlp-infrastructure | audit-domain |
 | vocabulary-infrastructure | audit-domain |
 | audit-infrastructure | audit-domain, refiner-domain, revision-domain |
 | revision-domain | audit-domain, refiner-domain, course-domain |
-| revision-infrastructure | revision-domain, refiner-domain |
+| revision-infrastructure | revision-domain, refiner-domain, agent-runtime-infrastructure |
+| evaluation-ledger-domain | (none) |
+| evaluation-ledger-infrastructure | evaluation-ledger-domain |
+| agent-runtime-infrastructure | (none) |
+| quiz-instruction-infrastructure | audit-domain, evaluation-ledger-domain, agent-runtime-infrastructure |
 
 **Access Control:**
 
 | Module | Allowed Clients |
 |--------|----------------|
 | revision-infrastructure | audit-cli |
+| agent-runtime-infrastructure | quiz-instruction-infrastructure, audit-cli, revision-infrastructure |
+| quiz-instruction-infrastructure | audit-cli |
 

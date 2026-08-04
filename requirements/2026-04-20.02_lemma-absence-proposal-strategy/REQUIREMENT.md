@@ -207,16 +207,18 @@ Si el `quizSentence` emitido por la estrategia es malformado segun la gramatica 
 ### Rule[F-LAPS-R013] - Campos del elemento que pueden diferir entre elementBefore y elementAfter
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-Los campos que pueden diferir entre `elementBefore` y `elementAfter` son los que quedan determinados por el candidato emitido por la estrategia. Concretamente:
+Los campos que pueden diferir entre `elementBefore` y `elementAfter` son **exactamente** los que quedan determinados por el candidato emitido por la estrategia, y ninguno mas. La lista es cerrada:
 
 - **Oracion del quiz en texto plano** (derivada del `quizSentence` del candidato). Es el cambio central; practicamente siempre difiere cuando la estrategia corrige la tarea.
-- **Estructura del ejercicio (`quizForm`: TEXT/CLOZE, respuesta correcta por CLOZE, variantes aceptadas)** (derivada tambien del `quizSentence` del candidato). Puede diferir cuando el candidato asi lo determine.
+- **Composicion del enunciado del ejercicio**: la secuencia de partes TEXT/CLOZE, la respuesta correcta de cada CLOZE y sus variantes aceptadas (derivada tambien del `quizSentence` del candidato). Puede diferir cuando el candidato asi lo determine.
 - **Traduccion al espanol** (tomada del campo `translation` del candidato). Puede diferir cuando el candidato produjo un ejercicio cuyo sentido cambio respecto del original.
 
-El alcance del cambio en la estructura del ejercicio depende de si la palabra fuera-de-nivel formaba parte de la respuesta correcta o del tronco de la oracion:
+**Delimitacion del segundo item.** "Composicion del enunciado" significa **solo** lo que el `quizSentence` del candidato codifica: que partes hay, cual es texto fijo y cual es hueco, que se responde en cada hueco y que variantes se aceptan. Los atributos del formulario que el `quizSentence` **no** codifica — el tipo de formulario, su peso/incidencia, sus etiquetas de presentacion, y el texto vacio que acompana a cada parte hueco — **no** son alcance de la correccion y quedan cubiertos por R014: se copian del `elementBefore`. La formulacion anterior de este item ("estructura del ejercicio (`quizForm`)") era ambigua y admitia leerse como el formulario completo; esa lectura autorizaba formalmente la perdida de esos atributos, que es el dano que documenta [F-RPRES-R001](../2026-07-29.01_preservacion-del-contenido-no-revisado/REQUIREMENT.md#F-RPRES-R001).
 
-- Si la palabra fuera-de-nivel **era** la respuesta correcta (o parte de ella, o una variante aceptada), es esperable que la estructura del ejercicio cambie en esos slots.
-- Si la palabra fuera-de-nivel estaba en el **tronco** de la oracion (no era la respuesta correcta), la respuesta correcta puede mantenerse igual y los cambios en la estructura del ejercicio pueden ser menores o nulos.
+El alcance del cambio en la composicion del enunciado depende de si la palabra fuera-de-nivel formaba parte de la respuesta correcta o del tronco de la oracion:
+
+- Si la palabra fuera-de-nivel **era** la respuesta correcta (o parte de ella, o una variante aceptada), es esperable que la composicion del enunciado cambie en esos slots.
+- Si la palabra fuera-de-nivel estaba en el **tronco** de la oracion (no era la respuesta correcta), la respuesta correcta puede mantenerse igual y los cambios en la composicion del enunciado pueden ser menores o nulos.
 
 En todos los casos, el cambio concreto lo determina el candidato emitido por la estrategia; este requerimiento no prescribe un patron especifico de cambio.
 
@@ -225,15 +227,21 @@ En todos los casos, el cambio concreto lo determina el candidato emitido por la 
 ### Rule[F-LAPS-R014] - Campos del elemento que NO pueden diferir entre elementBefore y elementAfter
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-Los siguientes campos se preservan identicamente entre `elementBefore` y `elementAfter`:
+**Todo campo del elemento que no este en la lista cerrada de R013 se preserva identicamente entre `elementBefore` y `elementAfter`.** La regla se formula por complemento, no por enumeracion: no hay una lista de campos protegidos que haya que mantener al dia; lo protegido es "todo lo demas". Esta regla es el caso particular, para la correccion lexica, de [F-RPRES-R001](../2026-07-29.01_preservacion-del-contenido-no-revisado/REQUIREMENT.md#F-RPRES-R001).
+
+Los siguientes campos son **ejemplos** de lo preservado, no la definicion:
 
 - `quizId` y cualquier otro identificador propio del quiz.
 - Identificadores de nodo del arbol de contenidos: knowledge, topic, milestone, course.
 - Instrucciones del ejercicio.
+- Titulo del ejercicio (que no es alcance de una correccion lexica; ver [F-RPRES-R004](../2026-07-29.01_preservacion-del-contenido-no-revisado/REQUIREMENT.md#F-RPRES-R004)).
 - Posicion/orden del quiz dentro del knowledge.
-- Cualquier otra metadata estructural del elemento.
+- Tipo de formulario del ejercicio, su peso/incidencia, sus etiquetas de presentacion y el texto vacio de cada parte hueco (los atributos que el `quizSentence` del candidato no codifica; ver la delimitacion de R013).
+- Cualquier otra metadata estructural del elemento, presente o futura.
 
-La propuesta nunca crea, elimina o reordena quizzes, nunca renombra identificadores, nunca reescribe instrucciones. Estos campos se copian del `elementBefore` durante la derivacion (R012).
+La propuesta nunca crea, elimina o reordena quizzes, nunca renombra identificadores, nunca reescribe instrucciones: la identidad del elemento es estable entre `elementBefore` y `elementAfter`, invariante del que dependen FEAT-PIPRE y FEAT-CDIFF. Estos campos se copian del `elementBefore` durante la derivacion (R012).
+
+La comparacion que verifica esta preservacion distingue valor propio, vacio presente y ausente como estados **distintos**: un campo que valia vacio no puede quedar ausente, ni un valor propio degradarse al valor por defecto de su tipo (ver [F-RPRES-R002](../2026-07-29.01_preservacion-del-contenido-no-revisado/REQUIREMENT.md#F-RPRES-R002)).
 
 **Error**: N/A (esta regla define invariantes estructurales)
 

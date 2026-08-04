@@ -144,9 +144,9 @@ public class FSlemJ001JourneyTest {
 
         AuditableQuiz quiz = new AuditableQuiz(
                 List.of(), "quiz-j001-p1", null, null,
-                "El gato corre.", List.of("The cat runs."), null);
+                "El gato corre.", List.of("The cat runs."), null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Animals", "Complete.", true, "know-j001-p1", null, null, null);
+                List.of(), "Animals", "Complete.", true, "know-j001-p1", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-j001-p1", "Nature", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-j001-p1", "A1", null);
 
@@ -269,9 +269,9 @@ public class FSlemJ001JourneyTest {
         // --- Step 1: Build AuditReport with LEMMA_ABSENCE but NO lemma-count signal ---
         AuditableQuiz quiz = new AuditableQuiz(
                 List.of(), "quiz-j001-p2", null, null,
-                "El perro ladra.", List.of("The dog barks."), null);
+                "El perro ladra.", List.of("The dog barks."), null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Animals", "Complete.", true, "know-j001-p2", null, null, null);
+                List.of(), "Animals", "Complete.", true, "know-j001-p2", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-j001-p2", "Nature", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-j001-p2", "A1", null);
 
@@ -347,9 +347,9 @@ public class FSlemJ001JourneyTest {
         // --- Step 1: Build AuditReport with LEMMA_ABSENCE + lemma-count but NO band diagnosis ---
         AuditableQuiz quiz = new AuditableQuiz(
                 List.of(), "quiz-j001-p3", null, null,
-                "El niño corre.", List.of("The boy runs."), null);
+                "El niño corre.", List.of("The boy runs."), null, null, null);
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Animals", "Complete.", true, "know-j001-p3", null, null, null);
+                List.of(), "Animals", "Complete.", true, "know-j001-p3", null, null, null, null);
         AuditableTopic topic = new AuditableTopic(List.of(), "topic-j001-p3", "Nature", null);
         AuditableMilestone milestone = new AuditableMilestone(List.of(), "ms-j001-p3", "A1", null);
 

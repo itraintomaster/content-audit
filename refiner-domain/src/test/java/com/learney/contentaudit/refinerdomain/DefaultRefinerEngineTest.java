@@ -1,6 +1,7 @@
 package com.learney.contentaudit.refinerdomain;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditableEntity;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import java.util.Collections;
@@ -35,6 +36,25 @@ public class DefaultRefinerEngineTest {
         node.setTarget(target);
         node.setScores(scores);
         node.setChildren(Collections.emptyList());
+        // Sin entidad, el motor resuelve todo nodo al id "root" y las tareas de
+        // nodos distintos se vuelven indistinguibles. Los tests que verifican
+        // QUE nodo quedo tareado necesitan que el id sea real.
+        node.setEntity(new AuditableEntity() {
+            @Override
+            public String getId() {
+                return id;
+            }
+
+            @Override
+            public String getLabel() {
+                return label;
+            }
+
+            @Override
+            public String getCode() {
+                return id;
+            }
+        });
         return node;
     }
 
@@ -187,5 +207,96 @@ public class DefaultRefinerEngineTest {
                 "LEMMA_RECURRENCE tasks must still be generated at MILESTONE/COURSE level after LEMMA_ABSENCE re-routing");
         Assertions.assertEquals(0, lemmaAbsenceCount,
                 "No LEMMA_ABSENCE tasks must appear since the quiz score is 1.0");
+    }
+
+    @Test
+    @DisplayName("should include one QUIZ_INSTRUCTION task targeting the quiz for each quiz whose quiz-instruction score is below 1.0")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R017")
+    public void shouldIncludeOneQUIZINSTRUCTIONTaskTargetingTheQuizForEachQuizWhoseQuizinstructionScoreIsBelow10() {
+        // Three quizzes carry a quiz-instruction verdict of non-compliance, one per severity
+        // of F-QINST-R002 (minor=0.6, major=0.3, critical=0.0). Per R017, every one of them
+        // must produce exactly one QUIZ_INSTRUCTION task targeting that quiz.
+        AuditNode courseNode = buildNode(AuditTarget.COURSE, "course-1", "My Course", Collections.emptyMap());
+        AuditNode milestoneNode = buildNode(AuditTarget.MILESTONE, "ms-1", "Milestone A1", Collections.emptyMap());
+        AuditNode topicNode = buildNode(AuditTarget.TOPIC, "topic-1", "Topic 1", Collections.emptyMap());
+        AuditNode knowledgeNode = buildNode(AuditTarget.KNOWLEDGE, "knowledge-1", "Knowledge 1", Collections.emptyMap());
+        AuditNode quizMinor = buildNode(AuditTarget.QUIZ, "quiz-minor", "Quiz Minor",
+                Map.of("quiz-instruction", 0.6));
+        AuditNode quizMajor = buildNode(AuditTarget.QUIZ, "quiz-major", "Quiz Major",
+                Map.of("quiz-instruction", 0.3));
+        AuditNode quizCritical = buildNode(AuditTarget.QUIZ, "quiz-critical", "Quiz Critical",
+                Map.of("quiz-instruction", 0.0));
+
+        link(knowledgeNode, List.of(quizMinor, quizMajor, quizCritical));
+        link(topicNode, List.of(knowledgeNode));
+        link(milestoneNode, List.of(topicNode));
+        link(courseNode, List.of(milestoneNode));
+
+        AuditReport report = new AuditReport(courseNode);
+
+        RefinementPlan plan = sut.plan(report, "audit-qinst-001");
+
+        List<RefinementTask> quizInstructionTasks = plan.getTasks().stream()
+                .filter(t -> t.getDiagnosisKind() == DiagnosisKind.QUIZ_INSTRUCTION)
+                .toList();
+
+        Assertions.assertEquals(3, quizInstructionTasks.size(),
+                "Expected exactly one QUIZ_INSTRUCTION task per quiz with a non-compliant verdict");
+        Assertions.assertTrue(
+                quizInstructionTasks.stream().allMatch(t -> t.getNodeTarget() == AuditTarget.QUIZ),
+                "Every QUIZ_INSTRUCTION task must target the quiz, not an ancestor node");
+
+        List<String> taskedQuizIds = quizInstructionTasks.stream()
+                .map(RefinementTask::getNodeId)
+                .sorted()
+                .toList();
+        Assertions.assertEquals(List.of("quiz-critical", "quiz-major", "quiz-minor"), taskedQuizIds,
+                "Each of the three non-compliant quizzes must get its own QUIZ_INSTRUCTION task, one per quiz");
+    }
+
+    @Test
+    @DisplayName("should not include any QUIZ_INSTRUCTION task for a quiz that complies with its instruction nor for a quiz with no quiz-instruction score at all")
+    @Tag("FEAT-QINST")
+    @Tag("F-QINST-R017")
+    public void shouldNotIncludeAnyQUIZINSTRUCTIONTaskForAQuizThatCompliesWithItsInstructionNorForAQuizWithNoQuizinstructionScoreAtAll() {
+        // Two distinct situations that must both be excluded from the plan per R017:
+        // - quiz-compliant: the judge found no violation, score is exactly 1.0 (maximum).
+        // - quiz-unjudged: pending/failed per F-QINST-R004, so it has NO "quiz-instruction"
+        //   key at all in its scores map (it carries a different analysis' score instead).
+        // A third, genuinely non-compliant quiz is included as a control: without it, a system
+        // that generates NO QUIZ_INSTRUCTION task for anything would vacuously satisfy this
+        // test, so the control quiz's task is what proves the other two were excluded on
+        // purpose rather than by a mechanism that is simply not producing tasks at all.
+        AuditNode courseNode = buildNode(AuditTarget.COURSE, "course-1", "My Course", Collections.emptyMap());
+        AuditNode milestoneNode = buildNode(AuditTarget.MILESTONE, "ms-1", "Milestone A1", Collections.emptyMap());
+        AuditNode topicNode = buildNode(AuditTarget.TOPIC, "topic-1", "Topic 1", Collections.emptyMap());
+        AuditNode knowledgeNode = buildNode(AuditTarget.KNOWLEDGE, "knowledge-1", "Knowledge 1", Collections.emptyMap());
+        AuditNode quizCompliant = buildNode(AuditTarget.QUIZ, "quiz-compliant", "Quiz Compliant",
+                Map.of("quiz-instruction", 1.0));
+        AuditNode quizUnjudged = buildNode(AuditTarget.QUIZ, "quiz-unjudged", "Quiz Unjudged",
+                Map.of("lemma-absence", 0.9));
+        AuditNode quizControlNonCompliant = buildNode(AuditTarget.QUIZ, "quiz-control-noncompliant",
+                "Quiz Control Non-compliant", Map.of("quiz-instruction", 0.6));
+
+        link(knowledgeNode, List.of(quizCompliant, quizUnjudged, quizControlNonCompliant));
+        link(topicNode, List.of(knowledgeNode));
+        link(milestoneNode, List.of(topicNode));
+        link(courseNode, List.of(milestoneNode));
+
+        AuditReport report = new AuditReport(courseNode);
+
+        RefinementPlan plan = sut.plan(report, "audit-qinst-002");
+
+        List<RefinementTask> quizInstructionTasks = plan.getTasks().stream()
+                .filter(t -> t.getDiagnosisKind() == DiagnosisKind.QUIZ_INSTRUCTION)
+                .toList();
+
+        Assertions.assertEquals(1, quizInstructionTasks.size(),
+                "Only the genuinely non-compliant control quiz should get a QUIZ_INSTRUCTION task; "
+                        + "the compliant quiz and the unjudged quiz must not");
+        Assertions.assertEquals("quiz-control-noncompliant", quizInstructionTasks.get(0).getNodeId(),
+                "The single QUIZ_INSTRUCTION task must target the control quiz, not the compliant "
+                        + "or the unjudged one");
     }
 }

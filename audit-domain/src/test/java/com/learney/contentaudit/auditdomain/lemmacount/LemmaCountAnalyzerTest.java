@@ -77,7 +77,7 @@ public class LemmaCountAnalyzerTest {
     @Tag("F-LCOUNT-R001")
     public void shouldCountVERBLemmaWhenContentwordFilterAcceptsIt() {
         NlpToken runToken = new NlpToken("run", "run", "VERB", 50, false, false);
-        AuditableQuiz quiz = new AuditableQuiz(List.of(runToken), "q1", null, null, null, List.of("run"), null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(runToken), "q1", null, null, null, List.of("run"), null, null, null);
         LemmaAndPos runVerb = new LemmaAndPos("run", "VERB");
 
         when(contentWordFilter.isContentWord(runToken)).thenReturn(true);
@@ -102,7 +102,7 @@ public class LemmaCountAnalyzerTest {
     @Tag("F-LCOUNT-R001")
     public void shouldExcludeDETTokenFromLemmaCountWhenContentwordFilterRejectsIt() {
         NlpToken theToken = new NlpToken("the", "the", "DET", 1, true, false);
-        AuditableQuiz quiz = new AuditableQuiz(List.of(theToken), "q1", null, null, null, List.of("the"), null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(theToken), "q1", null, null, null, List.of("the"), null, null, null);
 
         when(contentWordFilter.isContentWord(theToken)).thenReturn(false);
 
@@ -124,7 +124,7 @@ public class LemmaCountAnalyzerTest {
     @Tag("F-LCOUNT-R001")
     public void shouldExcludePROPNTokenFromLemmaCountWhenContentwordFilterRejectsIt() {
         NlpToken londonToken = new NlpToken("London", "London", "PROPN", null, false, false);
-        AuditableQuiz quiz = new AuditableQuiz(List.of(londonToken), "q1", null, null, null, List.of("London"), null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(londonToken), "q1", null, null, null, List.of("London"), null, null, null);
 
         when(contentWordFilter.isContentWord(londonToken)).thenReturn(false);
 
@@ -147,8 +147,8 @@ public class LemmaCountAnalyzerTest {
     public void shouldCountRunasVERBAndRunasNOUNAsTwoDistinctLemmasWithIndependentCounts() {
         NlpToken runVerb = new NlpToken("run", "run", "VERB", 50, false, false);
         NlpToken runNoun = new NlpToken("run", "run", "NOUN", 50, false, false);
-        AuditableQuiz quiz1 = new AuditableQuiz(List.of(runVerb), "q1", null, null, null, List.of("I run"), null);
-        AuditableQuiz quiz2 = new AuditableQuiz(List.of(runNoun), "q2", null, null, null, List.of("a run"), null);
+        AuditableQuiz quiz1 = new AuditableQuiz(List.of(runVerb), "q1", null, null, null, List.of("I run"), null, null, null);
+        AuditableQuiz quiz2 = new AuditableQuiz(List.of(runNoun), "q2", null, null, null, List.of("a run"), null, null, null);
 
         LemmaAndPos runVerbKey = new LemmaAndPos("run", "VERB");
         LemmaAndPos runNounKey = new LemmaAndPos("run", "NOUN");
@@ -182,9 +182,9 @@ public class LemmaCountAnalyzerTest {
         NlpToken running = new NlpToken("running", "run", "VERB", 50, false, false);
         NlpToken runs    = new NlpToken("runs",    "run", "VERB", 50, false, false);
 
-        AuditableQuiz quiz1 = new AuditableQuiz(List.of(ran),     "q1", null, null, null, List.of("she ran"), null);
-        AuditableQuiz quiz2 = new AuditableQuiz(List.of(running), "q2", null, null, null, List.of("he is running"), null);
-        AuditableQuiz quiz3 = new AuditableQuiz(List.of(runs),    "q3", null, null, null, List.of("it runs"), null);
+        AuditableQuiz quiz1 = new AuditableQuiz(List.of(ran),     "q1", null, null, null, List.of("she ran"), null, null, null);
+        AuditableQuiz quiz2 = new AuditableQuiz(List.of(running), "q2", null, null, null, List.of("he is running"), null, null, null);
+        AuditableQuiz quiz3 = new AuditableQuiz(List.of(runs),    "q3", null, null, null, List.of("it runs"), null, null, null);
 
         LemmaAndPos runVerb = new LemmaAndPos("run", "VERB");
 
@@ -241,7 +241,7 @@ public class LemmaCountAnalyzerTest {
         NlpToken run1 = new NlpToken("run", "run", "VERB", 50, false, false);
         NlpToken run2 = new NlpToken("run", "run", "VERB", 50, false, false);
         NlpToken run3 = new NlpToken("run", "run", "VERB", 50, false, false);
-        AuditableQuiz quiz = new AuditableQuiz(List.of(run1, run2, run3), "q1", null, null, null, List.of("run run run"), null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(run1, run2, run3), "q1", null, null, null, List.of("run run run"), null, null, null);
         LemmaAndPos runVerb = new LemmaAndPos("run", "VERB");
 
         when(contentWordFilter.isContentWord(any())).thenReturn(true);
@@ -270,9 +270,9 @@ public class LemmaCountAnalyzerTest {
         NlpToken walk1 = new NlpToken("walk",   "walk", "VERB", 60, false, false);
         NlpToken walk2 = new NlpToken("walked", "walk", "VERB", 60, false, false);
         NlpToken walk3 = new NlpToken("walks",  "walk", "VERB", 60, false, false);
-        AuditableQuiz q1 = new AuditableQuiz(List.of(walk1), "q1", null, null, null, List.of("I walk"), null);
-        AuditableQuiz q2 = new AuditableQuiz(List.of(walk2), "q2", null, null, null, List.of("she walked"), null);
-        AuditableQuiz q3 = new AuditableQuiz(List.of(walk3), "q3", null, null, null, List.of("he walks"), null);
+        AuditableQuiz q1 = new AuditableQuiz(List.of(walk1), "q1", null, null, null, List.of("I walk"), null, null, null);
+        AuditableQuiz q2 = new AuditableQuiz(List.of(walk2), "q2", null, null, null, List.of("she walked"), null, null, null);
+        AuditableQuiz q3 = new AuditableQuiz(List.of(walk3), "q3", null, null, null, List.of("he walks"), null, null, null);
         LemmaAndPos walkVerb = new LemmaAndPos("walk", "VERB");
 
         when(contentWordFilter.isContentWord(any())).thenReturn(true);
@@ -304,9 +304,9 @@ public class LemmaCountAnalyzerTest {
         NlpToken goA2 = new NlpToken("goes", "go", "VERB", 30, false, false);
         NlpToken goB1 = new NlpToken("went", "go", "VERB", 30, false, false);
 
-        AuditableQuiz quizA1 = new AuditableQuiz(List.of(goA1), "q-a1", null, null, null, List.of("I go"), null);
-        AuditableQuiz quizA2 = new AuditableQuiz(List.of(goA2), "q-a2", null, null, null, List.of("she goes"), null);
-        AuditableQuiz quizB1 = new AuditableQuiz(List.of(goB1), "q-b1", null, null, null, List.of("he went"), null);
+        AuditableQuiz quizA1 = new AuditableQuiz(List.of(goA1), "q-a1", null, null, null, List.of("I go"), null, null, null);
+        AuditableQuiz quizA2 = new AuditableQuiz(List.of(goA2), "q-a2", null, null, null, List.of("she goes"), null, null, null);
+        AuditableQuiz quizB1 = new AuditableQuiz(List.of(goB1), "q-b1", null, null, null, List.of("he went"), null, null, null);
 
         LemmaAndPos goVerb = new LemmaAndPos("go", "VERB");
 
@@ -337,8 +337,8 @@ public class LemmaCountAnalyzerTest {
         // "eat" con count=2, N=4 → score=min(2/4,1.0)=0.5
         NlpToken eat1 = new NlpToken("eat",  "eat", "VERB", 40, false, false);
         NlpToken eat2 = new NlpToken("eats", "eat", "VERB", 40, false, false);
-        AuditableQuiz q1 = new AuditableQuiz(List.of(eat1), "q1", null, null, null, List.of("I eat"), null);
-        AuditableQuiz q2 = new AuditableQuiz(List.of(eat2), "q2", null, null, null, List.of("she eats"), null);
+        AuditableQuiz q1 = new AuditableQuiz(List.of(eat1), "q1", null, null, null, List.of("I eat"), null, null, null);
+        AuditableQuiz q2 = new AuditableQuiz(List.of(eat2), "q2", null, null, null, List.of("she eats"), null, null, null);
         LemmaAndPos eatVerb = new LemmaAndPos("eat", "VERB");
 
         when(contentWordFilter.isContentWord(any())).thenReturn(true);
@@ -370,11 +370,11 @@ public class LemmaCountAnalyzerTest {
         NlpToken read3 = new NlpToken("read",    "read", "VERB", 35, false, false);
         NlpToken read4 = new NlpToken("read",    "read", "VERB", 35, false, false);
         NlpToken read5 = new NlpToken("reading", "read", "VERB", 35, false, false);
-        AuditableQuiz q1 = new AuditableQuiz(List.of(read1), "q1", null, null, null, List.of("s1"), null);
-        AuditableQuiz q2 = new AuditableQuiz(List.of(read2), "q2", null, null, null, List.of("s2"), null);
-        AuditableQuiz q3 = new AuditableQuiz(List.of(read3), "q3", null, null, null, List.of("s3"), null);
-        AuditableQuiz q4 = new AuditableQuiz(List.of(read4), "q4", null, null, null, List.of("s4"), null);
-        AuditableQuiz q5 = new AuditableQuiz(List.of(read5), "q5", null, null, null, List.of("s5"), null);
+        AuditableQuiz q1 = new AuditableQuiz(List.of(read1), "q1", null, null, null, List.of("s1"), null, null, null);
+        AuditableQuiz q2 = new AuditableQuiz(List.of(read2), "q2", null, null, null, List.of("s2"), null, null, null);
+        AuditableQuiz q3 = new AuditableQuiz(List.of(read3), "q3", null, null, null, List.of("s3"), null, null, null);
+        AuditableQuiz q4 = new AuditableQuiz(List.of(read4), "q4", null, null, null, List.of("s4"), null, null, null);
+        AuditableQuiz q5 = new AuditableQuiz(List.of(read5), "q5", null, null, null, List.of("s5"), null, null, null);
         LemmaAndPos readVerb = new LemmaAndPos("read", "VERB");
 
         when(contentWordFilter.isContentWord(any())).thenReturn(true);
@@ -416,15 +416,15 @@ public class LemmaCountAnalyzerTest {
         NlpToken big3  = new NlpToken("big",     "big",  "ADJ", 60, false, false);
         NlpToken big4  = new NlpToken("biggest", "big",  "ADJ", 60, false, false);
 
-        AuditableQuiz qSlow  = new AuditableQuiz(List.of(slow),  "q1", null, null, null, List.of("slow day"), null);
-        AuditableQuiz qFast1 = new AuditableQuiz(List.of(fast1), "q2", null, null, null, List.of("fast car"), null);
-        AuditableQuiz qFast2 = new AuditableQuiz(List.of(fast2), "q3", null, null, null, List.of("fast food"), null);
-        AuditableQuiz qFast3 = new AuditableQuiz(List.of(fast3), "q4", null, null, null, List.of("fast pace"), null);
-        AuditableQuiz qFast4 = new AuditableQuiz(List.of(fast4), "q5", null, null, null, List.of("fast move"), null);
-        AuditableQuiz qBig1  = new AuditableQuiz(List.of(big1),  "q6", null, null, null, List.of("big house"), null);
-        AuditableQuiz qBig2  = new AuditableQuiz(List.of(big2),  "q7", null, null, null, List.of("big tree"), null);
-        AuditableQuiz qBig3  = new AuditableQuiz(List.of(big3),  "q8", null, null, null, List.of("big dog"), null);
-        AuditableQuiz qBig4  = new AuditableQuiz(List.of(big4),  "q9", null, null, null, List.of("big cat"), null);
+        AuditableQuiz qSlow  = new AuditableQuiz(List.of(slow),  "q1", null, null, null, List.of("slow day"), null, null, null);
+        AuditableQuiz qFast1 = new AuditableQuiz(List.of(fast1), "q2", null, null, null, List.of("fast car"), null, null, null);
+        AuditableQuiz qFast2 = new AuditableQuiz(List.of(fast2), "q3", null, null, null, List.of("fast food"), null, null, null);
+        AuditableQuiz qFast3 = new AuditableQuiz(List.of(fast3), "q4", null, null, null, List.of("fast pace"), null, null, null);
+        AuditableQuiz qFast4 = new AuditableQuiz(List.of(fast4), "q5", null, null, null, List.of("fast move"), null, null, null);
+        AuditableQuiz qBig1  = new AuditableQuiz(List.of(big1),  "q6", null, null, null, List.of("big house"), null, null, null);
+        AuditableQuiz qBig2  = new AuditableQuiz(List.of(big2),  "q7", null, null, null, List.of("big tree"), null, null, null);
+        AuditableQuiz qBig3  = new AuditableQuiz(List.of(big3),  "q8", null, null, null, List.of("big dog"), null, null, null);
+        AuditableQuiz qBig4  = new AuditableQuiz(List.of(big4),  "q9", null, null, null, List.of("big cat"), null, null, null);
 
         LemmaAndPos slowAdj = new LemmaAndPos("slow", "ADJ");
         LemmaAndPos fastAdj = new LemmaAndPos("fast", "ADJ");
@@ -459,7 +459,7 @@ public class LemmaCountAnalyzerTest {
     @Tag("F-LCOUNT-R012")
     public void shouldOmitACEFRLevelFromResultsWhenNoAssignedLemmaFallsIntoIt() {
         NlpToken run = new NlpToken("run", "run", "VERB", 50, false, false);
-        AuditableQuiz quiz = new AuditableQuiz(List.of(run), "q1", null, null, null, List.of("I run"), null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(run), "q1", null, null, null, List.of("I run"), null, null, null);
         LemmaAndPos runVerb = new LemmaAndPos("run", "VERB");
 
         when(contentWordFilter.isContentWord(run)).thenReturn(true);
@@ -493,13 +493,13 @@ public class LemmaCountAnalyzerTest {
         NlpToken huge3  = new NlpToken("huge",    "huge",  "ADJ", 85, false, false);
         NlpToken huge4  = new NlpToken("huge",    "huge",  "ADJ", 85, false, false);
 
-        AuditableQuiz qs1 = new AuditableQuiz(List.of(small1), "q1", null, null, null, List.of("small box"), null);
-        AuditableQuiz qs2 = new AuditableQuiz(List.of(small2), "q2", null, null, null, List.of("smaller"), null);
-        AuditableQuiz qs3 = new AuditableQuiz(List.of(small3), "q3", null, null, null, List.of("smallest"), null);
-        AuditableQuiz qh1 = new AuditableQuiz(List.of(huge1),  "q4", null, null, null, List.of("huge wave"), null);
-        AuditableQuiz qh2 = new AuditableQuiz(List.of(huge2),  "q5", null, null, null, List.of("huge tree"), null);
-        AuditableQuiz qh3 = new AuditableQuiz(List.of(huge3),  "q6", null, null, null, List.of("huge rock"), null);
-        AuditableQuiz qh4 = new AuditableQuiz(List.of(huge4),  "q7", null, null, null, List.of("huge ship"), null);
+        AuditableQuiz qs1 = new AuditableQuiz(List.of(small1), "q1", null, null, null, List.of("small box"), null, null, null);
+        AuditableQuiz qs2 = new AuditableQuiz(List.of(small2), "q2", null, null, null, List.of("smaller"), null, null, null);
+        AuditableQuiz qs3 = new AuditableQuiz(List.of(small3), "q3", null, null, null, List.of("smallest"), null, null, null);
+        AuditableQuiz qh1 = new AuditableQuiz(List.of(huge1),  "q4", null, null, null, List.of("huge wave"), null, null, null);
+        AuditableQuiz qh2 = new AuditableQuiz(List.of(huge2),  "q5", null, null, null, List.of("huge tree"), null, null, null);
+        AuditableQuiz qh3 = new AuditableQuiz(List.of(huge3),  "q6", null, null, null, List.of("huge rock"), null, null, null);
+        AuditableQuiz qh4 = new AuditableQuiz(List.of(huge4),  "q7", null, null, null, List.of("huge ship"), null, null, null);
 
         LemmaAndPos smallAdj = new LemmaAndPos("small", "ADJ");
         LemmaAndPos hugeAdj  = new LemmaAndPos("huge",  "ADJ");
@@ -534,11 +534,11 @@ public class LemmaCountAnalyzerTest {
         NlpToken read4   = new NlpToken("reading", "read",   "VERB", 35, false, false);
         NlpToken zarp    = new NlpToken("zarpar",  "zarpar", "VERB", null, false, false);
 
-        AuditableQuiz qr1 = new AuditableQuiz(List.of(read1), "q1", null, null, null, List.of("I read"), null);
-        AuditableQuiz qr2 = new AuditableQuiz(List.of(read2), "q2", null, null, null, List.of("she reads"), null);
-        AuditableQuiz qr3 = new AuditableQuiz(List.of(read3), "q3", null, null, null, List.of("he read"), null);
-        AuditableQuiz qr4 = new AuditableQuiz(List.of(read4), "q4", null, null, null, List.of("reading fast"), null);
-        AuditableQuiz qz  = new AuditableQuiz(List.of(zarp),  "q5", null, null, null, List.of("el barco zarpa"), null);
+        AuditableQuiz qr1 = new AuditableQuiz(List.of(read1), "q1", null, null, null, List.of("I read"), null, null, null);
+        AuditableQuiz qr2 = new AuditableQuiz(List.of(read2), "q2", null, null, null, List.of("she reads"), null, null, null);
+        AuditableQuiz qr3 = new AuditableQuiz(List.of(read3), "q3", null, null, null, List.of("he read"), null, null, null);
+        AuditableQuiz qr4 = new AuditableQuiz(List.of(read4), "q4", null, null, null, List.of("reading fast"), null, null, null);
+        AuditableQuiz qz  = new AuditableQuiz(List.of(zarp),  "q5", null, null, null, List.of("el barco zarpa"), null, null, null);
 
         LemmaAndPos readVerb = new LemmaAndPos("read",   "VERB");
         LemmaAndPos zarpVerb = new LemmaAndPos("zarpar", "VERB");
@@ -570,8 +570,8 @@ public class LemmaCountAnalyzerTest {
         // "speak" en A2 con count=2 → score=0.5 → courseScore=0.5 expuesto en el nodo curso
         NlpToken speak1 = new NlpToken("speak",  "speak", "VERB", 45, false, false);
         NlpToken speak2 = new NlpToken("speaks", "speak", "VERB", 45, false, false);
-        AuditableQuiz q1 = new AuditableQuiz(List.of(speak1), "q1", null, null, null, List.of("I speak"), null);
-        AuditableQuiz q2 = new AuditableQuiz(List.of(speak2), "q2", null, null, null, List.of("she speaks"), null);
+        AuditableQuiz q1 = new AuditableQuiz(List.of(speak1), "q1", null, null, null, List.of("I speak"), null, null, null);
+        AuditableQuiz q2 = new AuditableQuiz(List.of(speak2), "q2", null, null, null, List.of("she speaks"), null, null, null);
         LemmaAndPos speakVerb = new LemmaAndPos("speak", "VERB");
 
         when(contentWordFilter.isContentWord(any())).thenReturn(true);
@@ -603,7 +603,7 @@ public class LemmaCountAnalyzerTest {
     public void shouldExposeEmptyCourseScoreWhenNoCanonicalCEFRLevelHasAssignableScore() {
         // Solo lemas no asignados → ningún nivel CEFR tiene score → courseScore=Optional.empty()
         NlpToken zarp = new NlpToken("zarpar", "zarpar", "VERB", null, false, false);
-        AuditableQuiz quiz = new AuditableQuiz(List.of(zarp), "q1", null, null, null, List.of("zarpa"), null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(zarp), "q1", null, null, null, List.of("zarpa"), null, null, null);
         LemmaAndPos zarpVerb = new LemmaAndPos("zarpar", "VERB");
 
         when(contentWordFilter.isContentWord(zarp)).thenReturn(true);
@@ -632,7 +632,7 @@ public class LemmaCountAnalyzerTest {
         when(lemmaCountConfig.getThreshold()).thenReturn(6);
 
         NlpToken run = new NlpToken("run", "run", "VERB", 50, false, false);
-        AuditableQuiz quiz = new AuditableQuiz(List.of(run), "q1", null, null, null, List.of("I run"), null);
+        AuditableQuiz quiz = new AuditableQuiz(List.of(run), "q1", null, null, null, List.of("I run"), null, null, null);
         LemmaAndPos runVerb = new LemmaAndPos("run", "VERB");
 
         when(contentWordFilter.isContentWord(run)).thenReturn(true);
@@ -658,8 +658,8 @@ public class LemmaCountAnalyzerTest {
         // A1: "run" count=1, "eat" count=1 → totalLemmas=2
         NlpToken run = new NlpToken("run", "run", "VERB", 50, false, false);
         NlpToken eat = new NlpToken("eat", "eat", "VERB", 40, false, false);
-        AuditableQuiz q1 = new AuditableQuiz(List.of(run), "q1", null, null, null, List.of("I run"), null);
-        AuditableQuiz q2 = new AuditableQuiz(List.of(eat), "q2", null, null, null, List.of("I eat"), null);
+        AuditableQuiz q1 = new AuditableQuiz(List.of(run), "q1", null, null, null, List.of("I run"), null, null, null);
+        AuditableQuiz q2 = new AuditableQuiz(List.of(eat), "q2", null, null, null, List.of("I eat"), null, null, null);
         LemmaAndPos runVerb = new LemmaAndPos("run", "VERB");
         LemmaAndPos eatVerb = new LemmaAndPos("eat", "VERB");
 
@@ -697,14 +697,14 @@ public class LemmaCountAnalyzerTest {
         NlpToken big3 = new NlpToken("big",  "big",  "ADJ",  60, false, false);
         NlpToken big4 = new NlpToken("big",  "big",  "ADJ",  60, false, false);
 
-        AuditableQuiz qr  = new AuditableQuiz(List.of(run),  "q1", null, null, null, List.of("I run"), null);
-        AuditableQuiz qe1 = new AuditableQuiz(List.of(eat1), "q2", null, null, null, List.of("I eat"), null);
-        AuditableQuiz qe2 = new AuditableQuiz(List.of(eat2), "q3", null, null, null, List.of("she eats"), null);
-        AuditableQuiz qe3 = new AuditableQuiz(List.of(eat3), "q4", null, null, null, List.of("he ate"), null);
-        AuditableQuiz qb1 = new AuditableQuiz(List.of(big1), "q5", null, null, null, List.of("big house"), null);
-        AuditableQuiz qb2 = new AuditableQuiz(List.of(big2), "q6", null, null, null, List.of("big tree"), null);
-        AuditableQuiz qb3 = new AuditableQuiz(List.of(big3), "q7", null, null, null, List.of("big dog"), null);
-        AuditableQuiz qb4 = new AuditableQuiz(List.of(big4), "q8", null, null, null, List.of("big cat"), null);
+        AuditableQuiz qr  = new AuditableQuiz(List.of(run),  "q1", null, null, null, List.of("I run"), null, null, null);
+        AuditableQuiz qe1 = new AuditableQuiz(List.of(eat1), "q2", null, null, null, List.of("I eat"), null, null, null);
+        AuditableQuiz qe2 = new AuditableQuiz(List.of(eat2), "q3", null, null, null, List.of("she eats"), null, null, null);
+        AuditableQuiz qe3 = new AuditableQuiz(List.of(eat3), "q4", null, null, null, List.of("he ate"), null, null, null);
+        AuditableQuiz qb1 = new AuditableQuiz(List.of(big1), "q5", null, null, null, List.of("big house"), null, null, null);
+        AuditableQuiz qb2 = new AuditableQuiz(List.of(big2), "q6", null, null, null, List.of("big tree"), null, null, null);
+        AuditableQuiz qb3 = new AuditableQuiz(List.of(big3), "q7", null, null, null, List.of("big dog"), null, null, null);
+        AuditableQuiz qb4 = new AuditableQuiz(List.of(big4), "q8", null, null, null, List.of("big cat"), null, null, null);
 
         LemmaAndPos runVerb = new LemmaAndPos("run", "VERB");
         LemmaAndPos eatVerb = new LemmaAndPos("eat", "VERB");
@@ -743,10 +743,10 @@ public class LemmaCountAnalyzerTest {
         NlpToken work2 = new NlpToken("works",   "work", "VERB", 55, false, false);
         NlpToken work3 = new NlpToken("worked",  "work", "VERB", 55, false, false);
         NlpToken work4 = new NlpToken("working", "work", "VERB", 55, false, false);
-        AuditableQuiz q1 = new AuditableQuiz(List.of(work1), "q1", null, null, null, List.of("I work"), null);
-        AuditableQuiz q2 = new AuditableQuiz(List.of(work2), "q2", null, null, null, List.of("it works"), null);
-        AuditableQuiz q3 = new AuditableQuiz(List.of(work3), "q3", null, null, null, List.of("they worked"), null);
-        AuditableQuiz q4 = new AuditableQuiz(List.of(work4), "q4", null, null, null, List.of("working hard"), null);
+        AuditableQuiz q1 = new AuditableQuiz(List.of(work1), "q1", null, null, null, List.of("I work"), null, null, null);
+        AuditableQuiz q2 = new AuditableQuiz(List.of(work2), "q2", null, null, null, List.of("it works"), null, null, null);
+        AuditableQuiz q3 = new AuditableQuiz(List.of(work3), "q3", null, null, null, List.of("they worked"), null, null, null);
+        AuditableQuiz q4 = new AuditableQuiz(List.of(work4), "q4", null, null, null, List.of("working hard"), null, null, null);
         LemmaAndPos workVerb = new LemmaAndPos("work", "VERB");
 
         when(contentWordFilter.isContentWord(any())).thenReturn(true);
@@ -776,8 +776,8 @@ public class LemmaCountAnalyzerTest {
         // "zarpar" sin nivel CEFR → va al grupo unassigned con count=2
         NlpToken zarp1 = new NlpToken("zarpar", "zarpar", "VERB", null, false, false);
         NlpToken zarp2 = new NlpToken("zarpar", "zarpar", "VERB", null, false, false);
-        AuditableQuiz q1 = new AuditableQuiz(List.of(zarp1), "q1", null, null, null, List.of("el barco zarpa"), null);
-        AuditableQuiz q2 = new AuditableQuiz(List.of(zarp2), "q2", null, null, null, List.of("zarpar es partir"), null);
+        AuditableQuiz q1 = new AuditableQuiz(List.of(zarp1), "q1", null, null, null, List.of("el barco zarpa"), null, null, null);
+        AuditableQuiz q2 = new AuditableQuiz(List.of(zarp2), "q2", null, null, null, List.of("zarpar es partir"), null, null, null);
         LemmaAndPos zarpVerb = new LemmaAndPos("zarpar", "VERB");
 
         when(contentWordFilter.isContentWord(any())).thenReturn(true);

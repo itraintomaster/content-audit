@@ -43,11 +43,11 @@ public class LemmaAbsenceDetailedFormatterTest {
     }
 
     private AuditableKnowledge knowledge(String id, String label) {
-        return new AuditableKnowledge(List.of(), "title", null, true, id, label, null, null);
+        return new AuditableKnowledge(List.of(), "title", null, true, id, label, null, null, null);
     }
 
     private AuditableQuiz quiz(String id) {
-        return new AuditableQuiz(List.of(), id, "label", null, null, List.of("sentence"), null);
+        return new AuditableQuiz(List.of(), id, "label", null, null, List.of("sentence"), null, null, null);
     }
 
     /**

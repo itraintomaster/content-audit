@@ -141,7 +141,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
         AuditNode topicNode = buildTopicNode(milestoneNode,
                 new AuditableTopic(List.of(), "topic-1", "Topic", null));
         AuditNode knowledgeNode = buildKnowledgeNode(topicNode,
-                new AuditableKnowledge(List.of(), "Knowledge", "Instructions", true, "know-1", null, null, null));
+                new AuditableKnowledge(List.of(), "Knowledge", "Instructions", true, "know-1", null, null, null, null));
         buildQuizNode(knowledgeNode, quiz, quizDiagnoses);
         return new AuditReport(courseNode);
     }
@@ -159,7 +159,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
 
     private AuditableQuiz buildQuiz(String id) {
         return new AuditableQuiz(List.of(), id, null, null,
-                "El gato duerme.", List.of("The cat sleeps."), null);
+                "El gato duerme.", List.of("The cat sleeps."), null, null, null);
     }
 
     private DefaultLevelDiagnoses buildMilestoneDiagnoses(CefrLevel level, List<AbsentLemma> absentLemmas) {

@@ -28,7 +28,7 @@ import static org.mockito.ArgumentMatchers.anyDouble;
 public class IAuditEngineTest {
 
     private AuditableKnowledge knowledge(String title, String instructions) {
-        return new AuditableKnowledge(List.of(), title, instructions, false, "k1", "label", "CODE", null);
+        return new AuditableKnowledge(List.of(), title, instructions, false, "k1", "label", "CODE", null, null);
     }
 
     private AuditableCourse courseWithOneKnowledge(AuditableKnowledge k) {
@@ -73,9 +73,9 @@ public class IAuditEngineTest {
             quizzes.add(new AuditableQuiz(
                     Collections.nCopies(tc, tok()),
                     "q" + tc, "Quiz", null, null,
-                    List.of("sentence text"), null));
+                    List.of("sentence text"), null, null, null));
         }
-        AuditableKnowledge k = new AuditableKnowledge(quizzes, "K", "Complete", true, "k1", "K", "K", null);
+        AuditableKnowledge k = new AuditableKnowledge(quizzes, "K", "Complete", true, "k1", "K", "K", null, null);
         AuditableTopic t = new AuditableTopic(List.of(k), "t1", "T", "T");
         AuditableMilestone m = new AuditableMilestone(List.of(t), "m1", "A1", "A1");
         return new AuditableCourse(List.of(m));
@@ -194,11 +194,11 @@ public class IAuditEngineTest {
         // The lemma-recurrence score must be equal for both.
 
         NlpToken catToken = new NlpToken("cat", "cat", "NOUN", 100, false, false);
-        AuditableQuiz quizA1 = new AuditableQuiz(List.of(catToken), null, null, null, null, List.of("the cat"), null);
-        AuditableQuiz quizA2 = new AuditableQuiz(List.of(catToken), null, null, null, null, List.of("a cat"), null);
+        AuditableQuiz quizA1 = new AuditableQuiz(List.of(catToken), null, null, null, null, List.of("the cat"), null, null, null);
+        AuditableQuiz quizA2 = new AuditableQuiz(List.of(catToken), null, null, null, null, List.of("a cat"), null, null, null);
 
-        AuditableTopic topicA1 = new AuditableTopic(List.of(new AuditableKnowledge(List.of(quizA1), "K-A1", null, false, "k1", "l1", "C1", null)), "t1", "TopicA1", "T1");
-        AuditableTopic topicA2 = new AuditableTopic(List.of(new AuditableKnowledge(List.of(quizA2), "K-A2", null, false, "k2", "l2", "C2", null)), "t2", "TopicA2", "T2");
+        AuditableTopic topicA1 = new AuditableTopic(List.of(new AuditableKnowledge(List.of(quizA1), "K-A1", null, false, "k1", "l1", "C1", null, null)), "t1", "TopicA1", "T1");
+        AuditableTopic topicA2 = new AuditableTopic(List.of(new AuditableKnowledge(List.of(quizA2), "K-A2", null, false, "k2", "l2", "C2", null, null)), "t2", "TopicA2", "T2");
 
         AuditableMilestone milestoneA1 = new AuditableMilestone(List.of(topicA1), "m1", "A1", "M1");
         AuditableMilestone milestoneA2 = new AuditableMilestone(List.of(topicA2), "m2", "A2", "M2");
@@ -313,9 +313,9 @@ public class IAuditEngineTest {
         // Zero case: course with no sentence quizzes → no milestone score → course score not set or zero
         // Build a course where the milestone has no scoring quizzes (non-sentence knowledge)
         AuditableQuiz nonSentQuiz = new AuditableQuiz(
-                Collections.nCopies(3, tok()), "q1", "Q", null, null, List.of("word"), null);
+                Collections.nCopies(3, tok()), "q1", "Q", null, null, List.of("word"), null, null, null);
         AuditableKnowledge nonSentK = new AuditableKnowledge(
-                List.of(nonSentQuiz), "K", "Complete", false, "k1", "K", "K", null);
+                List.of(nonSentQuiz), "K", "Complete", false, "k1", "K", "K", null, null);
         AuditableTopic t = new AuditableTopic(List.of(nonSentK), "t1", "T", "T");
         AuditableMilestone m = new AuditableMilestone(List.of(t), "m1", "A1", "A1");
         AuditReport zeroReport = slenEngine().runAudit(new AuditableCourse(List.of(m)));

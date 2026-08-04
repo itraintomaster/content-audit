@@ -1,0 +1,24 @@
+code: FEAT-RPRES
+modules:
+- name: course-domain
+  packages:
+  - name: quizsentenceengine
+    implementations:
+    - name: DefaultQuizSentenceConverter
+      handwrittenTests:
+      - name: should give each blank part that the correction adds the same text as
+          the blank parts the exercise already had
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R006
+      - name: should give each fixed-text part that the correction adds its options
+          in the same state as the fixed-text parts the exercise already had
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R006
+      - name: "should never leave a blank part that the correction adds with its text\
+          \ absent or at the default value of its type, even when the exercise had\
+          \ no other blank part"
+        traceability:
+          feature: FEAT-RPRES
+          rule: F-RPRES-R006

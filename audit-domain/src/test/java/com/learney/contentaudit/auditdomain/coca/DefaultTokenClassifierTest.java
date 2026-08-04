@@ -106,9 +106,9 @@ public class DefaultTokenClassifierTest {
         for (int i = 0; i < 20; i++)
             tokens.add(new NlpToken("proper", "proper", "PROPN", null, false, false)); // null rank
 
-        AuditableQuiz quiz = new AuditableQuiz(tokens, "q1", "Q", null, null, List.of("s"), null);
+        AuditableQuiz quiz = new AuditableQuiz(tokens, "q1", "Q", null, null, List.of("s"), null, null, null);
         AuditableKnowledge k = new AuditableKnowledge(
-                List.of(quiz), "K", "C", true, "k1", "K", "K", null);
+                List.of(quiz), "K", "C", true, "k1", "K", "K", null, null);
         AuditableTopic t = new AuditableTopic(List.of(k), "t1", "T", "T");
         AuditableMilestone m = new AuditableMilestone(List.of(t), "A1", "A1", null);
         AuditableCourse course = new AuditableCourse(List.of(m));

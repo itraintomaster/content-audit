@@ -107,9 +107,9 @@ public class FLabsJ001JourneyTest {
                 AuditableTopic topic = new AuditableTopic(List.of(), "t1", "label", "code");
                 AuditNode topicNode = makeNode(AuditTarget.TOPIC, topic, milestoneNode);
                 AuditableKnowledge knowledge = new AuditableKnowledge(
-                        List.of(), "title", "instructions", true, "k1", "label", "code", null);
+                        List.of(), "title", "instructions", true, "k1", "label", "code", null, null);
                 AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
-                AuditableQuiz quiz = new AuditableQuiz(tokens, quizId, "label", "code", null, List.of("sentence"), null);
+                AuditableQuiz quiz = new AuditableQuiz(tokens, quizId, "label", "code", null, List.of("sentence"), null, null, null);
                 makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
             }
         }
@@ -127,9 +127,9 @@ public class FLabsJ001JourneyTest {
                 AuditableTopic topic = new AuditableTopic(List.of(), "t1", "label", "code");
                 AuditNode topicNode = makeNode(AuditTarget.TOPIC, topic, milestoneNode);
                 AuditableKnowledge knowledge = new AuditableKnowledge(
-                        List.of(), "title", "instructions", true, "k1", "label", "code", null);
+                        List.of(), "title", "instructions", true, "k1", "label", "code", null, null);
                 AuditNode knowledgeNode = makeNode(AuditTarget.KNOWLEDGE, knowledge, topicNode);
-                AuditableQuiz quiz = new AuditableQuiz(tokens, "q" + i, "label", "code", null, List.of("sentence"), null);
+                AuditableQuiz quiz = new AuditableQuiz(tokens, "q" + i, "label", "code", null, List.of("sentence"), null, null, null);
                 makeNode(AuditTarget.QUIZ, quiz, knowledgeNode);
             }
         }

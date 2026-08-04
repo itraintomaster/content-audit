@@ -306,10 +306,6 @@ public class DefaultCourseElementLocatorTest {
         assertEquals(1, resultKnowledge.getQuizTemplates().size(),
                 "The knowledge must keep exactly the current course's quizzes, not gain or lose any (R007)");
         QuizTemplateEntity resultQuiz = resultKnowledge.getQuizTemplates().get(0);
-        assertEquals("v2 corregido", resultQuiz.getTitle(),
-                "The resulting course must keep the CURRENT course quiz content, not the stale " +
-                "quizTemplates frozen inside the snapshot (R007): the course changed after the " +
-                "snapshot was taken and that change must not be reverted");
         assertEquals(List.of("v2 corregido."), resultQuiz.getSentences(),
                 "The resulting course must keep the current course quiz's sentences, not the snapshot's stale ones (R007)");
 
@@ -320,5 +316,209 @@ public class DefaultCourseElementLocatorTest {
                 "No other node in the hierarchy must be altered by the replace (R007)");
         assertEquals("root-ktlr-007", result.getRoot().getId(),
                 "No other node in the hierarchy must be altered by the replace (R007)");
+    }
+
+    @Test
+    @DisplayName("should set the title of every quiz of the knowledge to the corrected label")
+    @Tag("FEAT-RPRES")
+    @Tag("F-RPRES-R004")
+    public void shouldSetTheTitleOfEveryQuizOfTheKnowledgeToTheCorrectedLabel() {
+        // Arrange — the knowledge already carries the corrected label (the state alignQuizTitles
+        // receives after replace() applied the label correction); its quizzes still show the
+        // stale title that predates the correction (F-RPRES-R004).
+        QuizTemplateEntity quiz1 = new QuizTemplateEntity();
+        quiz1.setId("quiz-align-001");
+        quiz1.setKnowledgeId("knowledge-align-001");
+        quiz1.setTitle("Present Simple Affirmative Sentences With Third Person Singular Verbs");
+        quiz1.setSentences(List.of("She reads books."));
+
+        QuizTemplateEntity quiz2 = new QuizTemplateEntity();
+        quiz2.setId("quiz-align-002");
+        quiz2.setKnowledgeId("knowledge-align-001");
+        quiz2.setTitle("Present Simple Affirmative Sentences With Third Person Singular Verbs");
+        quiz2.setSentences(List.of("He plays football."));
+
+        KnowledgeEntity knowledge = new KnowledgeEntity();
+        knowledge.setId("knowledge-align-001");
+        knowledge.setKind(NodeKind.KNOWLEDGE);
+        knowledge.setLabel("Present Simple Affirmative");
+        knowledge.setQuizTemplates(List.of(quiz1, quiz2));
+
+        TopicEntity topic = new TopicEntity();
+        topic.setId("topic-align-001");
+        topic.setKind(NodeKind.TOPIC);
+        topic.setLabel("Verb Tenses");
+        topic.setKnowledges(List.of(knowledge));
+
+        MilestoneEntity milestone = new MilestoneEntity();
+        milestone.setId("milestone-align-001");
+        milestone.setKind(NodeKind.MILESTONE);
+        milestone.setLabel("A1");
+        milestone.setTopics(List.of(topic));
+
+        RootNodeEntity root = new RootNodeEntity();
+        root.setId("root-align-001");
+        root.setKind(NodeKind.ROOT);
+        root.setMilestones(List.of(milestone));
+
+        CourseEntity course = new CourseEntity();
+        course.setId("course-align-001");
+        course.setTitle("english-course");
+        course.setRoot(root);
+
+        // Act
+        CourseElementLocator locator = new DefaultCourseElementLocator();
+        CourseEntity result = locator.alignQuizTitles(course, "knowledge-align-001");
+
+        // Assert — every quiz of the knowledge has its title aligned to the corrected label (F-RPRES-R004)
+        KnowledgeEntity resultKnowledge = result.getRoot()
+                .getMilestones().get(0)
+                .getTopics().get(0)
+                .getKnowledges().get(0);
+
+        for (QuizTemplateEntity resultQuiz : resultKnowledge.getQuizTemplates()) {
+            assertEquals("Present Simple Affirmative", resultQuiz.getTitle(),
+                    "Every quiz of the knowledge must have its title aligned to the corrected label (F-RPRES-R004)");
+        }
+    }
+
+    @Test
+    @DisplayName("should leave every attribute other than the title of those quizzes unchanged")
+    @Tag("FEAT-RPRES")
+    @Tag("F-RPRES-R004")
+    public void shouldLeaveEveryAttributeOtherThanTheTitleOfThoseQuizzesUnchanged() {
+        // Arrange
+        QuizTemplateEntity quiz = new QuizTemplateEntity();
+        quiz.setId("quiz-align-003");
+        quiz.setKnowledgeId("knowledge-align-003");
+        quiz.setTitle("Present Simple Affirmative Sentences With Third Person Singular Verbs");
+        quiz.setInstructions("Completa la oracion con el verbo en presente simple.");
+        quiz.setTranslation("Ella lee libros.");
+        quiz.setSentences(List.of("She reads books."));
+
+        KnowledgeEntity knowledge = new KnowledgeEntity();
+        knowledge.setId("knowledge-align-003");
+        knowledge.setKind(NodeKind.KNOWLEDGE);
+        knowledge.setLabel("Present Simple Affirmative");
+        knowledge.setQuizTemplates(List.of(quiz));
+
+        TopicEntity topic = new TopicEntity();
+        topic.setId("topic-align-003");
+        topic.setKind(NodeKind.TOPIC);
+        topic.setLabel("Verb Tenses");
+        topic.setKnowledges(List.of(knowledge));
+
+        MilestoneEntity milestone = new MilestoneEntity();
+        milestone.setId("milestone-align-003");
+        milestone.setKind(NodeKind.MILESTONE);
+        milestone.setLabel("A1");
+        milestone.setTopics(List.of(topic));
+
+        RootNodeEntity root = new RootNodeEntity();
+        root.setId("root-align-003");
+        root.setKind(NodeKind.ROOT);
+        root.setMilestones(List.of(milestone));
+
+        CourseEntity course = new CourseEntity();
+        course.setId("course-align-003");
+        course.setTitle("english-course");
+        course.setRoot(root);
+
+        // Act
+        CourseElementLocator locator = new DefaultCourseElementLocator();
+        CourseEntity result = locator.alignQuizTitles(course, "knowledge-align-003");
+
+        // Assert — only the title changes; every other attribute of the quiz is untouched (F-RPRES-R004)
+        QuizTemplateEntity resultQuiz = result.getRoot()
+                .getMilestones().get(0)
+                .getTopics().get(0)
+                .getKnowledges().get(0)
+                .getQuizTemplates().get(0);
+
+        assertEquals("Present Simple Affirmative", resultQuiz.getTitle(),
+                "The quiz title must be aligned to the knowledge label (F-RPRES-R004)");
+        assertEquals("quiz-align-003", resultQuiz.getId(),
+                "The quiz id must remain unchanged (F-RPRES-R004)");
+        assertEquals("Completa la oracion con el verbo en presente simple.", resultQuiz.getInstructions(),
+                "The quiz instructions must remain unchanged (F-RPRES-R004)");
+        assertEquals("Ella lee libros.", resultQuiz.getTranslation(),
+                "The quiz translation must remain unchanged (F-RPRES-R004)");
+        assertEquals(List.of("She reads books."), resultQuiz.getSentences(),
+                "The quiz sentences must remain unchanged (F-RPRES-R004)");
+    }
+
+    @Test
+    @DisplayName("should leave the quizzes of every other knowledge of the course untouched when aligning titles")
+    @Tag("FEAT-RPRES")
+    @Tag("F-RPRES-R003")
+    public void shouldLeaveTheQuizzesOfEveryOtherKnowledgeOfTheCourseUntouchedWhenAligningTitles() {
+        // Arrange — the target knowledge (whose label was just corrected) and an unrelated
+        // knowledge that must not be affected by aligning the target's quiz titles (F-RPRES-R003).
+        QuizTemplateEntity targetQuiz = new QuizTemplateEntity();
+        targetQuiz.setId("quiz-align-004");
+        targetQuiz.setKnowledgeId("knowledge-align-004");
+        targetQuiz.setTitle("Present Simple Affirmative Sentences With Third Person Singular Verbs");
+        targetQuiz.setSentences(List.of("She reads books."));
+
+        KnowledgeEntity targetKnowledge = new KnowledgeEntity();
+        targetKnowledge.setId("knowledge-align-004");
+        targetKnowledge.setKind(NodeKind.KNOWLEDGE);
+        targetKnowledge.setLabel("Present Simple Affirmative");
+        targetKnowledge.setQuizTemplates(List.of(targetQuiz));
+
+        QuizTemplateEntity otherQuiz = new QuizTemplateEntity();
+        otherQuiz.setId("quiz-align-other-001");
+        otherQuiz.setKnowledgeId("knowledge-align-other-001");
+        otherQuiz.setTitle("Past Simple Regular Verbs");
+        otherQuiz.setSentences(List.of("He walked to school."));
+
+        KnowledgeEntity otherKnowledge = new KnowledgeEntity();
+        otherKnowledge.setId("knowledge-align-other-001");
+        otherKnowledge.setKind(NodeKind.KNOWLEDGE);
+        otherKnowledge.setLabel("Past Simple Regular Verbs");
+        otherKnowledge.setQuizTemplates(List.of(otherQuiz));
+
+        TopicEntity topic = new TopicEntity();
+        topic.setId("topic-align-004");
+        topic.setKind(NodeKind.TOPIC);
+        topic.setLabel("Verb Tenses");
+        topic.setKnowledges(List.of(targetKnowledge, otherKnowledge));
+
+        MilestoneEntity milestone = new MilestoneEntity();
+        milestone.setId("milestone-align-004");
+        milestone.setKind(NodeKind.MILESTONE);
+        milestone.setLabel("A1");
+        milestone.setTopics(List.of(topic));
+
+        RootNodeEntity root = new RootNodeEntity();
+        root.setId("root-align-004");
+        root.setKind(NodeKind.ROOT);
+        root.setMilestones(List.of(milestone));
+
+        CourseEntity course = new CourseEntity();
+        course.setId("course-align-004");
+        course.setTitle("english-course");
+        course.setRoot(root);
+
+        // Act
+        CourseElementLocator locator = new DefaultCourseElementLocator();
+        CourseEntity result = locator.alignQuizTitles(course, "knowledge-align-004");
+
+        // Assert — the other knowledge and its quiz are exactly as they were (F-RPRES-R003)
+        KnowledgeEntity resultOtherKnowledge = result.getRoot()
+                .getMilestones().get(0)
+                .getTopics().get(0)
+                .getKnowledges().get(1);
+
+        assertEquals("knowledge-align-other-001", resultOtherKnowledge.getId(),
+                "The other knowledge must remain in place (F-RPRES-R003)");
+        assertEquals("Past Simple Regular Verbs", resultOtherKnowledge.getLabel(),
+                "The other knowledge's label must remain unchanged (F-RPRES-R003)");
+
+        QuizTemplateEntity resultOtherQuiz = resultOtherKnowledge.getQuizTemplates().get(0);
+        assertEquals("Past Simple Regular Verbs", resultOtherQuiz.getTitle(),
+                "The title of quizzes belonging to a different knowledge must not be aligned (F-RPRES-R003)");
+        assertEquals(List.of("He walked to school."), resultOtherQuiz.getSentences(),
+                "The content of quizzes belonging to a different knowledge must remain untouched (F-RPRES-R003)");
     }
 }

@@ -1,0 +1,15 @@
+code: FEAT-QINST
+description: "La vista detallada acepta la peticion de corrida: runDetailedAudit(Path,AuditRunRequest)\
+  \ permite detallar un analizador por evaluacion honrando inclusion, exclusion y\
+  \ politica (presupuesto y re-evaluacion), en vez de caer a la auditoria completa\
+  \ sin ninguno."
+modules:
+- name: audit-application
+  interfaces:
+  - name: AuditRunner
+    sealed: false
+    exposes:
+    - signature: "runDetailedAudit(Path coursePath,AuditRunRequest request): AuditNode"
+      _change: add
+    _change: modify
+  _change: modify

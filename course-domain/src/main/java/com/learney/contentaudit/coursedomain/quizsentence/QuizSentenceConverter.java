@@ -17,4 +17,6 @@ public interface QuizSentenceConverter {
     List<String> toPlainSentences(FormEntity form);
 
     List<String> toPlainSentences(FormEntity form, SentenceMode mode);
+
+    FormEntity parseOnto(String quizSentence, FormEntity base);
 }

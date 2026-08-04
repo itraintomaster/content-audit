@@ -37,6 +37,7 @@ The following models and interfaces are available from dependencies. You can use
 | label | `String` |
 | code | `String` |
 | sentenceMode | `SentenceMode` |
+| topicName | `String` |
 
 ### AuditableTopic (`record`)
 
@@ -67,6 +68,8 @@ The following models and interfaces are available from dependencies. You can use
 | translation | `String` |
 | sentences | `List<String>` |
 | quizSentence | `String` |
+| instructions | `String` |
+| sentenceParts | `List<SentencePartEntity>` |
 
 ### CefrLevel (`enum`)
 
@@ -154,6 +157,14 @@ The following models and interfaces are available from dependencies. You can use
 |-------|------|
 | auditId | `String` |
 | planId | `String` |
+
+### EvaluationRunPolicy (`record`)
+
+| Field | Type |
+|-------|------|
+| maxNewEvaluations | `int` |
+| reevaluate | `boolean` |
+| reevaluationScope | `String` |
 
 ### AuditEngine (port)
 
@@ -288,6 +299,7 @@ Methods:
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaAbsenceCourseDiagnosis>`
 - `getCocaBucketsDiagnosis(): Optional<CocaProgressionDiagnosis>`
 - `getLemmaCountDiagnosis(): Optional<LemmaCountCourseDiagnosis>`
+- `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>`
 
 ### LevelDiagnoses (port)
 
@@ -316,6 +328,7 @@ Methods:
 
 - `getLemmaAbsenceDiagnosis(): Optional<LemmaPlacementDiagnosis>`
 - `getSentenceLengthDiagnosis(): Optional<SentenceLengthDiagnosis>`
+- `getQuizInstructionDiagnosis(): Optional<QuizInstructionDiagnosis>`
 
 ### AuditReportStore (port)
 
@@ -357,6 +370,26 @@ Methods:
 Methods:
 
 - `getThreshold(): int`
+
+### EvaluationAnalyzerFactory (factory)
+
+Methods:
+
+- `create(EvaluationRunPolicy policy): ContentAnalyzer`
+- `analyzerName(): String`
+
+### QuizInstructionVerdictReader (port)
+
+Methods:
+
+- `read(String payload): QuizInstructionVerdict`
+
+### QuizInstructionConfig (port)
+
+Methods:
+
+- `getDefaultMaxNewEvaluations(): int`
+- `getScoreFor(InstructionSeverity severity): double`
 
 ### From course-domain
 
@@ -521,4 +554,125 @@ Methods:
 Methods:
 
 - `validate(CourseEntity course): void`
+
+### From evaluation-ledger-domain
+
+## Models
+
+### EvaluationKey (`record`)
+
+| Field | Type |
+|-------|------|
+| evaluatorId | `String` |
+| contentFingerprint | `String` |
+
+### EvaluationSubject (`record`)
+
+| Field | Type |
+|-------|------|
+| subjectRef | `String` |
+| content | `Map<String,String>` |
+
+### EvaluationRecord (`record`)
+
+| Field | Type |
+|-------|------|
+| key | `EvaluationKey` |
+| payload | `String` |
+| subjectRef | `String` |
+| recordedAt | `Instant` |
+| evaluatorVersion | `String` |
+
+### EvaluationEmitted (`record`)
+
+| Field | Type |
+|-------|------|
+| payload | `String` |
+
+### EvaluationNotEmitted (`record`)
+
+| Field | Type |
+|-------|------|
+| kind | `EvaluationFailureKind` |
+| reason | `String` |
+
+### EvaluationFailureKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| OUTPUT_UNUSABLE | `null` |
+| EVALUATOR_UNAVAILABLE | `null` |
+
+### EvaluationResolutionKind (`enum`)
+
+| Field | Type |
+|-------|------|
+| REUSED | `null` |
+| EVALUATED | `null` |
+| PENDING | `null` |
+| FAILED | `null` |
+
+### EvaluationResolution (`record`)
+
+| Field | Type |
+|-------|------|
+| kind | `EvaluationResolutionKind` |
+| payload | `String` |
+| evaluatorVersion | `String` |
+
+### EvaluationCoverage (`record`)
+
+| Field | Type |
+|-------|------|
+| reached | `int` |
+| withResult | `int` |
+| evaluatedInRun | `int` |
+| reused | `int` |
+| pending | `int` |
+| failed | `int` |
+
+### EvaluationBudget (`record`)
+
+| Field | Type |
+|-------|------|
+| maxNewEvaluations | `int` |
+
+### EvaluationOutcome (port)
+
+### EvaluationLedger (port)
+
+Methods:
+
+- `append(EvaluationRecord record): void`
+- `findLatest(EvaluationKey key): Optional<EvaluationRecord>`
+- `history(EvaluationKey key): List<EvaluationRecord>`
+
+### ContentFingerprinter (port)
+
+Methods:
+
+- `fingerprint(Map<String,String> content): String`
+
+### Evaluator (port)
+
+Methods:
+
+- `evaluatorId(): String`
+- `evaluate(EvaluationSubject subject): EvaluationOutcome`
+- `evaluatorVersion(): Optional<String>`
+
+### EvaluationSession (port)
+
+Methods:
+
+- `resolve(EvaluationSubject subject): EvaluationResolution`
+- `resolveForced(EvaluationSubject subject): EvaluationResolution`
+- `coverage(): EvaluationCoverage`
+- `consultedEvaluatorVersion(): Optional<String>`
+
+### EvaluationSessionFactory (factory)
+
+Methods:
+
+- `open(EvaluationBudget budget,Evaluator evaluator): EvaluationSession`
 

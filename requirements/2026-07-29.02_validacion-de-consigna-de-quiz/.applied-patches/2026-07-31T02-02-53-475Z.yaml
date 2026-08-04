@@ -1,0 +1,765 @@
+code: FEAT-QINST
+description: "FEAT-EVCOST + FEAT-QINST: registro append-only de evaluaciones costosas\
+  \ reutilizables, coordinacion reanudable por corrida, runtime compartido de agentes\
+  \ declarativos y analizador de cumplimiento de consigna de quiz."
+modules:
+- name: evaluation-ledger-domain
+  description: |
+    FEAT-EVCOST. Capacidad general de resultados de evaluacion costosa reutilizables entre analisis. No sabe nada de auditoria, de cursos ni de LLMs: define la identidad de un resultado (evaluador + version + huella del contenido, F-EVCOST-R001), el registro append-only clave->payload opaco, y la coordinacion reanudable de una corrida (consultar vigente -> si falta, evaluar dentro del presupuesto -> registrar apenas se obtiene). Cada consumidor aporta tres cosas y nada mas: como construye el contenido (EvaluationSubject.content), como su evaluador se pronuncia (Evaluator -> EvaluationOutcome) y como interpreta su payload. La huella NO la calcula el consumidor: la deriva la sesion del propio mapa de contenido entregado al evaluador, de modo que F-EVCOST-R002 ("exactamente lo que el evaluador recibe, ni mas ni menos") queda garantizada por construccion y no por disciplina.
+  models:
+  - name: EvaluationKey
+    type: record
+    fields:
+    - name: evaluatorId
+      type: String
+      description: Identificador estable del evaluador (ej. quiz-instruction-judge)
+    - name: evaluatorVersion
+      type: String
+      description: Version vigente del evaluador. Cambiarla invalida la vigencia sin
+        borrar nada (F-EVCOST-R006).
+    - name: contentFingerprint
+      type: String
+      description: Huella derivada del mapa de contenido entregado al evaluador (F-EVCOST-R002).
+    _change: add
+  - name: EvaluationSubject
+    type: record
+    fields:
+    - name: subjectRef
+      type: String
+      description: Referencia informativa al elemento del curso (id del quiz). No
+        participa de la identidad.
+    - name: content
+      type: "Map<String,String>"
+      description: Entradas exactas del evaluador. Todo lo que esta aca se juzga y
+        se fingerprintea; nada mas se juzga ni se fingerprintea.
+    _change: add
+  - name: EvaluationRecord
+    type: record
+    fields:
+    - name: key
+      type: EvaluationKey
+    - name: payload
+      type: String
+      description: "Resultado emitido por el evaluador, serializado. Opaco."
+    - name: subjectRef
+      type: String
+      description: "Referencia informativa al elemento evaluado, para inspeccion y\
+        \ rastreo (F-EVCOST-R001)."
+    - name: recordedAt
+      type: Instant
+      description: Momento en que se registro. Informativo; no participa de la identidad.
+    _change: add
+  - name: EvaluationEmitted
+    type: record
+    fields:
+    - name: payload
+      type: String
+    _change: add
+    implements:
+    - EvaluationOutcome
+  - name: EvaluationNotEmitted
+    type: record
+    fields:
+    - name: kind
+      type: EvaluationFailureKind
+    - name: reason
+      type: String
+    _change: add
+    implements:
+    - EvaluationOutcome
+  - name: EvaluationFailureKind
+    type: enum
+    fields:
+    - name: OUTPUT_UNUSABLE
+    - name: EVALUATOR_UNAVAILABLE
+    _change: add
+  - name: EvaluationResolutionKind
+    type: enum
+    fields:
+    - name: REUSED
+    - name: EVALUATED
+    - name: PENDING
+    - name: FAILED
+    _change: add
+  - name: EvaluationResolution
+    type: record
+    fields:
+    - name: kind
+      type: EvaluationResolutionKind
+    - name: payload
+      type: String
+    _change: add
+  - name: EvaluationCoverage
+    type: record
+    fields:
+    - name: reached
+      type: int
+      description: Contenidos que la corrida debia evaluar
+    - name: withResult
+      type: int
+      description: Contenidos con resultado en esta corrida (reused + evaluatedInRun)
+    - name: evaluatedInRun
+      type: int
+      description: Consumieron presupuesto en esta corrida
+    - name: reused
+      type: int
+      description: Resueltos con un resultado vigente ya registrado; no consumieron
+        presupuesto
+    - name: pending
+      type: int
+      description: Sin resultado por tope de presupuesto o porque la sesion dejo de
+        consultar
+    - name: failed
+      type: int
+      description: El evaluador no llego a pronunciarse sobre ellos en esta corrida
+    _change: add
+  - name: EvaluationRunPolicy
+    type: record
+    fields:
+    - name: maxNewEvaluations
+      type: int
+      description: Tope de consultas NUEVAS. La reutilizacion nunca lo consume (F-EVCOST-R003).
+    - name: reevaluate
+      type: boolean
+      description: Pedido explicito de volver a evaluar contenido con resultado vigente
+        (F-EVCOST-R008).
+    - name: reevaluationScope
+      type: String
+      description: Selector opaco del alcance de la re-evaluacion. Null o vacio =
+        todo el contenido alcanzado.
+    _change: add
+  interfaces:
+  - name: EvaluationOutcome
+    stereotype: port
+    sealed: false
+    _change: add
+  - name: EvaluationLedger
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "find(EvaluationKey key): Optional<EvaluationRecord>"
+    - signature: "append(EvaluationRecord record): void"
+    - signature: "history(String evaluatorId,String contentFingerprint): List<EvaluationRecord>"
+    _change: add
+  - name: ContentFingerprinter
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "fingerprint(Map<String,String> content): String"
+    _change: add
+  - name: Evaluator
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "evaluatorId(): String"
+    - signature: "evaluatorVersion(): String"
+    - signature: "evaluate(EvaluationSubject subject): EvaluationOutcome"
+    _change: add
+  - name: EvaluationSession
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "resolve(EvaluationSubject subject): EvaluationResolution"
+    - signature: "resolveForced(EvaluationSubject subject): EvaluationResolution"
+    - signature: "coverage(): EvaluationCoverage"
+    _change: add
+  - name: EvaluationSessionFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "open(EvaluationRunPolicy policy,Evaluator evaluator): EvaluationSession"
+    _change: add
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultEvaluationSessionFactory
+    suppressed: false
+    interface: EvaluationSessionFactory
+  packages:
+  - name: evaluationsession
+    description: "Motor de la coordinacion por corrida: consulta de vigencia, tope\
+      \ de consultas nuevas, corte ante servicio caido, registro inmediato y recuento\
+      \ de cobertura. Solo la factory es publica; la sesion es package-private."
+    visibility: public
+    implementations:
+    - name: DefaultEvaluationSessionFactory
+      requiresInject:
+      - name: ledger
+        type: EvaluationLedger
+      - name: fingerprinter
+        type: ContentFingerprinter
+      visibility: public
+      implements:
+      - EvaluationSessionFactory
+      _change: add
+    - name: DefaultEvaluationSession
+      requiresInject:
+      - name: ledger
+        type: EvaluationLedger
+      - name: fingerprinter
+        type: ContentFingerprinter
+      - name: evaluator
+        type: Evaluator
+      - name: policy
+        type: EvaluationRunPolicy
+      implements:
+      - EvaluationSession
+      _change: add
+    _change: add
+  - name: contentfingerprint
+    description: Derivacion de la huella. Publico porque la composition root lo inyecta
+      en la factory de sesiones y porque la reproducibilidad de la huella (F-EVCOST-R002)
+      necesita ser verificable de forma aislada.
+    visibility: public
+    implementations:
+    - name: Sha256ContentFingerprinter
+      visibility: public
+      implements:
+      - ContentFingerprinter
+      _change: add
+    _change: add
+  layer: domain
+  _change: add
+- name: evaluation-ledger-infrastructure
+  description: |
+    Adaptador filesystem del registro de evaluaciones costosas. Escribe un archivo por evaluador bajo .content-audit/evaluations/, una entrada por linea, en modo append: cada resultado queda disponible apenas se obtiene (F-EVCOST-R004) y una interrupcion abrupta a lo sumo deja una ultima linea incompleta, que la lectura descarta por no parsear —"se lee completa o no existe"—. Append-only tambien significa que las entradas de versiones anteriores del evaluador conviven como historia consultable y nunca se borran solas (F-EVCOST-R006), y que una re-evaluacion agrega sin destruir (F-EVCOST-R008). Vive aparte de los informes de auditoria a proposito: borrar informes no toca este registro (F-EVCOST-R007).
+  dependsOn:
+  - evaluation-ledger-domain
+  implementations:
+  - name: FileSystemEvaluationLedger
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: "Directorio raiz bajo el cual se resuelve .content-audit/evaluations/.\
+        \ Lo provee la composition root, igual que los demas stores filesystem."
+    types:
+    - Repository
+    visibility: public
+    implements:
+    - EvaluationLedger
+    _change: add
+  uses:
+  - jackson-databind
+  layer: infrastructure
+  _change: add
+- name: agent-runtime-infrastructure
+  description: |
+    Capacidad compartida para correr un agente declarativo de sentinel-agents in-process: carga el grafo de <agentsBaseDir>/<nombre>/, lo ejecuta con AgentRun.runRecording y persiste el run. Existe porque este lanzador ya se escribio dos veces identico dentro de revision-infrastructure (lemmaabsenceagent y knowledgetitleagent) y el juez de consigna seria la tercera copia — y no puede reusar ninguna, porque revision-infrastructure declara allowedClients=[audit-cli] y cuelga de revision-domain, mientras que este consumidor nuevo cuelga de la auditoria. Deliberadamente NO incluye la clasificacion de errores: el clasificador de cada consumidor devuelve su propia taxonomia de fallas y no es compartible sin arrastrar tipos ajenos. allowedClients incluye a revision-infrastructure porque el patch de consolidacion (requirements/2026-07-29.03) migra sus dos lanzadores duplicados a este modulo. Los dos patches declaran la misma lista de tres clientes a proposito: cualquiera de los dos ordenes de aplicacion deja el mismo resultado y el segundo es un no-op.
+  models:
+  - name: AgentGraphRunnerConfig
+    type: record
+    fields:
+    - name: agentsBaseDir
+      type: Path
+      description: "Directorio de definiciones de agentes. Null = se resuelve por\
+        \ inputs[\"project_root\"] si esta presente, y en su defecto .sentinel/agents\
+        \ relativo al CWD."
+    - name: runsBaseDir
+      type: Path
+      description: "Directorio donde se persisten los runs. Null = misma cadena de\
+        \ resolucion que agentsBaseDir, sobre .sentinel/runs."
+    _change: add
+  interfaces:
+  - name: AgentGraphRunner
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "run(String agentName,Map<String,String> inputs,ChatModel chatModel,Map<String,Object>\
+        \ tools): RunState"
+    _change: add
+  - name: AgentGraphRunnerFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(AgentGraphRunnerConfig config): AgentGraphRunner"
+    _change: add
+  allowedClients:
+  - quiz-instruction-infrastructure
+  - audit-cli
+  - revision-infrastructure
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultAgentGraphRunnerFactory
+    suppressed: false
+    interface: AgentGraphRunnerFactory
+  uses:
+  - sentinel-agents
+  - langchain4j-core
+  packages:
+  - name: graphexecution
+    description: Motor del runtime. Solo la factory es publica; el runner es package-private.
+    visibility: public
+    implementations:
+    - name: DefaultAgentGraphRunnerFactory
+      visibility: public
+      implements:
+      - AgentGraphRunnerFactory
+      _change: add
+    - name: DefaultAgentGraphRunner
+      requiresInject:
+      - name: config
+        type: AgentGraphRunnerConfig
+      implements:
+      - AgentGraphRunner
+      _change: add
+    _change: add
+  _change: add
+- name: quiz-instruction-infrastructure
+  description: |
+    Adaptador del juez de consigna: implementa el SPI Evaluator de evaluation-ledger-domain corriendo el agente declarativo quiz-instruction-validator sobre el runtime compartido. Traduce EvaluationSubject.content a las cinco entradas declaradas del agente (cefrLevel, topic, title, instructions, quiz) verbatim, sin agregar ni quitar nada — es lo que hace que la huella cubra exactamente lo juzgado (F-EVCOST-R002). Reconoce el veredicto conservador de infraestructura del juez (confianza nula y violacion JUDGE_OUTPUT_INVALID) y lo devuelve como EvaluationNotEmitted(OUTPUT_UNUSABLE), de modo que nunca llega al registro (F-QINST-R013); toda falla de servicio, timeout, autenticacion o credito se devuelve como EvaluationNotEmitted(EVALUATOR_UNAVAILABLE) en lugar de propagarse como excepcion (F-QINST-R007). Construye el ChatModel de forma perezosa: una configuracion ausente o invalida es un evaluador no disponible, no una auditoria caida. allowedClients=[audit-cli] porque es un detalle de implementacion de la composition root.
+  dependsOn:
+  - audit-domain
+  - evaluation-ledger-domain
+  - agent-runtime-infrastructure
+  models:
+  - name: QuizInstructionJudgeConfig
+    type: record
+    fields:
+    - name: baseUrl
+      type: String
+      description: Endpoint compatible OpenAI
+    - name: apiKey
+      type: String
+    - name: modelName
+      type: String
+    - name: temperature
+      type: Double
+    - name: timeoutSeconds
+      type: Integer
+    - name: agentName
+      type: String
+      description: Nombre del grafo bajo .sentinel/agents/. Por defecto quiz-instruction-validator.
+    - name: judgeVersionOverride
+      type: String
+      description: "Fija la version del juez a mano. Null = se deriva del digest de\
+        \ la definicion del agente mas el modelo, de modo que retocar el prompt cambie\
+        \ la version sola (F-QINST-R010)."
+    _change: add
+  interfaces:
+  - name: QuizInstructionJudgeFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "create(QuizInstructionJudgeConfig config,AgentGraphRunner agentGraphRunner):\
+        \ Evaluator"
+    _change: add
+  allowedClients:
+  - audit-cli
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultQuizInstructionJudgeFactory
+    suppressed: false
+    interface: QuizInstructionJudgeFactory
+  uses:
+  - jackson-databind
+  - langchain4j-core
+  - langchain4j-openai
+  - sentinel-agents
+  packages:
+  - name: instructionjudge
+    description: "Motor del adaptador del juez. Solo la factory es publica; el juez,\
+      \ el resolutor de version y el armado de entradas son package-private."
+    visibility: public
+    interfaces:
+    - name: QuizInstructionJudgeVersionResolver
+      sealed: false
+      exposes:
+      - signature: "resolve(QuizInstructionJudgeConfig config): String"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultQuizInstructionJudgeFactory
+      visibility: public
+      implements:
+      - QuizInstructionJudgeFactory
+      _change: add
+    - name: QuizInstructionAgentJudge
+      requiresInject:
+      - name: config
+        type: QuizInstructionJudgeConfig
+      - name: agentGraphRunner
+        type: AgentGraphRunner
+      - name: versionResolver
+        type: QuizInstructionJudgeVersionResolver
+      implements:
+      - Evaluator
+      _change: add
+    - name: DefaultQuizInstructionJudgeVersionResolver
+      implements:
+      - QuizInstructionJudgeVersionResolver
+      _change: add
+    _change: add
+  - name: instructionverdict
+    description: "Lectura del payload del juez. Publico porque el analizador consume\
+      \ veredictos REUTILIZADOS que nunca pasan por el juez: la interpretacion del\
+      \ payload tiene que existir independientemente del adaptador que lo produjo."
+    visibility: public
+    implementations:
+    - name: JacksonQuizInstructionVerdictReader
+      visibility: public
+      implements:
+      - QuizInstructionVerdictReader
+      _change: add
+    _change: add
+  layer: infrastructure
+  _change: add
+- name: audit-domain
+  dependsOn:
+  - course-domain
+  - evaluation-ledger-domain
+  models:
+  - name: AuditableQuiz
+    type: record
+    fields:
+    - name: instructions
+      type: String
+      description: "Consigna propia del quiz template, copiada verbatim por CourseToAuditableMapper.\
+        \ 11.467 de 11.487 quizzes del curso la declaran. Entra en el contenido juzgado\
+        \ por el juez de consigna (F-QINST-R009)."
+      _change: add
+    - name: sentenceParts
+      type: List<SentencePartEntity>
+      description: |
+        Partes del ejercicio en orden, con todas las opciones aceptadas de cada hueco. Resuelve DOUBT-QUIZ-COMPLETO por la Opcion A. Se copia VERBATIM desde QuizTemplateEntity.form.sentenceParts en el mismo paso del mapper: nunca se re-deriva parseando el DSL de quizSentence, porque QuizSentenceParser.buildForm() fabrica un FormEntity vacio y la huella se calcularia sobre contenido mutilado. Sin este campo el juez no puede verificar la restriccion mas frecuente de una consigna (la forma de la respuesta) y, peor, cambiar una opcion aceptada no invalidaria el veredicto guardado (F-QINST-R009).
+      _change: add
+    _change: modify
+  - name: AuditableKnowledge
+    type: record
+    fields:
+    - name: topicName
+      type: String
+      description: "Etiqueta del topic al que pertenece, copiada del quiz template.\
+        \ Evita que el analizador de consigna tenga que navegar dos niveles de ancestros\
+        \ para armar una de las cinco entradas del juez."
+      _change: add
+    _change: modify
+  interfaces:
+  - name: QuizDiagnoses
+    sealed: false
+    exposes:
+    - signature: "getQuizInstructionDiagnosis(): Optional<QuizInstructionDiagnosis>"
+      _change: add
+    _change: modify
+  - name: CourseDiagnoses
+    sealed: false
+    exposes:
+    - signature: "getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>"
+      _change: add
+    _change: modify
+  - name: EvaluationAnalyzerFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "evaluatorId(): String"
+    - signature: "create(EvaluationRunPolicy policy): ContentAnalyzer"
+    _change: add
+  - name: QuizInstructionVerdictReader
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "read(String payload): QuizInstructionVerdict"
+    _change: add
+  - name: QuizInstructionConfig
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "getDefaultMaxNewEvaluations(): int"
+    - signature: "getScoreFor(InstructionSeverity severity): double"
+    _change: add
+    extends:
+    - SelfDescribingConfig
+  packages:
+  - name: quizinstruction
+    description: |
+      FEAT-QINST. Contrato publico del analisis de cumplimiento de consigna: el veredicto tipado del juez, el diagnostico por ejercicio y la cobertura declarada. Publico porque el CLI lo formatea y porque una feature posterior de correccion va a partir de estas violaciones con su evidencia.
+    visibility: public
+    models:
+    - name: InstructionSeverity
+      type: enum
+      fields:
+      - name: NONE
+      - name: MINOR
+      - name: MAJOR
+      - name: CRITICAL
+      _change: add
+    - name: InstructionCheckStatus
+      type: enum
+      fields:
+      - name: PASSED
+      - name: FAILED
+      - name: NOT_APPLICABLE
+      _change: add
+    - name: InstructionViolation
+      type: record
+      fields:
+      - name: code
+        type: String
+      - name: constraint
+        type: String
+      - name: evidence
+        type: String
+      - name: explanation
+        type: String
+      _change: add
+    - name: InstructionCheck
+      type: record
+      fields:
+      - name: category
+        type: String
+      - name: constraint
+        type: String
+      - name: status
+        type: InstructionCheckStatus
+      - name: evidence
+        type: String
+      _change: add
+    - name: QuizInstructionVerdict
+      type: record
+      fields:
+      - name: followsInstructions
+        type: boolean
+      - name: confidence
+        type: double
+        description: "Se registra en el diagnostico pero NO modifica el puntaje (F-QINST-R002,\
+          \ DOUBT-CONFIANZA opcion A)."
+      - name: severity
+        type: InstructionSeverity
+      - name: reason
+        type: String
+      - name: violations
+        type: List<InstructionViolation>
+      - name: checkedConstraints
+        type: List<InstructionCheck>
+      _change: add
+    - name: QuizInstructionDiagnosis
+      type: record
+      fields:
+      - name: verdict
+        type: QuizInstructionVerdict
+      - name: score
+        type: double
+      - name: reusedFromPreviousRun
+        type: boolean
+        description: Si el veredicto se reutilizo de una corrida anterior en vez de
+          consultarse ahora.
+      _change: add
+    - name: QuizInstructionCoverageDiagnosis
+      type: record
+      fields:
+      - name: coverage
+        type: EvaluationCoverage
+      - name: evaluatorVersion
+        type: String
+        description: "Version del juez vigente durante la corrida, para que la cobertura\
+          \ sea interpretable tras un cambio de juez (F-QINST-R010)."
+      _change: add
+    _change: add
+  - name: quizinstructionengine
+    description: |
+      Motor del analizador de consigna. Solo la factory es publica; el analizador, el armado del contenido juzgado y la traduccion de veredicto a puntaje son package-private.
+    visibility: public
+    interfaces:
+    - name: QuizInstructionSubjectBuilder
+      sealed: false
+      exposes:
+      - signature: "build(AuditNode quizNode): EvaluationSubject"
+      visibility: internal
+      _change: add
+    - name: QuizInstructionScorer
+      sealed: false
+      exposes:
+      - signature: "score(QuizInstructionVerdict verdict): double"
+      visibility: internal
+      _change: add
+    - name: QuizInstructionScopeMatcher
+      sealed: false
+      exposes:
+      - signature: "matches(AuditNode quizNode,String reevaluationScope): boolean"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultQuizInstructionAnalyzerFactory
+      requiresInject:
+      - name: sessionFactory
+        type: EvaluationSessionFactory
+      - name: evaluator
+        type: Evaluator
+      - name: verdictReader
+        type: QuizInstructionVerdictReader
+      - name: config
+        type: QuizInstructionConfig
+      visibility: public
+      implements:
+      - EvaluationAnalyzerFactory
+      _change: add
+    - name: QuizInstructionAnalyzer
+      requiresInject:
+      - name: session
+        type: EvaluationSession
+      - name: subjectBuilder
+        type: QuizInstructionSubjectBuilder
+      - name: scorer
+        type: QuizInstructionScorer
+      - name: scopeMatcher
+        type: QuizInstructionScopeMatcher
+      - name: verdictReader
+        type: QuizInstructionVerdictReader
+      - name: policy
+        type: EvaluationRunPolicy
+      implements:
+      - ContentAnalyzer
+      _change: add
+    - name: DefaultQuizInstructionSubjectBuilder
+      implements:
+      - QuizInstructionSubjectBuilder
+      _change: add
+    - name: DefaultQuizInstructionScorer
+      requiresInject:
+      - name: config
+        type: QuizInstructionConfig
+      implements:
+      - QuizInstructionScorer
+      _change: add
+    - name: DefaultQuizInstructionScopeMatcher
+      implements:
+      - QuizInstructionScopeMatcher
+      _change: add
+    _change: add
+  _change: modify
+- name: audit-application
+  dependsOn:
+  - audit-domain
+  - course-domain
+  - refiner-domain
+  - course-infrastructure
+  - nlp-infrastructure
+  - vocabulary-infrastructure
+  - audit-infrastructure
+  - revision-domain
+  - evaluation-ledger-domain
+  models:
+  - name: AuditRunRequest
+    type: record
+    fields:
+    - name: includedAnalyzers
+      type: Set<String>
+      description: Subconjunto a correr. Null o vacio = todos.
+    - name: excludedAnalyzers
+      type: Set<String>
+      description: "Analizadores excluidos explicitamente. Un analizador excluido\
+        \ no aparece en el informe, en vez de aparecer con cobertura cero (F-QINST-R011)."
+    - name: evaluationPolicies
+      type: "Map<String,EvaluationRunPolicy>"
+      description: Politica por evaluatorId. Ausente = la politica por defecto que
+        declare el analizador.
+    _change: add
+  interfaces:
+  - name: AuditRunner
+    sealed: false
+    exposes:
+    - signature: "runAudit(Path coursePath,AuditRunRequest request): AuditReport"
+      _change: add
+    _change: modify
+  implementations:
+  - name: DefaultAuditRunner
+    requiresInject:
+    - name: courseRepository
+      type: CourseRepository
+    - name: courseToAuditableMapper
+      type: CourseToAuditableMapper
+    - name: auditEngine
+      type: AuditEngine
+    - name: allAnalyzers
+      type: List<ContentAnalyzer>
+    - name: scoreAggregator
+      type: ScoreAggregator
+    - name: evaluationAnalyzerFactories
+      type: List<EvaluationAnalyzerFactory>
+      description: Analizadores que se construyen por corrida porque su presupuesto
+        y su cobertura son estado de la corrida. El runner no conoce ningun evaluador
+        concreto.
+    _change: modify
+  - name: DefaultQuizInstructionConfig
+    types:
+    - Component
+    visibility: public
+    implements:
+    - QuizInstructionConfig
+    _change: add
+  _change: modify
+- name: audit-cli
+  dependsOn:
+  - audit-application
+  - audit-domain
+  - course-domain
+  - course-infrastructure
+  - nlp-infrastructure
+  - vocabulary-infrastructure
+  - audit-infrastructure
+  - refiner-domain
+  - revision-domain
+  - revision-infrastructure
+  - evaluation-ledger-domain
+  - evaluation-ledger-infrastructure
+  - agent-runtime-infrastructure
+  - quiz-instruction-infrastructure
+  models:
+  - name: AnalyzeOptions
+    type: record
+    fields:
+    - name: format
+      type: String
+    - name: level
+      type: String
+    - name: topic
+      type: String
+    - name: knowledge
+      type: String
+    - name: analyzers
+      type: List<String>
+    - name: excludeAnalyzers
+      type: List<String>
+      description: --exclude-analyzers (F-QINST-R011)
+    - name: detailed
+      type: boolean
+    - name: instructionBudget
+      type: Integer
+      description: "--instruction-budget: tope de consultas nuevas al juez en esta\
+        \ corrida. Null = el defecto del analizador (F-QINST-R006)."
+    - name: reevaluateInstructions
+      type: String
+      description: "--reevaluate-instructions[=SCOPE]: pide volver a juzgar contenido\
+        \ con veredicto vigente, acotado o total (F-QINST-R012)."
+    _change: add
+  interfaces:
+  - name: AnalyzeCommand
+    sealed: false
+    exposes:
+    - signature: "analyze(String coursePath,AnalyzeOptions options): Integer"
+      _change: add
+    _change: modify
+  packages:
+  - name: bootstrap
+    interfaces:
+    - name: QuizInstructionJudgeConfigResolver
+      sealed: false
+      exposes:
+      - signature: "resolve(): QuizInstructionJudgeConfig"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultQuizInstructionJudgeConfigResolver
+      implements:
+      - QuizInstructionJudgeConfigResolver
+      _change: add
+    _change: modify
+  - name: formatting
+    implementations:
+    - name: QuizInstructionDetailedFormatter
+      implements:
+      - DetailedFormatter
+      _change: add
+    _change: modify
+  _change: modify

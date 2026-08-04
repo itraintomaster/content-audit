@@ -1,0 +1,26 @@
+code: FEAT-QINST
+description: "F-QINST-R017: DiagnosisKind gana QUIZ_INSTRUCTION para que los ejercicios\
+  \ con veredicto de incumplimiento de consigna entren al plan de refinamiento como\
+  \ tareas"
+modules:
+- name: refiner-domain
+  models:
+  - name: DiagnosisKind
+    type: enum
+    fields:
+    - name: QUIZ_INSTRUCTION
+      description: "Tarea originada por el analisis de consigna de ejercicio (nombre\
+        \ publico 'quiz-instruction', F-QINST-R015). Existe porque F-QINST-R017 exige\
+        \ que todo ejercicio con veredicto de incumplimiento -puntaje menor al maximo-\
+        \ se convierta en trabajo dentro del plan de refinamiento, con su propio tipo\
+        \ de diagnostico, apuntando al ejercicio (AuditTarget.QUIZ) y priorizable,\
+        \ listable y filtrable como el de cualquier otro analisis. Sin este valor\
+        \ el puntaje de consigna no tiene traduccion a diagnostico y las tareas se\
+        \ descartan en silencio. Los ejercicios pendientes y fallidos no producen\
+        \ tarea sin logica adicional: no tienen puntaje en el informe (F-QINST-R004).\
+        \ Igual que COCA_BUCKETS y LEMMA_RECURRENCE, este tipo es accionable como\
+        \ informacion antes que como correccion: R017 no exige propuesta automatica,\
+        \ que queda como alcance futuro."
+      _change: add
+    _change: modify
+  _change: modify

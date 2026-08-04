@@ -1,0 +1,387 @@
+code: FEAT-QINST
+modules:
+- name: audit-domain
+  implementations:
+  - name: IScoreAggregator
+    handwrittenTests:
+    - name: "should average the quiz instruction score of a knowledge over its evaluated\
+        \ quizzes only, leaving the pending ones out"
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R004
+  packages:
+  - name: quizinstructionengine
+    implementations:
+    - name: DefaultQuizInstructionScorer
+      handwrittenTests:
+      - name: should score the quiz at the maximum when the verdict says it follows
+          the instructions with severity none
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R002
+      - name: should score the quiz at 0.6 when the verdict reports a minor breach
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R002
+      - name: should score the quiz at 0.3 when the verdict reports a major breach
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R002
+      - name: should score the quiz at 0.0 when the verdict reports a critical breach
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R002
+      - name: should let the declared severity prevail when the verdict says the quiz
+          complies but declares a severity other than none
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R002
+      - name: should score as a minor breach when the verdict says the quiz does not
+          comply but declares severity none
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R002
+      - name: should score the same verdict identically whatever confidence the judge
+          reported
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R002
+    - name: DefaultQuizInstructionSubjectBuilder
+      handwrittenTests:
+      - name: "should hand the judge the cefr level, the topic, the knowledge label,\
+          \ the knowledge instructions and the whole quiz with all its parts and accepted\
+          \ options"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R009
+      - name: should leave the quiz identifier out of the judged content
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R009
+      - name: should produce different judged content when a single accepted option
+          of the quiz changes
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R009
+      - name: should produce different judged content for every quiz of a knowledge
+          when the knowledge instructions change
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R009
+      - name: should produce identical judged content when the same course is reprocessed
+          without content changes
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R009
+      - name: should take the label and the instructions from the knowledge when the
+          quiz carries diverging copies
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R009
+      - name: should build judged content for a quiz whose knowledge declares no instructions
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R014
+    - name: DefaultQuizInstructionScopeMatcher
+      handwrittenTests:
+      - name: should match only the quizzes selected by the requested re evaluation
+          scope
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R012
+      - name: should match every reached quiz when the re evaluation request declares
+          no scope
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R012
+    - name: DefaultQuizInstructionAnalyzerFactory
+      handwrittenTests:
+      - name: should build the analyzer with the configured default budget when the
+          run declares no policy for the judge
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R006
+    - name: QuizInstructionAnalyzer
+      handwrittenTests:
+      - name: "should record for a breaching quiz a diagnosis with every violation\
+          \ carrying its code, its breached constraint, its evidence and its explanation"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R003
+      - name: should record for a compliant quiz a diagnosis with the checks the judge
+          performed and no violations
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R003
+      - name: "should record in the quiz diagnosis the reason, the severity and the\
+          \ confidence the judge reported"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R003
+      - name: should leave a quiz pending for budget without score and without diagnosis
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R004
+      - name: should leave a failed quiz without score and without diagnosis
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R004
+      - name: "should declare on the course node how many quizzes were reached, resolved,\
+          \ evaluated in this run, reused, pending and failed"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
+      - name: "should declare a coverage whose resolved, pending and failed counts\
+          \ add up to the reached total"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
+      - name: should mark a verdict taken from a previous run as reused both in the
+          quiz diagnosis and in the declared coverage
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
+      - name: should stop querying the judge once the run budget is exhausted and
+          finish without error leaving the rest pending
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R006
+      - name: should audit a fully evaluated course without a single judge query whatever
+          the budget is
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R006
+      - name: "should finish the run when the judge stops responding, counting the\
+          \ quizzes it could not judge as failed"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R007
+      - name: should keep the score and the diagnosis of the quizzes judged before
+          the judge failure
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R007
+      - name: should score a quiz from its recorded verdict without querying the judge
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R008
+      - name: should spend the run budget only on quizzes without a current verdict
+          so consecutive runs advance over different quizzes
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R008
+      - name: should not reuse the verdicts recorded by a previous judge version and
+          report those quizzes as pending
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R010
+      - name: should query the judge again for quizzes that already had a current
+          verdict when re evaluation is requested
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R012
+      - name: should keep an explicit re evaluation within the run budget
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R012
+      - name: should leave without score and without diagnosis and count as failed
+          a quiz whose judge output was unusable
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R013
+      - name: should query the judge again in a later run for a quiz whose previous
+          output was unusable
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R013
+      - name: "should reach every quiz of the course, including those whose knowledge\
+          \ declares no instructions"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R014
+      - name: "should declare a reached count equal to the number of quizzes of the\
+          \ course, with no exclusions"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R014
+- name: audit-application
+  implementations:
+  - name: DefaultAuditRunner
+    handwrittenTests:
+    - name: should include the quiz instruction analysis when the audit request says
+        nothing about analyzers
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R001
+    - name: "should report quiz instruction score, diagnoses and coverage on an audit\
+        \ asked with no options"
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R001
+    - name: should not build the quiz instruction analyzer when the request excludes
+        it
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R011
+    - name: "should leave the report without quiz instruction score, diagnosis or\
+        \ coverage when the analysis is excluded"
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R011
+    - name: should not run the quiz instruction analysis when the request narrows
+        the audit to other analyzers
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R011
+    - name: should finish the audit and keep the results of the other analyzers when
+        the quiz instruction judge fails
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R007
+    - name: should hand the quiz instruction analyzer the run policy the request declared
+        for its judge
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R006
+  - name: DefaultQuizInstructionConfig
+    handwrittenTests:
+    - name: should default the run budget to 500 new judge queries
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R006
+    - name: "should map the severities none, minor, major and critical to the scores\
+        \ 1.0, 0.6, 0.3 and 0.0"
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R002
+  - name: CourseToAuditableMapper
+    handwrittenTests:
+    - name: should carry every sentence part and every accepted option of the quiz
+        template into the auditable quiz
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R009
+    - name: should carry the knowledge instructions and the topic name into the auditable
+        knowledge
+      traceability:
+        feature: FEAT-QINST
+        rule: F-QINST-R009
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: AnalyzeCmd
+      handwrittenTests:
+      - name: should exclude the quiz instruction analysis from the run when the user
+          asks to exclude analyzers
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R011
+      - name: should carry the instruction budget the user asked for into the run
+          policy of the judge
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R006
+      - name: should ask for re evaluation with its scope when the user requests to
+          judge again
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R012
+      - name: should neither exclude nor narrow the quiz instruction analysis when
+          the user passes no analyzer option
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R001
+  - name: formatting
+    implementations:
+    - name: QuizInstructionDetailedFormatter
+      handwrittenTests:
+      - name: should render the declared coverage of the quiz instruction analysis
+          next to its score
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R005
+      - name: should render for each breaching quiz its violations with their evidence
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R003
+- name: quiz-instruction-infrastructure
+  packages:
+  - name: instructionjudge
+    implementations:
+    - name: QuizInstructionAgentJudge
+      handwrittenTests:
+      - name: "should report the conservative infrastructure verdict of the judge,\
+          \ with null confidence and a judge output invalid violation, as an unusable\
+          \ output instead of a verdict"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R013
+      - name: should report a genuine non compliant verdict as an emitted result and
+          not as a failure
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R013
+      - name: "should report a judge service failure, timeout or exhausted credit\
+          \ as an unavailable evaluator instead of throwing"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R007
+      - name: should hand the judge the five declared inputs verbatim from the judged
+          content
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R009
+    - name: DefaultQuizInstructionJudgeVersionResolver
+      handwrittenTests:
+      - name: should derive a different judge version when the agent definition or
+          the model changes
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R010
+      - name: should keep the judge version stable while the agent definition and
+          the model stay the same
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R010
+      - name: should honour the judge version fixed by configuration
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R010
+    - name: DefaultQuizInstructionJudgeFactory
+      handwrittenTests:
+      - name: "should yield an evaluator that reports itself unavailable when the\
+          \ judge configuration is missing or invalid, instead of failing the audit"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R007
+  - name: instructionverdict
+    implementations:
+    - name: JacksonQuizInstructionVerdictReader
+      handwrittenTests:
+      - name: "should read the judge payload preserving every violation with its code,\
+          \ constraint, evidence and explanation and every performed check with its\
+          \ state"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R003
+      - name: "should read the compliance flag, the severity and the confidence of\
+          \ the verdict"
+        traceability:
+          feature: FEAT-QINST
+          rule: F-QINST-R003
+features:
+- id: FEAT-QINST
+  journeys:
+  - id: F-QINST-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.quizinstructionengine
+  - id: F-QINST-J002
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.quizinstructionengine
+  - id: F-QINST-J003
+    validation: AUTO_VALIDATED
+    testModule: audit-application
+    testPackage: com.learney.contentaudit.auditapplication

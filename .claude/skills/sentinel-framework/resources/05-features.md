@@ -1309,7 +1309,7 @@ bloqueo sin tocar el flujo de revision de quizzes ya existente.
 | F-KTLR-R004 | La salida del agente es un unico candidato de titulo por revision | high | - |
 | F-KTLR-R005 | El candidato se transforma en una propuesta revisable | high | - |
 | F-KTLR-R006 | Aprobar una correccion de titulo escribe el knowledge en el curso | critical | - |
-| F-KTLR-R007 | Solo cambian titulo e instructions del knowledge senalado | critical | - |
+| F-KTLR-R007 | Alcance acotado de la correccion de titulo | critical | - |
 | F-KTLR-R008 | El flujo de revision de quizzes queda intacto | critical | - |
 | F-KTLR-R009 | Rechazar deja el knowledge sin cambios | high | - |
 | F-KTLR-R010 | Si el agente no produce un candidato valido, la revision aborta sin tocar el curso | high | El agente de titulos no pudo generar una correccion para el
@@ -1352,4 +1352,105 @@ auditarlo, nunca sobre una oracion suelta.
 **User Journeys:**
 
 - **F-CLEX-J001**: El agente consulta los flags lexicos de un candidato
+
+### FEAT-RPRES: Preservacion del contenido no revisado al aplicar una revision [F-RPRES]
+
+> **Que**: Aplicar una revision a un elemento del curso cambia **solo** lo que la
+revision propone corregir; todo lo demas del elemento sobrevive intacto al ciclo
+de guardado y recarga, incluidos los valores legitimamente vacios.
+
+**Por que**: Hoy los atributos del ejercicio que la propuesta no describe quedan
+en valores por defecto (2.658 quizzes revisados degradados), y eso deja el
+contenido inutilizable para la aplicacion que lo sirve a los alumnos.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-RPRES-R001 | Preservacion por defecto: solo cambia lo que la revision propone | critical | La revision del elemento '{elementId}' modifico atributos que no eran objeto de la correccion: {atributos} |
+| F-RPRES-R002 | Vacio no es ausente, y un valor propio no es un valor por defecto | critical | El atributo '{atributo}' del elemento '{elementId}' paso de '{estadoOriginal}' a '{estadoResultante}' al aplicar la revision |
+| F-RPRES-R003 | Revisar un elemento no altera ningun otro elemento del curso | critical | La revision del elemento '{elementId}' modifico {cantidad} elementos ajenos a la correccion |
+| F-RPRES-R004 | Corregir la etiqueta de un knowledge alinea el titulo de sus ejercicios | critical | La correccion de la etiqueta del knowledge '{knowledgeId}' dejo {cantidad} ejercicios con el titulo desalineado |
+| F-RPRES-R005 | El contenido ya degradado se repara, una vez vigente la preservacion | critical | Quedan {cantidad} elementos del curso con atributos degradados tras la reparacion |
+| F-RPRES-R006 | Una parte nueva del enunciado nace completa, no por defecto | critical | La correccion del ejercicio '{quizId}' agrego {cantidad} partes al enunciado que no estan en el estado que corresponde a su clase: {detalle} |
+
+**User Journeys:**
+
+- **F-RPRES-J001**: Aplicar una revision conservando el contenido no revisado
+
+- **F-RPRES-J002**: Aplicar una revision no altera el resto del curso
+
+- **F-RPRES-J003**: El titulo de los ejercicios sigue a la etiqueta, y solo a ella
+
+### FEAT-QINST: Analisis de cumplimiento de la consigna del quiz [F-QINST]
+
+> **Que**: Un analisis nuevo de la auditoria puntua cada ejercicio segun si cumple
+literalmente la consigna que se le da al alumno, apoyandose en un juez de
+consigna ya existente y reutilizando los veredictos ya emitidos.
+
+**Por que**: Hoy la auditoria mide longitud y vocabulario, pero nada verifica que
+el ejercicio haga lo que su consigna promete; hay ejercicios irresolubles o que
+contradicen su propia instruccion y ningun analisis los detecta.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-QINST-R001 | El analisis de consigna corre en toda auditoria, salvo exclusion explicita | critical | - |
+| F-QINST-R002 | Del veredicto al puntaje: la severidad define la escala | critical | Puntaje fuera del rango [0,0 - 1,0] para el ejercicio '{quizId}' del knowledge '{knowledgeId}' |
+| F-QINST-R003 | Cada ejercicio evaluado deja un diagnostico inspeccionable | critical | El ejercicio '{quizId}' fue evaluado pero no registro diagnostico de consigna |
+| F-QINST-R004 | Un ejercicio no evaluado no recibe puntaje ni diagnostico | critical | El ejercicio '{quizId}' no fue evaluado y sin embargo recibio puntaje de consigna |
+| F-QINST-R005 | El informe declara la cobertura del analisis y de que versiones del juez vienen sus veredictos | critical | La cobertura declarada del analisis de consigna no cierra: {conVeredicto} + {pendientes} + {fallidos} != {alcanzados} |
+| F-QINST-R006 | Cada corrida acota cuantas consultas nuevas hace al juez | critical | - |
+| F-QINST-R007 | Una falla del juez no aborta la auditoria ni corrompe lo ya guardado | critical | La auditoria se interrumpio por una falla del juez de consigna |
+| F-QINST-R008 | Una corrida no vuelve a consultar por lo ya evaluado | critical | Se consulto al juez por el ejercicio '{quizId}', que ya tenia veredicto registrado |
+| F-QINST-R009 | La identidad del veredicto es el contenido juzgado, no el ejercicio | critical | Se reutilizo el veredicto del ejercicio '{quizId}' pese a que su contenido juzgado cambio |
+| F-QINST-R010 | La version del juez se registra y se declara; cambiarla no invalida ningun veredicto | critical | El cambio de version del juez de consigna elimino {cantidad} veredictos anteriores |
+| F-QINST-R011 | El usuario puede excluir el analisis de una corrida | major | - |
+| F-QINST-R012 | La re-evaluacion es explicita, acotable, y el unico modo de rehacer un veredicto | major | - |
+| F-QINST-R013 | Un veredicto de infraestructura del juez es una falla, no un juicio | critical | Se registro como veredicto una respuesta de infraestructura del juez para el ejercicio '{quizId}' |
+| F-QINST-R014 | Alcance: todo ejercicio del curso, tenga o no restricciones explicitas | major | - |
+| F-QINST-R015 | El analisis tiene un solo nombre: el que se lee es el que se escribe | critical | Se pidio '{opcion}' para el analisis '{nombre}' y la corrida lo ignoro: el informe publica ese analisis con ese mismo nombre |
+| F-QINST-R016 | El juez admite todo proveedor que el sistema sepa consultar; "invalida" se juzga contra el proveedor declarado | critical | El juez de consigna se declaro no disponible por falta de '{dato}', que el proveedor '{proveedor}' no utiliza |
+| F-QINST-R017 | El incumplimiento detectado se convierte en trabajo: cada ejercicio que incumple entra al plan como tarea | critical | El informe declara {n} ejercicios con incumplimiento de consigna y el plan generado a partir de el no contiene ninguna tarea de ese tipo |
+
+**User Journeys:**
+
+- **F-QINST-J001**: Puntuar un ejercicio a partir del veredicto del juez
+
+- **F-QINST-J002**: Auditar con cobertura parcial y reanudar en la corrida siguiente
+
+- **F-QINST-J003**: Ejecucion por omision, exclusion y re-evaluacion explicita
+
+### FEAT-EVCOST: Resultados de evaluacion costosa reutilizables entre analisis [F-EVCOST]
+
+> **Que**: El sistema registra el resultado de cada evaluacion costosa bajo la
+huella del contenido evaluado, lo reutiliza en analisis posteriores y lo
+conserva aunque la corrida se interrumpa.
+
+**Por que**: Sin esto, cada analisis que se apoya en un evaluador lento y pagado
+lo vuelve a pagar entero, y una caida a mitad de camino pierde todo el trabajo.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-EVCOST-R001 | La identidad de un resultado es evaluador + huella del contenido; la version es procedencia | critical | El resultado registrado para el evaluador '{evaluador}' no corresponde al contenido consultado |
+| F-EVCOST-R002 | La huella se deriva de todo el contenido entregado al evaluador, y de nada mas | critical | La huella del contenido para el evaluador '{evaluador}' no es reproducible entre corridas |
+| F-EVCOST-R003 | Antes de evaluar se consulta el resultado ya registrado | critical | - |
+| F-EVCOST-R004 | Cada resultado queda disponible apenas se obtiene | critical | El registro de resultados del evaluador '{evaluador}' contiene una entrada incompleta |
+| F-EVCOST-R005 | Solo se registra el resultado definitivo; la falla transitoria no se registra | critical | Se registro como resultado una falla del evaluador '{evaluador}' sobre el contenido {huella} |
+| F-EVCOST-R006 | Conviven resultados de distintas versiones del evaluador; todos se reutilizan y nada se borra solo | critical | El cambio de version del evaluador '{evaluador}' elimino {cantidad} resultados de la version anterior |
+| F-EVCOST-R007 | El registro es estado propio: sobrevive a los informes y se comparte entre analisis | critical | Los resultados registrados del evaluador '{evaluador}' se perdieron al eliminar informes de analisis |
+| F-EVCOST-R008 | La re-evaluacion explicita es el unico modo de rehacer un resultado | critical | Se re-evaluo contenido con resultado registrado sin pedido explicito del usuario |
+| F-EVCOST-R009 | Ante una falla, la corrida distingue si fallo ese contenido o fallo el servicio | critical | La corrida siguio consultando al evaluador '{evaluador}' tras una falla
+del servicio |
+
+**User Journeys:**
+
+- **F-EVCOST-J001**: Reutilizar, o no, un resultado ya registrado
+
+- **F-EVCOST-J002**: Una interrupcion o una falla no pierden el trabajo hecho
+
+- **F-EVCOST-J003**: Los resultados sobreviven a los informes y solo se rehacen a pedido
 

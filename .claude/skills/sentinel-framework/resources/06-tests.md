@@ -122,6 +122,10 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should compute the length score over the mode-determined canonical phrase token count and not over a blind concatenation of all quiz parts → FEAT-SMODE/F-SMODE-R005
 - should score a REWRITE quiz answer Watch the DVD at 100 percent on 4 tokens for A1 instead of 60 percent on the 10-token source-plus-answer concatenation → FEAT-SMODE/F-SMODE-R007
 
+### IScoreAggregator (audit-domain)
+
+- should average the quiz instruction score of a knowledge over its evaluated quizzes only, leaving the pending ones out → FEAT-QINST/F-QINST-R004
+
 ### SentenceLengthContextResolver (refiner-domain)
 
 - should resolve context with all fields populated from quiz diagnosis and ancestor entities → FEAT-RCSL/F-RCSL-R001
@@ -225,6 +229,8 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should not include LEMMA_ABSENCE tasks targeting MILESTONE or COURSE in the refinement plan → FEAT-RCLA/F-RCLA-R001
 - should not generate LEMMA_ABSENCE task for quiz with lemma-absence score equal to 1.0 → FEAT-RCLA/F-RCLA-R001
 - should still generate COCA_BUCKETS and LEMMA_RECURRENCE tasks at MILESTONE and COURSE level after re-routing → FEAT-RCLA/F-RCLA-R001
+- should include one QUIZ_INSTRUCTION task targeting the quiz for each quiz whose quiz-instruction score is below 1.0 → FEAT-QINST/F-QINST-R017
+- should not include any QUIZ_INSTRUCTION task for a quiz that complies with its instruction nor for a quiz with no quiz-instruction score at all → FEAT-QINST/F-QINST-R017
 
 ### KnowledgeTitleContextResolver (refiner-domain)
 
@@ -246,6 +252,8 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should propagate QuizTemplateEntity sentences verbatim to AuditableQuiz sentences without modification → FEAT-DBSENT/F-DBSENT-R002
 - should not invoke QuizSentenceConverter.toPlainSentences for any quiz of the audited course → FEAT-DBSENT/F-DBSENT-R002
 - should stamp the canonical sentence at index 0 of QuizTemplateEntity sentences as the NLP batch key for the AuditableQuiz tokens → FEAT-DBSENT/F-DBSENT-R002
+- should carry every sentence part and every accepted option of the quiz template into the auditable quiz → FEAT-QINST/F-QINST-R009
+- should carry the knowledge instructions and the topic name into the auditable knowledge → FEAT-QINST/F-QINST-R009
 
 ### DefaultAuditRunner (audit-application)
 
@@ -260,6 +268,16 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should expose a public runAudit(Path coursePath) method on the AuditRunner contract that returns the AuditReport produced after loading the course mapping it to AuditableCourse and running the audit engine → FEAT-CLI/F-CLI-R005
 - should expose lemma-count diagnoses in the AuditReport when runAudit is invoked with both lemma-count and lemma-absence analyzers so downstream consumers can read the underexposure signal per level → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R001
 - should expose lemma-count diagnoses in the AuditReport when runDetailedAudit is invoked with both lemma-count and lemma-absence analyzers so downstream consumers can read the underexposure signal per level → FEAT-LEMMA-SUGGESTIONS/F-SLEM-R001
+- should include the quiz instruction analysis when the audit request says nothing about analyzers → FEAT-QINST/F-QINST-R001
+- should report quiz instruction score, diagnoses and coverage on an audit asked with no options → FEAT-QINST/F-QINST-R001
+- should not build the quiz instruction analyzer when the request excludes it → FEAT-QINST/F-QINST-R011
+- should leave the report without quiz instruction score, diagnosis or coverage when the analysis is excluded → FEAT-QINST/F-QINST-R011
+- should not run the quiz instruction analysis when the request narrows the audit to other analyzers → FEAT-QINST/F-QINST-R011
+- should finish the audit and keep the results of the other analyzers when the quiz instruction judge fails → FEAT-QINST/F-QINST-R007
+- should hand the quiz instruction analyzer the run policy the request declared for its judge → FEAT-QINST/F-QINST-R006
+- should not run the quiz instruction analysis when the run excludes it by the very name the report publishes, while the judge behind it answers to a different name → FEAT-QINST/F-QINST-R015
+- should cap the judge queries at the number requested for the name the report publishes instead of falling back to the default cap, while the judge behind it answers to a different name → FEAT-QINST/F-QINST-R015
+- should re evaluate quizzes that already had a verdict when re evaluation is requested for the name the report publishes, while the judge behind it answers to a different name → FEAT-QINST/F-QINST-R015
 
 ### DefaultCocaBucketsConfig (audit-application)
 
@@ -343,6 +361,11 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should reject a non-numeric string as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
 - should reject an empty string as threshold value with IllegalArgumentException → FEAT-LCOUNT/F-LCOUNT-R008
 
+### DefaultQuizInstructionConfig (audit-application)
+
+- should default the run budget to 500 new judge queries → FEAT-QINST/F-QINST-R006
+- should map the severities none, minor, major and critical to the scores 1.0, 0.6, 0.3 and 0.0 → FEAT-QINST/F-QINST-R002
+
 ### FileSystemCourseRepository (course-infrastructure)
 
 - Given a valid course entity, when save is called, then validator is invoked and no exception is thrown → F-COURSE/F-COURSE-R014
@@ -412,4 +435,13 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - Dado un store con una seleccion ya escrita, cuando write se invoca con la misma seleccion, entonces el archivo no se reescribe (write idempotente y no destructivo a nivel observable) → FEAT-CDIFF/F-CDIFF-R002
 - Dado un store con una seleccion escrita, cuando clear corre, entonces read posterior retorna Optional.empty → FEAT-CDIFF/F-CDIFF-R001
 - Dado un courseRoot con AuditReports y RefinementPlans persistidos, cuando write y clear se invocan sobre el ActiveAnalysisSelectionStore, entonces ningun AuditReport, RefinementPlan, RevisionArtifact ni archivo del curso se modifica → FEAT-CDIFF/F-CDIFF-R002
+
+### FileSystemEvaluationLedger (evaluation-ledger-infrastructure)
+
+- should make every appended result readable by a ledger instance opened after the run was interrupted → FEAT-EVCOST/F-EVCOST-R004
+- should ignore a truncated trailing entry and report its content as never registered → FEAT-EVCOST/F-EVCOST-R004
+- should preserve every result when two runs append to the same evaluator ledger at the same time → FEAT-EVCOST/F-EVCOST-R004
+- should keep the results of previous evaluator versions readable in history after a new version records its own → FEAT-EVCOST/F-EVCOST-R006
+- should keep every registered result readable after the analysis reports under the same base directory are deleted → FEAT-EVCOST/F-EVCOST-R007
+- should keep the earlier entry consultable in history when the same key is recorded again → FEAT-EVCOST/F-EVCOST-R008
 

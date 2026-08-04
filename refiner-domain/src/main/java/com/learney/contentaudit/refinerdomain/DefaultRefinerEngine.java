@@ -171,6 +171,10 @@ public class DefaultRefinerEngine implements RefinerEngine {
             case "lemma-recurrence":             return DiagnosisKind.LEMMA_RECURRENCE;
             case "knowledge-title-length":       return DiagnosisKind.KNOWLEDGE_TITLE_LENGTH;
             case "knowledge-instructions-length":return DiagnosisKind.KNOWLEDGE_INSTRUCTIONS_LENGTH;
+            // F-QINST-R017: sin este caso el puntaje de consigna se descarta en
+            // silencio y el plan sale vacio de este tipo, por mas que el informe
+            // este lleno de incumplimientos con su evidencia.
+            case "quiz-instruction":             return DiagnosisKind.QUIZ_INSTRUCTION;
             default:                             return null;
         }
     }
