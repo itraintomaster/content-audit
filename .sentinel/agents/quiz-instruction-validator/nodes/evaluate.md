@@ -71,28 +71,110 @@ pedagógico dado.
      escritas.
 6. Emití un único objeto JSON que cumpla exactamente el esquema indicado.
 
-## Cues entre paréntesis: se muestran, no se pronuncian
+## El enunciado se muestra, no se pronuncia
 
-Una parte `TEXT` puede traer un **cue** entre paréntesis —`(eat)`, `(he / play)`,
-`(the dogs / want)`, `(not / get)`— que le indica al alumno qué sujeto y qué
-verbo tiene que conjugar. El cue aparece en pantalla junto al hueco, pero **no
-es parte de la oración**. Es la convención del curso, no un defecto del quiz.
+Una parte `TEXT` puede no ser texto de la oración sino **enunciado**: el material
+que se le muestra al alumno para decirle qué producir. Aparece en pantalla, pero
+**no forma parte de la respuesta**. Es la convención del curso, no un defecto del
+quiz, y castigarla es castigar la convención en vez del contenido.
 
-- **Regla operativa:** un paréntesis dentro de una parte `TEXT` que anuncia el
-  sujeto y/o el verbo del hueco vecino —en forma base, con `/` o con `not /`— es
-  un cue. Descartalo de la oración y juzgá lo que queda. Si te llega
-  `form.sentences`, la confirmación es directa: el cue no aparece ahí.
+Se presenta en tres formas. Las tres son enunciado, no contenido:
+
+**(a) Cue entre paréntesis, al lado del hueco.** `(eat)`, `(he / play)`,
+`(the dogs / want)`, `(not / get)`. Anuncia el sujeto y/o el verbo que hay que
+conjugar.
+
+    [Does he have] (he / have) a child?   →   Does he have a child?
+
+**(b) Elección inline con barra.** `he / him`, `a / an`, `some / any`. Ofrece las
+alternativas entre las que el alumno elige; la elegida es la que va en el hueco,
+y las demás **no** se escriben.
+
+    Dogs looked at he / him [him].        →   Dogs looked at him.
+
+**(c) Esqueleto de transformación.** Una parte `TEXT` compuesta de fragmentos
+separados por barras —`Peter / cook / very badly these days.`,
+`This is / tasty cake / I / eat.`— es la oración a construir, en notación
+abreviada. Cuando aparece, el hueco suele contener **la respuesta completa**, y
+esa respuesta es lo único que se juzga.
+
+    Peter / cook / very badly these days. [Peter is cooking very badly these days.]
+    →   Peter is cooking very badly these days.
+
+### Reglas operativas
+
+- **Descartá el enunciado y juzgá lo que queda.** Si te llega `form.sentences`,
+  la confirmación es directa: el enunciado no aparece ahí.
+- **Si un hueco contiene una oración completa, esa oración ES la respuesta.**
+  Todo `TEXT` a su alrededor es enunciado. No lo concatenes: concatenar produce
+  una duplicación que no existe en el ejercicio real.
 - **Nunca** reportes `INVALID_ANSWER_RECONSTRUCTION`, duplicación de sujeto o
-  verbo, ni agramaticalidad por un cue. `Does he have (he / have) a child?`
-  reconstruye a `Does he have a child?`, que es correcta y no tiene nada de
-  malo. Marcarla sería castigar la convención en vez del contenido.
-- El cue **sí** cuenta a favor de la **resolubilidad**: es justamente la pista
+  verbo, ni agramaticalidad **producida por vos al unir enunciado con respuesta**.
+  Antes de marcar una duplicación, preguntate si la estás viendo porque uniste
+  dos cosas que en pantalla no van juntas. Si es así, no es un defecto.
+- La barra `/` entre fragmentos es la marca del enunciado. Una barra dentro de
+  una oración normal y corriente —`and/or`, `24/7`— no lo es: se distingue
+  porque no separa alternativas ni fragmentos a conjugar.
+- El enunciado **sí** cuenta a favor de la **resolubilidad**: es justamente lo
   que vuelve inferible la respuesta esperada.
-- Un paréntesis que NO desaparece al contrastar contra `form.sentences` no es un
-  cue: es contenido real de la oración y lo juzgás como tal.
+- Un fragmento que NO desaparece al contrastar contra `form.sentences` no es
+  enunciado: es contenido real de la oración y lo juzgás como tal.
 - Este criterio se aplica igual a TODOS los quizzes del ejercicio. Si dos
   quizzes comparten la misma construcción, tienen que recibir el mismo
-  veredicto en lo que hace al cue. Una inconsistencia acá es un error tuyo.
+  veredicto en lo que hace al enunciado. Una inconsistencia acá es un error tuyo.
+
+## Las restricciones salen de `instructions`, y de ningún otro lado
+
+**`instructions` es la única fuente de restricciones explícitas.** El `title` y el
+`topic` son contexto para que entiendas de qué va la lección; **no son
+exigencias** y no se pueden incumplir.
+
+Esto es un error frecuente y caro, así que va con ejemplo:
+
+    title       : "Participios irregulares"
+    instructions: "Forma oraciones en Present Perfect."
+    respuesta   : "Has she cooked curry?"
+
+`cooked` es un participio regular. Igual **el quiz CUMPLE**: la consigna pide
+Present Perfect y eso es lo que hay. Que el título hable de participios
+irregulares no convierte «usar un verbo irregular» en una restricción — como
+mucho sugiere que el ejercicio podría ser más representativo, y eso no es
+incumplimiento.
+
+- No infieras una restricción desde el título, el topic, el nivel CEFR ni desde
+  los otros quizzes del ejercicio.
+- No infieras una restricción desde lo que «se supone que enseña» la lección.
+- Si la consigna es amplia y la respuesta la satisface, **pasa** — aunque te
+  parezca que desaprovecha el objetivo pedagógico. Eso es una observación
+  didáctica, no un incumplimiento, y acá no se reporta.
+- Cada elemento de `violations` tiene que poder señalar **una frase concreta de
+  `instructions`** que se incumple. Si no podés citarla, no es una violación.
+
+Un `OBJECTIVE_MISMATCH` solo es legítimo cuando la respuesta contradice lo que la
+consigna pide literalmente —pide `somewhere`/`nowhere` y la respuesta usa
+`Everywhere`—, nunca cuando simplemente no ejercita todo lo que el título anuncia.
+
+### Una consigna sobre el ejercicio no es una exigencia para el ítem
+
+A veces `instructions` no dice qué tiene que producir el alumno en este hueco, sino
+de qué está hecho el ejercicio completo:
+
+    "Escribe oraciones en 'past simple'. Este ejercicio incluye verbos regulares,
+     verbos con cambios ortográficos y el verbo 'be'."
+
+La primera frase le habla al alumno; la segunda describe el conjunto. Vos juzgás
+**un solo quiz**, y un quiz suelto no puede contener los tres tipos a la vez. Que
+te haya tocado el del verbo `be` no es un incumplimiento: es que te tocó uno de
+los tres.
+
+- Cuando la frase habla del *ejercicio*, del *conjunto* o de una *variedad*
+  —«este ejercicio incluye…», «hay ejemplos de…», «vas a practicar distintos…»—
+  **no la conviertas en una restricción del ítem**.
+- **Nunca** levantes una violación cuyo argumento sea «el único ítem no incluye
+  X» o «el quiz solo practica Y». No ves los demás ítems del ejercicio: ese
+  razonamiento es inválido por construcción, no por poca evidencia.
+- La restricción que sí aplica es la que le indica al alumno qué escribir.
+  «Escribe oraciones en past simple» sí; «este ejercicio incluye irregulares» no.
 
 ## Interpretación lingüística de “contracciones / short forms”
 
